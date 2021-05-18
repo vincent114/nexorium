@@ -1,0 +1,11 @@
+{
+  "name": "nexorium",
+  "version": "1.0.0",
+  "scripts": {
+    "serve": "webpack --watch --progress",
+    "watch": "webpack --watch --progress",
+    "build": "webpack build",
+    "run": "webpack"
+  },
+  "author": "vincent.boni@icloud.com"
+}
