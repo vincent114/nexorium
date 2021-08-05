@@ -4,6 +4,8 @@ smap.register('nexorium')
 
 from pyramid.config import Configurator
 
+from nexorium.resources import Root
+from nexorium.resources.app_support import AppSupport
 from nexorium import views
 
 
@@ -11,7 +13,8 @@ def main(global_config, **settings):
     """ This function returns a Pyramid WSGI application.
     """
     config = Configurator(
-        settings=settings
+        settings=settings,
+        root_factory = Root,
     )
 
     config.include('pyramid_jinja2')
@@ -19,10 +22,33 @@ def main(global_config, **settings):
     # NxApp config
     config.include('nexus.pyramid')
 
+    # Init callback
+    config.registry.settings['init_app_callback'] = AppSupport.to_raw
+
     # Routes
     # ------------------------------------------------------
 
     config.add_route('home', '/')
+
+    # ---
+
+    # A propos
+    # -
+
+    config.add_route('about', '/about')
+
+    # Administration
+    # -
+
+    config.add_route('admin', '/admin')
+
+    # ---
+
+    # Mon compte
+
+    config.add_route('account', '/account')
+
+    # ---
 
     # Static
     if settings['pyramid.reload_templates'].lower() == 'true':
