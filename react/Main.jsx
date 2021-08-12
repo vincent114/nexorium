@@ -8,6 +8,11 @@ import { NxAppStore, NxApp, makeInitSnapshot } from 'nexus/NxApp';
 import { ContextualHeader } from 'nexorium/ui/ContextualHeader';
 import { ContextualMenu } from 'nexorium/ui/ContextualMenu';
 import { HomePage } from 'nexorium/contexts/home/Home';
+import { SearchStore, SearchPage } from 'nexorium/contexts/search/Search';
+import { BlogStore, BlogPage } from 'nexorium/contexts/blog/Blog';
+import { ProjectsStore, ProjectsPage } from 'nexorium/contexts/projects/Projects';
+import { CvStore, CvPage } from 'nexorium/contexts/cv/Cv';
+import { PlaygroundStore, PlaygroundPage } from 'nexorium/contexts/playground/Playground';
 import { AdminPage } from 'nexorium/contexts/admin/Admin';
 
 import './Main.css';
@@ -23,6 +28,32 @@ const TAG_RootStore = () => {}
 const RootStore = types
 	.model({
 		'app': types.optional(NxAppStore, {}),
+
+		// Search
+		// -
+
+		'search': types.optional(SearchStore, {}),
+
+		// Blog
+		// -
+
+		'blog': types.optional(BlogStore, {}),
+
+		// Mes projets
+		// -
+
+		'projects': types.optional(ProjectsStore, {}),
+
+		// Mon CV
+		// -
+
+		'cv': types.optional(CvStore, {}),
+
+		// Playground
+		// -
+
+		'playground': types.optional(PlaygroundStore, {}),
+
 	})
 	.views(self => ({
 
@@ -53,11 +84,44 @@ const RootStore = types
 
 			// -
 
-			// A propos
-			// if (navContext == 'about') {
-			// 	app.navigate(app.aboutUrl, 'about');
-			// }
+			// Search
+			if (navContext == 'search') {
+				app.navigate('/search', 'search');
+			}
 
+			// -
+
+			// Blog
+			if (navContext == 'blog') {
+				app.navigate('/blog', 'blog', [
+					{"op": "replace", "path": "/blog/loaded", "value": false},
+				]);
+			}
+
+			// -
+
+			// Mes projects
+			if (navContext == 'projects') {
+				app.navigate('/projects', 'projects', [
+					{"op": "replace", "path": "/projects/loaded", "value": false},
+				]);
+			}
+
+			// Mon CV
+			if (navContext == 'cv') {
+				app.navigate('/cv', 'cv', [
+					{"op": "replace", "path": "/cv/loaded", "value": false},
+				]);
+			}
+
+			// -
+
+			// Playground
+			if (navContext == 'playground') {
+				app.navigate('/playground', 'playground', [
+					{"op": "replace", "path": "/playground/loaded", "value": false},
+				]);
+			}
 		},
 
 	}))
@@ -71,6 +135,11 @@ const RootStore = types
 
 let contexts = {
 	'home': HomePage,
+	'search': SearchPage,
+	'blog': BlogPage,
+	'projects': ProjectsPage,
+	'cv': CvPage,
+	'playground': PlaygroundPage,
 	'admin': AdminPage,
 }
 
@@ -84,6 +153,11 @@ let popups = {}
 
 let routes = {
 	'home': '/',
+	'search': '/search',
+	'blog': '/blog',
+	'projects': '/projects',
+	'cv': '/cv',
+	'playground': '/playground',
 	'admin': '/admin',
 }
 

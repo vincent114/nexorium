@@ -29,6 +29,38 @@ def main(global_config, **settings):
     # ------------------------------------------------------
 
     config.add_route('home', '/')
+    config.add_route('search', '/search')
+    config.add_route('search_actions', '/search_actions/{action}')
+
+    # ---
+
+    # Blog
+    # -
+
+    config.add_route('blog', '/blog')
+    config.add_route('blog_actions', '/blog_actions/{action}')
+
+    # ---
+
+    # Mes projets
+    # -
+
+    config.add_route('projects', '/projects')
+    config.add_route('projects_actions', '/projects_actions/{action}')
+
+    # Mon CV
+    # -
+
+    config.add_route('cv', '/cv')
+    config.add_route('cv_actions', '/cv_actions/{action}')
+
+    # ---
+
+    # Playground
+    # -
+
+    config.add_route('playground', '/playground')
+    config.add_route('playground_actions', '/playground_actions/{action}')
 
     # ---
 

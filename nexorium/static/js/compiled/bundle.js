@@ -1,7 +1,7 @@
 /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
-/***/ 505:
+/***/ 133:
 /***/ ((__unused_webpack_module, __unused_webpack___webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -222,7 +222,14 @@ var ICON_KEYS_TO_FILES = {
     'push_pin': 'push_pin_black_24dp.svg',
     'bug_report': 'bug_report_black_24dp.svg',
     'badge': 'badge_black_24dp.svg',
-    'lock_open': 'lock_open_black_24dp.svg'
+    'lock_open': 'lock_open_black_24dp.svg',
+    'person': 'person_black_24dp.svg',
+    'history': 'history_black_24dp.svg',
+    'text_snippet': 'text_snippet_black_24dp.svg',
+    'forum': 'forum_black_24dp.svg',
+    'work_outline': 'work_outline_black_24dp.svg',
+    'school': 'school_black_24dp.svg',
+    'science': 'science_black_24dp.svg'
   }
 }; // const ICON_SIZES = {
 // 	'small': {
@@ -720,7 +727,33 @@ var HeaderStore = mobx_state_tree_module/* types.model */.V5.model({}).actions(f
   };
 }); // Functions Components ReactJS
 // -------------------------------------------------------------------------------------------------------------
-// ***** HeaderUserMenu *****
+// ***** HeaderTitle *****
+// ***********************
+
+var TAG_HeaderTitle = function TAG_HeaderTitle() {};
+
+var HeaderTitle = function HeaderTitle(props) {
+  // From ... props
+  var title = props.title ? props.title : '';
+  var titleStyle = props.titleStyle ? props.titleStyle : {};
+  var subtitle = props.subtitle ? props.subtitle : '';
+  var subtitleStyle = props.subtitleStyle ? props.subtitleStyle : {};
+  var centered = props.centered == true ? props.centered : false; // ...
+  // Render
+  // ==================================================================================================
+
+  return /*#__PURE__*/react.createElement("div", {
+    className: (0,clsx_m/* default */.Z)("nx-header-titles-wrapper", {
+      "centered": centered
+    })
+  }, title && /*#__PURE__*/react.createElement("div", {
+    className: "nx-header-title",
+    style: titleStyle
+  }, title), subtitle && /*#__PURE__*/react.createElement("div", {
+    className: "nx-header-subtitle",
+    style: subtitleStyle
+  }, subtitle));
+}; // ***** HeaderUserMenu *****
 // **************************
 
 var TAG_HeaderUserMenu = function TAG_HeaderUserMenu() {};
@@ -847,7 +880,9 @@ var Header_Header = (0,es/* observer */.Pi)(function (props) {
   var menu = app.menu;
   var portal = app.portal; // From ... props
 
+  var left = props.left;
   var children = props.children;
+  var right = props.right;
   var callbackMenu = props.callbackMenu;
   var callbackBack = props.callbackBack;
   var callbackHome = props.callbackHome;
@@ -924,7 +959,7 @@ var Header_Header = (0,es/* observer */.Pi)(function (props) {
   }, /*#__PURE__*/react.createElement(Icon_Icon, {
     name: "home",
     color: "white"
-  }))); // Header -> Middle
+  })), left && left); // Header -> Middle
   // -------------------------------------------------
 
   var headerMiddle = /*#__PURE__*/react.createElement("div", {
@@ -934,7 +969,7 @@ var Header_Header = (0,es/* observer */.Pi)(function (props) {
 
   var headerRight = /*#__PURE__*/react.createElement("div", {
     className: "nx-header-right"
-  }, !breakPoint650 && /*#__PURE__*/react.createElement(IconButton, {
+  }, right && right, !breakPoint650 && /*#__PURE__*/react.createElement(IconButton, {
     onClick: function onClick() {
       return handleBugReportClick();
     },
@@ -1792,9 +1827,27 @@ var About = __webpack_require__(189);
 
 
 
+
  // Functions Components ReactJS
 // -------------------------------------------------------------------------------------------------------------
-// ***** AboutMenuItem *****
+// ***** AboutHeaderLeft *****
+// ***************************
+
+var TAG_AboutHeaderLeft = function TAG_AboutHeaderLeft() {};
+
+var AboutHeaderLeft = (0,es/* observer */.Pi)(function (props) {
+  var store = react.useContext(window.storeContext);
+  var app = store.app; // ...
+  // Render
+  // ==================================================================================================
+
+  return /*#__PURE__*/react.createElement(HeaderTitle, {
+    title: "A propos",
+    titleStyle: {
+      marginLeft: '10px'
+    }
+  });
+}); // ***** AboutMenuItem *****
 // *************************
 
 var TAG_AboutMenuItem = function TAG_AboutMenuItem() {};
@@ -1805,7 +1858,7 @@ var AboutMenuItem = (0,es/* observer */.Pi)(function (props) {
   // ==================================================================================================
 
   var handleMenuItemClick = function handleMenuItemClick() {
-    app.navigate(app.aboutUrl, 'about');
+    app.navigate(app.aboutUrl, app.aboutContext);
   }; // Render
   // ==================================================================================================
 
@@ -1815,7 +1868,7 @@ var AboutMenuItem = (0,es/* observer */.Pi)(function (props) {
       name: "code"
     }),
     label: "A propos",
-    activeContexts: ['about'],
+    activeContexts: [app.aboutContext],
     callbackClick: handleMenuItemClick
   });
 }); // ***** AboutPage *****
@@ -1976,6 +2029,7 @@ function Account_arrayLikeToArray(arr, len) { if (len == null || len > arr.lengt
 
 
 
+
  // Models
 // -------------------------------------------------------------------------------------------------------------
 // ***** AccountStore *****
@@ -2075,7 +2129,24 @@ var AccountStore = mobx_state_tree_module/* types.model */.V5.model({
   };
 }); // Functions Components ReactJS
 // -------------------------------------------------------------------------------------------------------------
-// ***** AccountMenuItem *****
+// ***** AccountHeaderLeft *****
+// *****************************
+
+var TAG_AccountHeaderLeft = function TAG_AccountHeaderLeft() {};
+
+var AccountHeaderLeft = (0,es/* observer */.Pi)(function (props) {
+  var store = react.useContext(window.storeContext);
+  var app = store.app; // ...
+  // Render
+  // ==================================================================================================
+
+  return /*#__PURE__*/react.createElement(HeaderTitle, {
+    title: "Mon compte",
+    titleStyle: {
+      marginLeft: '10px'
+    }
+  });
+}); // ***** AccountMenuItem *****
 // ***************************
 
 var TAG_AccountMenuItem = function TAG_AccountMenuItem() {};
@@ -2279,6 +2350,8 @@ var NxAppStore = mobx_state_tree_module/* types.model */.V5.model({
   loginContext: 'login',
   homeUrl: '/',
   homeContext: 'home',
+  searchUrl: '/search',
+  searchContext: 'search',
   aboutUrl: '/about',
   aboutContext: 'about',
   adminUrl: '/admin',
@@ -3093,7 +3166,638 @@ var NxApp_NxApp = (0,es/* observer */.Pi)(function (props) {
     id: "nx-main"
   }, content), !isFullScreen && /*#__PURE__*/react.createElement(Portal_Portal, null), popupsRendered)));
 });
+// EXTERNAL MODULE: ../../nexus/react/contexts/home/Home.css
+var Home = __webpack_require__(37);
+;// CONCATENATED MODULE: ../../nexus/react/contexts/home/Home.jsx
+
+
+
+
+
+
+
+ // Functions Components ReactJS
+// -------------------------------------------------------------------------------------------------------------
+// ***** HomeHeaderMiddle *****
+// ****************************
+
+var TAG_HomeHeaderMiddle = function TAG_HomeHeaderMiddle() {};
+
+var HomeHeaderMiddle = (0,es/* observer */.Pi)(function (props) {
+  var store = react.useContext(window.storeContext);
+  var app = store.app;
+  var services = app.services; // From ... store
+
+  var appName = services.me.name; // ...
+  // Render
+  // ==================================================================================================
+
+  return /*#__PURE__*/react.createElement(HeaderTitle, {
+    title: appName,
+    titleStyle: {
+      fontWeight: 'bold'
+    },
+    centered: true
+  });
+}); // ***** HomeMenuItem *****
+// ************************
+
+var TAG_HomeMenuItem = function TAG_HomeMenuItem() {};
+
+var HomeMenuItem = (0,es/* observer */.Pi)(function (props) {
+  var store = react.useContext(window.storeContext);
+  var app = store.app;
+  var menu = app.menu; // From ... store
+
+  var breakPoint650 = app.breakPoint650; // Evènements
+  // ==================================================================================================
+
+  var handleMenuItemClick = function handleMenuItemClick() {
+    app.navigate(app.homeUrl, app.homeContext);
+    app.menu.close();
+  }; // Render
+  // ==================================================================================================
+
+
+  var homeMenuItemContent = null;
+
+  if (breakPoint650) {
+    homeMenuItemContent = /*#__PURE__*/react.createElement(MenuItem, {
+      icon: /*#__PURE__*/react.createElement(Icon_Icon, {
+        name: "home",
+        width: "120px"
+      }),
+      label: "Accueil",
+      activeContexts: [app.homeContext],
+      callbackClick: handleMenuItemClick
+    });
+  }
+
+  return homeMenuItemContent;
+});
+// EXTERNAL MODULE: ../../nexus/react/contexts/admin/Admin.css
+var Admin = __webpack_require__(644);
+;// CONCATENATED MODULE: ../../nexus/react/contexts/admin/Admin.jsx
+
+
+
+
+
+
+
+ // Functions Components ReactJS
+// -------------------------------------------------------------------------------------------------------------
+// ***** AdminHeaderLeft *****
+// ***************************
+
+var TAG_AdminHeaderLeft = function TAG_AdminHeaderLeft() {};
+
+var AdminHeaderLeft = (0,es/* observer */.Pi)(function (props) {
+  var store = react.useContext(window.storeContext);
+  var app = store.app; // ...
+  // Render
+  // ==================================================================================================
+
+  return /*#__PURE__*/react.createElement(HeaderTitle, {
+    title: "Administration",
+    titleStyle: {
+      marginLeft: '10px'
+    }
+  });
+}); // ***** AdminMenuItem *****
+// *************************
+
+var TAG_AdminMenuItem = function TAG_AdminMenuItem() {};
+
+var AdminMenuItem = (0,es/* observer */.Pi)(function (props) {
+  var store = react.useContext(window.storeContext);
+  var app = store.app;
+  var account = app.account; // From ... store
+
+  var isAdmin = account.is_admin; // Evènements
+  // ==================================================================================================
+
+  var handleMenuItemClick = function handleMenuItemClick() {
+    app.navigate(app.adminUrl, app.adminContext);
+  }; // Render
+  // ==================================================================================================
+
+
+  var adminMenuItemContent = null;
+
+  if (isAdmin) {
+    adminMenuItemContent = /*#__PURE__*/react.createElement(MenuItem, {
+      icon: /*#__PURE__*/react.createElement(Icon_Icon, {
+        name: "setting"
+      }),
+      label: "Administration",
+      activeContexts: [app.adminContext],
+      callbackClick: handleMenuItemClick
+    });
+  }
+
+  return adminMenuItemContent;
+});
+// EXTERNAL MODULE: ./contexts/search/Search.css
+var Search = __webpack_require__(906);
+;// CONCATENATED MODULE: ./contexts/search/Search.jsx
+
+
+
+
+
+
+
+
+ // Models
+// -------------------------------------------------------------------------------------------------------------
+// ***** SearchStore *****
+// ***********************
+
+var TAG_SearchStore = function TAG_SearchStore() {};
+
+var SearchStore = mobx_state_tree_module/* types.model */.V5.model({}).actions(function (self) {
+  return {
+    setField: function setField(field, value) {
+      self[field] = value;
+    },
+    // -
+    update: function update(raw) {}
+  };
+}); // Functions Components ReactJS
+// -------------------------------------------------------------------------------------------------------------
+// ***** SearchHeaderMiddle *****
+// ******************************
+
+var TAG_SearchHeaderMiddle = function TAG_SearchHeaderMiddle() {};
+
+var SearchHeaderMiddle = (0,es/* observer */.Pi)(function (props) {
+  var store = react.useContext(window.storeContext);
+  var app = store.app; // ...
+  // Render
+  // ==================================================================================================
+
+  return /*#__PURE__*/react.createElement(HeaderTitle, {
+    title: "Rechercher"
+  });
+}); // ***** SearchMenuItem *****
+// **************************
+
+var TAG_SearchMenuItem = function TAG_SearchMenuItem() {};
+
+var SearchMenuItem = (0,es/* observer */.Pi)(function (props) {
+  var store = react.useContext(window.storeContext);
+  var app = store.app;
+  var menu = app.menu; // ...
+
+  var searchContext = 'search'; // Evènements
+  // ==================================================================================================
+
+  var handleMenuItemClick = function handleMenuItemClick() {
+    store.navigateTo(searchContext);
+    app.menu.close();
+  }; // Render
+  // ==================================================================================================
+
+
+  return /*#__PURE__*/react.createElement(MenuItem, {
+    icon: /*#__PURE__*/react.createElement(Icon_Icon, {
+      name: "search",
+      width: "120px"
+    }),
+    label: "Rechercher",
+    activeContexts: [searchContext],
+    callbackClick: handleMenuItemClick
+  });
+}); // ***** HomePage *****
+// ********************
+
+var TAG_SearchPage = function TAG_SearchPage() {};
+
+var SearchPage = (0,es/* observer */.Pi)(function (props) {
+  var store = react.useContext(window.storeContext);
+  var app = store.app; // Renderers
+  // ==================================================================================================
+
+  var renderHelper = function renderHelper() {
+    // Render :: Helper
+    // ---
+    return /*#__PURE__*/react.createElement(Helper_Helper, {
+      iconName: "search",
+      show: true
+    });
+  };
+
+  return /*#__PURE__*/react.createElement("div", {
+    className: "nx-page"
+  }, renderHelper());
+});
+// EXTERNAL MODULE: ./contexts/blog/Blog.css
+var Blog = __webpack_require__(737);
+;// CONCATENATED MODULE: ./contexts/blog/Blog.jsx
+
+
+
+
+
+
+
+
+ // Models
+// -------------------------------------------------------------------------------------------------------------
+// ***** BlogStore *****
+// *********************
+
+var TAG_BlogStore = function TAG_BlogStore() {};
+
+var BlogStore = mobx_state_tree_module/* types.model */.V5.model({
+  loaded: false
+}).actions(function (self) {
+  return {
+    setField: function setField(field, value) {
+      self[field] = value;
+    },
+    // -
+    update: function update(raw) {}
+  };
+}); // Functions Components ReactJS
+// -------------------------------------------------------------------------------------------------------------
+// ***** BlogHeaderLeft *****
+// **************************
+
+var TAG_BlogHeaderLeft = function TAG_BlogHeaderLeft() {};
+
+var BlogHeaderLeft = (0,es/* observer */.Pi)(function (props) {
+  var store = react.useContext(window.storeContext);
+  var app = store.app; // ...
+  // Render
+  // ==================================================================================================
+
+  return /*#__PURE__*/react.createElement(HeaderTitle, {
+    title: "Blog",
+    titleStyle: {
+      marginLeft: '10px'
+    }
+  });
+}); // ***** BlogMenuItem *****
+// ************************
+
+var TAG_BlogMenuItem = function TAG_BlogMenuItem() {};
+
+var BlogMenuItem = (0,es/* observer */.Pi)(function (props) {
+  var store = react.useContext(window.storeContext);
+  var app = store.app;
+  var menu = app.menu; // ...
+
+  var blogContext = 'blog'; // Evènements
+  // ==================================================================================================
+
+  var handleMenuItemClick = function handleMenuItemClick() {
+    store.navigateTo(blogContext);
+    app.menu.close();
+  }; // Render
+  // ==================================================================================================
+
+
+  return /*#__PURE__*/react.createElement(MenuItem, {
+    icon: /*#__PURE__*/react.createElement(Icon_Icon, {
+      name: "forum",
+      width: "120px"
+    }),
+    label: "Blog",
+    activeContexts: [blogContext],
+    callbackClick: handleMenuItemClick
+  });
+}); // ***** BlogPage *****
+// ********************
+
+var TAG_BlogPage = function TAG_BlogPage() {};
+
+var BlogPage = (0,es/* observer */.Pi)(function (props) {
+  var store = react.useContext(window.storeContext);
+  var app = store.app; // Renderers
+  // ==================================================================================================
+
+  var renderHelper = function renderHelper() {
+    // Render :: Helper
+    // ---
+    return /*#__PURE__*/react.createElement(Helper_Helper, {
+      iconName: "forum",
+      show: true
+    });
+  };
+
+  return /*#__PURE__*/react.createElement("div", {
+    className: "nx-page"
+  }, renderHelper());
+});
+// EXTERNAL MODULE: ./contexts/projects/Projects.css
+var Projects = __webpack_require__(525);
+;// CONCATENATED MODULE: ./contexts/projects/Projects.jsx
+
+
+
+
+
+
+
+
+ // Models
+// -------------------------------------------------------------------------------------------------------------
+// ***** ProjectsStore *****
+// *************************
+
+var TAG_ProjectsStore = function TAG_ProjectsStore() {};
+
+var ProjectsStore = mobx_state_tree_module/* types.model */.V5.model({
+  loaded: false
+}).actions(function (self) {
+  return {
+    setField: function setField(field, value) {
+      self[field] = value;
+    },
+    // -
+    update: function update(raw) {}
+  };
+}); // Functions Components ReactJS
+// -------------------------------------------------------------------------------------------------------------
+// ***** ProjectsHeaderLeft *****
+// ******************************
+
+var TAG_ProjectsHeaderLeft = function TAG_ProjectsHeaderLeft() {};
+
+var ProjectsHeaderLeft = (0,es/* observer */.Pi)(function (props) {
+  var store = react.useContext(window.storeContext);
+  var app = store.app; // ...
+  // Render
+  // ==================================================================================================
+
+  return /*#__PURE__*/react.createElement(HeaderTitle, {
+    title: "Mes projets",
+    titleStyle: {
+      marginLeft: '10px'
+    }
+  });
+}); // ***** ProjectsMenuItem *****
+// ****************************
+
+var TAG_ProjectsMenuItem = function TAG_ProjectsMenuItem() {};
+
+var ProjectsMenuItem = (0,es/* observer */.Pi)(function (props) {
+  var store = react.useContext(window.storeContext);
+  var app = store.app;
+  var menu = app.menu; // ...
+
+  var projectsContext = 'projects'; // Evènements
+  // ==================================================================================================
+
+  var handleMenuItemClick = function handleMenuItemClick() {
+    store.navigateTo(projectsContext);
+    app.menu.close();
+  }; // Render
+  // ==================================================================================================
+
+
+  return /*#__PURE__*/react.createElement(MenuItem, {
+    icon: /*#__PURE__*/react.createElement(Icon_Icon, {
+      name: "work_outline",
+      width: "120px"
+    }),
+    label: "Mes projets",
+    activeContexts: [projectsContext],
+    callbackClick: handleMenuItemClick
+  });
+}); // ***** ProjectsPage *****
+// ************************
+
+var TAG_ProjectsPage = function TAG_ProjectsPage() {};
+
+var ProjectsPage = (0,es/* observer */.Pi)(function (props) {
+  var store = react.useContext(window.storeContext);
+  var app = store.app; // Renderers
+  // ==================================================================================================
+
+  var renderHelper = function renderHelper() {
+    // Render :: Helper
+    // ---
+    return /*#__PURE__*/react.createElement(Helper_Helper, {
+      iconName: "work_outline",
+      show: true
+    });
+  };
+
+  return /*#__PURE__*/react.createElement("div", {
+    className: "nx-page"
+  }, renderHelper());
+});
+// EXTERNAL MODULE: ./contexts/cv/Cv.css
+var Cv = __webpack_require__(685);
+;// CONCATENATED MODULE: ./contexts/cv/Cv.jsx
+
+
+
+
+
+
+
+
+ // Models
+// -------------------------------------------------------------------------------------------------------------
+// ***** CvStore *****
+// *******************
+
+var TAG_CvStore = function TAG_CvStore() {};
+
+var CvStore = mobx_state_tree_module/* types.model */.V5.model({
+  loaded: false
+}).actions(function (self) {
+  return {
+    setField: function setField(field, value) {
+      self[field] = value;
+    },
+    // -
+    update: function update(raw) {}
+  };
+}); // Functions Components ReactJS
+// -------------------------------------------------------------------------------------------------------------
+// ***** CvHeaderLeft *****
+// ************************
+
+var TAG_CvHeaderLeft = function TAG_CvHeaderLeft() {};
+
+var CvHeaderLeft = (0,es/* observer */.Pi)(function (props) {
+  var store = react.useContext(window.storeContext);
+  var app = store.app; // ...
+  // Render
+  // ==================================================================================================
+
+  return /*#__PURE__*/react.createElement(HeaderTitle, {
+    title: "Mon CV",
+    titleStyle: {
+      marginLeft: '10px'
+    }
+  });
+}); // ***** CvMenuItem *****
+// **********************
+
+var TAG_CvMenuItem = function TAG_CvMenuItem() {};
+
+var CvMenuItem = (0,es/* observer */.Pi)(function (props) {
+  var store = react.useContext(window.storeContext);
+  var app = store.app;
+  var menu = app.menu; // ...
+
+  var cvContext = 'cv'; // Evènements
+  // ==================================================================================================
+
+  var handleMenuItemClick = function handleMenuItemClick() {
+    store.navigateTo(cvContext);
+    app.menu.close();
+  }; // Render
+  // ==================================================================================================
+
+
+  return /*#__PURE__*/react.createElement(MenuItem, {
+    icon: /*#__PURE__*/react.createElement(Icon_Icon, {
+      name: "school",
+      width: "120px"
+    }),
+    label: "Mon CV",
+    activeContexts: [cvContext],
+    callbackClick: handleMenuItemClick
+  });
+}); // ***** CvPage *****
+// ******************
+
+var TAG_CvPage = function TAG_CvPage() {};
+
+var CvPage = (0,es/* observer */.Pi)(function (props) {
+  var store = react.useContext(window.storeContext);
+  var app = store.app; // Renderers
+  // ==================================================================================================
+
+  var renderHelper = function renderHelper() {
+    // Render :: Helper
+    // ---
+    return /*#__PURE__*/react.createElement(Helper_Helper, {
+      iconName: "school",
+      show: true
+    });
+  };
+
+  return /*#__PURE__*/react.createElement("div", {
+    className: "nx-page"
+  }, renderHelper());
+});
+// EXTERNAL MODULE: ./contexts/playground/Playground.css
+var Playground = __webpack_require__(245);
+;// CONCATENATED MODULE: ./contexts/playground/Playground.jsx
+
+
+
+
+
+
+
+
+ // Models
+// -------------------------------------------------------------------------------------------------------------
+// ***** PlaygroundStore *****
+// ***************************
+
+var TAG_PlaygroundStore = function TAG_PlaygroundStore() {};
+
+var PlaygroundStore = mobx_state_tree_module/* types.model */.V5.model({
+  loaded: false
+}).actions(function (self) {
+  return {
+    setField: function setField(field, value) {
+      self[field] = value;
+    },
+    // -
+    update: function update(raw) {}
+  };
+}); // Functions Components ReactJS
+// -------------------------------------------------------------------------------------------------------------
+// ***** PlaygroundHeaderLeft *****
+// ********************************
+
+var TAG_PlaygroundHeaderLeft = function TAG_PlaygroundHeaderLeft() {};
+
+var PlaygroundHeaderLeft = (0,es/* observer */.Pi)(function (props) {
+  var store = react.useContext(window.storeContext);
+  var app = store.app; // ...
+  // Render
+  // ==================================================================================================
+
+  return /*#__PURE__*/react.createElement(HeaderTitle, {
+    title: "Playground",
+    titleStyle: {
+      marginLeft: '10px'
+    }
+  });
+}); // ***** PlaygroundMenuItem *****
+// ******************************
+
+var TAG_PlaygroundMenuItem = function TAG_PlaygroundMenuItem() {};
+
+var PlaygroundMenuItem = (0,es/* observer */.Pi)(function (props) {
+  var store = react.useContext(window.storeContext);
+  var app = store.app;
+  var menu = app.menu; // ...
+
+  var playgroundContext = 'playground'; // Evènements
+  // ==================================================================================================
+
+  var handleMenuItemClick = function handleMenuItemClick() {
+    store.navigateTo(playgroundContext);
+    app.menu.close();
+  }; // Render
+  // ==================================================================================================
+
+
+  return /*#__PURE__*/react.createElement(MenuItem, {
+    icon: /*#__PURE__*/react.createElement(Icon_Icon, {
+      name: "science",
+      width: "120px"
+    }),
+    label: "Playground",
+    activeContexts: [playgroundContext],
+    callbackClick: handleMenuItemClick
+  });
+}); // ***** PlaygroundPage *****
+// **************************
+
+var TAG_PlaygroundPage = function TAG_PlaygroundPage() {};
+
+var PlaygroundPage = (0,es/* observer */.Pi)(function (props) {
+  var store = react.useContext(window.storeContext);
+  var app = store.app; // Renderers
+  // ==================================================================================================
+
+  var renderHelper = function renderHelper() {
+    // Render :: Helper
+    // ---
+    return /*#__PURE__*/react.createElement(Helper_Helper, {
+      iconName: "science",
+      show: true
+    });
+  };
+
+  return /*#__PURE__*/react.createElement("div", {
+    className: "nx-page"
+  }, renderHelper());
+});
 ;// CONCATENATED MODULE: ./ui/ContextualHeader.jsx
+
+
+
+
+
+
+
+
+
 
 
 
@@ -3112,99 +3816,108 @@ var ContextualHeader = (0,es/* observer */.Pi)(function (props) {
   var context = app.context; // Render
   // ==================================================================================================
 
-  return /*#__PURE__*/react.createElement(Header_Header, null, "Nexorium");
-});
-// EXTERNAL MODULE: ../../nexus/react/contexts/home/Home.css
-var Home = __webpack_require__(37);
-;// CONCATENATED MODULE: ../../nexus/react/contexts/home/Home.jsx
+  var headerLeft = null;
+  var headerMiddle = null;
+  var headerRight = null; // -------------------------------------------------
+
+  var renderHeaderHome = function renderHeaderHome() {
+    if ([app.homeContext, 'login'].indexOf(context) == -1) {
+      return;
+    }
+
+    headerMiddle = /*#__PURE__*/react.createElement(HomeHeaderMiddle, null);
+  };
+
+  var renderHeaderSearch = function renderHeaderSearch() {
+    if (context != 'search') {
+      return;
+    }
+
+    headerMiddle = /*#__PURE__*/react.createElement(SearchHeaderMiddle, null);
+  }; // -------------------------------------------------
 
 
+  var renderHeaderBlog = function renderHeaderBlog() {
+    if (context != 'blog') {
+      return;
+    }
+
+    headerLeft = /*#__PURE__*/react.createElement(BlogHeaderLeft, null);
+  }; // -------------------------------------------------
 
 
+  var renderHeaderProjects = function renderHeaderProjects() {
+    if (context != 'projects') {
+      return;
+    }
+
+    headerLeft = /*#__PURE__*/react.createElement(ProjectsHeaderLeft, null);
+  };
+
+  var renderHeaderCv = function renderHeaderCv() {
+    if (context != 'cv') {
+      return;
+    }
+
+    headerLeft = /*#__PURE__*/react.createElement(CvHeaderLeft, null);
+  }; // -------------------------------------------------
 
 
- // Functions Components ReactJS
-// -------------------------------------------------------------------------------------------------------------
-// ***** HomeMenuItem *****
-// ************************
+  var renderHeaderPlayground = function renderHeaderPlayground() {
+    if (context != 'playground') {
+      return;
+    }
 
-var TAG_HomeMenuItem = function TAG_HomeMenuItem() {};
-
-var HomeMenuItem = (0,es/* observer */.Pi)(function (props) {
-  var store = react.useContext(window.storeContext);
-  var app = store.app; // From ... store
-
-  var breakPoint650 = app.breakPoint650; // Evènements
-  // ==================================================================================================
-
-  var handleMenuItemClick = function handleMenuItemClick() {
-    app.navigate(app.homeUrl, 'home');
-  }; // Render
-  // ==================================================================================================
+    headerLeft = /*#__PURE__*/react.createElement(PlaygroundHeaderLeft, null);
+  }; // -------------------------------------------------
 
 
-  var homeMenuItemContent = null;
+  var renderHeaderAbout = function renderHeaderAbout() {
+    if (context != app.aboutContext) {
+      return;
+    }
 
-  if (breakPoint650) {
-    homeMenuItemContent = /*#__PURE__*/react.createElement(MenuItem, {
-      icon: /*#__PURE__*/react.createElement(Icon_Icon, {
-        name: "home",
-        width: "120px"
-      }),
-      label: "Accueil",
-      activeContexts: ['home'],
-      callbackClick: handleMenuItemClick
-    });
-  }
+    headerLeft = /*#__PURE__*/react.createElement(AboutHeaderLeft, null);
+  };
 
-  return homeMenuItemContent;
-});
-// EXTERNAL MODULE: ../../nexus/react/contexts/admin/Admin.css
-var Admin = __webpack_require__(644);
-;// CONCATENATED MODULE: ../../nexus/react/contexts/admin/Admin.jsx
+  var renderHeaderAdmin = function renderHeaderAdmin() {
+    if (context != app.adminContext) {
+      return;
+    }
+
+    headerLeft = /*#__PURE__*/react.createElement(AdminHeaderLeft, null);
+  }; // -------------------------------------------------
 
 
+  var renderHeaderAccount = function renderHeaderAccount() {
+    if (context != app.accountContext) {
+      return;
+    }
+
+    headerLeft = /*#__PURE__*/react.createElement(AccountHeaderLeft, null);
+  }; // -------------------------------------------------
 
 
-
-
- // Functions Components ReactJS
-// -------------------------------------------------------------------------------------------------------------
-// ***** AdminMenuItem *****
-// *************************
-
-var TAG_AdminMenuItem = function TAG_AdminMenuItem() {};
-
-var AdminMenuItem = (0,es/* observer */.Pi)(function (props) {
-  var store = react.useContext(window.storeContext);
-  var app = store.app;
-  var account = app.account; // From ... store
-
-  var isAdmin = account.is_admin; // Evènements
-  // ==================================================================================================
-
-  var handleMenuItemClick = function handleMenuItemClick() {
-    app.navigate(app.adminUrl, 'admin');
-  }; // Render
-  // ==================================================================================================
-
-
-  var adminMenuItemContent = null;
-
-  if (isAdmin) {
-    adminMenuItemContent = /*#__PURE__*/react.createElement(MenuItem, {
-      icon: /*#__PURE__*/react.createElement(Icon_Icon, {
-        name: "setting"
-      }),
-      label: "Administration",
-      activeContexts: ['admin'],
-      callbackClick: handleMenuItemClick
-    });
-  }
-
-  return adminMenuItemContent;
+  renderHeaderHome();
+  renderHeaderSearch();
+  renderHeaderBlog();
+  renderHeaderProjects();
+  renderHeaderCv();
+  renderHeaderPlayground();
+  renderHeaderAbout();
+  renderHeaderAdmin();
+  renderHeaderAccount();
+  return /*#__PURE__*/react.createElement(Header_Header, {
+    left: headerLeft,
+    right: headerRight
+  }, headerMiddle);
 });
 ;// CONCATENATED MODULE: ./ui/ContextualMenu.jsx
+
+
+
+
+
 
 
 
@@ -3232,7 +3945,7 @@ var ContextualMenu = (0,es/* observer */.Pi)(function (props) {
   // -------------------------------------------------
   // -------------------------------------------------
 
-  return /*#__PURE__*/react.createElement(Menu_Menu, null, /*#__PURE__*/react.createElement(HomeMenuItem, null), breakPoint650 && /*#__PURE__*/react.createElement(MenuDivider, null), /*#__PURE__*/react.createElement(AboutMenuItem, null), /*#__PURE__*/react.createElement(AdminMenuItem, null), breakPoint650 && /*#__PURE__*/react.createElement(MenuDivider, null), /*#__PURE__*/react.createElement(LoginMenuItem, null), /*#__PURE__*/react.createElement(AccountMenuItem, null), /*#__PURE__*/react.createElement(LogoutMenuItem, null));
+  return /*#__PURE__*/react.createElement(Menu_Menu, null, /*#__PURE__*/react.createElement(HomeMenuItem, null), /*#__PURE__*/react.createElement(SearchMenuItem, null), /*#__PURE__*/react.createElement(MenuDivider, null), /*#__PURE__*/react.createElement(BlogMenuItem, null), /*#__PURE__*/react.createElement(MenuDivider, null), /*#__PURE__*/react.createElement(ProjectsMenuItem, null), /*#__PURE__*/react.createElement(CvMenuItem, null), /*#__PURE__*/react.createElement(MenuDivider, null), /*#__PURE__*/react.createElement(PlaygroundMenuItem, null), /*#__PURE__*/react.createElement(MenuDivider, null), /*#__PURE__*/react.createElement(AboutMenuItem, null), /*#__PURE__*/react.createElement(AdminMenuItem, null), breakPoint650 && /*#__PURE__*/react.createElement(MenuDivider, null), /*#__PURE__*/react.createElement(LoginMenuItem, null), /*#__PURE__*/react.createElement(AccountMenuItem, null), /*#__PURE__*/react.createElement(LogoutMenuItem, null));
 });
 // EXTERNAL MODULE: ./contexts/home/Home.css
 var home_Home = __webpack_require__(319);
@@ -3318,6 +4031,11 @@ var Main = __webpack_require__(729);
 
 
 
+
+
+
+
+
  // Models
 // -------------------------------------------------------------------------------------------------------------
 // ***** RootStore *****
@@ -3326,7 +4044,22 @@ var Main = __webpack_require__(729);
 var TAG_RootStore = function TAG_RootStore() {};
 
 var RootStore = mobx_state_tree_module/* types.model */.V5.model({
-  'app': mobx_state_tree_module/* types.optional */.V5.optional(NxAppStore, {})
+  'app': mobx_state_tree_module/* types.optional */.V5.optional(NxAppStore, {}),
+  // Search
+  // -
+  'search': mobx_state_tree_module/* types.optional */.V5.optional(SearchStore, {}),
+  // Blog
+  // -
+  'blog': mobx_state_tree_module/* types.optional */.V5.optional(BlogStore, {}),
+  // Mes projets
+  // -
+  'projects': mobx_state_tree_module/* types.optional */.V5.optional(ProjectsStore, {}),
+  // Mon CV
+  // -
+  'cv': mobx_state_tree_module/* types.optional */.V5.optional(CvStore, {}),
+  // Playground
+  // -
+  'playground': mobx_state_tree_module/* types.optional */.V5.optional(PlaygroundStore, {})
 }).views(function (self) {
   return {
     get ajaxNexorium() {
@@ -3348,10 +4081,50 @@ var RootStore = mobx_state_tree_module/* types.model */.V5.model({
       // ---
       var app = self.app;
       var context = app.context; // -
-      // A propos
-      // if (navContext == 'about') {
-      // 	app.navigate(app.aboutUrl, 'about');
-      // }
+      // Search
+
+      if (navContext == 'search') {
+        app.navigate('/search', 'search');
+      } // -
+      // Blog
+
+
+      if (navContext == 'blog') {
+        app.navigate('/blog', 'blog', [{
+          "op": "replace",
+          "path": "/blog/loaded",
+          "value": false
+        }]);
+      } // -
+      // Mes projects
+
+
+      if (navContext == 'projects') {
+        app.navigate('/projects', 'projects', [{
+          "op": "replace",
+          "path": "/projects/loaded",
+          "value": false
+        }]);
+      } // Mon CV
+
+
+      if (navContext == 'cv') {
+        app.navigate('/cv', 'cv', [{
+          "op": "replace",
+          "path": "/cv/loaded",
+          "value": false
+        }]);
+      } // -
+      // Playground
+
+
+      if (navContext == 'playground') {
+        app.navigate('/playground', 'playground', [{
+          "op": "replace",
+          "path": "/playground/loaded",
+          "value": false
+        }]);
+      }
     }
   };
 }); // Init
@@ -3361,6 +4134,11 @@ var RootStore = mobx_state_tree_module/* types.model */.V5.model({
 
 var contexts = {
   'home': HomePage,
+  'search': SearchPage,
+  'blog': BlogPage,
+  'projects': ProjectsPage,
+  'cv': CvPage,
+  'playground': PlaygroundPage,
   'admin': AdminPage
 }; // Popups
 // -
@@ -3370,6 +4148,11 @@ var popups = {}; // Routes
 
 var routes = {
   'home': '/',
+  'search': '/search',
+  'blog': '/blog',
+  'projects': '/projects',
+  'cv': '/cv',
+  'playground': '/playground',
   'admin': '/admin'
 }; // Store
 // -
@@ -3438,7 +4221,42 @@ window.addEventListener('DOMContentLoaded', function () {
 
 /***/ }),
 
+/***/ 737:
+/***/ (() => {
+
+// extracted by extract-css-chunks-webpack-plugin
+
+/***/ }),
+
+/***/ 685:
+/***/ (() => {
+
+// extracted by extract-css-chunks-webpack-plugin
+
+/***/ }),
+
 /***/ 319:
+/***/ (() => {
+
+// extracted by extract-css-chunks-webpack-plugin
+
+/***/ }),
+
+/***/ 245:
+/***/ (() => {
+
+// extracted by extract-css-chunks-webpack-plugin
+
+/***/ }),
+
+/***/ 525:
+/***/ (() => {
+
+// extracted by extract-css-chunks-webpack-plugin
+
+/***/ }),
+
+/***/ 906:
 /***/ (() => {
 
 // extracted by extract-css-chunks-webpack-plugin
@@ -3739,7 +4557,7 @@ window.addEventListener('DOMContentLoaded', function () {
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module depends on other loaded chunks and execution need to be delayed
 /******/ 	__webpack_require__.O(undefined, [216], () => (__webpack_require__(979)))
-/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, [216], () => (__webpack_require__(505)))
+/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, [216], () => (__webpack_require__(133)))
 /******/ 	__webpack_exports__ = __webpack_require__.O(__webpack_exports__);
 /******/ 	
 /******/ })()
