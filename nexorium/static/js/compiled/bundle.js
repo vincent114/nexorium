@@ -1,7 +1,7 @@
 /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
-/***/ 133:
+/***/ 6374:
 /***/ ((__unused_webpack_module, __unused_webpack___webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -9,17 +9,17 @@
 // UNUSED EXPORTS: RootStoreContext, rootStore
 
 // EXTERNAL MODULE: ../../nexus/react/node_modules/react/index.js
-var react = __webpack_require__(354);
+var react = __webpack_require__(3354);
 // EXTERNAL MODULE: ../../nexus/react/node_modules/react-dom/index.js
 var react_dom = __webpack_require__(20);
 // EXTERNAL MODULE: ../../nexus/react/node_modules/mobx-state-tree/dist/mobx-state-tree.module.js
-var mobx_state_tree_module = __webpack_require__(947);
+var mobx_state_tree_module = __webpack_require__(7947);
 // EXTERNAL MODULE: ../../nexus/react/node_modules/mobx-react-lite/es/index.js + 17 modules
-var es = __webpack_require__(27);
+var es = __webpack_require__(8027);
 // EXTERNAL MODULE: ../../nexus/react/node_modules/route-node/dist/route-node.esm.js + 3 modules
-var route_node_esm = __webpack_require__(285);
+var route_node_esm = __webpack_require__(6285);
 // EXTERNAL MODULE: ../../nexus/react/node_modules/clsx/dist/clsx.m.js
-var clsx_m = __webpack_require__(97);
+var clsx_m = __webpack_require__(4097);
 ;// CONCATENATED MODULE: ../../nexus/react/models/Services.jsx
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
@@ -115,7 +115,7 @@ var ServicesStore = mobx_state_tree_module/* types.model */.V5.model({
   };
 });
 // EXTERNAL MODULE: ../../nexus/react/ui/theme/Theme.css
-var Theme = __webpack_require__(824);
+var Theme = __webpack_require__(6824);
 ;// CONCATENATED MODULE: ../../nexus/react/ui/theme/Theme.jsx
 
 
@@ -192,7 +192,7 @@ var hexToRgbA = function hexToRgbA(hex, opacity) {
   throw new Error('Bad Hex');
 };
 // EXTERNAL MODULE: ../../nexus/react/ui/icon/Icon.css
-var Icon = __webpack_require__(244);
+var Icon = __webpack_require__(3244);
 ;// CONCATENATED MODULE: ../../nexus/react/ui/icon/Icon.jsx
 
 
@@ -229,7 +229,20 @@ var ICON_KEYS_TO_FILES = {
     'forum': 'forum_black_24dp.svg',
     'work_outline': 'work_outline_black_24dp.svg',
     'school': 'school_black_24dp.svg',
-    'science': 'science_black_24dp.svg'
+    'science': 'science_black_24dp.svg',
+    'book': 'book_black_24dp.svg',
+    'history_edu': 'history_edu_black_24dp.svg',
+    'card_giftcard': 'card_giftcard_black_24dp.svg',
+    'inventory_2': 'inventory_2_black_24dp.svg',
+    'sports_esports': 'sports_esports_black_24dp.svg',
+    'face': 'face_black_24dp.svg',
+    'art_track': 'art_track_black_24dp.svg',
+    'album': 'album_black_24dp.svg',
+    'audiotrack': 'audiotrack_black_24dp.svg',
+    'date_range': 'date_range_black_24dp.svg',
+    'local_bar': 'local_bar_black_24dp.svg',
+    'playlist_play': 'playlist_play_black_24dp.svg',
+    'text_fields': 'text_fields_black_24dp.svg'
   }
 }; // const ICON_SIZES = {
 // 	'small': {
@@ -296,7 +309,7 @@ var Icon_Icon = function Icon(props) {
   }));
 };
 // EXTERNAL MODULE: ../../nexus/react/ui/button/Button.css
-var Button = __webpack_require__(181);
+var Button = __webpack_require__(2181);
 ;// CONCATENATED MODULE: ../../nexus/react/ui/button/Button.jsx
 
 
@@ -334,8 +347,17 @@ var IconButton = function IconButton(props) {
   }, children);
 };
 ;// CONCATENATED MODULE: ../../nexus/react/utils/Datas.jsx
-// Functions
+function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = Datas_unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
+
+function Datas_unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return Datas_arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return Datas_arrayLikeToArray(o, minLen); }
+
+function Datas_arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+// Datas
 // -------------------------------------------------------------------------------------------------------------
+var ileDeFrance = (/* unused pure expression or super */ null && (['75', '77', '78', '91', '92', '93', '94', '95'])); // Functions
+// -------------------------------------------------------------------------------------------------------------
+
 function uuid() {
   // Collision free V4 UUIDS
   // ---
@@ -372,8 +394,31 @@ function copyObj(srcObj) {
   var copy = JSON.parse(JSON.stringify(srcObj));
   return copy;
 }
+var convertToJSONPath = function convertToJSONPath(path) {
+  // Convertion d'un chemin sous forme de liste en JSON Path pour mobx-state-tree
+  // ---
+  // https://mobx-state-tree.js.org/API/#applypatch
+  // http://jsonpatch.com
+  var jsonPath = '';
+
+  var _iterator = _createForOfIteratorHelper(path),
+      _step;
+
+  try {
+    for (_iterator.s(); !(_step = _iterator.n()).done;) {
+      var pathItem = _step.value;
+      jsonPath = "".concat(jsonPath, "/").concat(pathItem);
+    }
+  } catch (err) {
+    _iterator.e(err);
+  } finally {
+    _iterator.f();
+  }
+
+  return jsonPath;
+};
 // EXTERNAL MODULE: ../../nexus/react/ui/popover/Popover.css
-var Popover = __webpack_require__(443);
+var Popover = __webpack_require__(9443);
 ;// CONCATENATED MODULE: ../../nexus/react/ui/popover/Popover.jsx
 function Popover_slicedToArray(arr, i) { return Popover_arrayWithHoles(arr) || Popover_iterableToArrayLimit(arr, i) || Popover_unsupportedIterableToArray(arr, i) || Popover_nonIterableRest(); }
 
@@ -547,7 +592,7 @@ var Popover_Popover = function Popover(props) {
   return popoverContent;
 };
 // EXTERNAL MODULE: ../../nexus/react/ui/avatar/Avatar.css
-var Avatar = __webpack_require__(130);
+var Avatar = __webpack_require__(3130);
 ;// CONCATENATED MODULE: ../../nexus/react/ui/avatar/Avatar.jsx
 
 
@@ -590,7 +635,7 @@ var Avatar_Avatar = function Avatar(props) {
   }, children);
 };
 // EXTERNAL MODULE: ../../nexus/react/ui/list/List.css
-var List = __webpack_require__(817);
+var List = __webpack_require__(7883);
 ;// CONCATENATED MODULE: ../../nexus/react/ui/list/List.jsx
 
 
@@ -664,7 +709,7 @@ var List_List = function List(props) {
   }, props.children);
 };
 // EXTERNAL MODULE: ../../nexus/react/ui/divider/Divider.css
-var Divider = __webpack_require__(236);
+var Divider = __webpack_require__(6236);
 ;// CONCATENATED MODULE: ../../nexus/react/ui/divider/Divider.jsx
 
 
@@ -686,7 +731,7 @@ var Divider_Divider = function Divider(props) {
   });
 };
 // EXTERNAL MODULE: ../../nexus/react/layout/header/Header.css
-var Header = __webpack_require__(450);
+var Header = __webpack_require__(4450);
 ;// CONCATENATED MODULE: ../../nexus/react/layout/header/Header.jsx
 function Header_slicedToArray(arr, i) { return Header_arrayWithHoles(arr) || Header_iterableToArrayLimit(arr, i) || Header_unsupportedIterableToArray(arr, i) || Header_nonIterableRest(); }
 
@@ -769,7 +814,7 @@ var HeaderUserMenu = (0,es/* observer */.Pi)(function (props) {
       setAnchorAccount = _React$useState2[1]; // From ... store
 
 
-  var isLoading = app.isLoading();
+  var isLoading = app.isLoading;
   var isLogged = account.isLogged;
   var breakPoint650 = app.breakPoint650;
   var loginUrl = app.loginUrl;
@@ -888,7 +933,7 @@ var Header_Header = (0,es/* observer */.Pi)(function (props) {
   var callbackHome = props.callbackHome;
   var callbackPortal = props.callbackPortal; // From ... store
 
-  var isLoading = app.isLoading();
+  var isLoading = app.isLoading;
   var canGoBack = app.canGoBack();
   var canGoHome = app.canGoHome();
   var breakPoint650 = app.breakPoint650; // Evènements
@@ -1069,7 +1114,7 @@ function initTrimFunction() {
   }
 }
 ;// CONCATENATED MODULE: ../../nexus/react/utils/Storage.jsx
-function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = Storage_unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
+function Storage_createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = Storage_unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
 
 function Storage_unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return Storage_arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return Storage_arrayLikeToArray(o, minLen); }
 
@@ -1084,7 +1129,7 @@ function getFromCookies(field) {
   var cookie = document.cookie;
   var cookies = cookie.split(' ');
 
-  var _iterator = _createForOfIteratorHelper(cookies),
+  var _iterator = Storage_createForOfIteratorHelper(cookies),
       _step;
 
   try {
@@ -1163,7 +1208,7 @@ function removeFromStorage(field, storage) {
   } catch (err) {}
 }
 // EXTERNAL MODULE: ../../nexus/react/ui/drawer/Drawer.css
-var Drawer = __webpack_require__(575);
+var Drawer = __webpack_require__(7575);
 ;// CONCATENATED MODULE: ../../nexus/react/ui/drawer/Drawer.jsx
 
 
@@ -1204,7 +1249,7 @@ var Drawer_Drawer = function Drawer(props) {
   }, children));
 };
 // EXTERNAL MODULE: ../../nexus/react/layout/menu/Menu.css
-var Menu = __webpack_require__(397);
+var Menu = __webpack_require__(4397);
 ;// CONCATENATED MODULE: ../../nexus/react/layout/menu/Menu.jsx
 
 
@@ -1404,7 +1449,7 @@ var Menu_Menu = (0,es/* observer */.Pi)(function (props) {
   }, menuContent));
 });
 // EXTERNAL MODULE: ../../nexus/react/layout/portal/Portal.css
-var Portal = __webpack_require__(230);
+var Portal = __webpack_require__(3230);
 ;// CONCATENATED MODULE: ../../nexus/react/layout/portal/Portal.jsx
 
 
@@ -1589,7 +1634,7 @@ var Portal_Portal = (0,es/* observer */.Pi)(function (props) {
   }, portalContent));
 });
 ;// CONCATENATED MODULE: ../../nexus/react/utils/Responsive.jsx
-var MobileDetect = __webpack_require__(288); // Functions
+var MobileDetect = __webpack_require__(5288); // Functions
 // ========================================================================================================================
 
 
@@ -1741,7 +1786,7 @@ var SEVERITY_BACKGROUNDS = {
   hot: 'rgba(233, 30, 99, 0.1)'
 };
 // EXTERNAL MODULE: ../../nexus/react/ui/helper/Helper.css
-var Helper = __webpack_require__(742);
+var Helper = __webpack_require__(2742);
 ;// CONCATENATED MODULE: ../../nexus/react/ui/helper/Helper.jsx
 
 
@@ -1818,7 +1863,7 @@ var Helper_Helper = (0,es/* observer */.Pi)(function (props) {
   return helper;
 });
 // EXTERNAL MODULE: ../../nexus/react/contexts/about/About.css
-var About = __webpack_require__(189);
+var About = __webpack_require__(2189);
 ;// CONCATENATED MODULE: ../../nexus/react/contexts/about/About.jsx
 
 
@@ -1895,7 +1940,7 @@ var AboutPage = (0,es/* observer */.Pi)(function (props) {
   }, renderHelper());
 });
 // EXTERNAL MODULE: ../../nexus/react/contexts/login/Login.css
-var Login = __webpack_require__(364);
+var Login = __webpack_require__(1364);
 ;// CONCATENATED MODULE: ../../nexus/react/contexts/login/Login.jsx
 
 
@@ -2014,7 +2059,7 @@ var LoginPage = (0,es/* observer */.Pi)(function (props) {
   }, renderHelper());
 });
 // EXTERNAL MODULE: ../../nexus/react/contexts/account/Account.css
-var Account = __webpack_require__(390);
+var Account = __webpack_require__(7390);
 ;// CONCATENATED MODULE: ../../nexus/react/contexts/account/Account.jsx
 function Account_createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = Account_unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
 
@@ -2203,7 +2248,7 @@ var AccountPage = (0,es/* observer */.Pi)(function (props) {
   }, renderHelper());
 });
 // EXTERNAL MODULE: ../../nexus/react/contexts/forbidden/Forbidden.css
-var Forbidden = __webpack_require__(429);
+var Forbidden = __webpack_require__(2429);
 ;// CONCATENATED MODULE: ../../nexus/react/contexts/forbidden/Forbidden.jsx
 
 
@@ -2242,7 +2287,7 @@ var ForbiddenPage = (0,es/* observer */.Pi)(function (props) {
   }, renderHelper());
 });
 // EXTERNAL MODULE: ../../nexus/react/contexts/notfound/NotFound.css
-var NotFound = __webpack_require__(282);
+var NotFound = __webpack_require__(7282);
 ;// CONCATENATED MODULE: ../../nexus/react/contexts/notfound/NotFound.jsx
 
 
@@ -2270,7 +2315,7 @@ var NotFoundPage = function NotFoundPage(props) {
   }));
 };
 // EXTERNAL MODULE: ../../nexus/react/NxApp.css
-var NxApp = __webpack_require__(52);
+var NxApp = __webpack_require__(7052);
 ;// CONCATENATED MODULE: ../../nexus/react/NxApp.jsx
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
@@ -2413,7 +2458,7 @@ var NxAppStore = mobx_state_tree_module/* types.model */.V5.model({
       return false;
     },
 
-    isLoading: function isLoading() {
+    get isLoading() {
       // Are there background tasks still running ?
       // ---
       if (self.tasks.length > 0) {
@@ -2422,6 +2467,7 @@ var NxAppStore = mobx_state_tree_module/* types.model */.V5.model({
 
       return false;
     },
+
     // isCurrent(targetContexts) {
     // 	// Le contexte courant de l'application correspond-t-il à ceux passés en paramètres ?
     // 	// ---
@@ -2461,6 +2507,65 @@ var NxAppStore = mobx_state_tree_module/* types.model */.V5.model({
       // ---
       var url = document.location.pathname;
       return url;
+    },
+    getValue: function getValue(path, notFoundValue, source) {
+      // Récupère la valeur derrière le chemin passé en paramètres
+      // ---
+      var store = (0,mobx_state_tree_module/* getRoot */.yj)(self);
+      var loadTarget = source ? source : store;
+
+      for (var idx_path in path) {
+        var target = path[idx_path];
+
+        if (idx_path == path.length - 1) {
+          // A-t-on à faire à un node de mobx-state-tree ?
+          var value = loadTarget[target];
+
+          if (loadTarget == undefined) {
+            try {
+              value = loadTarget.get(target);
+            } catch (err) {}
+          }
+
+          return value;
+        } else {
+          // A-t-on à faire à un node de mobx-state-tree ?
+          var previousLoadTarget = loadTarget;
+          loadTarget = loadTarget[target];
+
+          if (loadTarget == undefined) {
+            try {
+              loadTarget = previousLoadTarget.get(target);
+            } catch (err) {}
+          }
+        }
+      }
+
+      return notFoundValue;
+    },
+    getError: function getError(savePath) {
+      // Il y a-t-il une erreur ?
+      // ---
+      var errors = self.errors;
+
+      var _iterator = NxApp_createForOfIteratorHelper(errors),
+          _step;
+
+      try {
+        for (_iterator.s(); !(_step = _iterator.n()).done;) {
+          var error = _step.value;
+
+          if (JSON.stringify(error.path) == JSON.stringify(savePath)) {
+            return error.label;
+          }
+        }
+      } catch (err) {
+        _iterator.e(err);
+      } finally {
+        _iterator.f();
+      }
+
+      return '';
     }
   };
 }).actions(function (self) {
@@ -2540,7 +2645,7 @@ var NxAppStore = mobx_state_tree_module/* types.model */.V5.model({
         var params = new FormData();
         params.append('extras', JSON.stringify(extras));
         var url = '/app/init';
-        self.fetchDatas(url, {
+        self.fetchJSON(url, {
           'body': params
         }, false, 'POST').then(function (json) {
           self.update(json, callback);
@@ -2623,12 +2728,12 @@ var NxAppStore = mobx_state_tree_module/* types.model */.V5.model({
       var navHistory = self.getHistory();
       var navHistoryCleared = [];
 
-      var _iterator = NxApp_createForOfIteratorHelper(navHistory),
-          _step;
+      var _iterator2 = NxApp_createForOfIteratorHelper(navHistory),
+          _step2;
 
       try {
-        for (_iterator.s(); !(_step = _iterator.n()).done;) {
-          var _history = _step.value;
+        for (_iterator2.s(); !(_step2 = _iterator2.n()).done;) {
+          var _history = _step2.value;
 
           if (_history.destination != url) {
             navHistoryCleared.push(_history);
@@ -2636,9 +2741,9 @@ var NxAppStore = mobx_state_tree_module/* types.model */.V5.model({
         } // setToStorage('navHistory', navHistoryCleared, 'json');
 
       } catch (err) {
-        _iterator.e(err);
+        _iterator2.e(err);
       } finally {
-        _iterator.f();
+        _iterator2.f();
       }
 
       self.history = navHistoryCleared;
@@ -2850,7 +2955,8 @@ var NxAppStore = mobx_state_tree_module/* types.model */.V5.model({
         self.tasks.splice(self.tasks.indexOf(taskId), 1);
       }
     },
-    fetchDatas: function fetchDatas(input, init, quiet, method, params, jsonOnly) {
+    // -
+    _fetchDatas: function _fetchDatas(input, init, quiet, method, params, jsonOnly) {
       // AJAX / fetch call
       // ---
       quiet = quiet == true ? true : false;
@@ -2904,6 +3010,90 @@ var NxAppStore = mobx_state_tree_module/* types.model */.V5.model({
 
         throw Error(ex);
       });
+    },
+    fetchJSON: function fetchJSON(input, init, quiet, method, params) {
+      return self._fetchDatas(input, init, quiet, method, params, true);
+    },
+    fetchHTML: function fetchHTML(input, init, quiet, method, params) {
+      return self._fetchDatas(input, init, quiet, method, params, false);
+    },
+    // -
+    saveValue: function saveValue(path, value, callbackSaved) {
+      // Sauvegarde de la nouvelle valeur à travers un arbre MobxStateTree
+      // ---
+      var store = (0,mobx_state_tree_module/* getRoot */.yj)(self);
+      var jsonPath = convertToJSONPath(path);
+      (0,mobx_state_tree_module/* applyPatch */.af)(store, [{
+        "op": "replace",
+        "path": jsonPath,
+        "value": value
+      }]);
+
+      if (callbackSaved) {
+        callbackSaved(path, value);
+      }
+    },
+    saveFrozenValue: function saveFrozenValue(pathToFrozen, pathInFrozen, value, callbackSaved) {
+      // Sauvegarde de la valeur
+      var store = (0,mobx_state_tree_module/* getRoot */.yj)(self);
+      var frozen = self.getValue(pathToFrozen, null);
+
+      if (frozen == null) {
+        return;
+      }
+
+      var saveTarget = copyObj(frozen);
+
+      for (var idx_path in pathInFrozen) {
+        var target = pathInFrozen[idx_path];
+
+        if (idx_path == pathInFrozen.length - 1) {
+          saveTarget[target] = value;
+        } else {
+          try {
+            saveTarget[target];
+          } catch (err) {
+            if (!saveTarget.hasOwnProperty(target)) {
+              saveTarget[target] = {};
+            }
+          }
+        }
+      }
+
+      self.saveTarget(pathToFrozen, frozen);
+
+      if (callbackSaved) {
+        callbackSaved(path, value);
+      }
+    },
+    // -
+    clearErrors: function clearErrors() {
+      self.errors = [];
+    },
+    clearError: function clearError(savePath) {
+      // Nettoyage de l'erreur
+      // ---
+      var errors = self.errors;
+      var clearedErrors = [];
+
+      var _iterator3 = NxApp_createForOfIteratorHelper(errors),
+          _step3;
+
+      try {
+        for (_iterator3.s(); !(_step3 = _iterator3.n()).done;) {
+          var error = _step3.value;
+
+          if (JSON.stringify(error.path) != JSON.stringify(savePath)) {
+            clearedErrors.push(error);
+          }
+        }
+      } catch (err) {
+        _iterator3.e(err);
+      } finally {
+        _iterator3.f();
+      }
+
+      self.setField('errors', clearedErrors);
     }
   };
 }); // Functions
@@ -3167,7 +3357,7 @@ var NxApp_NxApp = (0,es/* observer */.Pi)(function (props) {
   }, content), !isFullScreen && /*#__PURE__*/react.createElement(Portal_Portal, null), popupsRendered)));
 });
 // EXTERNAL MODULE: ../../nexus/react/contexts/home/Home.css
-var Home = __webpack_require__(37);
+var Home = __webpack_require__(2037);
 ;// CONCATENATED MODULE: ../../nexus/react/contexts/home/Home.jsx
 
 
@@ -3236,7 +3426,7 @@ var HomeMenuItem = (0,es/* observer */.Pi)(function (props) {
   return homeMenuItemContent;
 });
 // EXTERNAL MODULE: ../../nexus/react/contexts/admin/Admin.css
-var Admin = __webpack_require__(644);
+var Admin = __webpack_require__(4644);
 ;// CONCATENATED MODULE: ../../nexus/react/contexts/admin/Admin.jsx
 
 
@@ -3299,7 +3489,7 @@ var AdminMenuItem = (0,es/* observer */.Pi)(function (props) {
   return adminMenuItemContent;
 });
 // EXTERNAL MODULE: ./contexts/search/Search.css
-var Search = __webpack_require__(906);
+var Search = __webpack_require__(4906);
 ;// CONCATENATED MODULE: ./contexts/search/Search.jsx
 
 
@@ -3393,7 +3583,7 @@ var SearchPage = (0,es/* observer */.Pi)(function (props) {
   }, renderHelper());
 });
 // EXTERNAL MODULE: ./contexts/blog/Blog.css
-var Blog = __webpack_require__(737);
+var Blog = __webpack_require__(6737);
 ;// CONCATENATED MODULE: ./contexts/blog/Blog.jsx
 
 
@@ -3492,7 +3682,7 @@ var BlogPage = (0,es/* observer */.Pi)(function (props) {
   }, renderHelper());
 });
 // EXTERNAL MODULE: ./contexts/projects/Projects.css
-var Projects = __webpack_require__(525);
+var Projects = __webpack_require__(8525);
 ;// CONCATENATED MODULE: ./contexts/projects/Projects.jsx
 
 
@@ -3591,7 +3781,7 @@ var ProjectsPage = (0,es/* observer */.Pi)(function (props) {
   }, renderHelper());
 });
 // EXTERNAL MODULE: ./contexts/cv/Cv.css
-var Cv = __webpack_require__(685);
+var Cv = __webpack_require__(8685);
 ;// CONCATENATED MODULE: ./contexts/cv/Cv.jsx
 
 
@@ -3689,9 +3879,752 @@ var CvPage = (0,es/* observer */.Pi)(function (props) {
     className: "nx-page"
   }, renderHelper());
 });
+// EXTERNAL MODULE: ../../nexus/react/layout/section/Section.css
+var Section = __webpack_require__(8461);
+;// CONCATENATED MODULE: ../../nexus/react/layout/section/Section.jsx
+
+
+
+
+ // Functions Components ReactJS
+// -------------------------------------------------------------------------------------------------------------
+// ***** Section *****
+// *******************
+
+var TAG_Section = function TAG_Section() {};
+
+var Section_Section = function Section(props) {
+  // From ... props
+  var icon = props.icon ? props.icon : null;
+  var title = props.title ? props.title : '';
+  var right = props.right;
+  var children = props.children; // Render
+  // ==================================================================================================
+
+  return /*#__PURE__*/react.createElement("div", {
+    className: "nx-section"
+  }, (icon || title || right) && /*#__PURE__*/react.createElement("div", {
+    className: "nx-section-header"
+  }, icon && /*#__PURE__*/react.createElement("div", {
+    className: "nx-section-icon"
+  }, icon), title && /*#__PURE__*/react.createElement("div", {
+    className: "nx-section-header-title"
+  }, title)), /*#__PURE__*/react.createElement("div", {
+    className: "nx-section-content"
+  }, children));
+};
+// EXTERNAL MODULE: ../../nexus/react/layout/row/Row.css
+var Row = __webpack_require__(3447);
+;// CONCATENATED MODULE: ../../nexus/react/layout/row/Row.jsx
+
+
+ // Functions Components ReactJS
+// ----------------------------------------------------------------------------------------------------------------------------
+// ***** Row *****
+// ***************
+
+var TAG_Row = function TAG_Row() {};
+
+var Row_Row = function Row(props) {
+  // From ... props
+  var responsive = props.responsive == false ? false : true;
+  var children = props.children;
+  var spacing = props.spacing ? props.spacing : 'small';
+  var className = props.className ? props.className : '';
+  var style = props.style ? props.style : {};
+  var marginBottom = props.marginBottom == false ? false : true; // ==================================================================================================
+
+  return /*#__PURE__*/react.createElement("div", {
+    className: (0,clsx_m/* default */.Z)("nx-row", "h-col-".concat(spacing), "flex-align-start", {
+      "responsive-vertical": responsive
+    }, {
+      "responsive-align-stretch": responsive
+    }, {
+      "margin-bottom": marginBottom
+    }, className),
+    style: style
+  }, children);
+};
+// EXTERNAL MODULE: ../../nexus/react/node_modules/date-fns/esm/format/index.js + 28 modules
+var format = __webpack_require__(5599);
+// EXTERNAL MODULE: ../../nexus/react/node_modules/date-fns/esm/addDays/index.js
+var addDays = __webpack_require__(8484);
+// EXTERNAL MODULE: ../../nexus/react/node_modules/date-fns/esm/subDays/index.js
+var subDays = __webpack_require__(5081);
+;// CONCATENATED MODULE: ../../nexus/react/utils/DateTools.jsx
+
+ // Objects
+// --------------------------------------------------------------------------------------------------------------------------------------------
+// ***** dateTools *****
+// *********************
+
+var dateTools = {
+  // Conversions
+  // -
+  fromDateToHumanized: function fromDateToHumanized(date) {
+    // Date() ou AAAA-MM-JJ -> JJ/MM/AAAA
+    // ---
+    if (typeof date == 'string') {
+      if (date.search('/') > -1) {
+        return date;
+      }
+
+      date = new Date(date);
+    }
+
+    if (date == undefined) {
+      date = new Date();
+    }
+
+    var d = date.getDate();
+    var m = date.getMonth() + 1;
+    var y = date.getFullYear();
+    d = d.toString();
+    m = m.toString();
+    y = y.toString();
+    d = d.length == 1 ? '0' + d : d;
+    m = m.length == 1 ? '0' + m : m;
+    return d + '/' + m + '/' + y;
+  },
+  fromTimeToHumanized: function fromTimeToHumanized(date) {
+    // Date() -> HH:MM
+    // ---
+    if (date == undefined) {
+      date = new Date();
+    }
+
+    var hh = date.getHours();
+    var mm = date.getMinutes();
+    hh = hh.toString();
+    mm = mm.toString();
+    hh = hh.length == 1 ? '0' + hh : hh;
+    mm = mm.length == 1 ? '0' + mm : mm;
+    return hh + ':' + mm;
+  },
+  fromHumanizedToISO: function fromHumanizedToISO(humanizedDate) {
+    // JJ/MM/AAAA -> AAAA-MM-JJ
+    // ---
+    var isoDate = humanizedDate;
+    var parts = humanizedDate.split('/');
+
+    if (parts.length > 1) {
+      isoDate = "".concat(parts[2], "-").concat(parts[1], "-").concat(parts[0]);
+    }
+
+    return isoDate;
+  },
+  fromISOToDate: function fromISOToDate(strISO) {
+    // AAAA-MM-JJ ou HH:MM -> Date()
+    // ---
+    var newDate = null;
+
+    if (strISO) {
+      var rez = new Date(strISO);
+
+      if (rez != 'Invalid Date') {
+        newDate = rez;
+      }
+
+      if (strISO.length == 5 && newDate == null) {
+        var parts = strISO.split(':');
+
+        if (parts.length > 1) {
+          rez = new Date();
+          rez.setHours(parts[0]);
+          rez.setMinutes(parts[1]);
+          newDate = rez;
+        }
+      }
+    }
+
+    return newDate;
+  },
+  fromISOToTime: function fromISOToTime(time_iso) {
+    // HH:MM -> Date()
+    // ---
+    var hours_iso_parts = copyObj(time_iso).split(':');
+
+    if (hours_iso_parts.length > 1) {
+      var date_holder = new Date();
+      date_holder.setHours(parseInt(hours_iso_parts[0]));
+      date_holder.setMinutes(parseInt(hours_iso_parts[1]));
+      date_holder.setSeconds(0);
+      return date_holder;
+    }
+
+    return null;
+  },
+  fromDateToISO: function fromDateToISO(date, missing) {
+    // Date() -> AAAA-MM-JJ
+    // ---
+    missing = missing != undefined ? missing : null;
+
+    if (date) {
+      try {
+        var rez = (0,format/* default */.Z)(date, "yyyy-MM-dd");
+        return rez != null ? rez : missing;
+      } catch (err) {}
+    }
+
+    return missing;
+  },
+  fromTimeToISO: function fromTimeToISO(date, missing) {
+    // Date() -> HH:MM
+    // ---
+    missing = missing != undefined ? missing : null;
+
+    if (date) {
+      try {
+        var rez = (0,format/* default */.Z)(date, "HH:mm");
+        return rez != null ? rez : missing;
+      } catch (err) {}
+    }
+
+    return missing;
+  },
+  // Operations
+  // -
+  // addTime: function(hours_iso, to_add, what_to_add) {
+  // 	var self = this;
+  // 	if (!hours_iso) { return null; }
+  // 	var date_holder = self.fromTimeToISO(hours_iso);
+  // 	if (date_holder && to_add && what_to_add) {
+  // 		var date_holder = moment(date_holder).add(to_add, what_to_add).toDate();
+  // 		return self.formatTime(date_holder);
+  // 	} else {
+  // 		return hours_iso;
+  // 	}
+  // },
+  // substractTime: function(hours_iso, to_substract, what_to_substract) {
+  // 	var self = this;
+  // 	if (!hours_iso) { return null; }
+  // 	var date_holder = self.fromTimeToISO(hours_iso);
+  // 	if (date_holder && to_substract && what_to_substract) {
+  // 		var date_holder = moment(date_holder).subtract(to_substract, what_to_substract).toDate();
+  // 		return self.formatTime(date_holder);
+  // 	} else {
+  // 		return hours_iso;
+  // 	}
+  // },
+  addDuration: function addDuration(hours_iso, hours_to_add) {
+    var self = this;
+
+    if (!hours_iso) {
+      return null;
+    }
+
+    if (hours_to_add) {
+      var hours = parseInt(hours_to_add.split(':')[0]);
+      var minutes = parseInt(hours_to_add.split(':')[1]);
+      hours_iso = self.addTime(hours_iso, hours, 'h');
+      hours_iso = self.addTime(hours_iso, minutes, 'm');
+    }
+
+    return hours_iso;
+  },
+  timeToMinutes: function timeToMinutes(time_iso) {
+    // HH:MM -> x minutes
+    // ---
+    var self = this;
+    var minutes_total = 0;
+
+    if (time_iso) {
+      minutes_total += parseInt(time_iso.split(':')[0]) * 60;
+      minutes_total += parseInt(time_iso.split(':')[1]);
+    }
+
+    return minutes_total;
+  },
+  minutesToTime: function minutesToTime(minutes) {
+    // x minutes -> HH:MM
+    // ---
+    var self = this;
+    var minutes = minutes ? minutes : 0;
+    var hh = minutes / 60 | 0;
+    var mm = minutes % 60 | 0;
+    hh = hh.toString();
+    mm = mm.toString();
+    hh = hh.length == 1 ? '0' + hh : hh;
+    mm = mm.length == 1 ? '0' + mm : mm;
+    return hh + ':' + mm;
+  },
+  do_hourify: function do_hourify(value) {
+    // str -> HH:MM
+    // ---
+    var value_hourified = '';
+    var hh_exp = /^(\d{1,2})\D*?$/;
+    var dt_exp = /^(\d{1,2})\D*(\d{1,2})\D*?$/;
+    if (hh_exp.exec(value)) value += ' 00';
+    var parts = dt_exp.exec(value);
+
+    if (parts && parts.length == 3) {
+      var hh = parseInt(parts[1], 10),
+          mm = parseInt(parts[2], 10);
+
+      if (0 <= hh <= 23 && 0 <= mm <= 59) {
+        value_hourified = '%02d:%02d'.format(hh, mm);
+      }
+    }
+
+    return value_hourified;
+  },
+  // Getters
+  // -
+  getNextDay: function getNextDay(date) {
+    var nextDay = (0,addDays/* default */.Z)(this.fromISOToDate(date), 1);
+    var nextDayIso = (0,format/* default */.Z)(nextDay, "yyyy-MM-dd");
+    return nextDayIso;
+  },
+  getPreviousDay: function getPreviousDay(date) {
+    var previousDay = (0,subDays/* default */.Z)(this.fromISOToDate(date), 1);
+    var previousDayIso = (0,format/* default */.Z)(previousDay, "yyyy-MM-dd");
+    return previousDayIso;
+  },
+  getWeekKey: function getWeekKey(dateIso) {
+    // AAAA-MM-JJ -> AAAA-WW
+    // ---
+    var weekKey = '';
+    var date = dateTools.fromISOToDate(dateIso);
+
+    if (date) {
+      weekKey = date.getWeekYear() + '-' + date.getWeekStr();
+    }
+
+    return weekKey;
+  },
+  getTodayIso: function getTodayIso() {
+    // Now -> AAAA-MM-JJ
+    // ---
+    var now = new Date();
+    return now.toISOString().substring(0, 10);
+  }
+};
+// EXTERNAL MODULE: ../../nexus/react/forms/field/Field.css
+var Field = __webpack_require__(651);
+;// CONCATENATED MODULE: ../../nexus/react/forms/field/Field.jsx
+function Field_slicedToArray(arr, i) { return Field_arrayWithHoles(arr) || Field_iterableToArrayLimit(arr, i) || Field_unsupportedIterableToArray(arr, i) || Field_nonIterableRest(); }
+
+function Field_nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function Field_unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return Field_arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return Field_arrayLikeToArray(o, minLen); }
+
+function Field_arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function Field_iterableToArrayLimit(arr, i) { var _i = arr && (typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]); if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function Field_arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+
+
+
+
+
+ // Functions Components ReactJS
+// -------------------------------------------------------------------------------------------------------------
+// ***** Field *****
+// *****************
+
+var TAG_Field = function TAG_Field() {};
+
+var Field_Field = (0,es/* observer */.Pi)(function (props) {
+  var store = react.useContext(window.storeContext);
+  var app = store.app;
+  var theme = app.theme; // From ... states
+
+  var _React$useState = react.useState(false),
+      _React$useState2 = Field_slicedToArray(_React$useState, 2),
+      focused = _React$useState2[0],
+      setFocused = _React$useState2[1];
+
+  var _React$useState3 = react.useState(null),
+      _React$useState4 = Field_slicedToArray(_React$useState3, 2),
+      autocompleteAnchor = _React$useState4[0],
+      setAutocompleteAnchor = _React$useState4[1];
+
+  var _React$useState5 = react.useState(false),
+      _React$useState6 = Field_slicedToArray(_React$useState5, 2),
+      autocompletePopupOpen = _React$useState6[0],
+      setAutocompletePopupOpen = _React$useState6[1];
+
+  var _React$useState7 = react.useState(false),
+      _React$useState8 = Field_slicedToArray(_React$useState7, 2),
+      autocompletePopperOpen = _React$useState8[0],
+      setAutocompletePopperOpen = _React$useState8[1];
+
+  var _React$useState9 = react.useState(false),
+      _React$useState10 = Field_slicedToArray(_React$useState9, 2),
+      autocompleteLoading = _React$useState10[0],
+      setAutocompleteLoading = _React$useState10[1]; // From ... store
+
+
+  var isLoading = app.isLoading;
+  var isDesktop = app.isDesktop;
+  var isMobile = app.isMobile;
+  var autocompleteResults = app.autocompleteResults; // From ... props
+
+  var id = props.id ? props.id : id;
+  var component = props.component ? props.component : 'input'; // input, textarea, select, checkbox, autocomplete, switcher, radios
+
+  var type = props.type ? props.type : 'text'; // text, number
+
+  var name = props.name ? props.name : '';
+  var label = props.label;
+  var ghostLabel = props.ghostLabel != undefined ? props.ghostLabel : false;
+  var placeholder = props.placeholder ? props.placeholder : '';
+  var title = props.title ? props.title : '';
+  var min = props.min ? props.min : 0;
+  var max = props.max;
+  var forceString = props.forceString != undefined ? props.forceString : false;
+  var forceStringVariant = props.format != undefined ? props.format : 'en';
+  var savePath = props.savePath;
+  var savePathAutocomplete = props.savePathAutocomplete;
+  var forcePopupAutocomplete = props.forcePopupAutocomplete != undefined ? props.forcePopupAutocomplete : false;
+  var callbackSearch = props.callbackSearch != undefined ? props.callbackSearch : callbackSearchDefault;
+  var callbackSave = props.callbackSave;
+  var callbackChange = props.callbackChange;
+  var callbackSelect = props.callbackSelect;
+  var callbackClick = props.callbackClick;
+  var callbackFocus = props.callbackFocus;
+  var callbackBlur = props.callbackBlur;
+  var callbackKeyPress = props.callbackKeyPress;
+  var disabled = props.disabled ? props.disabled : isLoading;
+  var className = props.className ? props.className : '';
+  var style = props.style != undefined ? props.style : {};
+  var inputStyle = props.inputStyle != undefined ? props.inputStyle : {};
+
+  if (focused) {
+    inputStyle['borderColor'] = theme.palette.primary.main;
+    inputStyle['borderWidth'] = '2px';
+    inputStyle['padding'] = '5px 11px'; // inputStyle['outline'] = `2px solid ${theme.palette.primary.main}`;
+  } // Functions
+  // ==================================================================================================
+
+
+  var getError = function getError() {
+    var error = props.error;
+
+    if (error == undefined && savePath && savePath.length > 0) {
+      error = app.getError(savePath);
+    }
+
+    return error;
+  };
+
+  var getValue = function getValue() {
+    var value = props.value;
+
+    if (value == undefined && savePath && savePath.length > 0) {
+      value = app.getValue(savePath, null);
+    }
+
+    return value;
+  };
+
+  var getValueAutocomplete = function getValueAutocomplete() {
+    var valueAutocomplete = props.valueAutocomplete;
+
+    if (valueAutocomplete == undefined && savePathAutocomplete && savePathAutocomplete.length > 0) {
+      valueAutocomplete = app.getValue(savePathAutocomplete, null);
+    }
+
+    return valueAutocomplete;
+  }; // ...
+
+
+  var error = getError();
+  var value = getValue();
+  var valueAutocomplete = getValueAutocomplete(); // Callbacks
+  // ==================================================================================================
+
+  var callbackSearchDefault = function callbackSearchDefault(query, endSearchCallback) {
+    // Callback de recherche par défaut
+    // ---
+    var url = "/autocomplete/".concat(id); // Paramètres de recherche
+
+    var params = new FormData();
+    params.append('query', query); // Appel de la fonction de recherche
+
+    app.fetchJSON(url, {
+      'body': params
+    }, false, 'POST').then(function (json) {
+      app.setField('autocompleteResults', json.results);
+      endSearchCallback();
+    })["catch"](function (ex) {
+      console.error("Fetch failed for ".concat(url), ex);
+      snackbar.update(true, "Une erreur est survenue.", "error");
+    });
+  }; // Evènements
+  // ==================================================================================================
+
+
+  var handleInputFocus = function handleInputFocus(evt) {
+    // Sur focus du champ texte
+    // ---
+    setFocused(true);
+
+    if (callbackFocus) {
+      callbackFocus();
+    }
+  };
+
+  var handleInputChange = function handleInputChange(evt, ignoreCallbackChange) {
+    // Sur saisie dans le champ texte
+    // ---
+    var inputChange = ignoreCallbackChange == true ? null : callbackChange;
+    var newValue = null; // Récupération de la valeur
+
+    if (component == 'checkbox') {
+      newValue = evt.target.checked;
+
+      if (forceString) {
+        if (forceStringVariant == 'en') {
+          newValue = newValue == true ? 'yes' : 'no';
+        } else {
+          newValue = newValue == true ? 'oui' : 'non';
+        }
+      }
+    } else {
+      newValue = evt.target.value;
+    } // Convertion de la valeur
+
+
+    if (type == 'number') {
+      try {
+        newValue = parseInt(newValue);
+      } catch (err) {
+        newValue = 0;
+      }
+
+      if (Number.isNaN(newValue)) {
+        newValue = null;
+      } else {
+        if (newValue < min) {
+          newValue = min;
+        }
+
+        if (max != undefined && newValue > max) {
+          newValue = max;
+        }
+
+        if (forceString) {
+          newValue = newValue.toString();
+        }
+      }
+    }
+
+    if (type == 'date') {
+      newValue = dateTools.fromDateToISO(newValue, newValue);
+    }
+
+    if (type == 'time') {
+      newValue = dateTools.fromTimeToISO(newValue, newValue);
+    } // Sauvegarde de la valeur
+
+
+    if (savePath) {
+      if (callbackSave) {
+        callbackSave(savePath, newValue);
+      } else {
+        app.saveValue(savePath, newValue, callbackChange);
+      }
+
+      app.clearError(savePath);
+
+      if (component == 'autocomplete' && callbackSearch && (newValue.length == 0 || newValue.length > 1)) {
+        clearTimeout(window.searchTimeout);
+        setAutocompletePopperOpen(false);
+        app.setField('autocompleteResults', []);
+        window.searchTimeout = setTimeout(function () {
+          setAutocompleteLoading(true);
+          callbackSearch(newValue, function () {
+            // Affichage des résultats
+            setAutocompletePopperOpen(true);
+            setAutocompleteLoading(false);
+          });
+        }, 1000);
+      }
+    } else {
+      if (component == 'checkbox' && callbackClick) {
+        callbackClick();
+      }
+
+      if (callbackChange) {
+        callbackChange([], newValue);
+      }
+    }
+  };
+
+  var handleInputClick = function handleInputClick(evt) {
+    // Sur focus de l'input du field
+    // ---
+    setAutocompleteAnchor(evt.target); // Doit-on ouvrir la popup d'autocomplete en plein écran ? (pour les smartphones et tablettes)
+
+    if (component == 'autocomplete' && (isMobile && !valueAutocomplete || forcePopupAutocomplete)) {
+      setAutocompletePopupOpen(true); // Focus sur le champ de recherche
+
+      setTimeout(function () {
+        document.getElementById("popup_".concat(id)).focus();
+      }, 500);
+    }
+  };
+
+  var handleAutocompleteSelect = function handleAutocompleteSelect(result) {
+    // Sur sélection d'un résultat d'autocomplete
+    // ---
+    app.saveValue(savePath, result.label);
+    app.saveValue(savePathAutocomplete, result.value);
+    setAutocompletePopperOpen(false);
+    app.setField('autocompleteResults', []);
+    handleCloseAutocompletePopup(); // Callback nouvelle valeur
+
+    if (callbackChange) {
+      callbackChange(savePath, result.label, savePathAutocomplete, result.value, result.raw);
+    }
+
+    if (callbackSelect) {
+      callbackSelect(savePath, result.label, savePathAutocomplete, result.value, result.raw);
+    }
+  };
+
+  var handleClearAutocomplete = function handleClearAutocomplete() {
+    // Sur clic du bouton de nettoyage de l'autocomplete
+    // ---
+    app.setField('autocompleteResults', []);
+    setAutocompletePopperOpen(false);
+    app.saveValue(savePath, '');
+    app.saveValue(savePathAutocomplete, ''); // Callback nouvelle valeur
+
+    if (callbackChange) {
+      callbackChange(savePath, '', savePathAutocomplete, '');
+    }
+
+    if (callbackSelect) {
+      callbackSelect(savePath, '', savePathAutocomplete, '', null);
+    }
+  };
+
+  var handleInputBlur = function handleInputBlur(e) {
+    // Sur perte de focus du champ de recherche
+    // ---
+    setFocused(false); // Nettoyage automatique si aucune valeur sélectionnée dans l'autocomplete
+
+    setTimeout(function () {
+      var valueAutocomplete = getValueAutocomplete();
+
+      if (component == 'autocomplete' && !valueAutocomplete && !autocompleteLoading && isDesktop) {
+        handleClearAutocomplete();
+      }
+    }, 200); // Callback blur input
+
+    if (callbackBlur) {
+      callbackBlur(savePath, e.target.value);
+    }
+  };
+
+  var handleCloseAutocompletePopup = function handleCloseAutocompletePopup() {
+    // Sur clic du bouton "Annuler" dans la popup d'autocomplete
+    // ---
+    setAutocompletePopupOpen(false);
+    var node = document.getElementById(id);
+
+    if (node) {
+      node.blur();
+    }
+  };
+
+  var handleSaveValue = function handleSaveValue(savePath, value) {
+    // Mise à jour d'une valeur sur un target
+    // ---
+    // Sauvegarde de la valeur
+    if (savePath) {
+      app.saveValue(savePath, value, callbackChange);
+      app.clearError(savePath);
+    } else {
+      callbackChange([], value);
+    }
+  }; // Render
+  // ==================================================================================================
+
+
+  var renderInput = function renderInput() {
+    // Render :: Input
+    // ---
+    var newValue = value != null ? value : '';
+
+    if (type == 'date' && !placeholder) {
+      placeholder = 'jj/mm/aaaa';
+    }
+
+    if (type == 'time' && !placeholder) {
+      placeholder = 'hh:mm';
+    } // Input basique
+
+
+    var input = /*#__PURE__*/react.createElement("input", {
+      className: "nx-field-input",
+      id: id,
+      value: newValue,
+      type: type,
+      onChange: function onChange(e) {
+        return handleInputChange(e);
+      },
+      onFocus: function onFocus(e) {
+        return handleInputFocus(e);
+      },
+      onBlur: function onBlur(e) {
+        return handleInputBlur(e);
+      },
+      placeholder: placeholder,
+      title: title,
+      style: inputStyle
+    });
+    return /*#__PURE__*/react.createElement("div", {
+      className: (0,clsx_m/* default */.Z)('nx-field', component, type, {
+        'field-disabled': disabled
+      }, {
+        'focused': focused
+      }, {
+        'error': error
+      }, className),
+      style: style
+    }, label && !ghostLabel && /*#__PURE__*/react.createElement("div", {
+      className: (0,clsx_m/* default */.Z)('nx-field-label')
+    }, label), input, error && /*#__PURE__*/react.createElement("div", {
+      className: "nx-field-error"
+    }, error));
+  };
+
+  switch (component) {
+    case 'input':
+      return renderInput();
+      break;
+    // case 'textarea':
+    // 	return renderInput();
+    // 	break;
+    // case 'select':
+    // 	return renderSelect();
+    // 	break;
+    // case 'checkbox':
+    // 	return renderCheckbox();
+    // 	break;
+    // case 'autocomplete':
+    // 	return renderAutocomplete();
+    // 	break;
+    // case 'switcher':
+    // 	return renderSwitcher();
+    // 	break;
+    // case 'radios':
+    // 	return renderRadios();
+    // 	break;
+  }
+});
 // EXTERNAL MODULE: ./contexts/playground/Playground.css
-var Playground = __webpack_require__(245);
+var Playground = __webpack_require__(5245);
 ;// CONCATENATED MODULE: ./contexts/playground/Playground.jsx
+
+
+
 
 
 
@@ -3708,6 +4641,10 @@ var Playground = __webpack_require__(245);
 var TAG_PlaygroundStore = function TAG_PlaygroundStore() {};
 
 var PlaygroundStore = mobx_state_tree_module/* types.model */.V5.model({
+  value_text: mobx_state_tree_module/* types.maybeNull */.V5.maybeNull(mobx_state_tree_module/* types.string */.V5.string),
+  value_number: mobx_state_tree_module/* types.maybeNull */.V5.maybeNull(mobx_state_tree_module/* types.integer */.V5.integer),
+  value_date: mobx_state_tree_module/* types.maybeNull */.V5.maybeNull(mobx_state_tree_module/* types.string */.V5.string),
+  value_time: mobx_state_tree_module/* types.maybeNull */.V5.maybeNull(mobx_state_tree_module/* types.string */.V5.string),
   loaded: false
 }).actions(function (self) {
   return {
@@ -3715,7 +4652,24 @@ var PlaygroundStore = mobx_state_tree_module/* types.model */.V5.model({
       self[field] = value;
     },
     // -
-    update: function update(raw) {}
+    update: function update(raw) {
+      console.log(raw);
+      self.loaded = true;
+    },
+    load: function load() {
+      // Appel AJAX de la fonction de chargement des données de playground
+      // ---
+      var store = (0,mobx_state_tree_module/* getRoot */.yj)(self);
+      var app = store.app;
+      var snackbar = app.snackbar;
+      var url = '/playground_actions/load';
+      app.fetchJSON(url, null, false, 'POST').then(function (json) {
+        self.update(json.playground_raw);
+      })["catch"](function (ex) {
+        console.error("Fetch failed for ".concat(url), ex);
+        snackbar.update(true, "Une erreur est survenue.", "error");
+      });
+    }
   };
 }); // Functions Components ReactJS
 // -------------------------------------------------------------------------------------------------------------
@@ -3765,6 +4719,110 @@ var PlaygroundMenuItem = (0,es/* observer */.Pi)(function (props) {
     activeContexts: [playgroundContext],
     callbackClick: handleMenuItemClick
   });
+}); // ***** RenderSectionFields *****
+// *******************************
+
+var TAG_RenderSectionFields = function TAG_RenderSectionFields() {};
+
+var RenderSectionFields = (0,es/* observer */.Pi)(function (props) {
+  var store = react.useContext(window.storeContext);
+  var app = store.app;
+  var playground = store.playground; // From ... store
+
+  var isLoading = app.isLoading; // Evènements
+  // ==================================================================================================
+
+  var handleTextFieldChange = function handleTextFieldChange(savePath, value) {
+    console.log('handleTextFieldChange');
+    console.log(savePath);
+    console.log(value);
+  };
+
+  var handleNumberFieldChange = function handleNumberFieldChange(savePath, value) {
+    console.log('handleNumberFieldChange');
+    console.log(savePath);
+    console.log(value);
+  };
+
+  var handleDateFieldChange = function handleDateFieldChange(savePath, value) {
+    console.log('handleDateFieldChange');
+    console.log(savePath);
+    console.log(value);
+  };
+
+  var handleTimeFieldChange = function handleTimeFieldChange(savePath, value) {
+    console.log('handleTimeFieldChange');
+    console.log(savePath);
+    console.log(value);
+  }; // Render
+  // ==================================================================================================
+
+
+  return /*#__PURE__*/react.createElement(Section_Section, {
+    icon: /*#__PURE__*/react.createElement(Icon_Icon, {
+      name: "text_fields"
+    }),
+    title: "Fields"
+  }, /*#__PURE__*/react.createElement(Row_Row, null, /*#__PURE__*/react.createElement(Field_Field, {
+    id: "txt-field-text",
+    component: "input",
+    label: "Texte",
+    savePath: ['playground', 'value_text'],
+    callbackChange: handleTextFieldChange,
+    disabled: isLoading
+  }), /*#__PURE__*/react.createElement(Field_Field, {
+    id: "txt-field-number",
+    component: "input",
+    label: "Nombre",
+    type: "number",
+    savePath: ['playground', 'value_number'],
+    callbackChange: handleNumberFieldChange,
+    disabled: isLoading
+  })), /*#__PURE__*/react.createElement(Row_Row, null, /*#__PURE__*/react.createElement(Field_Field, {
+    id: "txt-field-date",
+    component: "input",
+    label: "Date",
+    type: "date" // placeholder='jj/mm/aaaa'
+    ,
+    savePath: ['playground', 'value_date'],
+    callbackChange: handleDateFieldChange,
+    disabled: isLoading
+  }), /*#__PURE__*/react.createElement(Field_Field, {
+    id: "txt-field-time",
+    component: "input",
+    label: "Time",
+    type: "time" // placeholder='hh:mm'
+    ,
+    savePath: ['playground', 'value_time'],
+    callbackChange: handleTimeFieldChange,
+    disabled: isLoading
+  })));
+}); // ***** RenderPlayground *****
+// ****************************
+
+var TAG_RenderPlayground = function TAG_RenderPlayground() {};
+
+var RenderPlayground = (0,es/* observer */.Pi)(function (props) {
+  var store = react.useContext(window.storeContext);
+  var app = store.app;
+  var playground = store.playground; // From ... store
+
+  var loaded = playground.loaded; // ...
+
+  react.useEffect(function () {
+    if (!loaded) {
+      playground.load();
+    }
+  }, [loaded]); // Render
+  // ==================================================================================================
+
+  var contentPlayground = null;
+
+  if (loaded) {
+    contentPlayground = /*#__PURE__*/react.createElement(react.Fragment, null, /*#__PURE__*/react.createElement(RenderSectionFields, null));
+  }
+
+  return contentPlayground;
 }); // ***** PlaygroundPage *****
 // **************************
 
@@ -3772,21 +4830,39 @@ var TAG_PlaygroundPage = function TAG_PlaygroundPage() {};
 
 var PlaygroundPage = (0,es/* observer */.Pi)(function (props) {
   var store = react.useContext(window.storeContext);
-  var app = store.app; // Renderers
+  var app = store.app;
+  var playground = store.playground; // From ... store
+
+  var initialized = app.initialized;
+  var loaded = playground.loaded; // ...
+
+  var showHelper = !initialized || !loaded ? true : false; // Renderers
   // ==================================================================================================
+
+  var renderPage = function renderPage() {
+    // Render :: Page -> que quand l'app est intitialisée (pour useEffect)
+    // ---
+    var pageContent = null;
+
+    if (initialized) {
+      pageContent = /*#__PURE__*/react.createElement(RenderPlayground, null);
+    }
+
+    return pageContent;
+  };
 
   var renderHelper = function renderHelper() {
     // Render :: Helper
     // ---
     return /*#__PURE__*/react.createElement(Helper_Helper, {
       iconName: "science",
-      show: true
+      show: showHelper
     });
   };
 
   return /*#__PURE__*/react.createElement("div", {
     className: "nx-page"
-  }, renderHelper());
+  }, renderPage(), renderHelper());
 });
 ;// CONCATENATED MODULE: ./ui/ContextualHeader.jsx
 
@@ -3948,7 +5024,7 @@ var ContextualMenu = (0,es/* observer */.Pi)(function (props) {
   return /*#__PURE__*/react.createElement(Menu_Menu, null, /*#__PURE__*/react.createElement(HomeMenuItem, null), /*#__PURE__*/react.createElement(SearchMenuItem, null), /*#__PURE__*/react.createElement(MenuDivider, null), /*#__PURE__*/react.createElement(BlogMenuItem, null), /*#__PURE__*/react.createElement(MenuDivider, null), /*#__PURE__*/react.createElement(ProjectsMenuItem, null), /*#__PURE__*/react.createElement(CvMenuItem, null), /*#__PURE__*/react.createElement(MenuDivider, null), /*#__PURE__*/react.createElement(PlaygroundMenuItem, null), /*#__PURE__*/react.createElement(MenuDivider, null), /*#__PURE__*/react.createElement(AboutMenuItem, null), /*#__PURE__*/react.createElement(AdminMenuItem, null), breakPoint650 && /*#__PURE__*/react.createElement(MenuDivider, null), /*#__PURE__*/react.createElement(LoginMenuItem, null), /*#__PURE__*/react.createElement(AccountMenuItem, null), /*#__PURE__*/react.createElement(LogoutMenuItem, null));
 });
 // EXTERNAL MODULE: ./contexts/home/Home.css
-var home_Home = __webpack_require__(319);
+var home_Home = __webpack_require__(8319);
 ;// CONCATENATED MODULE: ./contexts/home/Home.jsx
 
 
@@ -3988,7 +5064,7 @@ var HomePage = (0,es/* observer */.Pi)(function (props) {
   }, renderHelper());
 });
 // EXTERNAL MODULE: ./contexts/admin/Admin.css
-var admin_Admin = __webpack_require__(251);
+var admin_Admin = __webpack_require__(4251);
 ;// CONCATENATED MODULE: ./contexts/admin/Admin.jsx
 
 
@@ -4020,7 +5096,7 @@ var AdminPage = (0,es/* observer */.Pi)(function (props) {
   }, renderHelper());
 });
 // EXTERNAL MODULE: ./Main.css
-var Main = __webpack_require__(729);
+var Main = __webpack_require__(1729);
 ;// CONCATENATED MODULE: ./Main.jsx
 
 
@@ -4207,196 +5283,217 @@ window.addEventListener('DOMContentLoaded', function () {
 
 /***/ }),
 
-/***/ 729:
+/***/ 1729:
 /***/ (() => {
 
 // extracted by extract-css-chunks-webpack-plugin
 
 /***/ }),
 
-/***/ 251:
+/***/ 4251:
 /***/ (() => {
 
 // extracted by extract-css-chunks-webpack-plugin
 
 /***/ }),
 
-/***/ 737:
+/***/ 6737:
 /***/ (() => {
 
 // extracted by extract-css-chunks-webpack-plugin
 
 /***/ }),
 
-/***/ 685:
+/***/ 8685:
 /***/ (() => {
 
 // extracted by extract-css-chunks-webpack-plugin
 
 /***/ }),
 
-/***/ 319:
+/***/ 8319:
 /***/ (() => {
 
 // extracted by extract-css-chunks-webpack-plugin
 
 /***/ }),
 
-/***/ 245:
+/***/ 5245:
 /***/ (() => {
 
 // extracted by extract-css-chunks-webpack-plugin
 
 /***/ }),
 
-/***/ 525:
+/***/ 8525:
 /***/ (() => {
 
 // extracted by extract-css-chunks-webpack-plugin
 
 /***/ }),
 
-/***/ 906:
+/***/ 4906:
 /***/ (() => {
 
 // extracted by extract-css-chunks-webpack-plugin
 
 /***/ }),
 
-/***/ 52:
+/***/ 7052:
 /***/ (() => {
 
 // extracted by extract-css-chunks-webpack-plugin
 
 /***/ }),
 
-/***/ 189:
+/***/ 2189:
 /***/ (() => {
 
 // extracted by extract-css-chunks-webpack-plugin
 
 /***/ }),
 
-/***/ 390:
+/***/ 7390:
 /***/ (() => {
 
 // extracted by extract-css-chunks-webpack-plugin
 
 /***/ }),
 
-/***/ 644:
+/***/ 4644:
 /***/ (() => {
 
 // extracted by extract-css-chunks-webpack-plugin
 
 /***/ }),
 
-/***/ 429:
+/***/ 2429:
 /***/ (() => {
 
 // extracted by extract-css-chunks-webpack-plugin
 
 /***/ }),
 
-/***/ 37:
+/***/ 2037:
 /***/ (() => {
 
 // extracted by extract-css-chunks-webpack-plugin
 
 /***/ }),
 
-/***/ 364:
+/***/ 1364:
 /***/ (() => {
 
 // extracted by extract-css-chunks-webpack-plugin
 
 /***/ }),
 
-/***/ 282:
+/***/ 7282:
 /***/ (() => {
 
 // extracted by extract-css-chunks-webpack-plugin
 
 /***/ }),
 
-/***/ 450:
+/***/ 651:
 /***/ (() => {
 
 // extracted by extract-css-chunks-webpack-plugin
 
 /***/ }),
 
-/***/ 397:
+/***/ 4450:
 /***/ (() => {
 
 // extracted by extract-css-chunks-webpack-plugin
 
 /***/ }),
 
-/***/ 230:
+/***/ 4397:
 /***/ (() => {
 
 // extracted by extract-css-chunks-webpack-plugin
 
 /***/ }),
 
-/***/ 130:
+/***/ 3230:
 /***/ (() => {
 
 // extracted by extract-css-chunks-webpack-plugin
 
 /***/ }),
 
-/***/ 181:
+/***/ 3447:
 /***/ (() => {
 
 // extracted by extract-css-chunks-webpack-plugin
 
 /***/ }),
 
-/***/ 236:
+/***/ 8461:
 /***/ (() => {
 
 // extracted by extract-css-chunks-webpack-plugin
 
 /***/ }),
 
-/***/ 575:
+/***/ 3130:
 /***/ (() => {
 
 // extracted by extract-css-chunks-webpack-plugin
 
 /***/ }),
 
-/***/ 742:
+/***/ 2181:
 /***/ (() => {
 
 // extracted by extract-css-chunks-webpack-plugin
 
 /***/ }),
 
-/***/ 244:
+/***/ 6236:
 /***/ (() => {
 
 // extracted by extract-css-chunks-webpack-plugin
 
 /***/ }),
 
-/***/ 817:
+/***/ 7575:
 /***/ (() => {
 
 // extracted by extract-css-chunks-webpack-plugin
 
 /***/ }),
 
-/***/ 443:
+/***/ 2742:
 /***/ (() => {
 
 // extracted by extract-css-chunks-webpack-plugin
 
 /***/ }),
 
-/***/ 824:
+/***/ 3244:
+/***/ (() => {
+
+// extracted by extract-css-chunks-webpack-plugin
+
+/***/ }),
+
+/***/ 7883:
+/***/ (() => {
+
+// extracted by extract-css-chunks-webpack-plugin
+
+/***/ }),
+
+/***/ 9443:
+/***/ (() => {
+
+// extracted by extract-css-chunks-webpack-plugin
+
+/***/ }),
+
+/***/ 6824:
 /***/ (() => {
 
 // extracted by extract-css-chunks-webpack-plugin
@@ -4556,8 +5653,8 @@ window.addEventListener('DOMContentLoaded', function () {
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module depends on other loaded chunks and execution need to be delayed
-/******/ 	__webpack_require__.O(undefined, [216], () => (__webpack_require__(979)))
-/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, [216], () => (__webpack_require__(133)))
+/******/ 	__webpack_require__.O(undefined, [216], () => (__webpack_require__(3979)))
+/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, [216], () => (__webpack_require__(6374)))
 /******/ 	__webpack_exports__ = __webpack_require__.O(__webpack_exports__);
 /******/ 	
 /******/ })()
