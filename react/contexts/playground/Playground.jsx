@@ -4,12 +4,14 @@ import { observer } from "mobx-react-lite";
 import clsx from 'clsx';
 
 import { Helper } from 'nexus/ui/helper/Helper';
+import { Icon } from 'nexus/ui/icon/Icon';
+import { Button } from 'nexus/ui/button/Button';
 import { HeaderTitle } from 'nexus/layout/header/Header';
 import { MenuItem } from 'nexus/layout/menu/Menu';
-import { Icon } from 'nexus/ui/icon/Icon';
 import { Section } from 'nexus/layout/section/Section';
 import { Row } from 'nexus/layout/row/Row';
-import { Field } from 'nexus/forms/field/Field';
+import { AutocompleteStore, Field } from 'nexus/forms/field/Field';
+import { uuid } from 'nexus/utils/Datas';
 
 import './Playground.css';
 
@@ -28,6 +30,17 @@ export const PlaygroundStore = types
 
 		value_date: types.maybeNull(types.string),
 		value_time: types.maybeNull(types.string),
+
+		value_select: types.maybeNull(types.string),
+		value_textarea: types.maybeNull(types.string),
+
+		value_autocomplete_1: types.optional(AutocompleteStore, {}),
+		value_autocomplete_2: types.optional(AutocompleteStore, {}),
+
+		value_switcher: types.maybeNull(types.string),
+
+		value_radio: types.maybeNull(types.string),
+		value_checkbox: types.maybeNull(types.boolean),
 
 		loaded: false,
 	})
@@ -178,15 +191,99 @@ export const RenderSectionFields = observer((props) => {
 		console.log(value);
 	}
 
+	// -
+
+	const handleSimulateLoad = (setLoad) => {
+
+		// Sur click d'un bouton de simulation de traitement en tâche de fond
+		// ---
+
+		if (setLoad) {
+			const task_id = uuid();
+			app.addTask(task_id);
+		} else {
+			app.setField('tasks', []);
+		}
+	}
+
+	const handleSimulateErrors = (putErrors) => {
+
+		// Sur click d'un bouton de simulation d'erreurs fields
+		// ---
+
+		app.clearErrors();
+
+		let errors = [];
+
+		if (putErrors) {
+
+			errors.push(app.addError(
+				['playground', 'value_text'],
+				'Fake error text',
+			));
+
+			errors.push(app.addError(
+				['playground', 'value_number'],
+				'Fake error number',
+			));
+
+			errors.push(app.addError(
+				['playground', 'value_date'],
+				'Fake error date',
+			));
+
+			errors.push(app.addError(
+				['playground', 'value_time'],
+				'Fake error time',
+			));
+
+			errors.push(app.addError(
+				['playground', 'value_select'],
+				'Fake error select',
+			));
+
+			errors.push(app.addError(
+				['playground', 'value_textarea'],
+				'Fake error textarea',
+			));
+
+			errors.push(app.addError(
+				['playground', 'value_autocomplete_1', 'label'],
+				'Fake error autocomplete',
+			));
+
+			errors.push(app.addError(
+				['playground', 'value_autocomplete_2', 'label'],
+				'Fake error autocomplete 2',
+			));
+
+			errors.push(app.addError(
+				['playground', 'value_switcher'],
+				'Fake error switcher',
+			));
+
+			errors.push(app.addError(
+				['playground', 'value_radio'],
+				'Fake error radio',
+			));
+
+			errors.push(app.addError(
+				['playground', 'value_checkbox'],
+				'Fake error checkbox',
+			));
+		}
+		return errors;
+	}
+
 	// Render
 	// ==================================================================================================
 
-	return (
-		<Section
-			icon={<Icon name="text_fields" />}
-			title="Fields"
-		>
 
+	// Section -> Content
+	// ---
+
+	const sectionContent = (
+		<React.Fragment>
 			<Row>
 
 				<Field
@@ -235,7 +332,59 @@ export const RenderSectionFields = observer((props) => {
 				/>
 
 			</Row>
+		</React.Fragment>
+	)
 
+	// Section -> Buttons
+	// ---
+
+	const sectionButtons = [
+		<Button
+			key="btn-fields-load"
+			variant="contained"
+			color="secondary"
+			onClick={() => handleSimulateLoad(true)}
+			disabled={isLoading}
+		>
+			Load
+		</Button>,
+		<Button
+			key="btn-fields-cancel"
+			variant="contained"
+			color="secondary"
+			onClick={() => handleSimulateLoad(false)}
+			disabled={!isLoading}
+		>
+			Cancel
+		</Button>,
+		<Button
+			key="btn-fields-error"
+			variant="contained"
+			color="secondary"
+			onClick={() => handleSimulateErrors(true)}
+			disabled={isLoading}
+		>
+			Error
+		</Button>,
+		<Button
+			key="btn-fields-clear"
+			variant="contained"
+			color="secondary"
+			onClick={() => handleSimulateErrors(false)}
+			disabled={isLoading}
+		>
+			Clear
+		</Button>
+	]
+
+	return (
+		<Section
+			icon={<Icon name="text_fields" />}
+			title="Fields"
+			buttons={sectionButtons}
+			buttonsResponsive={true}
+		>
+			{sectionContent}
 		</Section>
 	)
 })

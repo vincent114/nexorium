@@ -169,6 +169,10 @@ let initSnapshot = makeInitSnapshot(routes, {
 		'theme': {
 			'variant': 'light',
 			'palette': {
+				'default': {
+					'main': '#000000',
+					'contrastText': '#fff',
+				},
 				'primary': {
 					'main': '#8c9eff',
 					'contrastText': '#fff',

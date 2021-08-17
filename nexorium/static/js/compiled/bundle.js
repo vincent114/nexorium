@@ -144,6 +144,7 @@ var ColorStore = mobx_state_tree_module/* types.model */.V5.model({
 var TAG_PaletteStore = function TAG_PaletteStore() {};
 
 var PaletteStore = mobx_state_tree_module/* types.model */.V5.model({
+  "default": mobx_state_tree_module/* types.optional */.V5.optional(ColorStore, {}),
   primary: mobx_state_tree_module/* types.optional */.V5.optional(ColorStore, {}),
   secondary: mobx_state_tree_module/* types.optional */.V5.optional(ColorStore, {})
 }).actions(function (self) {
@@ -242,7 +243,8 @@ var ICON_KEYS_TO_FILES = {
     'date_range': 'date_range_black_24dp.svg',
     'local_bar': 'local_bar_black_24dp.svg',
     'playlist_play': 'playlist_play_black_24dp.svg',
-    'text_fields': 'text_fields_black_24dp.svg'
+    'text_fields': 'text_fields_black_24dp.svg',
+    'hourglass_empty': 'hourglass_empty_black_24dp.svg'
   }
 }; // const ICON_SIZES = {
 // 	'small': {
@@ -311,6 +313,21 @@ var Icon_Icon = function Icon(props) {
 // EXTERNAL MODULE: ../../nexus/react/ui/button/Button.css
 var Button = __webpack_require__(2181);
 ;// CONCATENATED MODULE: ../../nexus/react/ui/button/Button.jsx
+function Button_slicedToArray(arr, i) { return Button_arrayWithHoles(arr) || Button_iterableToArrayLimit(arr, i) || Button_unsupportedIterableToArray(arr, i) || Button_nonIterableRest(); }
+
+function Button_nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function Button_unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return Button_arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return Button_arrayLikeToArray(o, minLen); }
+
+function Button_arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function Button_iterableToArrayLimit(arr, i) { var _i = arr && (typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]); if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function Button_arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+
+
 
 
  // Functions Components ReactJS
@@ -345,7 +362,126 @@ var IconButton = function IconButton(props) {
       return handleClick(e);
     }
   }, children);
-};
+}; // ***** Button *****
+// ******************
+
+var TAG_Button = function TAG_Button() {};
+
+var Button_Button = (0,es/* observer */.Pi)(function (props) {
+  var store = react.useContext(window.storeContext);
+  var app = store.app;
+  var theme = app.theme; // From ... state
+
+  var _React$useState = react.useState(false),
+      _React$useState2 = Button_slicedToArray(_React$useState, 2),
+      hover = _React$useState2[0],
+      setHover = _React$useState2[1]; // From ... props
+
+
+  var id = props.id ? props.id : '';
+  var children = props.children;
+  var variant = props.variant ? props.variant : 'flat'; // default, contained, outlined
+
+  var color = props.color ? props.color : 'default'; // default, primary, secondary
+
+  var disabled = props.disabled == true ? true : false;
+  var onClick = props.onClick;
+  var className = props.className ? props.className : '';
+  var style = props.style ? props.style : {}; // ...
+
+  style['color'] = disabled ? "rgba(0, 0, 0, 0.26)" : 'black';
+  style['backgroundColor'] = hover ? hexToRgbA(theme.palette["default"].main, 0.1) : 'transparent';
+  style['border'] = '1px solid transparent';
+
+  if (variant == 'outlined') {
+    style['borderColor'] = hexToRgbA(theme.palette["default"].main, 0.8);
+
+    if (disabled) {
+      style['borderColor'] = "rgba(0, 0, 0, 0.12)";
+    }
+  }
+
+  if (color == 'primary') {
+    style['color'] = disabled ? "rgba(0, 0, 0, 0.26)" : theme.palette.primary.main;
+    style['backgroundColor'] = hover ? hexToRgbA(theme.palette.primary.main, 0.1) : 'transparent';
+
+    if (variant == 'outlined') {
+      style['borderColor'] = theme.palette.primary.main;
+
+      if (disabled) {
+        style['borderColor'] = "rgba(0, 0, 0, 0.12)";
+      }
+    }
+
+    if (variant == 'contained') {
+      style['color'] = disabled ? "rgba(0, 0, 0, 0.26)" : 'white';
+      style['backgroundColor'] = hover ? theme.palette.primary.main : hexToRgbA(theme.palette.primary.main, 0.8);
+
+      if (disabled) {
+        style['backgroundColor'] = "rgba(0, 0, 0, 0.12)";
+      }
+    }
+  }
+
+  if (color == 'secondary') {
+    style['color'] = disabled ? "rgba(0, 0, 0, 0.26)" : theme.palette.secondary.main;
+    style['backgroundColor'] = hover ? hexToRgbA(theme.palette.secondary.main, 0.1) : 'transparent';
+
+    if (variant == 'outlined') {
+      style['borderColor'] = theme.palette.secondary.main;
+
+      if (disabled) {
+        style['borderColor'] = "rgba(0, 0, 0, 0.12)";
+      }
+    }
+
+    if (variant == 'contained') {
+      style['color'] = disabled ? "rgba(0, 0, 0, 0.26)" : 'white';
+      style['backgroundColor'] = hover ? theme.palette.secondary.main : hexToRgbA(theme.palette.secondary.main, 0.8);
+
+      if (disabled) {
+        style['backgroundColor'] = "rgba(0, 0, 0, 0.12)";
+      }
+    }
+  } // Evènement
+  // ==================================================================================================
+
+
+  var handleMouseEnter = function handleMouseEnter(evt) {
+    setHover(true);
+  };
+
+  var handleMouseLeave = function handleMouseLeave(evt) {
+    setHover(false);
+  };
+
+  var handleClick = function handleClick(evt) {
+    if (onClick) {
+      onClick(evt);
+    }
+  }; // Render
+  // ==================================================================================================
+
+
+  return /*#__PURE__*/react.createElement("div", {
+    id: id,
+    className: (0,clsx_m/* default */.Z)("nx-button", variant, {
+      "hover": hover
+    }, {
+      "disabled": disabled
+    }),
+    style: style,
+    onMouseEnter: function onMouseEnter(e) {
+      return handleMouseEnter(e);
+    },
+    onMouseLeave: function onMouseLeave(e) {
+      return handleMouseLeave(e);
+    },
+    onClick: function onClick(e) {
+      return handleClick(e);
+    }
+  }, children);
+});
 ;// CONCATENATED MODULE: ../../nexus/react/utils/Datas.jsx
 function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = Datas_unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
 
@@ -755,6 +891,7 @@ function Header_arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
+
  // Models
 // -------------------------------------------------------------------------------------------------------------
 // ***** HeaderStore *****
@@ -988,13 +1125,19 @@ var Header_Header = (0,es/* observer */.Pi)(function (props) {
   }, /*#__PURE__*/react.createElement(Icon_Icon, {
     name: "menu",
     color: "white"
-  })), /*#__PURE__*/react.createElement(IconButton, {
+  })), !isLoading && /*#__PURE__*/react.createElement(IconButton, {
     onClick: function onClick() {
       return handleBackClick();
     },
     disabled: isLoading || !canGoBack
   }, /*#__PURE__*/react.createElement(Icon_Icon, {
     name: "arrow_back",
+    color: "white"
+  })), isLoading && /*#__PURE__*/react.createElement(Avatar_Avatar, {
+    color: "transparent",
+    size: "small"
+  }, /*#__PURE__*/react.createElement(Icon_Icon, {
+    name: "hourglass_empty",
     color: "white"
   })), !breakPoint650 && /*#__PURE__*/react.createElement(IconButton, {
     onClick: function onClick() {
@@ -1351,16 +1494,18 @@ var TAG_MenuItem = function TAG_MenuItem() {};
 var MenuItem = (0,es/* observer */.Pi)(function (props) {
   var store = react.useContext(window.storeContext);
   var app = store.app;
-  var theme = app.theme; // From ... props
+  var theme = app.theme; // From ... store
+
+  var context = app.context;
+  var isLoading = app.isLoading; // From ... props
 
   var icon = props.icon;
   var label = props.label;
   var activeContexts = props.activeContexts ? props.activeContexts : [];
+  var disabled = props.disabled == true ? props.disabled : isLoading;
   var style = props.style ? props.style : {};
   var styleLabel = {};
-  var callbackClick = props.callbackClick; // From ... store
-
-  var context = app.context; // ...
+  var callbackClick = props.callbackClick; // ...
 
   var active = activeContexts.indexOf(context) > -1 ? true : false;
 
@@ -1386,6 +1531,8 @@ var MenuItem = (0,es/* observer */.Pi)(function (props) {
   return /*#__PURE__*/react.createElement("div", {
     className: (0,clsx_m/* default */.Z)("nx-menu-item", {
       'active': active
+    }, {
+      'disabled': disabled
     }),
     style: style,
     onClick: function onClick() {
@@ -3067,8 +3214,19 @@ var NxAppStore = mobx_state_tree_module/* types.model */.V5.model({
       }
     },
     // -
-    clearErrors: function clearErrors() {
-      self.errors = [];
+    addError: function addError(errorPath, errorMsg) {
+      // Ajoute l'erreur passée en paramètres
+      // ---
+      if (!self.errors) {
+        self.errors = [];
+      }
+
+      var errorDict = {
+        'path': errorPath,
+        'label': errorMsg
+      };
+      self.errors.push(errorDict);
+      return errorDict;
     },
     clearError: function clearError(savePath) {
       // Nettoyage de l'erreur
@@ -3094,6 +3252,9 @@ var NxAppStore = mobx_state_tree_module/* types.model */.V5.model({
       }
 
       self.setField('errors', clearedErrors);
+    },
+    clearErrors: function clearErrors() {
+      self.errors = [];
     }
   };
 }); // Functions
@@ -3898,7 +4059,11 @@ var Section_Section = function Section(props) {
   var icon = props.icon ? props.icon : null;
   var title = props.title ? props.title : '';
   var right = props.right;
-  var children = props.children; // Render
+  var children = props.children;
+  var buttons = props.buttons;
+  var buttonsPosition = props.buttonsPosition ? props.buttonsPosition : 'right'; // left, right, center, stretch
+
+  var buttonsResponsive = props.buttonsResponsive == true ? true : false; // Render
   // ==================================================================================================
 
   return /*#__PURE__*/react.createElement("div", {
@@ -3911,7 +4076,13 @@ var Section_Section = function Section(props) {
     className: "nx-section-header-title"
   }, title)), /*#__PURE__*/react.createElement("div", {
     className: "nx-section-content"
-  }, children));
+  }, children), buttons && /*#__PURE__*/react.createElement("div", {
+    className: (0,clsx_m/* default */.Z)("nx-section-buttonset", "h-col-small", {
+      "responsive-vertical": buttonsResponsive
+    }, {
+      "responsive-align-stretch": buttonsResponsive
+    })
+  }, buttons));
 };
 // EXTERNAL MODULE: ../../nexus/react/layout/row/Row.css
 var Row = __webpack_require__(3447);
@@ -4220,7 +4391,41 @@ function Field_arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
- // Functions Components ReactJS
+ // Models
+// ----------------------------------------------------------------------------------------------------------------------------
+
+var TAG_AutocompleteStore = function TAG_AutocompleteStore() {};
+
+var AutocompleteStore = mobx_state_tree_module/* types.model */.V5.model({
+  value: '',
+  label: ''
+}).views(function (self) {
+  return {
+    get isSet() {
+      if (self.value) {
+        return true;
+      }
+
+      return false;
+    }
+
+  };
+}).actions(function (self) {
+  return {
+    setField: function setField(field, value) {
+      self[field] = value;
+    },
+    // -
+    update: function update(raw) {
+      self.value = raw.value;
+      self.label = raw.label;
+    },
+    clear: function clear() {
+      self.value = '';
+      self.label = '';
+    }
+  };
+}); // Functions Components ReactJS
 // -------------------------------------------------------------------------------------------------------------
 // ***** Field *****
 // *****************
@@ -4581,7 +4786,7 @@ var Field_Field = (0,es/* observer */.Pi)(function (props) {
     });
     return /*#__PURE__*/react.createElement("div", {
       className: (0,clsx_m/* default */.Z)('nx-field', component, type, {
-        'field-disabled': disabled
+        'disabled': disabled
       }, {
         'focused': focused
       }, {
@@ -4633,6 +4838,8 @@ var Playground = __webpack_require__(5245);
 
 
 
+
+
  // Models
 // -------------------------------------------------------------------------------------------------------------
 // ***** PlaygroundStore *****
@@ -4645,6 +4852,13 @@ var PlaygroundStore = mobx_state_tree_module/* types.model */.V5.model({
   value_number: mobx_state_tree_module/* types.maybeNull */.V5.maybeNull(mobx_state_tree_module/* types.integer */.V5.integer),
   value_date: mobx_state_tree_module/* types.maybeNull */.V5.maybeNull(mobx_state_tree_module/* types.string */.V5.string),
   value_time: mobx_state_tree_module/* types.maybeNull */.V5.maybeNull(mobx_state_tree_module/* types.string */.V5.string),
+  value_select: mobx_state_tree_module/* types.maybeNull */.V5.maybeNull(mobx_state_tree_module/* types.string */.V5.string),
+  value_textarea: mobx_state_tree_module/* types.maybeNull */.V5.maybeNull(mobx_state_tree_module/* types.string */.V5.string),
+  value_autocomplete_1: mobx_state_tree_module/* types.optional */.V5.optional(AutocompleteStore, {}),
+  value_autocomplete_2: mobx_state_tree_module/* types.optional */.V5.optional(AutocompleteStore, {}),
+  value_switcher: mobx_state_tree_module/* types.maybeNull */.V5.maybeNull(mobx_state_tree_module/* types.string */.V5.string),
+  value_radio: mobx_state_tree_module/* types.maybeNull */.V5.maybeNull(mobx_state_tree_module/* types.string */.V5.string),
+  value_checkbox: mobx_state_tree_module/* types.maybeNull */.V5.maybeNull(mobx_state_tree_module/* types.boolean */.V5.boolean),
   loaded: false
 }).actions(function (self) {
   return {
@@ -4754,16 +4968,48 @@ var RenderSectionFields = (0,es/* observer */.Pi)(function (props) {
     console.log('handleTimeFieldChange');
     console.log(savePath);
     console.log(value);
+  }; // -
+
+
+  var handleSimulateLoad = function handleSimulateLoad(setLoad) {
+    // Sur click d'un bouton de simulation de traitement en tâche de fond
+    // ---
+    if (setLoad) {
+      var task_id = uuid();
+      app.addTask(task_id);
+    } else {
+      app.setField('tasks', []);
+    }
+  };
+
+  var handleSimulateErrors = function handleSimulateErrors(putErrors) {
+    // Sur click d'un bouton de simulation d'erreurs fields
+    // ---
+    app.clearErrors();
+    var errors = [];
+
+    if (putErrors) {
+      errors.push(app.addError(['playground', 'value_text'], 'Fake error text'));
+      errors.push(app.addError(['playground', 'value_number'], 'Fake error number'));
+      errors.push(app.addError(['playground', 'value_date'], 'Fake error date'));
+      errors.push(app.addError(['playground', 'value_time'], 'Fake error time'));
+      errors.push(app.addError(['playground', 'value_select'], 'Fake error select'));
+      errors.push(app.addError(['playground', 'value_textarea'], 'Fake error textarea'));
+      errors.push(app.addError(['playground', 'value_autocomplete_1', 'label'], 'Fake error autocomplete'));
+      errors.push(app.addError(['playground', 'value_autocomplete_2', 'label'], 'Fake error autocomplete 2'));
+      errors.push(app.addError(['playground', 'value_switcher'], 'Fake error switcher'));
+      errors.push(app.addError(['playground', 'value_radio'], 'Fake error radio'));
+      errors.push(app.addError(['playground', 'value_checkbox'], 'Fake error checkbox'));
+    }
+
+    return errors;
   }; // Render
   // ==================================================================================================
+  // Section -> Content
+  // ---
 
 
-  return /*#__PURE__*/react.createElement(Section_Section, {
-    icon: /*#__PURE__*/react.createElement(Icon_Icon, {
-      name: "text_fields"
-    }),
-    title: "Fields"
-  }, /*#__PURE__*/react.createElement(Row_Row, null, /*#__PURE__*/react.createElement(Field_Field, {
+  var sectionContent = /*#__PURE__*/react.createElement(react.Fragment, null, /*#__PURE__*/react.createElement(Row_Row, null, /*#__PURE__*/react.createElement(Field_Field, {
     id: "txt-field-text",
     component: "input",
     label: "Texte",
@@ -4796,7 +5042,50 @@ var RenderSectionFields = (0,es/* observer */.Pi)(function (props) {
     savePath: ['playground', 'value_time'],
     callbackChange: handleTimeFieldChange,
     disabled: isLoading
-  })));
+  }))); // Section -> Buttons
+  // ---
+
+  var sectionButtons = [/*#__PURE__*/react.createElement(Button_Button, {
+    key: "btn-fields-load",
+    variant: "contained",
+    color: "secondary",
+    onClick: function onClick() {
+      return handleSimulateLoad(true);
+    },
+    disabled: isLoading
+  }, "Load"), /*#__PURE__*/react.createElement(Button_Button, {
+    key: "btn-fields-cancel",
+    variant: "contained",
+    color: "secondary",
+    onClick: function onClick() {
+      return handleSimulateLoad(false);
+    },
+    disabled: !isLoading
+  }, "Cancel"), /*#__PURE__*/react.createElement(Button_Button, {
+    key: "btn-fields-error",
+    variant: "contained",
+    color: "secondary",
+    onClick: function onClick() {
+      return handleSimulateErrors(true);
+    },
+    disabled: isLoading
+  }, "Error"), /*#__PURE__*/react.createElement(Button_Button, {
+    key: "btn-fields-clear",
+    variant: "contained",
+    color: "secondary",
+    onClick: function onClick() {
+      return handleSimulateErrors(false);
+    },
+    disabled: isLoading
+  }, "Clear")];
+  return /*#__PURE__*/react.createElement(Section_Section, {
+    icon: /*#__PURE__*/react.createElement(Icon_Icon, {
+      name: "text_fields"
+    }),
+    title: "Fields",
+    buttons: sectionButtons,
+    buttonsResponsive: true
+  }, sectionContent);
 }); // ***** RenderPlayground *****
 // ****************************
 
@@ -5238,6 +5527,10 @@ var initSnapshot = makeInitSnapshot(routes, {
     'theme': {
       'variant': 'light',
       'palette': {
+        'default': {
+          'main': '#000000',
+          'contrastText': '#fff'
+        },
         'primary': {
           'main': '#8c9eff',
           'contrastText': '#fff'
