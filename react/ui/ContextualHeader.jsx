@@ -13,7 +13,10 @@ import { SearchHeaderMiddle } from 'nexorium/contexts/search/Search';
 import { BlogHeaderLeft } from 'nexorium/contexts/blog/Blog';
 import { ProjectsHeaderLeft } from 'nexorium/contexts/projects/Projects';
 import { CvHeaderLeft } from 'nexorium/contexts/cv/Cv';
-import { PlaygroundHeaderLeft } from 'nexorium/contexts/playground/Playground';
+import {
+	PlaygroundHeaderLeft,
+	PlaygroundHeaderRight
+} from 'nexorium/contexts/playground/Playground';
 
 
 // Functions Components ReactJS
@@ -87,6 +90,7 @@ export const ContextualHeader = observer((props) => {
 		if (context != 'playground') { return; }
 
 		headerLeft = <PlaygroundHeaderLeft />
+		headerRight = <PlaygroundHeaderRight />
 	}
 
 	// -------------------------------------------------

@@ -5,8 +5,8 @@ import clsx from 'clsx';
 
 import { Helper } from 'nexus/ui/helper/Helper';
 import { Icon } from 'nexus/ui/icon/Icon';
-import { Button } from 'nexus/ui/button/Button';
-import { HeaderTitle } from 'nexus/layout/header/Header';
+import { IconButton, Button } from 'nexus/ui/button/Button';
+import { HeaderTitle, HeaderDivider } from 'nexus/layout/header/Header';
 import { MenuItem } from 'nexus/layout/menu/Menu';
 import { Section } from 'nexus/layout/section/Section';
 import { Row } from 'nexus/layout/row/Row';
@@ -41,6 +41,12 @@ export const PlaygroundStore = types
 
 		value_radio: types.maybeNull(types.string),
 		value_checkbox: types.maybeNull(types.boolean),
+
+		// -
+
+		value_html: types.maybeNull(types.string),
+
+		// -
 
 		loaded: false,
 	})
@@ -81,6 +87,76 @@ export const PlaygroundStore = types
 			)
 		},
 
+		validate: (callback) => {
+
+			// Validation des données du playground
+			// ---
+
+			const store = getRoot(self);
+			const app = store.app;
+
+			let errors = [];
+
+			if (callback) {
+				callback(errors);
+			}
+			return errors;
+		},
+
+		save: () => {
+
+			// Appel AJAX de la fonction d'enregistrement du playground
+			// ---
+
+			const store = getRoot(self);
+			const app = store.app;
+			const snackbar = app.snackbar;
+			const ajaxNexorium = store.ajaxNexorium;
+
+			let params = new FormData();
+			params.append('playground_raw', JSON.stringify(self.toJSON()));
+
+			// const url = `${ajaxExcli}/webapp/planner_actions/save`;
+			// app.fetchJSON(url, {'body': params}, false, 'POST').then(
+			// 	(json) => {
+			// 		if (json.errors.length > 0) {
+
+			// 			// Erreurs à la validation du document
+			// 			app.setField('errors', json.errors);
+			// 			snackbar.update(true, "Vérifiez la saisie.", "warning");
+
+			// 		} else if (json.error_store) {
+
+			// 			// Conflit d'enregistrement ?
+			// 			app.clearErrors();
+			// 			snackbar.update(true, json.error_store, "warning");
+
+			// 		} else {
+			// 			const plannerId = json.planner_raw._id;
+			// 			if (!plannerRev) {
+
+			// 				// Nouveau document enregistré ?
+			// 				store.navigateTo('planner', plannerId, null, null, () => {
+			// 					snackbar.update(true, "Enregistrement effectué.", "success");
+			// 				});
+
+			// 			} else {
+
+			// 				// Document existant mis à jour ?
+			// 				self.load(() => {
+			// 					snackbar.update(true, "Enregistrement effectué.", "success");
+			// 				});
+			// 			}
+			// 		}
+			// 	}
+			// ).catch(
+			// 	(ex) => {
+			// 		console.error(`Fetch failed for ${url}`, ex);
+			// 		snackbar.update(true, "Une erreur est survenue.", "error");
+			// 	}
+			// )
+		},
+
 	}))
 
 
@@ -108,6 +184,53 @@ export const PlaygroundHeaderLeft = observer((props) => {
 				marginLeft: '10px',
 			}}
 		/>
+	)
+})
+
+// ***** PlaygroundHeaderRight *****
+// *********************************
+
+const TAG_PlaygroundHeaderRight = () => {}
+export const PlaygroundHeaderRight = observer((props) => {
+
+	const store = React.useContext(window.storeContext);
+	const app = store.app;
+	const playground = store.playground;
+
+	// From ... store
+
+	const isLoading = app.isLoading;
+
+	// ...
+
+	// Evènements
+	// ==================================================================================================
+
+	const handleSaveClick = () => {
+		playground.validate((errors) => {
+			if (errors.length == 0) {
+				playground.save();
+			}
+		});
+	}
+
+	// Render
+	// ==================================================================================================
+
+	return (
+		<React.Fragment>
+			<IconButton
+				onClick={() => handleSaveClick()}
+				disabled={isLoading}
+				title="Enregistrer"
+			>
+				<Icon
+					name="save"
+					color="white"
+				/>
+			</IconButton>
+			<HeaderDivider />
+		</React.Fragment>
 	)
 })
 
@@ -389,6 +512,96 @@ export const RenderSectionFields = observer((props) => {
 	)
 })
 
+// ***** RenderSectionSnackbars *****
+// **********************************
+
+const TAG_RenderSectionSnackbars = () => {}
+export const RenderSectionSnackbars = observer((props) => {
+
+	const store = React.useContext(window.storeContext);
+	const app = store.app;
+	const snackbar = app.snackbar;
+	const playground = store.playground;
+
+	// From ... store
+
+	const isLoading = app.isLoading;
+
+	// Evènements
+	// ==================================================================================================
+
+	const handleSnackbar = (severity) => {
+		snackbar.update(
+			true,
+			<div>Test de snackbar <b>{severity}</b></div>,
+			severity,
+		)
+	}
+
+	// Render
+	// ==================================================================================================
+
+	// Section -> Buttons
+	// ---
+
+	const sectionButtons = [
+		<Button
+			key="btn-snackbars-default"
+			variant="outlined"
+			color="primary"
+			onClick={() => handleSnackbar('default')}
+			disabled={isLoading}
+		>
+			Default
+		</Button>,
+		<Button
+			key="btn-snackbars-success"
+			variant="outlined"
+			color="primary"
+			onClick={() => handleSnackbar('success')}
+			disabled={isLoading}
+		>
+			Success
+		</Button>,
+		<Button
+			key="btn-snackbars-info"
+			variant="outlined"
+			color="primary"
+			onClick={() => handleSnackbar('info')}
+			disabled={isLoading}
+		>
+			Info
+		</Button>,
+		<Button
+			key="btn-snackbars-warning"
+			variant="outlined"
+			color="primary"
+			onClick={() => handleSnackbar('warning')}
+			disabled={isLoading}
+		>
+			Warning
+		</Button>,
+		<Button
+			key="btn-snackbars-error"
+			variant="outlined"
+			color="primary"
+			onClick={() => handleSnackbar('error')}
+			disabled={isLoading}
+		>
+			Error
+		</Button>
+	]
+
+	return (
+		<Section
+			icon={<Icon name="feedback_black" />}
+			title="Snackbars"
+			buttons={sectionButtons}
+			buttonsResponsive={true}
+		></Section>
+	)
+})
+
 // ***** RenderPlayground *****
 // ****************************
 
@@ -419,6 +632,8 @@ export const RenderPlayground = observer((props) => {
 		contentPlayground = (
 			<React.Fragment>
 				<RenderSectionFields />
+				<br/>
+				<RenderSectionSnackbars />
 			</React.Fragment>
 		)
 	}

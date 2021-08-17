@@ -1,7 +1,7 @@
 /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
-/***/ 6374:
+/***/ 5585:
 /***/ ((__unused_webpack_module, __unused_webpack___webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -90,8 +90,30 @@ var ServicesStore = mobx_state_tree_module/* types.model */.V5.model({
       }
 
       return me;
-    }
+    },
 
+    // Getters
+    // -
+    getServiceInfo: function getServiceInfo(appId) {
+      return self.smap.get(appId);
+    },
+    getAjaxBase: function getAjaxBase(appId) {
+      // AJAX interne au serveur ?
+      var me = self.getServiceInfo('me');
+
+      if (me && me.app_id == appId) {
+        return '';
+      } // AJAX vers un autre serveur ?
+
+
+      var serviceInfo = self.getServiceInfo(appId);
+
+      if (serviceInfo) {
+        return serviceInfo.external;
+      }
+
+      return '';
+    }
   };
 }).actions(function (self) {
   return {
@@ -244,7 +266,14 @@ var ICON_KEYS_TO_FILES = {
     'local_bar': 'local_bar_black_24dp.svg',
     'playlist_play': 'playlist_play_black_24dp.svg',
     'text_fields': 'text_fields_black_24dp.svg',
-    'hourglass_empty': 'hourglass_empty_black_24dp.svg'
+    'hourglass_empty': 'hourglass_empty_black_24dp.svg',
+    'feedback_black': 'feedback_black_24dp.svg',
+    'info': 'info_black_24dp.svg',
+    'warning_amber': 'warning_amber_black_24dp.svg',
+    'check_circle': 'check_circle_black_24dp.svg',
+    'report': 'report_black_24dp.svg',
+    'new_releases': 'new_releases_black_24dp.svg',
+    'whatshot': 'whatshot_black_24dp.svg'
   }
 }; // const ICON_SIZES = {
 // 	'small': {
@@ -339,6 +368,7 @@ var TAG_IconButton = function TAG_IconButton() {};
 
 var IconButton = function IconButton(props) {
   // From ... props
+  var title = props.title ? props.title : '';
   var children = props.children;
   var color = props.color ? props.color : 'black'; // white, black
 
@@ -360,7 +390,8 @@ var IconButton = function IconButton(props) {
     }),
     onClick: function onClick(e) {
       return handleClick(e);
-    }
+    },
+    title: title
   }, children);
 }; // ***** Button *****
 // ******************
@@ -909,7 +940,19 @@ var HeaderStore = mobx_state_tree_module/* types.model */.V5.model({}).actions(f
   };
 }); // Functions Components ReactJS
 // -------------------------------------------------------------------------------------------------------------
-// ***** HeaderTitle *****
+// ***** HeaderDivider *****
+// *************************
+
+var TAG_HeaderDivider = function TAG_HeaderDivider() {};
+
+var HeaderDivider = function HeaderDivider(props) {
+  // ...
+  // Render
+  // ==================================================================================================
+  return /*#__PURE__*/react.createElement("div", {
+    className: "nx-header-divider"
+  });
+}; // ***** HeaderTitle *****
 // ***********************
 
 var TAG_HeaderTitle = function TAG_HeaderTitle() {};
@@ -1780,6 +1823,164 @@ var Portal_Portal = (0,es/* observer */.Pi)(function (props) {
     })
   }, portalContent));
 });
+// EXTERNAL MODULE: ../../nexus/react/node_modules/react-dom/server.browser.js
+var server_browser = __webpack_require__(3228);
+;// CONCATENATED MODULE: ../../nexus/react/ui/Styles.jsx
+function Styles_slicedToArray(arr, i) { return Styles_arrayWithHoles(arr) || Styles_iterableToArrayLimit(arr, i) || Styles_unsupportedIterableToArray(arr, i) || Styles_nonIterableRest(); }
+
+function Styles_nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function Styles_unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return Styles_arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return Styles_arrayLikeToArray(o, minLen); }
+
+function Styles_arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function Styles_iterableToArrayLimit(arr, i) { var _i = arr && (typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]); if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function Styles_arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+// Datas
+// -------------------------------------------------------------------------------------------------------------
+var SEVERITIES = {
+  'default': {
+    color: '#bdbdbd',
+    contrasted: '#424242',
+    background: 'rgba(189, 189, 189, 0.20)',
+    icon_name: 'info'
+  },
+  'success': {
+    color: '#81c784',
+    contrasted: '#43a047',
+    background: 'rgba(129, 199, 132, 0.1)',
+    icon_name: 'check_circle'
+  },
+  'warning': {
+    color: '#ffb74d',
+    contrasted: '#ffa000',
+    background: 'rgba(255, 183, 77, 0.1)',
+    icon_name: 'warning_amber'
+  },
+  'error': {
+    color: '#e57373',
+    contrasted: '#d32f2f',
+    background: 'rgba(229, 115, 115, 0.1)',
+    icon_name: 'report'
+  },
+  'info': {
+    color: '#64b5f6',
+    contrasted: '#1976d2',
+    background: 'rgba(100, 181, 246, 0.20)',
+    icon_name: 'info'
+  },
+  'hot': {
+    color: '#e91e63',
+    contrasted: '#e91e63',
+    background: 'rgba(233, 30, 99, 0.1)',
+    icon_name: 'whatshot'
+  },
+  // -
+  getDef: function getDef(severity) {
+    return SEVERITIES[severity];
+  }
+};
+var SEVERITY_COLORS = {};
+var SEVERITY_COLORS_CONTRASTED = {};
+var SEVERITY_BACKGROUNDS = {};
+var SEVERITY_ICONS_NAMES = {};
+
+for (var _i = 0, _Object$entries = Object.entries(SEVERITIES); _i < _Object$entries.length; _i++) {
+  var _Object$entries$_i = Styles_slicedToArray(_Object$entries[_i], 2),
+      severityKey = _Object$entries$_i[0],
+      severityDef = _Object$entries$_i[1];
+
+  SEVERITY_COLORS[severityKey] = severityDef.color;
+  SEVERITY_COLORS_CONTRASTED[severityKey] = severityDef.contrasted;
+  SEVERITY_BACKGROUNDS[severityKey] = severityDef.background;
+  SEVERITY_ICONS_NAMES[severityKey] = severityDef.icon_name;
+}
+// EXTERNAL MODULE: ../../nexus/react/ui/snackbar/Snackbar.css
+var Snackbar = __webpack_require__(7677);
+;// CONCATENATED MODULE: ../../nexus/react/ui/snackbar/Snackbar.jsx
+
+
+
+
+
+
+
+
+ // Models
+// ----------------------------------------------------------------------------------------------------------------------------
+
+var TAG_SnackbarStore = function TAG_SnackbarStore() {};
+
+var SnackbarStore = mobx_state_tree_module/* types.model */.V5.model({
+  open: false,
+  msg: '',
+  severity: 'default',
+  action: mobx_state_tree_module/* types.frozen */.V5.frozen(null),
+  callbackExit: mobx_state_tree_module/* types.frozen */.V5.frozen(null)
+}).actions(function (self) {
+  return {
+    update: function update(open, msg, severity, action, callbackExit) {
+      // Mise à jour de la snackbar en fonction des paramètres
+      // ---
+      if (msg) {
+        if (typeof msg != 'string') {
+          try {
+            msg = server_browser.renderToStaticMarkup(msg);
+          } catch (ex) {}
+        }
+      } else {
+        msg = '';
+      }
+
+      self.open = open;
+      self.msg = msg ? msg : self.msg;
+      self.severity = severity ? severity : self.severity;
+      self.action = action ? action : self.action;
+      self.callbackExit = callbackExit ? callbackExit : self.callbackExit;
+    }
+  };
+}); // Functions Components ReactJS
+// ----------------------------------------------------------------------------------------------------------------------------
+// ***** Snackbar *****
+// ********************
+
+var TAG_Snackbar = function TAG_Snackbar() {};
+
+var Snackbar_Snackbar = (0,es/* observer */.Pi)(function (props) {
+  var store = react.useContext(window.storeContext);
+  var app = store.app;
+  var snackbar = app.snackbar; // From ... store
+
+  var open = snackbar.open;
+  var msg = snackbar.msg;
+  var severity = snackbar.severity;
+  var action = snackbar.action;
+  var callbackExit = snackbar.callbackExit; // ...
+
+  var style = {}; // Render
+  // ==================================================================================================
+
+  var snackbarContent = null;
+
+  if (open) {
+    var severityDef = SEVERITIES.getDef(severity);
+    style['backgroundColor'] = severityDef.contrasted;
+    snackbarContent = /*#__PURE__*/react.createElement("div", {
+      className: "nx-snackbar",
+      style: style
+    }, /*#__PURE__*/react.createElement(Avatar_Avatar, {
+      color: "transparent",
+      size: "small"
+    }, /*#__PURE__*/react.createElement(Icon_Icon, {
+      name: severityDef.icon_name,
+      color: "white"
+    })));
+  }
+
+  return snackbarContent;
+});
 ;// CONCATENATED MODULE: ../../nexus/react/utils/Responsive.jsx
 var MobileDetect = __webpack_require__(5288); // Functions
 // ========================================================================================================================
@@ -1905,33 +2106,6 @@ function matchUrl(routes, url) {
 
   return matched;
 }
-;// CONCATENATED MODULE: ../../nexus/react/ui/Styles.jsx
-// Datas
-// -------------------------------------------------------------------------------------------------------------
-var SEVERITY_COLORS = {
-  "default": '#bdbdbd',
-  success: '#81c784',
-  warning: '#ffb74d',
-  error: '#e57373',
-  info: '#64b5f6',
-  hot: '#e91e63'
-};
-var SEVERITY_COLORS_CONTRASTED = {
-  "default": '#424242',
-  success: '#43a047',
-  warning: '#ffa000',
-  error: '#d32f2f',
-  info: '#1976d2',
-  hot: '#e91e63'
-};
-var SEVERITY_BACKGROUNDS = {
-  "default": 'rgba(189, 189, 189, 0.20)',
-  success: 'rgba(129, 199, 132, 0.1)',
-  warning: 'rgba(255, 183, 77, 0.1)',
-  error: 'rgba(229, 115, 115, 0.1)',
-  info: 'rgba(100, 181, 246, 0.20)',
-  hot: 'rgba(233, 30, 99, 0.1)'
-};
 // EXTERNAL MODULE: ../../nexus/react/ui/helper/Helper.css
 var Helper = __webpack_require__(2742);
 ;// CONCATENATED MODULE: ../../nexus/react/ui/helper/Helper.jsx
@@ -2522,6 +2696,7 @@ function NxApp_arrayLikeToArray(arr, len) { if (len == null || len > arr.length)
 
 
 
+
  // Models
 // -------------------------------------------------------------------------------------------------------------
 // ***** NxAppStore *****
@@ -2575,8 +2750,8 @@ var NxAppStore = mobx_state_tree_module/* types.model */.V5.model({
   theme: mobx_state_tree_module/* types.optional */.V5.optional(ThemeStore, {}),
   header: mobx_state_tree_module/* types.optional */.V5.optional(HeaderStore, {}),
   menu: mobx_state_tree_module/* types.optional */.V5.optional(MenuStore, {}),
-  portal: mobx_state_tree_module/* types.optional */.V5.optional(PortalStore, {}) // snackbar: types.optional(SnackbarStore, {}),
-  // popup: types.optional(PopupStore, {}),
+  portal: mobx_state_tree_module/* types.optional */.V5.optional(PortalStore, {}),
+  snackbar: mobx_state_tree_module/* types.optional */.V5.optional(SnackbarStore, {}) // popup: types.optional(PopupStore, {}),
 
 }).views(function (self) {
   return {
@@ -3515,7 +3690,7 @@ var NxApp_NxApp = (0,es/* observer */.Pi)(function (props) {
     id: "nx-content"
   }, Menu && !isFullScreen && /*#__PURE__*/react.createElement(Menu, null), /*#__PURE__*/react.createElement("div", {
     id: "nx-main"
-  }, content), !isFullScreen && /*#__PURE__*/react.createElement(Portal_Portal, null), popupsRendered)));
+  }, content, /*#__PURE__*/react.createElement(Snackbar_Snackbar, null)), !isFullScreen && /*#__PURE__*/react.createElement(Portal_Portal, null), popupsRendered)));
 });
 // EXTERNAL MODULE: ../../nexus/react/contexts/home/Home.css
 var Home = __webpack_require__(2037);
@@ -4074,7 +4249,7 @@ var Section_Section = function Section(props) {
     className: "nx-section-icon"
   }, icon), title && /*#__PURE__*/react.createElement("div", {
     className: "nx-section-header-title"
-  }, title)), /*#__PURE__*/react.createElement("div", {
+  }, title)), children && /*#__PURE__*/react.createElement("div", {
     className: "nx-section-content"
   }, children), buttons && /*#__PURE__*/react.createElement("div", {
     className: (0,clsx_m/* default */.Z)("nx-section-buttonset", "h-col-small", {
@@ -4859,6 +5034,9 @@ var PlaygroundStore = mobx_state_tree_module/* types.model */.V5.model({
   value_switcher: mobx_state_tree_module/* types.maybeNull */.V5.maybeNull(mobx_state_tree_module/* types.string */.V5.string),
   value_radio: mobx_state_tree_module/* types.maybeNull */.V5.maybeNull(mobx_state_tree_module/* types.string */.V5.string),
   value_checkbox: mobx_state_tree_module/* types.maybeNull */.V5.maybeNull(mobx_state_tree_module/* types.boolean */.V5.boolean),
+  // -
+  value_html: mobx_state_tree_module/* types.maybeNull */.V5.maybeNull(mobx_state_tree_module/* types.string */.V5.string),
+  // -
   loaded: false
 }).actions(function (self) {
   return {
@@ -4883,6 +5061,60 @@ var PlaygroundStore = mobx_state_tree_module/* types.model */.V5.model({
         console.error("Fetch failed for ".concat(url), ex);
         snackbar.update(true, "Une erreur est survenue.", "error");
       });
+    },
+    validate: function validate(callback) {
+      // Validation des données du playground
+      // ---
+      var store = (0,mobx_state_tree_module/* getRoot */.yj)(self);
+      var app = store.app;
+      var errors = [];
+
+      if (callback) {
+        callback(errors);
+      }
+
+      return errors;
+    },
+    save: function save() {
+      // Appel AJAX de la fonction d'enregistrement du playground
+      // ---
+      var store = (0,mobx_state_tree_module/* getRoot */.yj)(self);
+      var app = store.app;
+      var snackbar = app.snackbar;
+      var ajaxNexorium = store.ajaxNexorium;
+      var params = new FormData();
+      params.append('playground_raw', JSON.stringify(self.toJSON())); // const url = `${ajaxExcli}/webapp/planner_actions/save`;
+      // app.fetchJSON(url, {'body': params}, false, 'POST').then(
+      // 	(json) => {
+      // 		if (json.errors.length > 0) {
+      // 			// Erreurs à la validation du document
+      // 			app.setField('errors', json.errors);
+      // 			snackbar.update(true, "Vérifiez la saisie.", "warning");
+      // 		} else if (json.error_store) {
+      // 			// Conflit d'enregistrement ?
+      // 			app.clearErrors();
+      // 			snackbar.update(true, json.error_store, "warning");
+      // 		} else {
+      // 			const plannerId = json.planner_raw._id;
+      // 			if (!plannerRev) {
+      // 				// Nouveau document enregistré ?
+      // 				store.navigateTo('planner', plannerId, null, null, () => {
+      // 					snackbar.update(true, "Enregistrement effectué.", "success");
+      // 				});
+      // 			} else {
+      // 				// Document existant mis à jour ?
+      // 				self.load(() => {
+      // 					snackbar.update(true, "Enregistrement effectué.", "success");
+      // 				});
+      // 			}
+      // 		}
+      // 	}
+      // ).catch(
+      // 	(ex) => {
+      // 		console.error(`Fetch failed for ${url}`, ex);
+      // 		snackbar.update(true, "Une erreur est survenue.", "error");
+      // 	}
+      // )
     }
   };
 }); // Functions Components ReactJS
@@ -4904,6 +5136,40 @@ var PlaygroundHeaderLeft = (0,es/* observer */.Pi)(function (props) {
       marginLeft: '10px'
     }
   });
+}); // ***** PlaygroundHeaderRight *****
+// *********************************
+
+var TAG_PlaygroundHeaderRight = function TAG_PlaygroundHeaderRight() {};
+
+var PlaygroundHeaderRight = (0,es/* observer */.Pi)(function (props) {
+  var store = react.useContext(window.storeContext);
+  var app = store.app;
+  var playground = store.playground; // From ... store
+
+  var isLoading = app.isLoading; // ...
+  // Evènements
+  // ==================================================================================================
+
+  var handleSaveClick = function handleSaveClick() {
+    playground.validate(function (errors) {
+      if (errors.length == 0) {
+        playground.save();
+      }
+    });
+  }; // Render
+  // ==================================================================================================
+
+
+  return /*#__PURE__*/react.createElement(react.Fragment, null, /*#__PURE__*/react.createElement(IconButton, {
+    onClick: function onClick() {
+      return handleSaveClick();
+    },
+    disabled: isLoading,
+    title: "Enregistrer"
+  }, /*#__PURE__*/react.createElement(Icon_Icon, {
+    name: "save",
+    color: "white"
+  })), /*#__PURE__*/react.createElement(HeaderDivider, null));
 }); // ***** PlaygroundMenuItem *****
 // ******************************
 
@@ -5086,6 +5352,77 @@ var RenderSectionFields = (0,es/* observer */.Pi)(function (props) {
     buttons: sectionButtons,
     buttonsResponsive: true
   }, sectionContent);
+}); // ***** RenderSectionSnackbars *****
+// **********************************
+
+var TAG_RenderSectionSnackbars = function TAG_RenderSectionSnackbars() {};
+
+var RenderSectionSnackbars = (0,es/* observer */.Pi)(function (props) {
+  var store = react.useContext(window.storeContext);
+  var app = store.app;
+  var snackbar = app.snackbar;
+  var playground = store.playground; // From ... store
+
+  var isLoading = app.isLoading; // Evènements
+  // ==================================================================================================
+
+  var handleSnackbar = function handleSnackbar(severity) {
+    snackbar.update(true, /*#__PURE__*/react.createElement("div", null, "Test de snackbar ", /*#__PURE__*/react.createElement("b", null, severity)), severity);
+  }; // Render
+  // ==================================================================================================
+  // Section -> Buttons
+  // ---
+
+
+  var sectionButtons = [/*#__PURE__*/react.createElement(Button_Button, {
+    key: "btn-snackbars-default",
+    variant: "outlined",
+    color: "primary",
+    onClick: function onClick() {
+      return handleSnackbar('default');
+    },
+    disabled: isLoading
+  }, "Default"), /*#__PURE__*/react.createElement(Button_Button, {
+    key: "btn-snackbars-success",
+    variant: "outlined",
+    color: "primary",
+    onClick: function onClick() {
+      return handleSnackbar('success');
+    },
+    disabled: isLoading
+  }, "Success"), /*#__PURE__*/react.createElement(Button_Button, {
+    key: "btn-snackbars-info",
+    variant: "outlined",
+    color: "primary",
+    onClick: function onClick() {
+      return handleSnackbar('info');
+    },
+    disabled: isLoading
+  }, "Info"), /*#__PURE__*/react.createElement(Button_Button, {
+    key: "btn-snackbars-warning",
+    variant: "outlined",
+    color: "primary",
+    onClick: function onClick() {
+      return handleSnackbar('warning');
+    },
+    disabled: isLoading
+  }, "Warning"), /*#__PURE__*/react.createElement(Button_Button, {
+    key: "btn-snackbars-error",
+    variant: "outlined",
+    color: "primary",
+    onClick: function onClick() {
+      return handleSnackbar('error');
+    },
+    disabled: isLoading
+  }, "Error")];
+  return /*#__PURE__*/react.createElement(Section_Section, {
+    icon: /*#__PURE__*/react.createElement(Icon_Icon, {
+      name: "feedback_black"
+    }),
+    title: "Snackbars",
+    buttons: sectionButtons,
+    buttonsResponsive: true
+  });
 }); // ***** RenderPlayground *****
 // ****************************
 
@@ -5108,7 +5445,7 @@ var RenderPlayground = (0,es/* observer */.Pi)(function (props) {
   var contentPlayground = null;
 
   if (loaded) {
-    contentPlayground = /*#__PURE__*/react.createElement(react.Fragment, null, /*#__PURE__*/react.createElement(RenderSectionFields, null));
+    contentPlayground = /*#__PURE__*/react.createElement(react.Fragment, null, /*#__PURE__*/react.createElement(RenderSectionFields, null), /*#__PURE__*/react.createElement("br", null), /*#__PURE__*/react.createElement(RenderSectionSnackbars, null));
   }
 
   return contentPlayground;
@@ -5234,6 +5571,7 @@ var ContextualHeader = (0,es/* observer */.Pi)(function (props) {
     }
 
     headerLeft = /*#__PURE__*/react.createElement(PlaygroundHeaderLeft, null);
+    headerRight = /*#__PURE__*/react.createElement(PlaygroundHeaderRight, null);
   }; // -------------------------------------------------
 
 
@@ -5786,6 +6124,13 @@ window.addEventListener('DOMContentLoaded', function () {
 
 /***/ }),
 
+/***/ 7677:
+/***/ (() => {
+
+// extracted by extract-css-chunks-webpack-plugin
+
+/***/ }),
+
 /***/ 6824:
 /***/ (() => {
 
@@ -5947,7 +6292,7 @@ window.addEventListener('DOMContentLoaded', function () {
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module depends on other loaded chunks and execution need to be delayed
 /******/ 	__webpack_require__.O(undefined, [216], () => (__webpack_require__(3979)))
-/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, [216], () => (__webpack_require__(6374)))
+/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, [216], () => (__webpack_require__(5585)))
 /******/ 	__webpack_exports__ = __webpack_require__.O(__webpack_exports__);
 /******/ 	
 /******/ })()
