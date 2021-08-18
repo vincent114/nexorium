@@ -98,18 +98,14 @@ var ServicesStore = mobx_state_tree_module/* types.model */.V5.model({
       return self.smap.get(appId);
     },
     getAjaxBase: function getAjaxBase(appId) {
-      // AJAX interne au serveur ?
-      var me = self.getServiceInfo('me');
+      var me = self.getServiceInfo('me'); // AJAX vers un autre serveur ?
 
-      if (me && me.app_id == appId) {
-        return '';
-      } // AJAX vers un autre serveur ?
+      if (me && me.app_id != appId) {
+        var serviceInfo = self.getServiceInfo(appId);
 
-
-      var serviceInfo = self.getServiceInfo(appId);
-
-      if (serviceInfo) {
-        return serviceInfo.external;
+        if (serviceInfo) {
+          return serviceInfo.external;
+        }
       }
 
       return '';
@@ -273,7 +269,8 @@ var ICON_KEYS_TO_FILES = {
     'check_circle': 'check_circle_black_24dp.svg',
     'report': 'report_black_24dp.svg',
     'new_releases': 'new_releases_black_24dp.svg',
-    'whatshot': 'whatshot_black_24dp.svg'
+    'whatshot': 'whatshot_black_24dp.svg',
+    'close': 'close_black_24dp.svg'
   }
 }; // const ICON_SIZES = {
 // 	'small': {
@@ -1908,6 +1905,7 @@ var Snackbar = __webpack_require__(7677);
 
 
 
+
  // Models
 // ----------------------------------------------------------------------------------------------------------------------------
 
@@ -1939,6 +1937,9 @@ var SnackbarStore = mobx_state_tree_module/* types.model */.V5.model({
       self.severity = severity ? severity : self.severity;
       self.action = action ? action : self.action;
       self.callbackExit = callbackExit ? callbackExit : self.callbackExit;
+    },
+    close: function close() {
+      self.update(false);
     }
   };
 }); // Functions Components ReactJS
@@ -1959,8 +1960,21 @@ var Snackbar_Snackbar = (0,es/* observer */.Pi)(function (props) {
   var action = snackbar.action;
   var callbackExit = snackbar.callbackExit; // ...
 
-  var style = {}; // Render
+  react.useEffect(function () {
+    if (open) {
+      document.body.addEventListener('click', handleCloseClick, true);
+    }
+  }, [open]); // ...
+
+  var style = {}; // Evènements
   // ==================================================================================================
+
+  var handleCloseClick = function handleCloseClick() {
+    snackbar.close();
+    document.body.removeEventListener('click', handleCloseClick, true);
+  }; // Render
+  // ==================================================================================================
+
 
   var snackbarContent = null;
 
@@ -1975,6 +1989,18 @@ var Snackbar_Snackbar = (0,es/* observer */.Pi)(function (props) {
       size: "small"
     }, /*#__PURE__*/react.createElement(Icon_Icon, {
       name: severityDef.icon_name,
+      color: "white"
+    })), /*#__PURE__*/react.createElement("div", {
+      className: "nx-snackbar-msg",
+      dangerouslySetInnerHTML: {
+        __html: msg
+      }
+    }), /*#__PURE__*/react.createElement(IconButton, {
+      onClick: function onClick() {
+        return handleCloseClick();
+      }
+    }, /*#__PURE__*/react.createElement(Icon_Icon, {
+      name: "close",
       color: "white"
     })));
   }
@@ -4572,8 +4598,8 @@ function Field_arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 var TAG_AutocompleteStore = function TAG_AutocompleteStore() {};
 
 var AutocompleteStore = mobx_state_tree_module/* types.model */.V5.model({
-  value: '',
-  label: ''
+  value: mobx_state_tree_module/* types.maybeNull */.V5.maybeNull(mobx_state_tree_module/* types.string */.V5.string),
+  label: mobx_state_tree_module/* types.maybeNull */.V5.maybeNull(mobx_state_tree_module/* types.string */.V5.string)
 }).views(function (self) {
   return {
     get isSet() {
@@ -5023,6 +5049,9 @@ var Playground = __webpack_require__(5245);
 var TAG_PlaygroundStore = function TAG_PlaygroundStore() {};
 
 var PlaygroundStore = mobx_state_tree_module/* types.model */.V5.model({
+  doc_id: '',
+  doc_rev: '',
+  doc_state: 0,
   value_text: mobx_state_tree_module/* types.maybeNull */.V5.maybeNull(mobx_state_tree_module/* types.string */.V5.string),
   value_number: mobx_state_tree_module/* types.maybeNull */.V5.maybeNull(mobx_state_tree_module/* types.integer */.V5.integer),
   value_date: mobx_state_tree_module/* types.maybeNull */.V5.maybeNull(mobx_state_tree_module/* types.string */.V5.string),
@@ -5046,6 +5075,23 @@ var PlaygroundStore = mobx_state_tree_module/* types.model */.V5.model({
     // -
     update: function update(raw) {
       console.log(raw);
+      self.doc_id = raw.doc_id;
+      self.doc_rev = raw.doc_rev;
+      self.doc_state = raw.doc_state;
+      self.value_text = raw.value_text;
+      self.value_number = raw.value_number;
+      self.value_date = raw.value_date;
+      self.value_time = raw.value_time;
+      self.value_select = raw.value_select;
+      self.value_textarea = raw.value_textarea;
+      self.value_autocomplete_1 = AutocompleteStore.create({});
+      self.value_autocomplete_1.update(raw.value_autocomplete_1);
+      self.value_autocomplete_2 = AutocompleteStore.create({});
+      self.value_autocomplete_2.update(raw.value_autocomplete_2);
+      self.value_switcher = raw.value_switcher;
+      self.value_radio = raw.value_radio;
+      self.value_checkbox = raw.value_checkbox;
+      self.value_html = raw.value_html;
       self.loaded = true;
     },
     load: function load() {
@@ -5083,38 +5129,17 @@ var PlaygroundStore = mobx_state_tree_module/* types.model */.V5.model({
       var snackbar = app.snackbar;
       var ajaxNexorium = store.ajaxNexorium;
       var params = new FormData();
-      params.append('playground_raw', JSON.stringify(self.toJSON())); // const url = `${ajaxExcli}/webapp/planner_actions/save`;
-      // app.fetchJSON(url, {'body': params}, false, 'POST').then(
-      // 	(json) => {
-      // 		if (json.errors.length > 0) {
-      // 			// Erreurs à la validation du document
-      // 			app.setField('errors', json.errors);
-      // 			snackbar.update(true, "Vérifiez la saisie.", "warning");
-      // 		} else if (json.error_store) {
-      // 			// Conflit d'enregistrement ?
-      // 			app.clearErrors();
-      // 			snackbar.update(true, json.error_store, "warning");
-      // 		} else {
-      // 			const plannerId = json.planner_raw._id;
-      // 			if (!plannerRev) {
-      // 				// Nouveau document enregistré ?
-      // 				store.navigateTo('planner', plannerId, null, null, () => {
-      // 					snackbar.update(true, "Enregistrement effectué.", "success");
-      // 				});
-      // 			} else {
-      // 				// Document existant mis à jour ?
-      // 				self.load(() => {
-      // 					snackbar.update(true, "Enregistrement effectué.", "success");
-      // 				});
-      // 			}
-      // 		}
-      // 	}
-      // ).catch(
-      // 	(ex) => {
-      // 		console.error(`Fetch failed for ${url}`, ex);
-      // 		snackbar.update(true, "Une erreur est survenue.", "error");
-      // 	}
-      // )
+      params.append('playground_raw', JSON.stringify(self.toJSON()));
+      var url = "".concat(ajaxNexorium, "/playground_actions/save");
+      app.fetchJSON(url, {
+        'body': params
+      }, false, 'POST').then(function (json) {
+        self.update(json.playground_raw);
+        snackbar.update(true, "Enregistrement effectué.", "success");
+      })["catch"](function (ex) {
+        console.error("Fetch failed for ".concat(url), ex);
+        snackbar.update(true, "Une erreur est survenue.", "error");
+      });
     }
   };
 }); // Functions Components ReactJS
@@ -5766,9 +5791,9 @@ var RootStore = mobx_state_tree_module/* types.model */.V5.model({
 }).views(function (self) {
   return {
     get ajaxNexorium() {
-      var app = self.app; // return app.getAjaxBase('nexorium');
-
-      return '/';
+      var app = self.app;
+      var services = app.services;
+      return services.getAjaxBase('nexorium');
     }
 
   };

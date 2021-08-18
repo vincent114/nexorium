@@ -59,8 +59,8 @@ const RootStore = types
 
 		get ajaxNexorium() {
 			const app = self.app;
-			// return app.getAjaxBase('nexorium');
-			return '/';
+			const services = app.services;
+			return services.getAjaxBase('nexorium');
 		},
 
 	}))

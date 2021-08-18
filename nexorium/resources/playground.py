@@ -55,7 +55,7 @@ class Fields(db.NxDoc):
 
         value_time_iso = raw['value_time']
         if value_time_iso:
-            self.value_time = datetime.datetime.strptime(value_time_iso, "%H:%M").time()
+            self.value_time = datetime.datetime.strptime(value_time_iso[:5], "%H:%M").time()
         else:
             self.value_time = None
 
@@ -84,6 +84,10 @@ class Fields(db.NxDoc):
             self.value_autocomplete_2 = Autocomplete()
 
         return dict(
+            doc_id = self.doc_id,
+            doc_rev = self.doc_rev,
+            doc_state = self.doc_state,
+
             value_text = self.value_text,
             value_number = self.value_number,
 

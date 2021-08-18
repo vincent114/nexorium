@@ -5,6 +5,8 @@ from nexorium.resources.playground import Fields
 
 from nexus.db import NotFound
 
+import json
+
 
 # Views
 # ======================================================================================================
@@ -40,8 +42,7 @@ def playground_save(request):
     # ---
 
     playground_raw = json.loads(request.params['playground_raw'])
-    playground_id = playground_raw['_id']
-    playground_rev = playground_raw['_rev']
+    playground_id = playground_raw['doc_id']
 
     playground = request.db.load(playground_id)
     playground.update_from_raw(playground_raw, request=request)

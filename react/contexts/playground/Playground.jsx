@@ -25,6 +25,10 @@ import './Playground.css';
 const TAG_PlaygroundStore = () => {}
 export const PlaygroundStore = types
 	.model({
+		doc_id: '',
+		doc_rev: '',
+		doc_state: 0,
+
 		value_text: types.maybeNull(types.string),
 		value_number: types.maybeNull(types.integer),
 
@@ -61,6 +65,32 @@ export const PlaygroundStore = types
 		update: (raw) => {
 
 			console.log(raw);
+
+			self.doc_id = raw.doc_id;
+			self.doc_rev = raw.doc_rev;
+			self.doc_state = raw.doc_state;
+
+			self.value_text = raw.value_text;
+			self.value_number = raw.value_number;
+
+			self.value_date = raw.value_date;
+			self.value_time = raw.value_time;
+
+			self.value_select = raw.value_select;
+			self.value_textarea = raw.value_textarea;
+
+			self.value_autocomplete_1 = AutocompleteStore.create({});
+			self.value_autocomplete_1.update(raw.value_autocomplete_1);
+
+			self.value_autocomplete_2 = AutocompleteStore.create({});
+			self.value_autocomplete_2.update(raw.value_autocomplete_2);
+
+			self.value_switcher = raw.value_switcher;
+
+			self.value_radio = raw.value_radio;
+			self.value_checkbox = raw.value_checkbox;
+
+			self.value_html = raw.value_html;
 
 			self.loaded = true;
 		},
@@ -116,45 +146,18 @@ export const PlaygroundStore = types
 			let params = new FormData();
 			params.append('playground_raw', JSON.stringify(self.toJSON()));
 
-			// const url = `${ajaxExcli}/webapp/planner_actions/save`;
-			// app.fetchJSON(url, {'body': params}, false, 'POST').then(
-			// 	(json) => {
-			// 		if (json.errors.length > 0) {
-
-			// 			// Erreurs à la validation du document
-			// 			app.setField('errors', json.errors);
-			// 			snackbar.update(true, "Vérifiez la saisie.", "warning");
-
-			// 		} else if (json.error_store) {
-
-			// 			// Conflit d'enregistrement ?
-			// 			app.clearErrors();
-			// 			snackbar.update(true, json.error_store, "warning");
-
-			// 		} else {
-			// 			const plannerId = json.planner_raw._id;
-			// 			if (!plannerRev) {
-
-			// 				// Nouveau document enregistré ?
-			// 				store.navigateTo('planner', plannerId, null, null, () => {
-			// 					snackbar.update(true, "Enregistrement effectué.", "success");
-			// 				});
-
-			// 			} else {
-
-			// 				// Document existant mis à jour ?
-			// 				self.load(() => {
-			// 					snackbar.update(true, "Enregistrement effectué.", "success");
-			// 				});
-			// 			}
-			// 		}
-			// 	}
-			// ).catch(
-			// 	(ex) => {
-			// 		console.error(`Fetch failed for ${url}`, ex);
-			// 		snackbar.update(true, "Une erreur est survenue.", "error");
-			// 	}
-			// )
+			const url = `${ajaxNexorium}/playground_actions/save`;
+			app.fetchJSON(url, {'body': params}, false, 'POST').then(
+				(json) => {
+					self.update(json.playground_raw);
+					snackbar.update(true, "Enregistrement effectué.", "success");
+				}
+			).catch(
+				(ex) => {
+					console.error(`Fetch failed for ${url}`, ex);
+					snackbar.update(true, "Une erreur est survenue.", "error");
+				}
+			)
 		},
 
 	}))
