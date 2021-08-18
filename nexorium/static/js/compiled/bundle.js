@@ -4599,6 +4599,8 @@ var dateTools = {
 // EXTERNAL MODULE: ../../nexus/react/forms/field/Field.css
 var Field = __webpack_require__(651);
 ;// CONCATENATED MODULE: ../../nexus/react/forms/field/Field.jsx
+function Field_createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = Field_unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e2) { throw _e2; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e3) { didErr = true; err = _e3; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
+
 function Field_slicedToArray(arr, i) { return Field_arrayWithHoles(arr) || Field_iterableToArrayLimit(arr, i) || Field_unsupportedIterableToArray(arr, i) || Field_nonIterableRest(); }
 
 function Field_nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -4610,6 +4612,7 @@ function Field_arrayLikeToArray(arr, len) { if (len == null || len > arr.length)
 function Field_iterableToArrayLimit(arr, i) { var _i = arr && (typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]); if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
 
 function Field_arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
 
 
 
@@ -4708,6 +4711,8 @@ var Field_Field = (0,es/* observer */.Pi)(function (props) {
   var max = props.max;
   var forceString = props.forceString != undefined ? props.forceString : false;
   var forceStringVariant = props.format != undefined ? props.format : 'en';
+  var datas = props.datas;
+  var canBeEmpty = props.canBeEmpty == true ? true : false;
   var savePath = props.savePath;
   var savePathAutocomplete = props.savePathAutocomplete;
   var forcePopupAutocomplete = props.forcePopupAutocomplete != undefined ? props.forcePopupAutocomplete : false;
@@ -5020,9 +5025,138 @@ var Field_Field = (0,es/* observer */.Pi)(function (props) {
         'error': error
       }, className),
       style: style
-    }, label && !ghostLabel && /*#__PURE__*/react.createElement("div", {
-      className: (0,clsx_m/* default */.Z)('nx-field-label')
+    }, (label || ghostLabel) && /*#__PURE__*/react.createElement("div", {
+      className: "nx-field-label"
     }, label), input, error && /*#__PURE__*/react.createElement("div", {
+      className: "nx-field-error"
+    }, error));
+  };
+
+  var renderTextarea = function renderTextarea() {
+    // Render :: Textarea
+    // ---
+    var newValue = value != null ? value : '';
+    var textarea = /*#__PURE__*/react.createElement("textarea", {
+      className: "nx-field-textarea",
+      id: id,
+      value: newValue,
+      type: type,
+      onChange: function onChange(e) {
+        return handleInputChange(e);
+      },
+      onFocus: function onFocus(e) {
+        return handleInputFocus(e);
+      },
+      onBlur: function onBlur(e) {
+        return handleInputBlur(e);
+      },
+      placeholder: placeholder,
+      title: title,
+      style: inputStyle,
+      disabled: disabled
+    });
+    return /*#__PURE__*/react.createElement("div", {
+      className: (0,clsx_m/* default */.Z)('nx-field', component, type, {
+        'disabled': disabled
+      }, {
+        'focused': focused
+      }, {
+        'error': error
+      }, className),
+      style: style
+    }, (label || ghostLabel) && /*#__PURE__*/react.createElement("div", {
+      className: "nx-field-label"
+    }, label), textarea, error && /*#__PURE__*/react.createElement("div", {
+      className: "nx-field-error"
+    }, error));
+  };
+
+  var renderSelect = function renderSelect() {
+    // Render :: Select
+    // ---
+    var newValue = value != null ? value : ''; // Options
+
+    var selectItems = [];
+    var nbDivider = 0;
+
+    if (datas) {
+      var _iterator = Field_createForOfIteratorHelper(datas),
+          _step;
+
+      try {
+        for (_iterator.s(); !(_step = _iterator.n()).done;) {
+          var data = _step.value;
+
+          if (typeof data == 'string') {
+            data = {
+              value: data,
+              label: data
+            };
+          }
+
+          var itemStyle = {};
+
+          if (data.hidden == true) {
+            itemStyle['display'] = 'none';
+          }
+
+          if (data.divider == true) {
+            nbDivider += 1;
+            selectItems.push( /*#__PURE__*/react.createElement(Divider_Divider, {
+              light: true,
+              key: "".concat(id, "_divider_").concat(nbDivider),
+              style: {
+                marginBottom: '10px',
+                marginTop: '10px'
+              }
+            }));
+          } else {
+            selectItems.push( /*#__PURE__*/react.createElement("option", {
+              key: "".concat(id, "_").concat(data.value),
+              value: data.value,
+              disabled: data.disabled == true,
+              style: itemStyle
+            }, data.label));
+          }
+        }
+      } catch (err) {
+        _iterator.e(err);
+      } finally {
+        _iterator.f();
+      }
+    }
+
+    return /*#__PURE__*/react.createElement("div", {
+      className: (0,clsx_m/* default */.Z)('nx-field', component, type, {
+        'disabled': disabled
+      }, {
+        'focused': focused
+      }, {
+        'error': error
+      }, className),
+      style: style
+    }, (label || ghostLabel) && /*#__PURE__*/react.createElement("div", {
+      className: "nx-field-label"
+    }, label), /*#__PURE__*/react.createElement("select", {
+      className: "nx-field-select",
+      id: id,
+      value: newValue,
+      onChange: function onChange(e) {
+        return handleInputChange(e);
+      },
+      onFocus: function onFocus(e) {
+        return handleInputFocus(e);
+      },
+      onBlur: function onBlur(e) {
+        return handleInputBlur(e);
+      },
+      placeholder: placeholder,
+      title: title,
+      style: inputStyle,
+      disabled: disabled
+    }, canBeEmpty && /*#__PURE__*/react.createElement("option", {
+      value: ""
+    }, "---"), selectItems), error && /*#__PURE__*/react.createElement("div", {
       className: "nx-field-error"
     }, error));
   };
@@ -5031,12 +5165,14 @@ var Field_Field = (0,es/* observer */.Pi)(function (props) {
     case 'input':
       return renderInput();
       break;
-    // case 'textarea':
-    // 	return renderInput();
-    // 	break;
-    // case 'select':
-    // 	return renderSelect();
-    // 	break;
+
+    case 'textarea':
+      return renderTextarea();
+      break;
+
+    case 'select':
+      return renderSelect();
+      break;
     // case 'checkbox':
     // 	return renderCheckbox();
     // 	break;
@@ -5168,7 +5304,19 @@ var Playground = __webpack_require__(5245);
 
 
 
- // Models
+ // Datas
+// -------------------------------------------------------------------------------------------------------------
+
+var CHOICES_TEST = [{
+  'value': 'choix_1',
+  'label': 'Choix 1'
+}, {
+  'value': 'choix_2',
+  'label': 'Choix 2'
+}, {
+  'value': 'choix_3',
+  'label': 'Choix 3'
+}]; // Models
 // -------------------------------------------------------------------------------------------------------------
 // ***** PlaygroundStore *****
 // ***************************
@@ -5387,6 +5535,18 @@ var RenderSectionFields = (0,es/* observer */.Pi)(function (props) {
     console.log('handleTimeFieldChange');
     console.log(savePath);
     console.log(value);
+  };
+
+  var handleSelectFieldChange = function handleSelectFieldChange(savePath, value) {
+    console.log('handleSelectFieldChange');
+    console.log(savePath);
+    console.log(value);
+  };
+
+  var handleTextareaFieldChange = function handleTextareaFieldChange(savePath, value) {
+    console.log('handleTextareaFieldChange');
+    console.log(savePath);
+    console.log(value);
   }; // -
 
 
@@ -5460,6 +5620,22 @@ var RenderSectionFields = (0,es/* observer */.Pi)(function (props) {
     ,
     savePath: ['playground', 'value_time'],
     callbackChange: handleTimeFieldChange,
+    disabled: isLoading
+  })), /*#__PURE__*/react.createElement(Row_Row, null, /*#__PURE__*/react.createElement(Field_Field, {
+    id: "lst-field-select",
+    component: "select",
+    label: "Select",
+    datas: CHOICES_TEST,
+    savePath: ['playground', 'value_select'],
+    callbackChange: handleSelectFieldChange,
+    disabled: isLoading,
+    canBeEmpty: true
+  }), /*#__PURE__*/react.createElement(Field_Field, {
+    id: "txt-field-textarea",
+    component: "textarea",
+    label: "Textarea",
+    savePath: ['playground', 'value_textarea'],
+    callbackChange: handleTextareaFieldChange,
     disabled: isLoading
   }))); // Section -> Buttons
   // ---

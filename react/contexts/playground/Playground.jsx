@@ -18,6 +18,25 @@ import { uuid } from 'nexus/utils/Datas';
 import './Playground.css';
 
 
+// Datas
+// -------------------------------------------------------------------------------------------------------------
+
+const CHOICES_TEST = [
+	{
+		'value': 'choix_1',
+		'label': 'Choix 1',
+	},
+	{
+		'value': 'choix_2',
+		'label': 'Choix 2',
+	},
+	{
+		'value': 'choix_3',
+		'label': 'Choix 3',
+	},
+]
+
+
 // Models
 // -------------------------------------------------------------------------------------------------------------
 
@@ -320,6 +339,20 @@ export const RenderSectionFields = observer((props) => {
 		console.log(value);
 	}
 
+	const handleSelectFieldChange = (savePath, value) => {
+
+		console.log('handleSelectFieldChange');
+		console.log(savePath);
+		console.log(value);
+	}
+
+	const handleTextareaFieldChange = (savePath, value) => {
+
+		console.log('handleTextareaFieldChange');
+		console.log(savePath);
+		console.log(value);
+	}
+
 	// -
 
 	const handleSimulateLoad = (setLoad) => {
@@ -461,6 +494,31 @@ export const RenderSectionFields = observer((props) => {
 				/>
 
 			</Row>
+
+			<Row>
+
+				<Field
+					id="lst-field-select"
+					component='select'
+					label='Select'
+					datas={CHOICES_TEST}
+					savePath={['playground', 'value_select']}
+					callbackChange={handleSelectFieldChange}
+					disabled={isLoading}
+					canBeEmpty={true}
+				/>
+
+				<Field
+					id="txt-field-textarea"
+					component='textarea'
+					label='Textarea'
+					savePath={['playground', 'value_textarea']}
+					callbackChange={handleTextareaFieldChange}
+					disabled={isLoading}
+				/>
+
+			</Row>
+
 		</React.Fragment>
 	)
 

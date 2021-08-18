@@ -59,6 +59,9 @@ class Fields(db.NxDoc):
         else:
             self.value_time = None
 
+        self.value_select = raw['value_select']
+        self.value_textarea = raw['value_textarea']
+
         self.value_autocomplete_1.update_from_raw(raw['value_autocomplete_1'], request=request)
         self.value_autocomplete_2.update_from_raw(raw['value_autocomplete_2'], request=request)
 
