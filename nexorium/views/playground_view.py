@@ -46,7 +46,7 @@ def playground_save(request):
 
     playground = request.db.load(playground_id)
     playground.update_from_raw(playground_raw, request=request)
-    playground.store()
+    playground.store(request=request)
 
     return dict(
         playground_raw = playground.to_raw(request=request),

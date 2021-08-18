@@ -11,6 +11,8 @@ import { MenuItem } from 'nexus/layout/menu/Menu';
 import { Section } from 'nexus/layout/section/Section';
 import { Row } from 'nexus/layout/row/Row';
 import { AutocompleteStore, Field } from 'nexus/forms/field/Field';
+import { Heading } from 'nexus/forms/heading/Heading';
+import { Indicator } from 'nexus/forms/indicator/Indicator';
 import { uuid } from 'nexus/utils/Datas';
 
 import './Playground.css';
@@ -103,8 +105,9 @@ export const PlaygroundStore = types
 			const store = getRoot(self);
 			const app = store.app;
 			const snackbar = app.snackbar;
+			const ajaxNexorium = store.ajaxNexorium;
 
-			const url = '/playground_actions/load';
+			const url = `${ajaxNexorium}/playground_actions/load`;
 			app.fetchJSON(url, null, false, 'POST').then(
 				(json) => {
 					self.update(json.playground_raw);
@@ -605,6 +608,217 @@ export const RenderSectionSnackbars = observer((props) => {
 	)
 })
 
+// ***** RenderSectionIndicators *****
+// ***********************************
+
+const TAG_RenderSectionIndicators = () => {}
+export const RenderSectionIndicators = observer((props) => {
+
+	const store = React.useContext(window.storeContext);
+	const app = store.app;
+	const snackbar = app.snackbar;
+	const playground = store.playground;
+
+	// From ... store
+
+	const isLoading = app.isLoading;
+
+	// Render
+	// ==================================================================================================
+
+	// Section -> Content
+	// ---
+
+	const sectionContent = (
+		<React.Fragment>
+
+		<Heading style={{marginBottom: '10px'}}>
+			Default
+		</Heading>
+
+		<Row>
+			<Indicator
+				color="primary"
+			>
+				primary
+			</Indicator>
+			<Indicator
+				color="secondary"
+			>
+				secondary
+			</Indicator>
+			<Indicator
+				color="#009688"
+			>
+				custom
+			</Indicator>
+			<Indicator
+				severity="default"
+			>
+				default
+			</Indicator>
+			<Indicator
+				severity="success"
+			>
+				success
+			</Indicator>
+			<Indicator
+				severity="info"
+			>
+				info
+			</Indicator>
+			<Indicator
+				severity="warning"
+			>
+				warning
+			</Indicator>
+			<Indicator
+				severity="error"
+			>
+				error
+			</Indicator>
+			<Indicator
+				severity="hot"
+			>
+				hot
+			</Indicator>
+		</Row>
+
+		<Heading style={{marginBottom: '10px'}}>
+			Contrasted
+		</Heading>
+
+		<Row>
+			<Indicator
+				color="primary"
+				variant="contrasted"
+			>
+				primary
+			</Indicator>
+			<Indicator
+				color="secondary"
+				variant="contrasted"
+			>
+				secondary
+			</Indicator>
+			<Indicator
+				color="#009688"
+				variant="contrasted"
+			>
+				custom
+			</Indicator>
+			<Indicator
+				severity="default"
+				variant="contrasted"
+			>
+				default
+			</Indicator>
+			<Indicator
+				severity="success"
+				variant="contrasted"
+			>
+				success
+			</Indicator>
+			<Indicator
+				severity="info"
+				variant="contrasted"
+			>
+				info
+			</Indicator>
+			<Indicator
+				severity="warning"
+				variant="contrasted"
+			>
+				warning
+			</Indicator>
+			<Indicator
+				severity="error"
+				variant="contrasted"
+			>
+				error
+			</Indicator>
+			<Indicator
+				severity="hot"
+				variant="contrasted"
+			>
+				hot
+			</Indicator>
+		</Row>
+
+		<Heading style={{marginBottom: '10px'}}>
+			Outlined
+		</Heading>
+
+		<Row>
+			<Indicator
+				color="primary"
+				variant="outlined"
+			>
+				primary
+			</Indicator>
+			<Indicator
+				color="secondary"
+				variant="outlined"
+			>
+				secondary
+			</Indicator>
+			<Indicator
+				color="#009688"
+				variant="outlined"
+			>
+				custom
+			</Indicator>
+			<Indicator
+				severity="default"
+				variant="outlined"
+			>
+				default
+			</Indicator>
+			<Indicator
+				severity="success"
+				variant="outlined"
+			>
+				success
+			</Indicator>
+			<Indicator
+				severity="info"
+				variant="outlined"
+			>
+				info
+			</Indicator>
+			<Indicator
+				severity="warning"
+				variant="outlined"
+			>
+				warning
+			</Indicator>
+			<Indicator
+				severity="error"
+				variant="outlined"
+			>
+				error
+			</Indicator>
+			<Indicator
+				severity="hot"
+				variant="outlined"
+			>
+				hot
+			</Indicator>
+		</Row>
+
+		</React.Fragment>
+	)
+
+	return (
+		<Section
+			icon={<Icon name="palette" />}
+			title="Indicateurs"
+		>
+			{sectionContent}
+		</Section>
+	)
+})
+
 // ***** RenderPlayground *****
 // ****************************
 
@@ -637,6 +851,8 @@ export const RenderPlayground = observer((props) => {
 				<RenderSectionFields />
 				<br/>
 				<RenderSectionSnackbars />
+				<br/>
+				<RenderSectionIndicators />
 			</React.Fragment>
 		)
 	}

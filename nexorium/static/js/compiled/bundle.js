@@ -1,7 +1,7 @@
 /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
-/***/ 5585:
+/***/ 7939:
 /***/ ((__unused_webpack_module, __unused_webpack___webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -241,6 +241,7 @@ var ICON_KEYS_TO_FILES = {
     'push_pin': 'push_pin_black_24dp.svg',
     'bug_report': 'bug_report_black_24dp.svg',
     'badge': 'badge_black_24dp.svg',
+    'lock': 'lock_black_24dp.svg',
     'lock_open': 'lock_open_black_24dp.svg',
     'person': 'person_black_24dp.svg',
     'history': 'history_black_24dp.svg',
@@ -270,7 +271,9 @@ var ICON_KEYS_TO_FILES = {
     'report': 'report_black_24dp.svg',
     'new_releases': 'new_releases_black_24dp.svg',
     'whatshot': 'whatshot_black_24dp.svg',
-    'close': 'close_black_24dp.svg'
+    'close': 'close_black_24dp.svg',
+    'no_accounts': 'no_accounts_black_24dp.svg',
+    'palette': 'palette_black_24dp.svg'
   }
 }; // const ICON_SIZES = {
 // 	'small': {
@@ -1040,7 +1043,7 @@ var HeaderUserMenu = (0,es/* observer */.Pi)(function (props) {
       },
       disabled: isLoading
     }, /*#__PURE__*/react.createElement(Icon_Icon, {
-      name: "account_circle",
+      name: isLogged ? "account_circle" : "no_accounts",
       color: "white"
     })), /*#__PURE__*/react.createElement(Popover_Popover, {
       id: "pop-account",
@@ -1841,37 +1844,37 @@ var SEVERITIES = {
   'default': {
     color: '#bdbdbd',
     contrasted: '#424242',
-    background: 'rgba(189, 189, 189, 0.20)',
+    // background: 'rgba(189, 189, 189, 0.20)',
     icon_name: 'info'
   },
   'success': {
     color: '#81c784',
     contrasted: '#43a047',
-    background: 'rgba(129, 199, 132, 0.1)',
+    // background: 'rgba(129, 199, 132, 0.1)',
     icon_name: 'check_circle'
   },
   'warning': {
     color: '#ffb74d',
     contrasted: '#ffa000',
-    background: 'rgba(255, 183, 77, 0.1)',
+    // background: 'rgba(255, 183, 77, 0.1)',
     icon_name: 'warning_amber'
   },
   'error': {
     color: '#e57373',
     contrasted: '#d32f2f',
-    background: 'rgba(229, 115, 115, 0.1)',
+    // background: 'rgba(229, 115, 115, 0.1)',
     icon_name: 'report'
   },
   'info': {
     color: '#64b5f6',
     contrasted: '#1976d2',
-    background: 'rgba(100, 181, 246, 0.20)',
+    // background: 'rgba(100, 181, 246, 0.20)',
     icon_name: 'info'
   },
   'hot': {
     color: '#e91e63',
     contrasted: '#e91e63',
-    background: 'rgba(233, 30, 99, 0.1)',
+    // background: 'rgba(233, 30, 99, 0.1)',
     icon_name: 'whatshot'
   },
   // -
@@ -3456,6 +3459,28 @@ var NxAppStore = mobx_state_tree_module/* types.model */.V5.model({
     },
     clearErrors: function clearErrors() {
       self.errors = [];
+    },
+    // -
+    setDocState: function setDocState(docId, newState, callback, ajaxBase) {
+      // Appel AJAX de la fonction de mise à jour du statut du document passé en paramètres
+      // ---
+      var app = self;
+      var snackbar = self.snackbar;
+      ajaxBase = ajaxBase ? ajaxBase : '';
+      var params = new FormData();
+      params.append('doc_id', docId);
+      params.append('new_state', newState);
+      var url = "".concat(ajaxBase, "/app/set_doc_state");
+      app.fetchJSON(url, {
+        'body': params
+      }, false, 'POST').then(function (json) {
+        if (callback) {
+          callback();
+        }
+      })["catch"](function (ex) {
+        console.error("Fetch failed for ".concat(url), ex);
+        snackbar.update(true, "Une erreur est survenue.", "error");
+      });
     }
   };
 }); // Functions
@@ -4983,7 +5008,8 @@ var Field_Field = (0,es/* observer */.Pi)(function (props) {
       },
       placeholder: placeholder,
       title: title,
-      style: inputStyle
+      style: inputStyle,
+      disabled: disabled
     });
     return /*#__PURE__*/react.createElement("div", {
       className: (0,clsx_m/* default */.Z)('nx-field', component, type, {
@@ -5025,9 +5051,110 @@ var Field_Field = (0,es/* observer */.Pi)(function (props) {
     // 	break;
   }
 });
+// EXTERNAL MODULE: ../../nexus/react/forms/heading/Heading.css
+var Heading = __webpack_require__(4297);
+;// CONCATENATED MODULE: ../../nexus/react/forms/heading/Heading.jsx
+
+
+
+
+ // Functions Components ReactJS
+// -------------------------------------------------------------------------------------------------------------
+// ***** Heading *****
+// *******************
+
+var TAG_Heading = function TAG_Heading() {};
+
+var Heading_Heading = (0,es/* observer */.Pi)(function (props) {
+  var store = react.useContext(window.storeContext);
+  var app = store.app;
+  var theme = app.theme; // From ... props
+
+  var centered = props.centered == true ? true : false;
+  var variant = props.variant ? props.variant : 'default'; // default, contained
+
+  var children = props.children;
+  var className = props.className ? props.className : '';
+  var style = props.style ? props.style : {}; // Render
+  // ==================================================================================================
+
+  return /*#__PURE__*/react.createElement("div", {
+    className: (0,clsx_m/* default */.Z)("nx-heading", {
+      "centered": centered
+    }, className),
+    style: style
+  }, children);
+});
+// EXTERNAL MODULE: ../../nexus/react/forms/indicator/Indicator.css
+var Indicator = __webpack_require__(4439);
+;// CONCATENATED MODULE: ../../nexus/react/forms/indicator/Indicator.jsx
+
+
+
+
+
+
+ // Functions Components ReactJS
+// -------------------------------------------------------------------------------------------------------------
+// ***** Indicator *****
+// *********************
+
+var TAG_Indicator = function TAG_Indicator() {};
+
+var Indicator_Indicator = (0,es/* observer */.Pi)(function (props) {
+  var store = react.useContext(window.storeContext);
+  var app = store.app;
+  var theme = app.theme; // From ... props
+
+  var variant = props.variant ? props.variant : 'default'; // default, contrasted, outlined
+
+  var severity = props.severity ? props.severity : 'default';
+  var children = props.children;
+  var className = props.className ? props.className : '';
+  var color = props.color ? props.color : ''; // primary, secondary, #custom
+
+  var style = props.style ? props.style : {}; // ...
+
+  var severityDef = SEVERITIES.getDef(severity); // Quelle couleur ?
+
+  if (color == 'primary') {
+    color = theme.palette.primary.main;
+  }
+
+  if (color == 'secondary') {
+    color = theme.palette.secondary.main;
+  }
+
+  if (!color) {
+    color = severityDef.color;
+  }
+
+  style['color'] = color;
+  style['backgroundColor'] = hexToRgbA(color, 0.1);
+  style['border'] = '1px solid transparent';
+
+  if (variant == 'contrasted') {
+    style['color'] = 'white';
+    style['backgroundColor'] = color;
+  }
+
+  if (variant == 'outlined') {
+    style['backgroundColor'] = 'transparent';
+    style['borderColor'] = color;
+  } // Render
+  // ==================================================================================================
+
+
+  return /*#__PURE__*/react.createElement("div", {
+    className: (0,clsx_m/* default */.Z)("nx-indicator", className),
+    style: style
+  }, children);
+});
 // EXTERNAL MODULE: ./contexts/playground/Playground.css
 var Playground = __webpack_require__(5245);
 ;// CONCATENATED MODULE: ./contexts/playground/Playground.jsx
+
+
 
 
 
@@ -5100,7 +5227,8 @@ var PlaygroundStore = mobx_state_tree_module/* types.model */.V5.model({
       var store = (0,mobx_state_tree_module/* getRoot */.yj)(self);
       var app = store.app;
       var snackbar = app.snackbar;
-      var url = '/playground_actions/load';
+      var ajaxNexorium = store.ajaxNexorium;
+      var url = "".concat(ajaxNexorium, "/playground_actions/load");
       app.fetchJSON(url, null, false, 'POST').then(function (json) {
         self.update(json.playground_raw);
       })["catch"](function (ex) {
@@ -5448,6 +5576,113 @@ var RenderSectionSnackbars = (0,es/* observer */.Pi)(function (props) {
     buttons: sectionButtons,
     buttonsResponsive: true
   });
+}); // ***** RenderSectionIndicators *****
+// ***********************************
+
+var TAG_RenderSectionIndicators = function TAG_RenderSectionIndicators() {};
+
+var RenderSectionIndicators = (0,es/* observer */.Pi)(function (props) {
+  var store = react.useContext(window.storeContext);
+  var app = store.app;
+  var snackbar = app.snackbar;
+  var playground = store.playground; // From ... store
+
+  var isLoading = app.isLoading; // Render
+  // ==================================================================================================
+  // Section -> Content
+  // ---
+
+  var sectionContent = /*#__PURE__*/react.createElement(react.Fragment, null, /*#__PURE__*/react.createElement(Heading_Heading, {
+    style: {
+      marginBottom: '10px'
+    }
+  }, "Default"), /*#__PURE__*/react.createElement(Row_Row, null, /*#__PURE__*/react.createElement(Indicator_Indicator, {
+    color: "primary"
+  }, "primary"), /*#__PURE__*/react.createElement(Indicator_Indicator, {
+    color: "secondary"
+  }, "secondary"), /*#__PURE__*/react.createElement(Indicator_Indicator, {
+    color: "#009688"
+  }, "custom"), /*#__PURE__*/react.createElement(Indicator_Indicator, {
+    severity: "default"
+  }, "default"), /*#__PURE__*/react.createElement(Indicator_Indicator, {
+    severity: "success"
+  }, "success"), /*#__PURE__*/react.createElement(Indicator_Indicator, {
+    severity: "info"
+  }, "info"), /*#__PURE__*/react.createElement(Indicator_Indicator, {
+    severity: "warning"
+  }, "warning"), /*#__PURE__*/react.createElement(Indicator_Indicator, {
+    severity: "error"
+  }, "error"), /*#__PURE__*/react.createElement(Indicator_Indicator, {
+    severity: "hot"
+  }, "hot")), /*#__PURE__*/react.createElement(Heading_Heading, {
+    style: {
+      marginBottom: '10px'
+    }
+  }, "Contrasted"), /*#__PURE__*/react.createElement(Row_Row, null, /*#__PURE__*/react.createElement(Indicator_Indicator, {
+    color: "primary",
+    variant: "contrasted"
+  }, "primary"), /*#__PURE__*/react.createElement(Indicator_Indicator, {
+    color: "secondary",
+    variant: "contrasted"
+  }, "secondary"), /*#__PURE__*/react.createElement(Indicator_Indicator, {
+    color: "#009688",
+    variant: "contrasted"
+  }, "custom"), /*#__PURE__*/react.createElement(Indicator_Indicator, {
+    severity: "default",
+    variant: "contrasted"
+  }, "default"), /*#__PURE__*/react.createElement(Indicator_Indicator, {
+    severity: "success",
+    variant: "contrasted"
+  }, "success"), /*#__PURE__*/react.createElement(Indicator_Indicator, {
+    severity: "info",
+    variant: "contrasted"
+  }, "info"), /*#__PURE__*/react.createElement(Indicator_Indicator, {
+    severity: "warning",
+    variant: "contrasted"
+  }, "warning"), /*#__PURE__*/react.createElement(Indicator_Indicator, {
+    severity: "error",
+    variant: "contrasted"
+  }, "error"), /*#__PURE__*/react.createElement(Indicator_Indicator, {
+    severity: "hot",
+    variant: "contrasted"
+  }, "hot")), /*#__PURE__*/react.createElement(Heading_Heading, {
+    style: {
+      marginBottom: '10px'
+    }
+  }, "Outlined"), /*#__PURE__*/react.createElement(Row_Row, null, /*#__PURE__*/react.createElement(Indicator_Indicator, {
+    color: "primary",
+    variant: "outlined"
+  }, "primary"), /*#__PURE__*/react.createElement(Indicator_Indicator, {
+    color: "secondary",
+    variant: "outlined"
+  }, "secondary"), /*#__PURE__*/react.createElement(Indicator_Indicator, {
+    color: "#009688",
+    variant: "outlined"
+  }, "custom"), /*#__PURE__*/react.createElement(Indicator_Indicator, {
+    severity: "default",
+    variant: "outlined"
+  }, "default"), /*#__PURE__*/react.createElement(Indicator_Indicator, {
+    severity: "success",
+    variant: "outlined"
+  }, "success"), /*#__PURE__*/react.createElement(Indicator_Indicator, {
+    severity: "info",
+    variant: "outlined"
+  }, "info"), /*#__PURE__*/react.createElement(Indicator_Indicator, {
+    severity: "warning",
+    variant: "outlined"
+  }, "warning"), /*#__PURE__*/react.createElement(Indicator_Indicator, {
+    severity: "error",
+    variant: "outlined"
+  }, "error"), /*#__PURE__*/react.createElement(Indicator_Indicator, {
+    severity: "hot",
+    variant: "outlined"
+  }, "hot")));
+  return /*#__PURE__*/react.createElement(Section_Section, {
+    icon: /*#__PURE__*/react.createElement(Icon_Icon, {
+      name: "palette"
+    }),
+    title: "Indicateurs"
+  }, sectionContent);
 }); // ***** RenderPlayground *****
 // ****************************
 
@@ -5470,7 +5705,7 @@ var RenderPlayground = (0,es/* observer */.Pi)(function (props) {
   var contentPlayground = null;
 
   if (loaded) {
-    contentPlayground = /*#__PURE__*/react.createElement(react.Fragment, null, /*#__PURE__*/react.createElement(RenderSectionFields, null), /*#__PURE__*/react.createElement("br", null), /*#__PURE__*/react.createElement(RenderSectionSnackbars, null));
+    contentPlayground = /*#__PURE__*/react.createElement(react.Fragment, null, /*#__PURE__*/react.createElement(RenderSectionFields, null), /*#__PURE__*/react.createElement("br", null), /*#__PURE__*/react.createElement(RenderSectionSnackbars, null), /*#__PURE__*/react.createElement("br", null), /*#__PURE__*/react.createElement(RenderSectionIndicators, null));
   }
 
   return contentPlayground;
@@ -6058,6 +6293,20 @@ window.addEventListener('DOMContentLoaded', function () {
 
 /***/ }),
 
+/***/ 4297:
+/***/ (() => {
+
+// extracted by extract-css-chunks-webpack-plugin
+
+/***/ }),
+
+/***/ 4439:
+/***/ (() => {
+
+// extracted by extract-css-chunks-webpack-plugin
+
+/***/ }),
+
 /***/ 4450:
 /***/ (() => {
 
@@ -6317,7 +6566,7 @@ window.addEventListener('DOMContentLoaded', function () {
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module depends on other loaded chunks and execution need to be delayed
 /******/ 	__webpack_require__.O(undefined, [216], () => (__webpack_require__(3979)))
-/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, [216], () => (__webpack_require__(5585)))
+/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, [216], () => (__webpack_require__(7939)))
 /******/ 	__webpack_exports__ = __webpack_require__.O(__webpack_exports__);
 /******/ 	
 /******/ })()
