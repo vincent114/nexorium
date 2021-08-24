@@ -1,6590 +1,835 @@
+/*
+ * ATTENTION: The "eval" devtool has been used (maybe by default in mode: "development").
+ * This devtool is neither made for production nor for readable output files.
+ * It uses "eval()" calls to create a separate source file in the browser devtools.
+ * If you are trying to read the output file, select a different devtool (https://webpack.js.org/configuration/devtool/)
+ * or disable the default devtool with "devtool: false".
+ * If you are looking for production-ready output files, see mode: "production" (https://webpack.js.org/configuration/mode/).
+ */
 /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
-/***/ 7939:
-/***/ ((__unused_webpack_module, __unused_webpack___webpack_exports__, __webpack_require__) => {
+/***/ "./Main.jsx":
+/*!******************!*\
+  !*** ./Main.jsx ***!
+  \******************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
-
-// UNUSED EXPORTS: RootStoreContext, rootStore
-
-// EXTERNAL MODULE: ../../nexus/react/node_modules/react/index.js
-var react = __webpack_require__(3354);
-// EXTERNAL MODULE: ../../nexus/react/node_modules/react-dom/index.js
-var react_dom = __webpack_require__(20);
-// EXTERNAL MODULE: ../../nexus/react/node_modules/mobx-state-tree/dist/mobx-state-tree.module.js
-var mobx_state_tree_module = __webpack_require__(7947);
-// EXTERNAL MODULE: ../../nexus/react/node_modules/mobx-react-lite/es/index.js + 17 modules
-var es = __webpack_require__(8027);
-// EXTERNAL MODULE: ../../nexus/react/node_modules/route-node/dist/route-node.esm.js + 3 modules
-var route_node_esm = __webpack_require__(6285);
-// EXTERNAL MODULE: ../../nexus/react/node_modules/clsx/dist/clsx.m.js
-var clsx_m = __webpack_require__(4097);
-;// CONCATENATED MODULE: ../../nexus/react/models/Services.jsx
-function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
-
-function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-
-function _iterableToArrayLimit(arr, i) { var _i = arr && (typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]); if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
-
-function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
-
-
-
-
- // Models
-// -------------------------------------------------------------------------------------------------------------
-// ***** ServiceInfoStore *****
-// ****************************
-
-var TAG_ServiceInfoStore = function TAG_ServiceInfoStore() {};
-
-var ServiceInfoStore = mobx_state_tree_module/* types.model */.V5.model({
-  app_key: mobx_state_tree_module/* types.maybeNull */.V5.maybeNull(mobx_state_tree_module/* types.string */.V5.string),
-  app_variant: mobx_state_tree_module/* types.maybeNull */.V5.maybeNull(mobx_state_tree_module/* types.string */.V5.string),
-  app_id: mobx_state_tree_module/* types.maybeNull */.V5.maybeNull(mobx_state_tree_module/* types.string */.V5.string),
-  name: mobx_state_tree_module/* types.maybeNull */.V5.maybeNull(mobx_state_tree_module/* types.string */.V5.string),
-  description: mobx_state_tree_module/* types.maybeNull */.V5.maybeNull(mobx_state_tree_module/* types.string */.V5.string),
-  kind: mobx_state_tree_module/* types.maybeNull */.V5.maybeNull(mobx_state_tree_module/* types.string */.V5.string),
-  port: mobx_state_tree_module/* types.maybeNull */.V5.maybeNull(mobx_state_tree_module/* types.integer */.V5.integer),
-  database: mobx_state_tree_module/* types.maybeNull */.V5.maybeNull(mobx_state_tree_module/* types.string */.V5.string),
-  internal: mobx_state_tree_module/* types.maybeNull */.V5.maybeNull(mobx_state_tree_module/* types.string */.V5.string),
-  external: mobx_state_tree_module/* types.maybeNull */.V5.maybeNull(mobx_state_tree_module/* types.string */.V5.string)
-}).actions(function (self) {
-  return {
-    setField: function setField(field, value) {
-      self[field] = value;
-    },
-    // -
-    update: function update(raw) {
-      self.app_key = raw.app_key;
-      self.app_variant = raw.app_variant;
-      self.app_id = raw.app_id;
-      self.name = raw.name;
-      self.description = raw.description;
-      self.kind = raw.kind;
-      self.port = raw.port;
-      self.database = raw.database;
-      self.internal = raw.internal;
-      self.external = raw.external;
-    }
-  };
-}); // ***** ServicesStore *****
-// *************************
-
-var TAG_ServicesStore = function TAG_ServicesStore() {};
-
-var ServicesStore = mobx_state_tree_module/* types.model */.V5.model({
-  smap: mobx_state_tree_module/* types.map */.V5.map(ServiceInfoStore)
-}).views(function (self) {
-  return {
-    get me() {
-      var me = self.smap.get('me');
-
-      if (!me) {
-        me = ServiceInfoStore.create({});
-      }
-
-      return me;
-    },
-
-    // Getters
-    // -
-    getServiceInfo: function getServiceInfo(appId) {
-      return self.smap.get(appId);
-    },
-    getAjaxBase: function getAjaxBase(appId) {
-      var me = self.getServiceInfo('me'); // AJAX vers un autre serveur ?
-
-      if (me && me.app_id != appId) {
-        var serviceInfo = self.getServiceInfo(appId);
-
-        if (serviceInfo) {
-          return serviceInfo.external;
-        }
-      }
-
-      return '';
-    }
-  };
-}).actions(function (self) {
-  return {
-    setField: function setField(field, value) {
-      self[field] = value;
-    },
-    // -
-    update: function update(raw) {
-      self.smap = {};
-
-      for (var _i = 0, _Object$entries = Object.entries(raw); _i < _Object$entries.length; _i++) {
-        var _Object$entries$_i = _slicedToArray(_Object$entries[_i], 2),
-            appId = _Object$entries$_i[0],
-            serviceInfoRaw = _Object$entries$_i[1];
-
-        var serviceInfo = ServiceInfoStore.create({});
-        serviceInfo.update(serviceInfoRaw);
-        self.smap.set(appId, serviceInfo);
-      }
-    }
-  };
-});
-// EXTERNAL MODULE: ../../nexus/react/ui/theme/Theme.css
-var Theme = __webpack_require__(6824);
-;// CONCATENATED MODULE: ../../nexus/react/ui/theme/Theme.jsx
-
-
-
-
- // Models
-// -------------------------------------------------------------------------------------------------------------
-// ***** ColorStore *****
-// **********************
-
-var TAG_ColorStore = function TAG_ColorStore() {};
-
-var ColorStore = mobx_state_tree_module/* types.model */.V5.model({
-  main: '#FFFFFF',
-  contrastText: '#000'
-}).actions(function (self) {
-  return {
-    setField: function setField(field, value) {
-      self[field] = value;
-    } // -
-
-  };
-}); // ***** PaletteStore *****
-// ************************
-
-var TAG_PaletteStore = function TAG_PaletteStore() {};
-
-var PaletteStore = mobx_state_tree_module/* types.model */.V5.model({
-  "default": mobx_state_tree_module/* types.optional */.V5.optional(ColorStore, {}),
-  primary: mobx_state_tree_module/* types.optional */.V5.optional(ColorStore, {}),
-  secondary: mobx_state_tree_module/* types.optional */.V5.optional(ColorStore, {})
-}).actions(function (self) {
-  return {
-    setField: function setField(field, value) {
-      self[field] = value;
-    } // -
-
-  };
-}); // ***** ThemeStore *****
-// **********************
-
-var TAG_ThemeStore = function TAG_ThemeStore() {};
-
-var ThemeStore = mobx_state_tree_module/* types.model */.V5.model({
-  variant: 'light',
-  // light, dark
-  palette: mobx_state_tree_module/* types.optional */.V5.optional(PaletteStore, {})
-}).actions(function (self) {
-  return {
-    setField: function setField(field, value) {
-      self[field] = value;
-    },
-    // -
-    update: function update(raw) {}
-  };
-});
-;// CONCATENATED MODULE: ../../nexus/react/utils/Colors.jsx
-// Functions
-// -------------------------------------------------------------------------------------------------------------
-var hexToRgbA = function hexToRgbA(hex, opacity) {
-  opacity = opacity != undefined ? opacity : 1;
-  var c;
-
-  if (/^#([A-Fa-f0-9]{3}){1,2}$/.test(hex)) {
-    c = hex.substring(1).split('');
-
-    if (c.length == 3) {
-      c = [c[0], c[0], c[1], c[1], c[2], c[2]];
-    }
-
-    c = '0x' + c.join('');
-    return 'rgba(' + [c >> 16 & 255, c >> 8 & 255, c & 255].join(',') + ',' + opacity + ')';
-  }
-
-  throw new Error('Bad Hex');
-};
-// EXTERNAL MODULE: ../../nexus/react/ui/icon/Icon.css
-var Icon = __webpack_require__(3244);
-;// CONCATENATED MODULE: ../../nexus/react/ui/icon/Icon.jsx
-
-
- // Datas
-// -------------------------------------------------------------------------------------------------------------
-
-var ICON_KEYS_TO_FILES = {
-  'material': {
-    'help': 'help_outline_black_24dp.svg',
-    'menu': 'menu_black_24dp.svg',
-    'arrow_back': 'arrow_back_black_24dp.svg',
-    'home': 'home_black_24dp.svg',
-    'setting': 'settings_black_24dp.svg',
-    'code': 'code_black_24dp.svg',
-    'power_setting': 'power_settings_new_black_24dp.svg',
-    'apps': 'apps_black_24dp.svg',
-    'save': 'save_black_24dp.svg',
-    'delete': 'delete_black_24dp.svg',
-    'restore_from_trash': 'restore_from_trash_black_24dp.svg',
-    'refresh': 'refresh_black_24dp.svg',
-    'add': 'add_black_24dp.svg',
-    'search': 'search_black_24dp.svg',
-    'clear': 'clear_black_24dp.svg',
-    'account_circle': 'account_circle_black_24dp.svg',
-    'open_in_full': 'open_in_full_black_24dp.svg',
-    'close_fullscreen': 'close_fullscreen_black_24dp.svg',
-    'push_pin': 'push_pin_black_24dp.svg',
-    'bug_report': 'bug_report_black_24dp.svg',
-    'badge': 'badge_black_24dp.svg',
-    'lock': 'lock_black_24dp.svg',
-    'lock_open': 'lock_open_black_24dp.svg',
-    'person': 'person_black_24dp.svg',
-    'history': 'history_black_24dp.svg',
-    'text_snippet': 'text_snippet_black_24dp.svg',
-    'forum': 'forum_black_24dp.svg',
-    'work_outline': 'work_outline_black_24dp.svg',
-    'school': 'school_black_24dp.svg',
-    'science': 'science_black_24dp.svg',
-    'book': 'book_black_24dp.svg',
-    'history_edu': 'history_edu_black_24dp.svg',
-    'card_giftcard': 'card_giftcard_black_24dp.svg',
-    'inventory_2': 'inventory_2_black_24dp.svg',
-    'sports_esports': 'sports_esports_black_24dp.svg',
-    'face': 'face_black_24dp.svg',
-    'art_track': 'art_track_black_24dp.svg',
-    'album': 'album_black_24dp.svg',
-    'audiotrack': 'audiotrack_black_24dp.svg',
-    'date_range': 'date_range_black_24dp.svg',
-    'local_bar': 'local_bar_black_24dp.svg',
-    'playlist_play': 'playlist_play_black_24dp.svg',
-    'text_fields': 'text_fields_black_24dp.svg',
-    'hourglass_empty': 'hourglass_empty_black_24dp.svg',
-    'feedback_black': 'feedback_black_24dp.svg',
-    'info': 'info_black_24dp.svg',
-    'warning_amber': 'warning_amber_black_24dp.svg',
-    'check_circle': 'check_circle_black_24dp.svg',
-    'report': 'report_black_24dp.svg',
-    'new_releases': 'new_releases_black_24dp.svg',
-    'whatshot': 'whatshot_black_24dp.svg',
-    'close': 'close_black_24dp.svg',
-    'no_accounts': 'no_accounts_black_24dp.svg',
-    'palette': 'palette_black_24dp.svg'
-  }
-}; // const ICON_SIZES = {
-// 	'small': {
-// 		'width': '18px',
-// 		'height': '18px',
-// 	},
-// 	'normal': {
-// 		'width': '24px',
-// 		'height': '24px',
-// 	},
-// 	'large': {
-// 		'width': '36px',
-// 		'height': '36px',
-// 	},
-// }
-
-var ICON_SIZES = {
-  'small': '18px',
-  'normal': '24px',
-  'large': '36px',
-  'helper': '220px'
-}; // Functions Components ReactJS
-// -------------------------------------------------------------------------------------------------------------
-// ***** Icon *****
-// ****************
-
-var TAG_Icon = function TAG_Icon() {};
-
-var Icon_Icon = function Icon(props) {
-  // From ... props
-  var kind = props.kind ? props.kind : 'material'; // material, fontawesome, ...
-
-  var name = props.name ? props.name : 'help';
-  var variant = props.variant ? props.variant : 'outlined'; // outlined, filled
-
-  var color = props.color ? props.color : 'black';
-  var size = props.size ? props.size : 'normal'; // small, normal, large
-
-  var style = props.style ? props.style : {}; // ...
-
-  var iconUrl = '';
-
-  if (ICON_KEYS_TO_FILES[kind].hasOwnProperty(name)) {
-    var iconFilename = ICON_KEYS_TO_FILES[kind][name];
-    iconUrl = "/nexus_static/icons/".concat(kind, "/").concat(iconFilename);
-  }
-
-  if (!style.hasOwnProperty('width')) {
-    style['width'] = ICON_SIZES[size];
-    style['height'] = ICON_SIZES[size];
-  }
-
-  if (color == 'white') {
-    iconUrl = iconUrl.replace('black', 'white');
-  } // Render
-  // ==================================================================================================
-
-
-  return /*#__PURE__*/react.createElement("div", {
-    className: "nx-icon",
-    style: style
-  }, iconUrl && /*#__PURE__*/react.createElement("img", {
-    src: iconUrl
-  }));
-};
-// EXTERNAL MODULE: ../../nexus/react/ui/button/Button.css
-var Button = __webpack_require__(2181);
-;// CONCATENATED MODULE: ../../nexus/react/ui/button/Button.jsx
-function Button_slicedToArray(arr, i) { return Button_arrayWithHoles(arr) || Button_iterableToArrayLimit(arr, i) || Button_unsupportedIterableToArray(arr, i) || Button_nonIterableRest(); }
-
-function Button_nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-
-function Button_unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return Button_arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return Button_arrayLikeToArray(o, minLen); }
-
-function Button_arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-
-function Button_iterableToArrayLimit(arr, i) { var _i = arr && (typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]); if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
-
-function Button_arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
-
-
-
-
-
-
- // Functions Components ReactJS
-// -------------------------------------------------------------------------------------------------------------
-// ***** IconButton *****
-// **********************
-
-var TAG_IconButton = function TAG_IconButton() {};
-
-var IconButton = function IconButton(props) {
-  // From ... props
-  var title = props.title ? props.title : '';
-  var children = props.children;
-  var color = props.color ? props.color : 'black'; // white, black
-
-  var disabled = props.disabled == true ? true : false;
-  var onClick = props.onClick; // Evènement
-  // ==================================================================================================
-
-  var handleClick = function handleClick(e) {
-    if (onClick) {
-      onClick(e);
-    }
-  }; // Render
-  // ==================================================================================================
-
-
-  return /*#__PURE__*/react.createElement("div", {
-    className: (0,clsx_m/* default */.Z)("nx-icon-button", color, {
-      "disabled": disabled
-    }),
-    onClick: function onClick(e) {
-      return handleClick(e);
-    },
-    title: title
-  }, children);
-}; // ***** Button *****
-// ******************
-
-var TAG_Button = function TAG_Button() {};
-
-var Button_Button = (0,es/* observer */.Pi)(function (props) {
-  var store = react.useContext(window.storeContext);
-  var app = store.app;
-  var theme = app.theme; // From ... state
-
-  var _React$useState = react.useState(false),
-      _React$useState2 = Button_slicedToArray(_React$useState, 2),
-      hover = _React$useState2[0],
-      setHover = _React$useState2[1]; // From ... props
-
-
-  var id = props.id ? props.id : '';
-  var children = props.children;
-  var variant = props.variant ? props.variant : 'flat'; // default, contained, outlined
-
-  var color = props.color ? props.color : 'default'; // default, primary, secondary
-
-  var disabled = props.disabled == true ? true : false;
-  var onClick = props.onClick;
-  var className = props.className ? props.className : '';
-  var style = props.style ? props.style : {}; // ...
-
-  style['color'] = disabled ? "rgba(0, 0, 0, 0.26)" : 'black';
-  style['backgroundColor'] = hover ? hexToRgbA(theme.palette["default"].main, 0.1) : 'transparent';
-  style['border'] = '1px solid transparent';
-
-  if (variant == 'outlined') {
-    style['borderColor'] = hexToRgbA(theme.palette["default"].main, 0.8);
-
-    if (disabled) {
-      style['borderColor'] = "rgba(0, 0, 0, 0.12)";
-    }
-  }
-
-  if (color == 'primary') {
-    style['color'] = disabled ? "rgba(0, 0, 0, 0.26)" : theme.palette.primary.main;
-    style['backgroundColor'] = hover ? hexToRgbA(theme.palette.primary.main, 0.1) : 'transparent';
-
-    if (variant == 'outlined') {
-      style['borderColor'] = theme.palette.primary.main;
-
-      if (disabled) {
-        style['borderColor'] = "rgba(0, 0, 0, 0.12)";
-      }
-    }
-
-    if (variant == 'contained') {
-      style['color'] = disabled ? "rgba(0, 0, 0, 0.26)" : 'white';
-      style['backgroundColor'] = hover ? theme.palette.primary.main : hexToRgbA(theme.palette.primary.main, 0.8);
-
-      if (disabled) {
-        style['backgroundColor'] = "rgba(0, 0, 0, 0.12)";
-      }
-    }
-  }
-
-  if (color == 'secondary') {
-    style['color'] = disabled ? "rgba(0, 0, 0, 0.26)" : theme.palette.secondary.main;
-    style['backgroundColor'] = hover ? hexToRgbA(theme.palette.secondary.main, 0.1) : 'transparent';
-
-    if (variant == 'outlined') {
-      style['borderColor'] = theme.palette.secondary.main;
-
-      if (disabled) {
-        style['borderColor'] = "rgba(0, 0, 0, 0.12)";
-      }
-    }
-
-    if (variant == 'contained') {
-      style['color'] = disabled ? "rgba(0, 0, 0, 0.26)" : 'white';
-      style['backgroundColor'] = hover ? theme.palette.secondary.main : hexToRgbA(theme.palette.secondary.main, 0.8);
-
-      if (disabled) {
-        style['backgroundColor'] = "rgba(0, 0, 0, 0.12)";
-      }
-    }
-  } // Evènement
-  // ==================================================================================================
-
-
-  var handleMouseEnter = function handleMouseEnter(evt) {
-    setHover(true);
-  };
-
-  var handleMouseLeave = function handleMouseLeave(evt) {
-    setHover(false);
-  };
-
-  var handleClick = function handleClick(evt) {
-    if (onClick) {
-      onClick(evt);
-    }
-  }; // Render
-  // ==================================================================================================
-
-
-  return /*#__PURE__*/react.createElement("div", {
-    id: id,
-    className: (0,clsx_m/* default */.Z)("nx-button", variant, {
-      "hover": hover
-    }, {
-      "disabled": disabled
-    }),
-    style: style,
-    onMouseEnter: function onMouseEnter(e) {
-      return handleMouseEnter(e);
-    },
-    onMouseLeave: function onMouseLeave(e) {
-      return handleMouseLeave(e);
-    },
-    onClick: function onClick(e) {
-      return handleClick(e);
-    }
-  }, children);
-});
-;// CONCATENATED MODULE: ../../nexus/react/utils/Datas.jsx
-function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = Datas_unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
-
-function Datas_unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return Datas_arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return Datas_arrayLikeToArray(o, minLen); }
-
-function Datas_arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-
-// Datas
-// -------------------------------------------------------------------------------------------------------------
-var ileDeFrance = (/* unused pure expression or super */ null && (['75', '77', '78', '91', '92', '93', '94', '95'])); // Functions
-// -------------------------------------------------------------------------------------------------------------
-
-function uuid() {
-  // Collision free V4 UUIDS
-  // ---
-  var tmp,
-      buf = new Uint8Array(16);
-
-  try {
-    window.crypto.getRandomValues(buf);
-  } catch (e) {
-    // IE Stuff (testé avec IE11)
-    var crypto = window.msCrypto;
-    crypto.getRandomValues(buf);
-  }
-
-  buf[6] = buf[6] & 0x0f | 0x40;
-  buf[8] = buf[8] & 0x3f | 0x80;
-  var ret = '';
-
-  for (var idx = 0; idx < 16; idx++) {
-    tmp = buf[idx].toString(16);
-
-    if (tmp.length == 1) {
-      ret += '0' + tmp;
-    } else {
-      ret += tmp;
-    }
-  }
-
-  return ret;
-}
-function copyObj(srcObj) {
-  // Recopie d'objet passé en paramètres
-  // ---
-  var copy = JSON.parse(JSON.stringify(srcObj));
-  return copy;
-}
-var convertToJSONPath = function convertToJSONPath(path) {
-  // Convertion d'un chemin sous forme de liste en JSON Path pour mobx-state-tree
-  // ---
-  // https://mobx-state-tree.js.org/API/#applypatch
-  // http://jsonpatch.com
-  var jsonPath = '';
-
-  var _iterator = _createForOfIteratorHelper(path),
-      _step;
-
-  try {
-    for (_iterator.s(); !(_step = _iterator.n()).done;) {
-      var pathItem = _step.value;
-      jsonPath = "".concat(jsonPath, "/").concat(pathItem);
-    }
-  } catch (err) {
-    _iterator.e(err);
-  } finally {
-    _iterator.f();
-  }
-
-  return jsonPath;
-};
-// EXTERNAL MODULE: ../../nexus/react/ui/popover/Popover.css
-var Popover = __webpack_require__(9443);
-;// CONCATENATED MODULE: ../../nexus/react/ui/popover/Popover.jsx
-function Popover_slicedToArray(arr, i) { return Popover_arrayWithHoles(arr) || Popover_iterableToArrayLimit(arr, i) || Popover_unsupportedIterableToArray(arr, i) || Popover_nonIterableRest(); }
-
-function Popover_nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-
-function Popover_unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return Popover_arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return Popover_arrayLikeToArray(o, minLen); }
-
-function Popover_arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-
-function Popover_iterableToArrayLimit(arr, i) { var _i = arr && (typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]); if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
-
-function Popover_arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
-
-
-
-
-
- // Functions Components ReactJS
-// -------------------------------------------------------------------------------------------------------------
-// ***** Popover *****
-// *******************
-
-var TAG_Popover = function TAG_Popover() {};
-
-var Popover_Popover = function Popover(props) {
-  var popoverStyle = props.style ? props.style : {};
-  popoverStyle['opacity'] = 0; // From ... states
-
-  var _React$useState = react.useState(popoverStyle),
-      _React$useState2 = Popover_slicedToArray(_React$useState, 2),
-      style = _React$useState2[0],
-      setStyle = _React$useState2[1]; // From ... props
-
-
-  var id = props.id ? props.id : uuid();
-  var open = props.open == true ? true : false;
-  var anchorEl = props.anchorEl ? props.anchorEl : null;
-  var anchorOrigin = props.anchorOrigin ? props.anchorOrigin : {};
-  var transformOrigin = props.transformOrigin ? props.transformOrigin : {};
-  var children = props.children;
-  var onClose = props.onClose; // ...
-
-  var anchorOriginVertical = anchorOrigin.vertical ? anchorOrigin.vertical : 'bottom'; // top, center, bottom
-
-  var anchorOriginHorizontal = anchorOrigin.horizontal ? anchorOrigin.horizontal : 'center'; // left, center, right
-
-  var transformOriginVertical = transformOrigin.vertical ? transformOrigin.vertical : 'top'; // top, center, bottom
-
-  var transformOriginHorizontal = transformOrigin.horizontal ? transformOrigin.horizontal : 'center'; // left, center, right
-
-  react.useEffect(function () {
-    var node = document.getElementById(id);
-
-    if (!node) {
-      node = document.createElement("div");
-      node.setAttribute('id', "portal-".concat(id));
-      document.body.append(node);
-    }
-  }, []);
-  react.useEffect(function () {
-    if (open && anchorEl) {
-      var popover = document.getElementById(id);
-
-      if (!popover) {
-        return;
-      }
-
-      var _popoverStyle = copyObj(style);
-
-      _popoverStyle['opacity'] = 1;
-      var popoverTop = 0;
-      var popoverLeft = 0;
-      var popoverWidth = popover.scrollWidth;
-      var popoverHeight = popover.scrollHeight; // Anchor
-      // ------------------------------------------------
-      // Vertical
-      // -
-
-      if (anchorOriginVertical == 'top') {
-        popoverTop = anchorEl.offsetTop;
-      }
-
-      if (anchorOriginVertical == 'center') {
-        popoverTop = anchorEl.offsetTop + anchorEl.scrollHeight / 2;
-      }
-
-      if (anchorOriginVertical == 'bottom') {
-        popoverTop = anchorEl.offsetTop + anchorEl.scrollHeight;
-      } // Horizontal
-      // -
-
-
-      if (anchorOriginHorizontal == 'left') {
-        popoverLeft = anchorEl.offsetLeft;
-      }
-
-      if (anchorOriginHorizontal == 'center') {
-        popoverLeft = anchorEl.offsetLeft + anchorEl.scrollWidth / 2;
-      }
-
-      if (anchorOriginHorizontal == 'right') {
-        popoverLeft = anchorEl.offsetLeft + anchorEl.scrollWidth;
-      } // Origin
-      // ------------------------------------------------
-      // Vertical
-      // -
-
-
-      if (transformOriginVertical == 'top') {
-        _popoverStyle['top'] = popoverTop;
-      }
-
-      if (transformOriginVertical == 'center') {
-        _popoverStyle['top'] = popoverTop - popoverHeight / 2;
-      }
-
-      if (transformOriginVertical == 'bottom') {
-        _popoverStyle['top'] = popoverTop - popoverHeight;
-      } // Horizontal
-      // -
-
-
-      if (transformOriginHorizontal == 'left') {
-        _popoverStyle['left'] = popoverLeft;
-      }
-
-      if (transformOriginHorizontal == 'center') {
-        _popoverStyle['left'] = popoverLeft - popoverWidth / 2;
-      }
-
-      if (transformOriginHorizontal == 'right') {
-        _popoverStyle['left'] = popoverLeft - popoverWidth;
-      } // Overflow prevent
-      // -
-
-
-      _popoverStyle['top'] = Math.max(_popoverStyle['top'], 0);
-
-      if (anchorEl.offsetTop + popoverHeight > window.innerHeight) {
-        _popoverStyle['top'] = window.innerHeight - popoverHeight;
-      }
-
-      _popoverStyle['left'] = Math.max(_popoverStyle['left'], 0);
-
-      if (anchorEl.offsetLeft + popoverWidth > window.innerWidth) {
-        _popoverStyle['left'] = window.innerWidth - popoverWidth;
-      } // -
-
-
-      setStyle(_popoverStyle);
-    }
-  }, [open]); // Render
-  // ==================================================================================================
-
-  var popoverContent = null;
-
-  if (open) {
-    var content = /*#__PURE__*/react.createElement("div", {
-      className: "nx-popover-overlay",
-      onClick: function onClick() {
-        return onClose();
-      }
-    }, /*#__PURE__*/react.createElement("div", {
-      id: id,
-      className: "nx-popover",
-      style: style
-    }, children));
-    popoverContent = /*#__PURE__*/react_dom.createPortal(content, document.getElementById("portal-".concat(id)));
-  }
-
-  return popoverContent;
-};
-// EXTERNAL MODULE: ../../nexus/react/ui/avatar/Avatar.css
-var Avatar = __webpack_require__(3130);
-;// CONCATENATED MODULE: ../../nexus/react/ui/avatar/Avatar.jsx
-
-
- // Functions Components ReactJS
-// -------------------------------------------------------------------------------------------------------------
-// ***** Avatar *****
-// ******************
-
-var TAG_Avatar = function TAG_Avatar() {};
-
-var Avatar_Avatar = function Avatar(props) {
-  var store = react.useContext(window.storeContext);
-  var app = store.app;
-  var theme = app.theme; // From ... props
-
-  var children = props.children;
-  var color = props.color ? props.color : 'primary'; // primary, secondary, transparent
-
-  var size = props.size ? props.size : 'normal'; // normal, small, large
-
-  var style = props.style ? props.style : {}; // ...
-
-  if (style.hasOwnProperty('backgroundColor')) {
-    style['backgroundColor'] = 'lightgray';
-
-    if (color == 'transparent') {
-      style['backgroundColor'] = 'transparent';
-    }
-
-    if (['primary', 'secondary'].indexOf(color) > -1) {
-      style['backgroundColor'] = theme.palette[color].main;
-    }
-  } // Render
-  // ==================================================================================================
-
-
-  return /*#__PURE__*/react.createElement("div", {
-    className: (0,clsx_m/* default */.Z)("nx-avatar", color),
-    style: style
-  }, children);
-};
-// EXTERNAL MODULE: ../../nexus/react/ui/list/List.css
-var List = __webpack_require__(7883);
-;// CONCATENATED MODULE: ../../nexus/react/ui/list/List.jsx
-
-
-
-
-
- // Functions Components ReactJS
-// -------------------------------------------------------------------------------------------------------------
-// ***** ListIcon *****
-// ********************
-
-var TAG_ListIcon = function TAG_ListIcon() {};
-
-var ListIcon = function ListIcon(props) {
-  // Render
-  // ==================================================================================================
-  return /*#__PURE__*/react.createElement("div", {
-    className: "nx-list-icon"
-  }, /*#__PURE__*/react.createElement(Avatar_Avatar, {
-    color: "transparent",
-    size: "small"
-  }, props.children));
-}; // ***** ListText *****
-// ********************
-
-var TAG_ListText = function TAG_ListText() {};
-
-var ListText = function ListText(props) {
-  // Render
-  // ==================================================================================================
-  return /*#__PURE__*/react.createElement("div", {
-    className: "nx-list-text"
-  }, props.children);
-}; // ***** ListItem *****
-// ********************
-
-var TAG_ListItem = function TAG_ListItem() {};
-
-var ListItem = function ListItem(props) {
-  // From ... props
-  var disabled = props.disabled == true ? true : false;
-  var onClick = props.onClick; // Evènements
-  // ==================================================================================================
-
-  var handleClick = function handleClick(evt) {
-    if (onClick) {
-      onClick(evt);
-    }
-  }; // Render
-  // ==================================================================================================
-
-
-  return /*#__PURE__*/react.createElement("div", {
-    className: (0,clsx_m/* default */.Z)("nx-list-item", {
-      "disabled faded": disabled
-    }),
-    onClick: function onClick(e) {
-      return handleClick(e);
-    }
-  }, props.children);
-}; // ***** List *****
-// ****************
-
-var TAG_List = function TAG_List() {};
-
-var List_List = function List(props) {
-  // Render
-  // ==================================================================================================
-  return /*#__PURE__*/react.createElement("div", {
-    className: "nx-list"
-  }, props.children);
-};
-// EXTERNAL MODULE: ../../nexus/react/ui/divider/Divider.css
-var Divider = __webpack_require__(6236);
-;// CONCATENATED MODULE: ../../nexus/react/ui/divider/Divider.jsx
-
-
- // Functions Components ReactJS
-// -------------------------------------------------------------------------------------------------------------
-// ***** Divider *****
-// *******************
-
-var TAG_Divider = function TAG_Divider() {};
-
-var Divider_Divider = function Divider(props) {
-  // From ... props
-  var style = props.style ? props.style : {}; // Render
-  // ==================================================================================================
-
-  return /*#__PURE__*/react.createElement("div", {
-    className: "nx-divider",
-    style: style
-  });
-};
-// EXTERNAL MODULE: ../../nexus/react/layout/header/Header.css
-var Header = __webpack_require__(4450);
-;// CONCATENATED MODULE: ../../nexus/react/layout/header/Header.jsx
-function Header_slicedToArray(arr, i) { return Header_arrayWithHoles(arr) || Header_iterableToArrayLimit(arr, i) || Header_unsupportedIterableToArray(arr, i) || Header_nonIterableRest(); }
-
-function Header_nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-
-function Header_unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return Header_arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return Header_arrayLikeToArray(o, minLen); }
-
-function Header_arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-
-function Header_iterableToArrayLimit(arr, i) { var _i = arr && (typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]); if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
-
-function Header_arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
-
-
-
-
-
-
-
-
-
-
-
-
- // Models
-// -------------------------------------------------------------------------------------------------------------
-// ***** HeaderStore *****
-// ***********************
-
-var TAG_HeaderStore = function TAG_HeaderStore() {};
-
-var HeaderStore = mobx_state_tree_module/* types.model */.V5.model({}).actions(function (self) {
-  return {
-    setField: function setField(field, value) {
-      self[field] = value;
-    },
-    // -
-    update: function update(raw) {}
-  };
-}); // Functions Components ReactJS
-// -------------------------------------------------------------------------------------------------------------
-// ***** HeaderDivider *****
-// *************************
-
-var TAG_HeaderDivider = function TAG_HeaderDivider() {};
-
-var HeaderDivider = function HeaderDivider(props) {
-  // ...
-  // Render
-  // ==================================================================================================
-  return /*#__PURE__*/react.createElement("div", {
-    className: "nx-header-divider"
-  });
-}; // ***** HeaderTitle *****
-// ***********************
-
-var TAG_HeaderTitle = function TAG_HeaderTitle() {};
-
-var HeaderTitle = function HeaderTitle(props) {
-  // From ... props
-  var title = props.title ? props.title : '';
-  var titleStyle = props.titleStyle ? props.titleStyle : {};
-  var subtitle = props.subtitle ? props.subtitle : '';
-  var subtitleStyle = props.subtitleStyle ? props.subtitleStyle : {};
-  var centered = props.centered == true ? props.centered : false; // ...
-  // Render
-  // ==================================================================================================
-
-  return /*#__PURE__*/react.createElement("div", {
-    className: (0,clsx_m/* default */.Z)("nx-header-titles-wrapper", {
-      "centered": centered
-    })
-  }, title && /*#__PURE__*/react.createElement("div", {
-    className: "nx-header-title",
-    style: titleStyle
-  }, title), subtitle && /*#__PURE__*/react.createElement("div", {
-    className: "nx-header-subtitle",
-    style: subtitleStyle
-  }, subtitle));
-}; // ***** HeaderUserMenu *****
-// **************************
-
-var TAG_HeaderUserMenu = function TAG_HeaderUserMenu() {};
-
-var HeaderUserMenu = (0,es/* observer */.Pi)(function (props) {
-  var store = react.useContext(window.storeContext);
-  var app = store.app;
-  var account = app.account; // From ... states
-
-  var _React$useState = react.useState(null),
-      _React$useState2 = Header_slicedToArray(_React$useState, 2),
-      anchorAccount = _React$useState2[0],
-      setAnchorAccount = _React$useState2[1]; // From ... store
-
-
-  var isLoading = app.isLoading;
-  var isLogged = account.isLogged;
-  var breakPoint650 = app.breakPoint650;
-  var loginUrl = app.loginUrl;
-  var loginContext = app.loginContext;
-  var accountUrl = app.accountUrl;
-  var accountContext = app.accountContext; // ...
-
-  var accountName = account.name; // Evènements
-  // ==================================================================================================
-
-  var handleAccount = function handleAccount(event) {
-    setAnchorAccount(event.currentTarget);
-  };
-
-  var handleCloseAccount = function handleCloseAccount() {
-    setAnchorAccount(null);
-  }; // -
-
-
-  var handleLoginClick = function handleLoginClick() {
-    console.log('handleLoginClick');
-    app.navigate(loginUrl, loginContext);
-    handleCloseAccount();
-  };
-
-  var handleMyAccountClick = function handleMyAccountClick() {
-    app.navigate(accountUrl, accountContext);
-    handleCloseAccount();
-  };
-
-  var handleLogoutClick = function handleLogoutClick() {
-    app.gotoInternal('/logout');
-    handleCloseAccount();
-  }; // Render
-  // ==================================================================================================
-
-
-  var headerUserMenuContent = null;
-
-  if (!breakPoint650) {
-    headerUserMenuContent = /*#__PURE__*/react.createElement("div", {
-      "data-flex": "0"
-    }, /*#__PURE__*/react.createElement(IconButton, {
-      onClick: function onClick(e) {
-        return handleAccount(e);
-      },
-      disabled: isLoading
-    }, /*#__PURE__*/react.createElement(Icon_Icon, {
-      name: isLogged ? "account_circle" : "no_accounts",
-      color: "white"
-    })), /*#__PURE__*/react.createElement(Popover_Popover, {
-      id: "pop-account",
-      open: Boolean(anchorAccount),
-      anchorEl: anchorAccount,
-      onClose: handleCloseAccount,
-      anchorOrigin: {
-        vertical: 'bottom',
-        horizontal: 'center'
-      },
-      transformOrigin: {
-        vertical: 'top',
-        horizontal: 'center'
-      },
-      style: {
-        width: '200px'
-      }
-    }, accountName && /*#__PURE__*/react.createElement(react.Fragment, null, /*#__PURE__*/react.createElement("div", {
-      className: "nx-account-name"
-    }, accountName), /*#__PURE__*/react.createElement(List_List, null, !isLogged && /*#__PURE__*/react.createElement(ListItem, {
-      onClick: function onClick() {
-        return handleLoginClick();
-      },
-      disabled: isLoading
-    }, /*#__PURE__*/react.createElement(ListIcon, null, /*#__PURE__*/react.createElement(Icon_Icon, {
-      name: "lock_open"
-    })), /*#__PURE__*/react.createElement(ListText, null, "Se connecter")), isLogged && /*#__PURE__*/react.createElement(react.Fragment, null, /*#__PURE__*/react.createElement(ListItem, {
-      onClick: function onClick() {
-        return handleMyAccountClick();
-      },
-      disabled: isLoading
-    }, /*#__PURE__*/react.createElement(ListIcon, null, /*#__PURE__*/react.createElement(Icon_Icon, {
-      name: "badge"
-    })), /*#__PURE__*/react.createElement(ListText, null, "Mon compte")), /*#__PURE__*/react.createElement(Divider_Divider, {
-      style: {
-        marginTop: '10px',
-        marginBottom: '10px'
-      }
-    }), /*#__PURE__*/react.createElement(ListItem, {
-      onClick: function onClick() {
-        return handleLogoutClick();
-      },
-      disabled: isLoading
-    }, /*#__PURE__*/react.createElement(ListIcon, null, /*#__PURE__*/react.createElement(Icon_Icon, {
-      name: "power_setting"
-    })), /*#__PURE__*/react.createElement(ListText, null, "Se d\xE9connecter")))))));
-  }
-
-  return headerUserMenuContent;
-}); // ***** Header *****
-// ******************
-
-var TAG_Header = function TAG_Header() {};
-
-var Header_Header = (0,es/* observer */.Pi)(function (props) {
-  var store = react.useContext(window.storeContext);
-  var app = store.app;
-  var theme = app.theme;
-  var menu = app.menu;
-  var portal = app.portal; // From ... props
-
-  var left = props.left;
-  var children = props.children;
-  var right = props.right;
-  var callbackMenu = props.callbackMenu;
-  var callbackBack = props.callbackBack;
-  var callbackHome = props.callbackHome;
-  var callbackPortal = props.callbackPortal; // From ... store
-
-  var isLoading = app.isLoading;
-  var canGoBack = app.canGoBack();
-  var canGoHome = app.canGoHome();
-  var breakPoint650 = app.breakPoint650; // Evènements
-  // ==================================================================================================
-
-  var handleMenuClick = function handleMenuClick() {
-    if (callbackMenu) {
-      callbackMenu();
-    } else {
-      menu.toogle();
-    }
-  };
-
-  var handleBackClick = function handleBackClick() {
-    if (callbackBack) {
-      callbackBack();
-    } else {
-      app.goBack();
-    }
-  };
-
-  var handleHomeClick = function handleHomeClick() {
-    if (callbackHome) {
-      callbackHome();
-    } else {
-      app.goHome();
-    }
-  }; // -
-
-
-  var handleBugReportClick = function handleBugReportClick() {};
-
-  var handlePortalClick = function handlePortalClick() {
-    if (callbackPortal) {
-      callbackPortal();
-    } else {
-      portal.toogle();
-    }
-  }; // Render
-  // ==================================================================================================
-  // Header -> Left
-  // -------------------------------------------------
-
-
-  var headerLeft = /*#__PURE__*/react.createElement("div", {
-    className: "nx-header-left"
-  }, !breakPoint650 && /*#__PURE__*/react.createElement(IconButton, {
-    onClick: function onClick() {
-      return handleMenuClick();
-    },
-    disabled: isLoading
-  }, /*#__PURE__*/react.createElement(Icon_Icon, {
-    name: "menu",
-    color: "white"
-  })), !isLoading && /*#__PURE__*/react.createElement(IconButton, {
-    onClick: function onClick() {
-      return handleBackClick();
-    },
-    disabled: isLoading || !canGoBack
-  }, /*#__PURE__*/react.createElement(Icon_Icon, {
-    name: "arrow_back",
-    color: "white"
-  })), isLoading && /*#__PURE__*/react.createElement(Avatar_Avatar, {
-    color: "transparent",
-    size: "small"
-  }, /*#__PURE__*/react.createElement(Icon_Icon, {
-    name: "hourglass_empty",
-    color: "white"
-  })), !breakPoint650 && /*#__PURE__*/react.createElement(IconButton, {
-    onClick: function onClick() {
-      return handleHomeClick();
-    },
-    disabled: isLoading || !canGoHome
-  }, /*#__PURE__*/react.createElement(Icon_Icon, {
-    name: "home",
-    color: "white"
-  })), left && left); // Header -> Middle
-  // -------------------------------------------------
-
-  var headerMiddle = /*#__PURE__*/react.createElement("div", {
-    className: "nx-header-middle"
-  }, children); // Header -> Right
-  // -------------------------------------------------
-
-  var headerRight = /*#__PURE__*/react.createElement("div", {
-    className: "nx-header-right"
-  }, right && right, !breakPoint650 && /*#__PURE__*/react.createElement(IconButton, {
-    onClick: function onClick() {
-      return handleBugReportClick();
-    },
-    disabled: isLoading || true
-  }, /*#__PURE__*/react.createElement(Icon_Icon, {
-    name: "bug_report",
-    color: "white"
-  })), /*#__PURE__*/react.createElement(HeaderUserMenu, null), !breakPoint650 && /*#__PURE__*/react.createElement(IconButton, {
-    onClick: function onClick() {
-      return handlePortalClick();
-    },
-    disabled: isLoading
-  }, /*#__PURE__*/react.createElement(Icon_Icon, {
-    name: "apps",
-    color: "white"
-  })), breakPoint650 && /*#__PURE__*/react.createElement(IconButton, {
-    onClick: function onClick() {
-      return handleMenuClick();
-    },
-    disabled: isLoading
-  }, /*#__PURE__*/react.createElement(Icon_Icon, {
-    name: "menu",
-    color: "white"
-  }))); // -------------------------------------------------
-
-  return /*#__PURE__*/react.createElement("div", {
-    className: "nx-header",
-    style: {
-      backgroundColor: hexToRgbA(theme.palette.primary.main, 0.8),
-      color: theme.palette.primary.contrastText
-    }
-  }, headerLeft, headerMiddle, headerRight);
-});
-;// CONCATENATED MODULE: ../../nexus/react/utils/Helpers.jsx
-// Functions
-// =============================================================================================================
-function isTrue(value) {
-  if (["true", "yes", "1", "t", "on"].indexOf(value.toLowerCase()) > -1) {
-    return true;
-  }
-
-  return false;
-}
-function initWeekFunctions() {
-  // Improving javascript Date object
-  // ---
-  Date.prototype.getWeek = function () {
-    // Create a copy of this date object
-    var target = new Date(this.valueOf()); // ISO week date weeks start on monday
-    // so correct the day number
-
-    var dayNr = (this.getDay() + 6) % 7; // ISO 8601 states that week 1 is the week
-    // with the first thursday of that year.
-    // Set the target date to the thursday in the target week
-
-    target.setDate(target.getDate() - dayNr + 3); // Store the millisecond value of the target date
-
-    var firstThursday = target.valueOf(); // Set the target to the first thursday of the year
-    // First set the target to january first
-
-    target.setMonth(0, 1); // Not a thursday? Correct the date to the next thursday
-
-    if (target.getDay() != 4) {
-      target.setMonth(0, 1 + (4 - target.getDay() + 7) % 7);
-    } // The weeknumber is the number of weeks between the
-    // first thursday of the year and the thursday in the target week
-
-
-    return 1 + Math.ceil((firstThursday - target) / 604800000); // 604800000 = 7 * 24 * 3600 * 1000
-  };
-
-  Date.prototype.getWeekStr = function () {
-    var target = new Date(this.valueOf());
-    var week_str = target.getWeek().toString();
-
-    if (week_str.length == 1) {
-      week_str = '0' + week_str;
-    }
-
-    return week_str;
-  };
-
-  Date.prototype.getWeekYear = function () {
-    // Create a new date object for the thursday of this week
-    var target = new Date(this.valueOf());
-    target.setDate(target.getDate() - (this.getDay() + 6) % 7 + 3);
-    return target.getFullYear();
-  };
-}
-function initTrimFunction() {
-  // Improving javascript String object
-  // ---
-  if (typeof String.prototype.trim === "undefined") {
-    String.prototype.trim = function () {
-      return String(this).replace(/^\s+|\s+$/g, '');
-    };
-  }
-}
-;// CONCATENATED MODULE: ../../nexus/react/utils/Storage.jsx
-function Storage_createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = Storage_unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
-
-function Storage_unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return Storage_arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return Storage_arrayLikeToArray(o, minLen); }
-
-function Storage_arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-
- // Functions
-// =============================================================================================================
-
-function getFromCookies(field) {
-  // Retrieve a value from browser cookies
-  // ---
-  var cookie = document.cookie;
-  var cookies = cookie.split(' ');
-
-  var _iterator = Storage_createForOfIteratorHelper(cookies),
-      _step;
-
-  try {
-    for (_iterator.s(); !(_step = _iterator.n()).done;) {
-      var cookieRaw = _step.value;
-      var cookieKey = cookieRaw.split('=')[0];
-      var cookieValue = cookieRaw.split('=')[1];
-
-      if (cookieKey == field) {
-        return cookieValue;
-        break;
-      }
-    }
-  } catch (err) {
-    _iterator.e(err);
-  } finally {
-    _iterator.f();
-  }
-
-  return '';
-}
-function getFromStorage(field, defaultValue, valueType, storage) {
-  // Get a value from localstorage / sessionstorage
-  // ---
-  storage = storage ? storage : localStorage;
-  var value = storage.getItem(field);
-
-  if (!value) {
-    value = defaultValue;
-  } else {
-    if (valueType == 'json') {
-      value = JSON.parse(value);
-    }
-
-    if (valueType == 'bool') {
-      value = isTrue(value);
-    }
-
-    if (valueType == 'int') {
-      value = parseInt(value);
-    }
-
-    if (valueType == 'date') {
-      value = new Date(value);
-    }
-  }
-
-  if (value == 'null') {
-    value = null;
-  }
-
-  return value;
-}
-function setToStorage(field, value, valueType, storage) {
-  // Set a value in localstorage / sessionstorage
-  // ---
-  storage = storage ? storage : localStorage;
-
-  if (valueType == 'json') {
-    value = JSON.stringify(value);
-  }
-
-  if (valueType == 'date') {
-    value = value.toISOString();
-  }
-
-  storage.setItem(field, value);
-}
-function removeFromStorage(field, storage) {
-  // Remove an entry from localstorage / sessionstorage
-  // ---
-  storage = storage ? storage : localStorage;
-
-  try {
-    localStorage.removeItem(field);
-  } catch (err) {}
-}
-// EXTERNAL MODULE: ../../nexus/react/ui/drawer/Drawer.css
-var Drawer = __webpack_require__(7575);
-;// CONCATENATED MODULE: ../../nexus/react/ui/drawer/Drawer.jsx
-
-
-
-
- // Functions Components ReactJS
-// -------------------------------------------------------------------------------------------------------------
-// ***** Drawer *****
-// ******************
-
-var TAG_Drawer = function TAG_Drawer() {};
-
-var Drawer_Drawer = function Drawer(props) {
-  // From ... props
-  var children = props.children;
-  var position = props.position ? props.position : 'left';
-  var callbackClose = props.callbackClose; // ...
-  // Evènements
-  // ==================================================================================================
-
-  var handleDrawerWrapperClick = function handleDrawerWrapperClick(e) {
-    var target = e.target;
-
-    if (e.target.classList.contains('nx-drawer-wrapper') && callbackClose) {
-      callbackClose();
-    }
-  }; // Render
-  // ==================================================================================================
-
-
-  return /*#__PURE__*/react.createElement("div", {
-    className: "nx-drawer-wrapper",
-    onClick: function onClick(e) {
-      return handleDrawerWrapperClick(e);
-    }
-  }, /*#__PURE__*/react.createElement("div", {
-    className: (0,clsx_m/* default */.Z)("nx-drawer", position)
-  }, children));
-};
-// EXTERNAL MODULE: ../../nexus/react/layout/menu/Menu.css
-var Menu = __webpack_require__(4397);
-;// CONCATENATED MODULE: ../../nexus/react/layout/menu/Menu.jsx
-
-
-
-
-
-
-
-
-
-
-
- // Models
-// -------------------------------------------------------------------------------------------------------------
-// ***** MenuStore *****
-// *********************
-
-var TAG_MenuStore = function TAG_MenuStore() {};
-
-var MenuStore = mobx_state_tree_module/* types.model */.V5.model({
-  expanded: false,
-  open: false,
-  pinned: false
-}).actions(function (self) {
-  return {
-    setField: function setField(field, value) {
-      self[field] = value;
-    },
-    // -
-    toogle: function toogle() {
-      // Bascule le menu latéral
-      // ---
-      var app = (0,mobx_state_tree_module/* getParent */.G_)(self);
-      var breakPoint650 = app.breakPoint650;
-      var newState = false; // Agrandissement ou réduction en mode bureau
-
-      if (!breakPoint650 && self.pinned) {
-        newState = !self.expanded;
-        setToStorage('menuExpanded', newState);
-      } // Ouverture / fermeture en mode mobile
-
-
-      if (breakPoint650 || !self.pinned) {
-        newState = !self.open;
-      }
-
-      self.update(newState);
-    },
-    tooglePinned: function tooglePinned() {
-      self.pinned = !self.pinned;
-      setToStorage('menuPinned', self.pinned);
-    },
-    update: function update(openOrExpanded) {
-      // Masque ou affiche le menu latéral
-      // ---
-      var app = (0,mobx_state_tree_module/* getParent */.G_)(self);
-      var breakPoint650 = app.breakPoint650;
-
-      if (!breakPoint650 && self.pinned) {
-        self.expanded = openOrExpanded;
-      }
-
-      if (breakPoint650 || !self.pinned) {
-        self.open = openOrExpanded;
-      }
-    },
-    close: function close() {
-      // Ferme le menu
-      // ---
-      var app = (0,mobx_state_tree_module/* getParent */.G_)(self);
-      var breakPoint650 = app.breakPoint650;
-
-      if (breakPoint650 || !self.pinned) {
-        self.open = false;
-      }
-    }
-  };
-}); // Functions Components ReactJS
-// -------------------------------------------------------------------------------------------------------------
-// ***** MenuDivider *****
-// ***********************
-
-var TAG_MenuDivider = function TAG_MenuDivider() {};
-
-var MenuDivider = (0,es/* observer */.Pi)(function (props) {
-  // Render
-  // ==================================================================================================
-  return /*#__PURE__*/react.createElement(Divider_Divider, {
-    style: {
-      marginTop: '10px',
-      marginBottom: '10px'
-    }
-  });
-}); // ***** MenuItem *****
-// ********************
-
-var TAG_MenuItem = function TAG_MenuItem() {};
-
-var MenuItem = (0,es/* observer */.Pi)(function (props) {
-  var store = react.useContext(window.storeContext);
-  var app = store.app;
-  var theme = app.theme; // From ... store
-
-  var context = app.context;
-  var isLoading = app.isLoading; // From ... props
-
-  var icon = props.icon;
-  var label = props.label;
-  var activeContexts = props.activeContexts ? props.activeContexts : [];
-  var disabled = props.disabled == true ? props.disabled : isLoading;
-  var style = props.style ? props.style : {};
-  var styleLabel = {};
-  var callbackClick = props.callbackClick; // ...
-
-  var active = activeContexts.indexOf(context) > -1 ? true : false;
-
-  if (!style.hasOwnProperty('color')) {
-    if (active) {
-      // style['color'] = theme.palette.primary.main;
-      style['backgroundColor'] = hexToRgbA(theme.palette.primary.main, 0.1); // styleLabel['color'] = theme.palette.primary.main;
-
-      styleLabel['fontWeight'] = 'bold';
-    }
-  } // Evènements
-  // ==================================================================================================
-
-
-  var handleClick = function handleClick() {
-    if (callbackClick) {
-      callbackClick();
-    }
-  }; // Render
-  // ==================================================================================================
-
-
-  return /*#__PURE__*/react.createElement("div", {
-    className: (0,clsx_m/* default */.Z)("nx-menu-item", {
-      'active': active
-    }, {
-      'disabled': disabled
-    }),
-    style: style,
-    onClick: function onClick() {
-      return handleClick();
-    }
-  }, icon && /*#__PURE__*/react.createElement(Avatar_Avatar, {
-    color: "transparent",
-    size: "small"
-  }, icon), /*#__PURE__*/react.createElement("div", {
-    className: "nx-menu-item-label",
-    style: styleLabel
-  }, label));
-}); // ***** Menu *****
-// ****************
-
-var TAG_Menu = function TAG_Menu() {};
-
-var Menu_Menu = (0,es/* observer */.Pi)(function (props) {
-  var store = react.useContext(window.storeContext);
-  var app = store.app;
-  var menu = app.menu; // From ... store
-
-  var breakPoint650 = app.breakPoint650;
-  var open = menu.open;
-  var expanded = menu.expanded;
-  var pinned = menu.pinned; // From ... props
-
-  var children = props.children; // Evènements
-  // ==================================================================================================
-
-  var handleClose = function handleClose() {
-    menu.close();
-  };
-
-  var handlePinClick = function handlePinClick() {
-    menu.tooglePinned();
-  }; // Render
-  // ==================================================================================================
-
-
-  var menuContent = /*#__PURE__*/react.createElement("div", {
-    className: "nx-menu-content"
-  }, /*#__PURE__*/react.createElement("div", {
-    className: "nx-menu-items-wrapper"
-  }, children), !breakPoint650 && /*#__PURE__*/react.createElement(IconButton, {
-    onClick: function onClick() {
-      return handlePinClick();
-    }
-  }, /*#__PURE__*/react.createElement(Icon_Icon, {
-    name: "push_pin"
-  })));
-  return /*#__PURE__*/react.createElement(react.Fragment, null, (breakPoint650 || !pinned) && open && /*#__PURE__*/react.createElement(Drawer_Drawer, {
-    position: breakPoint650 ? 'right' : 'left',
-    callbackClose: handleClose
-  }, menuContent), !breakPoint650 && pinned && /*#__PURE__*/react.createElement("div", {
-    className: (0,clsx_m/* default */.Z)("nx-menu", {
-      "expanded": expanded
-    }, {
-      "retracted": !expanded
-    })
-  }, menuContent));
-});
-// EXTERNAL MODULE: ../../nexus/react/layout/portal/Portal.css
-var Portal = __webpack_require__(3230);
-;// CONCATENATED MODULE: ../../nexus/react/layout/portal/Portal.jsx
-
-
-
-
-
-
-
-
-
-
-
- // Models
-// -------------------------------------------------------------------------------------------------------------
-// ***** PortalStore *****
-// ***********************
-
-var TAG_PortalStore = function TAG_PortalStore() {};
-
-var PortalStore = mobx_state_tree_module/* types.model */.V5.model({
-  expanded: false,
-  open: false,
-  pinned: false
-}).actions(function (self) {
-  return {
-    setField: function setField(field, value) {
-      self[field] = value;
-    },
-    // -
-    toogle: function toogle() {
-      // Bascule le portail d'apps
-      // ---
-      var app = (0,mobx_state_tree_module/* getParent */.G_)(self);
-      var breakPoint650 = app.breakPoint650;
-      var newState = false; // Agrandissement ou réduction en mode bureau
-
-      if (!breakPoint650 && self.pinned) {
-        newState = !self.expanded;
-        setToStorage('portalExpanded', newState);
-      } // Ouverture / fermeture en mode mobile
-
-
-      if (breakPoint650 || !self.pinned) {
-        newState = !self.open;
-      }
-
-      self.update(newState);
-    },
-    tooglePinned: function tooglePinned() {
-      self.pinned = !self.pinned;
-      setToStorage('portalPinned', self.pinned);
-    },
-    update: function update(openOrExpanded) {
-      // Masque ou affiche le portail d'apps
-      // ---
-      var app = (0,mobx_state_tree_module/* getParent */.G_)(self);
-      var breakPoint650 = app.breakPoint650;
-
-      if (!breakPoint650 && self.pinned) {
-        self.expanded = openOrExpanded;
-      }
-
-      if (breakPoint650 || !self.pinned) {
-        self.open = openOrExpanded;
-      }
-    },
-    close: function close() {
-      // Ferme le menu
-      // ---
-      var app = (0,mobx_state_tree_module/* getParent */.G_)(self);
-      var breakPoint650 = app.breakPoint650;
-
-      if (breakPoint650 || !self.pinned) {
-        self.open = false;
-      }
-    }
-  };
-}); // Functions Components ReactJS
-// -------------------------------------------------------------------------------------------------------------
-// ***** PortalLinks *****
-// ***********************
-
-var TAG_PortalLink = function TAG_PortalLink() {};
-
-var PortalLink = (0,es/* observer */.Pi)(function (props) {
-  var store = react.useContext(window.storeContext);
-  var app = store.app;
-  var services = app.services;
-  var portal = app.portal; // From ... props
-
-  var appKey = props.appKey; // From ... store
-
-  var context = app.context;
-  var expanded = portal.expanded; // ...
-
-  var serviceInfo = services.smap.get(appKey); // Evènements
-  // ==================================================================================================
-
-  var handleClick = function handleClick() {}; // Render
-  // ==================================================================================================
-
-
-  var portalLinkContent = null;
-
-  if (serviceInfo) {
-    var externalUrl = serviceInfo.external;
-    var iconUrl = "".concat(externalUrl, "/static/favicons/android-icon-48x48.png");
-    var name = serviceInfo.name;
-    portalLinkContent = /*#__PURE__*/react.createElement("a", {
-      className: "nx-portal-shortcut",
-      href: externalUrl,
-      title: !expanded ? name : ''
-    }, /*#__PURE__*/react.createElement("img", {
-      className: "nx-portal-shortcut-icon",
-      src: iconUrl
-    }), /*#__PURE__*/react.createElement("div", {
-      className: "nx-portal-shortcut-label"
-    }, name));
-  }
-
-  return portalLinkContent;
-}); // ***** Portal *****
-// ******************
-
-var TAG_Portal = function TAG_Portal() {};
-
-var Portal_Portal = (0,es/* observer */.Pi)(function (props) {
-  var store = react.useContext(window.storeContext);
-  var app = store.app;
-  var portal = app.portal; // From ... store
-
-  var breakPoint650 = app.breakPoint650;
-  var open = portal.open;
-  var expanded = portal.expanded;
-  var pinned = portal.pinned; // From ... props
-
-  var children = props.children; // Evènements
-  // ==================================================================================================
-
-  var handleClose = function handleClose() {
-    portal.close();
-  };
-
-  var handlePinClick = function handlePinClick() {
-    portal.tooglePinned();
-  }; // Render
-  // ==================================================================================================
-
-
-  var portalContent = /*#__PURE__*/react.createElement("div", {
-    className: "nx-portal-content"
-  }, /*#__PURE__*/react.createElement("div", {
-    className: "nx-portal-area"
-  }, /*#__PURE__*/react.createElement("div", {
-    className: "nx-portal-shortcuts-wrapper"
-  }, /*#__PURE__*/react.createElement(PortalLink, {
-    appKey: "nexorium"
-  }), /*#__PURE__*/react.createElement(PortalLink, {
-    appKey: "nexora"
-  }), /*#__PURE__*/react.createElement(PortalLink, {
-    appKey: "gramophone"
-  }), /*#__PURE__*/react.createElement(PortalLink, {
-    appKey: "vgm"
-  }), /*#__PURE__*/react.createElement(PortalLink, {
-    appKey: "cerberus"
-  }))), !breakPoint650 && /*#__PURE__*/react.createElement(IconButton, {
-    onClick: function onClick() {
-      return handlePinClick();
-    }
-  }, /*#__PURE__*/react.createElement(Icon_Icon, {
-    name: "push_pin"
-  })));
-  return /*#__PURE__*/react.createElement(react.Fragment, null, (breakPoint650 || !pinned) && open && /*#__PURE__*/react.createElement(Drawer_Drawer, {
-    position: "right",
-    callbackClose: handleClose
-  }, portalContent), !breakPoint650 && pinned && /*#__PURE__*/react.createElement("div", {
-    className: (0,clsx_m/* default */.Z)("nx-portal", {
-      "expanded": expanded
-    }, {
-      "retracted": !expanded
-    })
-  }, portalContent));
-});
-// EXTERNAL MODULE: ../../nexus/react/node_modules/react-dom/server.browser.js
-var server_browser = __webpack_require__(3228);
-;// CONCATENATED MODULE: ../../nexus/react/ui/Styles.jsx
-function Styles_slicedToArray(arr, i) { return Styles_arrayWithHoles(arr) || Styles_iterableToArrayLimit(arr, i) || Styles_unsupportedIterableToArray(arr, i) || Styles_nonIterableRest(); }
-
-function Styles_nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-
-function Styles_unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return Styles_arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return Styles_arrayLikeToArray(o, minLen); }
-
-function Styles_arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-
-function Styles_iterableToArrayLimit(arr, i) { var _i = arr && (typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]); if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
-
-function Styles_arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
-
-// Datas
-// -------------------------------------------------------------------------------------------------------------
-var SEVERITIES = {
-  'default': {
-    color: '#bdbdbd',
-    contrasted: '#424242',
-    // background: 'rgba(189, 189, 189, 0.20)',
-    icon_name: 'info'
-  },
-  'success': {
-    color: '#81c784',
-    contrasted: '#43a047',
-    // background: 'rgba(129, 199, 132, 0.1)',
-    icon_name: 'check_circle'
-  },
-  'warning': {
-    color: '#ffb74d',
-    contrasted: '#ffa000',
-    // background: 'rgba(255, 183, 77, 0.1)',
-    icon_name: 'warning_amber'
-  },
-  'error': {
-    color: '#e57373',
-    contrasted: '#d32f2f',
-    // background: 'rgba(229, 115, 115, 0.1)',
-    icon_name: 'report'
-  },
-  'info': {
-    color: '#64b5f6',
-    contrasted: '#1976d2',
-    // background: 'rgba(100, 181, 246, 0.20)',
-    icon_name: 'info'
-  },
-  'hot': {
-    color: '#e91e63',
-    contrasted: '#e91e63',
-    // background: 'rgba(233, 30, 99, 0.1)',
-    icon_name: 'whatshot'
-  },
-  // -
-  getDef: function getDef(severity) {
-    return SEVERITIES[severity];
-  }
-};
-var SEVERITY_COLORS = {};
-var SEVERITY_COLORS_CONTRASTED = {};
-var SEVERITY_BACKGROUNDS = {};
-var SEVERITY_ICONS_NAMES = {};
-
-for (var _i = 0, _Object$entries = Object.entries(SEVERITIES); _i < _Object$entries.length; _i++) {
-  var _Object$entries$_i = Styles_slicedToArray(_Object$entries[_i], 2),
-      severityKey = _Object$entries$_i[0],
-      severityDef = _Object$entries$_i[1];
-
-  SEVERITY_COLORS[severityKey] = severityDef.color;
-  SEVERITY_COLORS_CONTRASTED[severityKey] = severityDef.contrasted;
-  SEVERITY_BACKGROUNDS[severityKey] = severityDef.background;
-  SEVERITY_ICONS_NAMES[severityKey] = severityDef.icon_name;
-}
-// EXTERNAL MODULE: ../../nexus/react/ui/snackbar/Snackbar.css
-var Snackbar = __webpack_require__(7677);
-;// CONCATENATED MODULE: ../../nexus/react/ui/snackbar/Snackbar.jsx
-
-
-
-
-
-
-
-
-
- // Models
-// ----------------------------------------------------------------------------------------------------------------------------
-
-var TAG_SnackbarStore = function TAG_SnackbarStore() {};
-
-var SnackbarStore = mobx_state_tree_module/* types.model */.V5.model({
-  open: false,
-  msg: '',
-  severity: 'default',
-  action: mobx_state_tree_module/* types.frozen */.V5.frozen(null),
-  callbackExit: mobx_state_tree_module/* types.frozen */.V5.frozen(null)
-}).actions(function (self) {
-  return {
-    update: function update(open, msg, severity, action, callbackExit) {
-      // Mise à jour de la snackbar en fonction des paramètres
-      // ---
-      if (msg) {
-        if (typeof msg != 'string') {
-          try {
-            msg = server_browser.renderToStaticMarkup(msg);
-          } catch (ex) {}
-        }
-      } else {
-        msg = '';
-      }
-
-      self.open = open;
-      self.msg = msg ? msg : self.msg;
-      self.severity = severity ? severity : self.severity;
-      self.action = action ? action : self.action;
-      self.callbackExit = callbackExit ? callbackExit : self.callbackExit;
-    },
-    close: function close() {
-      self.update(false);
-    }
-  };
-}); // Functions Components ReactJS
-// ----------------------------------------------------------------------------------------------------------------------------
-// ***** Snackbar *****
-// ********************
-
-var TAG_Snackbar = function TAG_Snackbar() {};
-
-var Snackbar_Snackbar = (0,es/* observer */.Pi)(function (props) {
-  var store = react.useContext(window.storeContext);
-  var app = store.app;
-  var snackbar = app.snackbar; // From ... store
-
-  var open = snackbar.open;
-  var msg = snackbar.msg;
-  var severity = snackbar.severity;
-  var action = snackbar.action;
-  var callbackExit = snackbar.callbackExit; // ...
-
-  react.useEffect(function () {
-    if (open) {
-      document.body.addEventListener('click', handleCloseClick, true);
-    }
-  }, [open]); // ...
-
-  var style = {}; // Evènements
-  // ==================================================================================================
-
-  var handleCloseClick = function handleCloseClick() {
-    snackbar.close();
-    document.body.removeEventListener('click', handleCloseClick, true);
-  }; // Render
-  // ==================================================================================================
-
-
-  var snackbarContent = null;
-
-  if (open) {
-    var severityDef = SEVERITIES.getDef(severity);
-    style['backgroundColor'] = severityDef.contrasted;
-    snackbarContent = /*#__PURE__*/react.createElement("div", {
-      className: "nx-snackbar",
-      style: style
-    }, /*#__PURE__*/react.createElement(Avatar_Avatar, {
-      color: "transparent",
-      size: "small"
-    }, /*#__PURE__*/react.createElement(Icon_Icon, {
-      name: severityDef.icon_name,
-      color: "white"
-    })), /*#__PURE__*/react.createElement("div", {
-      className: "nx-snackbar-msg",
-      dangerouslySetInnerHTML: {
-        __html: msg
-      }
-    }), /*#__PURE__*/react.createElement(IconButton, {
-      onClick: function onClick() {
-        return handleCloseClick();
-      }
-    }, /*#__PURE__*/react.createElement(Icon_Icon, {
-      name: "close",
-      color: "white"
-    })));
-  }
-
-  return snackbarContent;
-});
-;// CONCATENATED MODULE: ../../nexus/react/utils/Responsive.jsx
-var MobileDetect = __webpack_require__(5288); // Functions
-// ========================================================================================================================
-
-
-function detectMobile() {
-  // Mobile or desktop ?
-  // ---
-  var width = window.innerWidth;
-  var breakPoint650 = width <= 650 ? true : false;
-  var breakPoint414 = width <= 414 ? true : false;
-  var breakPoint375 = width <= 375 ? true : false;
-  var breakPoint320 = width <= 320 ? true : false;
-  var isMobile = false;
-  var isDesktop = true;
-  var md = new MobileDetect(window.navigator.userAgent);
-
-  if (md.mobile() != null && md.mobile() != '') {
-    isMobile = true;
-    isDesktop = false;
-  }
-
-  return {
-    isMobile: isMobile,
-    isDesktop: isDesktop,
-    breakPoint650: breakPoint650,
-    breakPoint414: breakPoint414,
-    breakPoint375: breakPoint375,
-    breakPoint320: breakPoint320
-  };
-}
-var isNodeVisible = function isNodeVisible(nodeId) {
-  // Is DOM node visible on screen?
-  // ---
-  var node = $("#".concat(nodeId));
-
-  if (node) {
-    try {
-      var nodeTop = node.offset().top;
-      var nodeBottom = node.offset().top + node.outerHeight();
-      var screenTop = $(window).scrollTop();
-      var screenBottom = $(window).scrollTop() + window.innerHeight;
-
-      if (screenBottom > nodeTop && screenTop < nodeBottom) {
-        return true;
-      }
-    } catch (err) {}
-  }
-
-  return false;
-};
-;// CONCATENATED MODULE: ../../nexus/react/utils/URL.jsx
-// Functions
-// =============================================================================================================
-function getUrlParams() {
-  // Getting URL parameters
-  // ---
-  var vars = {},
-      hash;
-  var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
-
-  for (var i = 0; i < hashes.length; i++) {
-    hash = hashes[i].split('=');
-    var value = '';
-
-    for (var hash_part_idx in hash) {
-      if (hash_part_idx == 0) {
-        continue;
-      }
-
-      var hash_part = hash[hash_part_idx];
-      hash_part = hash_part == "" ? "=" : hash_part;
-      value = value + hash_part;
-    }
-
-    vars[hash[0]] = value;
-  }
-
-  ;
-  return vars;
-}
-function matchUrl(routes, url) {
-  // Routes <-> URL matching
-  // ---
-  // -> https://www.npmjs.com/package/route-node
-  var matched = {
-    context: '404',
-    params: {}
-  };
-  var matchResult = routes.matchPath(url);
-
-  if (matchResult) {
-    // Context
-    var context = matchResult.name.split(':')[0];
-    context = context.split('.')[0];
-    context = context.split('-')[0];
-    context = context.split('#')[0];
-    context = context.split('$')[0];
-    matched['context'] = context; // Parameters
-
-    if (matchResult.params) {
-      matched['params'] = matchResult.params;
-    }
-  } else {
-    // Some URL don't match properly with route-node
-    var urlParts = url.split('/'); // Hack :: login
-
-    if (url.search('connexion') > -1) {
-      matched['context'] = 'login';
-      matched['params'] = {
-        urlKey: urlParts[2]
-      };
-    } // Hack :: forbidden
-
-
-    if (url.search('forbidden') > -1) {
-      matched['context'] = 'forbidden';
-      matched['params'] = {
-        urlKey: urlParts[2]
-      };
-    }
-  }
-
-  return matched;
-}
-// EXTERNAL MODULE: ../../nexus/react/ui/helper/Helper.css
-var Helper = __webpack_require__(2742);
-;// CONCATENATED MODULE: ../../nexus/react/ui/helper/Helper.jsx
-
-
-
-
-
- // Functions Components ReactJS
-// ----------------------------------------------------------------------------------------------------------------------------
-// ***** Helper *****
-// ******************
-
-var TAG_Helper = function TAG_Helper() {};
-
-var Helper_Helper = (0,es/* observer */.Pi)(function (props) {
-  var store = react.useContext(window.storeContext);
-  var app = store.app; // From ... store
-
-  var initialized = app.initialized; // From ... props
-
-  var icon = props.icon ? props.icon : null;
-  var iconName = props.iconName ? props.iconName : '';
-  var title = props.title ? props.title : '';
-  var subtitle = props.subtitle ? props.subtitle : '';
-  var severity = props.severity;
-  var show = props.show != undefined ? props.show : !initialized;
-  var content = props.children;
-  var style = props.style ? props.style : {}; // Render
-  // ==================================================================================================
-
-  var titleColor = 'black';
-
-  if (severity && severity != 'default' && SEVERITY_COLORS_CONTRASTED.hasOwnProperty(severity)) {
-    titleColor = SEVERITY_COLORS_CONTRASTED[severity];
-  }
-
-  var subtitleColor = 'gray';
-
-  if (severity && severity != 'default' && SEVERITY_COLORS.hasOwnProperty(severity)) {
-    subtitleColor = SEVERITY_COLORS[severity];
-  } // -
-
-
-  if (!icon && iconName) {
-    icon = /*#__PURE__*/react.createElement(Icon_Icon, {
-      size: "helper",
-      name: iconName,
-      style: {
-        opacity: 0.1
-      }
-    });
-  }
-
-  var helper = null;
-
-  if (show) {
-    helper = /*#__PURE__*/react.createElement("div", {
-      className: "nx-helper"
-    }, /*#__PURE__*/react.createElement("div", {
-      className: "nx-helper-content",
-      style: style
-    }, icon, title && /*#__PURE__*/react.createElement("div", {
-      className: "nx-helper-title",
-      style: {
-        color: titleColor
-      }
-    }, title), subtitle && /*#__PURE__*/react.createElement("div", {
-      className: "nx-helper-subtitle",
-      style: {
-        color: subtitleColor
-      }
-    }, subtitle)));
-  }
-
-  return helper;
-});
-// EXTERNAL MODULE: ../../nexus/react/contexts/about/About.css
-var About = __webpack_require__(2189);
-;// CONCATENATED MODULE: ../../nexus/react/contexts/about/About.jsx
-
-
-
-
-
-
-
-
- // Functions Components ReactJS
-// -------------------------------------------------------------------------------------------------------------
-// ***** AboutHeaderLeft *****
-// ***************************
-
-var TAG_AboutHeaderLeft = function TAG_AboutHeaderLeft() {};
-
-var AboutHeaderLeft = (0,es/* observer */.Pi)(function (props) {
-  var store = react.useContext(window.storeContext);
-  var app = store.app; // ...
-  // Render
-  // ==================================================================================================
-
-  return /*#__PURE__*/react.createElement(HeaderTitle, {
-    title: "A propos",
-    titleStyle: {
-      marginLeft: '10px'
-    }
-  });
-}); // ***** AboutMenuItem *****
-// *************************
-
-var TAG_AboutMenuItem = function TAG_AboutMenuItem() {};
-
-var AboutMenuItem = (0,es/* observer */.Pi)(function (props) {
-  var store = react.useContext(window.storeContext);
-  var app = store.app; // Evènements
-  // ==================================================================================================
-
-  var handleMenuItemClick = function handleMenuItemClick() {
-    app.navigate(app.aboutUrl, app.aboutContext);
-  }; // Render
-  // ==================================================================================================
-
-
-  return /*#__PURE__*/react.createElement(MenuItem, {
-    icon: /*#__PURE__*/react.createElement(Icon_Icon, {
-      name: "code"
-    }),
-    label: "A propos",
-    activeContexts: [app.aboutContext],
-    callbackClick: handleMenuItemClick
-  });
-}); // ***** AboutPage *****
-// *********************
-
-var TAG_AboutPage = function TAG_AboutPage() {};
-
-var AboutPage = (0,es/* observer */.Pi)(function (props) {
-  var store = react.useContext(window.storeContext);
-  var app = store.app; // Renderers
-  // ==================================================================================================
-
-  var renderHelper = function renderHelper() {
-    // Render :: Helper
-    // ---
-    return /*#__PURE__*/react.createElement(Helper_Helper, {
-      iconName: "code",
-      show: true
-    });
-  };
-
-  return /*#__PURE__*/react.createElement("div", {
-    className: "nx-page"
-  }, renderHelper());
-});
-// EXTERNAL MODULE: ../../nexus/react/contexts/login/Login.css
-var Login = __webpack_require__(1364);
-;// CONCATENATED MODULE: ../../nexus/react/contexts/login/Login.jsx
-
-
-
-
-
-
-
- // Models
-// -------------------------------------------------------------------------------------------------------------
-// ***** LoginStore *****
-// **********************
-
-var TAG_LoginStore = function TAG_LoginStore() {};
-
-var LoginStore = mobx_state_tree_module/* types.model */.V5.model({
-  login: ''
-}).actions(function (self) {
-  return {
-    setField: function setField(field, value) {
-      self[field] = value;
-    },
-    // -
-    update: function update(raw) {}
-  };
-}); // Functions Components ReactJS
-// -------------------------------------------------------------------------------------------------------------
-// ***** LoginMenuItem *****
-// *************************
-
-var TAG_LoginMenuItem = function TAG_LoginMenuItem() {};
-
-var LoginMenuItem = (0,es/* observer */.Pi)(function (props) {
-  var store = react.useContext(window.storeContext);
-  var app = store.app;
-  var account = app.account; // From ... store
-
-  var isLogged = account.isLogged;
-  var breakPoint650 = app.breakPoint650; // Evènements
-  // ==================================================================================================
-
-  var handleMenuItemClick = function handleMenuItemClick() {
-    app.navigate('/login', 'login');
-  }; // Render
-  // ==================================================================================================
-
-
-  var loginMenuItem = null;
-
-  if (!isLogged && breakPoint650) {
-    loginMenuItem = /*#__PURE__*/react.createElement(MenuItem, {
-      icon: /*#__PURE__*/react.createElement(Icon_Icon, {
-        name: "account_circle"
-      }),
-      label: "Se connecter",
-      activeContexts: ['login'],
-      callbackClick: handleMenuItemClick
-    });
-  }
-
-  return loginMenuItem;
-}); // ***** LogoutMenuItem *****
-// **************************
-
-var TAG_LogoutMenuItem = function TAG_LogoutMenuItem() {};
-
-var LogoutMenuItem = (0,es/* observer */.Pi)(function (props) {
-  var store = react.useContext(window.storeContext);
-  var app = store.app;
-  var account = app.account; // From ... store
-
-  var isLogged = account.isLogged;
-  var breakPoint650 = app.breakPoint650; // Evènements
-  // ==================================================================================================
-
-  var handleMenuItemClick = function handleMenuItemClick() {
-    app.gotoInternal('/logout');
-  }; // Render
-  // ==================================================================================================
-
-
-  var logoutMenuItem = null;
-
-  if (isLogged && breakPoint650) {
-    logoutMenuItem = /*#__PURE__*/react.createElement(MenuItem, {
-      icon: /*#__PURE__*/react.createElement(Icon_Icon, {
-        name: "power_setting"
-      }),
-      label: "Se d\xE9connecter",
-      callbackClick: handleMenuItemClick
-    });
-  }
-
-  return logoutMenuItem;
-}); // ***** LoginPage *****
-// *********************
-
-var TAG_LoginPage = function TAG_LoginPage() {};
-
-var LoginPage = (0,es/* observer */.Pi)(function (props) {
-  var store = react.useContext(window.storeContext);
-  var app = store.app; // Renderers
-  // ==================================================================================================
-
-  var renderHelper = function renderHelper() {
-    // Render :: Helper
-    // ---
-    return /*#__PURE__*/react.createElement(Helper_Helper, {
-      iconName: "account_circle",
-      show: true
-    });
-  };
-
-  return /*#__PURE__*/react.createElement("div", {
-    className: "nx-page"
-  }, renderHelper());
-});
-// EXTERNAL MODULE: ../../nexus/react/contexts/account/Account.css
-var Account = __webpack_require__(7390);
-;// CONCATENATED MODULE: ../../nexus/react/contexts/account/Account.jsx
-function Account_createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = Account_unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
-
-function Account_unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return Account_arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return Account_arrayLikeToArray(o, minLen); }
-
-function Account_arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-
-
-
-
-
-
-
-
-
- // Models
-// -------------------------------------------------------------------------------------------------------------
-// ***** AccountStore *****
-// ************************
-
-var TAG_AccountStore = function TAG_AccountStore() {};
-
-var AccountStore = mobx_state_tree_module/* types.model */.V5.model({
-  _id: '',
-  _rev: '',
-  _state: 0,
-  firstname: '',
-  lastname: '',
-  login: '',
-  role_finder: mobx_state_tree_module/* types.optional */.V5.optional(mobx_state_tree_module/* types.array */.V5.array(mobx_state_tree_module/* types.string */.V5.string), []),
-  is_viewer: false,
-  is_editor: false,
-  is_admin: false
-}).views(function (self) {
-  return {
-    get name() {
-      var name = '';
-
-      if (self._id) {
-        if (self.firstname) {
-          name = self.firstname;
-        }
-
-        if (self.firstname) {
-          if (name) {
-            name = "".concat(name, " ").concat(self.firstname);
-          } else {
-            name = self.firstname;
-          }
-        }
-
-        if (!name && self.login) {
-          name = self.login;
-        }
-      } else {
-        name = 'Visiteur';
-      }
-
-      return name;
-    },
-
-    // Bools
-    // -
-    get isLogged() {
-      if (self._id) {
-        return true;
-      }
-
-      return false;
-    },
-
-    isAdmin: function isAdmin(appId) {
-      var store = (0,mobx_state_tree_module/* getRoot */.yj)(self);
-      var app = store.app;
-      appId = appId ? appId : app.appId;
-      return false;
-    }
-  };
-}).actions(function (self) {
-  return {
-    setField: function setField(field, value) {
-      self[field] = value;
-    },
-    // -
-    update: function update(raw) {
-      self._id = raw._id;
-      self._rev = raw._rev;
-      self._state = raw._state;
-      self.firstname = raw.firstname;
-      self.lastname = raw.lastname;
-      self.login = raw.login;
-      self.role_finder = [];
-
-      var _iterator = Account_createForOfIteratorHelper(raw.role_finder),
-          _step;
-
-      try {
-        for (_iterator.s(); !(_step = _iterator.n()).done;) {
-          var roleKey = _step.value;
-          self.role_finder.push(roleKey);
-        }
-      } catch (err) {
-        _iterator.e(err);
-      } finally {
-        _iterator.f();
-      }
-
-      self.is_viewer = raw.is_viewer;
-      self.is_editor = raw.is_editor;
-      self.is_admin = raw.is_admin;
-    }
-  };
-}); // Functions Components ReactJS
-// -------------------------------------------------------------------------------------------------------------
-// ***** AccountHeaderLeft *****
-// *****************************
-
-var TAG_AccountHeaderLeft = function TAG_AccountHeaderLeft() {};
-
-var AccountHeaderLeft = (0,es/* observer */.Pi)(function (props) {
-  var store = react.useContext(window.storeContext);
-  var app = store.app; // ...
-  // Render
-  // ==================================================================================================
-
-  return /*#__PURE__*/react.createElement(HeaderTitle, {
-    title: "Mon compte",
-    titleStyle: {
-      marginLeft: '10px'
-    }
-  });
-}); // ***** AccountMenuItem *****
-// ***************************
-
-var TAG_AccountMenuItem = function TAG_AccountMenuItem() {};
-
-var AccountMenuItem = (0,es/* observer */.Pi)(function (props) {
-  var store = react.useContext(window.storeContext);
-  var app = store.app;
-  var account = app.account; // From ... store
-
-  var isLogged = account.isLogged; // Evènements
-  // ==================================================================================================
-
-  var handleMenuItemClick = function handleMenuItemClick() {
-    app.navigate(app.accountUrl, 'account');
-  }; // Render
-  // ==================================================================================================
-
-
-  var accountMenuItem = null;
-
-  if (isLogged) {
-    accountMenuItem = /*#__PURE__*/react.createElement(MenuItem, {
-      icon: /*#__PURE__*/react.createElement(Icon_Icon, {
-        name: "account_circle"
-      }),
-      label: "Mon compte",
-      activeContexts: ['account'],
-      callbackClick: handleMenuItemClick
-    });
-  }
-
-  return accountMenuItem;
-}); // ***** AccountPage *****
-// ***********************
-
-var TAG_AccountPage = function TAG_AccountPage() {};
-
-var AccountPage = (0,es/* observer */.Pi)(function (props) {
-  var store = react.useContext(window.storeContext);
-  var app = store.app; // Renderers
-  // ==================================================================================================
-
-  var renderHelper = function renderHelper() {
-    // Render :: Helper
-    // ---
-    return /*#__PURE__*/react.createElement(Helper_Helper, {
-      iconName: "account_circle",
-      show: true
-    });
-  };
-
-  return /*#__PURE__*/react.createElement("div", {
-    className: "nx-page"
-  }, renderHelper());
-});
-// EXTERNAL MODULE: ../../nexus/react/contexts/forbidden/Forbidden.css
-var Forbidden = __webpack_require__(2429);
-;// CONCATENATED MODULE: ../../nexus/react/contexts/forbidden/Forbidden.jsx
-
-
-
-
-
- // Functions Components ReactJS
-// -------------------------------------------------------------------------------------------------------------
-// ***** ForbiddenPage *****
-// *************************
-
-var TAG_ForbiddenPage = function TAG_ForbiddenPage() {};
-
-var ForbiddenPage = (0,es/* observer */.Pi)(function (props) {
-  var store = react.useContext(window.storeContext);
-  var app = store.app; // Renderers
-  // ==================================================================================================
-
-  var renderHelper = function renderHelper() {
-    // Render :: Helper
-    // ---
-    return /*#__PURE__*/react.createElement(Helper_Helper, {
-      icon: /*#__PURE__*/react.createElement("img", {
-        className: "nx-helper-icon",
-        src: "/nexus_static/img/emojis/jelly_sweat.png"
-      }),
-      title: "!",
-      subtitle: "Il semblerait que vous ne disposez pas des droits d'acc\xE8s \xE0 cette page.",
-      severity: "warning",
-      show: true
-    });
-  };
-
-  return /*#__PURE__*/react.createElement("div", {
-    className: "nx-page"
-  }, renderHelper());
-});
-// EXTERNAL MODULE: ../../nexus/react/contexts/notfound/NotFound.css
-var NotFound = __webpack_require__(7282);
-;// CONCATENATED MODULE: ../../nexus/react/contexts/notfound/NotFound.jsx
-
-
- // Functions Components ReactJS
-// ----------------------------------------------------------------------------------------------------------------------------
-// ***** NotFoundPage *****
-// ************************
-
-var TAG_NotFoundPage = function TAG_NotFoundPage() {};
-
-var NotFoundPage = function NotFoundPage(props) {
-  // Render
-  // ==================================================================================================
-  return /*#__PURE__*/react.createElement("div", {
-    className: "nx-page"
-  }, /*#__PURE__*/react.createElement(Helper_Helper, {
-    icon: /*#__PURE__*/react.createElement("img", {
-      className: "nx-helper-icon",
-      src: "/nexus_static/img/emojis/jelly_crying.png"
-    }),
-    title: "Erreur 404",
-    subtitle: "Il semblerait que la page demand\xE9e n'existe pas.",
-    variant: "warning",
-    show: true
-  }));
-};
-// EXTERNAL MODULE: ../../nexus/react/NxApp.css
-var NxApp = __webpack_require__(7052);
-;// CONCATENATED MODULE: ../../nexus/react/NxApp.jsx
-function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
-
-function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
-
-function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
-
-function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
-
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
-function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
-
-function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
-
-function NxApp_slicedToArray(arr, i) { return NxApp_arrayWithHoles(arr) || NxApp_iterableToArrayLimit(arr, i) || NxApp_unsupportedIterableToArray(arr, i) || NxApp_nonIterableRest(); }
-
-function NxApp_nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-
-function NxApp_iterableToArrayLimit(arr, i) { var _i = arr && (typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]); if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
-
-function NxApp_arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
-
-function NxApp_createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = NxApp_unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e2) { throw _e2; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e3) { didErr = true; err = _e3; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
-
-function NxApp_unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return NxApp_arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return NxApp_arrayLikeToArray(o, minLen); }
-
-function NxApp_arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- // Models
-// -------------------------------------------------------------------------------------------------------------
-// ***** NxAppStore *****
-// **********************
-
-var TAG_NxAppStore = function TAG_NxAppStore() {};
-
-var NxAppStore = mobx_state_tree_module/* types.model */.V5.model({
-  context: mobx_state_tree_module/* types.optional */.V5.optional(mobx_state_tree_module/* types.string */.V5.string, 'home'),
-  initialized: false,
-  tasks: mobx_state_tree_module/* types.optional */.V5.optional(mobx_state_tree_module/* types.array */.V5.array(mobx_state_tree_module/* types.string */.V5.string), []),
-  debugMode: false,
-  editMode: false,
-  standaloneMode: false,
-  services: mobx_state_tree_module/* types.optional */.V5.optional(ServicesStore, {}),
-  // URLs
-  loginUrl: '/login',
-  loginContext: 'login',
-  homeUrl: '/',
-  homeContext: 'home',
-  searchUrl: '/search',
-  searchContext: 'search',
-  aboutUrl: '/about',
-  aboutContext: 'about',
-  adminUrl: '/admin',
-  adminContext: 'admin',
-  accountUrl: '/account',
-  accountContent: 'account',
-  routes: mobx_state_tree_module/* types.frozen */.V5.frozen(null),
-  urlParams: mobx_state_tree_module/* types.frozen */.V5.frozen(null),
-  matchResult: mobx_state_tree_module/* types.frozen */.V5.frozen(null),
-  history: mobx_state_tree_module/* types.frozen */.V5.frozen(null),
-  // Responsive
-  isMobile: false,
-  isDesktop: true,
-  breakPoint650: false,
-  // Small Window or Dashboard Oméga
-  breakPoint414: false,
-  // iPhone 6, 7, 8 Plus
-  breakPoint375: false,
-  // iPhone 6, 7, 8
-  breakPoint320: false,
-  // iPhone 5, SE
-  // Authentification
-  login: mobx_state_tree_module/* types.optional */.V5.optional(LoginStore, {}),
-  account: mobx_state_tree_module/* types.optional */.V5.optional(AccountStore, {}),
-  // Forms
-  errors: mobx_state_tree_module/* types.array */.V5.array(mobx_state_tree_module/* types.frozen */.V5.frozen(null)),
-  autocompleteResults: mobx_state_tree_module/* types.array */.V5.array(mobx_state_tree_module/* types.frozen */.V5.frozen(null)),
-  // UI
-  theme: mobx_state_tree_module/* types.optional */.V5.optional(ThemeStore, {}),
-  header: mobx_state_tree_module/* types.optional */.V5.optional(HeaderStore, {}),
-  menu: mobx_state_tree_module/* types.optional */.V5.optional(MenuStore, {}),
-  portal: mobx_state_tree_module/* types.optional */.V5.optional(PortalStore, {}),
-  snackbar: mobx_state_tree_module/* types.optional */.V5.optional(SnackbarStore, {}) // popup: types.optional(PopupStore, {}),
-
-}).views(function (self) {
-  return {
-    get me() {
-      return self.services.me;
-    },
-
-    get appId() {
-      return self.me.app_id;
-    },
-
-    // Bools
-    // -
-    get isFullScreen() {
-      // Should Header & Drawer be hidden ?
-      // ---
-      var standaloneMode = self.standaloneMode;
-      var context = self.context; // if (standaloneMode || ['login', 'forbidden'].indexOf(context) > -1) {
-      // 	return true;
-      // }
-
-      if (standaloneMode) {
-        return true;
-      }
-
-      return false;
-    },
-
-    get isLoading() {
-      // Are there background tasks still running ?
-      // ---
-      if (self.tasks.length > 0) {
-        return true;
-      }
-
-      return false;
-    },
-
-    // isCurrent(targetContexts) {
-    // 	// Le contexte courant de l'application correspond-t-il à ceux passés en paramètres ?
-    // 	// ---
-    // 	const context = self.context;
-    // 	if (typeof(targetContexts) == "string") {
-    // 		targetContexts = [targetContexts];
-    // 	}
-    // 	if (targetContexts.indexOf(context) > -1) {
-    // 		return true;
-    // 	}
-    // 	return false;
-    // },
-    canGoBack: function canGoBack() {
-      // Peut-on revenir en arrière dans l'historique ?
-      // ---
-      var navHistory = self.getHistory();
-
-      if (navHistory.length > 0) {
-        return true;
-      }
-
-      return false;
-    },
-    canGoHome: function canGoHome() {
-      // Peut-on revenir sur la page d'accueil
-      // ---
-      if (self.context != 'home') {
-        return true;
-      }
-
-      return false;
-    },
-    // Getters
-    // -
-    getScrollKey: function getScrollKey() {
-      // Uniq key to identify scroll context
-      // ---
-      var url = document.location.pathname;
-      return url;
-    },
-    getValue: function getValue(path, notFoundValue, source) {
-      // Récupère la valeur derrière le chemin passé en paramètres
-      // ---
-      var store = (0,mobx_state_tree_module/* getRoot */.yj)(self);
-      var loadTarget = source ? source : store;
-
-      for (var idx_path in path) {
-        var target = path[idx_path];
-
-        if (idx_path == path.length - 1) {
-          // A-t-on à faire à un node de mobx-state-tree ?
-          var value = loadTarget[target];
-
-          if (loadTarget == undefined) {
-            try {
-              value = loadTarget.get(target);
-            } catch (err) {}
-          }
-
-          return value;
-        } else {
-          // A-t-on à faire à un node de mobx-state-tree ?
-          var previousLoadTarget = loadTarget;
-          loadTarget = loadTarget[target];
-
-          if (loadTarget == undefined) {
-            try {
-              loadTarget = previousLoadTarget.get(target);
-            } catch (err) {}
-          }
-        }
-      }
-
-      return notFoundValue;
-    },
-    getError: function getError(savePath) {
-      // Il y a-t-il une erreur ?
-      // ---
-      var errors = self.errors;
-
-      var _iterator = NxApp_createForOfIteratorHelper(errors),
-          _step;
-
-      try {
-        for (_iterator.s(); !(_step = _iterator.n()).done;) {
-          var error = _step.value;
-
-          if (JSON.stringify(error.path) == JSON.stringify(savePath)) {
-            return error.label;
-          }
-        }
-      } catch (err) {
-        _iterator.e(err);
-      } finally {
-        _iterator.f();
-      }
-
-      return '';
-    }
-  };
-}).actions(function (self) {
-  return {
-    setField: function setField(field, value) {
-      self[field] = value;
-    },
-    // -
-    updateMobile: function updateMobile() {
-      // Mobile or desktop ?
-      // ---
-      var mobileInfos = detectMobile();
-      self.isMobile = mobileInfos.isMobile;
-      self.isDesktop = mobileInfos.isDesktop;
-      self.breakPoint650 = mobileInfos.breakPoint650;
-      self.breakPoint414 = mobileInfos.breakPoint414;
-      self.breakPoint375 = mobileInfos.breakPoint375;
-      self.breakPoint320 = mobileInfos.breakPoint320;
-    },
-    updatePopups: function updatePopups(popups) {// Popups registering
-      // ---
-      // const popup = self.popup;
-      // popup.register(popupTaskKey);
-      // if (popups) {
-      // 	for (let popupKey of Object.keys(popups)) {
-      // 		popup.register(popupKey);
-      // 	}
-      // }
-    },
-    update: function update(raw, callback) {
-      self.history = []; // User logged
-
-      self.account.update(raw.user); // Edit mode ?
-
-      var editMode = getFromStorage('editMode', false, 'bool');
-
-      if (self.urlParams.hasOwnProperty('edit')) {
-        editMode = self.urlParams.edit == 'true' ? true : false;
-      }
-
-      if (!self.account.is_editor) {
-        editMode = false;
-      } // Debug mode ?
-
-
-      var debugMode = getFromStorage('debugMode', false, 'bool');
-
-      if (!self.account.is_admin) {
-        debugMode = false;
-      }
-
-      self.initialized = true;
-      self.editMode = editMode;
-      self.debugMode = debugMode;
-      self.services.update(raw.smap);
-
-      if (callback) {
-        callback(raw);
-      }
-    },
-    init: function init(callback, popups, extras) {
-      // Initialisation de l'application avec la récupération de données communes
-      // ---
-      extras = extras ? extras : {};
-      window.urlParams = {};
-      window.verboseRender = false;
-      window.verboseScroll = false;
-      initWeekFunctions();
-      initTrimFunction();
-      self.updatePopups(popups);
-
-      if (callback) {
-        // Fix history
-        window.addEventListener("popstate", function (event) {
-          document.location.reload();
-        });
-        var params = new FormData();
-        params.append('extras', JSON.stringify(extras));
-        var url = '/app/init';
-        self.fetchJSON(url, {
-          'body': params
-        }, false, 'POST').then(function (json) {
-          self.update(json, callback);
-        })["catch"](function (ex) {
-          console.error("Fetch failed for ".concat(url), ex); // self.snackbar.update(true, "Une erreur est survenue.", "error");
-        });
-      } // Responsiveness -> watching the window's size
-
-
-      window.onresize = function () {
-        clearTimeout(window.resizeTimeout);
-        window.resizeTimeout = setTimeout(function () {
-          self.updateMobile();
-        }, 100);
-      };
-    },
-    // Navigation Functions
-    // --------------------------------------------------------------------------------------------------
-    gotoInternal: function gotoInternal(url) {
-      document.location = url;
-    },
-    gotoExternal: function gotoExternal(url) {
-      if (!url) {
-        return;
-      }
-
-      window.open(url, '_blank');
-    },
-    getHistory: function getHistory() {
-      // Récupère l'historique de navigation dans le localstorage
-      // ---
-      // let navHistory = [];
-      // try {
-      // 	navHistory = getFromStorage('navHistory', [], 'json');
-      // } catch(err) {
-      // 	self.clearHistory();
-      // 	console.error(err);
-      // }
-      var navHistory = self.history ? copyObj(self.history) : [];
-      return navHistory;
-    },
-    clearHistory: function clearHistory() {
-      // Vide l'historique de navigation
-      // ---
-      // setToStorage('navHistory', [], 'json');
-      self.history = [];
-    },
-    addHistory: function addHistory(newHistory) {
-      // Ajoute un historique de navigation si il diffère du précedent
-      // ---
-      var navHistory = self.getHistory();
-      var historyToAdd = true; // Comparaison par rapport à la dernière navigation
-
-      if (navHistory.length > 0) {
-        var lastHistoryStr = JSON.stringify(navHistory[navHistory.length - 1]);
-        var newHistoryStr = JSON.stringify(newHistory);
-
-        if (lastHistoryStr == newHistoryStr) {
-          historyToAdd = false;
-        }
-      }
-
-      if (historyToAdd) {
-        navHistory.push(newHistory); // setToStorage('navHistory', navHistory, 'json');
-
-        self.history = navHistory;
-      }
-    },
-    removeHistory: function removeHistory() {
-      // Supprime la dernière entrée de l'historique de navigation
-      // ---
-      var navHistory = self.getHistory();
-      navHistory.splice(navHistory.length - 1, navHistory.length); // setToStorage('navHistory', navHistory, 'json');
-
-      self.history = navHistory;
-    },
-    removeFromHistory: function removeFromHistory(url) {
-      // Nettoie l'url passé en paramètre de l'historique de navigation
-      // ---
-      var navHistory = self.getHistory();
-      var navHistoryCleared = [];
-
-      var _iterator2 = NxApp_createForOfIteratorHelper(navHistory),
-          _step2;
-
-      try {
-        for (_iterator2.s(); !(_step2 = _iterator2.n()).done;) {
-          var _history = _step2.value;
-
-          if (_history.destination != url) {
-            navHistoryCleared.push(_history);
-          }
-        } // setToStorage('navHistory', navHistoryCleared, 'json');
-
-      } catch (err) {
-        _iterator2.e(err);
-      } finally {
-        _iterator2.f();
-      }
-
-      self.history = navHistoryCleared;
-    },
-    setBrowserURL: function setBrowserURL(url, hash) {
-      // Mise à jour de l'URL du navigateur internet (mais sans y accéder)
-      // ---
-      if (hash) {
-        url = "".concat(url.split('#')[0]).concat(hash);
-      }
-
-      history.pushState(null, '', url);
-      sessionStorage.setItem('came_from', url);
-    },
-    navigate: function navigate(destination, newContext, jsonPatches, callback, ignoreHistory, clearHistory, replaceLastHistory, ignoreContext) {
-      // Navigue vers l'endroit demandé (depuis les liens de l'accueil, ou bien du menu)
-      // ---
-      var store = (0,mobx_state_tree_module/* getRoot */.yj)(self);
-      var isMobile = self.isMobile;
-      newContext = newContext ? newContext : 'home';
-      ignoreHistory = newContext == 'home' ? true : ignoreHistory;
-      clearHistory = newContext == 'home' ? true : clearHistory;
-      ignoreContext = ignoreContext != undefined ? ignoreContext : false;
-      var currentContext = self.context; // Nettoyage de l'historique de navigation
-
-      if (clearHistory) {
-        self.clearHistory();
-      } // Ajout d'un historique de navigation
-
-
-      if (!ignoreHistory) {
-        if (replaceLastHistory) {
-          self.removeHistory();
-        }
-
-        self.addHistory({
-          destination: destination,
-          newContext: newContext,
-          jsonPatches: jsonPatches,
-          callback: callback
-        });
-      } // Gestion des nouveaux states
-
-
-      if (jsonPatches != undefined) {
-        (0,mobx_state_tree_module/* applyPatch */.af)(store, jsonPatches);
-      } // MAJ de l'URL du navigateur
-
-
-      self.setBrowserURL(destination); // Changement de contexte (all the magic of one paged apps appens here!)
-
-      if (ignoreContext == false && newContext != currentContext) {
-        setToStorage('previousContext', self.context);
-        self.context = newContext; // Restoration du défilement
-
-        clearTimeout(window.scrollTimeoutRestore);
-        setTimeout(function () {
-          self.restoreScroll();
-        }, 50); // Gestion du callback
-
-        if (callback) {
-          callback(self, newContext);
-        }
-      } else {
-        // Gestion du callback
-        if (callback) {
-          callback(self, newContext);
-        }
-      }
-    },
-    goBack: function goBack() {
-      // Retourne vers la dernière navigation historisée
-      // ---
-      var homeUrl = self.homeUrl;
-      var navHistory = self.getHistory();
-      var target = null; // Où doit-on retourner ?
-
-      if (navHistory.length < 2) {
-        target = {
-          destination: homeUrl,
-          newContext: 'home',
-          jsonPatches: undefined,
-          callback: undefined
-        };
-      } else {
-        var targetDict = navHistory[navHistory.length - 2];
-        targetDict['jsonPatches'] = targetDict['jsonPatches'] ? targetDict['jsonPatches'] : [];
-        target = {
-          destination: targetDict.destination,
-          newContext: targetDict.newContext,
-          jsonPatches: targetDict.jsonPatches,
-          callback: targetDict.callback
-        }; // Nettoyage de l'historique
-
-        self.removeHistory();
-      }
-
-      self.navigate(target.destination, target.newContext, target.jsonPatches, target.callback, true, false);
-    },
-    goHome: function goHome() {
-      // Retourne à l'accueil
-      // ---
-      self.navigate(self.homeUrl, 'home');
-    },
-    // UI actions
-    // --------------------------------------------------------------------------------------------------
-    // Scroll Stuff
-    // -
-    handleScroll: function handleScroll(evt) {
-      // Sur défilement utilisateur
-      // ---
-      var scroll = evt.currentTarget.scrollTop;
-      var scrollHeight = evt.currentTarget.scrollHeight;
-      var clientHeight = evt.currentTarget.clientHeight;
-      clearTimeout(window.scrollTimeout);
-      window.scrollTimeout = setTimeout(function () {
-        self.saveScroll(scroll);
-
-        if (window.infiniteScrollCallback) {
-          if (scrollHeight - scroll == clientHeight) {
-            window.infiniteScrollCallback();
-          }
-        }
-
-        if (window.scrollCallback) {
-          window.scrollCallback();
-        }
-      }, 500);
-    },
-    removeScrollEvent: function removeScrollEvent() {
-      document.getElementById("main").removeEventListener("scroll", self.handleScroll);
-    },
-    attachScrollEvent: function attachScrollEvent() {
-      document.getElementById("main").addEventListener("scroll", self.handleScroll);
-    },
-    saveScroll: function saveScroll(scroll) {
-      // Save scroll value
-      // ---
-      var context = self.context;
-      var scrollKey = self.getScrollKey();
-
-      if (window.verboseScroll) {
-        console.log("Saving scroll ".concat(scrollKey, " : ").concat(scroll));
-      }
-
-      setToStorage(scrollKey, scroll);
-    },
-    restoreScroll: function restoreScroll() {
-      // Restore scroll value
-      // ---
-      var scrollKey = self.getScrollKey();
-      var scroll = getFromStorage(scrollKey, 0, 'int');
-
-      if (window.infiniteScrollCallback) {
-        scroll = 0;
-      }
-
-      if (window.verboseScroll) {
-        console.log("Restore scroll ".concat(scrollKey, " : ").concat(scroll));
-      }
-
-      var main = document.getElementById("main");
-
-      if (main) {
-        self.removeScrollEvent();
-        main.scrollTop = scroll;
-        self.attachScrollEvent();
-      }
-    },
-    scrollToTop: function scrollToTop() {
-      // Smooth scroll to the top of the page
-      // ---
-      var main = document.getElementById("main");
-
-      if (main) {
-        main.scrollTo({
-          left: 0,
-          top: 0,
-          behavior: "smooth"
-        });
-      }
-    },
-    scrollToBottom: function scrollToBottom() {
-      // Smooth scroll to the bottom of the page
-      // ---
-      var main = document.getElementById("main");
-
-      if (main) {
-        main.scrollTo({
-          left: 0,
-          top: main.scrollHeight,
-          behavior: "smooth"
-        });
-      }
-    },
-    // Datas Functions
-    // --------------------------------------------------------------------------------------------------
-    addTask: function addTask(taskId) {
-      // Ajout de la tâche si pas déjà présente
-      // ---
-      if (self.tasks.indexOf(taskId) == -1) {
-        self.tasks.push(taskId);
-      }
-    },
-    removeTask: function removeTask(taskId) {
-      // Suppression de la tâche si est présente
-      // ---
-      if (self.tasks.indexOf(taskId) > -1) {
-        self.tasks.splice(self.tasks.indexOf(taskId), 1);
-      }
-    },
-    // -
-    _fetchDatas: function _fetchDatas(input, init, quiet, method, params, jsonOnly) {
-      // AJAX / fetch call
-      // ---
-      quiet = quiet == true ? true : false;
-      method = method ? method : 'GET';
-      jsonOnly = jsonOnly == false ? false : true; // NxApp lock UI
-
-      var taskId = uuid();
-
-      if (!quiet) {
-        self.addTask(taskId);
-      } // Init request body
-
-
-      init = init ? init : {};
-      init['credentials'] = 'include';
-      init['method'] = method; // Params
-
-      if (params) {
-        for (var _i = 0, _Object$entries = Object.entries(params); _i < _Object$entries.length; _i++) {
-          var _Object$entries$_i = NxApp_slicedToArray(_Object$entries[_i], 2),
-              paramKey = _Object$entries$_i[0],
-              paramValue = _Object$entries$_i[1];
-
-          if (input.indexOf('?') == -1) {
-            input = "".concat(input, "?").concat(paramKey, "=").concat(paramValue);
-          } else {
-            input = "".concat(input, "&").concat(paramKey, "=").concat(paramValue);
-          }
-        }
-      } // Fetch
-
-
-      return fetch(input, init).then(function (response) {
-        if (!quiet) {
-          self.removeTask(taskId);
-        }
-
-        if (jsonOnly) {
-          if (response.headers.get('content-type') != 'application/json') {
-            throw Error(response.statusText);
-          }
-
-          return response.json();
-        }
-
-        return response.text();
-      })["catch"](function (ex) {
-        if (!quiet) {
-          self.removeTask(taskId);
-        }
-
-        throw Error(ex);
-      });
-    },
-    fetchJSON: function fetchJSON(input, init, quiet, method, params) {
-      return self._fetchDatas(input, init, quiet, method, params, true);
-    },
-    fetchHTML: function fetchHTML(input, init, quiet, method, params) {
-      return self._fetchDatas(input, init, quiet, method, params, false);
-    },
-    // -
-    saveValue: function saveValue(path, value, callbackSaved) {
-      // Sauvegarde de la nouvelle valeur à travers un arbre MobxStateTree
-      // ---
-      var store = (0,mobx_state_tree_module/* getRoot */.yj)(self);
-      var jsonPath = convertToJSONPath(path);
-      (0,mobx_state_tree_module/* applyPatch */.af)(store, [{
-        "op": "replace",
-        "path": jsonPath,
-        "value": value
-      }]);
-
-      if (callbackSaved) {
-        callbackSaved(path, value);
-      }
-    },
-    saveFrozenValue: function saveFrozenValue(pathToFrozen, pathInFrozen, value, callbackSaved) {
-      // Sauvegarde de la valeur
-      var store = (0,mobx_state_tree_module/* getRoot */.yj)(self);
-      var frozen = self.getValue(pathToFrozen, null);
-
-      if (frozen == null) {
-        return;
-      }
-
-      var saveTarget = copyObj(frozen);
-
-      for (var idx_path in pathInFrozen) {
-        var target = pathInFrozen[idx_path];
-
-        if (idx_path == pathInFrozen.length - 1) {
-          saveTarget[target] = value;
-        } else {
-          try {
-            saveTarget[target];
-          } catch (err) {
-            if (!saveTarget.hasOwnProperty(target)) {
-              saveTarget[target] = {};
-            }
-          }
-        }
-      }
-
-      self.saveTarget(pathToFrozen, frozen);
-
-      if (callbackSaved) {
-        callbackSaved(path, value);
-      }
-    },
-    // -
-    addError: function addError(errorPath, errorMsg) {
-      // Ajoute l'erreur passée en paramètres
-      // ---
-      if (!self.errors) {
-        self.errors = [];
-      }
-
-      var errorDict = {
-        'path': errorPath,
-        'label': errorMsg
-      };
-      self.errors.push(errorDict);
-      return errorDict;
-    },
-    clearError: function clearError(savePath) {
-      // Nettoyage de l'erreur
-      // ---
-      var errors = self.errors;
-      var clearedErrors = [];
-
-      var _iterator3 = NxApp_createForOfIteratorHelper(errors),
-          _step3;
-
-      try {
-        for (_iterator3.s(); !(_step3 = _iterator3.n()).done;) {
-          var error = _step3.value;
-
-          if (JSON.stringify(error.path) != JSON.stringify(savePath)) {
-            clearedErrors.push(error);
-          }
-        }
-      } catch (err) {
-        _iterator3.e(err);
-      } finally {
-        _iterator3.f();
-      }
-
-      self.setField('errors', clearedErrors);
-    },
-    clearErrors: function clearErrors() {
-      self.errors = [];
-    },
-    // -
-    setDocState: function setDocState(docId, newState, callback, ajaxBase) {
-      // Appel AJAX de la fonction de mise à jour du statut du document passé en paramètres
-      // ---
-      var app = self;
-      var snackbar = self.snackbar;
-      ajaxBase = ajaxBase ? ajaxBase : '';
-      var params = new FormData();
-      params.append('doc_id', docId);
-      params.append('new_state', newState);
-      var url = "".concat(ajaxBase, "/app/set_doc_state");
-      app.fetchJSON(url, {
-        'body': params
-      }, false, 'POST').then(function (json) {
-        if (callback) {
-          callback();
-        }
-      })["catch"](function (ex) {
-        console.error("Fetch failed for ".concat(url), ex);
-        snackbar.update(true, "Une erreur est survenue.", "error");
-      });
-    }
-  };
-}); // Functions
-// --------------------------------------------------------------------------------------------------------------------------------------------
-
-var TAG_makeInitSnapshot = function TAG_makeInitSnapshot() {};
-
-var makeInitSnapshot = function makeInitSnapshot(routes, snapshot, callback) {
-  // Génération du snapshot d'initialisation du RootStore des applications
-  // ---
-  routes = routes != undefined ? routes : {};
-  snapshot = snapshot != undefined ? snapshot : {}; // Routes
-
-  var routeNodes = new route_node_esm/* RouteNode */.k('', '');
-  routeNodes.add(new route_node_esm/* RouteNode */.k('about', '/about'));
-  routeNodes.add(new route_node_esm/* RouteNode */.k('login', '/login'));
-  routeNodes.add(new route_node_esm/* RouteNode */.k('forbidden', '/forbidden'));
-  routeNodes.add(new route_node_esm/* RouteNode */.k('account', '/account'));
-  routeNodes.add(new route_node_esm/* RouteNode */.k('infos', '/infos'));
-
-  for (var _i2 = 0, _Object$entries2 = Object.entries(routes); _i2 < _Object$entries2.length; _i2++) {
-    var _Object$entries2$_i = NxApp_slicedToArray(_Object$entries2[_i2], 2),
-        routeContextKey = _Object$entries2$_i[0],
-        routeMatchURL = _Object$entries2$_i[1];
-
-    routeNodes.add(new route_node_esm/* RouteNode */.k(routeContextKey, routeMatchURL));
-  }
-
-  var matchResult = matchUrl(routeNodes, document.location.pathname);
-  var mobileInfos = detectMobile();
-  var urlParams = getUrlParams();
-  var standaloneMode = false;
-
-  if (urlParams.hasOwnProperty('standaloneMode')) {
-    if (isTrue(urlParams.standaloneMode)) {
-      standaloneMode = true;
-    }
-  } // App
-  // -
-
-
-  if (!snapshot.hasOwnProperty('app')) {
-    snapshot['app'] = {};
-  }
-
-  snapshot['app']['context'] = matchResult.context;
-  snapshot['app']['standaloneMode'] = standaloneMode;
-  snapshot['app']['isMobile'] = mobileInfos.isMobile;
-  snapshot['app']['isDesktop'] = mobileInfos.isDesktop;
-  snapshot['app']['breakPoint650'] = mobileInfos.breakPoint650;
-  snapshot['app']['breakPoint414'] = mobileInfos.breakPoint414;
-  snapshot['app']['breakPoint375'] = mobileInfos.breakPoint375;
-  snapshot['app']['breakPoint320'] = mobileInfos.breakPoint320;
-  snapshot['app']['routes'] = routes;
-  snapshot['app']['urlParams'] = urlParams;
-  snapshot['app']['matchResult'] = matchResult;
-
-  if (!snapshot['app'].hasOwnProperty('theme')) {
-    snapshot['app']['theme'] = {};
-  }
-
-  snapshot['app']['theme']['variant'] = getFromStorage('nxTheme', snapshot['app']['theme'].hasOwnProperty('variant') ? snapshot.app.theme.variant : 'light'); // Drawer
-  // -
-
-  if (!snapshot['app'].hasOwnProperty('menu')) {
-    snapshot['app']['menu'] = {
-      expanded: true,
-      pinned: true
-    };
-  }
-
-  snapshot['app']['menu']['expanded'] = getFromStorage('menuExpanded', snapshot.app.menu.expanded, 'bool');
-  snapshot['app']['menu']['pinned'] = getFromStorage('menuPinned', snapshot.app.menu.pinned, 'bool'); // Apps
-  // -
-
-  if (!snapshot['app'].hasOwnProperty('portal')) {
-    snapshot['app']['portal'] = {
-      open: false,
-      expanded: true,
-      pinned: false
-    };
-  }
-
-  snapshot['app']['portal']['expanded'] = getFromStorage('portalExpanded', snapshot.app.portal.expanded, 'bool');
-  snapshot['app']['portal']['pinned'] = getFromStorage('portalPinned', snapshot.app.portal.pinned, 'bool'); // URL params
-  // -
-
-  if (matchResult && matchResult.hasOwnProperty('params')) {
-    for (var _i3 = 0, _Object$entries3 = Object.entries(matchResult.params); _i3 < _Object$entries3.length; _i3++) {
-      var _Object$entries3$_i = NxApp_slicedToArray(_Object$entries3[_i3], 2),
-          urlParamKey = _Object$entries3$_i[0],
-          urlParamValue = _Object$entries3$_i[1];
-
-      snapshot[urlParamKey] = urlParamValue;
-    }
-  }
-
-  if (callback) {
-    callback(snapshot, urlParams);
-  }
-
-  return snapshot;
-}; // Class Components ReactJS
-// --------------------------------------------------------------------------------------------------------------------------------------------
-// ***** ErrorBoundary *****
-// *************************
-
-var TAG_ErrorBoundary = function TAG_ErrorBoundary() {};
-
-var ErrorBoundary = /*#__PURE__*/function (_React$Component) {
-  _inherits(ErrorBoundary, _React$Component);
-
-  var _super = _createSuper(ErrorBoundary);
-
-  function ErrorBoundary(props) {
-    var _this;
-
-    _classCallCheck(this, ErrorBoundary);
-
-    _this = _super.call(this, props);
-    _this.state = {
-      hasError: false
-    };
-    return _this;
-  }
-
-  _createClass(ErrorBoundary, [{
-    key: "componentDidCatch",
-    value: function componentDidCatch(error, errorInfo) {
-      console.error('componentDidCatch');
-      console.error(error);
-      console.error('-');
-      console.error(errorInfo);
-    }
-  }, {
-    key: "render",
-    value: function render() {
-      if (this.state.hasError) {
-        return /*#__PURE__*/react.createElement("div", {
-          className: "nx-page"
-        }, /*#__PURE__*/react.createElement(Helper_Helper, {
-          icon: /*#__PURE__*/react.createElement("img", {
-            className: "nx-helper-icon",
-            src: "/nexus_static/img/emojis/jelly_eyes_closed.png"
-          }),
-          title: "!",
-          subtitle: "Une erreur est survenue.",
-          severity: "error",
-          show: true
-        }));
-      }
-
-      return this.props.children;
-    }
-  }], [{
-    key: "getDerivedStateFromError",
-    value: function getDerivedStateFromError(error) {
-      return {
-        hasError: true
-      };
-    }
-  }]);
-
-  return ErrorBoundary;
-}(react.Component); // Function Components ReactJS
-// --------------------------------------------------------------------------------------------------------------------------------------------
-// ***** NxApp *****
-// *****************
-
-
-var TAG_NxApp = function TAG_NxApp() {};
-
-var NxApp_NxApp = (0,es/* observer */.Pi)(function (props) {
-  var store = react.useContext(window.storeContext);
-  var app = store.app;
-  var menu = app.menu;
-  react.useEffect(function () {
-    // Scroll restoration
-    clearTimeout(window.scrollTimeoutRestore);
-    setTimeout(function () {
-      app.restoreScroll();
-    }, 250); // JS Ready
-
-    var body = document.body;
-    body.classList.add("jsready");
-  }, []); // From ... props
-
-  var Header = props.header ? props.header : null;
-  var Menu = props.menu ? props.menu : null;
-  var Footer = props.footer ? props.footer : null;
-  var children = props.children ? props.children : null;
-  var contexts = props.contexts ? props.contexts : {};
-  var popups = props.popups ? props.popups : {}; // From ... store
-
-  var context = app.context;
-  var isLoading = app.isLoading;
-  var isFullScreen = app.isFullScreen;
-  var breakPoint650 = app.breakPoint650;
-  var breakPoint414 = app.breakPoint414;
-  var breakPoint375 = app.breakPoint375;
-  var breakPoint320 = app.breakPoint320;
-  var menuPinned = menu.pinned;
-  var theme = app.theme; // ...
-
-  contexts['about'] = AboutPage;
-  contexts['login'] = LoginPage;
-  contexts['forbidden'] = ForbiddenPage;
-  contexts['account'] = AccountPage; // contexts['infos'] = InfoPage;
-  // Render
-  // ==================================================================================================
-
-  var break650 = breakPoint650 ? 'break-650' : '';
-  var break414 = breakPoint414 ? 'break-414' : '';
-  var break375 = breakPoint375 ? 'break-375' : '';
-  var break320 = breakPoint320 ? 'break-320' : ''; // No children ? Then we maybe have a contextual component to draw
-
-  var content = children;
-
-  if (!content) {
-    if (contexts.hasOwnProperty(context)) {
-      var ContextualComponent = contexts[context];
-      content = /*#__PURE__*/react.createElement(ContextualComponent, null);
-    } else {
-      // 404 not found
-      content = /*#__PURE__*/react.createElement(NotFoundPage, null);
-    }
-  } // Popups
-
-
-  var popupsRendered = [];
-
-  for (var _i4 = 0, _Object$entries4 = Object.entries(popups); _i4 < _Object$entries4.length; _i4++) {
-    var _Object$entries4$_i = NxApp_slicedToArray(_Object$entries4[_i4], 2),
-        popupKey = _Object$entries4$_i[0],
-        PopupComponent = _Object$entries4$_i[1];
-
-    popupsRendered.push( /*#__PURE__*/react.createElement(PopupComponent, {
-      key: popupKey
-    }));
-  } // Render
-  // ==================================================================================================
-
-
-  return /*#__PURE__*/react.createElement(ErrorBoundary, null, /*#__PURE__*/react.createElement("div", {
-    id: "nx-base",
-    className: (0,clsx_m/* default */.Z)(context, {
-      'break-650': breakPoint650
-    }, {
-      'break-414': breakPoint414
-    }, {
-      'break-375': breakPoint375
-    }, {
-      'break-320': breakPoint320
-    }, "ui-".concat(theme.variant), {
-      'loading': isLoading
-    })
-  }, Header && !isFullScreen && /*#__PURE__*/react.createElement(Header, null), /*#__PURE__*/react.createElement("div", {
-    id: "nx-content"
-  }, Menu && !isFullScreen && /*#__PURE__*/react.createElement(Menu, null), /*#__PURE__*/react.createElement("div", {
-    id: "nx-main"
-  }, content, /*#__PURE__*/react.createElement(Snackbar_Snackbar, null)), !isFullScreen && /*#__PURE__*/react.createElement(Portal_Portal, null), popupsRendered)));
-});
-// EXTERNAL MODULE: ../../nexus/react/contexts/home/Home.css
-var Home = __webpack_require__(2037);
-;// CONCATENATED MODULE: ../../nexus/react/contexts/home/Home.jsx
-
-
-
-
-
-
-
- // Functions Components ReactJS
-// -------------------------------------------------------------------------------------------------------------
-// ***** HomeHeaderMiddle *****
-// ****************************
-
-var TAG_HomeHeaderMiddle = function TAG_HomeHeaderMiddle() {};
-
-var HomeHeaderMiddle = (0,es/* observer */.Pi)(function (props) {
-  var store = react.useContext(window.storeContext);
-  var app = store.app;
-  var services = app.services; // From ... store
-
-  var appName = services.me.name; // ...
-  // Render
-  // ==================================================================================================
-
-  return /*#__PURE__*/react.createElement(HeaderTitle, {
-    title: appName,
-    titleStyle: {
-      fontWeight: 'bold'
-    },
-    centered: true
-  });
-}); // ***** HomeMenuItem *****
-// ************************
-
-var TAG_HomeMenuItem = function TAG_HomeMenuItem() {};
-
-var HomeMenuItem = (0,es/* observer */.Pi)(function (props) {
-  var store = react.useContext(window.storeContext);
-  var app = store.app;
-  var menu = app.menu; // From ... store
-
-  var breakPoint650 = app.breakPoint650; // Evènements
-  // ==================================================================================================
-
-  var handleMenuItemClick = function handleMenuItemClick() {
-    app.navigate(app.homeUrl, app.homeContext);
-    app.menu.close();
-  }; // Render
-  // ==================================================================================================
-
-
-  var homeMenuItemContent = null;
-
-  if (breakPoint650) {
-    homeMenuItemContent = /*#__PURE__*/react.createElement(MenuItem, {
-      icon: /*#__PURE__*/react.createElement(Icon_Icon, {
-        name: "home",
-        width: "120px"
-      }),
-      label: "Accueil",
-      activeContexts: [app.homeContext],
-      callbackClick: handleMenuItemClick
-    });
-  }
-
-  return homeMenuItemContent;
-});
-// EXTERNAL MODULE: ../../nexus/react/contexts/admin/Admin.css
-var Admin = __webpack_require__(4644);
-;// CONCATENATED MODULE: ../../nexus/react/contexts/admin/Admin.jsx
-
-
-
-
-
-
-
- // Functions Components ReactJS
-// -------------------------------------------------------------------------------------------------------------
-// ***** AdminHeaderLeft *****
-// ***************************
-
-var TAG_AdminHeaderLeft = function TAG_AdminHeaderLeft() {};
-
-var AdminHeaderLeft = (0,es/* observer */.Pi)(function (props) {
-  var store = react.useContext(window.storeContext);
-  var app = store.app; // ...
-  // Render
-  // ==================================================================================================
-
-  return /*#__PURE__*/react.createElement(HeaderTitle, {
-    title: "Administration",
-    titleStyle: {
-      marginLeft: '10px'
-    }
-  });
-}); // ***** AdminMenuItem *****
-// *************************
-
-var TAG_AdminMenuItem = function TAG_AdminMenuItem() {};
-
-var AdminMenuItem = (0,es/* observer */.Pi)(function (props) {
-  var store = react.useContext(window.storeContext);
-  var app = store.app;
-  var account = app.account; // From ... store
-
-  var isAdmin = account.is_admin; // Evènements
-  // ==================================================================================================
-
-  var handleMenuItemClick = function handleMenuItemClick() {
-    app.navigate(app.adminUrl, app.adminContext);
-  }; // Render
-  // ==================================================================================================
-
-
-  var adminMenuItemContent = null;
-
-  if (isAdmin) {
-    adminMenuItemContent = /*#__PURE__*/react.createElement(MenuItem, {
-      icon: /*#__PURE__*/react.createElement(Icon_Icon, {
-        name: "setting"
-      }),
-      label: "Administration",
-      activeContexts: [app.adminContext],
-      callbackClick: handleMenuItemClick
-    });
-  }
-
-  return adminMenuItemContent;
-});
-// EXTERNAL MODULE: ./contexts/search/Search.css
-var Search = __webpack_require__(4906);
-;// CONCATENATED MODULE: ./contexts/search/Search.jsx
-
-
-
-
-
-
-
-
- // Models
-// -------------------------------------------------------------------------------------------------------------
-// ***** SearchStore *****
-// ***********************
-
-var TAG_SearchStore = function TAG_SearchStore() {};
-
-var SearchStore = mobx_state_tree_module/* types.model */.V5.model({}).actions(function (self) {
-  return {
-    setField: function setField(field, value) {
-      self[field] = value;
-    },
-    // -
-    update: function update(raw) {}
-  };
-}); // Functions Components ReactJS
-// -------------------------------------------------------------------------------------------------------------
-// ***** SearchHeaderMiddle *****
-// ******************************
-
-var TAG_SearchHeaderMiddle = function TAG_SearchHeaderMiddle() {};
-
-var SearchHeaderMiddle = (0,es/* observer */.Pi)(function (props) {
-  var store = react.useContext(window.storeContext);
-  var app = store.app; // ...
-  // Render
-  // ==================================================================================================
-
-  return /*#__PURE__*/react.createElement(HeaderTitle, {
-    title: "Rechercher"
-  });
-}); // ***** SearchMenuItem *****
-// **************************
-
-var TAG_SearchMenuItem = function TAG_SearchMenuItem() {};
-
-var SearchMenuItem = (0,es/* observer */.Pi)(function (props) {
-  var store = react.useContext(window.storeContext);
-  var app = store.app;
-  var menu = app.menu; // ...
-
-  var searchContext = 'search'; // Evènements
-  // ==================================================================================================
-
-  var handleMenuItemClick = function handleMenuItemClick() {
-    store.navigateTo(searchContext);
-    app.menu.close();
-  }; // Render
-  // ==================================================================================================
-
-
-  return /*#__PURE__*/react.createElement(MenuItem, {
-    icon: /*#__PURE__*/react.createElement(Icon_Icon, {
-      name: "search",
-      width: "120px"
-    }),
-    label: "Rechercher",
-    activeContexts: [searchContext],
-    callbackClick: handleMenuItemClick
-  });
-}); // ***** HomePage *****
-// ********************
-
-var TAG_SearchPage = function TAG_SearchPage() {};
-
-var SearchPage = (0,es/* observer */.Pi)(function (props) {
-  var store = react.useContext(window.storeContext);
-  var app = store.app; // Renderers
-  // ==================================================================================================
-
-  var renderHelper = function renderHelper() {
-    // Render :: Helper
-    // ---
-    return /*#__PURE__*/react.createElement(Helper_Helper, {
-      iconName: "search",
-      show: true
-    });
-  };
-
-  return /*#__PURE__*/react.createElement("div", {
-    className: "nx-page"
-  }, renderHelper());
-});
-// EXTERNAL MODULE: ./contexts/blog/Blog.css
-var Blog = __webpack_require__(6737);
-;// CONCATENATED MODULE: ./contexts/blog/Blog.jsx
-
-
-
-
-
-
-
-
- // Models
-// -------------------------------------------------------------------------------------------------------------
-// ***** BlogStore *****
-// *********************
-
-var TAG_BlogStore = function TAG_BlogStore() {};
-
-var BlogStore = mobx_state_tree_module/* types.model */.V5.model({
-  loaded: false
-}).actions(function (self) {
-  return {
-    setField: function setField(field, value) {
-      self[field] = value;
-    },
-    // -
-    update: function update(raw) {}
-  };
-}); // Functions Components ReactJS
-// -------------------------------------------------------------------------------------------------------------
-// ***** BlogHeaderLeft *****
-// **************************
-
-var TAG_BlogHeaderLeft = function TAG_BlogHeaderLeft() {};
-
-var BlogHeaderLeft = (0,es/* observer */.Pi)(function (props) {
-  var store = react.useContext(window.storeContext);
-  var app = store.app; // ...
-  // Render
-  // ==================================================================================================
-
-  return /*#__PURE__*/react.createElement(HeaderTitle, {
-    title: "Blog",
-    titleStyle: {
-      marginLeft: '10px'
-    }
-  });
-}); // ***** BlogMenuItem *****
-// ************************
-
-var TAG_BlogMenuItem = function TAG_BlogMenuItem() {};
-
-var BlogMenuItem = (0,es/* observer */.Pi)(function (props) {
-  var store = react.useContext(window.storeContext);
-  var app = store.app;
-  var menu = app.menu; // ...
-
-  var blogContext = 'blog'; // Evènements
-  // ==================================================================================================
-
-  var handleMenuItemClick = function handleMenuItemClick() {
-    store.navigateTo(blogContext);
-    app.menu.close();
-  }; // Render
-  // ==================================================================================================
-
-
-  return /*#__PURE__*/react.createElement(MenuItem, {
-    icon: /*#__PURE__*/react.createElement(Icon_Icon, {
-      name: "forum",
-      width: "120px"
-    }),
-    label: "Blog",
-    activeContexts: [blogContext],
-    callbackClick: handleMenuItemClick
-  });
-}); // ***** BlogPage *****
-// ********************
-
-var TAG_BlogPage = function TAG_BlogPage() {};
-
-var BlogPage = (0,es/* observer */.Pi)(function (props) {
-  var store = react.useContext(window.storeContext);
-  var app = store.app; // Renderers
-  // ==================================================================================================
-
-  var renderHelper = function renderHelper() {
-    // Render :: Helper
-    // ---
-    return /*#__PURE__*/react.createElement(Helper_Helper, {
-      iconName: "forum",
-      show: true
-    });
-  };
-
-  return /*#__PURE__*/react.createElement("div", {
-    className: "nx-page"
-  }, renderHelper());
-});
-// EXTERNAL MODULE: ./contexts/projects/Projects.css
-var Projects = __webpack_require__(8525);
-;// CONCATENATED MODULE: ./contexts/projects/Projects.jsx
-
-
-
-
-
-
-
-
- // Models
-// -------------------------------------------------------------------------------------------------------------
-// ***** ProjectsStore *****
-// *************************
-
-var TAG_ProjectsStore = function TAG_ProjectsStore() {};
-
-var ProjectsStore = mobx_state_tree_module/* types.model */.V5.model({
-  loaded: false
-}).actions(function (self) {
-  return {
-    setField: function setField(field, value) {
-      self[field] = value;
-    },
-    // -
-    update: function update(raw) {}
-  };
-}); // Functions Components ReactJS
-// -------------------------------------------------------------------------------------------------------------
-// ***** ProjectsHeaderLeft *****
-// ******************************
-
-var TAG_ProjectsHeaderLeft = function TAG_ProjectsHeaderLeft() {};
-
-var ProjectsHeaderLeft = (0,es/* observer */.Pi)(function (props) {
-  var store = react.useContext(window.storeContext);
-  var app = store.app; // ...
-  // Render
-  // ==================================================================================================
-
-  return /*#__PURE__*/react.createElement(HeaderTitle, {
-    title: "Mes projets",
-    titleStyle: {
-      marginLeft: '10px'
-    }
-  });
-}); // ***** ProjectsMenuItem *****
-// ****************************
-
-var TAG_ProjectsMenuItem = function TAG_ProjectsMenuItem() {};
-
-var ProjectsMenuItem = (0,es/* observer */.Pi)(function (props) {
-  var store = react.useContext(window.storeContext);
-  var app = store.app;
-  var menu = app.menu; // ...
-
-  var projectsContext = 'projects'; // Evènements
-  // ==================================================================================================
-
-  var handleMenuItemClick = function handleMenuItemClick() {
-    store.navigateTo(projectsContext);
-    app.menu.close();
-  }; // Render
-  // ==================================================================================================
-
-
-  return /*#__PURE__*/react.createElement(MenuItem, {
-    icon: /*#__PURE__*/react.createElement(Icon_Icon, {
-      name: "work_outline",
-      width: "120px"
-    }),
-    label: "Mes projets",
-    activeContexts: [projectsContext],
-    callbackClick: handleMenuItemClick
-  });
-}); // ***** ProjectsPage *****
-// ************************
-
-var TAG_ProjectsPage = function TAG_ProjectsPage() {};
-
-var ProjectsPage = (0,es/* observer */.Pi)(function (props) {
-  var store = react.useContext(window.storeContext);
-  var app = store.app; // Renderers
-  // ==================================================================================================
-
-  var renderHelper = function renderHelper() {
-    // Render :: Helper
-    // ---
-    return /*#__PURE__*/react.createElement(Helper_Helper, {
-      iconName: "work_outline",
-      show: true
-    });
-  };
-
-  return /*#__PURE__*/react.createElement("div", {
-    className: "nx-page"
-  }, renderHelper());
-});
-// EXTERNAL MODULE: ./contexts/cv/Cv.css
-var Cv = __webpack_require__(8685);
-;// CONCATENATED MODULE: ./contexts/cv/Cv.jsx
-
-
-
-
-
-
-
-
- // Models
-// -------------------------------------------------------------------------------------------------------------
-// ***** CvStore *****
-// *******************
-
-var TAG_CvStore = function TAG_CvStore() {};
-
-var CvStore = mobx_state_tree_module/* types.model */.V5.model({
-  loaded: false
-}).actions(function (self) {
-  return {
-    setField: function setField(field, value) {
-      self[field] = value;
-    },
-    // -
-    update: function update(raw) {}
-  };
-}); // Functions Components ReactJS
-// -------------------------------------------------------------------------------------------------------------
-// ***** CvHeaderLeft *****
-// ************************
-
-var TAG_CvHeaderLeft = function TAG_CvHeaderLeft() {};
-
-var CvHeaderLeft = (0,es/* observer */.Pi)(function (props) {
-  var store = react.useContext(window.storeContext);
-  var app = store.app; // ...
-  // Render
-  // ==================================================================================================
-
-  return /*#__PURE__*/react.createElement(HeaderTitle, {
-    title: "Mon CV",
-    titleStyle: {
-      marginLeft: '10px'
-    }
-  });
-}); // ***** CvMenuItem *****
-// **********************
-
-var TAG_CvMenuItem = function TAG_CvMenuItem() {};
-
-var CvMenuItem = (0,es/* observer */.Pi)(function (props) {
-  var store = react.useContext(window.storeContext);
-  var app = store.app;
-  var menu = app.menu; // ...
-
-  var cvContext = 'cv'; // Evènements
-  // ==================================================================================================
-
-  var handleMenuItemClick = function handleMenuItemClick() {
-    store.navigateTo(cvContext);
-    app.menu.close();
-  }; // Render
-  // ==================================================================================================
-
-
-  return /*#__PURE__*/react.createElement(MenuItem, {
-    icon: /*#__PURE__*/react.createElement(Icon_Icon, {
-      name: "school",
-      width: "120px"
-    }),
-    label: "Mon CV",
-    activeContexts: [cvContext],
-    callbackClick: handleMenuItemClick
-  });
-}); // ***** CvPage *****
-// ******************
-
-var TAG_CvPage = function TAG_CvPage() {};
-
-var CvPage = (0,es/* observer */.Pi)(function (props) {
-  var store = react.useContext(window.storeContext);
-  var app = store.app; // Renderers
-  // ==================================================================================================
-
-  var renderHelper = function renderHelper() {
-    // Render :: Helper
-    // ---
-    return /*#__PURE__*/react.createElement(Helper_Helper, {
-      iconName: "school",
-      show: true
-    });
-  };
-
-  return /*#__PURE__*/react.createElement("div", {
-    className: "nx-page"
-  }, renderHelper());
-});
-// EXTERNAL MODULE: ../../nexus/react/layout/section/Section.css
-var Section = __webpack_require__(8461);
-;// CONCATENATED MODULE: ../../nexus/react/layout/section/Section.jsx
-
-
-
-
- // Functions Components ReactJS
-// -------------------------------------------------------------------------------------------------------------
-// ***** Section *****
-// *******************
-
-var TAG_Section = function TAG_Section() {};
-
-var Section_Section = function Section(props) {
-  // From ... props
-  var icon = props.icon ? props.icon : null;
-  var title = props.title ? props.title : '';
-  var right = props.right;
-  var children = props.children;
-  var buttons = props.buttons;
-  var buttonsPosition = props.buttonsPosition ? props.buttonsPosition : 'right'; // left, right, center, stretch
-
-  var buttonsResponsive = props.buttonsResponsive == true ? true : false; // Render
-  // ==================================================================================================
-
-  return /*#__PURE__*/react.createElement("div", {
-    className: "nx-section"
-  }, (icon || title || right) && /*#__PURE__*/react.createElement("div", {
-    className: "nx-section-header"
-  }, icon && /*#__PURE__*/react.createElement("div", {
-    className: "nx-section-icon"
-  }, icon), title && /*#__PURE__*/react.createElement("div", {
-    className: "nx-section-header-title"
-  }, title)), children && /*#__PURE__*/react.createElement("div", {
-    className: "nx-section-content"
-  }, children), buttons && /*#__PURE__*/react.createElement("div", {
-    className: (0,clsx_m/* default */.Z)("nx-section-buttonset", "h-col-small", {
-      "responsive-vertical": buttonsResponsive
-    }, {
-      "responsive-align-stretch": buttonsResponsive
-    })
-  }, buttons));
-};
-// EXTERNAL MODULE: ../../nexus/react/layout/row/Row.css
-var Row = __webpack_require__(3447);
-;// CONCATENATED MODULE: ../../nexus/react/layout/row/Row.jsx
-
-
- // Functions Components ReactJS
-// ----------------------------------------------------------------------------------------------------------------------------
-// ***** Row *****
-// ***************
-
-var TAG_Row = function TAG_Row() {};
-
-var Row_Row = function Row(props) {
-  // From ... props
-  var responsive = props.responsive == false ? false : true;
-  var children = props.children;
-  var spacing = props.spacing ? props.spacing : 'small';
-  var className = props.className ? props.className : '';
-  var style = props.style ? props.style : {};
-  var marginBottom = props.marginBottom == false ? false : true; // ==================================================================================================
-
-  return /*#__PURE__*/react.createElement("div", {
-    className: (0,clsx_m/* default */.Z)("nx-row", "h-col-".concat(spacing), "flex-align-start", {
-      "responsive-vertical": responsive
-    }, {
-      "responsive-align-stretch": responsive
-    }, {
-      "margin-bottom": marginBottom
-    }, className),
-    style: style
-  }, children);
-};
-// EXTERNAL MODULE: ../../nexus/react/node_modules/date-fns/esm/format/index.js + 28 modules
-var format = __webpack_require__(5599);
-// EXTERNAL MODULE: ../../nexus/react/node_modules/date-fns/esm/addDays/index.js
-var addDays = __webpack_require__(8484);
-// EXTERNAL MODULE: ../../nexus/react/node_modules/date-fns/esm/subDays/index.js
-var subDays = __webpack_require__(5081);
-;// CONCATENATED MODULE: ../../nexus/react/utils/DateTools.jsx
-
- // Objects
-// --------------------------------------------------------------------------------------------------------------------------------------------
-// ***** dateTools *****
-// *********************
-
-var dateTools = {
-  // Conversions
-  // -
-  fromDateToHumanized: function fromDateToHumanized(date) {
-    // Date() ou AAAA-MM-JJ -> JJ/MM/AAAA
-    // ---
-    if (typeof date == 'string') {
-      if (date.search('/') > -1) {
-        return date;
-      }
-
-      date = new Date(date);
-    }
-
-    if (date == undefined) {
-      date = new Date();
-    }
-
-    var d = date.getDate();
-    var m = date.getMonth() + 1;
-    var y = date.getFullYear();
-    d = d.toString();
-    m = m.toString();
-    y = y.toString();
-    d = d.length == 1 ? '0' + d : d;
-    m = m.length == 1 ? '0' + m : m;
-    return d + '/' + m + '/' + y;
-  },
-  fromTimeToHumanized: function fromTimeToHumanized(date) {
-    // Date() -> HH:MM
-    // ---
-    if (date == undefined) {
-      date = new Date();
-    }
-
-    var hh = date.getHours();
-    var mm = date.getMinutes();
-    hh = hh.toString();
-    mm = mm.toString();
-    hh = hh.length == 1 ? '0' + hh : hh;
-    mm = mm.length == 1 ? '0' + mm : mm;
-    return hh + ':' + mm;
-  },
-  fromHumanizedToISO: function fromHumanizedToISO(humanizedDate) {
-    // JJ/MM/AAAA -> AAAA-MM-JJ
-    // ---
-    var isoDate = humanizedDate;
-    var parts = humanizedDate.split('/');
-
-    if (parts.length > 1) {
-      isoDate = "".concat(parts[2], "-").concat(parts[1], "-").concat(parts[0]);
-    }
-
-    return isoDate;
-  },
-  fromISOToDate: function fromISOToDate(strISO) {
-    // AAAA-MM-JJ ou HH:MM -> Date()
-    // ---
-    var newDate = null;
-
-    if (strISO) {
-      var rez = new Date(strISO);
-
-      if (rez != 'Invalid Date') {
-        newDate = rez;
-      }
-
-      if (strISO.length == 5 && newDate == null) {
-        var parts = strISO.split(':');
-
-        if (parts.length > 1) {
-          rez = new Date();
-          rez.setHours(parts[0]);
-          rez.setMinutes(parts[1]);
-          newDate = rez;
-        }
-      }
-    }
-
-    return newDate;
-  },
-  fromISOToTime: function fromISOToTime(time_iso) {
-    // HH:MM -> Date()
-    // ---
-    var hours_iso_parts = copyObj(time_iso).split(':');
-
-    if (hours_iso_parts.length > 1) {
-      var date_holder = new Date();
-      date_holder.setHours(parseInt(hours_iso_parts[0]));
-      date_holder.setMinutes(parseInt(hours_iso_parts[1]));
-      date_holder.setSeconds(0);
-      return date_holder;
-    }
-
-    return null;
-  },
-  fromDateToISO: function fromDateToISO(date, missing) {
-    // Date() -> AAAA-MM-JJ
-    // ---
-    missing = missing != undefined ? missing : null;
-
-    if (date) {
-      try {
-        var rez = (0,format/* default */.Z)(date, "yyyy-MM-dd");
-        return rez != null ? rez : missing;
-      } catch (err) {}
-    }
-
-    return missing;
-  },
-  fromTimeToISO: function fromTimeToISO(date, missing) {
-    // Date() -> HH:MM
-    // ---
-    missing = missing != undefined ? missing : null;
-
-    if (date) {
-      try {
-        var rez = (0,format/* default */.Z)(date, "HH:mm");
-        return rez != null ? rez : missing;
-      } catch (err) {}
-    }
-
-    return missing;
-  },
-  // Operations
-  // -
-  // addTime: function(hours_iso, to_add, what_to_add) {
-  // 	var self = this;
-  // 	if (!hours_iso) { return null; }
-  // 	var date_holder = self.fromTimeToISO(hours_iso);
-  // 	if (date_holder && to_add && what_to_add) {
-  // 		var date_holder = moment(date_holder).add(to_add, what_to_add).toDate();
-  // 		return self.formatTime(date_holder);
-  // 	} else {
-  // 		return hours_iso;
-  // 	}
-  // },
-  // substractTime: function(hours_iso, to_substract, what_to_substract) {
-  // 	var self = this;
-  // 	if (!hours_iso) { return null; }
-  // 	var date_holder = self.fromTimeToISO(hours_iso);
-  // 	if (date_holder && to_substract && what_to_substract) {
-  // 		var date_holder = moment(date_holder).subtract(to_substract, what_to_substract).toDate();
-  // 		return self.formatTime(date_holder);
-  // 	} else {
-  // 		return hours_iso;
-  // 	}
-  // },
-  addDuration: function addDuration(hours_iso, hours_to_add) {
-    var self = this;
-
-    if (!hours_iso) {
-      return null;
-    }
-
-    if (hours_to_add) {
-      var hours = parseInt(hours_to_add.split(':')[0]);
-      var minutes = parseInt(hours_to_add.split(':')[1]);
-      hours_iso = self.addTime(hours_iso, hours, 'h');
-      hours_iso = self.addTime(hours_iso, minutes, 'm');
-    }
-
-    return hours_iso;
-  },
-  timeToMinutes: function timeToMinutes(time_iso) {
-    // HH:MM -> x minutes
-    // ---
-    var self = this;
-    var minutes_total = 0;
-
-    if (time_iso) {
-      minutes_total += parseInt(time_iso.split(':')[0]) * 60;
-      minutes_total += parseInt(time_iso.split(':')[1]);
-    }
-
-    return minutes_total;
-  },
-  minutesToTime: function minutesToTime(minutes) {
-    // x minutes -> HH:MM
-    // ---
-    var self = this;
-    var minutes = minutes ? minutes : 0;
-    var hh = minutes / 60 | 0;
-    var mm = minutes % 60 | 0;
-    hh = hh.toString();
-    mm = mm.toString();
-    hh = hh.length == 1 ? '0' + hh : hh;
-    mm = mm.length == 1 ? '0' + mm : mm;
-    return hh + ':' + mm;
-  },
-  do_hourify: function do_hourify(value) {
-    // str -> HH:MM
-    // ---
-    var value_hourified = '';
-    var hh_exp = /^(\d{1,2})\D*?$/;
-    var dt_exp = /^(\d{1,2})\D*(\d{1,2})\D*?$/;
-    if (hh_exp.exec(value)) value += ' 00';
-    var parts = dt_exp.exec(value);
-
-    if (parts && parts.length == 3) {
-      var hh = parseInt(parts[1], 10),
-          mm = parseInt(parts[2], 10);
-
-      if (0 <= hh <= 23 && 0 <= mm <= 59) {
-        value_hourified = '%02d:%02d'.format(hh, mm);
-      }
-    }
-
-    return value_hourified;
-  },
-  // Getters
-  // -
-  getNextDay: function getNextDay(date) {
-    var nextDay = (0,addDays/* default */.Z)(this.fromISOToDate(date), 1);
-    var nextDayIso = (0,format/* default */.Z)(nextDay, "yyyy-MM-dd");
-    return nextDayIso;
-  },
-  getPreviousDay: function getPreviousDay(date) {
-    var previousDay = (0,subDays/* default */.Z)(this.fromISOToDate(date), 1);
-    var previousDayIso = (0,format/* default */.Z)(previousDay, "yyyy-MM-dd");
-    return previousDayIso;
-  },
-  getWeekKey: function getWeekKey(dateIso) {
-    // AAAA-MM-JJ -> AAAA-WW
-    // ---
-    var weekKey = '';
-    var date = dateTools.fromISOToDate(dateIso);
-
-    if (date) {
-      weekKey = date.getWeekYear() + '-' + date.getWeekStr();
-    }
-
-    return weekKey;
-  },
-  getTodayIso: function getTodayIso() {
-    // Now -> AAAA-MM-JJ
-    // ---
-    var now = new Date();
-    return now.toISOString().substring(0, 10);
-  }
-};
-// EXTERNAL MODULE: ../../nexus/react/forms/field/Field.css
-var Field = __webpack_require__(651);
-;// CONCATENATED MODULE: ../../nexus/react/forms/field/Field.jsx
-function Field_createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = Field_unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e2) { throw _e2; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e3) { didErr = true; err = _e3; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
-
-function Field_slicedToArray(arr, i) { return Field_arrayWithHoles(arr) || Field_iterableToArrayLimit(arr, i) || Field_unsupportedIterableToArray(arr, i) || Field_nonIterableRest(); }
-
-function Field_nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-
-function Field_unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return Field_arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return Field_arrayLikeToArray(o, minLen); }
-
-function Field_arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-
-function Field_iterableToArrayLimit(arr, i) { var _i = arr && (typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]); if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
-
-function Field_arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
-
-
-
-
-
-
-
-
- // Models
-// ----------------------------------------------------------------------------------------------------------------------------
-
-var TAG_AutocompleteStore = function TAG_AutocompleteStore() {};
-
-var AutocompleteStore = mobx_state_tree_module/* types.model */.V5.model({
-  value: mobx_state_tree_module/* types.maybeNull */.V5.maybeNull(mobx_state_tree_module/* types.string */.V5.string),
-  label: mobx_state_tree_module/* types.maybeNull */.V5.maybeNull(mobx_state_tree_module/* types.string */.V5.string)
-}).views(function (self) {
-  return {
-    get isSet() {
-      if (self.value) {
-        return true;
-      }
-
-      return false;
-    }
-
-  };
-}).actions(function (self) {
-  return {
-    setField: function setField(field, value) {
-      self[field] = value;
-    },
-    // -
-    update: function update(raw) {
-      self.value = raw.value;
-      self.label = raw.label;
-    },
-    clear: function clear() {
-      self.value = '';
-      self.label = '';
-    }
-  };
-}); // Functions Components ReactJS
-// -------------------------------------------------------------------------------------------------------------
-// ***** Field *****
-// *****************
-
-var TAG_Field = function TAG_Field() {};
-
-var Field_Field = (0,es/* observer */.Pi)(function (props) {
-  var store = react.useContext(window.storeContext);
-  var app = store.app;
-  var theme = app.theme; // From ... states
-
-  var _React$useState = react.useState(false),
-      _React$useState2 = Field_slicedToArray(_React$useState, 2),
-      focused = _React$useState2[0],
-      setFocused = _React$useState2[1];
-
-  var _React$useState3 = react.useState(null),
-      _React$useState4 = Field_slicedToArray(_React$useState3, 2),
-      autocompleteAnchor = _React$useState4[0],
-      setAutocompleteAnchor = _React$useState4[1];
-
-  var _React$useState5 = react.useState(false),
-      _React$useState6 = Field_slicedToArray(_React$useState5, 2),
-      autocompletePopupOpen = _React$useState6[0],
-      setAutocompletePopupOpen = _React$useState6[1];
-
-  var _React$useState7 = react.useState(false),
-      _React$useState8 = Field_slicedToArray(_React$useState7, 2),
-      autocompletePopperOpen = _React$useState8[0],
-      setAutocompletePopperOpen = _React$useState8[1];
-
-  var _React$useState9 = react.useState(false),
-      _React$useState10 = Field_slicedToArray(_React$useState9, 2),
-      autocompleteLoading = _React$useState10[0],
-      setAutocompleteLoading = _React$useState10[1]; // From ... store
-
-
-  var isLoading = app.isLoading;
-  var isDesktop = app.isDesktop;
-  var isMobile = app.isMobile;
-  var autocompleteResults = app.autocompleteResults; // From ... props
-
-  var id = props.id ? props.id : id;
-  var component = props.component ? props.component : 'input'; // input, textarea, select, checkbox, autocomplete, switcher, radios
-
-  var type = props.type ? props.type : 'text'; // text, number
-
-  var name = props.name ? props.name : '';
-  var label = props.label;
-  var ghostLabel = props.ghostLabel != undefined ? props.ghostLabel : false;
-  var placeholder = props.placeholder ? props.placeholder : '';
-  var title = props.title ? props.title : '';
-  var min = props.min ? props.min : 0;
-  var max = props.max;
-  var forceString = props.forceString != undefined ? props.forceString : false;
-  var forceStringVariant = props.format != undefined ? props.format : 'en';
-  var datas = props.datas;
-  var canBeEmpty = props.canBeEmpty == true ? true : false;
-  var savePath = props.savePath;
-  var savePathAutocomplete = props.savePathAutocomplete;
-  var forcePopupAutocomplete = props.forcePopupAutocomplete != undefined ? props.forcePopupAutocomplete : false;
-  var callbackSearch = props.callbackSearch != undefined ? props.callbackSearch : callbackSearchDefault;
-  var callbackSave = props.callbackSave;
-  var callbackChange = props.callbackChange;
-  var callbackSelect = props.callbackSelect;
-  var callbackClick = props.callbackClick;
-  var callbackFocus = props.callbackFocus;
-  var callbackBlur = props.callbackBlur;
-  var callbackKeyPress = props.callbackKeyPress;
-  var disabled = props.disabled ? props.disabled : isLoading;
-  var className = props.className ? props.className : '';
-  var style = props.style != undefined ? props.style : {};
-  var inputStyle = props.inputStyle != undefined ? props.inputStyle : {};
-
-  if (focused) {
-    inputStyle['borderColor'] = theme.palette.primary.main;
-    inputStyle['borderWidth'] = '2px';
-    inputStyle['padding'] = '5px 11px'; // inputStyle['outline'] = `2px solid ${theme.palette.primary.main}`;
-  } // Functions
-  // ==================================================================================================
-
-
-  var getError = function getError() {
-    var error = props.error;
-
-    if (error == undefined && savePath && savePath.length > 0) {
-      error = app.getError(savePath);
-    }
-
-    return error;
-  };
-
-  var getValue = function getValue() {
-    var value = props.value;
-
-    if (value == undefined && savePath && savePath.length > 0) {
-      value = app.getValue(savePath, null);
-    }
-
-    return value;
-  };
-
-  var getValueAutocomplete = function getValueAutocomplete() {
-    var valueAutocomplete = props.valueAutocomplete;
-
-    if (valueAutocomplete == undefined && savePathAutocomplete && savePathAutocomplete.length > 0) {
-      valueAutocomplete = app.getValue(savePathAutocomplete, null);
-    }
-
-    return valueAutocomplete;
-  }; // ...
-
-
-  var error = getError();
-  var value = getValue();
-  var valueAutocomplete = getValueAutocomplete(); // Callbacks
-  // ==================================================================================================
-
-  var callbackSearchDefault = function callbackSearchDefault(query, endSearchCallback) {
-    // Callback de recherche par défaut
-    // ---
-    var url = "/autocomplete/".concat(id); // Paramètres de recherche
-
-    var params = new FormData();
-    params.append('query', query); // Appel de la fonction de recherche
-
-    app.fetchJSON(url, {
-      'body': params
-    }, false, 'POST').then(function (json) {
-      app.setField('autocompleteResults', json.results);
-      endSearchCallback();
-    })["catch"](function (ex) {
-      console.error("Fetch failed for ".concat(url), ex);
-      snackbar.update(true, "Une erreur est survenue.", "error");
-    });
-  }; // Evènements
-  // ==================================================================================================
-
-
-  var handleInputFocus = function handleInputFocus(evt) {
-    // Sur focus du champ texte
-    // ---
-    setFocused(true);
-
-    if (callbackFocus) {
-      callbackFocus();
-    }
-  };
-
-  var handleInputChange = function handleInputChange(evt, ignoreCallbackChange) {
-    // Sur saisie dans le champ texte
-    // ---
-    var inputChange = ignoreCallbackChange == true ? null : callbackChange;
-    var newValue = null; // Récupération de la valeur
-
-    if (component == 'checkbox') {
-      newValue = evt.target.checked;
-
-      if (forceString) {
-        if (forceStringVariant == 'en') {
-          newValue = newValue == true ? 'yes' : 'no';
-        } else {
-          newValue = newValue == true ? 'oui' : 'non';
-        }
-      }
-    } else {
-      newValue = evt.target.value;
-    } // Convertion de la valeur
-
-
-    if (type == 'number') {
-      try {
-        newValue = parseInt(newValue);
-      } catch (err) {
-        newValue = 0;
-      }
-
-      if (Number.isNaN(newValue)) {
-        newValue = null;
-      } else {
-        if (newValue < min) {
-          newValue = min;
-        }
-
-        if (max != undefined && newValue > max) {
-          newValue = max;
-        }
-
-        if (forceString) {
-          newValue = newValue.toString();
-        }
-      }
-    }
-
-    if (type == 'date') {
-      newValue = dateTools.fromDateToISO(newValue, newValue);
-    }
-
-    if (type == 'time') {
-      newValue = dateTools.fromTimeToISO(newValue, newValue);
-    } // Sauvegarde de la valeur
-
-
-    if (savePath) {
-      if (callbackSave) {
-        callbackSave(savePath, newValue);
-      } else {
-        app.saveValue(savePath, newValue, callbackChange);
-      }
-
-      app.clearError(savePath);
-
-      if (component == 'autocomplete' && callbackSearch && (newValue.length == 0 || newValue.length > 1)) {
-        clearTimeout(window.searchTimeout);
-        setAutocompletePopperOpen(false);
-        app.setField('autocompleteResults', []);
-        window.searchTimeout = setTimeout(function () {
-          setAutocompleteLoading(true);
-          callbackSearch(newValue, function () {
-            // Affichage des résultats
-            setAutocompletePopperOpen(true);
-            setAutocompleteLoading(false);
-          });
-        }, 1000);
-      }
-    } else {
-      if (component == 'checkbox' && callbackClick) {
-        callbackClick();
-      }
-
-      if (callbackChange) {
-        callbackChange([], newValue);
-      }
-    }
-  };
-
-  var handleInputClick = function handleInputClick(evt) {
-    // Sur focus de l'input du field
-    // ---
-    setAutocompleteAnchor(evt.target); // Doit-on ouvrir la popup d'autocomplete en plein écran ? (pour les smartphones et tablettes)
-
-    if (component == 'autocomplete' && (isMobile && !valueAutocomplete || forcePopupAutocomplete)) {
-      setAutocompletePopupOpen(true); // Focus sur le champ de recherche
-
-      setTimeout(function () {
-        document.getElementById("popup_".concat(id)).focus();
-      }, 500);
-    }
-  };
-
-  var handleAutocompleteSelect = function handleAutocompleteSelect(result) {
-    // Sur sélection d'un résultat d'autocomplete
-    // ---
-    app.saveValue(savePath, result.label);
-    app.saveValue(savePathAutocomplete, result.value);
-    setAutocompletePopperOpen(false);
-    app.setField('autocompleteResults', []);
-    handleCloseAutocompletePopup(); // Callback nouvelle valeur
-
-    if (callbackChange) {
-      callbackChange(savePath, result.label, savePathAutocomplete, result.value, result.raw);
-    }
-
-    if (callbackSelect) {
-      callbackSelect(savePath, result.label, savePathAutocomplete, result.value, result.raw);
-    }
-  };
-
-  var handleClearAutocomplete = function handleClearAutocomplete() {
-    // Sur clic du bouton de nettoyage de l'autocomplete
-    // ---
-    app.setField('autocompleteResults', []);
-    setAutocompletePopperOpen(false);
-    app.saveValue(savePath, '');
-    app.saveValue(savePathAutocomplete, ''); // Callback nouvelle valeur
-
-    if (callbackChange) {
-      callbackChange(savePath, '', savePathAutocomplete, '');
-    }
-
-    if (callbackSelect) {
-      callbackSelect(savePath, '', savePathAutocomplete, '', null);
-    }
-  };
-
-  var handleInputBlur = function handleInputBlur(e) {
-    // Sur perte de focus du champ de recherche
-    // ---
-    setFocused(false); // Nettoyage automatique si aucune valeur sélectionnée dans l'autocomplete
-
-    setTimeout(function () {
-      var valueAutocomplete = getValueAutocomplete();
-
-      if (component == 'autocomplete' && !valueAutocomplete && !autocompleteLoading && isDesktop) {
-        handleClearAutocomplete();
-      }
-    }, 200); // Callback blur input
-
-    if (callbackBlur) {
-      callbackBlur(savePath, e.target.value);
-    }
-  };
-
-  var handleCloseAutocompletePopup = function handleCloseAutocompletePopup() {
-    // Sur clic du bouton "Annuler" dans la popup d'autocomplete
-    // ---
-    setAutocompletePopupOpen(false);
-    var node = document.getElementById(id);
-
-    if (node) {
-      node.blur();
-    }
-  };
-
-  var handleSaveValue = function handleSaveValue(savePath, value) {
-    // Mise à jour d'une valeur sur un target
-    // ---
-    // Sauvegarde de la valeur
-    if (savePath) {
-      app.saveValue(savePath, value, callbackChange);
-      app.clearError(savePath);
-    } else {
-      callbackChange([], value);
-    }
-  }; // Render
-  // ==================================================================================================
-
-
-  var renderInput = function renderInput() {
-    // Render :: Input
-    // ---
-    var newValue = value != null ? value : '';
-
-    if (type == 'date' && !placeholder) {
-      placeholder = 'jj/mm/aaaa';
-    }
-
-    if (type == 'time' && !placeholder) {
-      placeholder = 'hh:mm';
-    } // Input basique
-
-
-    var input = /*#__PURE__*/react.createElement("input", {
-      className: "nx-field-input",
-      id: id,
-      value: newValue,
-      type: type,
-      onChange: function onChange(e) {
-        return handleInputChange(e);
-      },
-      onFocus: function onFocus(e) {
-        return handleInputFocus(e);
-      },
-      onBlur: function onBlur(e) {
-        return handleInputBlur(e);
-      },
-      placeholder: placeholder,
-      title: title,
-      style: inputStyle,
-      disabled: disabled
-    });
-    return /*#__PURE__*/react.createElement("div", {
-      className: (0,clsx_m/* default */.Z)('nx-field', component, type, {
-        'disabled': disabled
-      }, {
-        'focused': focused
-      }, {
-        'error': error
-      }, className),
-      style: style
-    }, (label || ghostLabel) && /*#__PURE__*/react.createElement("div", {
-      className: "nx-field-label"
-    }, label), input, error && /*#__PURE__*/react.createElement("div", {
-      className: "nx-field-error"
-    }, error));
-  };
-
-  var renderTextarea = function renderTextarea() {
-    // Render :: Textarea
-    // ---
-    var newValue = value != null ? value : '';
-    var textarea = /*#__PURE__*/react.createElement("textarea", {
-      className: "nx-field-textarea",
-      id: id,
-      value: newValue,
-      type: type,
-      onChange: function onChange(e) {
-        return handleInputChange(e);
-      },
-      onFocus: function onFocus(e) {
-        return handleInputFocus(e);
-      },
-      onBlur: function onBlur(e) {
-        return handleInputBlur(e);
-      },
-      placeholder: placeholder,
-      title: title,
-      style: inputStyle,
-      disabled: disabled
-    });
-    return /*#__PURE__*/react.createElement("div", {
-      className: (0,clsx_m/* default */.Z)('nx-field', component, type, {
-        'disabled': disabled
-      }, {
-        'focused': focused
-      }, {
-        'error': error
-      }, className),
-      style: style
-    }, (label || ghostLabel) && /*#__PURE__*/react.createElement("div", {
-      className: "nx-field-label"
-    }, label), textarea, error && /*#__PURE__*/react.createElement("div", {
-      className: "nx-field-error"
-    }, error));
-  };
-
-  var renderSelect = function renderSelect() {
-    // Render :: Select
-    // ---
-    var newValue = value != null ? value : ''; // Options
-
-    var selectItems = [];
-    var nbDivider = 0;
-
-    if (datas) {
-      var _iterator = Field_createForOfIteratorHelper(datas),
-          _step;
-
-      try {
-        for (_iterator.s(); !(_step = _iterator.n()).done;) {
-          var data = _step.value;
-
-          if (typeof data == 'string') {
-            data = {
-              value: data,
-              label: data
-            };
-          }
-
-          var itemStyle = {};
-
-          if (data.hidden == true) {
-            itemStyle['display'] = 'none';
-          }
-
-          if (data.divider == true) {
-            nbDivider += 1;
-            selectItems.push( /*#__PURE__*/react.createElement(Divider_Divider, {
-              light: true,
-              key: "".concat(id, "_divider_").concat(nbDivider),
-              style: {
-                marginBottom: '10px',
-                marginTop: '10px'
-              }
-            }));
-          } else {
-            selectItems.push( /*#__PURE__*/react.createElement("option", {
-              key: "".concat(id, "_").concat(data.value),
-              value: data.value,
-              disabled: data.disabled == true,
-              style: itemStyle
-            }, data.label));
-          }
-        }
-      } catch (err) {
-        _iterator.e(err);
-      } finally {
-        _iterator.f();
-      }
-    }
-
-    return /*#__PURE__*/react.createElement("div", {
-      className: (0,clsx_m/* default */.Z)('nx-field', component, type, {
-        'disabled': disabled
-      }, {
-        'focused': focused
-      }, {
-        'error': error
-      }, className),
-      style: style
-    }, (label || ghostLabel) && /*#__PURE__*/react.createElement("div", {
-      className: "nx-field-label"
-    }, label), /*#__PURE__*/react.createElement("select", {
-      className: "nx-field-select",
-      id: id,
-      value: newValue,
-      onChange: function onChange(e) {
-        return handleInputChange(e);
-      },
-      onFocus: function onFocus(e) {
-        return handleInputFocus(e);
-      },
-      onBlur: function onBlur(e) {
-        return handleInputBlur(e);
-      },
-      placeholder: placeholder,
-      title: title,
-      style: inputStyle,
-      disabled: disabled
-    }, canBeEmpty && /*#__PURE__*/react.createElement("option", {
-      value: ""
-    }, "---"), selectItems), error && /*#__PURE__*/react.createElement("div", {
-      className: "nx-field-error"
-    }, error));
-  };
-
-  switch (component) {
-    case 'input':
-      return renderInput();
-      break;
-
-    case 'textarea':
-      return renderTextarea();
-      break;
-
-    case 'select':
-      return renderSelect();
-      break;
-    // case 'checkbox':
-    // 	return renderCheckbox();
-    // 	break;
-    // case 'autocomplete':
-    // 	return renderAutocomplete();
-    // 	break;
-    // case 'switcher':
-    // 	return renderSwitcher();
-    // 	break;
-    // case 'radios':
-    // 	return renderRadios();
-    // 	break;
-  }
-});
-// EXTERNAL MODULE: ../../nexus/react/forms/heading/Heading.css
-var Heading = __webpack_require__(4297);
-;// CONCATENATED MODULE: ../../nexus/react/forms/heading/Heading.jsx
-
-
-
-
- // Functions Components ReactJS
-// -------------------------------------------------------------------------------------------------------------
-// ***** Heading *****
-// *******************
-
-var TAG_Heading = function TAG_Heading() {};
-
-var Heading_Heading = (0,es/* observer */.Pi)(function (props) {
-  var store = react.useContext(window.storeContext);
-  var app = store.app;
-  var theme = app.theme; // From ... props
-
-  var centered = props.centered == true ? true : false;
-  var variant = props.variant ? props.variant : 'default'; // default, contained
-
-  var children = props.children;
-  var className = props.className ? props.className : '';
-  var style = props.style ? props.style : {}; // Render
-  // ==================================================================================================
-
-  return /*#__PURE__*/react.createElement("div", {
-    className: (0,clsx_m/* default */.Z)("nx-heading", {
-      "centered": centered
-    }, className),
-    style: style
-  }, children);
-});
-// EXTERNAL MODULE: ../../nexus/react/forms/indicator/Indicator.css
-var Indicator = __webpack_require__(4439);
-;// CONCATENATED MODULE: ../../nexus/react/forms/indicator/Indicator.jsx
-
-
-
-
-
-
- // Functions Components ReactJS
-// -------------------------------------------------------------------------------------------------------------
-// ***** Indicator *****
-// *********************
-
-var TAG_Indicator = function TAG_Indicator() {};
-
-var Indicator_Indicator = (0,es/* observer */.Pi)(function (props) {
-  var store = react.useContext(window.storeContext);
-  var app = store.app;
-  var theme = app.theme; // From ... props
-
-  var variant = props.variant ? props.variant : 'default'; // default, contrasted, outlined
-
-  var severity = props.severity ? props.severity : 'default';
-  var children = props.children;
-  var className = props.className ? props.className : '';
-  var color = props.color ? props.color : ''; // primary, secondary, #custom
-
-  var style = props.style ? props.style : {}; // ...
-
-  var severityDef = SEVERITIES.getDef(severity); // Quelle couleur ?
-
-  if (color == 'primary') {
-    color = theme.palette.primary.main;
-  }
-
-  if (color == 'secondary') {
-    color = theme.palette.secondary.main;
-  }
-
-  if (!color) {
-    color = severityDef.color;
-  }
-
-  style['color'] = color;
-  style['backgroundColor'] = hexToRgbA(color, 0.1);
-  style['border'] = '1px solid transparent';
-
-  if (variant == 'contrasted') {
-    style['color'] = 'white';
-    style['backgroundColor'] = color;
-  }
-
-  if (variant == 'outlined') {
-    style['backgroundColor'] = 'transparent';
-    style['borderColor'] = color;
-  } // Render
-  // ==================================================================================================
-
-
-  return /*#__PURE__*/react.createElement("div", {
-    className: (0,clsx_m/* default */.Z)("nx-indicator", className),
-    style: style
-  }, children);
-});
-// EXTERNAL MODULE: ./contexts/playground/Playground.css
-var Playground = __webpack_require__(5245);
-;// CONCATENATED MODULE: ./contexts/playground/Playground.jsx
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- // Datas
-// -------------------------------------------------------------------------------------------------------------
-
-var CHOICES_TEST = [{
-  'value': 'choix_1',
-  'label': 'Choix 1'
-}, {
-  'value': 'choix_2',
-  'label': 'Choix 2'
-}, {
-  'value': 'choix_3',
-  'label': 'Choix 3'
-}]; // Models
-// -------------------------------------------------------------------------------------------------------------
-// ***** PlaygroundStore *****
-// ***************************
-
-var TAG_PlaygroundStore = function TAG_PlaygroundStore() {};
-
-var PlaygroundStore = mobx_state_tree_module/* types.model */.V5.model({
-  doc_id: '',
-  doc_rev: '',
-  doc_state: 0,
-  value_text: mobx_state_tree_module/* types.maybeNull */.V5.maybeNull(mobx_state_tree_module/* types.string */.V5.string),
-  value_number: mobx_state_tree_module/* types.maybeNull */.V5.maybeNull(mobx_state_tree_module/* types.integer */.V5.integer),
-  value_date: mobx_state_tree_module/* types.maybeNull */.V5.maybeNull(mobx_state_tree_module/* types.string */.V5.string),
-  value_time: mobx_state_tree_module/* types.maybeNull */.V5.maybeNull(mobx_state_tree_module/* types.string */.V5.string),
-  value_select: mobx_state_tree_module/* types.maybeNull */.V5.maybeNull(mobx_state_tree_module/* types.string */.V5.string),
-  value_textarea: mobx_state_tree_module/* types.maybeNull */.V5.maybeNull(mobx_state_tree_module/* types.string */.V5.string),
-  value_autocomplete_1: mobx_state_tree_module/* types.optional */.V5.optional(AutocompleteStore, {}),
-  value_autocomplete_2: mobx_state_tree_module/* types.optional */.V5.optional(AutocompleteStore, {}),
-  value_switcher: mobx_state_tree_module/* types.maybeNull */.V5.maybeNull(mobx_state_tree_module/* types.string */.V5.string),
-  value_radio: mobx_state_tree_module/* types.maybeNull */.V5.maybeNull(mobx_state_tree_module/* types.string */.V5.string),
-  value_checkbox: mobx_state_tree_module/* types.maybeNull */.V5.maybeNull(mobx_state_tree_module/* types.boolean */.V5.boolean),
-  // -
-  value_html: mobx_state_tree_module/* types.maybeNull */.V5.maybeNull(mobx_state_tree_module/* types.string */.V5.string),
-  // -
-  loaded: false
-}).actions(function (self) {
-  return {
-    setField: function setField(field, value) {
-      self[field] = value;
-    },
-    // -
-    update: function update(raw) {
-      console.log(raw);
-      self.doc_id = raw.doc_id;
-      self.doc_rev = raw.doc_rev;
-      self.doc_state = raw.doc_state;
-      self.value_text = raw.value_text;
-      self.value_number = raw.value_number;
-      self.value_date = raw.value_date;
-      self.value_time = raw.value_time;
-      self.value_select = raw.value_select;
-      self.value_textarea = raw.value_textarea;
-      self.value_autocomplete_1 = AutocompleteStore.create({});
-      self.value_autocomplete_1.update(raw.value_autocomplete_1);
-      self.value_autocomplete_2 = AutocompleteStore.create({});
-      self.value_autocomplete_2.update(raw.value_autocomplete_2);
-      self.value_switcher = raw.value_switcher;
-      self.value_radio = raw.value_radio;
-      self.value_checkbox = raw.value_checkbox;
-      self.value_html = raw.value_html;
-      self.loaded = true;
-    },
-    load: function load() {
-      // Appel AJAX de la fonction de chargement des données de playground
-      // ---
-      var store = (0,mobx_state_tree_module/* getRoot */.yj)(self);
-      var app = store.app;
-      var snackbar = app.snackbar;
-      var ajaxNexorium = store.ajaxNexorium;
-      var url = "".concat(ajaxNexorium, "/playground_actions/load");
-      app.fetchJSON(url, null, false, 'POST').then(function (json) {
-        self.update(json.playground_raw);
-      })["catch"](function (ex) {
-        console.error("Fetch failed for ".concat(url), ex);
-        snackbar.update(true, "Une erreur est survenue.", "error");
-      });
-    },
-    validate: function validate(callback) {
-      // Validation des données du playground
-      // ---
-      var store = (0,mobx_state_tree_module/* getRoot */.yj)(self);
-      var app = store.app;
-      var errors = [];
-
-      if (callback) {
-        callback(errors);
-      }
-
-      return errors;
-    },
-    save: function save() {
-      // Appel AJAX de la fonction d'enregistrement du playground
-      // ---
-      var store = (0,mobx_state_tree_module/* getRoot */.yj)(self);
-      var app = store.app;
-      var snackbar = app.snackbar;
-      var ajaxNexorium = store.ajaxNexorium;
-      var params = new FormData();
-      params.append('playground_raw', JSON.stringify(self.toJSON()));
-      var url = "".concat(ajaxNexorium, "/playground_actions/save");
-      app.fetchJSON(url, {
-        'body': params
-      }, false, 'POST').then(function (json) {
-        self.update(json.playground_raw);
-        snackbar.update(true, "Enregistrement effectué.", "success");
-      })["catch"](function (ex) {
-        console.error("Fetch failed for ".concat(url), ex);
-        snackbar.update(true, "Une erreur est survenue.", "error");
-      });
-    }
-  };
-}); // Functions Components ReactJS
-// -------------------------------------------------------------------------------------------------------------
-// ***** PlaygroundHeaderLeft *****
-// ********************************
-
-var TAG_PlaygroundHeaderLeft = function TAG_PlaygroundHeaderLeft() {};
-
-var PlaygroundHeaderLeft = (0,es/* observer */.Pi)(function (props) {
-  var store = react.useContext(window.storeContext);
-  var app = store.app; // ...
-  // Render
-  // ==================================================================================================
-
-  return /*#__PURE__*/react.createElement(HeaderTitle, {
-    title: "Playground",
-    titleStyle: {
-      marginLeft: '10px'
-    }
-  });
-}); // ***** PlaygroundHeaderRight *****
-// *********************************
-
-var TAG_PlaygroundHeaderRight = function TAG_PlaygroundHeaderRight() {};
-
-var PlaygroundHeaderRight = (0,es/* observer */.Pi)(function (props) {
-  var store = react.useContext(window.storeContext);
-  var app = store.app;
-  var playground = store.playground; // From ... store
-
-  var isLoading = app.isLoading; // ...
-  // Evènements
-  // ==================================================================================================
-
-  var handleSaveClick = function handleSaveClick() {
-    playground.validate(function (errors) {
-      if (errors.length == 0) {
-        playground.save();
-      }
-    });
-  }; // Render
-  // ==================================================================================================
-
-
-  return /*#__PURE__*/react.createElement(react.Fragment, null, /*#__PURE__*/react.createElement(IconButton, {
-    onClick: function onClick() {
-      return handleSaveClick();
-    },
-    disabled: isLoading,
-    title: "Enregistrer"
-  }, /*#__PURE__*/react.createElement(Icon_Icon, {
-    name: "save",
-    color: "white"
-  })), /*#__PURE__*/react.createElement(HeaderDivider, null));
-}); // ***** PlaygroundMenuItem *****
-// ******************************
-
-var TAG_PlaygroundMenuItem = function TAG_PlaygroundMenuItem() {};
-
-var PlaygroundMenuItem = (0,es/* observer */.Pi)(function (props) {
-  var store = react.useContext(window.storeContext);
-  var app = store.app;
-  var menu = app.menu; // ...
-
-  var playgroundContext = 'playground'; // Evènements
-  // ==================================================================================================
-
-  var handleMenuItemClick = function handleMenuItemClick() {
-    store.navigateTo(playgroundContext);
-    app.menu.close();
-  }; // Render
-  // ==================================================================================================
-
-
-  return /*#__PURE__*/react.createElement(MenuItem, {
-    icon: /*#__PURE__*/react.createElement(Icon_Icon, {
-      name: "science",
-      width: "120px"
-    }),
-    label: "Playground",
-    activeContexts: [playgroundContext],
-    callbackClick: handleMenuItemClick
-  });
-}); // ***** RenderSectionFields *****
-// *******************************
-
-var TAG_RenderSectionFields = function TAG_RenderSectionFields() {};
-
-var RenderSectionFields = (0,es/* observer */.Pi)(function (props) {
-  var store = react.useContext(window.storeContext);
-  var app = store.app;
-  var playground = store.playground; // From ... store
-
-  var isLoading = app.isLoading; // Evènements
-  // ==================================================================================================
-
-  var handleTextFieldChange = function handleTextFieldChange(savePath, value) {
-    console.log('handleTextFieldChange');
-    console.log(savePath);
-    console.log(value);
-  };
-
-  var handleNumberFieldChange = function handleNumberFieldChange(savePath, value) {
-    console.log('handleNumberFieldChange');
-    console.log(savePath);
-    console.log(value);
-  };
-
-  var handleDateFieldChange = function handleDateFieldChange(savePath, value) {
-    console.log('handleDateFieldChange');
-    console.log(savePath);
-    console.log(value);
-  };
-
-  var handleTimeFieldChange = function handleTimeFieldChange(savePath, value) {
-    console.log('handleTimeFieldChange');
-    console.log(savePath);
-    console.log(value);
-  };
-
-  var handleSelectFieldChange = function handleSelectFieldChange(savePath, value) {
-    console.log('handleSelectFieldChange');
-    console.log(savePath);
-    console.log(value);
-  };
-
-  var handleTextareaFieldChange = function handleTextareaFieldChange(savePath, value) {
-    console.log('handleTextareaFieldChange');
-    console.log(savePath);
-    console.log(value);
-  }; // -
-
-
-  var handleSimulateLoad = function handleSimulateLoad(setLoad) {
-    // Sur click d'un bouton de simulation de traitement en tâche de fond
-    // ---
-    if (setLoad) {
-      var task_id = uuid();
-      app.addTask(task_id);
-    } else {
-      app.setField('tasks', []);
-    }
-  };
-
-  var handleSimulateErrors = function handleSimulateErrors(putErrors) {
-    // Sur click d'un bouton de simulation d'erreurs fields
-    // ---
-    app.clearErrors();
-    var errors = [];
-
-    if (putErrors) {
-      errors.push(app.addError(['playground', 'value_text'], 'Fake error text'));
-      errors.push(app.addError(['playground', 'value_number'], 'Fake error number'));
-      errors.push(app.addError(['playground', 'value_date'], 'Fake error date'));
-      errors.push(app.addError(['playground', 'value_time'], 'Fake error time'));
-      errors.push(app.addError(['playground', 'value_select'], 'Fake error select'));
-      errors.push(app.addError(['playground', 'value_textarea'], 'Fake error textarea'));
-      errors.push(app.addError(['playground', 'value_autocomplete_1', 'label'], 'Fake error autocomplete'));
-      errors.push(app.addError(['playground', 'value_autocomplete_2', 'label'], 'Fake error autocomplete 2'));
-      errors.push(app.addError(['playground', 'value_switcher'], 'Fake error switcher'));
-      errors.push(app.addError(['playground', 'value_radio'], 'Fake error radio'));
-      errors.push(app.addError(['playground', 'value_checkbox'], 'Fake error checkbox'));
-    }
-
-    return errors;
-  }; // Render
-  // ==================================================================================================
-  // Section -> Content
-  // ---
-
-
-  var sectionContent = /*#__PURE__*/react.createElement(react.Fragment, null, /*#__PURE__*/react.createElement(Row_Row, null, /*#__PURE__*/react.createElement(Field_Field, {
-    id: "txt-field-text",
-    component: "input",
-    label: "Texte",
-    savePath: ['playground', 'value_text'],
-    callbackChange: handleTextFieldChange,
-    disabled: isLoading
-  }), /*#__PURE__*/react.createElement(Field_Field, {
-    id: "txt-field-number",
-    component: "input",
-    label: "Nombre",
-    type: "number",
-    savePath: ['playground', 'value_number'],
-    callbackChange: handleNumberFieldChange,
-    disabled: isLoading
-  })), /*#__PURE__*/react.createElement(Row_Row, null, /*#__PURE__*/react.createElement(Field_Field, {
-    id: "txt-field-date",
-    component: "input",
-    label: "Date",
-    type: "date" // placeholder='jj/mm/aaaa'
-    ,
-    savePath: ['playground', 'value_date'],
-    callbackChange: handleDateFieldChange,
-    disabled: isLoading
-  }), /*#__PURE__*/react.createElement(Field_Field, {
-    id: "txt-field-time",
-    component: "input",
-    label: "Time",
-    type: "time" // placeholder='hh:mm'
-    ,
-    savePath: ['playground', 'value_time'],
-    callbackChange: handleTimeFieldChange,
-    disabled: isLoading
-  })), /*#__PURE__*/react.createElement(Row_Row, null, /*#__PURE__*/react.createElement(Field_Field, {
-    id: "lst-field-select",
-    component: "select",
-    label: "Select",
-    datas: CHOICES_TEST,
-    savePath: ['playground', 'value_select'],
-    callbackChange: handleSelectFieldChange,
-    disabled: isLoading,
-    canBeEmpty: true
-  }), /*#__PURE__*/react.createElement(Field_Field, {
-    id: "txt-field-textarea",
-    component: "textarea",
-    label: "Textarea",
-    savePath: ['playground', 'value_textarea'],
-    callbackChange: handleTextareaFieldChange,
-    disabled: isLoading
-  }))); // Section -> Buttons
-  // ---
-
-  var sectionButtons = [/*#__PURE__*/react.createElement(Button_Button, {
-    key: "btn-fields-load",
-    variant: "contained",
-    color: "secondary",
-    onClick: function onClick() {
-      return handleSimulateLoad(true);
-    },
-    disabled: isLoading
-  }, "Load"), /*#__PURE__*/react.createElement(Button_Button, {
-    key: "btn-fields-cancel",
-    variant: "contained",
-    color: "secondary",
-    onClick: function onClick() {
-      return handleSimulateLoad(false);
-    },
-    disabled: !isLoading
-  }, "Cancel"), /*#__PURE__*/react.createElement(Button_Button, {
-    key: "btn-fields-error",
-    variant: "contained",
-    color: "secondary",
-    onClick: function onClick() {
-      return handleSimulateErrors(true);
-    },
-    disabled: isLoading
-  }, "Error"), /*#__PURE__*/react.createElement(Button_Button, {
-    key: "btn-fields-clear",
-    variant: "contained",
-    color: "secondary",
-    onClick: function onClick() {
-      return handleSimulateErrors(false);
-    },
-    disabled: isLoading
-  }, "Clear")];
-  return /*#__PURE__*/react.createElement(Section_Section, {
-    icon: /*#__PURE__*/react.createElement(Icon_Icon, {
-      name: "text_fields"
-    }),
-    title: "Fields",
-    buttons: sectionButtons,
-    buttonsResponsive: true
-  }, sectionContent);
-}); // ***** RenderSectionSnackbars *****
-// **********************************
-
-var TAG_RenderSectionSnackbars = function TAG_RenderSectionSnackbars() {};
-
-var RenderSectionSnackbars = (0,es/* observer */.Pi)(function (props) {
-  var store = react.useContext(window.storeContext);
-  var app = store.app;
-  var snackbar = app.snackbar;
-  var playground = store.playground; // From ... store
-
-  var isLoading = app.isLoading; // Evènements
-  // ==================================================================================================
-
-  var handleSnackbar = function handleSnackbar(severity) {
-    snackbar.update(true, /*#__PURE__*/react.createElement("div", null, "Test de snackbar ", /*#__PURE__*/react.createElement("b", null, severity)), severity);
-  }; // Render
-  // ==================================================================================================
-  // Section -> Buttons
-  // ---
-
-
-  var sectionButtons = [/*#__PURE__*/react.createElement(Button_Button, {
-    key: "btn-snackbars-default",
-    variant: "outlined",
-    color: "primary",
-    onClick: function onClick() {
-      return handleSnackbar('default');
-    },
-    disabled: isLoading
-  }, "Default"), /*#__PURE__*/react.createElement(Button_Button, {
-    key: "btn-snackbars-success",
-    variant: "outlined",
-    color: "primary",
-    onClick: function onClick() {
-      return handleSnackbar('success');
-    },
-    disabled: isLoading
-  }, "Success"), /*#__PURE__*/react.createElement(Button_Button, {
-    key: "btn-snackbars-info",
-    variant: "outlined",
-    color: "primary",
-    onClick: function onClick() {
-      return handleSnackbar('info');
-    },
-    disabled: isLoading
-  }, "Info"), /*#__PURE__*/react.createElement(Button_Button, {
-    key: "btn-snackbars-warning",
-    variant: "outlined",
-    color: "primary",
-    onClick: function onClick() {
-      return handleSnackbar('warning');
-    },
-    disabled: isLoading
-  }, "Warning"), /*#__PURE__*/react.createElement(Button_Button, {
-    key: "btn-snackbars-error",
-    variant: "outlined",
-    color: "primary",
-    onClick: function onClick() {
-      return handleSnackbar('error');
-    },
-    disabled: isLoading
-  }, "Error")];
-  return /*#__PURE__*/react.createElement(Section_Section, {
-    icon: /*#__PURE__*/react.createElement(Icon_Icon, {
-      name: "feedback_black"
-    }),
-    title: "Snackbars",
-    buttons: sectionButtons,
-    buttonsResponsive: true
-  });
-}); // ***** RenderSectionIndicators *****
-// ***********************************
-
-var TAG_RenderSectionIndicators = function TAG_RenderSectionIndicators() {};
-
-var RenderSectionIndicators = (0,es/* observer */.Pi)(function (props) {
-  var store = react.useContext(window.storeContext);
-  var app = store.app;
-  var snackbar = app.snackbar;
-  var playground = store.playground; // From ... store
-
-  var isLoading = app.isLoading; // Render
-  // ==================================================================================================
-  // Section -> Content
-  // ---
-
-  var sectionContent = /*#__PURE__*/react.createElement(react.Fragment, null, /*#__PURE__*/react.createElement(Heading_Heading, {
-    style: {
-      marginBottom: '10px'
-    }
-  }, "Default"), /*#__PURE__*/react.createElement(Row_Row, null, /*#__PURE__*/react.createElement(Indicator_Indicator, {
-    color: "primary"
-  }, "primary"), /*#__PURE__*/react.createElement(Indicator_Indicator, {
-    color: "secondary"
-  }, "secondary"), /*#__PURE__*/react.createElement(Indicator_Indicator, {
-    color: "#009688"
-  }, "custom"), /*#__PURE__*/react.createElement(Indicator_Indicator, {
-    severity: "default"
-  }, "default"), /*#__PURE__*/react.createElement(Indicator_Indicator, {
-    severity: "success"
-  }, "success"), /*#__PURE__*/react.createElement(Indicator_Indicator, {
-    severity: "info"
-  }, "info"), /*#__PURE__*/react.createElement(Indicator_Indicator, {
-    severity: "warning"
-  }, "warning"), /*#__PURE__*/react.createElement(Indicator_Indicator, {
-    severity: "error"
-  }, "error"), /*#__PURE__*/react.createElement(Indicator_Indicator, {
-    severity: "hot"
-  }, "hot")), /*#__PURE__*/react.createElement(Heading_Heading, {
-    style: {
-      marginBottom: '10px'
-    }
-  }, "Contrasted"), /*#__PURE__*/react.createElement(Row_Row, null, /*#__PURE__*/react.createElement(Indicator_Indicator, {
-    color: "primary",
-    variant: "contrasted"
-  }, "primary"), /*#__PURE__*/react.createElement(Indicator_Indicator, {
-    color: "secondary",
-    variant: "contrasted"
-  }, "secondary"), /*#__PURE__*/react.createElement(Indicator_Indicator, {
-    color: "#009688",
-    variant: "contrasted"
-  }, "custom"), /*#__PURE__*/react.createElement(Indicator_Indicator, {
-    severity: "default",
-    variant: "contrasted"
-  }, "default"), /*#__PURE__*/react.createElement(Indicator_Indicator, {
-    severity: "success",
-    variant: "contrasted"
-  }, "success"), /*#__PURE__*/react.createElement(Indicator_Indicator, {
-    severity: "info",
-    variant: "contrasted"
-  }, "info"), /*#__PURE__*/react.createElement(Indicator_Indicator, {
-    severity: "warning",
-    variant: "contrasted"
-  }, "warning"), /*#__PURE__*/react.createElement(Indicator_Indicator, {
-    severity: "error",
-    variant: "contrasted"
-  }, "error"), /*#__PURE__*/react.createElement(Indicator_Indicator, {
-    severity: "hot",
-    variant: "contrasted"
-  }, "hot")), /*#__PURE__*/react.createElement(Heading_Heading, {
-    style: {
-      marginBottom: '10px'
-    }
-  }, "Outlined"), /*#__PURE__*/react.createElement(Row_Row, null, /*#__PURE__*/react.createElement(Indicator_Indicator, {
-    color: "primary",
-    variant: "outlined"
-  }, "primary"), /*#__PURE__*/react.createElement(Indicator_Indicator, {
-    color: "secondary",
-    variant: "outlined"
-  }, "secondary"), /*#__PURE__*/react.createElement(Indicator_Indicator, {
-    color: "#009688",
-    variant: "outlined"
-  }, "custom"), /*#__PURE__*/react.createElement(Indicator_Indicator, {
-    severity: "default",
-    variant: "outlined"
-  }, "default"), /*#__PURE__*/react.createElement(Indicator_Indicator, {
-    severity: "success",
-    variant: "outlined"
-  }, "success"), /*#__PURE__*/react.createElement(Indicator_Indicator, {
-    severity: "info",
-    variant: "outlined"
-  }, "info"), /*#__PURE__*/react.createElement(Indicator_Indicator, {
-    severity: "warning",
-    variant: "outlined"
-  }, "warning"), /*#__PURE__*/react.createElement(Indicator_Indicator, {
-    severity: "error",
-    variant: "outlined"
-  }, "error"), /*#__PURE__*/react.createElement(Indicator_Indicator, {
-    severity: "hot",
-    variant: "outlined"
-  }, "hot")));
-  return /*#__PURE__*/react.createElement(Section_Section, {
-    icon: /*#__PURE__*/react.createElement(Icon_Icon, {
-      name: "palette"
-    }),
-    title: "Indicateurs"
-  }, sectionContent);
-}); // ***** RenderPlayground *****
-// ****************************
-
-var TAG_RenderPlayground = function TAG_RenderPlayground() {};
-
-var RenderPlayground = (0,es/* observer */.Pi)(function (props) {
-  var store = react.useContext(window.storeContext);
-  var app = store.app;
-  var playground = store.playground; // From ... store
-
-  var loaded = playground.loaded; // ...
-
-  react.useEffect(function () {
-    if (!loaded) {
-      playground.load();
-    }
-  }, [loaded]); // Render
-  // ==================================================================================================
-
-  var contentPlayground = null;
-
-  if (loaded) {
-    contentPlayground = /*#__PURE__*/react.createElement(react.Fragment, null, /*#__PURE__*/react.createElement(RenderSectionFields, null), /*#__PURE__*/react.createElement("br", null), /*#__PURE__*/react.createElement(RenderSectionSnackbars, null), /*#__PURE__*/react.createElement("br", null), /*#__PURE__*/react.createElement(RenderSectionIndicators, null));
-  }
-
-  return contentPlayground;
-}); // ***** PlaygroundPage *****
-// **************************
-
-var TAG_PlaygroundPage = function TAG_PlaygroundPage() {};
-
-var PlaygroundPage = (0,es/* observer */.Pi)(function (props) {
-  var store = react.useContext(window.storeContext);
-  var app = store.app;
-  var playground = store.playground; // From ... store
-
-  var initialized = app.initialized;
-  var loaded = playground.loaded; // ...
-
-  var showHelper = !initialized || !loaded ? true : false; // Renderers
-  // ==================================================================================================
-
-  var renderPage = function renderPage() {
-    // Render :: Page -> que quand l'app est intitialisée (pour useEffect)
-    // ---
-    var pageContent = null;
-
-    if (initialized) {
-      pageContent = /*#__PURE__*/react.createElement(RenderPlayground, null);
-    }
-
-    return pageContent;
-  };
-
-  var renderHelper = function renderHelper() {
-    // Render :: Helper
-    // ---
-    return /*#__PURE__*/react.createElement(Helper_Helper, {
-      iconName: "science",
-      show: showHelper
-    });
-  };
-
-  return /*#__PURE__*/react.createElement("div", {
-    className: "nx-page"
-  }, renderPage(), renderHelper());
-});
-;// CONCATENATED MODULE: ./ui/ContextualHeader.jsx
-
-
-
-
-
-
-
-
-
-
-
-
-
- // Functions Components ReactJS
-// -------------------------------------------------------------------------------------------------------------
-// ***** ContextualHeader *****
-// ****************************
-
-var TAG_ContextualHeader = function TAG_ContextualHeader() {};
-
-var ContextualHeader = (0,es/* observer */.Pi)(function (props) {
-  var store = react.useContext(window.storeContext);
-  var app = store.app; // From ... store
-
-  var context = app.context; // Render
-  // ==================================================================================================
-
-  var headerLeft = null;
-  var headerMiddle = null;
-  var headerRight = null; // -------------------------------------------------
-
-  var renderHeaderHome = function renderHeaderHome() {
-    if ([app.homeContext, 'login'].indexOf(context) == -1) {
-      return;
-    }
-
-    headerMiddle = /*#__PURE__*/react.createElement(HomeHeaderMiddle, null);
-  };
-
-  var renderHeaderSearch = function renderHeaderSearch() {
-    if (context != 'search') {
-      return;
-    }
-
-    headerMiddle = /*#__PURE__*/react.createElement(SearchHeaderMiddle, null);
-  }; // -------------------------------------------------
-
-
-  var renderHeaderBlog = function renderHeaderBlog() {
-    if (context != 'blog') {
-      return;
-    }
-
-    headerLeft = /*#__PURE__*/react.createElement(BlogHeaderLeft, null);
-  }; // -------------------------------------------------
-
-
-  var renderHeaderProjects = function renderHeaderProjects() {
-    if (context != 'projects') {
-      return;
-    }
-
-    headerLeft = /*#__PURE__*/react.createElement(ProjectsHeaderLeft, null);
-  };
-
-  var renderHeaderCv = function renderHeaderCv() {
-    if (context != 'cv') {
-      return;
-    }
-
-    headerLeft = /*#__PURE__*/react.createElement(CvHeaderLeft, null);
-  }; // -------------------------------------------------
-
-
-  var renderHeaderPlayground = function renderHeaderPlayground() {
-    if (context != 'playground') {
-      return;
-    }
-
-    headerLeft = /*#__PURE__*/react.createElement(PlaygroundHeaderLeft, null);
-    headerRight = /*#__PURE__*/react.createElement(PlaygroundHeaderRight, null);
-  }; // -------------------------------------------------
-
-
-  var renderHeaderAbout = function renderHeaderAbout() {
-    if (context != app.aboutContext) {
-      return;
-    }
-
-    headerLeft = /*#__PURE__*/react.createElement(AboutHeaderLeft, null);
-  };
-
-  var renderHeaderAdmin = function renderHeaderAdmin() {
-    if (context != app.adminContext) {
-      return;
-    }
-
-    headerLeft = /*#__PURE__*/react.createElement(AdminHeaderLeft, null);
-  }; // -------------------------------------------------
-
-
-  var renderHeaderAccount = function renderHeaderAccount() {
-    if (context != app.accountContext) {
-      return;
-    }
-
-    headerLeft = /*#__PURE__*/react.createElement(AccountHeaderLeft, null);
-  }; // -------------------------------------------------
-
-
-  renderHeaderHome();
-  renderHeaderSearch();
-  renderHeaderBlog();
-  renderHeaderProjects();
-  renderHeaderCv();
-  renderHeaderPlayground();
-  renderHeaderAbout();
-  renderHeaderAdmin();
-  renderHeaderAccount();
-  return /*#__PURE__*/react.createElement(Header_Header, {
-    left: headerLeft,
-    right: headerRight
-  }, headerMiddle);
-});
-;// CONCATENATED MODULE: ./ui/ContextualMenu.jsx
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- // Functions Components ReactJS
-// -------------------------------------------------------------------------------------------------------------
-// ***** ContextualMenu *****
-// **************************
-
-var TAG_ContextualMenu = function TAG_ContextualMenu() {};
-
-var ContextualMenu = (0,es/* observer */.Pi)(function (props) {
-  var store = react.useContext(window.storeContext);
-  var app = store.app; // From ... store
-
-  var context = app.context;
-  var breakPoint650 = app.breakPoint650; // Render
-  // ==================================================================================================
-  // -------------------------------------------------
-  // -------------------------------------------------
-
-  return /*#__PURE__*/react.createElement(Menu_Menu, null, /*#__PURE__*/react.createElement(HomeMenuItem, null), /*#__PURE__*/react.createElement(SearchMenuItem, null), /*#__PURE__*/react.createElement(MenuDivider, null), /*#__PURE__*/react.createElement(BlogMenuItem, null), /*#__PURE__*/react.createElement(MenuDivider, null), /*#__PURE__*/react.createElement(ProjectsMenuItem, null), /*#__PURE__*/react.createElement(CvMenuItem, null), /*#__PURE__*/react.createElement(MenuDivider, null), /*#__PURE__*/react.createElement(PlaygroundMenuItem, null), /*#__PURE__*/react.createElement(MenuDivider, null), /*#__PURE__*/react.createElement(AboutMenuItem, null), /*#__PURE__*/react.createElement(AdminMenuItem, null), breakPoint650 && /*#__PURE__*/react.createElement(MenuDivider, null), /*#__PURE__*/react.createElement(LoginMenuItem, null), /*#__PURE__*/react.createElement(AccountMenuItem, null), /*#__PURE__*/react.createElement(LogoutMenuItem, null));
-});
-// EXTERNAL MODULE: ./contexts/home/Home.css
-var home_Home = __webpack_require__(8319);
-;// CONCATENATED MODULE: ./contexts/home/Home.jsx
-
-
-
-
- // Functions Components ReactJS
-// -------------------------------------------------------------------------------------------------------------
-// ***** HomePage *****
-// ********************
-
-var TAG_HomePage = function TAG_HomePage() {};
-
-var HomePage = (0,es/* observer */.Pi)(function (props) {
-  var store = react.useContext(window.storeContext);
-  var app = store.app; // Renderers
-  // ==================================================================================================
-
-  var renderHelper = function renderHelper() {
-    // Render :: Helper
-    // ---
-    return /*#__PURE__*/react.createElement(Helper_Helper, {
-      icon: /*#__PURE__*/react.createElement("img", {
-        className: "nx-helper-icon",
-        src: "/static/favicons/android-icon-192x192.png"
-      }),
-      title: "Bienvenue sur le Nexorium !",
-      subtitle: "Votre portail d'acc\xE8s sur l'\xE9cosyst\xE8me NxApp servant \xE9galement de site portfolio.",
-      show: true,
-      style: {
-        maxWidth: '400px'
-      }
-    });
-  };
-
-  return /*#__PURE__*/react.createElement("div", {
-    className: "nx-page"
-  }, renderHelper());
-});
-// EXTERNAL MODULE: ./contexts/admin/Admin.css
-var admin_Admin = __webpack_require__(4251);
-;// CONCATENATED MODULE: ./contexts/admin/Admin.jsx
-
-
-
-
- // Functions Components ReactJS
-// -------------------------------------------------------------------------------------------------------------
-// ***** AdminPage *****
-// *********************
-
-var TAG_AdminPage = function TAG_AdminPage() {};
-
-var AdminPage = (0,es/* observer */.Pi)(function (props) {
-  var store = react.useContext(window.storeContext);
-  var app = store.app; // Renderers
-  // ==================================================================================================
-
-  var renderHelper = function renderHelper() {
-    // Render :: Helper
-    // ---
-    return /*#__PURE__*/react.createElement(Helper_Helper, {
-      iconName: "setting",
-      show: true
-    });
-  };
-
-  return /*#__PURE__*/react.createElement("div", {
-    className: "nx-page"
-  }, renderHelper());
-});
-// EXTERNAL MODULE: ./Main.css
-var Main = __webpack_require__(1729);
-;// CONCATENATED MODULE: ./Main.jsx
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- // Models
-// -------------------------------------------------------------------------------------------------------------
-// ***** RootStore *****
-// *********************
-
-var TAG_RootStore = function TAG_RootStore() {};
-
-var RootStore = mobx_state_tree_module/* types.model */.V5.model({
-  'app': mobx_state_tree_module/* types.optional */.V5.optional(NxAppStore, {}),
-  // Search
-  // -
-  'search': mobx_state_tree_module/* types.optional */.V5.optional(SearchStore, {}),
-  // Blog
-  // -
-  'blog': mobx_state_tree_module/* types.optional */.V5.optional(BlogStore, {}),
-  // Mes projets
-  // -
-  'projects': mobx_state_tree_module/* types.optional */.V5.optional(ProjectsStore, {}),
-  // Mon CV
-  // -
-  'cv': mobx_state_tree_module/* types.optional */.V5.optional(CvStore, {}),
-  // Playground
-  // -
-  'playground': mobx_state_tree_module/* types.optional */.V5.optional(PlaygroundStore, {})
-}).views(function (self) {
-  return {
-    get ajaxNexorium() {
-      var app = self.app;
-      var services = app.services;
-      return services.getAjaxBase('nexorium');
-    }
-
-  };
-}).actions(function (self) {
-  return {
-    update: function update(datas) {
-      // Nexorium-specific init datas
-      // ---
-      console.log(datas);
-    },
-    navigateTo: function navigateTo(navContext, contextId, contextUrl, contextExtras, callback) {
-      // Herald own navigation function
-      // ---
-      var app = self.app;
-      var context = app.context; // -
-      // Search
-
-      if (navContext == 'search') {
-        app.navigate('/search', 'search');
-      } // -
-      // Blog
-
-
-      if (navContext == 'blog') {
-        app.navigate('/blog', 'blog', [{
-          "op": "replace",
-          "path": "/blog/loaded",
-          "value": false
-        }]);
-      } // -
-      // Mes projects
-
-
-      if (navContext == 'projects') {
-        app.navigate('/projects', 'projects', [{
-          "op": "replace",
-          "path": "/projects/loaded",
-          "value": false
-        }]);
-      } // Mon CV
-
-
-      if (navContext == 'cv') {
-        app.navigate('/cv', 'cv', [{
-          "op": "replace",
-          "path": "/cv/loaded",
-          "value": false
-        }]);
-      } // -
-      // Playground
-
-
-      if (navContext == 'playground') {
-        app.navigate('/playground', 'playground', [{
-          "op": "replace",
-          "path": "/playground/loaded",
-          "value": false
-        }]);
-      }
-    }
-  };
-}); // Init
-// -------------------------------------------------------------------------------------------------------------
-// Contexts
-// -
-
-var contexts = {
-  'home': HomePage,
-  'search': SearchPage,
-  'blog': BlogPage,
-  'projects': ProjectsPage,
-  'cv': CvPage,
-  'playground': PlaygroundPage,
-  'admin': AdminPage
-}; // Popups
-// -
-
-var popups = {}; // Routes
-// -
-
-var routes = {
-  'home': '/',
-  'search': '/search',
-  'blog': '/blog',
-  'projects': '/projects',
-  'cv': '/cv',
-  'playground': '/playground',
-  'admin': '/admin'
-}; // Store
-// -
-
-var initSnapshot = makeInitSnapshot(routes, {
-  'app': {
-    'theme': {
-      'variant': 'light',
-      'palette': {
-        'default': {
-          'main': '#000000',
-          'contrastText': '#fff'
-        },
-        'primary': {
-          'main': '#8c9eff',
-          'contrastText': '#fff'
-        },
-        'secondary': {
-          'main': '#607d8b',
-          'contrastText': '#fff'
-        }
-      }
-    }
-  }
-});
-var rootStore = RootStore.create(initSnapshot);
-var RootStoreContext = /*#__PURE__*/react.createContext(rootStore);
-window.store = rootStore;
-window.storeContext = RootStoreContext;
-rootStore.app.init(function (datas) {
-  rootStore.update(datas);
-}, popups, {}); // Functions Components ReactJS
-// -------------------------------------------------------------------------------------------------------------
-// ***** Root *****
-// ****************
-
-var TAG_Root = function TAG_Root() {};
-
-var Root = (0,es/* observer */.Pi)(function () {
-  // Render
-  // ==================================================================================================
-  return /*#__PURE__*/react.createElement(RootStoreContext.Provider, {
-    value: rootStore
-  }, /*#__PURE__*/react.createElement(NxApp_NxApp, {
-    header: ContextualHeader,
-    menu: ContextualMenu,
-    contexts: contexts,
-    popups: popups
-  }));
-}); // DOM Ready
-// --------------------------------------------------------------------------------------------------------------------------------------------
-
-window.addEventListener('DOMContentLoaded', function () {
-  react_dom.render( /*#__PURE__*/react.createElement(Root, null), document.getElementById("nx-root"));
-});
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"rootStore\": () => (/* binding */ rootStore),\n/* harmony export */   \"RootStoreContext\": () => (/* binding */ RootStoreContext)\n/* harmony export */ });\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"../../nexus/react/node_modules/react/index.js\");\n/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom */ \"../../nexus/react/node_modules/react-dom/index.js\");\n/* harmony import */ var mobx_state_tree__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! mobx-state-tree */ \"../../nexus/react/node_modules/mobx-state-tree/dist/mobx-state-tree.module.js\");\n/* harmony import */ var mobx_react_lite__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! mobx-react-lite */ \"../../nexus/react/node_modules/mobx-react-lite/es/index.js\");\n/* harmony import */ var nexus_NxApp__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! nexus/NxApp */ \"../../nexus/react/NxApp.jsx\");\n/* harmony import */ var nexorium_ui_ContextualHeader__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! nexorium/ui/ContextualHeader */ \"./ui/ContextualHeader.jsx\");\n/* harmony import */ var nexorium_ui_ContextualMenu__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! nexorium/ui/ContextualMenu */ \"./ui/ContextualMenu.jsx\");\n/* harmony import */ var nexorium_contexts_home_Home__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! nexorium/contexts/home/Home */ \"./contexts/home/Home.jsx\");\n/* harmony import */ var nexorium_contexts_search_Search__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! nexorium/contexts/search/Search */ \"./contexts/search/Search.jsx\");\n/* harmony import */ var nexorium_contexts_blog_Blog__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! nexorium/contexts/blog/Blog */ \"./contexts/blog/Blog.jsx\");\n/* harmony import */ var nexorium_contexts_projects_Projects__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! nexorium/contexts/projects/Projects */ \"./contexts/projects/Projects.jsx\");\n/* harmony import */ var nexorium_contexts_cv_Cv__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! nexorium/contexts/cv/Cv */ \"./contexts/cv/Cv.jsx\");\n/* harmony import */ var nexorium_contexts_playground_Playground__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! nexorium/contexts/playground/Playground */ \"./contexts/playground/Playground.jsx\");\n/* harmony import */ var nexorium_contexts_admin_Admin__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! nexorium/contexts/admin/Admin */ \"./contexts/admin/Admin.jsx\");\n/* harmony import */ var _Main_css__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./Main.css */ \"./Main.css\");\n/* harmony import */ var _Main_css__WEBPACK_IMPORTED_MODULE_13___default = /*#__PURE__*/__webpack_require__.n(_Main_css__WEBPACK_IMPORTED_MODULE_13__);\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n // Models\n// -------------------------------------------------------------------------------------------------------------\n// ***** RootStore *****\n// *********************\n\nvar TAG_RootStore = function TAG_RootStore() {};\n\nvar RootStore = mobx_state_tree__WEBPACK_IMPORTED_MODULE_14__.types.model({\n  'app': mobx_state_tree__WEBPACK_IMPORTED_MODULE_14__.types.optional(nexus_NxApp__WEBPACK_IMPORTED_MODULE_3__.NxAppStore, {}),\n  // Search\n  // -\n  'search': mobx_state_tree__WEBPACK_IMPORTED_MODULE_14__.types.optional(nexorium_contexts_search_Search__WEBPACK_IMPORTED_MODULE_7__.SearchStore, {}),\n  // Blog\n  // -\n  'blog': mobx_state_tree__WEBPACK_IMPORTED_MODULE_14__.types.optional(nexorium_contexts_blog_Blog__WEBPACK_IMPORTED_MODULE_8__.BlogStore, {}),\n  // Mes projets\n  // -\n  'projects': mobx_state_tree__WEBPACK_IMPORTED_MODULE_14__.types.optional(nexorium_contexts_projects_Projects__WEBPACK_IMPORTED_MODULE_9__.ProjectsStore, {}),\n  // Mon CV\n  // -\n  'cv': mobx_state_tree__WEBPACK_IMPORTED_MODULE_14__.types.optional(nexorium_contexts_cv_Cv__WEBPACK_IMPORTED_MODULE_10__.CvStore, {}),\n  // Playground\n  // -\n  'playground': mobx_state_tree__WEBPACK_IMPORTED_MODULE_14__.types.optional(nexorium_contexts_playground_Playground__WEBPACK_IMPORTED_MODULE_11__.PlaygroundStore, {})\n}).views(function (self) {\n  return {\n    get ajaxNexorium() {\n      var app = self.app;\n      var services = app.services;\n      return services.getAjaxBase('nexorium');\n    }\n\n  };\n}).actions(function (self) {\n  return {\n    update: function update(datas) {\n      // Nexorium-specific init datas\n      // ---\n      console.log(datas);\n    },\n    navigateTo: function navigateTo(navContext, contextId, contextUrl, contextExtras, callback) {\n      // Herald own navigation function\n      // ---\n      var app = self.app;\n      var context = app.context; // -\n      // Search\n\n      if (navContext == 'search') {\n        app.navigate('/search', 'search');\n      } // -\n      // Blog\n\n\n      if (navContext == 'blog') {\n        app.navigate('/blog', 'blog', [{\n          \"op\": \"replace\",\n          \"path\": \"/blog/loaded\",\n          \"value\": false\n        }]);\n      } // -\n      // Mes projects\n\n\n      if (navContext == 'projects') {\n        app.navigate('/projects', 'projects', [{\n          \"op\": \"replace\",\n          \"path\": \"/projects/loaded\",\n          \"value\": false\n        }]);\n      } // Mon CV\n\n\n      if (navContext == 'cv') {\n        app.navigate('/cv', 'cv', [{\n          \"op\": \"replace\",\n          \"path\": \"/cv/loaded\",\n          \"value\": false\n        }]);\n      } // -\n      // Playground\n\n\n      if (navContext == 'playground') {\n        app.navigate('/playground', 'playground', [{\n          \"op\": \"replace\",\n          \"path\": \"/playground/loaded\",\n          \"value\": false\n        }]);\n      }\n    }\n  };\n}); // Init\n// -------------------------------------------------------------------------------------------------------------\n// Contexts\n// -\n\nvar contexts = {\n  'home': nexorium_contexts_home_Home__WEBPACK_IMPORTED_MODULE_6__.HomePage,\n  'search': nexorium_contexts_search_Search__WEBPACK_IMPORTED_MODULE_7__.SearchPage,\n  'blog': nexorium_contexts_blog_Blog__WEBPACK_IMPORTED_MODULE_8__.BlogPage,\n  'projects': nexorium_contexts_projects_Projects__WEBPACK_IMPORTED_MODULE_9__.ProjectsPage,\n  'cv': nexorium_contexts_cv_Cv__WEBPACK_IMPORTED_MODULE_10__.CvPage,\n  'playground': nexorium_contexts_playground_Playground__WEBPACK_IMPORTED_MODULE_11__.PlaygroundPage,\n  'admin': nexorium_contexts_admin_Admin__WEBPACK_IMPORTED_MODULE_12__.AdminPage\n}; // Popups\n// -\n\nvar popups = {}; // Routes\n// -\n\nvar routes = {\n  'home': '/',\n  'search': '/search',\n  'blog': '/blog',\n  'projects': '/projects',\n  'cv': '/cv',\n  'playground': '/playground',\n  'admin': '/admin'\n}; // Store\n// -\n\nvar initSnapshot = (0,nexus_NxApp__WEBPACK_IMPORTED_MODULE_3__.makeInitSnapshot)(routes, {\n  'app': {\n    'theme': {\n      'variant': 'light',\n      'palette': {\n        'default': {\n          'main': '#000000',\n          'contrastText': '#fff'\n        },\n        'primary': {\n          'main': '#8c9eff',\n          'contrastText': '#fff'\n        },\n        'secondary': {\n          'main': '#607d8b',\n          'contrastText': '#fff'\n        }\n      }\n    }\n  }\n});\nvar rootStore = RootStore.create(initSnapshot);\nvar RootStoreContext = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createContext(rootStore);\nwindow.store = rootStore;\nwindow.storeContext = RootStoreContext;\nrootStore.app.init(function (datas) {\n  rootStore.update(datas);\n}, popups, {}); // Functions Components ReactJS\n// -------------------------------------------------------------------------------------------------------------\n// ***** Root *****\n// ****************\n\nvar TAG_Root = function TAG_Root() {};\n\nvar Root = (0,mobx_react_lite__WEBPACK_IMPORTED_MODULE_2__.observer)(function () {\n  // Render\n  // ==================================================================================================\n  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(RootStoreContext.Provider, {\n    value: rootStore\n  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(nexus_NxApp__WEBPACK_IMPORTED_MODULE_3__.NxApp, {\n    header: nexorium_ui_ContextualHeader__WEBPACK_IMPORTED_MODULE_4__.ContextualHeader,\n    menu: nexorium_ui_ContextualMenu__WEBPACK_IMPORTED_MODULE_5__.ContextualMenu,\n    contexts: contexts,\n    popups: popups\n  }));\n}); // DOM Ready\n// --------------------------------------------------------------------------------------------------------------------------------------------\n\nwindow.addEventListener('DOMContentLoaded', function () {\n  react_dom__WEBPACK_IMPORTED_MODULE_1__.render( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(Root, null), document.getElementById(\"nx-root\"));\n});\n\n//# sourceURL=webpack://nexorium/./Main.jsx?");
 
 /***/ }),
 
-/***/ 1729:
-/***/ (() => {
+/***/ "./contexts/admin/Admin.jsx":
+/*!**********************************!*\
+  !*** ./contexts/admin/Admin.jsx ***!
+  \**********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-// extracted by extract-css-chunks-webpack-plugin
-
-/***/ }),
-
-/***/ 4251:
-/***/ (() => {
-
-// extracted by extract-css-chunks-webpack-plugin
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"AdminPage\": () => (/* binding */ AdminPage)\n/* harmony export */ });\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"../../nexus/react/node_modules/react/index.js\");\n/* harmony import */ var mobx_react_lite__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! mobx-react-lite */ \"../../nexus/react/node_modules/mobx-react-lite/es/index.js\");\n/* harmony import */ var clsx__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! clsx */ \"../../nexus/react/node_modules/clsx/dist/clsx.m.js\");\n/* harmony import */ var nexus_ui_helper_Helper__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! nexus/ui/helper/Helper */ \"../../nexus/react/ui/helper/Helper.jsx\");\n/* harmony import */ var _Admin_css__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Admin.css */ \"./contexts/admin/Admin.css\");\n/* harmony import */ var _Admin_css__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_Admin_css__WEBPACK_IMPORTED_MODULE_4__);\n\n\n\n\n // Functions Components ReactJS\n// -------------------------------------------------------------------------------------------------------------\n// ***** AdminPage *****\n// *********************\n\nvar TAG_AdminPage = function TAG_AdminPage() {};\n\nvar AdminPage = (0,mobx_react_lite__WEBPACK_IMPORTED_MODULE_1__.observer)(function (props) {\n  var store = react__WEBPACK_IMPORTED_MODULE_0__.useContext(window.storeContext);\n  var app = store.app; // Renderers\n  // ==================================================================================================\n\n  var renderHelper = function renderHelper() {\n    // Render :: Helper\n    // ---\n    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(nexus_ui_helper_Helper__WEBPACK_IMPORTED_MODULE_3__.Helper, {\n      iconName: \"setting\",\n      show: true\n    });\n  };\n\n  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(\"div\", {\n    className: \"nx-page\"\n  }, renderHelper());\n});\n\n//# sourceURL=webpack://nexorium/./contexts/admin/Admin.jsx?");
 
 /***/ }),
 
-/***/ 6737:
-/***/ (() => {
+/***/ "./contexts/blog/Blog.jsx":
+/*!********************************!*\
+  !*** ./contexts/blog/Blog.jsx ***!
+  \********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-// extracted by extract-css-chunks-webpack-plugin
-
-/***/ }),
-
-/***/ 8685:
-/***/ (() => {
-
-// extracted by extract-css-chunks-webpack-plugin
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"BlogStore\": () => (/* binding */ BlogStore),\n/* harmony export */   \"BlogHeaderLeft\": () => (/* binding */ BlogHeaderLeft),\n/* harmony export */   \"BlogMenuItem\": () => (/* binding */ BlogMenuItem),\n/* harmony export */   \"BlogPage\": () => (/* binding */ BlogPage)\n/* harmony export */ });\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"../../nexus/react/node_modules/react/index.js\");\n/* harmony import */ var mobx_state_tree__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! mobx-state-tree */ \"../../nexus/react/node_modules/mobx-state-tree/dist/mobx-state-tree.module.js\");\n/* harmony import */ var mobx_react_lite__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! mobx-react-lite */ \"../../nexus/react/node_modules/mobx-react-lite/es/index.js\");\n/* harmony import */ var clsx__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! clsx */ \"../../nexus/react/node_modules/clsx/dist/clsx.m.js\");\n/* harmony import */ var nexus_ui_helper_Helper__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! nexus/ui/helper/Helper */ \"../../nexus/react/ui/helper/Helper.jsx\");\n/* harmony import */ var nexus_layout_header_Header__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! nexus/layout/header/Header */ \"../../nexus/react/layout/header/Header.jsx\");\n/* harmony import */ var nexus_layout_menu_Menu__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! nexus/layout/menu/Menu */ \"../../nexus/react/layout/menu/Menu.jsx\");\n/* harmony import */ var nexus_ui_icon_Icon__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! nexus/ui/icon/Icon */ \"../../nexus/react/ui/icon/Icon.jsx\");\n/* harmony import */ var _Blog_css__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./Blog.css */ \"./contexts/blog/Blog.css\");\n/* harmony import */ var _Blog_css__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(_Blog_css__WEBPACK_IMPORTED_MODULE_7__);\n\n\n\n\n\n\n\n\n // Models\n// -------------------------------------------------------------------------------------------------------------\n// ***** BlogStore *****\n// *********************\n\nvar TAG_BlogStore = function TAG_BlogStore() {};\n\nvar BlogStore = mobx_state_tree__WEBPACK_IMPORTED_MODULE_8__.types.model({\n  loaded: false\n}).actions(function (self) {\n  return {\n    setField: function setField(field, value) {\n      self[field] = value;\n    },\n    // -\n    update: function update(raw) {}\n  };\n}); // Functions Components ReactJS\n// -------------------------------------------------------------------------------------------------------------\n// ***** BlogHeaderLeft *****\n// **************************\n\nvar TAG_BlogHeaderLeft = function TAG_BlogHeaderLeft() {};\n\nvar BlogHeaderLeft = (0,mobx_react_lite__WEBPACK_IMPORTED_MODULE_1__.observer)(function (props) {\n  var store = react__WEBPACK_IMPORTED_MODULE_0__.useContext(window.storeContext);\n  var app = store.app; // ...\n  // Render\n  // ==================================================================================================\n\n  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(nexus_layout_header_Header__WEBPACK_IMPORTED_MODULE_4__.HeaderTitle, {\n    title: \"Blog\",\n    titleStyle: {\n      marginLeft: '10px'\n    }\n  });\n}); // ***** BlogMenuItem *****\n// ************************\n\nvar TAG_BlogMenuItem = function TAG_BlogMenuItem() {};\n\nvar BlogMenuItem = (0,mobx_react_lite__WEBPACK_IMPORTED_MODULE_1__.observer)(function (props) {\n  var store = react__WEBPACK_IMPORTED_MODULE_0__.useContext(window.storeContext);\n  var app = store.app;\n  var menu = app.menu; // ...\n\n  var blogContext = 'blog'; // Evènements\n  // ==================================================================================================\n\n  var handleMenuItemClick = function handleMenuItemClick() {\n    store.navigateTo(blogContext);\n    app.menu.close();\n  }; // Render\n  // ==================================================================================================\n\n\n  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(nexus_layout_menu_Menu__WEBPACK_IMPORTED_MODULE_5__.MenuItem, {\n    icon: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(nexus_ui_icon_Icon__WEBPACK_IMPORTED_MODULE_6__.Icon, {\n      name: \"forum\",\n      width: \"120px\"\n    }),\n    label: \"Blog\",\n    activeContexts: [blogContext],\n    callbackClick: handleMenuItemClick\n  });\n}); // ***** BlogPage *****\n// ********************\n\nvar TAG_BlogPage = function TAG_BlogPage() {};\n\nvar BlogPage = (0,mobx_react_lite__WEBPACK_IMPORTED_MODULE_1__.observer)(function (props) {\n  var store = react__WEBPACK_IMPORTED_MODULE_0__.useContext(window.storeContext);\n  var app = store.app; // Renderers\n  // ==================================================================================================\n\n  var renderHelper = function renderHelper() {\n    // Render :: Helper\n    // ---\n    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(nexus_ui_helper_Helper__WEBPACK_IMPORTED_MODULE_3__.Helper, {\n      iconName: \"forum\",\n      show: true\n    });\n  };\n\n  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(\"div\", {\n    className: \"nx-page\"\n  }, renderHelper());\n});\n\n//# sourceURL=webpack://nexorium/./contexts/blog/Blog.jsx?");
 
 /***/ }),
 
-/***/ 8319:
-/***/ (() => {
+/***/ "./contexts/cv/Cv.jsx":
+/*!****************************!*\
+  !*** ./contexts/cv/Cv.jsx ***!
+  \****************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-// extracted by extract-css-chunks-webpack-plugin
-
-/***/ }),
-
-/***/ 5245:
-/***/ (() => {
-
-// extracted by extract-css-chunks-webpack-plugin
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"CvStore\": () => (/* binding */ CvStore),\n/* harmony export */   \"CvHeaderLeft\": () => (/* binding */ CvHeaderLeft),\n/* harmony export */   \"CvMenuItem\": () => (/* binding */ CvMenuItem),\n/* harmony export */   \"CvPage\": () => (/* binding */ CvPage)\n/* harmony export */ });\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"../../nexus/react/node_modules/react/index.js\");\n/* harmony import */ var mobx_state_tree__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! mobx-state-tree */ \"../../nexus/react/node_modules/mobx-state-tree/dist/mobx-state-tree.module.js\");\n/* harmony import */ var mobx_react_lite__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! mobx-react-lite */ \"../../nexus/react/node_modules/mobx-react-lite/es/index.js\");\n/* harmony import */ var clsx__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! clsx */ \"../../nexus/react/node_modules/clsx/dist/clsx.m.js\");\n/* harmony import */ var nexus_ui_helper_Helper__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! nexus/ui/helper/Helper */ \"../../nexus/react/ui/helper/Helper.jsx\");\n/* harmony import */ var nexus_layout_header_Header__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! nexus/layout/header/Header */ \"../../nexus/react/layout/header/Header.jsx\");\n/* harmony import */ var nexus_layout_menu_Menu__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! nexus/layout/menu/Menu */ \"../../nexus/react/layout/menu/Menu.jsx\");\n/* harmony import */ var nexus_ui_icon_Icon__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! nexus/ui/icon/Icon */ \"../../nexus/react/ui/icon/Icon.jsx\");\n/* harmony import */ var _Cv_css__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./Cv.css */ \"./contexts/cv/Cv.css\");\n/* harmony import */ var _Cv_css__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(_Cv_css__WEBPACK_IMPORTED_MODULE_7__);\n\n\n\n\n\n\n\n\n // Models\n// -------------------------------------------------------------------------------------------------------------\n// ***** CvStore *****\n// *******************\n\nvar TAG_CvStore = function TAG_CvStore() {};\n\nvar CvStore = mobx_state_tree__WEBPACK_IMPORTED_MODULE_8__.types.model({\n  loaded: false\n}).actions(function (self) {\n  return {\n    setField: function setField(field, value) {\n      self[field] = value;\n    },\n    // -\n    update: function update(raw) {}\n  };\n}); // Functions Components ReactJS\n// -------------------------------------------------------------------------------------------------------------\n// ***** CvHeaderLeft *****\n// ************************\n\nvar TAG_CvHeaderLeft = function TAG_CvHeaderLeft() {};\n\nvar CvHeaderLeft = (0,mobx_react_lite__WEBPACK_IMPORTED_MODULE_1__.observer)(function (props) {\n  var store = react__WEBPACK_IMPORTED_MODULE_0__.useContext(window.storeContext);\n  var app = store.app; // ...\n  // Render\n  // ==================================================================================================\n\n  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(nexus_layout_header_Header__WEBPACK_IMPORTED_MODULE_4__.HeaderTitle, {\n    title: \"Mon CV\",\n    titleStyle: {\n      marginLeft: '10px'\n    }\n  });\n}); // ***** CvMenuItem *****\n// **********************\n\nvar TAG_CvMenuItem = function TAG_CvMenuItem() {};\n\nvar CvMenuItem = (0,mobx_react_lite__WEBPACK_IMPORTED_MODULE_1__.observer)(function (props) {\n  var store = react__WEBPACK_IMPORTED_MODULE_0__.useContext(window.storeContext);\n  var app = store.app;\n  var menu = app.menu; // ...\n\n  var cvContext = 'cv'; // Evènements\n  // ==================================================================================================\n\n  var handleMenuItemClick = function handleMenuItemClick() {\n    store.navigateTo(cvContext);\n    app.menu.close();\n  }; // Render\n  // ==================================================================================================\n\n\n  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(nexus_layout_menu_Menu__WEBPACK_IMPORTED_MODULE_5__.MenuItem, {\n    icon: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(nexus_ui_icon_Icon__WEBPACK_IMPORTED_MODULE_6__.Icon, {\n      name: \"school\",\n      width: \"120px\"\n    }),\n    label: \"Mon CV\",\n    activeContexts: [cvContext],\n    callbackClick: handleMenuItemClick\n  });\n}); // ***** CvPage *****\n// ******************\n\nvar TAG_CvPage = function TAG_CvPage() {};\n\nvar CvPage = (0,mobx_react_lite__WEBPACK_IMPORTED_MODULE_1__.observer)(function (props) {\n  var store = react__WEBPACK_IMPORTED_MODULE_0__.useContext(window.storeContext);\n  var app = store.app; // Renderers\n  // ==================================================================================================\n\n  var renderHelper = function renderHelper() {\n    // Render :: Helper\n    // ---\n    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(nexus_ui_helper_Helper__WEBPACK_IMPORTED_MODULE_3__.Helper, {\n      iconName: \"school\",\n      show: true\n    });\n  };\n\n  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(\"div\", {\n    className: \"nx-page\"\n  }, renderHelper());\n});\n\n//# sourceURL=webpack://nexorium/./contexts/cv/Cv.jsx?");
 
 /***/ }),
 
-/***/ 8525:
-/***/ (() => {
+/***/ "./contexts/home/Home.jsx":
+/*!********************************!*\
+  !*** ./contexts/home/Home.jsx ***!
+  \********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-// extracted by extract-css-chunks-webpack-plugin
-
-/***/ }),
-
-/***/ 4906:
-/***/ (() => {
-
-// extracted by extract-css-chunks-webpack-plugin
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"HomePage\": () => (/* binding */ HomePage)\n/* harmony export */ });\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"../../nexus/react/node_modules/react/index.js\");\n/* harmony import */ var mobx_react_lite__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! mobx-react-lite */ \"../../nexus/react/node_modules/mobx-react-lite/es/index.js\");\n/* harmony import */ var clsx__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! clsx */ \"../../nexus/react/node_modules/clsx/dist/clsx.m.js\");\n/* harmony import */ var nexus_ui_helper_Helper__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! nexus/ui/helper/Helper */ \"../../nexus/react/ui/helper/Helper.jsx\");\n/* harmony import */ var _Home_css__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Home.css */ \"./contexts/home/Home.css\");\n/* harmony import */ var _Home_css__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_Home_css__WEBPACK_IMPORTED_MODULE_4__);\n\n\n\n\n // Functions Components ReactJS\n// -------------------------------------------------------------------------------------------------------------\n// ***** HomePage *****\n// ********************\n\nvar TAG_HomePage = function TAG_HomePage() {};\n\nvar HomePage = (0,mobx_react_lite__WEBPACK_IMPORTED_MODULE_1__.observer)(function (props) {\n  var store = react__WEBPACK_IMPORTED_MODULE_0__.useContext(window.storeContext);\n  var app = store.app; // Renderers\n  // ==================================================================================================\n\n  var renderHelper = function renderHelper() {\n    // Render :: Helper\n    // ---\n    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(nexus_ui_helper_Helper__WEBPACK_IMPORTED_MODULE_3__.Helper, {\n      icon: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(\"img\", {\n        className: \"nx-helper-icon\",\n        src: \"/static/favicons/android-icon-192x192.png\"\n      }),\n      title: \"Bienvenue sur le Nexorium !\",\n      subtitle: \"Votre portail d'acc\\xE8s sur l'\\xE9cosyst\\xE8me NxApp servant \\xE9galement de site portfolio.\",\n      show: true,\n      style: {\n        maxWidth: '400px'\n      }\n    });\n  };\n\n  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(\"div\", {\n    className: \"nx-page\"\n  }, renderHelper());\n});\n\n//# sourceURL=webpack://nexorium/./contexts/home/Home.jsx?");
 
 /***/ }),
 
-/***/ 7052:
-/***/ (() => {
+/***/ "./contexts/playground/Playground.jsx":
+/*!********************************************!*\
+  !*** ./contexts/playground/Playground.jsx ***!
+  \********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-// extracted by extract-css-chunks-webpack-plugin
-
-/***/ }),
-
-/***/ 2189:
-/***/ (() => {
-
-// extracted by extract-css-chunks-webpack-plugin
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"PlaygroundStore\": () => (/* binding */ PlaygroundStore),\n/* harmony export */   \"PlaygroundHeaderLeft\": () => (/* binding */ PlaygroundHeaderLeft),\n/* harmony export */   \"PlaygroundHeaderRight\": () => (/* binding */ PlaygroundHeaderRight),\n/* harmony export */   \"PlaygroundMenuItem\": () => (/* binding */ PlaygroundMenuItem),\n/* harmony export */   \"RenderSectionFields\": () => (/* binding */ RenderSectionFields),\n/* harmony export */   \"RenderSectionSnackbars\": () => (/* binding */ RenderSectionSnackbars),\n/* harmony export */   \"RenderSectionIndicators\": () => (/* binding */ RenderSectionIndicators),\n/* harmony export */   \"RenderPlayground\": () => (/* binding */ RenderPlayground),\n/* harmony export */   \"PlaygroundPage\": () => (/* binding */ PlaygroundPage)\n/* harmony export */ });\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"../../nexus/react/node_modules/react/index.js\");\n/* harmony import */ var mobx_state_tree__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! mobx-state-tree */ \"../../nexus/react/node_modules/mobx-state-tree/dist/mobx-state-tree.module.js\");\n/* harmony import */ var mobx_react_lite__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! mobx-react-lite */ \"../../nexus/react/node_modules/mobx-react-lite/es/index.js\");\n/* harmony import */ var clsx__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! clsx */ \"../../nexus/react/node_modules/clsx/dist/clsx.m.js\");\n/* harmony import */ var nexus_ui_helper_Helper__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! nexus/ui/helper/Helper */ \"../../nexus/react/ui/helper/Helper.jsx\");\n/* harmony import */ var nexus_ui_icon_Icon__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! nexus/ui/icon/Icon */ \"../../nexus/react/ui/icon/Icon.jsx\");\n/* harmony import */ var nexus_ui_button_Button__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! nexus/ui/button/Button */ \"../../nexus/react/ui/button/Button.jsx\");\n/* harmony import */ var nexus_layout_header_Header__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! nexus/layout/header/Header */ \"../../nexus/react/layout/header/Header.jsx\");\n/* harmony import */ var nexus_layout_menu_Menu__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! nexus/layout/menu/Menu */ \"../../nexus/react/layout/menu/Menu.jsx\");\n/* harmony import */ var nexus_layout_section_Section__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! nexus/layout/section/Section */ \"../../nexus/react/layout/section/Section.jsx\");\n/* harmony import */ var nexus_layout_row_Row__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! nexus/layout/row/Row */ \"../../nexus/react/layout/row/Row.jsx\");\n/* harmony import */ var nexus_forms_field_Field__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! nexus/forms/field/Field */ \"../../nexus/react/forms/field/Field.jsx\");\n/* harmony import */ var nexus_forms_heading_Heading__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! nexus/forms/heading/Heading */ \"../../nexus/react/forms/heading/Heading.jsx\");\n/* harmony import */ var nexus_forms_indicator_Indicator__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! nexus/forms/indicator/Indicator */ \"../../nexus/react/forms/indicator/Indicator.jsx\");\n/* harmony import */ var nexus_utils_Datas__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! nexus/utils/Datas */ \"../../nexus/react/utils/Datas.jsx\");\n/* harmony import */ var _Playground_css__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./Playground.css */ \"./contexts/playground/Playground.css\");\n/* harmony import */ var _Playground_css__WEBPACK_IMPORTED_MODULE_14___default = /*#__PURE__*/__webpack_require__.n(_Playground_css__WEBPACK_IMPORTED_MODULE_14__);\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n // Datas\n// -------------------------------------------------------------------------------------------------------------\n\nvar CHOICES_TEST = [{\n  'value': 'choix_1',\n  'label': 'Choix 1'\n}, {\n  'value': 'choix_2',\n  'label': 'Choix 2'\n}, {\n  'value': 'choix_3',\n  'label': 'Choix 3'\n}]; // Models\n// -------------------------------------------------------------------------------------------------------------\n// ***** PlaygroundStore *****\n// ***************************\n\nvar TAG_PlaygroundStore = function TAG_PlaygroundStore() {};\n\nvar PlaygroundStore = mobx_state_tree__WEBPACK_IMPORTED_MODULE_15__.types.model({\n  doc_id: '',\n  doc_rev: '',\n  doc_state: 0,\n  value_text: mobx_state_tree__WEBPACK_IMPORTED_MODULE_15__.types.maybeNull(mobx_state_tree__WEBPACK_IMPORTED_MODULE_15__.types.string),\n  value_number: mobx_state_tree__WEBPACK_IMPORTED_MODULE_15__.types.maybeNull(mobx_state_tree__WEBPACK_IMPORTED_MODULE_15__.types.integer),\n  value_date: mobx_state_tree__WEBPACK_IMPORTED_MODULE_15__.types.maybeNull(mobx_state_tree__WEBPACK_IMPORTED_MODULE_15__.types.string),\n  value_time: mobx_state_tree__WEBPACK_IMPORTED_MODULE_15__.types.maybeNull(mobx_state_tree__WEBPACK_IMPORTED_MODULE_15__.types.string),\n  value_select: mobx_state_tree__WEBPACK_IMPORTED_MODULE_15__.types.maybeNull(mobx_state_tree__WEBPACK_IMPORTED_MODULE_15__.types.string),\n  value_textarea: mobx_state_tree__WEBPACK_IMPORTED_MODULE_15__.types.maybeNull(mobx_state_tree__WEBPACK_IMPORTED_MODULE_15__.types.string),\n  value_autocomplete_1: mobx_state_tree__WEBPACK_IMPORTED_MODULE_15__.types.optional(nexus_forms_field_Field__WEBPACK_IMPORTED_MODULE_10__.AutocompleteStore, {}),\n  value_autocomplete_2: mobx_state_tree__WEBPACK_IMPORTED_MODULE_15__.types.optional(nexus_forms_field_Field__WEBPACK_IMPORTED_MODULE_10__.AutocompleteStore, {}),\n  value_switcher: mobx_state_tree__WEBPACK_IMPORTED_MODULE_15__.types.maybeNull(mobx_state_tree__WEBPACK_IMPORTED_MODULE_15__.types.string),\n  value_radio: mobx_state_tree__WEBPACK_IMPORTED_MODULE_15__.types.maybeNull(mobx_state_tree__WEBPACK_IMPORTED_MODULE_15__.types.string),\n  value_checkbox: mobx_state_tree__WEBPACK_IMPORTED_MODULE_15__.types.maybeNull(mobx_state_tree__WEBPACK_IMPORTED_MODULE_15__.types.boolean),\n  // -\n  value_html: mobx_state_tree__WEBPACK_IMPORTED_MODULE_15__.types.maybeNull(mobx_state_tree__WEBPACK_IMPORTED_MODULE_15__.types.string),\n  // -\n  loaded: false\n}).actions(function (self) {\n  return {\n    setField: function setField(field, value) {\n      self[field] = value;\n    },\n    // -\n    update: function update(raw) {\n      console.log(raw);\n      self.doc_id = raw.doc_id;\n      self.doc_rev = raw.doc_rev;\n      self.doc_state = raw.doc_state;\n      self.value_text = raw.value_text;\n      self.value_number = raw.value_number;\n      self.value_date = raw.value_date;\n      self.value_time = raw.value_time;\n      self.value_select = raw.value_select;\n      self.value_textarea = raw.value_textarea;\n      self.value_autocomplete_1 = nexus_forms_field_Field__WEBPACK_IMPORTED_MODULE_10__.AutocompleteStore.create({});\n      self.value_autocomplete_1.update(raw.value_autocomplete_1);\n      self.value_autocomplete_2 = nexus_forms_field_Field__WEBPACK_IMPORTED_MODULE_10__.AutocompleteStore.create({});\n      self.value_autocomplete_2.update(raw.value_autocomplete_2);\n      self.value_switcher = raw.value_switcher;\n      self.value_radio = raw.value_radio;\n      self.value_checkbox = raw.value_checkbox;\n      self.value_html = raw.value_html;\n      self.loaded = true;\n    },\n    load: function load() {\n      // Appel AJAX de la fonction de chargement des données de playground\n      // ---\n      var store = (0,mobx_state_tree__WEBPACK_IMPORTED_MODULE_15__.getRoot)(self);\n      var app = store.app;\n      var snackbar = app.snackbar;\n      var ajaxNexorium = store.ajaxNexorium;\n      var url = \"\".concat(ajaxNexorium, \"/playground_actions/load\");\n      app.fetchJSON(url, null, false, 'POST').then(function (json) {\n        self.update(json.playground_raw);\n      })[\"catch\"](function (ex) {\n        console.error(\"Fetch failed for \".concat(url), ex);\n        snackbar.update(true, \"Une erreur est survenue.\", \"error\");\n      });\n    },\n    validate: function validate(callback) {\n      // Validation des données du playground\n      // ---\n      var store = (0,mobx_state_tree__WEBPACK_IMPORTED_MODULE_15__.getRoot)(self);\n      var app = store.app;\n      var errors = [];\n\n      if (callback) {\n        callback(errors);\n      }\n\n      return errors;\n    },\n    save: function save() {\n      // Appel AJAX de la fonction d'enregistrement du playground\n      // ---\n      var store = (0,mobx_state_tree__WEBPACK_IMPORTED_MODULE_15__.getRoot)(self);\n      var app = store.app;\n      var snackbar = app.snackbar;\n      var ajaxNexorium = store.ajaxNexorium;\n      var params = new FormData();\n      params.append('playground_raw', JSON.stringify(self.toJSON()));\n      var url = \"\".concat(ajaxNexorium, \"/playground_actions/save\");\n      app.fetchJSON(url, {\n        'body': params\n      }, false, 'POST').then(function (json) {\n        self.update(json.playground_raw);\n        snackbar.update(true, \"Enregistrement effectué.\", \"success\");\n      })[\"catch\"](function (ex) {\n        console.error(\"Fetch failed for \".concat(url), ex);\n        snackbar.update(true, \"Une erreur est survenue.\", \"error\");\n      });\n    }\n  };\n}); // Functions Components ReactJS\n// -------------------------------------------------------------------------------------------------------------\n// ***** PlaygroundHeaderLeft *****\n// ********************************\n\nvar TAG_PlaygroundHeaderLeft = function TAG_PlaygroundHeaderLeft() {};\n\nvar PlaygroundHeaderLeft = (0,mobx_react_lite__WEBPACK_IMPORTED_MODULE_1__.observer)(function (props) {\n  var store = react__WEBPACK_IMPORTED_MODULE_0__.useContext(window.storeContext);\n  var app = store.app; // ...\n  // Render\n  // ==================================================================================================\n\n  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(nexus_layout_header_Header__WEBPACK_IMPORTED_MODULE_6__.HeaderTitle, {\n    title: \"Playground\",\n    titleStyle: {\n      marginLeft: '10px'\n    }\n  });\n}); // ***** PlaygroundHeaderRight *****\n// *********************************\n\nvar TAG_PlaygroundHeaderRight = function TAG_PlaygroundHeaderRight() {};\n\nvar PlaygroundHeaderRight = (0,mobx_react_lite__WEBPACK_IMPORTED_MODULE_1__.observer)(function (props) {\n  var store = react__WEBPACK_IMPORTED_MODULE_0__.useContext(window.storeContext);\n  var app = store.app;\n  var playground = store.playground; // From ... store\n\n  var isLoading = app.isLoading; // ...\n  // Evènements\n  // ==================================================================================================\n\n  var handleSaveClick = function handleSaveClick() {\n    playground.validate(function (errors) {\n      if (errors.length == 0) {\n        playground.save();\n      }\n    });\n  }; // Render\n  // ==================================================================================================\n\n\n  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(nexus_ui_button_Button__WEBPACK_IMPORTED_MODULE_5__.IconButton, {\n    onClick: function onClick() {\n      return handleSaveClick();\n    },\n    disabled: isLoading,\n    title: \"Enregistrer\"\n  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(nexus_ui_icon_Icon__WEBPACK_IMPORTED_MODULE_4__.Icon, {\n    name: \"save\",\n    color: \"white\"\n  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(nexus_layout_header_Header__WEBPACK_IMPORTED_MODULE_6__.HeaderDivider, null));\n}); // ***** PlaygroundMenuItem *****\n// ******************************\n\nvar TAG_PlaygroundMenuItem = function TAG_PlaygroundMenuItem() {};\n\nvar PlaygroundMenuItem = (0,mobx_react_lite__WEBPACK_IMPORTED_MODULE_1__.observer)(function (props) {\n  var store = react__WEBPACK_IMPORTED_MODULE_0__.useContext(window.storeContext);\n  var app = store.app;\n  var menu = app.menu; // ...\n\n  var playgroundContext = 'playground'; // Evènements\n  // ==================================================================================================\n\n  var handleMenuItemClick = function handleMenuItemClick() {\n    store.navigateTo(playgroundContext);\n    app.menu.close();\n  }; // Render\n  // ==================================================================================================\n\n\n  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(nexus_layout_menu_Menu__WEBPACK_IMPORTED_MODULE_7__.MenuItem, {\n    icon: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(nexus_ui_icon_Icon__WEBPACK_IMPORTED_MODULE_4__.Icon, {\n      name: \"science\",\n      width: \"120px\"\n    }),\n    label: \"Playground\",\n    activeContexts: [playgroundContext],\n    callbackClick: handleMenuItemClick\n  });\n}); // ***** RenderSectionFields *****\n// *******************************\n\nvar TAG_RenderSectionFields = function TAG_RenderSectionFields() {};\n\nvar RenderSectionFields = (0,mobx_react_lite__WEBPACK_IMPORTED_MODULE_1__.observer)(function (props) {\n  var store = react__WEBPACK_IMPORTED_MODULE_0__.useContext(window.storeContext);\n  var app = store.app;\n  var playground = store.playground; // From ... store\n\n  var isLoading = app.isLoading; // Evènements\n  // ==================================================================================================\n\n  var handleTextFieldChange = function handleTextFieldChange(savePath, value) {\n    console.log('handleTextFieldChange');\n    console.log(savePath);\n    console.log(value);\n  };\n\n  var handleNumberFieldChange = function handleNumberFieldChange(savePath, value) {\n    console.log('handleNumberFieldChange');\n    console.log(savePath);\n    console.log(value);\n  };\n\n  var handleDateFieldChange = function handleDateFieldChange(savePath, value) {\n    console.log('handleDateFieldChange');\n    console.log(savePath);\n    console.log(value);\n  };\n\n  var handleTimeFieldChange = function handleTimeFieldChange(savePath, value) {\n    console.log('handleTimeFieldChange');\n    console.log(savePath);\n    console.log(value);\n  };\n\n  var handleSelectFieldChange = function handleSelectFieldChange(savePath, value) {\n    console.log('handleSelectFieldChange');\n    console.log(savePath);\n    console.log(value);\n  };\n\n  var handleTextareaFieldChange = function handleTextareaFieldChange(savePath, value) {\n    console.log('handleTextareaFieldChange');\n    console.log(savePath);\n    console.log(value);\n  }; // -\n\n\n  var handleSimulateLoad = function handleSimulateLoad(setLoad) {\n    // Sur click d'un bouton de simulation de traitement en tâche de fond\n    // ---\n    if (setLoad) {\n      var task_id = (0,nexus_utils_Datas__WEBPACK_IMPORTED_MODULE_13__.uuid)();\n      app.addTask(task_id);\n    } else {\n      app.setField('tasks', []);\n    }\n  };\n\n  var handleSimulateErrors = function handleSimulateErrors(putErrors) {\n    // Sur click d'un bouton de simulation d'erreurs fields\n    // ---\n    app.clearErrors();\n    var errors = [];\n\n    if (putErrors) {\n      errors.push(app.addError(['playground', 'value_text'], 'Fake error text'));\n      errors.push(app.addError(['playground', 'value_number'], 'Fake error number'));\n      errors.push(app.addError(['playground', 'value_date'], 'Fake error date'));\n      errors.push(app.addError(['playground', 'value_time'], 'Fake error time'));\n      errors.push(app.addError(['playground', 'value_select'], 'Fake error select'));\n      errors.push(app.addError(['playground', 'value_textarea'], 'Fake error textarea'));\n      errors.push(app.addError(['playground', 'value_autocomplete_1', 'label'], 'Fake error autocomplete'));\n      errors.push(app.addError(['playground', 'value_autocomplete_2', 'label'], 'Fake error autocomplete 2'));\n      errors.push(app.addError(['playground', 'value_switcher'], 'Fake error switcher'));\n      errors.push(app.addError(['playground', 'value_radio'], 'Fake error radio'));\n      errors.push(app.addError(['playground', 'value_checkbox'], 'Fake error checkbox'));\n    }\n\n    return errors;\n  }; // Render\n  // ==================================================================================================\n  // Section -> Content\n  // ---\n\n\n  var sectionContent = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(nexus_layout_row_Row__WEBPACK_IMPORTED_MODULE_9__.Row, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(nexus_forms_field_Field__WEBPACK_IMPORTED_MODULE_10__.Field, {\n    id: \"txt-field-text\",\n    component: \"input\",\n    label: \"Texte\",\n    savePath: ['playground', 'value_text'],\n    callbackChange: handleTextFieldChange,\n    disabled: isLoading\n  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(nexus_forms_field_Field__WEBPACK_IMPORTED_MODULE_10__.Field, {\n    id: \"txt-field-number\",\n    component: \"input\",\n    label: \"Nombre\",\n    type: \"number\",\n    savePath: ['playground', 'value_number'],\n    callbackChange: handleNumberFieldChange,\n    disabled: isLoading\n  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(nexus_layout_row_Row__WEBPACK_IMPORTED_MODULE_9__.Row, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(nexus_forms_field_Field__WEBPACK_IMPORTED_MODULE_10__.Field, {\n    id: \"txt-field-date\",\n    component: \"input\",\n    label: \"Date\",\n    type: \"date\" // placeholder='jj/mm/aaaa'\n    ,\n    savePath: ['playground', 'value_date'],\n    callbackChange: handleDateFieldChange,\n    disabled: isLoading\n  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(nexus_forms_field_Field__WEBPACK_IMPORTED_MODULE_10__.Field, {\n    id: \"txt-field-time\",\n    component: \"input\",\n    label: \"Time\",\n    type: \"time\" // placeholder='hh:mm'\n    ,\n    savePath: ['playground', 'value_time'],\n    callbackChange: handleTimeFieldChange,\n    disabled: isLoading\n  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(nexus_layout_row_Row__WEBPACK_IMPORTED_MODULE_9__.Row, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(nexus_forms_field_Field__WEBPACK_IMPORTED_MODULE_10__.Field, {\n    id: \"lst-field-select\",\n    component: \"select\",\n    label: \"Select\",\n    datas: CHOICES_TEST,\n    savePath: ['playground', 'value_select'],\n    callbackChange: handleSelectFieldChange,\n    disabled: isLoading,\n    canBeEmpty: true\n  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(nexus_forms_field_Field__WEBPACK_IMPORTED_MODULE_10__.Field, {\n    id: \"txt-field-textarea\",\n    component: \"textarea\",\n    label: \"Textarea\",\n    savePath: ['playground', 'value_textarea'],\n    callbackChange: handleTextareaFieldChange,\n    disabled: isLoading\n  }))); // Section -> Buttons\n  // ---\n\n  var sectionButtons = [/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(nexus_ui_button_Button__WEBPACK_IMPORTED_MODULE_5__.Button, {\n    key: \"btn-fields-load\",\n    variant: \"contained\",\n    color: \"secondary\",\n    onClick: function onClick() {\n      return handleSimulateLoad(true);\n    },\n    disabled: isLoading\n  }, \"Load\"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(nexus_ui_button_Button__WEBPACK_IMPORTED_MODULE_5__.Button, {\n    key: \"btn-fields-cancel\",\n    variant: \"contained\",\n    color: \"secondary\",\n    onClick: function onClick() {\n      return handleSimulateLoad(false);\n    },\n    disabled: !isLoading\n  }, \"Cancel\"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(nexus_ui_button_Button__WEBPACK_IMPORTED_MODULE_5__.Button, {\n    key: \"btn-fields-error\",\n    variant: \"contained\",\n    color: \"secondary\",\n    onClick: function onClick() {\n      return handleSimulateErrors(true);\n    },\n    disabled: isLoading\n  }, \"Error\"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(nexus_ui_button_Button__WEBPACK_IMPORTED_MODULE_5__.Button, {\n    key: \"btn-fields-clear\",\n    variant: \"contained\",\n    color: \"secondary\",\n    onClick: function onClick() {\n      return handleSimulateErrors(false);\n    },\n    disabled: isLoading\n  }, \"Clear\")];\n  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(nexus_layout_section_Section__WEBPACK_IMPORTED_MODULE_8__.Section, {\n    icon: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(nexus_ui_icon_Icon__WEBPACK_IMPORTED_MODULE_4__.Icon, {\n      name: \"text_fields\"\n    }),\n    title: \"Fields\",\n    buttons: sectionButtons,\n    buttonsResponsive: true\n  }, sectionContent);\n}); // ***** RenderSectionSnackbars *****\n// **********************************\n\nvar TAG_RenderSectionSnackbars = function TAG_RenderSectionSnackbars() {};\n\nvar RenderSectionSnackbars = (0,mobx_react_lite__WEBPACK_IMPORTED_MODULE_1__.observer)(function (props) {\n  var store = react__WEBPACK_IMPORTED_MODULE_0__.useContext(window.storeContext);\n  var app = store.app;\n  var snackbar = app.snackbar;\n  var playground = store.playground; // From ... store\n\n  var isLoading = app.isLoading; // Evènements\n  // ==================================================================================================\n\n  var handleSnackbar = function handleSnackbar(severity) {\n    snackbar.update(true, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(\"div\", null, \"Test de snackbar \", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(\"b\", null, severity)), severity);\n  }; // Render\n  // ==================================================================================================\n  // Section -> Buttons\n  // ---\n\n\n  var sectionButtons = [/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(nexus_ui_button_Button__WEBPACK_IMPORTED_MODULE_5__.Button, {\n    key: \"btn-snackbars-default\",\n    variant: \"outlined\",\n    color: \"primary\",\n    onClick: function onClick() {\n      return handleSnackbar('default');\n    },\n    disabled: isLoading\n  }, \"Default\"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(nexus_ui_button_Button__WEBPACK_IMPORTED_MODULE_5__.Button, {\n    key: \"btn-snackbars-success\",\n    variant: \"outlined\",\n    color: \"primary\",\n    onClick: function onClick() {\n      return handleSnackbar('success');\n    },\n    disabled: isLoading\n  }, \"Success\"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(nexus_ui_button_Button__WEBPACK_IMPORTED_MODULE_5__.Button, {\n    key: \"btn-snackbars-info\",\n    variant: \"outlined\",\n    color: \"primary\",\n    onClick: function onClick() {\n      return handleSnackbar('info');\n    },\n    disabled: isLoading\n  }, \"Info\"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(nexus_ui_button_Button__WEBPACK_IMPORTED_MODULE_5__.Button, {\n    key: \"btn-snackbars-warning\",\n    variant: \"outlined\",\n    color: \"primary\",\n    onClick: function onClick() {\n      return handleSnackbar('warning');\n    },\n    disabled: isLoading\n  }, \"Warning\"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(nexus_ui_button_Button__WEBPACK_IMPORTED_MODULE_5__.Button, {\n    key: \"btn-snackbars-error\",\n    variant: \"outlined\",\n    color: \"primary\",\n    onClick: function onClick() {\n      return handleSnackbar('error');\n    },\n    disabled: isLoading\n  }, \"Error\")];\n  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(nexus_layout_section_Section__WEBPACK_IMPORTED_MODULE_8__.Section, {\n    icon: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(nexus_ui_icon_Icon__WEBPACK_IMPORTED_MODULE_4__.Icon, {\n      name: \"feedback_black\"\n    }),\n    title: \"Snackbars\",\n    buttons: sectionButtons,\n    buttonsResponsive: true\n  });\n}); // ***** RenderSectionIndicators *****\n// ***********************************\n\nvar TAG_RenderSectionIndicators = function TAG_RenderSectionIndicators() {};\n\nvar RenderSectionIndicators = (0,mobx_react_lite__WEBPACK_IMPORTED_MODULE_1__.observer)(function (props) {\n  var store = react__WEBPACK_IMPORTED_MODULE_0__.useContext(window.storeContext);\n  var app = store.app;\n  var snackbar = app.snackbar;\n  var playground = store.playground; // From ... store\n\n  var isLoading = app.isLoading; // Render\n  // ==================================================================================================\n  // Section -> Content\n  // ---\n\n  var sectionContent = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(nexus_forms_heading_Heading__WEBPACK_IMPORTED_MODULE_11__.Heading, {\n    style: {\n      marginBottom: '10px'\n    }\n  }, \"Default\"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(nexus_layout_row_Row__WEBPACK_IMPORTED_MODULE_9__.Row, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(nexus_forms_indicator_Indicator__WEBPACK_IMPORTED_MODULE_12__.Indicator, {\n    color: \"primary\"\n  }, \"primary\"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(nexus_forms_indicator_Indicator__WEBPACK_IMPORTED_MODULE_12__.Indicator, {\n    color: \"secondary\"\n  }, \"secondary\"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(nexus_forms_indicator_Indicator__WEBPACK_IMPORTED_MODULE_12__.Indicator, {\n    color: \"#009688\"\n  }, \"custom\"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(nexus_forms_indicator_Indicator__WEBPACK_IMPORTED_MODULE_12__.Indicator, {\n    severity: \"default\"\n  }, \"default\"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(nexus_forms_indicator_Indicator__WEBPACK_IMPORTED_MODULE_12__.Indicator, {\n    severity: \"success\"\n  }, \"success\"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(nexus_forms_indicator_Indicator__WEBPACK_IMPORTED_MODULE_12__.Indicator, {\n    severity: \"info\"\n  }, \"info\"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(nexus_forms_indicator_Indicator__WEBPACK_IMPORTED_MODULE_12__.Indicator, {\n    severity: \"warning\"\n  }, \"warning\"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(nexus_forms_indicator_Indicator__WEBPACK_IMPORTED_MODULE_12__.Indicator, {\n    severity: \"error\"\n  }, \"error\"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(nexus_forms_indicator_Indicator__WEBPACK_IMPORTED_MODULE_12__.Indicator, {\n    severity: \"hot\"\n  }, \"hot\")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(nexus_forms_heading_Heading__WEBPACK_IMPORTED_MODULE_11__.Heading, {\n    style: {\n      marginBottom: '10px'\n    }\n  }, \"Contrasted\"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(nexus_layout_row_Row__WEBPACK_IMPORTED_MODULE_9__.Row, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(nexus_forms_indicator_Indicator__WEBPACK_IMPORTED_MODULE_12__.Indicator, {\n    color: \"primary\",\n    variant: \"contrasted\"\n  }, \"primary\"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(nexus_forms_indicator_Indicator__WEBPACK_IMPORTED_MODULE_12__.Indicator, {\n    color: \"secondary\",\n    variant: \"contrasted\"\n  }, \"secondary\"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(nexus_forms_indicator_Indicator__WEBPACK_IMPORTED_MODULE_12__.Indicator, {\n    color: \"#009688\",\n    variant: \"contrasted\"\n  }, \"custom\"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(nexus_forms_indicator_Indicator__WEBPACK_IMPORTED_MODULE_12__.Indicator, {\n    severity: \"default\",\n    variant: \"contrasted\"\n  }, \"default\"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(nexus_forms_indicator_Indicator__WEBPACK_IMPORTED_MODULE_12__.Indicator, {\n    severity: \"success\",\n    variant: \"contrasted\"\n  }, \"success\"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(nexus_forms_indicator_Indicator__WEBPACK_IMPORTED_MODULE_12__.Indicator, {\n    severity: \"info\",\n    variant: \"contrasted\"\n  }, \"info\"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(nexus_forms_indicator_Indicator__WEBPACK_IMPORTED_MODULE_12__.Indicator, {\n    severity: \"warning\",\n    variant: \"contrasted\"\n  }, \"warning\"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(nexus_forms_indicator_Indicator__WEBPACK_IMPORTED_MODULE_12__.Indicator, {\n    severity: \"error\",\n    variant: \"contrasted\"\n  }, \"error\"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(nexus_forms_indicator_Indicator__WEBPACK_IMPORTED_MODULE_12__.Indicator, {\n    severity: \"hot\",\n    variant: \"contrasted\"\n  }, \"hot\")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(nexus_forms_heading_Heading__WEBPACK_IMPORTED_MODULE_11__.Heading, {\n    style: {\n      marginBottom: '10px'\n    }\n  }, \"Outlined\"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(nexus_layout_row_Row__WEBPACK_IMPORTED_MODULE_9__.Row, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(nexus_forms_indicator_Indicator__WEBPACK_IMPORTED_MODULE_12__.Indicator, {\n    color: \"primary\",\n    variant: \"outlined\"\n  }, \"primary\"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(nexus_forms_indicator_Indicator__WEBPACK_IMPORTED_MODULE_12__.Indicator, {\n    color: \"secondary\",\n    variant: \"outlined\"\n  }, \"secondary\"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(nexus_forms_indicator_Indicator__WEBPACK_IMPORTED_MODULE_12__.Indicator, {\n    color: \"#009688\",\n    variant: \"outlined\"\n  }, \"custom\"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(nexus_forms_indicator_Indicator__WEBPACK_IMPORTED_MODULE_12__.Indicator, {\n    severity: \"default\",\n    variant: \"outlined\"\n  }, \"default\"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(nexus_forms_indicator_Indicator__WEBPACK_IMPORTED_MODULE_12__.Indicator, {\n    severity: \"success\",\n    variant: \"outlined\"\n  }, \"success\"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(nexus_forms_indicator_Indicator__WEBPACK_IMPORTED_MODULE_12__.Indicator, {\n    severity: \"info\",\n    variant: \"outlined\"\n  }, \"info\"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(nexus_forms_indicator_Indicator__WEBPACK_IMPORTED_MODULE_12__.Indicator, {\n    severity: \"warning\",\n    variant: \"outlined\"\n  }, \"warning\"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(nexus_forms_indicator_Indicator__WEBPACK_IMPORTED_MODULE_12__.Indicator, {\n    severity: \"error\",\n    variant: \"outlined\"\n  }, \"error\"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(nexus_forms_indicator_Indicator__WEBPACK_IMPORTED_MODULE_12__.Indicator, {\n    severity: \"hot\",\n    variant: \"outlined\"\n  }, \"hot\")));\n  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(nexus_layout_section_Section__WEBPACK_IMPORTED_MODULE_8__.Section, {\n    icon: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(nexus_ui_icon_Icon__WEBPACK_IMPORTED_MODULE_4__.Icon, {\n      name: \"palette\"\n    }),\n    title: \"Indicateurs\"\n  }, sectionContent);\n}); // ***** RenderPlayground *****\n// ****************************\n\nvar TAG_RenderPlayground = function TAG_RenderPlayground() {};\n\nvar RenderPlayground = (0,mobx_react_lite__WEBPACK_IMPORTED_MODULE_1__.observer)(function (props) {\n  var store = react__WEBPACK_IMPORTED_MODULE_0__.useContext(window.storeContext);\n  var app = store.app;\n  var playground = store.playground; // From ... store\n\n  var loaded = playground.loaded; // ...\n\n  react__WEBPACK_IMPORTED_MODULE_0__.useEffect(function () {\n    if (!loaded) {\n      playground.load();\n    }\n  }, [loaded]); // Render\n  // ==================================================================================================\n\n  var contentPlayground = null;\n\n  if (loaded) {\n    contentPlayground = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(RenderSectionFields, null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(\"br\", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(RenderSectionSnackbars, null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(\"br\", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(RenderSectionIndicators, null));\n  }\n\n  return contentPlayground;\n}); // ***** PlaygroundPage *****\n// **************************\n\nvar TAG_PlaygroundPage = function TAG_PlaygroundPage() {};\n\nvar PlaygroundPage = (0,mobx_react_lite__WEBPACK_IMPORTED_MODULE_1__.observer)(function (props) {\n  var store = react__WEBPACK_IMPORTED_MODULE_0__.useContext(window.storeContext);\n  var app = store.app;\n  var playground = store.playground; // From ... store\n\n  var initialized = app.initialized;\n  var loaded = playground.loaded; // ...\n\n  var showHelper = !initialized || !loaded ? true : false; // Renderers\n  // ==================================================================================================\n\n  var renderPage = function renderPage() {\n    // Render :: Page -> que quand l'app est intitialisée (pour useEffect)\n    // ---\n    var pageContent = null;\n\n    if (initialized) {\n      pageContent = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(RenderPlayground, null);\n    }\n\n    return pageContent;\n  };\n\n  var renderHelper = function renderHelper() {\n    // Render :: Helper\n    // ---\n    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(nexus_ui_helper_Helper__WEBPACK_IMPORTED_MODULE_3__.Helper, {\n      iconName: \"science\",\n      show: showHelper\n    });\n  };\n\n  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(\"div\", {\n    className: \"nx-page\"\n  }, renderPage(), renderHelper());\n});\n\n//# sourceURL=webpack://nexorium/./contexts/playground/Playground.jsx?");
 
 /***/ }),
 
-/***/ 7390:
-/***/ (() => {
+/***/ "./contexts/projects/Projects.jsx":
+/*!****************************************!*\
+  !*** ./contexts/projects/Projects.jsx ***!
+  \****************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-// extracted by extract-css-chunks-webpack-plugin
-
-/***/ }),
-
-/***/ 4644:
-/***/ (() => {
-
-// extracted by extract-css-chunks-webpack-plugin
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"ProjectsStore\": () => (/* binding */ ProjectsStore),\n/* harmony export */   \"ProjectsHeaderLeft\": () => (/* binding */ ProjectsHeaderLeft),\n/* harmony export */   \"ProjectsMenuItem\": () => (/* binding */ ProjectsMenuItem),\n/* harmony export */   \"ProjectsPage\": () => (/* binding */ ProjectsPage)\n/* harmony export */ });\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"../../nexus/react/node_modules/react/index.js\");\n/* harmony import */ var mobx_state_tree__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! mobx-state-tree */ \"../../nexus/react/node_modules/mobx-state-tree/dist/mobx-state-tree.module.js\");\n/* harmony import */ var mobx_react_lite__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! mobx-react-lite */ \"../../nexus/react/node_modules/mobx-react-lite/es/index.js\");\n/* harmony import */ var clsx__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! clsx */ \"../../nexus/react/node_modules/clsx/dist/clsx.m.js\");\n/* harmony import */ var nexus_ui_helper_Helper__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! nexus/ui/helper/Helper */ \"../../nexus/react/ui/helper/Helper.jsx\");\n/* harmony import */ var nexus_layout_header_Header__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! nexus/layout/header/Header */ \"../../nexus/react/layout/header/Header.jsx\");\n/* harmony import */ var nexus_layout_menu_Menu__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! nexus/layout/menu/Menu */ \"../../nexus/react/layout/menu/Menu.jsx\");\n/* harmony import */ var nexus_ui_icon_Icon__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! nexus/ui/icon/Icon */ \"../../nexus/react/ui/icon/Icon.jsx\");\n/* harmony import */ var _Projects_css__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./Projects.css */ \"./contexts/projects/Projects.css\");\n/* harmony import */ var _Projects_css__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(_Projects_css__WEBPACK_IMPORTED_MODULE_7__);\n\n\n\n\n\n\n\n\n // Models\n// -------------------------------------------------------------------------------------------------------------\n// ***** ProjectsStore *****\n// *************************\n\nvar TAG_ProjectsStore = function TAG_ProjectsStore() {};\n\nvar ProjectsStore = mobx_state_tree__WEBPACK_IMPORTED_MODULE_8__.types.model({\n  loaded: false\n}).actions(function (self) {\n  return {\n    setField: function setField(field, value) {\n      self[field] = value;\n    },\n    // -\n    update: function update(raw) {}\n  };\n}); // Functions Components ReactJS\n// -------------------------------------------------------------------------------------------------------------\n// ***** ProjectsHeaderLeft *****\n// ******************************\n\nvar TAG_ProjectsHeaderLeft = function TAG_ProjectsHeaderLeft() {};\n\nvar ProjectsHeaderLeft = (0,mobx_react_lite__WEBPACK_IMPORTED_MODULE_1__.observer)(function (props) {\n  var store = react__WEBPACK_IMPORTED_MODULE_0__.useContext(window.storeContext);\n  var app = store.app; // ...\n  // Render\n  // ==================================================================================================\n\n  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(nexus_layout_header_Header__WEBPACK_IMPORTED_MODULE_4__.HeaderTitle, {\n    title: \"Mes projets\",\n    titleStyle: {\n      marginLeft: '10px'\n    }\n  });\n}); // ***** ProjectsMenuItem *****\n// ****************************\n\nvar TAG_ProjectsMenuItem = function TAG_ProjectsMenuItem() {};\n\nvar ProjectsMenuItem = (0,mobx_react_lite__WEBPACK_IMPORTED_MODULE_1__.observer)(function (props) {\n  var store = react__WEBPACK_IMPORTED_MODULE_0__.useContext(window.storeContext);\n  var app = store.app;\n  var menu = app.menu; // ...\n\n  var projectsContext = 'projects'; // Evènements\n  // ==================================================================================================\n\n  var handleMenuItemClick = function handleMenuItemClick() {\n    store.navigateTo(projectsContext);\n    app.menu.close();\n  }; // Render\n  // ==================================================================================================\n\n\n  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(nexus_layout_menu_Menu__WEBPACK_IMPORTED_MODULE_5__.MenuItem, {\n    icon: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(nexus_ui_icon_Icon__WEBPACK_IMPORTED_MODULE_6__.Icon, {\n      name: \"work_outline\",\n      width: \"120px\"\n    }),\n    label: \"Mes projets\",\n    activeContexts: [projectsContext],\n    callbackClick: handleMenuItemClick\n  });\n}); // ***** ProjectsPage *****\n// ************************\n\nvar TAG_ProjectsPage = function TAG_ProjectsPage() {};\n\nvar ProjectsPage = (0,mobx_react_lite__WEBPACK_IMPORTED_MODULE_1__.observer)(function (props) {\n  var store = react__WEBPACK_IMPORTED_MODULE_0__.useContext(window.storeContext);\n  var app = store.app; // Renderers\n  // ==================================================================================================\n\n  var renderHelper = function renderHelper() {\n    // Render :: Helper\n    // ---\n    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(nexus_ui_helper_Helper__WEBPACK_IMPORTED_MODULE_3__.Helper, {\n      iconName: \"work_outline\",\n      show: true\n    });\n  };\n\n  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(\"div\", {\n    className: \"nx-page\"\n  }, renderHelper());\n});\n\n//# sourceURL=webpack://nexorium/./contexts/projects/Projects.jsx?");
 
 /***/ }),
 
-/***/ 2429:
-/***/ (() => {
+/***/ "./contexts/search/Search.jsx":
+/*!************************************!*\
+  !*** ./contexts/search/Search.jsx ***!
+  \************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-// extracted by extract-css-chunks-webpack-plugin
-
-/***/ }),
-
-/***/ 2037:
-/***/ (() => {
-
-// extracted by extract-css-chunks-webpack-plugin
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"SearchStore\": () => (/* binding */ SearchStore),\n/* harmony export */   \"SearchHeaderMiddle\": () => (/* binding */ SearchHeaderMiddle),\n/* harmony export */   \"SearchMenuItem\": () => (/* binding */ SearchMenuItem),\n/* harmony export */   \"SearchPage\": () => (/* binding */ SearchPage)\n/* harmony export */ });\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"../../nexus/react/node_modules/react/index.js\");\n/* harmony import */ var mobx_state_tree__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! mobx-state-tree */ \"../../nexus/react/node_modules/mobx-state-tree/dist/mobx-state-tree.module.js\");\n/* harmony import */ var mobx_react_lite__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! mobx-react-lite */ \"../../nexus/react/node_modules/mobx-react-lite/es/index.js\");\n/* harmony import */ var clsx__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! clsx */ \"../../nexus/react/node_modules/clsx/dist/clsx.m.js\");\n/* harmony import */ var nexus_ui_helper_Helper__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! nexus/ui/helper/Helper */ \"../../nexus/react/ui/helper/Helper.jsx\");\n/* harmony import */ var nexus_layout_header_Header__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! nexus/layout/header/Header */ \"../../nexus/react/layout/header/Header.jsx\");\n/* harmony import */ var nexus_layout_menu_Menu__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! nexus/layout/menu/Menu */ \"../../nexus/react/layout/menu/Menu.jsx\");\n/* harmony import */ var nexus_ui_icon_Icon__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! nexus/ui/icon/Icon */ \"../../nexus/react/ui/icon/Icon.jsx\");\n/* harmony import */ var _Search_css__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./Search.css */ \"./contexts/search/Search.css\");\n/* harmony import */ var _Search_css__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(_Search_css__WEBPACK_IMPORTED_MODULE_7__);\n\n\n\n\n\n\n\n\n // Models\n// -------------------------------------------------------------------------------------------------------------\n// ***** SearchStore *****\n// ***********************\n\nvar TAG_SearchStore = function TAG_SearchStore() {};\n\nvar SearchStore = mobx_state_tree__WEBPACK_IMPORTED_MODULE_8__.types.model({}).actions(function (self) {\n  return {\n    setField: function setField(field, value) {\n      self[field] = value;\n    },\n    // -\n    update: function update(raw) {}\n  };\n}); // Functions Components ReactJS\n// -------------------------------------------------------------------------------------------------------------\n// ***** SearchHeaderMiddle *****\n// ******************************\n\nvar TAG_SearchHeaderMiddle = function TAG_SearchHeaderMiddle() {};\n\nvar SearchHeaderMiddle = (0,mobx_react_lite__WEBPACK_IMPORTED_MODULE_1__.observer)(function (props) {\n  var store = react__WEBPACK_IMPORTED_MODULE_0__.useContext(window.storeContext);\n  var app = store.app; // ...\n  // Render\n  // ==================================================================================================\n\n  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(nexus_layout_header_Header__WEBPACK_IMPORTED_MODULE_4__.HeaderTitle, {\n    title: \"Rechercher\"\n  });\n}); // ***** SearchMenuItem *****\n// **************************\n\nvar TAG_SearchMenuItem = function TAG_SearchMenuItem() {};\n\nvar SearchMenuItem = (0,mobx_react_lite__WEBPACK_IMPORTED_MODULE_1__.observer)(function (props) {\n  var store = react__WEBPACK_IMPORTED_MODULE_0__.useContext(window.storeContext);\n  var app = store.app;\n  var menu = app.menu; // ...\n\n  var searchContext = 'search'; // Evènements\n  // ==================================================================================================\n\n  var handleMenuItemClick = function handleMenuItemClick() {\n    store.navigateTo(searchContext);\n    app.menu.close();\n  }; // Render\n  // ==================================================================================================\n\n\n  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(nexus_layout_menu_Menu__WEBPACK_IMPORTED_MODULE_5__.MenuItem, {\n    icon: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(nexus_ui_icon_Icon__WEBPACK_IMPORTED_MODULE_6__.Icon, {\n      name: \"search\",\n      width: \"120px\"\n    }),\n    label: \"Rechercher\",\n    activeContexts: [searchContext],\n    callbackClick: handleMenuItemClick\n  });\n}); // ***** HomePage *****\n// ********************\n\nvar TAG_SearchPage = function TAG_SearchPage() {};\n\nvar SearchPage = (0,mobx_react_lite__WEBPACK_IMPORTED_MODULE_1__.observer)(function (props) {\n  var store = react__WEBPACK_IMPORTED_MODULE_0__.useContext(window.storeContext);\n  var app = store.app; // Renderers\n  // ==================================================================================================\n\n  var renderHelper = function renderHelper() {\n    // Render :: Helper\n    // ---\n    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(nexus_ui_helper_Helper__WEBPACK_IMPORTED_MODULE_3__.Helper, {\n      iconName: \"search\",\n      show: true\n    });\n  };\n\n  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(\"div\", {\n    className: \"nx-page\"\n  }, renderHelper());\n});\n\n//# sourceURL=webpack://nexorium/./contexts/search/Search.jsx?");
 
 /***/ }),
 
-/***/ 1364:
-/***/ (() => {
+/***/ "./ui/ContextualHeader.jsx":
+/*!*********************************!*\
+  !*** ./ui/ContextualHeader.jsx ***!
+  \*********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-// extracted by extract-css-chunks-webpack-plugin
-
-/***/ }),
-
-/***/ 7282:
-/***/ (() => {
-
-// extracted by extract-css-chunks-webpack-plugin
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"ContextualHeader\": () => (/* binding */ ContextualHeader)\n/* harmony export */ });\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"../../nexus/react/node_modules/react/index.js\");\n/* harmony import */ var mobx_react_lite__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! mobx-react-lite */ \"../../nexus/react/node_modules/mobx-react-lite/es/index.js\");\n/* harmony import */ var clsx__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! clsx */ \"../../nexus/react/node_modules/clsx/dist/clsx.m.js\");\n/* harmony import */ var nexus_layout_header_Header__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! nexus/layout/header/Header */ \"../../nexus/react/layout/header/Header.jsx\");\n/* harmony import */ var nexus_contexts_home_Home__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! nexus/contexts/home/Home */ \"../../nexus/react/contexts/home/Home.jsx\");\n/* harmony import */ var nexus_contexts_about_About__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! nexus/contexts/about/About */ \"../../nexus/react/contexts/about/About.jsx\");\n/* harmony import */ var nexus_contexts_admin_Admin__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! nexus/contexts/admin/Admin */ \"../../nexus/react/contexts/admin/Admin.jsx\");\n/* harmony import */ var nexus_contexts_account_Account__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! nexus/contexts/account/Account */ \"../../nexus/react/contexts/account/Account.jsx\");\n/* harmony import */ var nexorium_contexts_search_Search__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! nexorium/contexts/search/Search */ \"./contexts/search/Search.jsx\");\n/* harmony import */ var nexorium_contexts_blog_Blog__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! nexorium/contexts/blog/Blog */ \"./contexts/blog/Blog.jsx\");\n/* harmony import */ var nexorium_contexts_projects_Projects__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! nexorium/contexts/projects/Projects */ \"./contexts/projects/Projects.jsx\");\n/* harmony import */ var nexorium_contexts_cv_Cv__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! nexorium/contexts/cv/Cv */ \"./contexts/cv/Cv.jsx\");\n/* harmony import */ var nexorium_contexts_playground_Playground__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! nexorium/contexts/playground/Playground */ \"./contexts/playground/Playground.jsx\");\n\n\n\n\n\n\n\n\n\n\n\n\n\n // Functions Components ReactJS\n// -------------------------------------------------------------------------------------------------------------\n// ***** ContextualHeader *****\n// ****************************\n\nvar TAG_ContextualHeader = function TAG_ContextualHeader() {};\n\nvar ContextualHeader = (0,mobx_react_lite__WEBPACK_IMPORTED_MODULE_1__.observer)(function (props) {\n  var store = react__WEBPACK_IMPORTED_MODULE_0__.useContext(window.storeContext);\n  var app = store.app; // From ... store\n\n  var context = app.context; // Render\n  // ==================================================================================================\n\n  var headerLeft = null;\n  var headerMiddle = null;\n  var headerRight = null; // -------------------------------------------------\n\n  var renderHeaderHome = function renderHeaderHome() {\n    if ([app.homeContext, 'login'].indexOf(context) == -1) {\n      return;\n    }\n\n    headerMiddle = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(nexus_contexts_home_Home__WEBPACK_IMPORTED_MODULE_4__.HomeHeaderMiddle, null);\n  };\n\n  var renderHeaderSearch = function renderHeaderSearch() {\n    if (context != 'search') {\n      return;\n    }\n\n    headerMiddle = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(nexorium_contexts_search_Search__WEBPACK_IMPORTED_MODULE_8__.SearchHeaderMiddle, null);\n  }; // -------------------------------------------------\n\n\n  var renderHeaderBlog = function renderHeaderBlog() {\n    if (context != 'blog') {\n      return;\n    }\n\n    headerLeft = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(nexorium_contexts_blog_Blog__WEBPACK_IMPORTED_MODULE_9__.BlogHeaderLeft, null);\n  }; // -------------------------------------------------\n\n\n  var renderHeaderProjects = function renderHeaderProjects() {\n    if (context != 'projects') {\n      return;\n    }\n\n    headerLeft = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(nexorium_contexts_projects_Projects__WEBPACK_IMPORTED_MODULE_10__.ProjectsHeaderLeft, null);\n  };\n\n  var renderHeaderCv = function renderHeaderCv() {\n    if (context != 'cv') {\n      return;\n    }\n\n    headerLeft = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(nexorium_contexts_cv_Cv__WEBPACK_IMPORTED_MODULE_11__.CvHeaderLeft, null);\n  }; // -------------------------------------------------\n\n\n  var renderHeaderPlayground = function renderHeaderPlayground() {\n    if (context != 'playground') {\n      return;\n    }\n\n    headerLeft = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(nexorium_contexts_playground_Playground__WEBPACK_IMPORTED_MODULE_12__.PlaygroundHeaderLeft, null);\n    headerRight = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(nexorium_contexts_playground_Playground__WEBPACK_IMPORTED_MODULE_12__.PlaygroundHeaderRight, null);\n  }; // -------------------------------------------------\n\n\n  var renderHeaderAbout = function renderHeaderAbout() {\n    if (context != app.aboutContext) {\n      return;\n    }\n\n    headerLeft = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(nexus_contexts_about_About__WEBPACK_IMPORTED_MODULE_5__.AboutHeaderLeft, null);\n  };\n\n  var renderHeaderAdmin = function renderHeaderAdmin() {\n    if (context != app.adminContext) {\n      return;\n    }\n\n    headerLeft = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(nexus_contexts_admin_Admin__WEBPACK_IMPORTED_MODULE_6__.AdminHeaderLeft, null);\n  }; // -------------------------------------------------\n\n\n  var renderHeaderAccount = function renderHeaderAccount() {\n    if (context != app.accountContext) {\n      return;\n    }\n\n    headerLeft = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(nexus_contexts_account_Account__WEBPACK_IMPORTED_MODULE_7__.AccountHeaderLeft, null);\n  }; // -------------------------------------------------\n\n\n  renderHeaderHome();\n  renderHeaderSearch();\n  renderHeaderBlog();\n  renderHeaderProjects();\n  renderHeaderCv();\n  renderHeaderPlayground();\n  renderHeaderAbout();\n  renderHeaderAdmin();\n  renderHeaderAccount();\n  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(nexus_layout_header_Header__WEBPACK_IMPORTED_MODULE_3__.Header, {\n    left: headerLeft,\n    right: headerRight\n  }, headerMiddle);\n});\n\n//# sourceURL=webpack://nexorium/./ui/ContextualHeader.jsx?");
 
 /***/ }),
 
-/***/ 651:
-/***/ (() => {
+/***/ "./ui/ContextualMenu.jsx":
+/*!*******************************!*\
+  !*** ./ui/ContextualMenu.jsx ***!
+  \*******************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-// extracted by extract-css-chunks-webpack-plugin
-
-/***/ }),
-
-/***/ 4297:
-/***/ (() => {
-
-// extracted by extract-css-chunks-webpack-plugin
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"ContextualMenu\": () => (/* binding */ ContextualMenu)\n/* harmony export */ });\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"../../nexus/react/node_modules/react/index.js\");\n/* harmony import */ var mobx_react_lite__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! mobx-react-lite */ \"../../nexus/react/node_modules/mobx-react-lite/es/index.js\");\n/* harmony import */ var clsx__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! clsx */ \"../../nexus/react/node_modules/clsx/dist/clsx.m.js\");\n/* harmony import */ var nexus_layout_menu_Menu__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! nexus/layout/menu/Menu */ \"../../nexus/react/layout/menu/Menu.jsx\");\n/* harmony import */ var nexus_contexts_home_Home__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! nexus/contexts/home/Home */ \"../../nexus/react/contexts/home/Home.jsx\");\n/* harmony import */ var nexus_contexts_about_About__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! nexus/contexts/about/About */ \"../../nexus/react/contexts/about/About.jsx\");\n/* harmony import */ var nexus_contexts_admin_Admin__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! nexus/contexts/admin/Admin */ \"../../nexus/react/contexts/admin/Admin.jsx\");\nObject(function webpackMissingModule() { var e = new Error(\"Cannot find module 'nexus/contexts/login/Login'\"); e.code = 'MODULE_NOT_FOUND'; throw e; }());\n/* harmony import */ var nexus_contexts_account_Account__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! nexus/contexts/account/Account */ \"../../nexus/react/contexts/account/Account.jsx\");\n/* harmony import */ var nexus_ui_icon_Icon__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! nexus/ui/icon/Icon */ \"../../nexus/react/ui/icon/Icon.jsx\");\n/* harmony import */ var nexorium_contexts_search_Search__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! nexorium/contexts/search/Search */ \"./contexts/search/Search.jsx\");\n/* harmony import */ var nexorium_contexts_blog_Blog__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! nexorium/contexts/blog/Blog */ \"./contexts/blog/Blog.jsx\");\n/* harmony import */ var nexorium_contexts_projects_Projects__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! nexorium/contexts/projects/Projects */ \"./contexts/projects/Projects.jsx\");\n/* harmony import */ var nexorium_contexts_cv_Cv__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! nexorium/contexts/cv/Cv */ \"./contexts/cv/Cv.jsx\");\n/* harmony import */ var nexorium_contexts_playground_Playground__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! nexorium/contexts/playground/Playground */ \"./contexts/playground/Playground.jsx\");\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n // Functions Components ReactJS\n// -------------------------------------------------------------------------------------------------------------\n// ***** ContextualMenu *****\n// **************************\n\nvar TAG_ContextualMenu = function TAG_ContextualMenu() {};\n\nvar ContextualMenu = (0,mobx_react_lite__WEBPACK_IMPORTED_MODULE_1__.observer)(function (props) {\n  var store = react__WEBPACK_IMPORTED_MODULE_0__.useContext(window.storeContext);\n  var app = store.app; // From ... store\n\n  var context = app.context;\n  var breakPoint650 = app.breakPoint650; // Render\n  // ==================================================================================================\n  // -------------------------------------------------\n  // -------------------------------------------------\n\n  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(nexus_layout_menu_Menu__WEBPACK_IMPORTED_MODULE_3__.Menu, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(nexus_contexts_home_Home__WEBPACK_IMPORTED_MODULE_4__.HomeMenuItem, null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(nexorium_contexts_search_Search__WEBPACK_IMPORTED_MODULE_10__.SearchMenuItem, null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(nexus_layout_menu_Menu__WEBPACK_IMPORTED_MODULE_3__.MenuDivider, null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(nexorium_contexts_blog_Blog__WEBPACK_IMPORTED_MODULE_11__.BlogMenuItem, null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(nexus_layout_menu_Menu__WEBPACK_IMPORTED_MODULE_3__.MenuDivider, null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(nexorium_contexts_projects_Projects__WEBPACK_IMPORTED_MODULE_12__.ProjectsMenuItem, null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(nexorium_contexts_cv_Cv__WEBPACK_IMPORTED_MODULE_13__.CvMenuItem, null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(nexus_layout_menu_Menu__WEBPACK_IMPORTED_MODULE_3__.MenuDivider, null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(nexorium_contexts_playground_Playground__WEBPACK_IMPORTED_MODULE_14__.PlaygroundMenuItem, null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(nexus_layout_menu_Menu__WEBPACK_IMPORTED_MODULE_3__.MenuDivider, null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(nexus_contexts_about_About__WEBPACK_IMPORTED_MODULE_5__.AboutMenuItem, null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(nexus_contexts_admin_Admin__WEBPACK_IMPORTED_MODULE_6__.AdminMenuItem, null), breakPoint650 && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(nexus_layout_menu_Menu__WEBPACK_IMPORTED_MODULE_3__.MenuDivider, null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(Object(function webpackMissingModule() { var e = new Error(\"Cannot find module 'nexus/contexts/login/Login'\"); e.code = 'MODULE_NOT_FOUND'; throw e; }()), null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(nexus_contexts_account_Account__WEBPACK_IMPORTED_MODULE_8__.AccountMenuItem, null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(Object(function webpackMissingModule() { var e = new Error(\"Cannot find module 'nexus/contexts/login/Login'\"); e.code = 'MODULE_NOT_FOUND'; throw e; }()), null));\n});\n\n//# sourceURL=webpack://nexorium/./ui/ContextualMenu.jsx?");
 
 /***/ }),
 
-/***/ 4439:
-/***/ (() => {
+/***/ "../../nexus/react/NxApp.jsx":
+/*!***********************************!*\
+  !*** ../../nexus/react/NxApp.jsx ***!
+  \***********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-// extracted by extract-css-chunks-webpack-plugin
-
-/***/ }),
-
-/***/ 4450:
-/***/ (() => {
-
-// extracted by extract-css-chunks-webpack-plugin
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"NxAppStore\": () => (/* binding */ NxAppStore),\n/* harmony export */   \"makeInitSnapshot\": () => (/* binding */ makeInitSnapshot),\n/* harmony export */   \"NxApp\": () => (/* binding */ NxApp)\n/* harmony export */ });\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"../../nexus/react/node_modules/react/index.js\");\n/* harmony import */ var mobx_state_tree__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! mobx-state-tree */ \"../../nexus/react/node_modules/mobx-state-tree/dist/mobx-state-tree.module.js\");\n/* harmony import */ var mobx_react_lite__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! mobx-react-lite */ \"../../nexus/react/node_modules/mobx-react-lite/es/index.js\");\n/* harmony import */ var route_node__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! route-node */ \"../../nexus/react/node_modules/route-node/dist/route-node.esm.js\");\n/* harmony import */ var clsx__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! clsx */ \"../../nexus/react/node_modules/clsx/dist/clsx.m.js\");\n/* harmony import */ var nexus_models_Services__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! nexus/models/Services */ \"../../nexus/react/models/Services.jsx\");\n/* harmony import */ var nexus_ui_theme_Theme__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! nexus/ui/theme/Theme */ \"../../nexus/react/ui/theme/Theme.jsx\");\n/* harmony import */ var nexus_layout_header_Header__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! nexus/layout/header/Header */ \"../../nexus/react/layout/header/Header.jsx\");\n/* harmony import */ var nexus_layout_menu_Menu__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! nexus/layout/menu/Menu */ \"../../nexus/react/layout/menu/Menu.jsx\");\n/* harmony import */ var nexus_layout_portal_Portal__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! nexus/layout/portal/Portal */ \"../../nexus/react/layout/portal/Portal.jsx\");\n/* harmony import */ var nexus_ui_snackbar_Snackbar__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! nexus/ui/snackbar/Snackbar */ \"../../nexus/react/ui/snackbar/Snackbar.jsx\");\n/* harmony import */ var nexus_utils_Responsive__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! nexus/utils/Responsive */ \"../../nexus/react/utils/Responsive.jsx\");\n/* harmony import */ var nexus_utils_URL__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! nexus/utils/URL */ \"../../nexus/react/utils/URL.jsx\");\n/* harmony import */ var nexus_utils_Storage__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! nexus/utils/Storage */ \"../../nexus/react/utils/Storage.jsx\");\n/* harmony import */ var nexus_utils_Helpers__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! nexus/utils/Helpers */ \"../../nexus/react/utils/Helpers.jsx\");\n/* harmony import */ var nexus_utils_Datas__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! nexus/utils/Datas */ \"../../nexus/react/utils/Datas.jsx\");\n/* harmony import */ var nexus_contexts_about_About__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! nexus/contexts/about/About */ \"../../nexus/react/contexts/about/About.jsx\");\n/* harmony import */ var nexus_contexts_auth_Auth__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! nexus/contexts/auth/Auth */ \"../../nexus/react/contexts/auth/Auth.css\");\n/* harmony import */ var nexus_contexts_auth_Auth__WEBPACK_IMPORTED_MODULE_15___default = /*#__PURE__*/__webpack_require__.n(nexus_contexts_auth_Auth__WEBPACK_IMPORTED_MODULE_15__);\n/* harmony import */ var nexus_contexts_account_Account__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! nexus/contexts/account/Account */ \"../../nexus/react/contexts/account/Account.jsx\");\n/* harmony import */ var nexus_contexts_forbidden_Forbidden__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! nexus/contexts/forbidden/Forbidden */ \"../../nexus/react/contexts/forbidden/Forbidden.jsx\");\n/* harmony import */ var nexus_contexts_notfound_NotFound__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! nexus/contexts/notfound/NotFound */ \"../../nexus/react/contexts/notfound/NotFound.jsx\");\n/* harmony import */ var nexus_ui_helper_Helper__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! nexus/ui/helper/Helper */ \"../../nexus/react/ui/helper/Helper.jsx\");\n/* harmony import */ var _NxApp_css__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./NxApp.css */ \"../../nexus/react/NxApp.css\");\n/* harmony import */ var _NxApp_css__WEBPACK_IMPORTED_MODULE_20___default = /*#__PURE__*/__webpack_require__.n(_NxApp_css__WEBPACK_IMPORTED_MODULE_20__);\nfunction _typeof(obj) { \"@babel/helpers - typeof\"; if (typeof Symbol === \"function\" && typeof Symbol.iterator === \"symbol\") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === \"function\" && obj.constructor === Symbol && obj !== Symbol.prototype ? \"symbol\" : typeof obj; }; } return _typeof(obj); }\n\nfunction _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError(\"Cannot call a class as a function\"); } }\n\nfunction _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if (\"value\" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }\n\nfunction _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }\n\nfunction _inherits(subClass, superClass) { if (typeof superClass !== \"function\" && superClass !== null) { throw new TypeError(\"Super expression must either be null or a function\"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }\n\nfunction _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }\n\nfunction _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }\n\nfunction _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === \"object\" || typeof call === \"function\")) { return call; } return _assertThisInitialized(self); }\n\nfunction _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError(\"this hasn't been initialised - super() hasn't been called\"); } return self; }\n\nfunction _isNativeReflectConstruct() { if (typeof Reflect === \"undefined\" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === \"function\") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }\n\nfunction _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }\n\nfunction _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }\n\nfunction _nonIterableRest() { throw new TypeError(\"Invalid attempt to destructure non-iterable instance.\\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.\"); }\n\nfunction _iterableToArrayLimit(arr, i) { var _i = arr && (typeof Symbol !== \"undefined\" && arr[Symbol.iterator] || arr[\"@@iterator\"]); if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i[\"return\"] != null) _i[\"return\"](); } finally { if (_d) throw _e; } } return _arr; }\n\nfunction _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }\n\nfunction _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== \"undefined\" && o[Symbol.iterator] || o[\"@@iterator\"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === \"number\") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e2) { throw _e2; }, f: F }; } throw new TypeError(\"Invalid attempt to iterate non-iterable instance.\\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.\"); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e3) { didErr = true; err = _e3; }, f: function f() { try { if (!normalCompletion && it[\"return\"] != null) it[\"return\"](); } finally { if (didErr) throw err; } } }; }\n\nfunction _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === \"string\") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === \"Object\" && o.constructor) n = o.constructor.name; if (n === \"Map\" || n === \"Set\") return Array.from(o); if (n === \"Arguments\" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }\n\nfunction _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n // Models\n// -------------------------------------------------------------------------------------------------------------\n// ***** NxAppStore *****\n// **********************\n\nvar TAG_NxAppStore = function TAG_NxAppStore() {};\n\nvar NxAppStore = mobx_state_tree__WEBPACK_IMPORTED_MODULE_21__.types.model({\n  context: mobx_state_tree__WEBPACK_IMPORTED_MODULE_21__.types.optional(mobx_state_tree__WEBPACK_IMPORTED_MODULE_21__.types.string, 'home'),\n  initialized: false,\n  tasks: mobx_state_tree__WEBPACK_IMPORTED_MODULE_21__.types.optional(mobx_state_tree__WEBPACK_IMPORTED_MODULE_21__.types.array(mobx_state_tree__WEBPACK_IMPORTED_MODULE_21__.types.string), []),\n  debugMode: false,\n  editMode: false,\n  standaloneMode: false,\n  services: mobx_state_tree__WEBPACK_IMPORTED_MODULE_21__.types.optional(nexus_models_Services__WEBPACK_IMPORTED_MODULE_3__.ServicesStore, {}),\n  // URLs\n  authUrl: '/login',\n  authContext: 'auth',\n  homeUrl: '/',\n  homeContext: 'home',\n  searchUrl: '/search',\n  searchContext: 'search',\n  aboutUrl: '/about',\n  aboutContext: 'about',\n  adminUrl: '/admin',\n  adminContext: 'admin',\n  accountUrl: '/account',\n  accountContent: 'account',\n  routes: mobx_state_tree__WEBPACK_IMPORTED_MODULE_21__.types.frozen(null),\n  urlParams: mobx_state_tree__WEBPACK_IMPORTED_MODULE_21__.types.frozen(null),\n  matchResult: mobx_state_tree__WEBPACK_IMPORTED_MODULE_21__.types.frozen(null),\n  history: mobx_state_tree__WEBPACK_IMPORTED_MODULE_21__.types.frozen(null),\n  // Responsive\n  isMobile: false,\n  isDesktop: true,\n  breakPoint650: false,\n  // Small Window or Dashboard Oméga\n  breakPoint414: false,\n  // iPhone 6, 7, 8 Plus\n  breakPoint375: false,\n  // iPhone 6, 7, 8\n  breakPoint320: false,\n  // iPhone 5, SE\n  // Authentification\n  auth: mobx_state_tree__WEBPACK_IMPORTED_MODULE_21__.types.optional(nexus_contexts_auth_Auth__WEBPACK_IMPORTED_MODULE_15__.AuthStore, {}),\n  account: mobx_state_tree__WEBPACK_IMPORTED_MODULE_21__.types.optional(nexus_contexts_account_Account__WEBPACK_IMPORTED_MODULE_16__.AccountStore, {}),\n  // Forms\n  errors: mobx_state_tree__WEBPACK_IMPORTED_MODULE_21__.types.array(mobx_state_tree__WEBPACK_IMPORTED_MODULE_21__.types.frozen(null)),\n  autocompleteResults: mobx_state_tree__WEBPACK_IMPORTED_MODULE_21__.types.array(mobx_state_tree__WEBPACK_IMPORTED_MODULE_21__.types.frozen(null)),\n  // UI\n  theme: mobx_state_tree__WEBPACK_IMPORTED_MODULE_21__.types.optional(nexus_ui_theme_Theme__WEBPACK_IMPORTED_MODULE_4__.ThemeStore, {}),\n  header: mobx_state_tree__WEBPACK_IMPORTED_MODULE_21__.types.optional(nexus_layout_header_Header__WEBPACK_IMPORTED_MODULE_5__.HeaderStore, {}),\n  menu: mobx_state_tree__WEBPACK_IMPORTED_MODULE_21__.types.optional(nexus_layout_menu_Menu__WEBPACK_IMPORTED_MODULE_6__.MenuStore, {}),\n  portal: mobx_state_tree__WEBPACK_IMPORTED_MODULE_21__.types.optional(nexus_layout_portal_Portal__WEBPACK_IMPORTED_MODULE_7__.PortalStore, {}),\n  snackbar: mobx_state_tree__WEBPACK_IMPORTED_MODULE_21__.types.optional(nexus_ui_snackbar_Snackbar__WEBPACK_IMPORTED_MODULE_8__.SnackbarStore, {}) // popup: types.optional(PopupStore, {}),\n\n}).views(function (self) {\n  return {\n    get me() {\n      return self.services.me;\n    },\n\n    get appId() {\n      return self.me.app_id;\n    },\n\n    // Bools\n    // -\n    get isFullScreen() {\n      // Should Header & Drawer be hidden ?\n      // ---\n      var standaloneMode = self.standaloneMode;\n      var context = self.context; // if (standaloneMode || ['auth', 'forbidden'].indexOf(context) > -1) {\n      // \treturn true;\n      // }\n\n      if (standaloneMode) {\n        return true;\n      }\n\n      return false;\n    },\n\n    get isLoading() {\n      // Are there background tasks still running ?\n      // ---\n      if (self.tasks.length > 0) {\n        return true;\n      }\n\n      return false;\n    },\n\n    // isCurrent(targetContexts) {\n    // \t// Le contexte courant de l'application correspond-t-il à ceux passés en paramètres ?\n    // \t// ---\n    // \tconst context = self.context;\n    // \tif (typeof(targetContexts) == \"string\") {\n    // \t\ttargetContexts = [targetContexts];\n    // \t}\n    // \tif (targetContexts.indexOf(context) > -1) {\n    // \t\treturn true;\n    // \t}\n    // \treturn false;\n    // },\n    canGoBack: function canGoBack() {\n      // Peut-on revenir en arrière dans l'historique ?\n      // ---\n      var navHistory = self.getHistory();\n\n      if (navHistory.length > 0) {\n        return true;\n      }\n\n      return false;\n    },\n    canGoHome: function canGoHome() {\n      // Peut-on revenir sur la page d'accueil\n      // ---\n      if (self.context != 'home') {\n        return true;\n      }\n\n      return false;\n    },\n    // Getters\n    // -\n    getScrollKey: function getScrollKey() {\n      // Uniq key to identify scroll context\n      // ---\n      var url = document.location.pathname;\n      return url;\n    },\n    getValue: function getValue(path, notFoundValue, source) {\n      // Récupère la valeur derrière le chemin passé en paramètres\n      // ---\n      var store = (0,mobx_state_tree__WEBPACK_IMPORTED_MODULE_21__.getRoot)(self);\n      var loadTarget = source ? source : store;\n\n      for (var idx_path in path) {\n        var target = path[idx_path];\n\n        if (idx_path == path.length - 1) {\n          // A-t-on à faire à un node de mobx-state-tree ?\n          var value = loadTarget[target];\n\n          if (loadTarget == undefined) {\n            try {\n              value = loadTarget.get(target);\n            } catch (err) {}\n          }\n\n          return value;\n        } else {\n          // A-t-on à faire à un node de mobx-state-tree ?\n          var previousLoadTarget = loadTarget;\n          loadTarget = loadTarget[target];\n\n          if (loadTarget == undefined) {\n            try {\n              loadTarget = previousLoadTarget.get(target);\n            } catch (err) {}\n          }\n        }\n      }\n\n      return notFoundValue;\n    },\n    getError: function getError(savePath) {\n      // Il y a-t-il une erreur ?\n      // ---\n      var errors = self.errors;\n\n      var _iterator = _createForOfIteratorHelper(errors),\n          _step;\n\n      try {\n        for (_iterator.s(); !(_step = _iterator.n()).done;) {\n          var error = _step.value;\n\n          if (JSON.stringify(error.path) == JSON.stringify(savePath)) {\n            return error.label;\n          }\n        }\n      } catch (err) {\n        _iterator.e(err);\n      } finally {\n        _iterator.f();\n      }\n\n      return '';\n    }\n  };\n}).actions(function (self) {\n  return {\n    setField: function setField(field, value) {\n      self[field] = value;\n    },\n    // -\n    updateMobile: function updateMobile() {\n      // Mobile or desktop ?\n      // ---\n      var mobileInfos = (0,nexus_utils_Responsive__WEBPACK_IMPORTED_MODULE_9__.detectMobile)();\n      self.isMobile = mobileInfos.isMobile;\n      self.isDesktop = mobileInfos.isDesktop;\n      self.breakPoint650 = mobileInfos.breakPoint650;\n      self.breakPoint414 = mobileInfos.breakPoint414;\n      self.breakPoint375 = mobileInfos.breakPoint375;\n      self.breakPoint320 = mobileInfos.breakPoint320;\n    },\n    updatePopups: function updatePopups(popups) {// Popups registering\n      // ---\n      // const popup = self.popup;\n      // popup.register(popupTaskKey);\n      // if (popups) {\n      // \tfor (let popupKey of Object.keys(popups)) {\n      // \t\tpopup.register(popupKey);\n      // \t}\n      // }\n    },\n    update: function update(raw, callback) {\n      self.history = []; // User logged\n\n      self.account.update(raw.user);\n      self.auth.setField('step', self.account.isLogged ? 'logged' : 'login'); // Edit mode ?\n\n      var editMode = (0,nexus_utils_Storage__WEBPACK_IMPORTED_MODULE_11__.getFromStorage)('editMode', false, 'bool');\n\n      if (self.urlParams.hasOwnProperty('edit')) {\n        editMode = self.urlParams.edit == 'true' ? true : false;\n      }\n\n      if (!self.account.is_editor) {\n        editMode = false;\n      } // Debug mode ?\n\n\n      var debugMode = (0,nexus_utils_Storage__WEBPACK_IMPORTED_MODULE_11__.getFromStorage)('debugMode', false, 'bool');\n\n      if (!self.account.is_admin) {\n        debugMode = false;\n      }\n\n      self.initialized = true;\n      self.editMode = editMode;\n      self.debugMode = debugMode;\n      self.services.update(raw.smap);\n\n      if (callback) {\n        callback(raw);\n      }\n    },\n    init: function init(callback, popups, extras) {\n      // Initialisation de l'application avec la récupération de données communes\n      // ---\n      extras = extras ? extras : {};\n      window.urlParams = {};\n      window.verboseRender = false;\n      window.verboseScroll = false;\n      (0,nexus_utils_Helpers__WEBPACK_IMPORTED_MODULE_12__.initWeekFunctions)();\n      (0,nexus_utils_Helpers__WEBPACK_IMPORTED_MODULE_12__.initTrimFunction)();\n      self.updatePopups(popups);\n\n      if (callback) {\n        // Fix history\n        window.addEventListener(\"popstate\", function (event) {\n          document.location.reload();\n        });\n        var params = new FormData();\n        params.append('extras', JSON.stringify(extras));\n        var url = '/app/init';\n        self.fetchJSON(url, {\n          'body': params\n        }, false, 'POST').then(function (json) {\n          self.update(json, callback);\n        })[\"catch\"](function (ex) {\n          console.error(\"Fetch failed for \".concat(url), ex); // self.snackbar.update(true, \"Une erreur est survenue.\", \"error\");\n        });\n      } // Responsiveness -> watching the window's size\n\n\n      window.onresize = function () {\n        clearTimeout(window.resizeTimeout);\n        window.resizeTimeout = setTimeout(function () {\n          self.updateMobile();\n        }, 100);\n      };\n    },\n    // Navigation Functions\n    // --------------------------------------------------------------------------------------------------\n    gotoInternal: function gotoInternal(url) {\n      document.location = url;\n    },\n    gotoExternal: function gotoExternal(url) {\n      if (!url) {\n        return;\n      }\n\n      window.open(url, '_blank');\n    },\n    getHistory: function getHistory() {\n      // Récupère l'historique de navigation dans le localstorage\n      // ---\n      // let navHistory = [];\n      // try {\n      // \tnavHistory = getFromStorage('navHistory', [], 'json');\n      // } catch(err) {\n      // \tself.clearHistory();\n      // \tconsole.error(err);\n      // }\n      var navHistory = self.history ? (0,nexus_utils_Datas__WEBPACK_IMPORTED_MODULE_13__.copyObj)(self.history) : [];\n      return navHistory;\n    },\n    clearHistory: function clearHistory() {\n      // Vide l'historique de navigation\n      // ---\n      // setToStorage('navHistory', [], 'json');\n      self.history = [];\n    },\n    addHistory: function addHistory(newHistory) {\n      // Ajoute un historique de navigation si il diffère du précedent\n      // ---\n      var navHistory = self.getHistory();\n      var historyToAdd = true; // Comparaison par rapport à la dernière navigation\n\n      if (navHistory.length > 0) {\n        var lastHistoryStr = JSON.stringify(navHistory[navHistory.length - 1]);\n        var newHistoryStr = JSON.stringify(newHistory);\n\n        if (lastHistoryStr == newHistoryStr) {\n          historyToAdd = false;\n        }\n      }\n\n      if (historyToAdd) {\n        navHistory.push(newHistory); // setToStorage('navHistory', navHistory, 'json');\n\n        self.history = navHistory;\n      }\n    },\n    removeHistory: function removeHistory() {\n      // Supprime la dernière entrée de l'historique de navigation\n      // ---\n      var navHistory = self.getHistory();\n      navHistory.splice(navHistory.length - 1, navHistory.length); // setToStorage('navHistory', navHistory, 'json');\n\n      self.history = navHistory;\n    },\n    removeFromHistory: function removeFromHistory(url) {\n      // Nettoie l'url passé en paramètre de l'historique de navigation\n      // ---\n      var navHistory = self.getHistory();\n      var navHistoryCleared = [];\n\n      var _iterator2 = _createForOfIteratorHelper(navHistory),\n          _step2;\n\n      try {\n        for (_iterator2.s(); !(_step2 = _iterator2.n()).done;) {\n          var _history = _step2.value;\n\n          if (_history.destination != url) {\n            navHistoryCleared.push(_history);\n          }\n        } // setToStorage('navHistory', navHistoryCleared, 'json');\n\n      } catch (err) {\n        _iterator2.e(err);\n      } finally {\n        _iterator2.f();\n      }\n\n      self.history = navHistoryCleared;\n    },\n    setBrowserURL: function setBrowserURL(url, hash) {\n      // Mise à jour de l'URL du navigateur internet (mais sans y accéder)\n      // ---\n      if (hash) {\n        url = \"\".concat(url.split('#')[0]).concat(hash);\n      }\n\n      history.pushState(null, '', url);\n      sessionStorage.setItem('came_from', url);\n    },\n    navigate: function navigate(destination, newContext, jsonPatches, callback, ignoreHistory, clearHistory, replaceLastHistory, ignoreContext) {\n      // Navigue vers l'endroit demandé (depuis les liens de l'accueil, ou bien du menu)\n      // ---\n      var store = (0,mobx_state_tree__WEBPACK_IMPORTED_MODULE_21__.getRoot)(self);\n      var isMobile = self.isMobile;\n      newContext = newContext ? newContext : 'home';\n      ignoreHistory = newContext == 'home' ? true : ignoreHistory;\n      clearHistory = newContext == 'home' ? true : clearHistory;\n      ignoreContext = ignoreContext != undefined ? ignoreContext : false;\n      var currentContext = self.context; // Nettoyage de l'historique de navigation\n\n      if (clearHistory) {\n        self.clearHistory();\n      } // Ajout d'un historique de navigation\n\n\n      if (!ignoreHistory) {\n        if (replaceLastHistory) {\n          self.removeHistory();\n        }\n\n        self.addHistory({\n          destination: destination,\n          newContext: newContext,\n          jsonPatches: jsonPatches,\n          callback: callback\n        });\n      } // Gestion des nouveaux states\n\n\n      if (jsonPatches != undefined) {\n        (0,mobx_state_tree__WEBPACK_IMPORTED_MODULE_21__.applyPatch)(store, jsonPatches);\n      } // MAJ de l'URL du navigateur\n\n\n      self.setBrowserURL(destination); // Changement de contexte (all the magic of one paged apps appens here!)\n\n      if (ignoreContext == false && newContext != currentContext) {\n        (0,nexus_utils_Storage__WEBPACK_IMPORTED_MODULE_11__.setToStorage)('previousContext', self.context);\n        self.context = newContext; // Restoration du défilement\n\n        clearTimeout(window.scrollTimeoutRestore);\n        setTimeout(function () {\n          self.restoreScroll();\n        }, 50); // Gestion du callback\n\n        if (callback) {\n          callback(self, newContext);\n        }\n      } else {\n        // Gestion du callback\n        if (callback) {\n          callback(self, newContext);\n        }\n      }\n    },\n    goBack: function goBack() {\n      // Retourne vers la dernière navigation historisée\n      // ---\n      var homeUrl = self.homeUrl;\n      var navHistory = self.getHistory();\n      var target = null; // Où doit-on retourner ?\n\n      if (navHistory.length < 2) {\n        target = {\n          destination: homeUrl,\n          newContext: 'home',\n          jsonPatches: undefined,\n          callback: undefined\n        };\n      } else {\n        var targetDict = navHistory[navHistory.length - 2];\n        targetDict['jsonPatches'] = targetDict['jsonPatches'] ? targetDict['jsonPatches'] : [];\n        target = {\n          destination: targetDict.destination,\n          newContext: targetDict.newContext,\n          jsonPatches: targetDict.jsonPatches,\n          callback: targetDict.callback\n        }; // Nettoyage de l'historique\n\n        self.removeHistory();\n      }\n\n      self.navigate(target.destination, target.newContext, target.jsonPatches, target.callback, true, false);\n    },\n    goHome: function goHome() {\n      // Retourne à l'accueil\n      // ---\n      self.navigate(self.homeUrl, 'home');\n    },\n    // UI actions\n    // --------------------------------------------------------------------------------------------------\n    // Scroll Stuff\n    // -\n    handleScroll: function handleScroll(evt) {\n      // Sur défilement utilisateur\n      // ---\n      var scroll = evt.currentTarget.scrollTop;\n      var scrollHeight = evt.currentTarget.scrollHeight;\n      var clientHeight = evt.currentTarget.clientHeight;\n      clearTimeout(window.scrollTimeout);\n      window.scrollTimeout = setTimeout(function () {\n        self.saveScroll(scroll);\n\n        if (window.infiniteScrollCallback) {\n          if (scrollHeight - scroll == clientHeight) {\n            window.infiniteScrollCallback();\n          }\n        }\n\n        if (window.scrollCallback) {\n          window.scrollCallback();\n        }\n      }, 500);\n    },\n    removeScrollEvent: function removeScrollEvent() {\n      document.getElementById(\"main\").removeEventListener(\"scroll\", self.handleScroll);\n    },\n    attachScrollEvent: function attachScrollEvent() {\n      document.getElementById(\"main\").addEventListener(\"scroll\", self.handleScroll);\n    },\n    saveScroll: function saveScroll(scroll) {\n      // Save scroll value\n      // ---\n      var context = self.context;\n      var scrollKey = self.getScrollKey();\n\n      if (window.verboseScroll) {\n        console.log(\"Saving scroll \".concat(scrollKey, \" : \").concat(scroll));\n      }\n\n      (0,nexus_utils_Storage__WEBPACK_IMPORTED_MODULE_11__.setToStorage)(scrollKey, scroll);\n    },\n    restoreScroll: function restoreScroll() {\n      // Restore scroll value\n      // ---\n      var scrollKey = self.getScrollKey();\n      var scroll = (0,nexus_utils_Storage__WEBPACK_IMPORTED_MODULE_11__.getFromStorage)(scrollKey, 0, 'int');\n\n      if (window.infiniteScrollCallback) {\n        scroll = 0;\n      }\n\n      if (window.verboseScroll) {\n        console.log(\"Restore scroll \".concat(scrollKey, \" : \").concat(scroll));\n      }\n\n      var main = document.getElementById(\"main\");\n\n      if (main) {\n        self.removeScrollEvent();\n        main.scrollTop = scroll;\n        self.attachScrollEvent();\n      }\n    },\n    scrollToTop: function scrollToTop() {\n      // Smooth scroll to the top of the page\n      // ---\n      var main = document.getElementById(\"main\");\n\n      if (main) {\n        main.scrollTo({\n          left: 0,\n          top: 0,\n          behavior: \"smooth\"\n        });\n      }\n    },\n    scrollToBottom: function scrollToBottom() {\n      // Smooth scroll to the bottom of the page\n      // ---\n      var main = document.getElementById(\"main\");\n\n      if (main) {\n        main.scrollTo({\n          left: 0,\n          top: main.scrollHeight,\n          behavior: \"smooth\"\n        });\n      }\n    },\n    // Datas Functions\n    // --------------------------------------------------------------------------------------------------\n    addTask: function addTask(taskId) {\n      // Ajout de la tâche si pas déjà présente\n      // ---\n      if (self.tasks.indexOf(taskId) == -1) {\n        self.tasks.push(taskId);\n      }\n    },\n    removeTask: function removeTask(taskId) {\n      // Suppression de la tâche si est présente\n      // ---\n      if (self.tasks.indexOf(taskId) > -1) {\n        self.tasks.splice(self.tasks.indexOf(taskId), 1);\n      }\n    },\n    // -\n    _fetchDatas: function _fetchDatas(input, init, quiet, method, params, jsonOnly) {\n      // AJAX / fetch call\n      // ---\n      quiet = quiet == true ? true : false;\n      method = method ? method : 'GET';\n      jsonOnly = jsonOnly == false ? false : true; // NxApp lock UI\n\n      var taskId = (0,nexus_utils_Datas__WEBPACK_IMPORTED_MODULE_13__.uuid)();\n\n      if (!quiet) {\n        self.addTask(taskId);\n      } // Init request body\n\n\n      init = init ? init : {};\n      init['credentials'] = 'include';\n      init['method'] = method; // Params\n\n      if (params) {\n        for (var _i = 0, _Object$entries = Object.entries(params); _i < _Object$entries.length; _i++) {\n          var _Object$entries$_i = _slicedToArray(_Object$entries[_i], 2),\n              paramKey = _Object$entries$_i[0],\n              paramValue = _Object$entries$_i[1];\n\n          if (input.indexOf('?') == -1) {\n            input = \"\".concat(input, \"?\").concat(paramKey, \"=\").concat(paramValue);\n          } else {\n            input = \"\".concat(input, \"&\").concat(paramKey, \"=\").concat(paramValue);\n          }\n        }\n      } // Fetch\n\n\n      return fetch(input, init).then(function (response) {\n        if (!quiet) {\n          self.removeTask(taskId);\n        }\n\n        if (jsonOnly) {\n          if (response.headers.get('content-type') != 'application/json') {\n            throw Error(response.statusText);\n          }\n\n          return response.json();\n        }\n\n        return response.text();\n      })[\"catch\"](function (ex) {\n        if (!quiet) {\n          self.removeTask(taskId);\n        }\n\n        throw Error(ex);\n      });\n    },\n    fetchJSON: function fetchJSON(input, init, quiet, method, params) {\n      return self._fetchDatas(input, init, quiet, method, params, true);\n    },\n    fetchHTML: function fetchHTML(input, init, quiet, method, params) {\n      return self._fetchDatas(input, init, quiet, method, params, false);\n    },\n    // -\n    saveValue: function saveValue(path, value, callbackSaved) {\n      // Sauvegarde de la nouvelle valeur à travers un arbre MobxStateTree\n      // ---\n      var store = (0,mobx_state_tree__WEBPACK_IMPORTED_MODULE_21__.getRoot)(self);\n      var jsonPath = (0,nexus_utils_Datas__WEBPACK_IMPORTED_MODULE_13__.convertToJSONPath)(path);\n      (0,mobx_state_tree__WEBPACK_IMPORTED_MODULE_21__.applyPatch)(store, [{\n        \"op\": \"replace\",\n        \"path\": jsonPath,\n        \"value\": value\n      }]);\n\n      if (callbackSaved) {\n        callbackSaved(path, value);\n      }\n    },\n    saveFrozenValue: function saveFrozenValue(pathToFrozen, pathInFrozen, value, callbackSaved) {\n      // Sauvegarde de la valeur\n      var store = (0,mobx_state_tree__WEBPACK_IMPORTED_MODULE_21__.getRoot)(self);\n      var frozen = self.getValue(pathToFrozen, null);\n\n      if (frozen == null) {\n        return;\n      }\n\n      var saveTarget = (0,nexus_utils_Datas__WEBPACK_IMPORTED_MODULE_13__.copyObj)(frozen);\n\n      for (var idx_path in pathInFrozen) {\n        var target = pathInFrozen[idx_path];\n\n        if (idx_path == pathInFrozen.length - 1) {\n          saveTarget[target] = value;\n        } else {\n          try {\n            saveTarget[target];\n          } catch (err) {\n            if (!saveTarget.hasOwnProperty(target)) {\n              saveTarget[target] = {};\n            }\n          }\n        }\n      }\n\n      self.saveTarget(pathToFrozen, frozen);\n\n      if (callbackSaved) {\n        callbackSaved(path, value);\n      }\n    },\n    // -\n    addError: function addError(errorPath, errorMsg) {\n      // Ajoute l'erreur passée en paramètres\n      // ---\n      if (!self.errors) {\n        self.errors = [];\n      }\n\n      var errorDict = {\n        'path': errorPath,\n        'label': errorMsg\n      };\n      self.errors.push(errorDict);\n      return errorDict;\n    },\n    clearError: function clearError(savePath) {\n      // Nettoyage de l'erreur\n      // ---\n      var errors = self.errors;\n      var clearedErrors = [];\n\n      var _iterator3 = _createForOfIteratorHelper(errors),\n          _step3;\n\n      try {\n        for (_iterator3.s(); !(_step3 = _iterator3.n()).done;) {\n          var error = _step3.value;\n\n          if (JSON.stringify(error.path) != JSON.stringify(savePath)) {\n            clearedErrors.push(error);\n          }\n        }\n      } catch (err) {\n        _iterator3.e(err);\n      } finally {\n        _iterator3.f();\n      }\n\n      self.setField('errors', clearedErrors);\n    },\n    clearErrors: function clearErrors() {\n      self.errors = [];\n    },\n    // -\n    setDocState: function setDocState(docId, newState, callback, ajaxBase) {\n      // Appel AJAX de la fonction de mise à jour du statut du document passé en paramètres\n      // ---\n      var app = self;\n      var snackbar = self.snackbar;\n      ajaxBase = ajaxBase ? ajaxBase : '';\n      var params = new FormData();\n      params.append('doc_id', docId);\n      params.append('new_state', newState);\n      var url = \"\".concat(ajaxBase, \"/app/set_doc_state\");\n      app.fetchJSON(url, {\n        'body': params\n      }, false, 'POST').then(function (json) {\n        if (callback) {\n          callback();\n        }\n      })[\"catch\"](function (ex) {\n        console.error(\"Fetch failed for \".concat(url), ex);\n        snackbar.update(true, \"Une erreur est survenue.\", \"error\");\n      });\n    }\n  };\n}); // Functions\n// --------------------------------------------------------------------------------------------------------------------------------------------\n\nvar TAG_makeInitSnapshot = function TAG_makeInitSnapshot() {};\n\nvar makeInitSnapshot = function makeInitSnapshot(routes, snapshot, callback) {\n  // Génération du snapshot d'initialisation du RootStore des applications\n  // ---\n  routes = routes != undefined ? routes : {};\n  snapshot = snapshot != undefined ? snapshot : {}; // Routes\n\n  var routeNodes = new route_node__WEBPACK_IMPORTED_MODULE_22__.RouteNode('', '');\n  routeNodes.add(new route_node__WEBPACK_IMPORTED_MODULE_22__.RouteNode('about', '/about'));\n  routeNodes.add(new route_node__WEBPACK_IMPORTED_MODULE_22__.RouteNode('auth', '/login'));\n  routeNodes.add(new route_node__WEBPACK_IMPORTED_MODULE_22__.RouteNode('forbidden', '/forbidden'));\n  routeNodes.add(new route_node__WEBPACK_IMPORTED_MODULE_22__.RouteNode('account', '/account'));\n  routeNodes.add(new route_node__WEBPACK_IMPORTED_MODULE_22__.RouteNode('infos', '/infos'));\n\n  for (var _i2 = 0, _Object$entries2 = Object.entries(routes); _i2 < _Object$entries2.length; _i2++) {\n    var _Object$entries2$_i = _slicedToArray(_Object$entries2[_i2], 2),\n        routeContextKey = _Object$entries2$_i[0],\n        routeMatchURL = _Object$entries2$_i[1];\n\n    routeNodes.add(new route_node__WEBPACK_IMPORTED_MODULE_22__.RouteNode(routeContextKey, routeMatchURL));\n  }\n\n  var matchResult = (0,nexus_utils_URL__WEBPACK_IMPORTED_MODULE_10__.matchUrl)(routeNodes, document.location.pathname);\n  var mobileInfos = (0,nexus_utils_Responsive__WEBPACK_IMPORTED_MODULE_9__.detectMobile)();\n  var urlParams = (0,nexus_utils_URL__WEBPACK_IMPORTED_MODULE_10__.getUrlParams)();\n  var standaloneMode = false;\n\n  if (urlParams.hasOwnProperty('standaloneMode')) {\n    if ((0,nexus_utils_Helpers__WEBPACK_IMPORTED_MODULE_12__.isTrue)(urlParams.standaloneMode)) {\n      standaloneMode = true;\n    }\n  } // App\n  // -\n\n\n  if (!snapshot.hasOwnProperty('app')) {\n    snapshot['app'] = {};\n  }\n\n  snapshot['app']['context'] = matchResult.context;\n  snapshot['app']['standaloneMode'] = standaloneMode;\n  snapshot['app']['isMobile'] = mobileInfos.isMobile;\n  snapshot['app']['isDesktop'] = mobileInfos.isDesktop;\n  snapshot['app']['breakPoint650'] = mobileInfos.breakPoint650;\n  snapshot['app']['breakPoint414'] = mobileInfos.breakPoint414;\n  snapshot['app']['breakPoint375'] = mobileInfos.breakPoint375;\n  snapshot['app']['breakPoint320'] = mobileInfos.breakPoint320;\n  snapshot['app']['routes'] = routes;\n  snapshot['app']['urlParams'] = urlParams;\n  snapshot['app']['matchResult'] = matchResult;\n\n  if (!snapshot['app'].hasOwnProperty('theme')) {\n    snapshot['app']['theme'] = {};\n  }\n\n  snapshot['app']['theme']['variant'] = (0,nexus_utils_Storage__WEBPACK_IMPORTED_MODULE_11__.getFromStorage)('nxTheme', snapshot['app']['theme'].hasOwnProperty('variant') ? snapshot.app.theme.variant : 'light'); // Drawer\n  // -\n\n  if (!snapshot['app'].hasOwnProperty('menu')) {\n    snapshot['app']['menu'] = {\n      expanded: true,\n      pinned: true\n    };\n  }\n\n  snapshot['app']['menu']['expanded'] = (0,nexus_utils_Storage__WEBPACK_IMPORTED_MODULE_11__.getFromStorage)('menuExpanded', snapshot.app.menu.expanded, 'bool');\n  snapshot['app']['menu']['pinned'] = (0,nexus_utils_Storage__WEBPACK_IMPORTED_MODULE_11__.getFromStorage)('menuPinned', snapshot.app.menu.pinned, 'bool'); // Apps\n  // -\n\n  if (!snapshot['app'].hasOwnProperty('portal')) {\n    snapshot['app']['portal'] = {\n      open: false,\n      expanded: true,\n      pinned: false\n    };\n  }\n\n  snapshot['app']['portal']['expanded'] = (0,nexus_utils_Storage__WEBPACK_IMPORTED_MODULE_11__.getFromStorage)('portalExpanded', snapshot.app.portal.expanded, 'bool');\n  snapshot['app']['portal']['pinned'] = (0,nexus_utils_Storage__WEBPACK_IMPORTED_MODULE_11__.getFromStorage)('portalPinned', snapshot.app.portal.pinned, 'bool'); // URL params\n  // -\n\n  if (matchResult && matchResult.hasOwnProperty('params')) {\n    for (var _i3 = 0, _Object$entries3 = Object.entries(matchResult.params); _i3 < _Object$entries3.length; _i3++) {\n      var _Object$entries3$_i = _slicedToArray(_Object$entries3[_i3], 2),\n          urlParamKey = _Object$entries3$_i[0],\n          urlParamValue = _Object$entries3$_i[1];\n\n      snapshot[urlParamKey] = urlParamValue;\n    }\n  }\n\n  if (callback) {\n    callback(snapshot, urlParams);\n  }\n\n  return snapshot;\n}; // Class Components ReactJS\n// --------------------------------------------------------------------------------------------------------------------------------------------\n// ***** ErrorBoundary *****\n// *************************\n\nvar TAG_ErrorBoundary = function TAG_ErrorBoundary() {};\n\nvar ErrorBoundary = /*#__PURE__*/function (_React$Component) {\n  _inherits(ErrorBoundary, _React$Component);\n\n  var _super = _createSuper(ErrorBoundary);\n\n  function ErrorBoundary(props) {\n    var _this;\n\n    _classCallCheck(this, ErrorBoundary);\n\n    _this = _super.call(this, props);\n    _this.state = {\n      hasError: false\n    };\n    return _this;\n  }\n\n  _createClass(ErrorBoundary, [{\n    key: \"componentDidCatch\",\n    value: function componentDidCatch(error, errorInfo) {\n      console.error('componentDidCatch');\n      console.error(error);\n      console.error('-');\n      console.error(errorInfo);\n    }\n  }, {\n    key: \"render\",\n    value: function render() {\n      if (this.state.hasError) {\n        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(\"div\", {\n          className: \"nx-page\"\n        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(nexus_ui_helper_Helper__WEBPACK_IMPORTED_MODULE_19__.Helper, {\n          icon: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(\"img\", {\n            className: \"nx-helper-icon\",\n            src: \"/nexus_static/img/emojis/jelly_eyes_closed.png\"\n          }),\n          title: \"!\",\n          subtitle: \"Une erreur est survenue.\",\n          severity: \"error\",\n          show: true\n        }));\n      }\n\n      return this.props.children;\n    }\n  }], [{\n    key: \"getDerivedStateFromError\",\n    value: function getDerivedStateFromError(error) {\n      return {\n        hasError: true\n      };\n    }\n  }]);\n\n  return ErrorBoundary;\n}(react__WEBPACK_IMPORTED_MODULE_0__.Component); // Function Components ReactJS\n// --------------------------------------------------------------------------------------------------------------------------------------------\n// ***** NxApp *****\n// *****************\n\n\nvar TAG_NxApp = function TAG_NxApp() {};\n\nvar NxApp = (0,mobx_react_lite__WEBPACK_IMPORTED_MODULE_1__.observer)(function (props) {\n  var store = react__WEBPACK_IMPORTED_MODULE_0__.useContext(window.storeContext);\n  var app = store.app;\n  var menu = app.menu;\n  react__WEBPACK_IMPORTED_MODULE_0__.useEffect(function () {\n    // Scroll restoration\n    clearTimeout(window.scrollTimeoutRestore);\n    setTimeout(function () {\n      app.restoreScroll();\n    }, 250); // JS Ready\n\n    var body = document.body;\n    body.classList.add(\"jsready\");\n  }, []); // From ... props\n\n  var Header = props.header ? props.header : null;\n  var Menu = props.menu ? props.menu : null;\n  var Footer = props.footer ? props.footer : null;\n  var children = props.children ? props.children : null;\n  var contexts = props.contexts ? props.contexts : {};\n  var popups = props.popups ? props.popups : {}; // From ... store\n\n  var context = app.context;\n  var isLoading = app.isLoading;\n  var isFullScreen = app.isFullScreen;\n  var breakPoint650 = app.breakPoint650;\n  var breakPoint414 = app.breakPoint414;\n  var breakPoint375 = app.breakPoint375;\n  var breakPoint320 = app.breakPoint320;\n  var menuPinned = menu.pinned;\n  var theme = app.theme; // ...\n\n  contexts['about'] = nexus_contexts_about_About__WEBPACK_IMPORTED_MODULE_14__.AboutPage;\n  contexts['auth'] = nexus_contexts_auth_Auth__WEBPACK_IMPORTED_MODULE_15__.AuthPage;\n  contexts['forbidden'] = nexus_contexts_forbidden_Forbidden__WEBPACK_IMPORTED_MODULE_17__.ForbiddenPage;\n  contexts['account'] = nexus_contexts_account_Account__WEBPACK_IMPORTED_MODULE_16__.AccountPage; // contexts['infos'] = InfoPage;\n  // Render\n  // ==================================================================================================\n\n  var break650 = breakPoint650 ? 'break-650' : '';\n  var break414 = breakPoint414 ? 'break-414' : '';\n  var break375 = breakPoint375 ? 'break-375' : '';\n  var break320 = breakPoint320 ? 'break-320' : ''; // No children ? Then we maybe have a contextual component to draw\n\n  var content = children;\n\n  if (!content) {\n    if (contexts.hasOwnProperty(context)) {\n      var ContextualComponent = contexts[context];\n      content = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(ContextualComponent, null);\n    } else {\n      // 404 not found\n      content = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(nexus_contexts_notfound_NotFound__WEBPACK_IMPORTED_MODULE_18__.NotFoundPage, null);\n    }\n  } // Popups\n\n\n  var popupsRendered = [];\n\n  for (var _i4 = 0, _Object$entries4 = Object.entries(popups); _i4 < _Object$entries4.length; _i4++) {\n    var _Object$entries4$_i = _slicedToArray(_Object$entries4[_i4], 2),\n        popupKey = _Object$entries4$_i[0],\n        PopupComponent = _Object$entries4$_i[1];\n\n    popupsRendered.push( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(PopupComponent, {\n      key: popupKey\n    }));\n  } // Render\n  // ==================================================================================================\n\n\n  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(ErrorBoundary, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(\"div\", {\n    id: \"nx-base\",\n    className: (0,clsx__WEBPACK_IMPORTED_MODULE_2__.default)(context, {\n      'break-650': breakPoint650\n    }, {\n      'break-414': breakPoint414\n    }, {\n      'break-375': breakPoint375\n    }, {\n      'break-320': breakPoint320\n    }, \"ui-\".concat(theme.variant), {\n      'loading': isLoading\n    })\n  }, Header && !isFullScreen && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(Header, null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(\"div\", {\n    id: \"nx-content\"\n  }, Menu && !isFullScreen && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(Menu, null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(\"div\", {\n    id: \"nx-main\"\n  }, content, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(nexus_ui_snackbar_Snackbar__WEBPACK_IMPORTED_MODULE_8__.Snackbar, null)), !isFullScreen && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(nexus_layout_portal_Portal__WEBPACK_IMPORTED_MODULE_7__.Portal, null), popupsRendered)));\n});\n\n//# sourceURL=webpack://nexorium/../../nexus/react/NxApp.jsx?");
 
 /***/ }),
 
-/***/ 4397:
-/***/ (() => {
+/***/ "../../nexus/react/contexts/about/About.jsx":
+/*!**************************************************!*\
+  !*** ../../nexus/react/contexts/about/About.jsx ***!
+  \**************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-// extracted by extract-css-chunks-webpack-plugin
-
-/***/ }),
-
-/***/ 3230:
-/***/ (() => {
-
-// extracted by extract-css-chunks-webpack-plugin
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"AboutHeaderLeft\": () => (/* binding */ AboutHeaderLeft),\n/* harmony export */   \"AboutMenuItem\": () => (/* binding */ AboutMenuItem),\n/* harmony export */   \"AboutPage\": () => (/* binding */ AboutPage)\n/* harmony export */ });\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"../../nexus/react/node_modules/react/index.js\");\n/* harmony import */ var mobx_react_lite__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! mobx-react-lite */ \"../../nexus/react/node_modules/mobx-react-lite/es/index.js\");\n/* harmony import */ var clsx__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! clsx */ \"../../nexus/react/node_modules/clsx/dist/clsx.m.js\");\n/* harmony import */ var nexus_layout_header_Header__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! nexus/layout/header/Header */ \"../../nexus/react/layout/header/Header.jsx\");\n/* harmony import */ var nexus_layout_menu_Menu__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! nexus/layout/menu/Menu */ \"../../nexus/react/layout/menu/Menu.jsx\");\n/* harmony import */ var nexus_ui_icon_Icon__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! nexus/ui/icon/Icon */ \"../../nexus/react/ui/icon/Icon.jsx\");\n/* harmony import */ var nexus_ui_helper_Helper__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! nexus/ui/helper/Helper */ \"../../nexus/react/ui/helper/Helper.jsx\");\n/* harmony import */ var _About_css__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./About.css */ \"../../nexus/react/contexts/about/About.css\");\n/* harmony import */ var _About_css__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(_About_css__WEBPACK_IMPORTED_MODULE_7__);\n\n\n\n\n\n\n\n\n // Functions Components ReactJS\n// -------------------------------------------------------------------------------------------------------------\n// ***** AboutHeaderLeft *****\n// ***************************\n\nvar TAG_AboutHeaderLeft = function TAG_AboutHeaderLeft() {};\n\nvar AboutHeaderLeft = (0,mobx_react_lite__WEBPACK_IMPORTED_MODULE_1__.observer)(function (props) {\n  var store = react__WEBPACK_IMPORTED_MODULE_0__.useContext(window.storeContext);\n  var app = store.app; // ...\n  // Render\n  // ==================================================================================================\n\n  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(nexus_layout_header_Header__WEBPACK_IMPORTED_MODULE_3__.HeaderTitle, {\n    title: \"A propos\",\n    titleStyle: {\n      marginLeft: '10px'\n    }\n  });\n}); // ***** AboutMenuItem *****\n// *************************\n\nvar TAG_AboutMenuItem = function TAG_AboutMenuItem() {};\n\nvar AboutMenuItem = (0,mobx_react_lite__WEBPACK_IMPORTED_MODULE_1__.observer)(function (props) {\n  var store = react__WEBPACK_IMPORTED_MODULE_0__.useContext(window.storeContext);\n  var app = store.app; // Evènements\n  // ==================================================================================================\n\n  var handleMenuItemClick = function handleMenuItemClick() {\n    app.navigate(app.aboutUrl, app.aboutContext);\n  }; // Render\n  // ==================================================================================================\n\n\n  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(nexus_layout_menu_Menu__WEBPACK_IMPORTED_MODULE_4__.MenuItem, {\n    icon: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(nexus_ui_icon_Icon__WEBPACK_IMPORTED_MODULE_5__.Icon, {\n      name: \"code\"\n    }),\n    label: \"A propos\",\n    activeContexts: [app.aboutContext],\n    callbackClick: handleMenuItemClick\n  });\n}); // ***** AboutPage *****\n// *********************\n\nvar TAG_AboutPage = function TAG_AboutPage() {};\n\nvar AboutPage = (0,mobx_react_lite__WEBPACK_IMPORTED_MODULE_1__.observer)(function (props) {\n  var store = react__WEBPACK_IMPORTED_MODULE_0__.useContext(window.storeContext);\n  var app = store.app; // Renderers\n  // ==================================================================================================\n\n  var renderHelper = function renderHelper() {\n    // Render :: Helper\n    // ---\n    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(nexus_ui_helper_Helper__WEBPACK_IMPORTED_MODULE_6__.Helper, {\n      iconName: \"code\",\n      show: true\n    });\n  };\n\n  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(\"div\", {\n    className: \"nx-page\"\n  }, renderHelper());\n});\n\n//# sourceURL=webpack://nexorium/../../nexus/react/contexts/about/About.jsx?");
 
 /***/ }),
 
-/***/ 3447:
-/***/ (() => {
+/***/ "../../nexus/react/contexts/account/Account.jsx":
+/*!******************************************************!*\
+  !*** ../../nexus/react/contexts/account/Account.jsx ***!
+  \******************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-// extracted by extract-css-chunks-webpack-plugin
-
-/***/ }),
-
-/***/ 8461:
-/***/ (() => {
-
-// extracted by extract-css-chunks-webpack-plugin
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"AccountStore\": () => (/* binding */ AccountStore),\n/* harmony export */   \"AccountHeaderLeft\": () => (/* binding */ AccountHeaderLeft),\n/* harmony export */   \"AccountMenuItem\": () => (/* binding */ AccountMenuItem),\n/* harmony export */   \"AccountPage\": () => (/* binding */ AccountPage)\n/* harmony export */ });\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"../../nexus/react/node_modules/react/index.js\");\n/* harmony import */ var mobx_state_tree__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! mobx-state-tree */ \"../../nexus/react/node_modules/mobx-state-tree/dist/mobx-state-tree.module.js\");\n/* harmony import */ var mobx_react_lite__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! mobx-react-lite */ \"../../nexus/react/node_modules/mobx-react-lite/es/index.js\");\n/* harmony import */ var clsx__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! clsx */ \"../../nexus/react/node_modules/clsx/dist/clsx.m.js\");\n/* harmony import */ var nexus_layout_header_Header__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! nexus/layout/header/Header */ \"../../nexus/react/layout/header/Header.jsx\");\n/* harmony import */ var nexus_layout_menu_Menu__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! nexus/layout/menu/Menu */ \"../../nexus/react/layout/menu/Menu.jsx\");\n/* harmony import */ var nexus_ui_icon_Icon__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! nexus/ui/icon/Icon */ \"../../nexus/react/ui/icon/Icon.jsx\");\n/* harmony import */ var nexus_ui_helper_Helper__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! nexus/ui/helper/Helper */ \"../../nexus/react/ui/helper/Helper.jsx\");\n/* harmony import */ var _Account_css__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./Account.css */ \"../../nexus/react/contexts/account/Account.css\");\n/* harmony import */ var _Account_css__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(_Account_css__WEBPACK_IMPORTED_MODULE_7__);\nfunction _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== \"undefined\" && o[Symbol.iterator] || o[\"@@iterator\"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === \"number\") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError(\"Invalid attempt to iterate non-iterable instance.\\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.\"); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it[\"return\"] != null) it[\"return\"](); } finally { if (didErr) throw err; } } }; }\n\nfunction _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === \"string\") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === \"Object\" && o.constructor) n = o.constructor.name; if (n === \"Map\" || n === \"Set\") return Array.from(o); if (n === \"Arguments\" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }\n\nfunction _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }\n\n\n\n\n\n\n\n\n\n // Models\n// -------------------------------------------------------------------------------------------------------------\n// ***** AccountStore *****\n// ************************\n\nvar TAG_AccountStore = function TAG_AccountStore() {};\n\nvar AccountStore = mobx_state_tree__WEBPACK_IMPORTED_MODULE_8__.types.model({\n  _id: '',\n  _rev: '',\n  _state: 0,\n  firstname: '',\n  lastname: '',\n  login: '',\n  role_finder: mobx_state_tree__WEBPACK_IMPORTED_MODULE_8__.types.optional(mobx_state_tree__WEBPACK_IMPORTED_MODULE_8__.types.array(mobx_state_tree__WEBPACK_IMPORTED_MODULE_8__.types.string), []),\n  is_viewer: false,\n  is_editor: false,\n  is_admin: false\n}).views(function (self) {\n  return {\n    get name() {\n      var name = '';\n\n      if (self._id) {\n        if (self.firstname) {\n          name = self.firstname;\n        }\n\n        if (self.firstname) {\n          if (name) {\n            name = \"\".concat(name, \" \").concat(self.firstname);\n          } else {\n            name = self.firstname;\n          }\n        }\n\n        if (!name && self.login) {\n          name = self.login;\n        }\n      } else {\n        name = 'Visiteur';\n      }\n\n      return name;\n    },\n\n    // Bools\n    // -\n    get isLogged() {\n      if (self._id) {\n        return true;\n      }\n\n      return false;\n    },\n\n    isAdmin: function isAdmin(appId) {\n      var store = (0,mobx_state_tree__WEBPACK_IMPORTED_MODULE_8__.getRoot)(self);\n      var app = store.app;\n      appId = appId ? appId : app.appId;\n      return false;\n    }\n  };\n}).actions(function (self) {\n  return {\n    setField: function setField(field, value) {\n      self[field] = value;\n    },\n    // -\n    update: function update(raw) {\n      self._id = raw._id;\n      self._rev = raw._rev;\n      self._state = raw._state;\n      self.firstname = raw.firstname;\n      self.lastname = raw.lastname;\n      self.login = raw.login;\n      self.role_finder = [];\n\n      var _iterator = _createForOfIteratorHelper(raw.role_finder),\n          _step;\n\n      try {\n        for (_iterator.s(); !(_step = _iterator.n()).done;) {\n          var roleKey = _step.value;\n          self.role_finder.push(roleKey);\n        }\n      } catch (err) {\n        _iterator.e(err);\n      } finally {\n        _iterator.f();\n      }\n\n      self.is_viewer = raw.is_viewer;\n      self.is_editor = raw.is_editor;\n      self.is_admin = raw.is_admin;\n    }\n  };\n}); // Functions Components ReactJS\n// -------------------------------------------------------------------------------------------------------------\n// ***** AccountHeaderLeft *****\n// *****************************\n\nvar TAG_AccountHeaderLeft = function TAG_AccountHeaderLeft() {};\n\nvar AccountHeaderLeft = (0,mobx_react_lite__WEBPACK_IMPORTED_MODULE_1__.observer)(function (props) {\n  var store = react__WEBPACK_IMPORTED_MODULE_0__.useContext(window.storeContext);\n  var app = store.app; // ...\n  // Render\n  // ==================================================================================================\n\n  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(nexus_layout_header_Header__WEBPACK_IMPORTED_MODULE_3__.HeaderTitle, {\n    title: \"Mon compte\",\n    titleStyle: {\n      marginLeft: '10px'\n    }\n  });\n}); // ***** AccountMenuItem *****\n// ***************************\n\nvar TAG_AccountMenuItem = function TAG_AccountMenuItem() {};\n\nvar AccountMenuItem = (0,mobx_react_lite__WEBPACK_IMPORTED_MODULE_1__.observer)(function (props) {\n  var store = react__WEBPACK_IMPORTED_MODULE_0__.useContext(window.storeContext);\n  var app = store.app;\n  var account = app.account; // From ... store\n\n  var isLogged = account.isLogged; // Evènements\n  // ==================================================================================================\n\n  var handleMenuItemClick = function handleMenuItemClick() {\n    app.navigate(app.accountUrl, 'account');\n  }; // Render\n  // ==================================================================================================\n\n\n  var accountMenuItem = null;\n\n  if (isLogged) {\n    accountMenuItem = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(nexus_layout_menu_Menu__WEBPACK_IMPORTED_MODULE_4__.MenuItem, {\n      icon: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(nexus_ui_icon_Icon__WEBPACK_IMPORTED_MODULE_5__.Icon, {\n        name: \"account_circle\"\n      }),\n      label: \"Mon compte\",\n      activeContexts: ['account'],\n      callbackClick: handleMenuItemClick\n    });\n  }\n\n  return accountMenuItem;\n}); // ***** AccountPage *****\n// ***********************\n\nvar TAG_AccountPage = function TAG_AccountPage() {};\n\nvar AccountPage = (0,mobx_react_lite__WEBPACK_IMPORTED_MODULE_1__.observer)(function (props) {\n  var store = react__WEBPACK_IMPORTED_MODULE_0__.useContext(window.storeContext);\n  var app = store.app; // Renderers\n  // ==================================================================================================\n\n  var renderHelper = function renderHelper() {\n    // Render :: Helper\n    // ---\n    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(nexus_ui_helper_Helper__WEBPACK_IMPORTED_MODULE_6__.Helper, {\n      iconName: \"account_circle\",\n      show: true\n    });\n  };\n\n  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(\"div\", {\n    className: \"nx-page\"\n  }, renderHelper());\n});\n\n//# sourceURL=webpack://nexorium/../../nexus/react/contexts/account/Account.jsx?");
 
 /***/ }),
 
-/***/ 3130:
-/***/ (() => {
+/***/ "../../nexus/react/contexts/admin/Admin.jsx":
+/*!**************************************************!*\
+  !*** ../../nexus/react/contexts/admin/Admin.jsx ***!
+  \**************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-// extracted by extract-css-chunks-webpack-plugin
-
-/***/ }),
-
-/***/ 2181:
-/***/ (() => {
-
-// extracted by extract-css-chunks-webpack-plugin
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"AdminHeaderLeft\": () => (/* binding */ AdminHeaderLeft),\n/* harmony export */   \"AdminMenuItem\": () => (/* binding */ AdminMenuItem)\n/* harmony export */ });\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"../../nexus/react/node_modules/react/index.js\");\n/* harmony import */ var mobx_react_lite__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! mobx-react-lite */ \"../../nexus/react/node_modules/mobx-react-lite/es/index.js\");\n/* harmony import */ var clsx__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! clsx */ \"../../nexus/react/node_modules/clsx/dist/clsx.m.js\");\n/* harmony import */ var nexus_layout_header_Header__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! nexus/layout/header/Header */ \"../../nexus/react/layout/header/Header.jsx\");\n/* harmony import */ var nexus_layout_menu_Menu__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! nexus/layout/menu/Menu */ \"../../nexus/react/layout/menu/Menu.jsx\");\n/* harmony import */ var nexus_ui_icon_Icon__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! nexus/ui/icon/Icon */ \"../../nexus/react/ui/icon/Icon.jsx\");\n/* harmony import */ var _Admin_css__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./Admin.css */ \"../../nexus/react/contexts/admin/Admin.css\");\n/* harmony import */ var _Admin_css__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_Admin_css__WEBPACK_IMPORTED_MODULE_6__);\n\n\n\n\n\n\n\n // Functions Components ReactJS\n// -------------------------------------------------------------------------------------------------------------\n// ***** AdminHeaderLeft *****\n// ***************************\n\nvar TAG_AdminHeaderLeft = function TAG_AdminHeaderLeft() {};\n\nvar AdminHeaderLeft = (0,mobx_react_lite__WEBPACK_IMPORTED_MODULE_1__.observer)(function (props) {\n  var store = react__WEBPACK_IMPORTED_MODULE_0__.useContext(window.storeContext);\n  var app = store.app; // ...\n  // Render\n  // ==================================================================================================\n\n  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(nexus_layout_header_Header__WEBPACK_IMPORTED_MODULE_3__.HeaderTitle, {\n    title: \"Administration\",\n    titleStyle: {\n      marginLeft: '10px'\n    }\n  });\n}); // ***** AdminMenuItem *****\n// *************************\n\nvar TAG_AdminMenuItem = function TAG_AdminMenuItem() {};\n\nvar AdminMenuItem = (0,mobx_react_lite__WEBPACK_IMPORTED_MODULE_1__.observer)(function (props) {\n  var store = react__WEBPACK_IMPORTED_MODULE_0__.useContext(window.storeContext);\n  var app = store.app;\n  var account = app.account; // From ... store\n\n  var isAdmin = account.is_admin; // Evènements\n  // ==================================================================================================\n\n  var handleMenuItemClick = function handleMenuItemClick() {\n    app.navigate(app.adminUrl, app.adminContext);\n  }; // Render\n  // ==================================================================================================\n\n\n  var adminMenuItemContent = null;\n\n  if (isAdmin) {\n    adminMenuItemContent = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(nexus_layout_menu_Menu__WEBPACK_IMPORTED_MODULE_4__.MenuItem, {\n      icon: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(nexus_ui_icon_Icon__WEBPACK_IMPORTED_MODULE_5__.Icon, {\n        name: \"setting\"\n      }),\n      label: \"Administration\",\n      activeContexts: [app.adminContext],\n      callbackClick: handleMenuItemClick\n    });\n  }\n\n  return adminMenuItemContent;\n});\n\n//# sourceURL=webpack://nexorium/../../nexus/react/contexts/admin/Admin.jsx?");
 
 /***/ }),
 
-/***/ 6236:
-/***/ (() => {
+/***/ "../../nexus/react/contexts/forbidden/Forbidden.jsx":
+/*!**********************************************************!*\
+  !*** ../../nexus/react/contexts/forbidden/Forbidden.jsx ***!
+  \**********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-// extracted by extract-css-chunks-webpack-plugin
-
-/***/ }),
-
-/***/ 7575:
-/***/ (() => {
-
-// extracted by extract-css-chunks-webpack-plugin
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"ForbiddenPage\": () => (/* binding */ ForbiddenPage)\n/* harmony export */ });\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"../../nexus/react/node_modules/react/index.js\");\n/* harmony import */ var mobx_react_lite__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! mobx-react-lite */ \"../../nexus/react/node_modules/mobx-react-lite/es/index.js\");\n/* harmony import */ var clsx__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! clsx */ \"../../nexus/react/node_modules/clsx/dist/clsx.m.js\");\n/* harmony import */ var nexus_ui_helper_Helper__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! nexus/ui/helper/Helper */ \"../../nexus/react/ui/helper/Helper.jsx\");\n/* harmony import */ var _Forbidden_css__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Forbidden.css */ \"../../nexus/react/contexts/forbidden/Forbidden.css\");\n/* harmony import */ var _Forbidden_css__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_Forbidden_css__WEBPACK_IMPORTED_MODULE_4__);\n\n\n\n\n\n // Functions Components ReactJS\n// -------------------------------------------------------------------------------------------------------------\n// ***** ForbiddenPage *****\n// *************************\n\nvar TAG_ForbiddenPage = function TAG_ForbiddenPage() {};\n\nvar ForbiddenPage = (0,mobx_react_lite__WEBPACK_IMPORTED_MODULE_1__.observer)(function (props) {\n  var store = react__WEBPACK_IMPORTED_MODULE_0__.useContext(window.storeContext);\n  var app = store.app; // Renderers\n  // ==================================================================================================\n\n  var renderHelper = function renderHelper() {\n    // Render :: Helper\n    // ---\n    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(nexus_ui_helper_Helper__WEBPACK_IMPORTED_MODULE_3__.Helper, {\n      icon: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(\"img\", {\n        className: \"nx-helper-icon\",\n        src: \"/nexus_static/img/emojis/jelly_sweat.png\"\n      }),\n      title: \"!\",\n      subtitle: \"Il semblerait que vous ne disposez pas des droits d'acc\\xE8s \\xE0 cette page.\",\n      severity: \"warning\",\n      show: true\n    });\n  };\n\n  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(\"div\", {\n    className: \"nx-page\"\n  }, renderHelper());\n});\n\n//# sourceURL=webpack://nexorium/../../nexus/react/contexts/forbidden/Forbidden.jsx?");
 
 /***/ }),
 
-/***/ 2742:
-/***/ (() => {
+/***/ "../../nexus/react/contexts/home/Home.jsx":
+/*!************************************************!*\
+  !*** ../../nexus/react/contexts/home/Home.jsx ***!
+  \************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-// extracted by extract-css-chunks-webpack-plugin
-
-/***/ }),
-
-/***/ 3244:
-/***/ (() => {
-
-// extracted by extract-css-chunks-webpack-plugin
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"HomeHeaderMiddle\": () => (/* binding */ HomeHeaderMiddle),\n/* harmony export */   \"HomeMenuItem\": () => (/* binding */ HomeMenuItem)\n/* harmony export */ });\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"../../nexus/react/node_modules/react/index.js\");\n/* harmony import */ var mobx_react_lite__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! mobx-react-lite */ \"../../nexus/react/node_modules/mobx-react-lite/es/index.js\");\n/* harmony import */ var clsx__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! clsx */ \"../../nexus/react/node_modules/clsx/dist/clsx.m.js\");\n/* harmony import */ var nexus_layout_header_Header__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! nexus/layout/header/Header */ \"../../nexus/react/layout/header/Header.jsx\");\n/* harmony import */ var nexus_layout_menu_Menu__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! nexus/layout/menu/Menu */ \"../../nexus/react/layout/menu/Menu.jsx\");\n/* harmony import */ var nexus_ui_icon_Icon__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! nexus/ui/icon/Icon */ \"../../nexus/react/ui/icon/Icon.jsx\");\n/* harmony import */ var _Home_css__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./Home.css */ \"../../nexus/react/contexts/home/Home.css\");\n/* harmony import */ var _Home_css__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_Home_css__WEBPACK_IMPORTED_MODULE_6__);\n\n\n\n\n\n\n\n // Functions Components ReactJS\n// -------------------------------------------------------------------------------------------------------------\n// ***** HomeHeaderMiddle *****\n// ****************************\n\nvar TAG_HomeHeaderMiddle = function TAG_HomeHeaderMiddle() {};\n\nvar HomeHeaderMiddle = (0,mobx_react_lite__WEBPACK_IMPORTED_MODULE_1__.observer)(function (props) {\n  var store = react__WEBPACK_IMPORTED_MODULE_0__.useContext(window.storeContext);\n  var app = store.app;\n  var services = app.services; // From ... store\n\n  var appName = services.me.name; // ...\n  // Render\n  // ==================================================================================================\n\n  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(nexus_layout_header_Header__WEBPACK_IMPORTED_MODULE_3__.HeaderTitle, {\n    title: appName,\n    titleStyle: {\n      fontWeight: 'bold'\n    },\n    centered: true\n  });\n}); // ***** HomeMenuItem *****\n// ************************\n\nvar TAG_HomeMenuItem = function TAG_HomeMenuItem() {};\n\nvar HomeMenuItem = (0,mobx_react_lite__WEBPACK_IMPORTED_MODULE_1__.observer)(function (props) {\n  var store = react__WEBPACK_IMPORTED_MODULE_0__.useContext(window.storeContext);\n  var app = store.app;\n  var menu = app.menu; // From ... store\n\n  var breakPoint650 = app.breakPoint650; // Evènements\n  // ==================================================================================================\n\n  var handleMenuItemClick = function handleMenuItemClick() {\n    app.navigate(app.homeUrl, app.homeContext);\n    app.menu.close();\n  }; // Render\n  // ==================================================================================================\n\n\n  var homeMenuItemContent = null;\n\n  if (breakPoint650) {\n    homeMenuItemContent = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(nexus_layout_menu_Menu__WEBPACK_IMPORTED_MODULE_4__.MenuItem, {\n      icon: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(nexus_ui_icon_Icon__WEBPACK_IMPORTED_MODULE_5__.Icon, {\n        name: \"home\",\n        width: \"120px\"\n      }),\n      label: \"Accueil\",\n      activeContexts: [app.homeContext],\n      callbackClick: handleMenuItemClick\n    });\n  }\n\n  return homeMenuItemContent;\n});\n\n//# sourceURL=webpack://nexorium/../../nexus/react/contexts/home/Home.jsx?");
 
 /***/ }),
 
-/***/ 7883:
-/***/ (() => {
+/***/ "../../nexus/react/contexts/notfound/NotFound.jsx":
+/*!********************************************************!*\
+  !*** ../../nexus/react/contexts/notfound/NotFound.jsx ***!
+  \********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-// extracted by extract-css-chunks-webpack-plugin
-
-/***/ }),
-
-/***/ 9443:
-/***/ (() => {
-
-// extracted by extract-css-chunks-webpack-plugin
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"NotFoundPage\": () => (/* binding */ NotFoundPage)\n/* harmony export */ });\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"../../nexus/react/node_modules/react/index.js\");\n/* harmony import */ var nexus_ui_helper_Helper__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! nexus/ui/helper/Helper */ \"../../nexus/react/ui/helper/Helper.jsx\");\n/* harmony import */ var _NotFound_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./NotFound.css */ \"../../nexus/react/contexts/notfound/NotFound.css\");\n/* harmony import */ var _NotFound_css__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_NotFound_css__WEBPACK_IMPORTED_MODULE_2__);\n\n\n // Functions Components ReactJS\n// ----------------------------------------------------------------------------------------------------------------------------\n// ***** NotFoundPage *****\n// ************************\n\nvar TAG_NotFoundPage = function TAG_NotFoundPage() {};\n\nvar NotFoundPage = function NotFoundPage(props) {\n  // Render\n  // ==================================================================================================\n  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(\"div\", {\n    className: \"nx-page\"\n  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(nexus_ui_helper_Helper__WEBPACK_IMPORTED_MODULE_1__.Helper, {\n    icon: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(\"img\", {\n      className: \"nx-helper-icon\",\n      src: \"/nexus_static/img/emojis/jelly_crying.png\"\n    }),\n    title: \"Erreur 404\",\n    subtitle: \"Il semblerait que la page demand\\xE9e n'existe pas.\",\n    variant: \"warning\",\n    show: true\n  }));\n};\n\n//# sourceURL=webpack://nexorium/../../nexus/react/contexts/notfound/NotFound.jsx?");
 
 /***/ }),
 
-/***/ 7677:
-/***/ (() => {
+/***/ "../../nexus/react/forms/field/Field.jsx":
+/*!***********************************************!*\
+  !*** ../../nexus/react/forms/field/Field.jsx ***!
+  \***********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-// extracted by extract-css-chunks-webpack-plugin
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"AutocompleteStore\": () => (/* binding */ AutocompleteStore),\n/* harmony export */   \"Field\": () => (/* binding */ Field)\n/* harmony export */ });\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"../../nexus/react/node_modules/react/index.js\");\n/* harmony import */ var mobx_state_tree__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! mobx-state-tree */ \"../../nexus/react/node_modules/mobx-state-tree/dist/mobx-state-tree.module.js\");\n/* harmony import */ var mobx_react_lite__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! mobx-react-lite */ \"../../nexus/react/node_modules/mobx-react-lite/es/index.js\");\n/* harmony import */ var clsx__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! clsx */ \"../../nexus/react/node_modules/clsx/dist/clsx.m.js\");\n/* harmony import */ var nexus_utils_Datas__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! nexus/utils/Datas */ \"../../nexus/react/utils/Datas.jsx\");\n/* harmony import */ var nexus_utils_DateTools__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! nexus/utils/DateTools */ \"../../nexus/react/utils/DateTools.jsx\");\n/* harmony import */ var nexus_ui_divider_Divider__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! nexus/ui/divider/Divider */ \"../../nexus/react/ui/divider/Divider.jsx\");\n/* harmony import */ var nexus_ui_icon_Icon__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! nexus/ui/icon/Icon */ \"../../nexus/react/ui/icon/Icon.jsx\");\n/* harmony import */ var _Field_css__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./Field.css */ \"../../nexus/react/forms/field/Field.css\");\n/* harmony import */ var _Field_css__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(_Field_css__WEBPACK_IMPORTED_MODULE_7__);\nfunction _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== \"undefined\" && o[Symbol.iterator] || o[\"@@iterator\"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === \"number\") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e2) { throw _e2; }, f: F }; } throw new TypeError(\"Invalid attempt to iterate non-iterable instance.\\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.\"); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e3) { didErr = true; err = _e3; }, f: function f() { try { if (!normalCompletion && it[\"return\"] != null) it[\"return\"](); } finally { if (didErr) throw err; } } }; }\n\nfunction _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }\n\nfunction _nonIterableRest() { throw new TypeError(\"Invalid attempt to destructure non-iterable instance.\\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.\"); }\n\nfunction _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === \"string\") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === \"Object\" && o.constructor) n = o.constructor.name; if (n === \"Map\" || n === \"Set\") return Array.from(o); if (n === \"Arguments\" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }\n\nfunction _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }\n\nfunction _iterableToArrayLimit(arr, i) { var _i = arr && (typeof Symbol !== \"undefined\" && arr[Symbol.iterator] || arr[\"@@iterator\"]); if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i[\"return\"] != null) _i[\"return\"](); } finally { if (_d) throw _e; } } return _arr; }\n\nfunction _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }\n\n\n\n\n\n\n\n\n\n // Models\n// ----------------------------------------------------------------------------------------------------------------------------\n\nvar TAG_AutocompleteStore = function TAG_AutocompleteStore() {};\n\nvar AutocompleteStore = mobx_state_tree__WEBPACK_IMPORTED_MODULE_8__.types.model({\n  value: mobx_state_tree__WEBPACK_IMPORTED_MODULE_8__.types.maybeNull(mobx_state_tree__WEBPACK_IMPORTED_MODULE_8__.types.string),\n  label: mobx_state_tree__WEBPACK_IMPORTED_MODULE_8__.types.maybeNull(mobx_state_tree__WEBPACK_IMPORTED_MODULE_8__.types.string)\n}).views(function (self) {\n  return {\n    get isSet() {\n      if (self.value) {\n        return true;\n      }\n\n      return false;\n    }\n\n  };\n}).actions(function (self) {\n  return {\n    setField: function setField(field, value) {\n      self[field] = value;\n    },\n    // -\n    update: function update(raw) {\n      self.value = raw.value;\n      self.label = raw.label;\n    },\n    clear: function clear() {\n      self.value = '';\n      self.label = '';\n    }\n  };\n}); // Functions Components ReactJS\n// -------------------------------------------------------------------------------------------------------------\n// ***** Field *****\n// *****************\n\nvar TAG_Field = function TAG_Field() {};\n\nvar Field = (0,mobx_react_lite__WEBPACK_IMPORTED_MODULE_1__.observer)(function (props) {\n  var store = react__WEBPACK_IMPORTED_MODULE_0__.useContext(window.storeContext);\n  var app = store.app;\n  var theme = app.theme; // From ... states\n\n  var _React$useState = react__WEBPACK_IMPORTED_MODULE_0__.useState(false),\n      _React$useState2 = _slicedToArray(_React$useState, 2),\n      focused = _React$useState2[0],\n      setFocused = _React$useState2[1];\n\n  var _React$useState3 = react__WEBPACK_IMPORTED_MODULE_0__.useState(null),\n      _React$useState4 = _slicedToArray(_React$useState3, 2),\n      autocompleteAnchor = _React$useState4[0],\n      setAutocompleteAnchor = _React$useState4[1];\n\n  var _React$useState5 = react__WEBPACK_IMPORTED_MODULE_0__.useState(false),\n      _React$useState6 = _slicedToArray(_React$useState5, 2),\n      autocompletePopupOpen = _React$useState6[0],\n      setAutocompletePopupOpen = _React$useState6[1];\n\n  var _React$useState7 = react__WEBPACK_IMPORTED_MODULE_0__.useState(false),\n      _React$useState8 = _slicedToArray(_React$useState7, 2),\n      autocompletePopperOpen = _React$useState8[0],\n      setAutocompletePopperOpen = _React$useState8[1];\n\n  var _React$useState9 = react__WEBPACK_IMPORTED_MODULE_0__.useState(false),\n      _React$useState10 = _slicedToArray(_React$useState9, 2),\n      autocompleteLoading = _React$useState10[0],\n      setAutocompleteLoading = _React$useState10[1]; // From ... store\n\n\n  var isLoading = app.isLoading;\n  var isDesktop = app.isDesktop;\n  var isMobile = app.isMobile;\n  var autocompleteResults = app.autocompleteResults; // From ... props\n\n  var id = props.id ? props.id : id;\n  var component = props.component ? props.component : 'input'; // input, textarea, select, checkbox, autocomplete, switcher, radios\n\n  var type = props.type ? props.type : 'text'; // text, number\n\n  var name = props.name ? props.name : '';\n  var label = props.label;\n  var ghostLabel = props.ghostLabel != undefined ? props.ghostLabel : false;\n  var placeholder = props.placeholder ? props.placeholder : '';\n  var title = props.title ? props.title : '';\n  var min = props.min ? props.min : 0;\n  var max = props.max;\n  var forceString = props.forceString != undefined ? props.forceString : false;\n  var forceStringVariant = props.format != undefined ? props.format : 'en';\n  var datas = props.datas;\n  var canBeEmpty = props.canBeEmpty == true ? true : false;\n  var savePath = props.savePath;\n  var savePathAutocomplete = props.savePathAutocomplete;\n  var forcePopupAutocomplete = props.forcePopupAutocomplete != undefined ? props.forcePopupAutocomplete : false;\n  var callbackSearch = props.callbackSearch != undefined ? props.callbackSearch : callbackSearchDefault;\n  var callbackSave = props.callbackSave;\n  var callbackChange = props.callbackChange;\n  var callbackSelect = props.callbackSelect;\n  var callbackClick = props.callbackClick;\n  var callbackFocus = props.callbackFocus;\n  var callbackBlur = props.callbackBlur;\n  var callbackKeyPress = props.callbackKeyPress;\n  var startAdornment = props.startAdornment ? props.startAdornment : null;\n  var endAdornment = props.endAdornment ? props.endAdornment : null;\n  var disabled = props.disabled ? props.disabled : isLoading;\n  var className = props.className ? props.className : '';\n  var style = props.style != undefined ? props.style : {};\n  var inputStyle = props.inputStyle != undefined ? props.inputStyle : {};\n\n  if (focused) {\n    inputStyle['borderColor'] = theme.palette.primary.main;\n    inputStyle['borderWidth'] = '2px';\n    inputStyle['padding'] = '5px 11px'; // inputStyle['outline'] = `2px solid ${theme.palette.primary.main}`;\n  } // Functions\n  // ==================================================================================================\n\n\n  var getError = function getError() {\n    var error = props.error;\n\n    if (error == undefined && savePath && savePath.length > 0) {\n      error = app.getError(savePath);\n    }\n\n    return error;\n  };\n\n  var getValue = function getValue() {\n    var value = props.value;\n\n    if (value == undefined && savePath && savePath.length > 0) {\n      value = app.getValue(savePath, null);\n    }\n\n    if (value == null) {\n      value = '';\n    }\n\n    return value;\n  };\n\n  var getValueAutocomplete = function getValueAutocomplete() {\n    var valueAutocomplete = props.valueAutocomplete;\n\n    if (valueAutocomplete == undefined && savePathAutocomplete && savePathAutocomplete.length > 0) {\n      valueAutocomplete = app.getValue(savePathAutocomplete, null);\n    }\n\n    return valueAutocomplete;\n  }; // ...\n\n\n  var error = getError();\n  var value = getValue();\n  var valueAutocomplete = getValueAutocomplete(); // Callbacks\n  // ==================================================================================================\n\n  var callbackSearchDefault = function callbackSearchDefault(query, endSearchCallback) {\n    // Callback de recherche par défaut\n    // ---\n    var url = \"/autocomplete/\".concat(id); // Paramètres de recherche\n\n    var params = new FormData();\n    params.append('query', query); // Appel de la fonction de recherche\n\n    app.fetchJSON(url, {\n      'body': params\n    }, false, 'POST').then(function (json) {\n      app.setField('autocompleteResults', json.results);\n      endSearchCallback();\n    })[\"catch\"](function (ex) {\n      console.error(\"Fetch failed for \".concat(url), ex);\n      snackbar.update(true, \"Une erreur est survenue.\", \"error\");\n    });\n  }; // Evènements\n  // ==================================================================================================\n\n\n  var handleInputFocus = function handleInputFocus(evt) {\n    // Sur focus du champ texte\n    // ---\n    setFocused(true);\n\n    if (callbackFocus) {\n      callbackFocus();\n    }\n  };\n\n  var handleInputChange = function handleInputChange(evt, ignoreCallbackChange) {\n    // Sur saisie dans le champ texte\n    // ---\n    var inputChange = ignoreCallbackChange == true ? null : callbackChange;\n    var newValue = null; // Récupération de la valeur\n\n    if (component == 'checkbox') {\n      newValue = evt.target.checked;\n\n      if (forceString) {\n        if (forceStringVariant == 'en') {\n          newValue = newValue == true ? 'yes' : 'no';\n        } else {\n          newValue = newValue == true ? 'oui' : 'non';\n        }\n      }\n    } else {\n      newValue = evt.target.value;\n    } // Convertion de la valeur\n\n\n    if (type == 'number') {\n      try {\n        newValue = parseInt(newValue);\n      } catch (err) {\n        newValue = 0;\n      }\n\n      if (Number.isNaN(newValue)) {\n        newValue = null;\n      } else {\n        if (newValue < min) {\n          newValue = min;\n        }\n\n        if (max != undefined && newValue > max) {\n          newValue = max;\n        }\n\n        if (forceString) {\n          newValue = newValue.toString();\n        }\n      }\n    }\n\n    if (type == 'date') {\n      newValue = nexus_utils_DateTools__WEBPACK_IMPORTED_MODULE_4__.dateTools.fromDateToISO(newValue, newValue);\n    }\n\n    if (type == 'time') {\n      newValue = nexus_utils_DateTools__WEBPACK_IMPORTED_MODULE_4__.dateTools.fromTimeToISO(newValue, newValue);\n    } // Sauvegarde de la valeur\n\n\n    if (savePath) {\n      if (callbackSave) {\n        callbackSave(savePath, newValue);\n      } else {\n        app.saveValue(savePath, newValue, callbackChange);\n      }\n\n      app.clearError(savePath);\n\n      if (component == 'autocomplete' && callbackSearch && (newValue.length == 0 || newValue.length > 1)) {\n        clearTimeout(window.searchTimeout);\n        setAutocompletePopperOpen(false);\n        app.setField('autocompleteResults', []);\n        window.searchTimeout = setTimeout(function () {\n          setAutocompleteLoading(true);\n          callbackSearch(newValue, function () {\n            // Affichage des résultats\n            setAutocompletePopperOpen(true);\n            setAutocompleteLoading(false);\n          });\n        }, 1000);\n      }\n    } else {\n      if (component == 'checkbox' && callbackClick) {\n        callbackClick();\n      }\n\n      if (callbackChange) {\n        callbackChange([], newValue);\n      }\n    }\n  };\n\n  var handleInputClick = function handleInputClick(evt) {\n    // Sur focus de l'input du field\n    // ---\n    setAutocompleteAnchor(evt.target); // Doit-on ouvrir la popup d'autocomplete en plein écran ? (pour les smartphones et tablettes)\n\n    if (component == 'autocomplete' && (isMobile && !valueAutocomplete || forcePopupAutocomplete)) {\n      setAutocompletePopupOpen(true); // Focus sur le champ de recherche\n\n      setTimeout(function () {\n        document.getElementById(\"popup_\".concat(id)).focus();\n      }, 500);\n    }\n  };\n\n  var handleAutocompleteSelect = function handleAutocompleteSelect(result) {\n    // Sur sélection d'un résultat d'autocomplete\n    // ---\n    app.saveValue(savePath, result.label);\n    app.saveValue(savePathAutocomplete, result.value);\n    setAutocompletePopperOpen(false);\n    app.setField('autocompleteResults', []);\n    handleCloseAutocompletePopup(); // Callback nouvelle valeur\n\n    if (callbackChange) {\n      callbackChange(savePath, result.label, savePathAutocomplete, result.value, result.raw);\n    }\n\n    if (callbackSelect) {\n      callbackSelect(savePath, result.label, savePathAutocomplete, result.value, result.raw);\n    }\n  };\n\n  var handleClearAutocomplete = function handleClearAutocomplete() {\n    // Sur clic du bouton de nettoyage de l'autocomplete\n    // ---\n    app.setField('autocompleteResults', []);\n    setAutocompletePopperOpen(false);\n    app.saveValue(savePath, '');\n    app.saveValue(savePathAutocomplete, ''); // Callback nouvelle valeur\n\n    if (callbackChange) {\n      callbackChange(savePath, '', savePathAutocomplete, '');\n    }\n\n    if (callbackSelect) {\n      callbackSelect(savePath, '', savePathAutocomplete, '', null);\n    }\n  };\n\n  var handleInputBlur = function handleInputBlur(e) {\n    // Sur perte de focus du champ de recherche\n    // ---\n    setFocused(false); // Nettoyage automatique si aucune valeur sélectionnée dans l'autocomplete\n\n    setTimeout(function () {\n      var valueAutocomplete = getValueAutocomplete();\n\n      if (component == 'autocomplete' && !valueAutocomplete && !autocompleteLoading && isDesktop) {\n        handleClearAutocomplete();\n      }\n    }, 200); // Callback blur input\n\n    if (callbackBlur) {\n      callbackBlur(savePath, e.target.value);\n    }\n  };\n\n  var handleCloseAutocompletePopup = function handleCloseAutocompletePopup() {\n    // Sur clic du bouton \"Annuler\" dans la popup d'autocomplete\n    // ---\n    setAutocompletePopupOpen(false);\n    var node = document.getElementById(id);\n\n    if (node) {\n      node.blur();\n    }\n  };\n\n  var handleSaveValue = function handleSaveValue(savePath, value) {\n    // Mise à jour d'une valeur sur un target\n    // ---\n    // Sauvegarde de la valeur\n    if (savePath) {\n      app.saveValue(savePath, value, callbackChange);\n      app.clearError(savePath);\n    } else {\n      callbackChange([], value);\n    }\n  }; // Render\n  // ==================================================================================================\n\n\n  var input = null;\n\n  var renderInput = function renderInput() {\n    // Render :: Input\n    // ---\n    if (type == 'date' && !placeholder) {\n      placeholder = 'jj/mm/aaaa';\n    }\n\n    if (type == 'time' && !placeholder) {\n      placeholder = 'hh:mm';\n    } // Input basique\n\n\n    input = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(\"input\", {\n      className: \"nx-field-input\",\n      id: id,\n      value: value,\n      type: type,\n      onChange: function onChange(e) {\n        return handleInputChange(e);\n      },\n      onFocus: function onFocus(e) {\n        return handleInputFocus(e);\n      },\n      onBlur: function onBlur(e) {\n        return handleInputBlur(e);\n      },\n      onKeyPress: callbackKeyPress,\n      placeholder: placeholder,\n      title: title,\n      style: inputStyle,\n      disabled: disabled\n    });\n  };\n\n  var renderTextarea = function renderTextarea() {\n    // Render :: Textarea\n    // ---\n    var textarea = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(\"textarea\", {\n      className: \"nx-field-textarea\",\n      id: id,\n      value: value,\n      type: type,\n      onChange: function onChange(e) {\n        return handleInputChange(e);\n      },\n      onFocus: function onFocus(e) {\n        return handleInputFocus(e);\n      },\n      onBlur: function onBlur(e) {\n        return handleInputBlur(e);\n      },\n      onKeyPress: callbackKeyPress,\n      placeholder: placeholder,\n      title: title,\n      style: inputStyle,\n      disabled: disabled\n    });\n  };\n\n  var renderSelect = function renderSelect() {\n    // Render :: Select\n    // ---\n    // Options\n    var selectItems = [];\n    var nbDivider = 0;\n\n    if (datas) {\n      var _iterator = _createForOfIteratorHelper(datas),\n          _step;\n\n      try {\n        for (_iterator.s(); !(_step = _iterator.n()).done;) {\n          var data = _step.value;\n\n          if (typeof data == 'string') {\n            data = {\n              value: data,\n              label: data\n            };\n          }\n\n          var itemStyle = {};\n\n          if (data.hidden == true) {\n            itemStyle['display'] = 'none';\n          }\n\n          if (data.divider == true) {\n            nbDivider += 1;\n            selectItems.push( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(nexus_ui_divider_Divider__WEBPACK_IMPORTED_MODULE_5__.Divider, {\n              light: true,\n              key: \"\".concat(id, \"_divider_\").concat(nbDivider),\n              style: {\n                marginBottom: '10px',\n                marginTop: '10px'\n              }\n            }));\n          } else {\n            selectItems.push( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(\"option\", {\n              key: \"\".concat(id, \"_\").concat(data.value),\n              value: data.value,\n              disabled: data.disabled == true,\n              style: itemStyle\n            }, data.label));\n          }\n        }\n      } catch (err) {\n        _iterator.e(err);\n      } finally {\n        _iterator.f();\n      }\n    }\n\n    input = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(\"select\", {\n      className: \"nx-field-select\",\n      id: id,\n      value: value,\n      onChange: function onChange(e) {\n        return handleInputChange(e);\n      },\n      onFocus: function onFocus(e) {\n        return handleInputFocus(e);\n      },\n      onBlur: function onBlur(e) {\n        return handleInputBlur(e);\n      },\n      placeholder: placeholder,\n      title: title,\n      style: inputStyle,\n      disabled: disabled\n    }, canBeEmpty && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(\"option\", {\n      value: \"\"\n    }, \"---\"), selectItems); // Icône de dropdown ?\n\n    if (!endAdornment) {\n      endAdornment = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(nexus_ui_icon_Icon__WEBPACK_IMPORTED_MODULE_6__.Icon, {\n        name: \"arrow_drop_down\"\n      });\n    }\n  };\n\n  switch (component) {\n    case 'input':\n      renderInput();\n      break;\n\n    case 'textarea':\n      renderTextarea();\n      break;\n\n    case 'select':\n      renderSelect();\n      break;\n    // case 'checkbox':\n    // \trenderCheckbox();\n    // \tbreak;\n    // case 'autocomplete':\n    // \trenderAutocomplete();\n    // \tbreak;\n    // case 'switcher':\n    // \trenderSwitcher();\n    // \tbreak;\n    // case 'radios':\n    // \trenderRadios();\n    // \tbreak;\n  }\n\n  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(\"div\", {\n    className: (0,clsx__WEBPACK_IMPORTED_MODULE_2__.default)('nx-field', component, type, {\n      'disabled': disabled\n    }, {\n      'focused': focused\n    }, {\n      'error': error\n    }, className),\n    style: style\n  }, (label || ghostLabel) && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(\"div\", {\n    className: \"nx-field-label\"\n  }, label), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(\"div\", {\n    className: (0,clsx__WEBPACK_IMPORTED_MODULE_2__.default)(\"nx-input-wrapper\", {\n      \"with-start-adornment\": startAdornment\n    }, {\n      \"with-end-adornment\": endAdornment\n    })\n  }, startAdornment, input, endAdornment), error && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(\"div\", {\n    className: \"nx-field-error\",\n    dangerouslySetInnerHTML: {\n      __html: error\n    }\n  }));\n});\n\n//# sourceURL=webpack://nexorium/../../nexus/react/forms/field/Field.jsx?");
 
 /***/ }),
 
-/***/ 6824:
+/***/ "../../nexus/react/forms/heading/Heading.jsx":
+/*!***************************************************!*\
+  !*** ../../nexus/react/forms/heading/Heading.jsx ***!
+  \***************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"Heading\": () => (/* binding */ Heading)\n/* harmony export */ });\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"../../nexus/react/node_modules/react/index.js\");\n/* harmony import */ var mobx_react_lite__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! mobx-react-lite */ \"../../nexus/react/node_modules/mobx-react-lite/es/index.js\");\n/* harmony import */ var clsx__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! clsx */ \"../../nexus/react/node_modules/clsx/dist/clsx.m.js\");\n/* harmony import */ var _Heading_css__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Heading.css */ \"../../nexus/react/forms/heading/Heading.css\");\n/* harmony import */ var _Heading_css__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_Heading_css__WEBPACK_IMPORTED_MODULE_3__);\n\n\n\n\n // Functions Components ReactJS\n// -------------------------------------------------------------------------------------------------------------\n// ***** Heading *****\n// *******************\n\nvar TAG_Heading = function TAG_Heading() {};\n\nvar Heading = (0,mobx_react_lite__WEBPACK_IMPORTED_MODULE_1__.observer)(function (props) {\n  var store = react__WEBPACK_IMPORTED_MODULE_0__.useContext(window.storeContext);\n  var app = store.app;\n  var theme = app.theme; // From ... props\n\n  var centered = props.centered == true ? true : false;\n  var variant = props.variant ? props.variant : 'default'; // default, contained\n\n  var children = props.children;\n  var className = props.className ? props.className : '';\n  var style = props.style ? props.style : {}; // Render\n  // ==================================================================================================\n\n  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(\"div\", {\n    className: (0,clsx__WEBPACK_IMPORTED_MODULE_2__.default)(\"nx-heading\", {\n      \"centered\": centered\n    }, className),\n    style: style\n  }, children);\n});\n\n//# sourceURL=webpack://nexorium/../../nexus/react/forms/heading/Heading.jsx?");
+
+/***/ }),
+
+/***/ "../../nexus/react/forms/indicator/Indicator.jsx":
+/*!*******************************************************!*\
+  !*** ../../nexus/react/forms/indicator/Indicator.jsx ***!
+  \*******************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"Indicator\": () => (/* binding */ Indicator)\n/* harmony export */ });\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"../../nexus/react/node_modules/react/index.js\");\n/* harmony import */ var mobx_react_lite__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! mobx-react-lite */ \"../../nexus/react/node_modules/mobx-react-lite/es/index.js\");\n/* harmony import */ var clsx__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! clsx */ \"../../nexus/react/node_modules/clsx/dist/clsx.m.js\");\n/* harmony import */ var nexus_ui_Styles__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! nexus/ui/Styles */ \"../../nexus/react/ui/Styles.jsx\");\n/* harmony import */ var nexus_utils_Colors__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! nexus/utils/Colors */ \"../../nexus/react/utils/Colors.jsx\");\n/* harmony import */ var _Indicator_css__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./Indicator.css */ \"../../nexus/react/forms/indicator/Indicator.css\");\n/* harmony import */ var _Indicator_css__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_Indicator_css__WEBPACK_IMPORTED_MODULE_5__);\n\n\n\n\n\n\n // Functions Components ReactJS\n// -------------------------------------------------------------------------------------------------------------\n// ***** Indicator *****\n// *********************\n\nvar TAG_Indicator = function TAG_Indicator() {};\n\nvar Indicator = (0,mobx_react_lite__WEBPACK_IMPORTED_MODULE_1__.observer)(function (props) {\n  var store = react__WEBPACK_IMPORTED_MODULE_0__.useContext(window.storeContext);\n  var app = store.app;\n  var theme = app.theme; // From ... props\n\n  var variant = props.variant ? props.variant : 'default'; // default, contrasted, outlined\n\n  var severity = props.severity ? props.severity : 'default';\n  var children = props.children;\n  var className = props.className ? props.className : '';\n  var color = props.color ? props.color : ''; // primary, secondary, #custom\n\n  var style = props.style ? props.style : {}; // ...\n\n  var severityDef = nexus_ui_Styles__WEBPACK_IMPORTED_MODULE_3__.SEVERITIES.getDef(severity); // Quelle couleur ?\n\n  if (color == 'primary') {\n    color = theme.palette.primary.main;\n  }\n\n  if (color == 'secondary') {\n    color = theme.palette.secondary.main;\n  }\n\n  if (!color) {\n    color = severityDef.color;\n  }\n\n  style['color'] = color;\n  style['backgroundColor'] = (0,nexus_utils_Colors__WEBPACK_IMPORTED_MODULE_4__.hexToRgbA)(color, 0.1);\n  style['border'] = '1px solid transparent';\n\n  if (variant == 'contrasted') {\n    style['color'] = 'white';\n    style['backgroundColor'] = color;\n  }\n\n  if (variant == 'outlined') {\n    style['backgroundColor'] = 'transparent';\n    style['borderColor'] = color;\n  } // Render\n  // ==================================================================================================\n\n\n  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(\"div\", {\n    className: (0,clsx__WEBPACK_IMPORTED_MODULE_2__.default)(\"nx-indicator\", className),\n    style: style\n  }, children);\n});\n\n//# sourceURL=webpack://nexorium/../../nexus/react/forms/indicator/Indicator.jsx?");
+
+/***/ }),
+
+/***/ "../../nexus/react/layout/header/Header.jsx":
+/*!**************************************************!*\
+  !*** ../../nexus/react/layout/header/Header.jsx ***!
+  \**************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"HeaderStore\": () => (/* binding */ HeaderStore),\n/* harmony export */   \"HeaderDivider\": () => (/* binding */ HeaderDivider),\n/* harmony export */   \"HeaderTitle\": () => (/* binding */ HeaderTitle),\n/* harmony export */   \"HeaderUserMenu\": () => (/* binding */ HeaderUserMenu),\n/* harmony export */   \"Header\": () => (/* binding */ Header)\n/* harmony export */ });\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"../../nexus/react/node_modules/react/index.js\");\n/* harmony import */ var mobx_state_tree__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! mobx-state-tree */ \"../../nexus/react/node_modules/mobx-state-tree/dist/mobx-state-tree.module.js\");\n/* harmony import */ var mobx_react_lite__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! mobx-react-lite */ \"../../nexus/react/node_modules/mobx-react-lite/es/index.js\");\n/* harmony import */ var clsx__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! clsx */ \"../../nexus/react/node_modules/clsx/dist/clsx.m.js\");\n/* harmony import */ var nexus_utils_Colors__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! nexus/utils/Colors */ \"../../nexus/react/utils/Colors.jsx\");\n/* harmony import */ var nexus_ui_icon_Icon__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! nexus/ui/icon/Icon */ \"../../nexus/react/ui/icon/Icon.jsx\");\n/* harmony import */ var nexus_ui_button_Button__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! nexus/ui/button/Button */ \"../../nexus/react/ui/button/Button.jsx\");\n/* harmony import */ var nexus_ui_popover_Popover__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! nexus/ui/popover/Popover */ \"../../nexus/react/ui/popover/Popover.jsx\");\n/* harmony import */ var nexus_ui_avatar_Avatar__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! nexus/ui/avatar/Avatar */ \"../../nexus/react/ui/avatar/Avatar.jsx\");\n/* harmony import */ var nexus_ui_list_List__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! nexus/ui/list/List */ \"../../nexus/react/ui/list/List.jsx\");\n/* harmony import */ var nexus_ui_divider_Divider__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! nexus/ui/divider/Divider */ \"../../nexus/react/ui/divider/Divider.jsx\");\n/* harmony import */ var _Header_css__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./Header.css */ \"../../nexus/react/layout/header/Header.css\");\n/* harmony import */ var _Header_css__WEBPACK_IMPORTED_MODULE_10___default = /*#__PURE__*/__webpack_require__.n(_Header_css__WEBPACK_IMPORTED_MODULE_10__);\nfunction _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }\n\nfunction _nonIterableRest() { throw new TypeError(\"Invalid attempt to destructure non-iterable instance.\\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.\"); }\n\nfunction _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === \"string\") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === \"Object\" && o.constructor) n = o.constructor.name; if (n === \"Map\" || n === \"Set\") return Array.from(o); if (n === \"Arguments\" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }\n\nfunction _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }\n\nfunction _iterableToArrayLimit(arr, i) { var _i = arr && (typeof Symbol !== \"undefined\" && arr[Symbol.iterator] || arr[\"@@iterator\"]); if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i[\"return\"] != null) _i[\"return\"](); } finally { if (_d) throw _e; } } return _arr; }\n\nfunction _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }\n\n\n\n\n\n\n\n\n\n\n\n\n // Models\n// -------------------------------------------------------------------------------------------------------------\n// ***** HeaderStore *****\n// ***********************\n\nvar TAG_HeaderStore = function TAG_HeaderStore() {};\n\nvar HeaderStore = mobx_state_tree__WEBPACK_IMPORTED_MODULE_11__.types.model({}).actions(function (self) {\n  return {\n    setField: function setField(field, value) {\n      self[field] = value;\n    },\n    // -\n    update: function update(raw) {}\n  };\n}); // Functions Components ReactJS\n// -------------------------------------------------------------------------------------------------------------\n// ***** HeaderDivider *****\n// *************************\n\nvar TAG_HeaderDivider = function TAG_HeaderDivider() {};\n\nvar HeaderDivider = function HeaderDivider(props) {\n  // ...\n  // Render\n  // ==================================================================================================\n  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(\"div\", {\n    className: \"nx-header-divider\"\n  });\n}; // ***** HeaderTitle *****\n// ***********************\n\nvar TAG_HeaderTitle = function TAG_HeaderTitle() {};\n\nvar HeaderTitle = function HeaderTitle(props) {\n  // From ... props\n  var title = props.title ? props.title : '';\n  var titleStyle = props.titleStyle ? props.titleStyle : {};\n  var subtitle = props.subtitle ? props.subtitle : '';\n  var subtitleStyle = props.subtitleStyle ? props.subtitleStyle : {};\n  var centered = props.centered == true ? props.centered : false; // ...\n  // Render\n  // ==================================================================================================\n\n  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(\"div\", {\n    className: (0,clsx__WEBPACK_IMPORTED_MODULE_2__.default)(\"nx-header-titles-wrapper\", {\n      \"centered\": centered\n    })\n  }, title && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(\"div\", {\n    className: \"nx-header-title\",\n    style: titleStyle\n  }, title), subtitle && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(\"div\", {\n    className: \"nx-header-subtitle\",\n    style: subtitleStyle\n  }, subtitle));\n}; // ***** HeaderUserMenu *****\n// **************************\n\nvar TAG_HeaderUserMenu = function TAG_HeaderUserMenu() {};\n\nvar HeaderUserMenu = (0,mobx_react_lite__WEBPACK_IMPORTED_MODULE_1__.observer)(function (props) {\n  var store = react__WEBPACK_IMPORTED_MODULE_0__.useContext(window.storeContext);\n  var app = store.app;\n  var account = app.account; // From ... states\n\n  var _React$useState = react__WEBPACK_IMPORTED_MODULE_0__.useState(null),\n      _React$useState2 = _slicedToArray(_React$useState, 2),\n      anchorAccount = _React$useState2[0],\n      setAnchorAccount = _React$useState2[1]; // From ... store\n\n\n  var isLoading = app.isLoading;\n  var isLogged = account.isLogged;\n  var breakPoint650 = app.breakPoint650;\n  var authUrl = app.authUrl;\n  var authContext = app.authContext;\n  var accountUrl = app.accountUrl;\n  var accountContext = app.accountContext; // ...\n\n  var accountName = account.name; // Evènements\n  // ==================================================================================================\n\n  var handleAccount = function handleAccount(event) {\n    setAnchorAccount(event.currentTarget);\n  };\n\n  var handleCloseAccount = function handleCloseAccount() {\n    setAnchorAccount(null);\n  }; // -\n\n\n  var handleLoginClick = function handleLoginClick() {\n    app.navigate(authUrl, authContext, [{\n      \"op\": \"replace\",\n      \"path\": \"/app/auth/step\",\n      \"value\": 'login'\n    }]);\n    handleCloseAccount();\n  };\n\n  var handleMyAccountClick = function handleMyAccountClick() {\n    app.navigate(accountUrl, accountContext);\n    handleCloseAccount();\n  };\n\n  var handleLogoutClick = function handleLogoutClick() {\n    app.gotoInternal('/logout');\n    handleCloseAccount();\n  }; // Render\n  // ==================================================================================================\n\n\n  var headerUserMenuContent = null;\n\n  if (!breakPoint650) {\n    headerUserMenuContent = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(\"div\", {\n      \"data-flex\": \"0\"\n    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(nexus_ui_button_Button__WEBPACK_IMPORTED_MODULE_5__.IconButton, {\n      onClick: function onClick(e) {\n        return handleAccount(e);\n      },\n      disabled: isLoading\n    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(nexus_ui_icon_Icon__WEBPACK_IMPORTED_MODULE_4__.Icon, {\n      name: isLogged ? \"account_circle\" : \"no_accounts\",\n      color: \"white\"\n    })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(nexus_ui_popover_Popover__WEBPACK_IMPORTED_MODULE_6__.Popover, {\n      id: \"pop-account\",\n      open: Boolean(anchorAccount),\n      anchorEl: anchorAccount,\n      onClose: handleCloseAccount,\n      anchorOrigin: {\n        vertical: 'bottom',\n        horizontal: 'center'\n      },\n      transformOrigin: {\n        vertical: 'top',\n        horizontal: 'center'\n      },\n      style: {\n        width: '200px'\n      }\n    }, accountName && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(\"div\", {\n      className: \"nx-account-name\"\n    }, accountName), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(nexus_ui_list_List__WEBPACK_IMPORTED_MODULE_8__.List, null, !isLogged && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(nexus_ui_list_List__WEBPACK_IMPORTED_MODULE_8__.ListItem, {\n      onClick: function onClick() {\n        return handleLoginClick();\n      },\n      disabled: isLoading\n    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(nexus_ui_list_List__WEBPACK_IMPORTED_MODULE_8__.ListIcon, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(nexus_ui_icon_Icon__WEBPACK_IMPORTED_MODULE_4__.Icon, {\n      name: \"lock_open\"\n    })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(nexus_ui_list_List__WEBPACK_IMPORTED_MODULE_8__.ListText, null, \"Se connecter\")), isLogged && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(nexus_ui_list_List__WEBPACK_IMPORTED_MODULE_8__.ListItem, {\n      onClick: function onClick() {\n        return handleMyAccountClick();\n      },\n      disabled: isLoading\n    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(nexus_ui_list_List__WEBPACK_IMPORTED_MODULE_8__.ListIcon, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(nexus_ui_icon_Icon__WEBPACK_IMPORTED_MODULE_4__.Icon, {\n      name: \"badge\"\n    })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(nexus_ui_list_List__WEBPACK_IMPORTED_MODULE_8__.ListText, null, \"Mon compte\")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(nexus_ui_divider_Divider__WEBPACK_IMPORTED_MODULE_9__.Divider, {\n      style: {\n        marginTop: '10px',\n        marginBottom: '10px'\n      }\n    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(nexus_ui_list_List__WEBPACK_IMPORTED_MODULE_8__.ListItem, {\n      onClick: function onClick() {\n        return handleLogoutClick();\n      },\n      disabled: isLoading\n    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(nexus_ui_list_List__WEBPACK_IMPORTED_MODULE_8__.ListIcon, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(nexus_ui_icon_Icon__WEBPACK_IMPORTED_MODULE_4__.Icon, {\n      name: \"power_setting\"\n    })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(nexus_ui_list_List__WEBPACK_IMPORTED_MODULE_8__.ListText, null, \"Se d\\xE9connecter\")))))));\n  }\n\n  return headerUserMenuContent;\n}); // ***** Header *****\n// ******************\n\nvar TAG_Header = function TAG_Header() {};\n\nvar Header = (0,mobx_react_lite__WEBPACK_IMPORTED_MODULE_1__.observer)(function (props) {\n  var store = react__WEBPACK_IMPORTED_MODULE_0__.useContext(window.storeContext);\n  var app = store.app;\n  var theme = app.theme;\n  var menu = app.menu;\n  var portal = app.portal; // From ... props\n\n  var left = props.left;\n  var children = props.children;\n  var right = props.right;\n  var callbackMenu = props.callbackMenu;\n  var callbackBack = props.callbackBack;\n  var callbackHome = props.callbackHome;\n  var callbackPortal = props.callbackPortal; // From ... store\n\n  var isLoading = app.isLoading;\n  var canGoBack = app.canGoBack();\n  var canGoHome = app.canGoHome();\n  var breakPoint650 = app.breakPoint650; // Evènements\n  // ==================================================================================================\n\n  var handleMenuClick = function handleMenuClick() {\n    if (callbackMenu) {\n      callbackMenu();\n    } else {\n      menu.toogle();\n    }\n  };\n\n  var handleBackClick = function handleBackClick() {\n    if (callbackBack) {\n      callbackBack();\n    } else {\n      app.goBack();\n    }\n  };\n\n  var handleHomeClick = function handleHomeClick() {\n    if (callbackHome) {\n      callbackHome();\n    } else {\n      app.goHome();\n    }\n  }; // -\n\n\n  var handleBugReportClick = function handleBugReportClick() {};\n\n  var handlePortalClick = function handlePortalClick() {\n    if (callbackPortal) {\n      callbackPortal();\n    } else {\n      portal.toogle();\n    }\n  }; // Render\n  // ==================================================================================================\n  // Header -> Left\n  // -------------------------------------------------\n\n\n  var headerLeft = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(\"div\", {\n    className: \"nx-header-left\"\n  }, !breakPoint650 && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(nexus_ui_button_Button__WEBPACK_IMPORTED_MODULE_5__.IconButton, {\n    onClick: function onClick() {\n      return handleMenuClick();\n    },\n    disabled: isLoading\n  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(nexus_ui_icon_Icon__WEBPACK_IMPORTED_MODULE_4__.Icon, {\n    name: \"menu\",\n    color: \"white\"\n  })), !isLoading && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(nexus_ui_button_Button__WEBPACK_IMPORTED_MODULE_5__.IconButton, {\n    onClick: function onClick() {\n      return handleBackClick();\n    },\n    disabled: isLoading || !canGoBack\n  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(nexus_ui_icon_Icon__WEBPACK_IMPORTED_MODULE_4__.Icon, {\n    name: \"arrow_back\",\n    color: \"white\"\n  })), isLoading && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(nexus_ui_avatar_Avatar__WEBPACK_IMPORTED_MODULE_7__.Avatar, {\n    color: \"transparent\",\n    size: \"small\"\n  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(nexus_ui_icon_Icon__WEBPACK_IMPORTED_MODULE_4__.Icon, {\n    name: \"hourglass_empty\",\n    color: \"white\"\n  })), !breakPoint650 && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(nexus_ui_button_Button__WEBPACK_IMPORTED_MODULE_5__.IconButton, {\n    onClick: function onClick() {\n      return handleHomeClick();\n    },\n    disabled: isLoading || !canGoHome\n  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(nexus_ui_icon_Icon__WEBPACK_IMPORTED_MODULE_4__.Icon, {\n    name: \"home\",\n    color: \"white\"\n  })), left && left); // Header -> Middle\n  // -------------------------------------------------\n\n  var headerMiddle = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(\"div\", {\n    className: \"nx-header-middle\"\n  }, children); // Header -> Right\n  // -------------------------------------------------\n\n  var headerRight = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(\"div\", {\n    className: \"nx-header-right\"\n  }, right && right, !breakPoint650 && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(nexus_ui_button_Button__WEBPACK_IMPORTED_MODULE_5__.IconButton, {\n    onClick: function onClick() {\n      return handleBugReportClick();\n    },\n    disabled: isLoading || true\n  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(nexus_ui_icon_Icon__WEBPACK_IMPORTED_MODULE_4__.Icon, {\n    name: \"bug_report\",\n    color: \"white\"\n  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(HeaderUserMenu, null), !breakPoint650 && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(nexus_ui_button_Button__WEBPACK_IMPORTED_MODULE_5__.IconButton, {\n    onClick: function onClick() {\n      return handlePortalClick();\n    },\n    disabled: isLoading\n  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(nexus_ui_icon_Icon__WEBPACK_IMPORTED_MODULE_4__.Icon, {\n    name: \"apps\",\n    color: \"white\"\n  })), breakPoint650 && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(nexus_ui_button_Button__WEBPACK_IMPORTED_MODULE_5__.IconButton, {\n    onClick: function onClick() {\n      return handleMenuClick();\n    },\n    disabled: isLoading\n  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(nexus_ui_icon_Icon__WEBPACK_IMPORTED_MODULE_4__.Icon, {\n    name: \"menu\",\n    color: \"white\"\n  }))); // -------------------------------------------------\n\n  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(\"div\", {\n    className: \"nx-header\",\n    style: {\n      backgroundColor: (0,nexus_utils_Colors__WEBPACK_IMPORTED_MODULE_3__.hexToRgbA)(theme.palette.primary.main, 0.8),\n      color: theme.palette.primary.contrastText\n    }\n  }, headerLeft, headerMiddle, headerRight);\n});\n\n//# sourceURL=webpack://nexorium/../../nexus/react/layout/header/Header.jsx?");
+
+/***/ }),
+
+/***/ "../../nexus/react/layout/menu/Menu.jsx":
+/*!**********************************************!*\
+  !*** ../../nexus/react/layout/menu/Menu.jsx ***!
+  \**********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"MenuStore\": () => (/* binding */ MenuStore),\n/* harmony export */   \"MenuDivider\": () => (/* binding */ MenuDivider),\n/* harmony export */   \"MenuItem\": () => (/* binding */ MenuItem),\n/* harmony export */   \"Menu\": () => (/* binding */ Menu)\n/* harmony export */ });\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"../../nexus/react/node_modules/react/index.js\");\n/* harmony import */ var mobx_state_tree__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! mobx-state-tree */ \"../../nexus/react/node_modules/mobx-state-tree/dist/mobx-state-tree.module.js\");\n/* harmony import */ var mobx_react_lite__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! mobx-react-lite */ \"../../nexus/react/node_modules/mobx-react-lite/es/index.js\");\n/* harmony import */ var clsx__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! clsx */ \"../../nexus/react/node_modules/clsx/dist/clsx.m.js\");\n/* harmony import */ var nexus_utils_Storage__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! nexus/utils/Storage */ \"../../nexus/react/utils/Storage.jsx\");\n/* harmony import */ var nexus_ui_drawer_Drawer__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! nexus/ui/drawer/Drawer */ \"../../nexus/react/ui/drawer/Drawer.jsx\");\n/* harmony import */ var nexus_ui_avatar_Avatar__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! nexus/ui/avatar/Avatar */ \"../../nexus/react/ui/avatar/Avatar.jsx\");\n/* harmony import */ var nexus_ui_divider_Divider__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! nexus/ui/divider/Divider */ \"../../nexus/react/ui/divider/Divider.jsx\");\n/* harmony import */ var nexus_utils_Colors__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! nexus/utils/Colors */ \"../../nexus/react/utils/Colors.jsx\");\n/* harmony import */ var nexus_ui_icon_Icon__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! nexus/ui/icon/Icon */ \"../../nexus/react/ui/icon/Icon.jsx\");\n/* harmony import */ var nexus_ui_button_Button__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! nexus/ui/button/Button */ \"../../nexus/react/ui/button/Button.jsx\");\n/* harmony import */ var _Menu_css__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./Menu.css */ \"../../nexus/react/layout/menu/Menu.css\");\n/* harmony import */ var _Menu_css__WEBPACK_IMPORTED_MODULE_10___default = /*#__PURE__*/__webpack_require__.n(_Menu_css__WEBPACK_IMPORTED_MODULE_10__);\n\n\n\n\n\n\n\n\n\n\n\n // Models\n// -------------------------------------------------------------------------------------------------------------\n// ***** MenuStore *****\n// *********************\n\nvar TAG_MenuStore = function TAG_MenuStore() {};\n\nvar MenuStore = mobx_state_tree__WEBPACK_IMPORTED_MODULE_11__.types.model({\n  expanded: false,\n  open: false,\n  pinned: false\n}).actions(function (self) {\n  return {\n    setField: function setField(field, value) {\n      self[field] = value;\n    },\n    // -\n    toogle: function toogle() {\n      // Bascule le menu latéral\n      // ---\n      var app = (0,mobx_state_tree__WEBPACK_IMPORTED_MODULE_11__.getParent)(self);\n      var breakPoint650 = app.breakPoint650;\n      var newState = false; // Agrandissement ou réduction en mode bureau\n\n      if (!breakPoint650 && self.pinned) {\n        newState = !self.expanded;\n        (0,nexus_utils_Storage__WEBPACK_IMPORTED_MODULE_3__.setToStorage)('menuExpanded', newState);\n      } // Ouverture / fermeture en mode mobile\n\n\n      if (breakPoint650 || !self.pinned) {\n        newState = !self.open;\n      }\n\n      self.update(newState);\n    },\n    tooglePinned: function tooglePinned() {\n      self.pinned = !self.pinned;\n      (0,nexus_utils_Storage__WEBPACK_IMPORTED_MODULE_3__.setToStorage)('menuPinned', self.pinned);\n    },\n    update: function update(openOrExpanded) {\n      // Masque ou affiche le menu latéral\n      // ---\n      var app = (0,mobx_state_tree__WEBPACK_IMPORTED_MODULE_11__.getParent)(self);\n      var breakPoint650 = app.breakPoint650;\n\n      if (!breakPoint650 && self.pinned) {\n        self.expanded = openOrExpanded;\n      }\n\n      if (breakPoint650 || !self.pinned) {\n        self.open = openOrExpanded;\n      }\n    },\n    close: function close() {\n      // Ferme le menu\n      // ---\n      var app = (0,mobx_state_tree__WEBPACK_IMPORTED_MODULE_11__.getParent)(self);\n      var breakPoint650 = app.breakPoint650;\n\n      if (breakPoint650 || !self.pinned) {\n        self.open = false;\n      }\n    }\n  };\n}); // Functions Components ReactJS\n// -------------------------------------------------------------------------------------------------------------\n// ***** MenuDivider *****\n// ***********************\n\nvar TAG_MenuDivider = function TAG_MenuDivider() {};\n\nvar MenuDivider = (0,mobx_react_lite__WEBPACK_IMPORTED_MODULE_1__.observer)(function (props) {\n  // Render\n  // ==================================================================================================\n  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(nexus_ui_divider_Divider__WEBPACK_IMPORTED_MODULE_6__.Divider, {\n    style: {\n      marginTop: '10px',\n      marginBottom: '10px'\n    }\n  });\n}); // ***** MenuItem *****\n// ********************\n\nvar TAG_MenuItem = function TAG_MenuItem() {};\n\nvar MenuItem = (0,mobx_react_lite__WEBPACK_IMPORTED_MODULE_1__.observer)(function (props) {\n  var store = react__WEBPACK_IMPORTED_MODULE_0__.useContext(window.storeContext);\n  var app = store.app;\n  var theme = app.theme; // From ... store\n\n  var context = app.context;\n  var isLoading = app.isLoading; // From ... props\n\n  var icon = props.icon;\n  var label = props.label;\n  var activeContexts = props.activeContexts ? props.activeContexts : [];\n  var disabled = props.disabled == true ? props.disabled : isLoading;\n  var style = props.style ? props.style : {};\n  var styleLabel = {};\n  var callbackClick = props.callbackClick; // ...\n\n  var active = activeContexts.indexOf(context) > -1 ? true : false;\n\n  if (!style.hasOwnProperty('color')) {\n    if (active) {\n      // style['color'] = theme.palette.primary.main;\n      style['backgroundColor'] = (0,nexus_utils_Colors__WEBPACK_IMPORTED_MODULE_7__.hexToRgbA)(theme.palette.primary.main, 0.1); // styleLabel['color'] = theme.palette.primary.main;\n\n      styleLabel['fontWeight'] = 'bold';\n    }\n  } // Evènements\n  // ==================================================================================================\n\n\n  var handleClick = function handleClick() {\n    if (callbackClick) {\n      callbackClick();\n    }\n  }; // Render\n  // ==================================================================================================\n\n\n  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(\"div\", {\n    className: (0,clsx__WEBPACK_IMPORTED_MODULE_2__.default)(\"nx-menu-item\", {\n      'active': active\n    }, {\n      'disabled': disabled\n    }),\n    style: style,\n    onClick: function onClick() {\n      return handleClick();\n    }\n  }, icon && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(nexus_ui_avatar_Avatar__WEBPACK_IMPORTED_MODULE_5__.Avatar, {\n    color: \"transparent\",\n    size: \"small\"\n  }, icon), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(\"div\", {\n    className: \"nx-menu-item-label\",\n    style: styleLabel\n  }, label));\n}); // ***** Menu *****\n// ****************\n\nvar TAG_Menu = function TAG_Menu() {};\n\nvar Menu = (0,mobx_react_lite__WEBPACK_IMPORTED_MODULE_1__.observer)(function (props) {\n  var store = react__WEBPACK_IMPORTED_MODULE_0__.useContext(window.storeContext);\n  var app = store.app;\n  var menu = app.menu; // From ... store\n\n  var breakPoint650 = app.breakPoint650;\n  var open = menu.open;\n  var expanded = menu.expanded;\n  var pinned = menu.pinned; // From ... props\n\n  var children = props.children; // Evènements\n  // ==================================================================================================\n\n  var handleClose = function handleClose() {\n    menu.close();\n  };\n\n  var handlePinClick = function handlePinClick() {\n    menu.tooglePinned();\n  }; // Render\n  // ==================================================================================================\n\n\n  var menuContent = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(\"div\", {\n    className: \"nx-menu-content\"\n  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(\"div\", {\n    className: \"nx-menu-items-wrapper\"\n  }, children), !breakPoint650 && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(nexus_ui_button_Button__WEBPACK_IMPORTED_MODULE_9__.IconButton, {\n    onClick: function onClick() {\n      return handlePinClick();\n    }\n  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(nexus_ui_icon_Icon__WEBPACK_IMPORTED_MODULE_8__.Icon, {\n    name: \"push_pin\"\n  })));\n  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (breakPoint650 || !pinned) && open && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(nexus_ui_drawer_Drawer__WEBPACK_IMPORTED_MODULE_4__.Drawer, {\n    position: breakPoint650 ? 'right' : 'left',\n    callbackClose: handleClose\n  }, menuContent), !breakPoint650 && pinned && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(\"div\", {\n    className: (0,clsx__WEBPACK_IMPORTED_MODULE_2__.default)(\"nx-menu\", {\n      \"expanded\": expanded\n    }, {\n      \"retracted\": !expanded\n    })\n  }, menuContent));\n});\n\n//# sourceURL=webpack://nexorium/../../nexus/react/layout/menu/Menu.jsx?");
+
+/***/ }),
+
+/***/ "../../nexus/react/layout/portal/Portal.jsx":
+/*!**************************************************!*\
+  !*** ../../nexus/react/layout/portal/Portal.jsx ***!
+  \**************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"PortalStore\": () => (/* binding */ PortalStore),\n/* harmony export */   \"PortalLink\": () => (/* binding */ PortalLink),\n/* harmony export */   \"Portal\": () => (/* binding */ Portal)\n/* harmony export */ });\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"../../nexus/react/node_modules/react/index.js\");\n/* harmony import */ var mobx_state_tree__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! mobx-state-tree */ \"../../nexus/react/node_modules/mobx-state-tree/dist/mobx-state-tree.module.js\");\n/* harmony import */ var mobx_react_lite__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! mobx-react-lite */ \"../../nexus/react/node_modules/mobx-react-lite/es/index.js\");\n/* harmony import */ var clsx__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! clsx */ \"../../nexus/react/node_modules/clsx/dist/clsx.m.js\");\n/* harmony import */ var nexus_utils_Storage__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! nexus/utils/Storage */ \"../../nexus/react/utils/Storage.jsx\");\n/* harmony import */ var nexus_ui_drawer_Drawer__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! nexus/ui/drawer/Drawer */ \"../../nexus/react/ui/drawer/Drawer.jsx\");\n/* harmony import */ var nexus_ui_avatar_Avatar__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! nexus/ui/avatar/Avatar */ \"../../nexus/react/ui/avatar/Avatar.jsx\");\n/* harmony import */ var nexus_ui_divider_Divider__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! nexus/ui/divider/Divider */ \"../../nexus/react/ui/divider/Divider.jsx\");\n/* harmony import */ var nexus_utils_Colors__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! nexus/utils/Colors */ \"../../nexus/react/utils/Colors.jsx\");\n/* harmony import */ var nexus_ui_icon_Icon__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! nexus/ui/icon/Icon */ \"../../nexus/react/ui/icon/Icon.jsx\");\n/* harmony import */ var nexus_ui_button_Button__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! nexus/ui/button/Button */ \"../../nexus/react/ui/button/Button.jsx\");\n/* harmony import */ var _Portal_css__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./Portal.css */ \"../../nexus/react/layout/portal/Portal.css\");\n/* harmony import */ var _Portal_css__WEBPACK_IMPORTED_MODULE_10___default = /*#__PURE__*/__webpack_require__.n(_Portal_css__WEBPACK_IMPORTED_MODULE_10__);\n\n\n\n\n\n\n\n\n\n\n\n // Models\n// -------------------------------------------------------------------------------------------------------------\n// ***** PortalStore *****\n// ***********************\n\nvar TAG_PortalStore = function TAG_PortalStore() {};\n\nvar PortalStore = mobx_state_tree__WEBPACK_IMPORTED_MODULE_11__.types.model({\n  expanded: false,\n  open: false,\n  pinned: false\n}).actions(function (self) {\n  return {\n    setField: function setField(field, value) {\n      self[field] = value;\n    },\n    // -\n    toogle: function toogle() {\n      // Bascule le portail d'apps\n      // ---\n      var app = (0,mobx_state_tree__WEBPACK_IMPORTED_MODULE_11__.getParent)(self);\n      var breakPoint650 = app.breakPoint650;\n      var newState = false; // Agrandissement ou réduction en mode bureau\n\n      if (!breakPoint650 && self.pinned) {\n        newState = !self.expanded;\n        (0,nexus_utils_Storage__WEBPACK_IMPORTED_MODULE_3__.setToStorage)('portalExpanded', newState);\n      } // Ouverture / fermeture en mode mobile\n\n\n      if (breakPoint650 || !self.pinned) {\n        newState = !self.open;\n      }\n\n      self.update(newState);\n    },\n    tooglePinned: function tooglePinned() {\n      self.pinned = !self.pinned;\n      (0,nexus_utils_Storage__WEBPACK_IMPORTED_MODULE_3__.setToStorage)('portalPinned', self.pinned);\n    },\n    update: function update(openOrExpanded) {\n      // Masque ou affiche le portail d'apps\n      // ---\n      var app = (0,mobx_state_tree__WEBPACK_IMPORTED_MODULE_11__.getParent)(self);\n      var breakPoint650 = app.breakPoint650;\n\n      if (!breakPoint650 && self.pinned) {\n        self.expanded = openOrExpanded;\n      }\n\n      if (breakPoint650 || !self.pinned) {\n        self.open = openOrExpanded;\n      }\n    },\n    close: function close() {\n      // Ferme le menu\n      // ---\n      var app = (0,mobx_state_tree__WEBPACK_IMPORTED_MODULE_11__.getParent)(self);\n      var breakPoint650 = app.breakPoint650;\n\n      if (breakPoint650 || !self.pinned) {\n        self.open = false;\n      }\n    }\n  };\n}); // Functions Components ReactJS\n// -------------------------------------------------------------------------------------------------------------\n// ***** PortalLinks *****\n// ***********************\n\nvar TAG_PortalLink = function TAG_PortalLink() {};\n\nvar PortalLink = (0,mobx_react_lite__WEBPACK_IMPORTED_MODULE_1__.observer)(function (props) {\n  var store = react__WEBPACK_IMPORTED_MODULE_0__.useContext(window.storeContext);\n  var app = store.app;\n  var services = app.services;\n  var portal = app.portal; // From ... props\n\n  var appKey = props.appKey; // From ... store\n\n  var context = app.context;\n  var expanded = portal.expanded; // ...\n\n  var serviceInfo = services.smap.get(appKey); // Evènements\n  // ==================================================================================================\n\n  var handleClick = function handleClick() {}; // Render\n  // ==================================================================================================\n\n\n  var portalLinkContent = null;\n\n  if (serviceInfo) {\n    var externalUrl = serviceInfo.external;\n    var iconUrl = \"\".concat(externalUrl, \"/static/favicons/android-icon-48x48.png\");\n    var name = serviceInfo.name;\n    portalLinkContent = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(\"a\", {\n      className: \"nx-portal-shortcut\",\n      href: externalUrl,\n      title: !expanded ? name : ''\n    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(\"img\", {\n      className: \"nx-portal-shortcut-icon\",\n      src: iconUrl\n    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(\"div\", {\n      className: \"nx-portal-shortcut-label\"\n    }, name));\n  }\n\n  return portalLinkContent;\n}); // ***** Portal *****\n// ******************\n\nvar TAG_Portal = function TAG_Portal() {};\n\nvar Portal = (0,mobx_react_lite__WEBPACK_IMPORTED_MODULE_1__.observer)(function (props) {\n  var store = react__WEBPACK_IMPORTED_MODULE_0__.useContext(window.storeContext);\n  var app = store.app;\n  var portal = app.portal; // From ... store\n\n  var breakPoint650 = app.breakPoint650;\n  var open = portal.open;\n  var expanded = portal.expanded;\n  var pinned = portal.pinned; // From ... props\n\n  var children = props.children; // Evènements\n  // ==================================================================================================\n\n  var handleClose = function handleClose() {\n    portal.close();\n  };\n\n  var handlePinClick = function handlePinClick() {\n    portal.tooglePinned();\n  }; // Render\n  // ==================================================================================================\n\n\n  var portalContent = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(\"div\", {\n    className: \"nx-portal-content\"\n  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(\"div\", {\n    className: \"nx-portal-area\"\n  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(\"div\", {\n    className: \"nx-portal-shortcuts-wrapper\"\n  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(PortalLink, {\n    appKey: \"nexorium\"\n  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(PortalLink, {\n    appKey: \"nexora\"\n  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(PortalLink, {\n    appKey: \"gramophone\"\n  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(PortalLink, {\n    appKey: \"vgm\"\n  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(PortalLink, {\n    appKey: \"cerberus\"\n  }))), !breakPoint650 && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(nexus_ui_button_Button__WEBPACK_IMPORTED_MODULE_9__.IconButton, {\n    onClick: function onClick() {\n      return handlePinClick();\n    }\n  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(nexus_ui_icon_Icon__WEBPACK_IMPORTED_MODULE_8__.Icon, {\n    name: \"push_pin\"\n  })));\n  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (breakPoint650 || !pinned) && open && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(nexus_ui_drawer_Drawer__WEBPACK_IMPORTED_MODULE_4__.Drawer, {\n    position: \"right\",\n    callbackClose: handleClose\n  }, portalContent), !breakPoint650 && pinned && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(\"div\", {\n    className: (0,clsx__WEBPACK_IMPORTED_MODULE_2__.default)(\"nx-portal\", {\n      \"expanded\": expanded\n    }, {\n      \"retracted\": !expanded\n    })\n  }, portalContent));\n});\n\n//# sourceURL=webpack://nexorium/../../nexus/react/layout/portal/Portal.jsx?");
+
+/***/ }),
+
+/***/ "../../nexus/react/layout/row/Row.jsx":
+/*!********************************************!*\
+  !*** ../../nexus/react/layout/row/Row.jsx ***!
+  \********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"Row\": () => (/* binding */ Row)\n/* harmony export */ });\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"../../nexus/react/node_modules/react/index.js\");\n/* harmony import */ var clsx__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! clsx */ \"../../nexus/react/node_modules/clsx/dist/clsx.m.js\");\n/* harmony import */ var _Row_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Row.css */ \"../../nexus/react/layout/row/Row.css\");\n/* harmony import */ var _Row_css__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_Row_css__WEBPACK_IMPORTED_MODULE_2__);\n\n\n // Functions Components ReactJS\n// ----------------------------------------------------------------------------------------------------------------------------\n// ***** Row *****\n// ***************\n\nvar TAG_Row = function TAG_Row() {};\n\nvar Row = function Row(props) {\n  // From ... props\n  var responsive = props.responsive == false ? false : true;\n  var children = props.children;\n  var spacing = props.spacing ? props.spacing : 'small';\n  var className = props.className ? props.className : '';\n  var style = props.style ? props.style : {};\n  var marginBottom = props.marginBottom == false ? false : true; // ==================================================================================================\n\n  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(\"div\", {\n    className: (0,clsx__WEBPACK_IMPORTED_MODULE_1__.default)(\"nx-row\", \"h-col-\".concat(spacing), \"flex-align-start\", {\n      \"responsive-vertical\": responsive\n    }, {\n      \"responsive-align-stretch\": responsive\n    }, {\n      \"margin-bottom\": marginBottom\n    }, className),\n    style: style\n  }, children);\n};\n\n//# sourceURL=webpack://nexorium/../../nexus/react/layout/row/Row.jsx?");
+
+/***/ }),
+
+/***/ "../../nexus/react/layout/section/Section.jsx":
+/*!****************************************************!*\
+  !*** ../../nexus/react/layout/section/Section.jsx ***!
+  \****************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"Section\": () => (/* binding */ Section)\n/* harmony export */ });\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"../../nexus/react/node_modules/react/index.js\");\n/* harmony import */ var mobx_react_lite__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! mobx-react-lite */ \"../../nexus/react/node_modules/mobx-react-lite/es/index.js\");\n/* harmony import */ var clsx__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! clsx */ \"../../nexus/react/node_modules/clsx/dist/clsx.m.js\");\n/* harmony import */ var _Section_css__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Section.css */ \"../../nexus/react/layout/section/Section.css\");\n/* harmony import */ var _Section_css__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_Section_css__WEBPACK_IMPORTED_MODULE_3__);\n\n\n\n\n // Functions Components ReactJS\n// -------------------------------------------------------------------------------------------------------------\n// ***** Section *****\n// *******************\n\nvar TAG_Section = function TAG_Section() {};\n\nvar Section = function Section(props) {\n  // From ... props\n  var icon = props.icon ? props.icon : null;\n  var title = props.title ? props.title : '';\n  var right = props.right;\n  var children = props.children;\n  var buttons = props.buttons;\n  var buttonsPosition = props.buttonsPosition ? props.buttonsPosition : 'right'; // left, right, center, stretch\n\n  var buttonsResponsive = props.buttonsResponsive == true ? true : false; // Render\n  // ==================================================================================================\n\n  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(\"div\", {\n    className: \"nx-section\"\n  }, (icon || title || right) && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(\"div\", {\n    className: \"nx-section-header\"\n  }, icon && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(\"div\", {\n    className: \"nx-section-icon\"\n  }, icon), title && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(\"div\", {\n    className: \"nx-section-header-title\"\n  }, title)), children && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(\"div\", {\n    className: \"nx-section-content\"\n  }, children), buttons && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(\"div\", {\n    className: (0,clsx__WEBPACK_IMPORTED_MODULE_2__.default)(\"nx-section-buttonset\", \"h-col-small\", {\n      \"responsive-vertical\": buttonsResponsive\n    }, {\n      \"responsive-align-stretch\": buttonsResponsive\n    })\n  }, buttons));\n};\n\n//# sourceURL=webpack://nexorium/../../nexus/react/layout/section/Section.jsx?");
+
+/***/ }),
+
+/***/ "../../nexus/react/models/Services.jsx":
+/*!*********************************************!*\
+  !*** ../../nexus/react/models/Services.jsx ***!
+  \*********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"ServiceInfoStore\": () => (/* binding */ ServiceInfoStore),\n/* harmony export */   \"ServicesStore\": () => (/* binding */ ServicesStore)\n/* harmony export */ });\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"../../nexus/react/node_modules/react/index.js\");\n/* harmony import */ var mobx_state_tree__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! mobx-state-tree */ \"../../nexus/react/node_modules/mobx-state-tree/dist/mobx-state-tree.module.js\");\n/* harmony import */ var mobx_react_lite__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! mobx-react-lite */ \"../../nexus/react/node_modules/mobx-react-lite/es/index.js\");\n/* harmony import */ var clsx__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! clsx */ \"../../nexus/react/node_modules/clsx/dist/clsx.m.js\");\nfunction _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }\n\nfunction _nonIterableRest() { throw new TypeError(\"Invalid attempt to destructure non-iterable instance.\\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.\"); }\n\nfunction _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === \"string\") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === \"Object\" && o.constructor) n = o.constructor.name; if (n === \"Map\" || n === \"Set\") return Array.from(o); if (n === \"Arguments\" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }\n\nfunction _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }\n\nfunction _iterableToArrayLimit(arr, i) { var _i = arr && (typeof Symbol !== \"undefined\" && arr[Symbol.iterator] || arr[\"@@iterator\"]); if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i[\"return\"] != null) _i[\"return\"](); } finally { if (_d) throw _e; } } return _arr; }\n\nfunction _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }\n\n\n\n\n // Models\n// -------------------------------------------------------------------------------------------------------------\n// ***** ServiceInfoStore *****\n// ****************************\n\nvar TAG_ServiceInfoStore = function TAG_ServiceInfoStore() {};\n\nvar ServiceInfoStore = mobx_state_tree__WEBPACK_IMPORTED_MODULE_3__.types.model({\n  app_key: mobx_state_tree__WEBPACK_IMPORTED_MODULE_3__.types.maybeNull(mobx_state_tree__WEBPACK_IMPORTED_MODULE_3__.types.string),\n  app_variant: mobx_state_tree__WEBPACK_IMPORTED_MODULE_3__.types.maybeNull(mobx_state_tree__WEBPACK_IMPORTED_MODULE_3__.types.string),\n  app_id: mobx_state_tree__WEBPACK_IMPORTED_MODULE_3__.types.maybeNull(mobx_state_tree__WEBPACK_IMPORTED_MODULE_3__.types.string),\n  name: mobx_state_tree__WEBPACK_IMPORTED_MODULE_3__.types.maybeNull(mobx_state_tree__WEBPACK_IMPORTED_MODULE_3__.types.string),\n  description: mobx_state_tree__WEBPACK_IMPORTED_MODULE_3__.types.maybeNull(mobx_state_tree__WEBPACK_IMPORTED_MODULE_3__.types.string),\n  kind: mobx_state_tree__WEBPACK_IMPORTED_MODULE_3__.types.maybeNull(mobx_state_tree__WEBPACK_IMPORTED_MODULE_3__.types.string),\n  port: mobx_state_tree__WEBPACK_IMPORTED_MODULE_3__.types.maybeNull(mobx_state_tree__WEBPACK_IMPORTED_MODULE_3__.types.integer),\n  database: mobx_state_tree__WEBPACK_IMPORTED_MODULE_3__.types.maybeNull(mobx_state_tree__WEBPACK_IMPORTED_MODULE_3__.types.string),\n  internal: mobx_state_tree__WEBPACK_IMPORTED_MODULE_3__.types.maybeNull(mobx_state_tree__WEBPACK_IMPORTED_MODULE_3__.types.string),\n  external: mobx_state_tree__WEBPACK_IMPORTED_MODULE_3__.types.maybeNull(mobx_state_tree__WEBPACK_IMPORTED_MODULE_3__.types.string),\n  view_role: mobx_state_tree__WEBPACK_IMPORTED_MODULE_3__.types.maybeNull(mobx_state_tree__WEBPACK_IMPORTED_MODULE_3__.types.string),\n  edit_role: mobx_state_tree__WEBPACK_IMPORTED_MODULE_3__.types.maybeNull(mobx_state_tree__WEBPACK_IMPORTED_MODULE_3__.types.string),\n  admin_role: mobx_state_tree__WEBPACK_IMPORTED_MODULE_3__.types.maybeNull(mobx_state_tree__WEBPACK_IMPORTED_MODULE_3__.types.string)\n}).views(function (self) {\n  return {\n    // Getters\n    // -\n    get roles() {\n      return [self.view_role, self.edit_role, self.admin_role];\n    }\n\n  };\n}).actions(function (self) {\n  return {\n    setField: function setField(field, value) {\n      self[field] = value;\n    },\n    // -\n    update: function update(raw) {\n      self.app_key = raw.app_key;\n      self.app_variant = raw.app_variant;\n      self.app_id = raw.app_id;\n      self.name = raw.name;\n      self.description = raw.description;\n      self.kind = raw.kind;\n      self.port = raw.port;\n      self.database = raw.database;\n      self.internal = raw.internal;\n      self.external = raw.external;\n      self.view_role = raw.view_role;\n      self.edit_role = raw.edit_role;\n      self.admin_role = raw.admin_role;\n    }\n  };\n}); // ***** ServicesStore *****\n// *************************\n\nvar TAG_ServicesStore = function TAG_ServicesStore() {};\n\nvar ServicesStore = mobx_state_tree__WEBPACK_IMPORTED_MODULE_3__.types.model({\n  smap: mobx_state_tree__WEBPACK_IMPORTED_MODULE_3__.types.map(ServiceInfoStore)\n}).views(function (self) {\n  return {\n    get me() {\n      var me = self.smap.get('me');\n\n      if (!me) {\n        me = ServiceInfoStore.create({});\n      }\n\n      return me;\n    },\n\n    // Getters\n    // -\n    getServiceInfo: function getServiceInfo(appId) {\n      return self.smap.get(appId);\n    },\n    getAjaxBase: function getAjaxBase(appId) {\n      var me = self.getServiceInfo('me'); // AJAX vers un autre serveur ?\n\n      if (me && me.app_id != appId) {\n        var serviceInfo = self.getServiceInfo(appId);\n\n        if (serviceInfo) {\n          return serviceInfo.external;\n        }\n      }\n\n      return '';\n    }\n  };\n}).actions(function (self) {\n  return {\n    setField: function setField(field, value) {\n      self[field] = value;\n    },\n    // -\n    update: function update(raw) {\n      self.smap = {};\n\n      for (var _i = 0, _Object$entries = Object.entries(raw); _i < _Object$entries.length; _i++) {\n        var _Object$entries$_i = _slicedToArray(_Object$entries[_i], 2),\n            appId = _Object$entries$_i[0],\n            serviceInfoRaw = _Object$entries$_i[1];\n\n        var serviceInfo = ServiceInfoStore.create({});\n        serviceInfo.update(serviceInfoRaw);\n        self.smap.set(appId, serviceInfo);\n      }\n    }\n  };\n});\n\n//# sourceURL=webpack://nexorium/../../nexus/react/models/Services.jsx?");
+
+/***/ }),
+
+/***/ "../../nexus/react/ui/Styles.jsx":
+/*!***************************************!*\
+  !*** ../../nexus/react/ui/Styles.jsx ***!
+  \***************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"SEVERITIES\": () => (/* binding */ SEVERITIES),\n/* harmony export */   \"SEVERITY_COLORS\": () => (/* binding */ SEVERITY_COLORS),\n/* harmony export */   \"SEVERITY_COLORS_CONTRASTED\": () => (/* binding */ SEVERITY_COLORS_CONTRASTED),\n/* harmony export */   \"SEVERITY_BACKGROUNDS\": () => (/* binding */ SEVERITY_BACKGROUNDS),\n/* harmony export */   \"SEVERITY_ICONS_NAMES\": () => (/* binding */ SEVERITY_ICONS_NAMES)\n/* harmony export */ });\nfunction _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }\n\nfunction _nonIterableRest() { throw new TypeError(\"Invalid attempt to destructure non-iterable instance.\\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.\"); }\n\nfunction _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === \"string\") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === \"Object\" && o.constructor) n = o.constructor.name; if (n === \"Map\" || n === \"Set\") return Array.from(o); if (n === \"Arguments\" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }\n\nfunction _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }\n\nfunction _iterableToArrayLimit(arr, i) { var _i = arr && (typeof Symbol !== \"undefined\" && arr[Symbol.iterator] || arr[\"@@iterator\"]); if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i[\"return\"] != null) _i[\"return\"](); } finally { if (_d) throw _e; } } return _arr; }\n\nfunction _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }\n\n// Datas\n// -------------------------------------------------------------------------------------------------------------\nvar SEVERITIES = {\n  'default': {\n    color: '#bdbdbd',\n    contrasted: '#424242',\n    // background: 'rgba(189, 189, 189, 0.20)',\n    icon_name: 'info'\n  },\n  'success': {\n    color: '#81c784',\n    contrasted: '#43a047',\n    // background: 'rgba(129, 199, 132, 0.1)',\n    icon_name: 'check_circle'\n  },\n  'warning': {\n    color: '#ffb74d',\n    contrasted: '#ffa000',\n    // background: 'rgba(255, 183, 77, 0.1)',\n    icon_name: 'warning_amber'\n  },\n  'error': {\n    color: '#e57373',\n    contrasted: '#d32f2f',\n    // background: 'rgba(229, 115, 115, 0.1)',\n    icon_name: 'report'\n  },\n  'info': {\n    color: '#64b5f6',\n    contrasted: '#1976d2',\n    // background: 'rgba(100, 181, 246, 0.20)',\n    icon_name: 'info'\n  },\n  'hot': {\n    color: '#e91e63',\n    contrasted: '#e91e63',\n    // background: 'rgba(233, 30, 99, 0.1)',\n    icon_name: 'whatshot'\n  },\n  // -\n  getDef: function getDef(severity) {\n    return SEVERITIES[severity];\n  }\n};\nvar SEVERITY_COLORS = {};\nvar SEVERITY_COLORS_CONTRASTED = {};\nvar SEVERITY_BACKGROUNDS = {};\nvar SEVERITY_ICONS_NAMES = {};\n\nfor (var _i = 0, _Object$entries = Object.entries(SEVERITIES); _i < _Object$entries.length; _i++) {\n  var _Object$entries$_i = _slicedToArray(_Object$entries[_i], 2),\n      severityKey = _Object$entries$_i[0],\n      severityDef = _Object$entries$_i[1];\n\n  SEVERITY_COLORS[severityKey] = severityDef.color;\n  SEVERITY_COLORS_CONTRASTED[severityKey] = severityDef.contrasted;\n  SEVERITY_BACKGROUNDS[severityKey] = severityDef.background;\n  SEVERITY_ICONS_NAMES[severityKey] = severityDef.icon_name;\n}\n\n//# sourceURL=webpack://nexorium/../../nexus/react/ui/Styles.jsx?");
+
+/***/ }),
+
+/***/ "../../nexus/react/ui/avatar/Avatar.jsx":
+/*!**********************************************!*\
+  !*** ../../nexus/react/ui/avatar/Avatar.jsx ***!
+  \**********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"Avatar\": () => (/* binding */ Avatar)\n/* harmony export */ });\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"../../nexus/react/node_modules/react/index.js\");\n/* harmony import */ var clsx__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! clsx */ \"../../nexus/react/node_modules/clsx/dist/clsx.m.js\");\n/* harmony import */ var _Avatar_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Avatar.css */ \"../../nexus/react/ui/avatar/Avatar.css\");\n/* harmony import */ var _Avatar_css__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_Avatar_css__WEBPACK_IMPORTED_MODULE_2__);\n\n\n // Functions Components ReactJS\n// -------------------------------------------------------------------------------------------------------------\n// ***** Avatar *****\n// ******************\n\nvar TAG_Avatar = function TAG_Avatar() {};\n\nvar Avatar = function Avatar(props) {\n  var store = react__WEBPACK_IMPORTED_MODULE_0__.useContext(window.storeContext);\n  var app = store.app;\n  var theme = app.theme; // From ... props\n\n  var children = props.children;\n  var color = props.color ? props.color : 'primary'; // primary, secondary, transparent\n\n  var size = props.size ? props.size : 'normal'; // normal, small, large\n\n  var style = props.style ? props.style : {}; // ...\n\n  if (style.hasOwnProperty('backgroundColor')) {\n    style['backgroundColor'] = 'lightgray';\n\n    if (color == 'transparent') {\n      style['backgroundColor'] = 'transparent';\n    }\n\n    if (['primary', 'secondary'].indexOf(color) > -1) {\n      style['backgroundColor'] = theme.palette[color].main;\n    }\n  } // Render\n  // ==================================================================================================\n\n\n  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(\"div\", {\n    className: (0,clsx__WEBPACK_IMPORTED_MODULE_1__.default)(\"nx-avatar\", color),\n    style: style\n  }, children);\n};\n\n//# sourceURL=webpack://nexorium/../../nexus/react/ui/avatar/Avatar.jsx?");
+
+/***/ }),
+
+/***/ "../../nexus/react/ui/button/Button.jsx":
+/*!**********************************************!*\
+  !*** ../../nexus/react/ui/button/Button.jsx ***!
+  \**********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"IconButton\": () => (/* binding */ IconButton),\n/* harmony export */   \"Button\": () => (/* binding */ Button)\n/* harmony export */ });\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"../../nexus/react/node_modules/react/index.js\");\n/* harmony import */ var mobx_react_lite__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! mobx-react-lite */ \"../../nexus/react/node_modules/mobx-react-lite/es/index.js\");\n/* harmony import */ var clsx__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! clsx */ \"../../nexus/react/node_modules/clsx/dist/clsx.m.js\");\n/* harmony import */ var nexus_utils_Datas__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! nexus/utils/Datas */ \"../../nexus/react/utils/Datas.jsx\");\n/* harmony import */ var nexus_utils_Colors__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! nexus/utils/Colors */ \"../../nexus/react/utils/Colors.jsx\");\n/* harmony import */ var _Button_css__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./Button.css */ \"../../nexus/react/ui/button/Button.css\");\n/* harmony import */ var _Button_css__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_Button_css__WEBPACK_IMPORTED_MODULE_5__);\nfunction _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }\n\nfunction _nonIterableRest() { throw new TypeError(\"Invalid attempt to destructure non-iterable instance.\\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.\"); }\n\nfunction _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === \"string\") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === \"Object\" && o.constructor) n = o.constructor.name; if (n === \"Map\" || n === \"Set\") return Array.from(o); if (n === \"Arguments\" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }\n\nfunction _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }\n\nfunction _iterableToArrayLimit(arr, i) { var _i = arr && (typeof Symbol !== \"undefined\" && arr[Symbol.iterator] || arr[\"@@iterator\"]); if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i[\"return\"] != null) _i[\"return\"](); } finally { if (_d) throw _e; } } return _arr; }\n\nfunction _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }\n\n\n\n\n\n\n\n // Functions Components ReactJS\n// -------------------------------------------------------------------------------------------------------------\n// ***** IconButton *****\n// **********************\n\nvar TAG_IconButton = function TAG_IconButton() {};\n\nvar IconButton = function IconButton(props) {\n  // From ... props\n  var title = props.title ? props.title : '';\n  var children = props.children;\n  var color = props.color ? props.color : 'black'; // white, black\n\n  var disabled = props.disabled == true ? true : false;\n  var onClick = props.onClick; // Evènement\n  // ==================================================================================================\n\n  var handleClick = function handleClick(e) {\n    if (onClick) {\n      onClick(e);\n    }\n  }; // Render\n  // ==================================================================================================\n\n\n  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(\"div\", {\n    className: (0,clsx__WEBPACK_IMPORTED_MODULE_2__.default)(\"nx-icon-button\", color, {\n      \"disabled\": disabled\n    }),\n    onClick: function onClick(e) {\n      return handleClick(e);\n    },\n    title: title\n  }, children);\n}; // ***** Button *****\n// ******************\n\nvar TAG_Button = function TAG_Button() {};\n\nvar Button = (0,mobx_react_lite__WEBPACK_IMPORTED_MODULE_1__.observer)(function (props) {\n  var store = react__WEBPACK_IMPORTED_MODULE_0__.useContext(window.storeContext);\n  var app = store.app;\n  var theme = app.theme; // From ... state\n\n  var _React$useState = react__WEBPACK_IMPORTED_MODULE_0__.useState(false),\n      _React$useState2 = _slicedToArray(_React$useState, 2),\n      hover = _React$useState2[0],\n      setHover = _React$useState2[1]; // From ... props\n\n\n  var id = props.id ? props.id : '';\n  var children = props.children;\n  var variant = props.variant ? props.variant : 'flat'; // default, contained, outlined\n\n  var color = props.color ? props.color : 'default'; // default, primary, secondary\n\n  var disabled = props.disabled == true ? true : false;\n  var onClick = props.onClick;\n  var className = props.className ? props.className : '';\n  var style = props.style ? (0,nexus_utils_Datas__WEBPACK_IMPORTED_MODULE_3__.copyObj)(props.style) : {}; // ...\n\n  style['color'] = disabled ? \"rgba(0, 0, 0, 0.26)\" : 'black';\n  style['backgroundColor'] = hover ? (0,nexus_utils_Colors__WEBPACK_IMPORTED_MODULE_4__.hexToRgbA)(theme.palette[\"default\"].main, 0.1) : 'transparent';\n  style['border'] = '1px solid transparent';\n\n  if (variant == 'outlined') {\n    style['borderColor'] = (0,nexus_utils_Colors__WEBPACK_IMPORTED_MODULE_4__.hexToRgbA)(theme.palette[\"default\"].main, 0.8);\n\n    if (disabled) {\n      style['borderColor'] = \"rgba(0, 0, 0, 0.12)\";\n    }\n  }\n\n  if (color == 'primary') {\n    style['color'] = disabled ? \"rgba(0, 0, 0, 0.26)\" : theme.palette.primary.main;\n    style['backgroundColor'] = hover ? (0,nexus_utils_Colors__WEBPACK_IMPORTED_MODULE_4__.hexToRgbA)(theme.palette.primary.main, 0.1) : 'transparent';\n\n    if (variant == 'outlined') {\n      style['borderColor'] = theme.palette.primary.main;\n\n      if (disabled) {\n        style['borderColor'] = \"rgba(0, 0, 0, 0.12)\";\n      }\n    }\n\n    if (variant == 'contained') {\n      style['color'] = disabled ? \"rgba(0, 0, 0, 0.26)\" : 'white';\n      style['backgroundColor'] = hover ? theme.palette.primary.main : (0,nexus_utils_Colors__WEBPACK_IMPORTED_MODULE_4__.hexToRgbA)(theme.palette.primary.main, 0.8);\n\n      if (disabled) {\n        style['backgroundColor'] = \"rgba(0, 0, 0, 0.12)\";\n      }\n    }\n  }\n\n  if (color == 'secondary') {\n    style['color'] = disabled ? \"rgba(0, 0, 0, 0.26)\" : theme.palette.secondary.main;\n    style['backgroundColor'] = hover ? (0,nexus_utils_Colors__WEBPACK_IMPORTED_MODULE_4__.hexToRgbA)(theme.palette.secondary.main, 0.1) : 'transparent';\n\n    if (variant == 'outlined') {\n      style['borderColor'] = theme.palette.secondary.main;\n\n      if (disabled) {\n        style['borderColor'] = \"rgba(0, 0, 0, 0.12)\";\n      }\n    }\n\n    if (variant == 'contained') {\n      style['color'] = disabled ? \"rgba(0, 0, 0, 0.26)\" : 'white';\n      style['backgroundColor'] = hover ? theme.palette.secondary.main : (0,nexus_utils_Colors__WEBPACK_IMPORTED_MODULE_4__.hexToRgbA)(theme.palette.secondary.main, 0.8);\n\n      if (disabled) {\n        style['backgroundColor'] = \"rgba(0, 0, 0, 0.12)\";\n      }\n    }\n  } // Evènement\n  // ==================================================================================================\n\n\n  var handleMouseEnter = function handleMouseEnter(evt) {\n    setHover(true);\n  };\n\n  var handleMouseLeave = function handleMouseLeave(evt) {\n    setHover(false);\n  };\n\n  var handleClick = function handleClick(evt) {\n    if (onClick) {\n      onClick(evt);\n    }\n  }; // Render\n  // ==================================================================================================\n\n\n  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(\"div\", {\n    id: id,\n    className: (0,clsx__WEBPACK_IMPORTED_MODULE_2__.default)(\"nx-button\", variant, className, {\n      \"hover\": hover\n    }, {\n      \"disabled\": disabled\n    }),\n    style: style,\n    onMouseEnter: function onMouseEnter(e) {\n      return handleMouseEnter(e);\n    },\n    onMouseLeave: function onMouseLeave(e) {\n      return handleMouseLeave(e);\n    },\n    onClick: function onClick(e) {\n      return handleClick(e);\n    }\n  }, children);\n});\n\n//# sourceURL=webpack://nexorium/../../nexus/react/ui/button/Button.jsx?");
+
+/***/ }),
+
+/***/ "../../nexus/react/ui/divider/Divider.jsx":
+/*!************************************************!*\
+  !*** ../../nexus/react/ui/divider/Divider.jsx ***!
+  \************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"Divider\": () => (/* binding */ Divider)\n/* harmony export */ });\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"../../nexus/react/node_modules/react/index.js\");\n/* harmony import */ var clsx__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! clsx */ \"../../nexus/react/node_modules/clsx/dist/clsx.m.js\");\n/* harmony import */ var _Divider_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Divider.css */ \"../../nexus/react/ui/divider/Divider.css\");\n/* harmony import */ var _Divider_css__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_Divider_css__WEBPACK_IMPORTED_MODULE_2__);\n\n\n // Functions Components ReactJS\n// -------------------------------------------------------------------------------------------------------------\n// ***** Divider *****\n// *******************\n\nvar TAG_Divider = function TAG_Divider() {};\n\nvar Divider = function Divider(props) {\n  // From ... props\n  var style = props.style ? props.style : {}; // Render\n  // ==================================================================================================\n\n  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(\"div\", {\n    className: \"nx-divider\",\n    style: style\n  });\n};\n\n//# sourceURL=webpack://nexorium/../../nexus/react/ui/divider/Divider.jsx?");
+
+/***/ }),
+
+/***/ "../../nexus/react/ui/drawer/Drawer.jsx":
+/*!**********************************************!*\
+  !*** ../../nexus/react/ui/drawer/Drawer.jsx ***!
+  \**********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"Drawer\": () => (/* binding */ Drawer)\n/* harmony export */ });\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"../../nexus/react/node_modules/react/index.js\");\n/* harmony import */ var mobx_react_lite__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! mobx-react-lite */ \"../../nexus/react/node_modules/mobx-react-lite/es/index.js\");\n/* harmony import */ var clsx__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! clsx */ \"../../nexus/react/node_modules/clsx/dist/clsx.m.js\");\n/* harmony import */ var _Drawer_css__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Drawer.css */ \"../../nexus/react/ui/drawer/Drawer.css\");\n/* harmony import */ var _Drawer_css__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_Drawer_css__WEBPACK_IMPORTED_MODULE_3__);\n\n\n\n\n // Functions Components ReactJS\n// -------------------------------------------------------------------------------------------------------------\n// ***** Drawer *****\n// ******************\n\nvar TAG_Drawer = function TAG_Drawer() {};\n\nvar Drawer = function Drawer(props) {\n  // From ... props\n  var children = props.children;\n  var position = props.position ? props.position : 'left';\n  var callbackClose = props.callbackClose; // ...\n  // Evènements\n  // ==================================================================================================\n\n  var handleDrawerWrapperClick = function handleDrawerWrapperClick(e) {\n    var target = e.target;\n\n    if (e.target.classList.contains('nx-drawer-wrapper') && callbackClose) {\n      callbackClose();\n    }\n  }; // Render\n  // ==================================================================================================\n\n\n  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(\"div\", {\n    className: \"nx-drawer-wrapper\",\n    onClick: function onClick(e) {\n      return handleDrawerWrapperClick(e);\n    }\n  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(\"div\", {\n    className: (0,clsx__WEBPACK_IMPORTED_MODULE_2__.default)(\"nx-drawer\", position)\n  }, children));\n};\n\n//# sourceURL=webpack://nexorium/../../nexus/react/ui/drawer/Drawer.jsx?");
+
+/***/ }),
+
+/***/ "../../nexus/react/ui/helper/Helper.jsx":
+/*!**********************************************!*\
+  !*** ../../nexus/react/ui/helper/Helper.jsx ***!
+  \**********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"HelperParaphTitle\": () => (/* binding */ HelperParaphTitle),\n/* harmony export */   \"HelperParaph\": () => (/* binding */ HelperParaph),\n/* harmony export */   \"Helper\": () => (/* binding */ Helper)\n/* harmony export */ });\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"../../nexus/react/node_modules/react/index.js\");\n/* harmony import */ var mobx_react_lite__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! mobx-react-lite */ \"../../nexus/react/node_modules/mobx-react-lite/es/index.js\");\n/* harmony import */ var clsx__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! clsx */ \"../../nexus/react/node_modules/clsx/dist/clsx.m.js\");\n/* harmony import */ var nexus_ui_Styles__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! nexus/ui/Styles */ \"../../nexus/react/ui/Styles.jsx\");\n/* harmony import */ var nexus_ui_icon_Icon__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! nexus/ui/icon/Icon */ \"../../nexus/react/ui/icon/Icon.jsx\");\n/* harmony import */ var _Helper_css__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./Helper.css */ \"../../nexus/react/ui/helper/Helper.css\");\n/* harmony import */ var _Helper_css__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_Helper_css__WEBPACK_IMPORTED_MODULE_5__);\n\n\n\n\n\n // Functions Components ReactJS\n// ----------------------------------------------------------------------------------------------------------------------------\n// ***** HelperParaphTitle *****\n// *****************************\n\nvar TAG_HelperParaphTitle = function TAG_HelperParaphTitle() {};\n\nvar HelperParaphTitle = (0,mobx_react_lite__WEBPACK_IMPORTED_MODULE_1__.observer)(function (props) {\n  var store = react__WEBPACK_IMPORTED_MODULE_0__.useContext(window.storeContext);\n  var app = store.app;\n  var theme = app.theme; // From ... props\n\n  var color = props.color ? props.color : 'default'; // default, primary, secondary\n\n  var children = props.children;\n  var style = props.style ? props.style : {}; // ...\n\n  if (color) {\n    style['color'] = color;\n  }\n\n  if (color == 'primary') {\n    style['color'] = theme.palette.primary.main;\n  }\n\n  if (color == 'secondary') {\n    style['color'] = theme.palette.secondary.main;\n  } // Render\n  // ==================================================================================================\n\n\n  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(\"div\", {\n    className: \"nx-helper-paraph-title\",\n    style: style\n  }, children);\n}); // ***** HelperParaph *****\n// ************************\n\nvar TAG_HelperParaph = function TAG_HelperParaph() {};\n\nvar HelperParaph = function HelperParaph(props) {\n  // From ... props\n  var children = props.children;\n  var style = props.style ? props.style : {}; // Render\n  // ==================================================================================================\n\n  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(\"div\", {\n    className: \"nx-helper-paraph\",\n    style: style\n  }, children);\n}; // ***** Helper *****\n// ******************\n\nvar TAG_Helper = function TAG_Helper() {};\n\nvar Helper = (0,mobx_react_lite__WEBPACK_IMPORTED_MODULE_1__.observer)(function (props) {\n  var store = react__WEBPACK_IMPORTED_MODULE_0__.useContext(window.storeContext);\n  var app = store.app; // From ... store\n\n  var initialized = app.initialized; // From ... props\n\n  var icon = props.icon ? props.icon : null;\n  var iconName = props.iconName ? props.iconName : '';\n  var title = props.title ? props.title : '';\n  var subtitle = props.subtitle ? props.subtitle : '';\n  var severity = props.severity;\n  var show = props.show != undefined ? props.show : !initialized;\n  var content = props.children;\n  var style = props.style ? props.style : {}; // Render\n  // ==================================================================================================\n\n  var titleColor = 'black';\n\n  if (severity && severity != 'default' && nexus_ui_Styles__WEBPACK_IMPORTED_MODULE_3__.SEVERITY_COLORS_CONTRASTED.hasOwnProperty(severity)) {\n    titleColor = nexus_ui_Styles__WEBPACK_IMPORTED_MODULE_3__.SEVERITY_COLORS_CONTRASTED[severity];\n  }\n\n  var subtitleColor = 'gray';\n\n  if (severity && severity != 'default' && nexus_ui_Styles__WEBPACK_IMPORTED_MODULE_3__.SEVERITY_COLORS.hasOwnProperty(severity)) {\n    subtitleColor = nexus_ui_Styles__WEBPACK_IMPORTED_MODULE_3__.SEVERITY_COLORS[severity];\n  } // -\n\n\n  if (!icon && iconName) {\n    icon = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(nexus_ui_icon_Icon__WEBPACK_IMPORTED_MODULE_4__.Icon, {\n      size: \"helper\",\n      name: iconName,\n      style: {\n        opacity: 0.1\n      }\n    });\n  }\n\n  var helper = null;\n\n  if (show) {\n    helper = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(\"div\", {\n      className: \"nx-helper\"\n    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(\"div\", {\n      className: \"nx-helper-content\",\n      style: style\n    }, icon, title && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(\"div\", {\n      className: \"nx-helper-title\",\n      style: {\n        color: titleColor\n      }\n    }, title), subtitle && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(\"div\", {\n      className: \"nx-helper-subtitle\",\n      style: {\n        color: subtitleColor\n      }\n    }, subtitle)));\n  }\n\n  return helper;\n});\n\n//# sourceURL=webpack://nexorium/../../nexus/react/ui/helper/Helper.jsx?");
+
+/***/ }),
+
+/***/ "../../nexus/react/ui/icon/Icon.jsx":
+/*!******************************************!*\
+  !*** ../../nexus/react/ui/icon/Icon.jsx ***!
+  \******************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"Icon\": () => (/* binding */ Icon)\n/* harmony export */ });\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"../../nexus/react/node_modules/react/index.js\");\n/* harmony import */ var clsx__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! clsx */ \"../../nexus/react/node_modules/clsx/dist/clsx.m.js\");\n/* harmony import */ var _Icon_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Icon.css */ \"../../nexus/react/ui/icon/Icon.css\");\n/* harmony import */ var _Icon_css__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_Icon_css__WEBPACK_IMPORTED_MODULE_2__);\n\n\n // Datas\n// -------------------------------------------------------------------------------------------------------------\n\nvar ICON_KEYS_TO_FILES = {\n  'material': {\n    'help': 'help_outline_black_24dp.svg',\n    'menu': 'menu_black_24dp.svg',\n    'arrow_back': 'arrow_back_black_24dp.svg',\n    'home': 'home_black_24dp.svg',\n    'setting': 'settings_black_24dp.svg',\n    'code': 'code_black_24dp.svg',\n    'power_setting': 'power_settings_new_black_24dp.svg',\n    'apps': 'apps_black_24dp.svg',\n    'save': 'save_black_24dp.svg',\n    'delete': 'delete_black_24dp.svg',\n    'restore_from_trash': 'restore_from_trash_black_24dp.svg',\n    'refresh': 'refresh_black_24dp.svg',\n    'add': 'add_black_24dp.svg',\n    'search': 'search_black_24dp.svg',\n    'clear': 'clear_black_24dp.svg',\n    'account_circle': 'account_circle_black_24dp.svg',\n    'open_in_full': 'open_in_full_black_24dp.svg',\n    'close_fullscreen': 'close_fullscreen_black_24dp.svg',\n    'push_pin': 'push_pin_black_24dp.svg',\n    'bug_report': 'bug_report_black_24dp.svg',\n    'badge': 'badge_black_24dp.svg',\n    'lock': 'lock_black_24dp.svg',\n    'lock_open': 'lock_open_black_24dp.svg',\n    'person': 'person_black_24dp.svg',\n    'history': 'history_black_24dp.svg',\n    'text_snippet': 'text_snippet_black_24dp.svg',\n    'forum': 'forum_black_24dp.svg',\n    'work_outline': 'work_outline_black_24dp.svg',\n    'school': 'school_black_24dp.svg',\n    'science': 'science_black_24dp.svg',\n    'book': 'book_black_24dp.svg',\n    'history_edu': 'history_edu_black_24dp.svg',\n    'card_giftcard': 'card_giftcard_black_24dp.svg',\n    'inventory_2': 'inventory_2_black_24dp.svg',\n    'sports_esports': 'sports_esports_black_24dp.svg',\n    'face': 'face_black_24dp.svg',\n    'art_track': 'art_track_black_24dp.svg',\n    'album': 'album_black_24dp.svg',\n    'audiotrack': 'audiotrack_black_24dp.svg',\n    'date_range': 'date_range_black_24dp.svg',\n    'local_bar': 'local_bar_black_24dp.svg',\n    'playlist_play': 'playlist_play_black_24dp.svg',\n    'text_fields': 'text_fields_black_24dp.svg',\n    'hourglass_empty': 'hourglass_empty_black_24dp.svg',\n    'feedback_black': 'feedback_black_24dp.svg',\n    'info': 'info_black_24dp.svg',\n    'warning_amber': 'warning_amber_black_24dp.svg',\n    'check_circle': 'check_circle_black_24dp.svg',\n    'report': 'report_black_24dp.svg',\n    'new_releases': 'new_releases_black_24dp.svg',\n    'whatshot': 'whatshot_black_24dp.svg',\n    'close': 'close_black_24dp.svg',\n    'no_accounts': 'no_accounts_black_24dp.svg',\n    'palette': 'palette_black_24dp.svg',\n    'arrow_drop_down': 'arrow_drop_down_black_24dp.svg',\n    'arrow_forward': 'arrow_forward_black_24dp.svg',\n    'smart_button': 'smart_button_black_24dp.svg'\n  }\n}; // const ICON_SIZES = {\n// \t'small': {\n// \t\t'width': '18px',\n// \t\t'height': '18px',\n// \t},\n// \t'normal': {\n// \t\t'width': '24px',\n// \t\t'height': '24px',\n// \t},\n// \t'large': {\n// \t\t'width': '36px',\n// \t\t'height': '36px',\n// \t},\n// }\n\nvar ICON_SIZES = {\n  'small': '18px',\n  'normal': '24px',\n  'large': '36px',\n  'helper': '220px'\n}; // Functions Components ReactJS\n// -------------------------------------------------------------------------------------------------------------\n// ***** Icon *****\n// ****************\n\nvar TAG_Icon = function TAG_Icon() {};\n\nvar Icon = function Icon(props) {\n  // From ... props\n  var kind = props.kind ? props.kind : 'material'; // material, fontawesome, ...\n\n  var name = props.name ? props.name : 'help';\n  var variant = props.variant ? props.variant : 'outlined'; // outlined, filled\n\n  var color = props.color ? props.color : 'black';\n  var size = props.size ? props.size : 'normal'; // small, normal, large\n\n  var className = props.className ? props.className : '';\n  var style = props.style ? props.style : {}; // ...\n\n  var iconUrl = '';\n\n  if (ICON_KEYS_TO_FILES[kind].hasOwnProperty(name)) {\n    var iconFilename = ICON_KEYS_TO_FILES[kind][name];\n    iconUrl = \"/nexus_static/icons/\".concat(kind, \"/\").concat(iconFilename);\n  }\n\n  if (!style.hasOwnProperty('width')) {\n    style['width'] = ICON_SIZES[size];\n    style['height'] = ICON_SIZES[size];\n  }\n\n  if (color == 'white') {\n    iconUrl = iconUrl.replace('black', 'white');\n  } // Render\n  // ==================================================================================================\n\n\n  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(\"div\", {\n    className: (0,clsx__WEBPACK_IMPORTED_MODULE_1__.default)(\"nx-icon\", name, className),\n    style: style\n  }, iconUrl && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(\"img\", {\n    src: iconUrl\n  }));\n};\n\n//# sourceURL=webpack://nexorium/../../nexus/react/ui/icon/Icon.jsx?");
+
+/***/ }),
+
+/***/ "../../nexus/react/ui/list/List.jsx":
+/*!******************************************!*\
+  !*** ../../nexus/react/ui/list/List.jsx ***!
+  \******************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"ListIcon\": () => (/* binding */ ListIcon),\n/* harmony export */   \"ListText\": () => (/* binding */ ListText),\n/* harmony export */   \"ListItem\": () => (/* binding */ ListItem),\n/* harmony export */   \"List\": () => (/* binding */ List)\n/* harmony export */ });\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"../../nexus/react/node_modules/react/index.js\");\n/* harmony import */ var mobx_react_lite__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! mobx-react-lite */ \"../../nexus/react/node_modules/mobx-react-lite/es/index.js\");\n/* harmony import */ var clsx__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! clsx */ \"../../nexus/react/node_modules/clsx/dist/clsx.m.js\");\n/* harmony import */ var nexus_ui_avatar_Avatar__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! nexus/ui/avatar/Avatar */ \"../../nexus/react/ui/avatar/Avatar.jsx\");\n/* harmony import */ var _List_css__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./List.css */ \"../../nexus/react/ui/list/List.css\");\n/* harmony import */ var _List_css__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_List_css__WEBPACK_IMPORTED_MODULE_4__);\n\n\n\n\n\n // Functions Components ReactJS\n// -------------------------------------------------------------------------------------------------------------\n// ***** ListIcon *****\n// ********************\n\nvar TAG_ListIcon = function TAG_ListIcon() {};\n\nvar ListIcon = function ListIcon(props) {\n  // Render\n  // ==================================================================================================\n  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(\"div\", {\n    className: \"nx-list-icon\"\n  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(nexus_ui_avatar_Avatar__WEBPACK_IMPORTED_MODULE_3__.Avatar, {\n    color: \"transparent\",\n    size: \"small\"\n  }, props.children));\n}; // ***** ListText *****\n// ********************\n\nvar TAG_ListText = function TAG_ListText() {};\n\nvar ListText = function ListText(props) {\n  // Render\n  // ==================================================================================================\n  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(\"div\", {\n    className: \"nx-list-text\"\n  }, props.children);\n}; // ***** ListItem *****\n// ********************\n\nvar TAG_ListItem = function TAG_ListItem() {};\n\nvar ListItem = function ListItem(props) {\n  // From ... props\n  var disabled = props.disabled == true ? true : false;\n  var onClick = props.onClick; // Evènements\n  // ==================================================================================================\n\n  var handleClick = function handleClick(evt) {\n    if (onClick) {\n      onClick(evt);\n    }\n  }; // Render\n  // ==================================================================================================\n\n\n  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(\"div\", {\n    className: (0,clsx__WEBPACK_IMPORTED_MODULE_2__.default)(\"nx-list-item\", {\n      \"disabled faded\": disabled\n    }),\n    onClick: function onClick(e) {\n      return handleClick(e);\n    }\n  }, props.children);\n}; // ***** List *****\n// ****************\n\nvar TAG_List = function TAG_List() {};\n\nvar List = function List(props) {\n  // Render\n  // ==================================================================================================\n  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(\"div\", {\n    className: \"nx-list\"\n  }, props.children);\n};\n\n//# sourceURL=webpack://nexorium/../../nexus/react/ui/list/List.jsx?");
+
+/***/ }),
+
+/***/ "../../nexus/react/ui/popover/Popover.jsx":
+/*!************************************************!*\
+  !*** ../../nexus/react/ui/popover/Popover.jsx ***!
+  \************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"Popover\": () => (/* binding */ Popover)\n/* harmony export */ });\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"../../nexus/react/node_modules/react/index.js\");\n/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom */ \"../../nexus/react/node_modules/react-dom/index.js\");\n/* harmony import */ var clsx__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! clsx */ \"../../nexus/react/node_modules/clsx/dist/clsx.m.js\");\n/* harmony import */ var nexus_utils_Datas__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! nexus/utils/Datas */ \"../../nexus/react/utils/Datas.jsx\");\n/* harmony import */ var _Popover_css__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Popover.css */ \"../../nexus/react/ui/popover/Popover.css\");\n/* harmony import */ var _Popover_css__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_Popover_css__WEBPACK_IMPORTED_MODULE_4__);\nfunction _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }\n\nfunction _nonIterableRest() { throw new TypeError(\"Invalid attempt to destructure non-iterable instance.\\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.\"); }\n\nfunction _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === \"string\") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === \"Object\" && o.constructor) n = o.constructor.name; if (n === \"Map\" || n === \"Set\") return Array.from(o); if (n === \"Arguments\" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }\n\nfunction _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }\n\nfunction _iterableToArrayLimit(arr, i) { var _i = arr && (typeof Symbol !== \"undefined\" && arr[Symbol.iterator] || arr[\"@@iterator\"]); if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i[\"return\"] != null) _i[\"return\"](); } finally { if (_d) throw _e; } } return _arr; }\n\nfunction _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }\n\n\n\n\n\n // Functions Components ReactJS\n// -------------------------------------------------------------------------------------------------------------\n// ***** Popover *****\n// *******************\n\nvar TAG_Popover = function TAG_Popover() {};\n\nvar Popover = function Popover(props) {\n  var popoverStyle = props.style ? props.style : {};\n  popoverStyle['opacity'] = 0; // From ... states\n\n  var _React$useState = react__WEBPACK_IMPORTED_MODULE_0__.useState(popoverStyle),\n      _React$useState2 = _slicedToArray(_React$useState, 2),\n      style = _React$useState2[0],\n      setStyle = _React$useState2[1]; // From ... props\n\n\n  var id = props.id ? props.id : (0,nexus_utils_Datas__WEBPACK_IMPORTED_MODULE_3__.uuid)();\n  var open = props.open == true ? true : false;\n  var anchorEl = props.anchorEl ? props.anchorEl : null;\n  var anchorOrigin = props.anchorOrigin ? props.anchorOrigin : {};\n  var transformOrigin = props.transformOrigin ? props.transformOrigin : {};\n  var children = props.children;\n  var onClose = props.onClose; // ...\n\n  var anchorOriginVertical = anchorOrigin.vertical ? anchorOrigin.vertical : 'bottom'; // top, center, bottom\n\n  var anchorOriginHorizontal = anchorOrigin.horizontal ? anchorOrigin.horizontal : 'center'; // left, center, right\n\n  var transformOriginVertical = transformOrigin.vertical ? transformOrigin.vertical : 'top'; // top, center, bottom\n\n  var transformOriginHorizontal = transformOrigin.horizontal ? transformOrigin.horizontal : 'center'; // left, center, right\n\n  react__WEBPACK_IMPORTED_MODULE_0__.useEffect(function () {\n    var node = document.getElementById(id);\n\n    if (!node) {\n      node = document.createElement(\"div\");\n      node.setAttribute('id', \"portal-\".concat(id));\n      document.body.append(node);\n    }\n  }, []);\n  react__WEBPACK_IMPORTED_MODULE_0__.useEffect(function () {\n    if (open && anchorEl) {\n      var popover = document.getElementById(id);\n\n      if (!popover) {\n        return;\n      }\n\n      var _popoverStyle = (0,nexus_utils_Datas__WEBPACK_IMPORTED_MODULE_3__.copyObj)(style);\n\n      _popoverStyle['opacity'] = 1;\n      var popoverTop = 0;\n      var popoverLeft = 0;\n      var popoverWidth = popover.scrollWidth;\n      var popoverHeight = popover.scrollHeight; // Anchor\n      // ------------------------------------------------\n      // Vertical\n      // -\n\n      if (anchorOriginVertical == 'top') {\n        popoverTop = anchorEl.offsetTop;\n      }\n\n      if (anchorOriginVertical == 'center') {\n        popoverTop = anchorEl.offsetTop + anchorEl.scrollHeight / 2;\n      }\n\n      if (anchorOriginVertical == 'bottom') {\n        popoverTop = anchorEl.offsetTop + anchorEl.scrollHeight;\n      } // Horizontal\n      // -\n\n\n      if (anchorOriginHorizontal == 'left') {\n        popoverLeft = anchorEl.offsetLeft;\n      }\n\n      if (anchorOriginHorizontal == 'center') {\n        popoverLeft = anchorEl.offsetLeft + anchorEl.scrollWidth / 2;\n      }\n\n      if (anchorOriginHorizontal == 'right') {\n        popoverLeft = anchorEl.offsetLeft + anchorEl.scrollWidth;\n      } // Origin\n      // ------------------------------------------------\n      // Vertical\n      // -\n\n\n      if (transformOriginVertical == 'top') {\n        _popoverStyle['top'] = popoverTop;\n      }\n\n      if (transformOriginVertical == 'center') {\n        _popoverStyle['top'] = popoverTop - popoverHeight / 2;\n      }\n\n      if (transformOriginVertical == 'bottom') {\n        _popoverStyle['top'] = popoverTop - popoverHeight;\n      } // Horizontal\n      // -\n\n\n      if (transformOriginHorizontal == 'left') {\n        _popoverStyle['left'] = popoverLeft;\n      }\n\n      if (transformOriginHorizontal == 'center') {\n        _popoverStyle['left'] = popoverLeft - popoverWidth / 2;\n      }\n\n      if (transformOriginHorizontal == 'right') {\n        _popoverStyle['left'] = popoverLeft - popoverWidth;\n      } // Overflow prevent\n      // -\n\n\n      _popoverStyle['top'] = Math.max(_popoverStyle['top'], 0);\n\n      if (anchorEl.offsetTop + popoverHeight > window.innerHeight) {\n        _popoverStyle['top'] = window.innerHeight - popoverHeight;\n      }\n\n      _popoverStyle['left'] = Math.max(_popoverStyle['left'], 0);\n\n      if (anchorEl.offsetLeft + popoverWidth > window.innerWidth) {\n        _popoverStyle['left'] = window.innerWidth - popoverWidth;\n      } // -\n\n\n      setStyle(_popoverStyle);\n    }\n  }, [open]); // Render\n  // ==================================================================================================\n\n  var popoverContent = null;\n\n  if (open) {\n    var content = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(\"div\", {\n      className: \"nx-popover-overlay\",\n      onClick: function onClick() {\n        return onClose();\n      }\n    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(\"div\", {\n      id: id,\n      className: \"nx-popover\",\n      style: style\n    }, children));\n    popoverContent = /*#__PURE__*/react_dom__WEBPACK_IMPORTED_MODULE_1__.createPortal(content, document.getElementById(\"portal-\".concat(id)));\n  }\n\n  return popoverContent;\n};\n\n//# sourceURL=webpack://nexorium/../../nexus/react/ui/popover/Popover.jsx?");
+
+/***/ }),
+
+/***/ "../../nexus/react/ui/snackbar/Snackbar.jsx":
+/*!**************************************************!*\
+  !*** ../../nexus/react/ui/snackbar/Snackbar.jsx ***!
+  \**************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"SnackbarStore\": () => (/* binding */ SnackbarStore),\n/* harmony export */   \"Snackbar\": () => (/* binding */ Snackbar)\n/* harmony export */ });\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"../../nexus/react/node_modules/react/index.js\");\n/* harmony import */ var react_dom_server__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom/server */ \"../../nexus/react/node_modules/react-dom/server.browser.js\");\n/* harmony import */ var mobx_state_tree__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! mobx-state-tree */ \"../../nexus/react/node_modules/mobx-state-tree/dist/mobx-state-tree.module.js\");\n/* harmony import */ var mobx_react_lite__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! mobx-react-lite */ \"../../nexus/react/node_modules/mobx-react-lite/es/index.js\");\n/* harmony import */ var clsx__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! clsx */ \"../../nexus/react/node_modules/clsx/dist/clsx.m.js\");\n/* harmony import */ var nexus_ui_Styles__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! nexus/ui/Styles */ \"../../nexus/react/ui/Styles.jsx\");\n/* harmony import */ var nexus_ui_avatar_Avatar__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! nexus/ui/avatar/Avatar */ \"../../nexus/react/ui/avatar/Avatar.jsx\");\n/* harmony import */ var nexus_ui_icon_Icon__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! nexus/ui/icon/Icon */ \"../../nexus/react/ui/icon/Icon.jsx\");\n/* harmony import */ var nexus_ui_button_Button__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! nexus/ui/button/Button */ \"../../nexus/react/ui/button/Button.jsx\");\n/* harmony import */ var _Snackbar_css__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./Snackbar.css */ \"../../nexus/react/ui/snackbar/Snackbar.css\");\n/* harmony import */ var _Snackbar_css__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(_Snackbar_css__WEBPACK_IMPORTED_MODULE_8__);\n\n\n\n\n\n\n\n\n\n // Models\n// ----------------------------------------------------------------------------------------------------------------------------\n\nvar TAG_SnackbarStore = function TAG_SnackbarStore() {};\n\nvar SnackbarStore = mobx_state_tree__WEBPACK_IMPORTED_MODULE_9__.types.model({\n  open: false,\n  msg: '',\n  severity: 'default',\n  action: mobx_state_tree__WEBPACK_IMPORTED_MODULE_9__.types.frozen(null),\n  callbackExit: mobx_state_tree__WEBPACK_IMPORTED_MODULE_9__.types.frozen(null)\n}).actions(function (self) {\n  return {\n    update: function update(open, msg, severity, action, callbackExit) {\n      // Mise à jour de la snackbar en fonction des paramètres\n      // ---\n      if (msg) {\n        if (typeof msg != 'string') {\n          try {\n            msg = react_dom_server__WEBPACK_IMPORTED_MODULE_1__.renderToStaticMarkup(msg);\n          } catch (ex) {}\n        }\n      } else {\n        msg = '';\n      }\n\n      self.open = open;\n      self.msg = msg ? msg : self.msg;\n      self.severity = severity ? severity : self.severity;\n      self.action = action ? action : self.action;\n      self.callbackExit = callbackExit ? callbackExit : self.callbackExit;\n    },\n    close: function close() {\n      self.update(false);\n    }\n  };\n}); // Functions Components ReactJS\n// ----------------------------------------------------------------------------------------------------------------------------\n// ***** Snackbar *****\n// ********************\n\nvar TAG_Snackbar = function TAG_Snackbar() {};\n\nvar Snackbar = (0,mobx_react_lite__WEBPACK_IMPORTED_MODULE_2__.observer)(function (props) {\n  var store = react__WEBPACK_IMPORTED_MODULE_0__.useContext(window.storeContext);\n  var app = store.app;\n  var snackbar = app.snackbar; // From ... store\n\n  var open = snackbar.open;\n  var msg = snackbar.msg;\n  var severity = snackbar.severity;\n  var action = snackbar.action;\n  var callbackExit = snackbar.callbackExit; // ...\n\n  react__WEBPACK_IMPORTED_MODULE_0__.useEffect(function () {\n    if (open) {\n      document.body.addEventListener('click', handleCloseClick, true);\n    }\n  }, [open]); // ...\n\n  var style = {}; // Evènements\n  // ==================================================================================================\n\n  var handleCloseClick = function handleCloseClick() {\n    snackbar.close();\n    document.body.removeEventListener('click', handleCloseClick, true);\n  }; // Render\n  // ==================================================================================================\n\n\n  var snackbarContent = null;\n\n  if (open) {\n    var severityDef = nexus_ui_Styles__WEBPACK_IMPORTED_MODULE_4__.SEVERITIES.getDef(severity);\n    style['backgroundColor'] = severityDef.contrasted;\n    snackbarContent = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(\"div\", {\n      className: \"nx-snackbar\",\n      style: style\n    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(nexus_ui_avatar_Avatar__WEBPACK_IMPORTED_MODULE_5__.Avatar, {\n      color: \"transparent\",\n      size: \"small\"\n    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(nexus_ui_icon_Icon__WEBPACK_IMPORTED_MODULE_6__.Icon, {\n      name: severityDef.icon_name,\n      color: \"white\"\n    })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(\"div\", {\n      className: \"nx-snackbar-msg\",\n      dangerouslySetInnerHTML: {\n        __html: msg\n      }\n    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(nexus_ui_button_Button__WEBPACK_IMPORTED_MODULE_7__.IconButton, {\n      onClick: function onClick() {\n        return handleCloseClick();\n      }\n    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(nexus_ui_icon_Icon__WEBPACK_IMPORTED_MODULE_6__.Icon, {\n      name: \"close\",\n      color: \"white\"\n    })));\n  }\n\n  return snackbarContent;\n});\n\n//# sourceURL=webpack://nexorium/../../nexus/react/ui/snackbar/Snackbar.jsx?");
+
+/***/ }),
+
+/***/ "../../nexus/react/ui/theme/Theme.jsx":
+/*!********************************************!*\
+  !*** ../../nexus/react/ui/theme/Theme.jsx ***!
+  \********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"ColorStore\": () => (/* binding */ ColorStore),\n/* harmony export */   \"PaletteStore\": () => (/* binding */ PaletteStore),\n/* harmony export */   \"ThemeStore\": () => (/* binding */ ThemeStore)\n/* harmony export */ });\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"../../nexus/react/node_modules/react/index.js\");\n/* harmony import */ var mobx_state_tree__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! mobx-state-tree */ \"../../nexus/react/node_modules/mobx-state-tree/dist/mobx-state-tree.module.js\");\n/* harmony import */ var mobx_react_lite__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! mobx-react-lite */ \"../../nexus/react/node_modules/mobx-react-lite/es/index.js\");\n/* harmony import */ var clsx__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! clsx */ \"../../nexus/react/node_modules/clsx/dist/clsx.m.js\");\n/* harmony import */ var _Theme_css__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Theme.css */ \"../../nexus/react/ui/theme/Theme.css\");\n/* harmony import */ var _Theme_css__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_Theme_css__WEBPACK_IMPORTED_MODULE_3__);\n\n\n\n\n // Models\n// -------------------------------------------------------------------------------------------------------------\n// ***** ColorStore *****\n// **********************\n\nvar TAG_ColorStore = function TAG_ColorStore() {};\n\nvar ColorStore = mobx_state_tree__WEBPACK_IMPORTED_MODULE_4__.types.model({\n  main: '#FFFFFF',\n  contrastText: '#000'\n}).actions(function (self) {\n  return {\n    setField: function setField(field, value) {\n      self[field] = value;\n    } // -\n\n  };\n}); // ***** PaletteStore *****\n// ************************\n\nvar TAG_PaletteStore = function TAG_PaletteStore() {};\n\nvar PaletteStore = mobx_state_tree__WEBPACK_IMPORTED_MODULE_4__.types.model({\n  \"default\": mobx_state_tree__WEBPACK_IMPORTED_MODULE_4__.types.optional(ColorStore, {}),\n  primary: mobx_state_tree__WEBPACK_IMPORTED_MODULE_4__.types.optional(ColorStore, {}),\n  secondary: mobx_state_tree__WEBPACK_IMPORTED_MODULE_4__.types.optional(ColorStore, {})\n}).actions(function (self) {\n  return {\n    setField: function setField(field, value) {\n      self[field] = value;\n    } // -\n\n  };\n}); // ***** ThemeStore *****\n// **********************\n\nvar TAG_ThemeStore = function TAG_ThemeStore() {};\n\nvar ThemeStore = mobx_state_tree__WEBPACK_IMPORTED_MODULE_4__.types.model({\n  variant: 'light',\n  // light, dark\n  palette: mobx_state_tree__WEBPACK_IMPORTED_MODULE_4__.types.optional(PaletteStore, {})\n}).actions(function (self) {\n  return {\n    setField: function setField(field, value) {\n      self[field] = value;\n    },\n    // -\n    update: function update(raw) {}\n  };\n});\n\n//# sourceURL=webpack://nexorium/../../nexus/react/ui/theme/Theme.jsx?");
+
+/***/ }),
+
+/***/ "../../nexus/react/utils/Colors.jsx":
+/*!******************************************!*\
+  !*** ../../nexus/react/utils/Colors.jsx ***!
+  \******************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"hexToRgbA\": () => (/* binding */ hexToRgbA)\n/* harmony export */ });\n// Functions\n// -------------------------------------------------------------------------------------------------------------\nvar hexToRgbA = function hexToRgbA(hex, opacity) {\n  opacity = opacity != undefined ? opacity : 1;\n  var c;\n\n  if (/^#([A-Fa-f0-9]{3}){1,2}$/.test(hex)) {\n    c = hex.substring(1).split('');\n\n    if (c.length == 3) {\n      c = [c[0], c[0], c[1], c[1], c[2], c[2]];\n    }\n\n    c = '0x' + c.join('');\n    return 'rgba(' + [c >> 16 & 255, c >> 8 & 255, c & 255].join(',') + ',' + opacity + ')';\n  }\n\n  throw new Error('Bad Hex');\n};\n\n//# sourceURL=webpack://nexorium/../../nexus/react/utils/Colors.jsx?");
+
+/***/ }),
+
+/***/ "../../nexus/react/utils/Datas.jsx":
+/*!*****************************************!*\
+  !*** ../../nexus/react/utils/Datas.jsx ***!
+  \*****************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"ileDeFrance\": () => (/* binding */ ileDeFrance),\n/* harmony export */   \"uuid\": () => (/* binding */ uuid),\n/* harmony export */   \"copyObj\": () => (/* binding */ copyObj),\n/* harmony export */   \"encodeBase64\": () => (/* binding */ encodeBase64),\n/* harmony export */   \"decodeBase64\": () => (/* binding */ decodeBase64),\n/* harmony export */   \"extendArray\": () => (/* binding */ extendArray),\n/* harmony export */   \"sortObjects\": () => (/* binding */ sortObjects),\n/* harmony export */   \"applyValue\": () => (/* binding */ applyValue),\n/* harmony export */   \"convertToJSONPath\": () => (/* binding */ convertToJSONPath)\n/* harmony export */ });\nfunction _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== \"undefined\" && o[Symbol.iterator] || o[\"@@iterator\"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === \"number\") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError(\"Invalid attempt to iterate non-iterable instance.\\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.\"); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it[\"return\"] != null) it[\"return\"](); } finally { if (didErr) throw err; } } }; }\n\nfunction _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === \"string\") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === \"Object\" && o.constructor) n = o.constructor.name; if (n === \"Map\" || n === \"Set\") return Array.from(o); if (n === \"Arguments\" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }\n\nfunction _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }\n\n// Datas\n// -------------------------------------------------------------------------------------------------------------\nvar ileDeFrance = ['75', '77', '78', '91', '92', '93', '94', '95']; // Functions\n// -------------------------------------------------------------------------------------------------------------\n\nfunction uuid() {\n  // Collision free V4 UUIDS\n  // ---\n  var tmp,\n      buf = new Uint8Array(16);\n\n  try {\n    window.crypto.getRandomValues(buf);\n  } catch (e) {\n    // IE Stuff (testé avec IE11)\n    var crypto = window.msCrypto;\n    crypto.getRandomValues(buf);\n  }\n\n  buf[6] = buf[6] & 0x0f | 0x40;\n  buf[8] = buf[8] & 0x3f | 0x80;\n  var ret = '';\n\n  for (var idx = 0; idx < 16; idx++) {\n    tmp = buf[idx].toString(16);\n\n    if (tmp.length == 1) {\n      ret += '0' + tmp;\n    } else {\n      ret += tmp;\n    }\n  }\n\n  return ret;\n}\nfunction copyObj(srcObj) {\n  // Recopie d'objet passé en paramètres\n  // ---\n  var copy = JSON.parse(JSON.stringify(srcObj));\n  return copy;\n}\nfunction encodeBase64(str) {\n  var buff = new Buffer(str);\n  var base64data = buff.toString('base64');\n  return base64data;\n}\nfunction decodeBase64(str) {\n  var buff = new Buffer(str, 'base64');\n  var decodedData = buff.toString('ascii');\n  return decodedData;\n}\nfunction extendArray(array_dest, array_src, get_a_new_one) {\n  // Ajoute les éléments d'une liste dans une autre liste\n  // ---\n  if (get_a_new_one == true) {\n    var new_array = copyObj(array_dest);\n  } else {\n    var new_array = array_dest;\n  }\n\n  for (var idx_item in array_src) {\n    new_array.push(array_src[idx_item]);\n  }\n\n  return new_array;\n}\nfunction sortObjects(objects, sortField, sortDirection) {\n  sortDirection = sortDirection ? sortDirection : 'asc'; // Tri croissant\n\n  if (sortDirection == 'asc') {\n    objects.sort(function (a, b) {\n      if (a[sortField] > b[sortField]) return 1;\n      if (a[sortField] < b[sortField]) return -1;\n      return 0;\n    });\n  } // Tri décroissant\n\n\n  if (sortDirection == 'desc') {\n    objects.sort(function (a, b) {\n      if (a[sortField] < b[sortField]) return 1;\n      if (a[sortField] > b[sortField]) return -1;\n      return 0;\n    });\n  }\n\n  return objects;\n}\nvar applyValue = function applyValue(node, path, value) {\n  // Enregistrement d'une valeur à partir d'un objet et d'un chemin\n  // ---\n  var saveTarget = node;\n\n  for (var idx_path in path) {\n    var target = path[idx_path];\n\n    if (idx_path == path.length - 1) {\n      saveTarget[target] = value;\n    } else {\n      if (!saveTarget.hasOwnProperty(target)) {\n        saveTarget[target] = {};\n      }\n\n      saveTarget = saveTarget[target];\n    }\n  }\n};\nvar convertToJSONPath = function convertToJSONPath(path) {\n  // Convertion d'un chemin sous forme de liste en JSON Path pour mobx-state-tree\n  // ---\n  // https://mobx-state-tree.js.org/API/#applypatch\n  // http://jsonpatch.com\n  var jsonPath = '';\n\n  var _iterator = _createForOfIteratorHelper(path),\n      _step;\n\n  try {\n    for (_iterator.s(); !(_step = _iterator.n()).done;) {\n      var pathItem = _step.value;\n      jsonPath = \"\".concat(jsonPath, \"/\").concat(pathItem);\n    }\n  } catch (err) {\n    _iterator.e(err);\n  } finally {\n    _iterator.f();\n  }\n\n  return jsonPath;\n};\n\n//# sourceURL=webpack://nexorium/../../nexus/react/utils/Datas.jsx?");
+
+/***/ }),
+
+/***/ "../../nexus/react/utils/DateTools.jsx":
+/*!*********************************************!*\
+  !*** ../../nexus/react/utils/DateTools.jsx ***!
+  \*********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"dateTools\": () => (/* binding */ dateTools)\n/* harmony export */ });\n/* harmony import */ var date_fns__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! date-fns */ \"../../nexus/react/node_modules/date-fns/esm/format/index.js\");\n/* harmony import */ var date_fns__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! date-fns */ \"../../nexus/react/node_modules/date-fns/esm/addDays/index.js\");\n/* harmony import */ var date_fns__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! date-fns */ \"../../nexus/react/node_modules/date-fns/esm/subDays/index.js\");\n/* harmony import */ var _Datas__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Datas */ \"../../nexus/react/utils/Datas.jsx\");\n\n // Objects\n// --------------------------------------------------------------------------------------------------------------------------------------------\n// ***** dateTools *****\n// *********************\n\nvar dateTools = {\n  // Conversions\n  // -\n  fromDateToHumanized: function fromDateToHumanized(date) {\n    // Date() ou AAAA-MM-JJ -> JJ/MM/AAAA\n    // ---\n    if (typeof date == 'string') {\n      if (date.search('/') > -1) {\n        return date;\n      }\n\n      date = new Date(date);\n    }\n\n    if (date == undefined) {\n      date = new Date();\n    }\n\n    var d = date.getDate();\n    var m = date.getMonth() + 1;\n    var y = date.getFullYear();\n    d = d.toString();\n    m = m.toString();\n    y = y.toString();\n    d = d.length == 1 ? '0' + d : d;\n    m = m.length == 1 ? '0' + m : m;\n    return d + '/' + m + '/' + y;\n  },\n  fromTimeToHumanized: function fromTimeToHumanized(date) {\n    // Date() -> HH:MM\n    // ---\n    if (date == undefined) {\n      date = new Date();\n    }\n\n    var hh = date.getHours();\n    var mm = date.getMinutes();\n    hh = hh.toString();\n    mm = mm.toString();\n    hh = hh.length == 1 ? '0' + hh : hh;\n    mm = mm.length == 1 ? '0' + mm : mm;\n    return hh + ':' + mm;\n  },\n  fromHumanizedToISO: function fromHumanizedToISO(humanizedDate) {\n    // JJ/MM/AAAA -> AAAA-MM-JJ\n    // ---\n    var isoDate = humanizedDate;\n    var parts = humanizedDate.split('/');\n\n    if (parts.length > 1) {\n      isoDate = \"\".concat(parts[2], \"-\").concat(parts[1], \"-\").concat(parts[0]);\n    }\n\n    return isoDate;\n  },\n  fromISOToDate: function fromISOToDate(strISO) {\n    // AAAA-MM-JJ ou HH:MM -> Date()\n    // ---\n    var newDate = null;\n\n    if (strISO) {\n      var rez = new Date(strISO);\n\n      if (rez != 'Invalid Date') {\n        newDate = rez;\n      }\n\n      if (strISO.length == 5 && newDate == null) {\n        var parts = strISO.split(':');\n\n        if (parts.length > 1) {\n          rez = new Date();\n          rez.setHours(parts[0]);\n          rez.setMinutes(parts[1]);\n          newDate = rez;\n        }\n      }\n    }\n\n    return newDate;\n  },\n  fromISOToTime: function fromISOToTime(time_iso) {\n    // HH:MM -> Date()\n    // ---\n    var hours_iso_parts = (0,_Datas__WEBPACK_IMPORTED_MODULE_0__.copyObj)(time_iso).split(':');\n\n    if (hours_iso_parts.length > 1) {\n      var date_holder = new Date();\n      date_holder.setHours(parseInt(hours_iso_parts[0]));\n      date_holder.setMinutes(parseInt(hours_iso_parts[1]));\n      date_holder.setSeconds(0);\n      return date_holder;\n    }\n\n    return null;\n  },\n  fromDateToISO: function fromDateToISO(date, missing) {\n    // Date() -> AAAA-MM-JJ\n    // ---\n    missing = missing != undefined ? missing : null;\n\n    if (date) {\n      try {\n        var rez = (0,date_fns__WEBPACK_IMPORTED_MODULE_1__.default)(date, \"yyyy-MM-dd\");\n        return rez != null ? rez : missing;\n      } catch (err) {}\n    }\n\n    return missing;\n  },\n  fromTimeToISO: function fromTimeToISO(date, missing) {\n    // Date() -> HH:MM\n    // ---\n    missing = missing != undefined ? missing : null;\n\n    if (date) {\n      try {\n        var rez = (0,date_fns__WEBPACK_IMPORTED_MODULE_1__.default)(date, \"HH:mm\");\n        return rez != null ? rez : missing;\n      } catch (err) {}\n    }\n\n    return missing;\n  },\n  // Operations\n  // -\n  // addTime: function(hours_iso, to_add, what_to_add) {\n  // \tvar self = this;\n  // \tif (!hours_iso) { return null; }\n  // \tvar date_holder = self.fromTimeToISO(hours_iso);\n  // \tif (date_holder && to_add && what_to_add) {\n  // \t\tvar date_holder = moment(date_holder).add(to_add, what_to_add).toDate();\n  // \t\treturn self.formatTime(date_holder);\n  // \t} else {\n  // \t\treturn hours_iso;\n  // \t}\n  // },\n  // substractTime: function(hours_iso, to_substract, what_to_substract) {\n  // \tvar self = this;\n  // \tif (!hours_iso) { return null; }\n  // \tvar date_holder = self.fromTimeToISO(hours_iso);\n  // \tif (date_holder && to_substract && what_to_substract) {\n  // \t\tvar date_holder = moment(date_holder).subtract(to_substract, what_to_substract).toDate();\n  // \t\treturn self.formatTime(date_holder);\n  // \t} else {\n  // \t\treturn hours_iso;\n  // \t}\n  // },\n  addDuration: function addDuration(hours_iso, hours_to_add) {\n    var self = this;\n\n    if (!hours_iso) {\n      return null;\n    }\n\n    if (hours_to_add) {\n      var hours = parseInt(hours_to_add.split(':')[0]);\n      var minutes = parseInt(hours_to_add.split(':')[1]);\n      hours_iso = self.addTime(hours_iso, hours, 'h');\n      hours_iso = self.addTime(hours_iso, minutes, 'm');\n    }\n\n    return hours_iso;\n  },\n  timeToMinutes: function timeToMinutes(time_iso) {\n    // HH:MM -> x minutes\n    // ---\n    var self = this;\n    var minutes_total = 0;\n\n    if (time_iso) {\n      minutes_total += parseInt(time_iso.split(':')[0]) * 60;\n      minutes_total += parseInt(time_iso.split(':')[1]);\n    }\n\n    return minutes_total;\n  },\n  minutesToTime: function minutesToTime(minutes) {\n    // x minutes -> HH:MM\n    // ---\n    var self = this;\n    var minutes = minutes ? minutes : 0;\n    var hh = minutes / 60 | 0;\n    var mm = minutes % 60 | 0;\n    hh = hh.toString();\n    mm = mm.toString();\n    hh = hh.length == 1 ? '0' + hh : hh;\n    mm = mm.length == 1 ? '0' + mm : mm;\n    return hh + ':' + mm;\n  },\n  do_hourify: function do_hourify(value) {\n    // str -> HH:MM\n    // ---\n    var value_hourified = '';\n    var hh_exp = /^(\\d{1,2})\\D*?$/;\n    var dt_exp = /^(\\d{1,2})\\D*(\\d{1,2})\\D*?$/;\n    if (hh_exp.exec(value)) value += ' 00';\n    var parts = dt_exp.exec(value);\n\n    if (parts && parts.length == 3) {\n      var hh = parseInt(parts[1], 10),\n          mm = parseInt(parts[2], 10);\n\n      if (0 <= hh <= 23 && 0 <= mm <= 59) {\n        value_hourified = '%02d:%02d'.format(hh, mm);\n      }\n    }\n\n    return value_hourified;\n  },\n  // Getters\n  // -\n  getNextDay: function getNextDay(date) {\n    var nextDay = (0,date_fns__WEBPACK_IMPORTED_MODULE_2__.default)(this.fromISOToDate(date), 1);\n    var nextDayIso = (0,date_fns__WEBPACK_IMPORTED_MODULE_1__.default)(nextDay, \"yyyy-MM-dd\");\n    return nextDayIso;\n  },\n  getPreviousDay: function getPreviousDay(date) {\n    var previousDay = (0,date_fns__WEBPACK_IMPORTED_MODULE_3__.default)(this.fromISOToDate(date), 1);\n    var previousDayIso = (0,date_fns__WEBPACK_IMPORTED_MODULE_1__.default)(previousDay, \"yyyy-MM-dd\");\n    return previousDayIso;\n  },\n  getWeekKey: function getWeekKey(dateIso) {\n    // AAAA-MM-JJ -> AAAA-WW\n    // ---\n    var weekKey = '';\n    var date = dateTools.fromISOToDate(dateIso);\n\n    if (date) {\n      weekKey = date.getWeekYear() + '-' + date.getWeekStr();\n    }\n\n    return weekKey;\n  },\n  getTodayIso: function getTodayIso() {\n    // Now -> AAAA-MM-JJ\n    // ---\n    var now = new Date();\n    return now.toISOString().substring(0, 10);\n  }\n};\n\n//# sourceURL=webpack://nexorium/../../nexus/react/utils/DateTools.jsx?");
+
+/***/ }),
+
+/***/ "../../nexus/react/utils/Helpers.jsx":
+/*!*******************************************!*\
+  !*** ../../nexus/react/utils/Helpers.jsx ***!
+  \*******************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"isTrue\": () => (/* binding */ isTrue),\n/* harmony export */   \"initWeekFunctions\": () => (/* binding */ initWeekFunctions),\n/* harmony export */   \"initTrimFunction\": () => (/* binding */ initTrimFunction)\n/* harmony export */ });\n// Functions\n// =============================================================================================================\nfunction isTrue(value) {\n  if ([\"true\", \"yes\", \"1\", \"t\", \"on\"].indexOf(value.toLowerCase()) > -1) {\n    return true;\n  }\n\n  return false;\n}\nfunction initWeekFunctions() {\n  // Improving javascript Date object\n  // ---\n  Date.prototype.getWeek = function () {\n    // Create a copy of this date object\n    var target = new Date(this.valueOf()); // ISO week date weeks start on monday\n    // so correct the day number\n\n    var dayNr = (this.getDay() + 6) % 7; // ISO 8601 states that week 1 is the week\n    // with the first thursday of that year.\n    // Set the target date to the thursday in the target week\n\n    target.setDate(target.getDate() - dayNr + 3); // Store the millisecond value of the target date\n\n    var firstThursday = target.valueOf(); // Set the target to the first thursday of the year\n    // First set the target to january first\n\n    target.setMonth(0, 1); // Not a thursday? Correct the date to the next thursday\n\n    if (target.getDay() != 4) {\n      target.setMonth(0, 1 + (4 - target.getDay() + 7) % 7);\n    } // The weeknumber is the number of weeks between the\n    // first thursday of the year and the thursday in the target week\n\n\n    return 1 + Math.ceil((firstThursday - target) / 604800000); // 604800000 = 7 * 24 * 3600 * 1000\n  };\n\n  Date.prototype.getWeekStr = function () {\n    var target = new Date(this.valueOf());\n    var week_str = target.getWeek().toString();\n\n    if (week_str.length == 1) {\n      week_str = '0' + week_str;\n    }\n\n    return week_str;\n  };\n\n  Date.prototype.getWeekYear = function () {\n    // Create a new date object for the thursday of this week\n    var target = new Date(this.valueOf());\n    target.setDate(target.getDate() - (this.getDay() + 6) % 7 + 3);\n    return target.getFullYear();\n  };\n}\nfunction initTrimFunction() {\n  // Improving javascript String object\n  // ---\n  if (typeof String.prototype.trim === \"undefined\") {\n    String.prototype.trim = function () {\n      return String(this).replace(/^\\s+|\\s+$/g, '');\n    };\n  }\n}\n\n//# sourceURL=webpack://nexorium/../../nexus/react/utils/Helpers.jsx?");
+
+/***/ }),
+
+/***/ "../../nexus/react/utils/Responsive.jsx":
+/*!**********************************************!*\
+  !*** ../../nexus/react/utils/Responsive.jsx ***!
+  \**********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"detectMobile\": () => (/* binding */ detectMobile),\n/* harmony export */   \"isNodeVisible\": () => (/* binding */ isNodeVisible)\n/* harmony export */ });\nvar MobileDetect = __webpack_require__(/*! mobile-detect */ \"../../nexus/react/node_modules/mobile-detect/mobile-detect.js\"); // Functions\n// ========================================================================================================================\n\n\nfunction detectMobile() {\n  // Mobile or desktop ?\n  // ---\n  var width = window.innerWidth;\n  var breakPoint650 = width <= 650 ? true : false;\n  var breakPoint414 = width <= 414 ? true : false;\n  var breakPoint375 = width <= 375 ? true : false;\n  var breakPoint320 = width <= 320 ? true : false;\n  var isMobile = false;\n  var isDesktop = true;\n  var md = new MobileDetect(window.navigator.userAgent);\n\n  if (md.mobile() != null && md.mobile() != '') {\n    isMobile = true;\n    isDesktop = false;\n  }\n\n  return {\n    isMobile: isMobile,\n    isDesktop: isDesktop,\n    breakPoint650: breakPoint650,\n    breakPoint414: breakPoint414,\n    breakPoint375: breakPoint375,\n    breakPoint320: breakPoint320\n  };\n}\nvar isNodeVisible = function isNodeVisible(nodeId) {\n  // Is DOM node visible on screen?\n  // ---\n  var node = $(\"#\".concat(nodeId));\n\n  if (node) {\n    try {\n      var nodeTop = node.offset().top;\n      var nodeBottom = node.offset().top + node.outerHeight();\n      var screenTop = $(window).scrollTop();\n      var screenBottom = $(window).scrollTop() + window.innerHeight;\n\n      if (screenBottom > nodeTop && screenTop < nodeBottom) {\n        return true;\n      }\n    } catch (err) {}\n  }\n\n  return false;\n};\n\n//# sourceURL=webpack://nexorium/../../nexus/react/utils/Responsive.jsx?");
+
+/***/ }),
+
+/***/ "../../nexus/react/utils/Storage.jsx":
+/*!*******************************************!*\
+  !*** ../../nexus/react/utils/Storage.jsx ***!
+  \*******************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"getFromCookies\": () => (/* binding */ getFromCookies),\n/* harmony export */   \"getFromStorage\": () => (/* binding */ getFromStorage),\n/* harmony export */   \"setToStorage\": () => (/* binding */ setToStorage),\n/* harmony export */   \"removeFromStorage\": () => (/* binding */ removeFromStorage)\n/* harmony export */ });\n/* harmony import */ var nexus_utils_Helpers__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! nexus/utils/Helpers */ \"../../nexus/react/utils/Helpers.jsx\");\nfunction _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== \"undefined\" && o[Symbol.iterator] || o[\"@@iterator\"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === \"number\") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError(\"Invalid attempt to iterate non-iterable instance.\\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.\"); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it[\"return\"] != null) it[\"return\"](); } finally { if (didErr) throw err; } } }; }\n\nfunction _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === \"string\") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === \"Object\" && o.constructor) n = o.constructor.name; if (n === \"Map\" || n === \"Set\") return Array.from(o); if (n === \"Arguments\" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }\n\nfunction _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }\n\n // Functions\n// =============================================================================================================\n\nfunction getFromCookies(field) {\n  // Retrieve a value from browser cookies\n  // ---\n  var cookie = document.cookie;\n  var cookies = cookie.split(' ');\n\n  var _iterator = _createForOfIteratorHelper(cookies),\n      _step;\n\n  try {\n    for (_iterator.s(); !(_step = _iterator.n()).done;) {\n      var cookieRaw = _step.value;\n      var cookieKey = cookieRaw.split('=')[0];\n      var cookieValue = cookieRaw.split('=')[1];\n\n      if (cookieKey == field) {\n        return cookieValue;\n        break;\n      }\n    }\n  } catch (err) {\n    _iterator.e(err);\n  } finally {\n    _iterator.f();\n  }\n\n  return '';\n}\nfunction getFromStorage(field, defaultValue, valueType, storage) {\n  // Get a value from localstorage / sessionstorage\n  // ---\n  storage = storage ? storage : localStorage;\n  var value = storage.getItem(field);\n\n  if (!value) {\n    value = defaultValue;\n  } else {\n    if (valueType == 'json') {\n      value = JSON.parse(value);\n    }\n\n    if (valueType == 'bool') {\n      value = (0,nexus_utils_Helpers__WEBPACK_IMPORTED_MODULE_0__.isTrue)(value);\n    }\n\n    if (valueType == 'int') {\n      value = parseInt(value);\n    }\n\n    if (valueType == 'date') {\n      value = new Date(value);\n    }\n  }\n\n  if (value == 'null') {\n    value = null;\n  }\n\n  return value;\n}\nfunction setToStorage(field, value, valueType, storage) {\n  // Set a value in localstorage / sessionstorage\n  // ---\n  storage = storage ? storage : localStorage;\n\n  if (valueType == 'json') {\n    value = JSON.stringify(value);\n  }\n\n  if (valueType == 'date') {\n    value = value.toISOString();\n  }\n\n  storage.setItem(field, value);\n}\nfunction removeFromStorage(field, storage) {\n  // Remove an entry from localstorage / sessionstorage\n  // ---\n  storage = storage ? storage : localStorage;\n\n  try {\n    localStorage.removeItem(field);\n  } catch (err) {}\n}\n\n//# sourceURL=webpack://nexorium/../../nexus/react/utils/Storage.jsx?");
+
+/***/ }),
+
+/***/ "../../nexus/react/utils/URL.jsx":
+/*!***************************************!*\
+  !*** ../../nexus/react/utils/URL.jsx ***!
+  \***************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"getUrlParams\": () => (/* binding */ getUrlParams),\n/* harmony export */   \"matchUrl\": () => (/* binding */ matchUrl)\n/* harmony export */ });\n// Functions\n// =============================================================================================================\nfunction getUrlParams() {\n  // Getting URL parameters\n  // ---\n  var vars = {},\n      hash;\n  var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');\n\n  for (var i = 0; i < hashes.length; i++) {\n    hash = hashes[i].split('=');\n    var value = '';\n\n    for (var hash_part_idx in hash) {\n      if (hash_part_idx == 0) {\n        continue;\n      }\n\n      var hash_part = hash[hash_part_idx];\n      hash_part = hash_part == \"\" ? \"=\" : hash_part;\n      value = value + hash_part;\n    }\n\n    vars[hash[0]] = value;\n  }\n\n  ;\n  return vars;\n}\nfunction matchUrl(routes, url) {\n  // Routes <-> URL matching\n  // ---\n  // -> https://www.npmjs.com/package/route-node\n  var matched = {\n    context: '404',\n    params: {}\n  };\n  var matchResult = routes.matchPath(url);\n\n  if (matchResult) {\n    // Context\n    var context = matchResult.name.split(':')[0];\n    context = context.split('.')[0];\n    context = context.split('-')[0];\n    context = context.split('#')[0];\n    context = context.split('$')[0];\n    matched['context'] = context; // Parameters\n\n    if (matchResult.params) {\n      matched['params'] = matchResult.params;\n    }\n  } else {\n    // Some URL don't match properly with route-node\n    var urlParts = url.split('/'); // Hack :: login\n\n    if (url.search('connexion') > -1) {\n      matched['context'] = 'login';\n      matched['params'] = {\n        urlKey: urlParts[2]\n      };\n    } // Hack :: forbidden\n\n\n    if (url.search('forbidden') > -1) {\n      matched['context'] = 'forbidden';\n      matched['params'] = {\n        urlKey: urlParts[2]\n      };\n    }\n  }\n\n  return matched;\n}\n\n//# sourceURL=webpack://nexorium/../../nexus/react/utils/URL.jsx?");
+
+/***/ }),
+
+/***/ "./Main.css":
+/*!******************!*\
+  !*** ./Main.css ***!
+  \******************/
 /***/ (() => {
 
-// extracted by extract-css-chunks-webpack-plugin
+eval("// extracted by extract-css-chunks-webpack-plugin\n    if(false) { var cssReload; }\n  \n\n//# sourceURL=webpack://nexorium/./Main.css?");
+
+/***/ }),
+
+/***/ "./contexts/admin/Admin.css":
+/*!**********************************!*\
+  !*** ./contexts/admin/Admin.css ***!
+  \**********************************/
+/***/ (() => {
+
+eval("// extracted by extract-css-chunks-webpack-plugin\n    if(false) { var cssReload; }\n  \n\n//# sourceURL=webpack://nexorium/./contexts/admin/Admin.css?");
+
+/***/ }),
+
+/***/ "./contexts/blog/Blog.css":
+/*!********************************!*\
+  !*** ./contexts/blog/Blog.css ***!
+  \********************************/
+/***/ (() => {
+
+eval("// extracted by extract-css-chunks-webpack-plugin\n    if(false) { var cssReload; }\n  \n\n//# sourceURL=webpack://nexorium/./contexts/blog/Blog.css?");
+
+/***/ }),
+
+/***/ "./contexts/cv/Cv.css":
+/*!****************************!*\
+  !*** ./contexts/cv/Cv.css ***!
+  \****************************/
+/***/ (() => {
+
+eval("// extracted by extract-css-chunks-webpack-plugin\n    if(false) { var cssReload; }\n  \n\n//# sourceURL=webpack://nexorium/./contexts/cv/Cv.css?");
+
+/***/ }),
+
+/***/ "./contexts/home/Home.css":
+/*!********************************!*\
+  !*** ./contexts/home/Home.css ***!
+  \********************************/
+/***/ (() => {
+
+eval("// extracted by extract-css-chunks-webpack-plugin\n    if(false) { var cssReload; }\n  \n\n//# sourceURL=webpack://nexorium/./contexts/home/Home.css?");
+
+/***/ }),
+
+/***/ "./contexts/playground/Playground.css":
+/*!********************************************!*\
+  !*** ./contexts/playground/Playground.css ***!
+  \********************************************/
+/***/ (() => {
+
+eval("// extracted by extract-css-chunks-webpack-plugin\n    if(false) { var cssReload; }\n  \n\n//# sourceURL=webpack://nexorium/./contexts/playground/Playground.css?");
+
+/***/ }),
+
+/***/ "./contexts/projects/Projects.css":
+/*!****************************************!*\
+  !*** ./contexts/projects/Projects.css ***!
+  \****************************************/
+/***/ (() => {
+
+eval("// extracted by extract-css-chunks-webpack-plugin\n    if(false) { var cssReload; }\n  \n\n//# sourceURL=webpack://nexorium/./contexts/projects/Projects.css?");
+
+/***/ }),
+
+/***/ "./contexts/search/Search.css":
+/*!************************************!*\
+  !*** ./contexts/search/Search.css ***!
+  \************************************/
+/***/ (() => {
+
+eval("// extracted by extract-css-chunks-webpack-plugin\n    if(false) { var cssReload; }\n  \n\n//# sourceURL=webpack://nexorium/./contexts/search/Search.css?");
+
+/***/ }),
+
+/***/ "../../nexus/react/NxApp.css":
+/*!***********************************!*\
+  !*** ../../nexus/react/NxApp.css ***!
+  \***********************************/
+/***/ (() => {
+
+eval("// extracted by extract-css-chunks-webpack-plugin\n    if(false) { var cssReload; }\n  \n\n//# sourceURL=webpack://nexorium/../../nexus/react/NxApp.css?");
+
+/***/ }),
+
+/***/ "../../nexus/react/contexts/about/About.css":
+/*!**************************************************!*\
+  !*** ../../nexus/react/contexts/about/About.css ***!
+  \**************************************************/
+/***/ (() => {
+
+eval("// extracted by extract-css-chunks-webpack-plugin\n    if(false) { var cssReload; }\n  \n\n//# sourceURL=webpack://nexorium/../../nexus/react/contexts/about/About.css?");
+
+/***/ }),
+
+/***/ "../../nexus/react/contexts/account/Account.css":
+/*!******************************************************!*\
+  !*** ../../nexus/react/contexts/account/Account.css ***!
+  \******************************************************/
+/***/ (() => {
+
+eval("// extracted by extract-css-chunks-webpack-plugin\n    if(false) { var cssReload; }\n  \n\n//# sourceURL=webpack://nexorium/../../nexus/react/contexts/account/Account.css?");
+
+/***/ }),
+
+/***/ "../../nexus/react/contexts/admin/Admin.css":
+/*!**************************************************!*\
+  !*** ../../nexus/react/contexts/admin/Admin.css ***!
+  \**************************************************/
+/***/ (() => {
+
+eval("// extracted by extract-css-chunks-webpack-plugin\n    if(false) { var cssReload; }\n  \n\n//# sourceURL=webpack://nexorium/../../nexus/react/contexts/admin/Admin.css?");
+
+/***/ }),
+
+/***/ "../../nexus/react/contexts/auth/Auth.css":
+/*!************************************************!*\
+  !*** ../../nexus/react/contexts/auth/Auth.css ***!
+  \************************************************/
+/***/ (() => {
+
+eval("// extracted by extract-css-chunks-webpack-plugin\n    if(false) { var cssReload; }\n  \n\n//# sourceURL=webpack://nexorium/../../nexus/react/contexts/auth/Auth.css?");
+
+/***/ }),
+
+/***/ "../../nexus/react/contexts/forbidden/Forbidden.css":
+/*!**********************************************************!*\
+  !*** ../../nexus/react/contexts/forbidden/Forbidden.css ***!
+  \**********************************************************/
+/***/ (() => {
+
+eval("// extracted by extract-css-chunks-webpack-plugin\n    if(false) { var cssReload; }\n  \n\n//# sourceURL=webpack://nexorium/../../nexus/react/contexts/forbidden/Forbidden.css?");
+
+/***/ }),
+
+/***/ "../../nexus/react/contexts/home/Home.css":
+/*!************************************************!*\
+  !*** ../../nexus/react/contexts/home/Home.css ***!
+  \************************************************/
+/***/ (() => {
+
+eval("// extracted by extract-css-chunks-webpack-plugin\n    if(false) { var cssReload; }\n  \n\n//# sourceURL=webpack://nexorium/../../nexus/react/contexts/home/Home.css?");
+
+/***/ }),
+
+/***/ "../../nexus/react/contexts/notfound/NotFound.css":
+/*!********************************************************!*\
+  !*** ../../nexus/react/contexts/notfound/NotFound.css ***!
+  \********************************************************/
+/***/ (() => {
+
+eval("// extracted by extract-css-chunks-webpack-plugin\n    if(false) { var cssReload; }\n  \n\n//# sourceURL=webpack://nexorium/../../nexus/react/contexts/notfound/NotFound.css?");
+
+/***/ }),
+
+/***/ "../../nexus/react/forms/field/Field.css":
+/*!***********************************************!*\
+  !*** ../../nexus/react/forms/field/Field.css ***!
+  \***********************************************/
+/***/ (() => {
+
+eval("// extracted by extract-css-chunks-webpack-plugin\n    if(false) { var cssReload; }\n  \n\n//# sourceURL=webpack://nexorium/../../nexus/react/forms/field/Field.css?");
+
+/***/ }),
+
+/***/ "../../nexus/react/forms/heading/Heading.css":
+/*!***************************************************!*\
+  !*** ../../nexus/react/forms/heading/Heading.css ***!
+  \***************************************************/
+/***/ (() => {
+
+eval("// extracted by extract-css-chunks-webpack-plugin\n    if(false) { var cssReload; }\n  \n\n//# sourceURL=webpack://nexorium/../../nexus/react/forms/heading/Heading.css?");
+
+/***/ }),
+
+/***/ "../../nexus/react/forms/indicator/Indicator.css":
+/*!*******************************************************!*\
+  !*** ../../nexus/react/forms/indicator/Indicator.css ***!
+  \*******************************************************/
+/***/ (() => {
+
+eval("// extracted by extract-css-chunks-webpack-plugin\n    if(false) { var cssReload; }\n  \n\n//# sourceURL=webpack://nexorium/../../nexus/react/forms/indicator/Indicator.css?");
+
+/***/ }),
+
+/***/ "../../nexus/react/layout/header/Header.css":
+/*!**************************************************!*\
+  !*** ../../nexus/react/layout/header/Header.css ***!
+  \**************************************************/
+/***/ (() => {
+
+eval("// extracted by extract-css-chunks-webpack-plugin\n    if(false) { var cssReload; }\n  \n\n//# sourceURL=webpack://nexorium/../../nexus/react/layout/header/Header.css?");
+
+/***/ }),
+
+/***/ "../../nexus/react/layout/menu/Menu.css":
+/*!**********************************************!*\
+  !*** ../../nexus/react/layout/menu/Menu.css ***!
+  \**********************************************/
+/***/ (() => {
+
+eval("// extracted by extract-css-chunks-webpack-plugin\n    if(false) { var cssReload; }\n  \n\n//# sourceURL=webpack://nexorium/../../nexus/react/layout/menu/Menu.css?");
+
+/***/ }),
+
+/***/ "../../nexus/react/layout/portal/Portal.css":
+/*!**************************************************!*\
+  !*** ../../nexus/react/layout/portal/Portal.css ***!
+  \**************************************************/
+/***/ (() => {
+
+eval("// extracted by extract-css-chunks-webpack-plugin\n    if(false) { var cssReload; }\n  \n\n//# sourceURL=webpack://nexorium/../../nexus/react/layout/portal/Portal.css?");
+
+/***/ }),
+
+/***/ "../../nexus/react/layout/row/Row.css":
+/*!********************************************!*\
+  !*** ../../nexus/react/layout/row/Row.css ***!
+  \********************************************/
+/***/ (() => {
+
+eval("// extracted by extract-css-chunks-webpack-plugin\n    if(false) { var cssReload; }\n  \n\n//# sourceURL=webpack://nexorium/../../nexus/react/layout/row/Row.css?");
+
+/***/ }),
+
+/***/ "../../nexus/react/layout/section/Section.css":
+/*!****************************************************!*\
+  !*** ../../nexus/react/layout/section/Section.css ***!
+  \****************************************************/
+/***/ (() => {
+
+eval("// extracted by extract-css-chunks-webpack-plugin\n    if(false) { var cssReload; }\n  \n\n//# sourceURL=webpack://nexorium/../../nexus/react/layout/section/Section.css?");
+
+/***/ }),
+
+/***/ "../../nexus/react/ui/avatar/Avatar.css":
+/*!**********************************************!*\
+  !*** ../../nexus/react/ui/avatar/Avatar.css ***!
+  \**********************************************/
+/***/ (() => {
+
+eval("// extracted by extract-css-chunks-webpack-plugin\n    if(false) { var cssReload; }\n  \n\n//# sourceURL=webpack://nexorium/../../nexus/react/ui/avatar/Avatar.css?");
+
+/***/ }),
+
+/***/ "../../nexus/react/ui/button/Button.css":
+/*!**********************************************!*\
+  !*** ../../nexus/react/ui/button/Button.css ***!
+  \**********************************************/
+/***/ (() => {
+
+eval("// extracted by extract-css-chunks-webpack-plugin\n    if(false) { var cssReload; }\n  \n\n//# sourceURL=webpack://nexorium/../../nexus/react/ui/button/Button.css?");
+
+/***/ }),
+
+/***/ "../../nexus/react/ui/divider/Divider.css":
+/*!************************************************!*\
+  !*** ../../nexus/react/ui/divider/Divider.css ***!
+  \************************************************/
+/***/ (() => {
+
+eval("// extracted by extract-css-chunks-webpack-plugin\n    if(false) { var cssReload; }\n  \n\n//# sourceURL=webpack://nexorium/../../nexus/react/ui/divider/Divider.css?");
+
+/***/ }),
+
+/***/ "../../nexus/react/ui/drawer/Drawer.css":
+/*!**********************************************!*\
+  !*** ../../nexus/react/ui/drawer/Drawer.css ***!
+  \**********************************************/
+/***/ (() => {
+
+eval("// extracted by extract-css-chunks-webpack-plugin\n    if(false) { var cssReload; }\n  \n\n//# sourceURL=webpack://nexorium/../../nexus/react/ui/drawer/Drawer.css?");
+
+/***/ }),
+
+/***/ "../../nexus/react/ui/helper/Helper.css":
+/*!**********************************************!*\
+  !*** ../../nexus/react/ui/helper/Helper.css ***!
+  \**********************************************/
+/***/ (() => {
+
+eval("// extracted by extract-css-chunks-webpack-plugin\n    if(false) { var cssReload; }\n  \n\n//# sourceURL=webpack://nexorium/../../nexus/react/ui/helper/Helper.css?");
+
+/***/ }),
+
+/***/ "../../nexus/react/ui/icon/Icon.css":
+/*!******************************************!*\
+  !*** ../../nexus/react/ui/icon/Icon.css ***!
+  \******************************************/
+/***/ (() => {
+
+eval("// extracted by extract-css-chunks-webpack-plugin\n    if(false) { var cssReload; }\n  \n\n//# sourceURL=webpack://nexorium/../../nexus/react/ui/icon/Icon.css?");
+
+/***/ }),
+
+/***/ "../../nexus/react/ui/list/List.css":
+/*!******************************************!*\
+  !*** ../../nexus/react/ui/list/List.css ***!
+  \******************************************/
+/***/ (() => {
+
+eval("// extracted by extract-css-chunks-webpack-plugin\n    if(false) { var cssReload; }\n  \n\n//# sourceURL=webpack://nexorium/../../nexus/react/ui/list/List.css?");
+
+/***/ }),
+
+/***/ "../../nexus/react/ui/popover/Popover.css":
+/*!************************************************!*\
+  !*** ../../nexus/react/ui/popover/Popover.css ***!
+  \************************************************/
+/***/ (() => {
+
+eval("// extracted by extract-css-chunks-webpack-plugin\n    if(false) { var cssReload; }\n  \n\n//# sourceURL=webpack://nexorium/../../nexus/react/ui/popover/Popover.css?");
+
+/***/ }),
+
+/***/ "../../nexus/react/ui/snackbar/Snackbar.css":
+/*!**************************************************!*\
+  !*** ../../nexus/react/ui/snackbar/Snackbar.css ***!
+  \**************************************************/
+/***/ (() => {
+
+eval("// extracted by extract-css-chunks-webpack-plugin\n    if(false) { var cssReload; }\n  \n\n//# sourceURL=webpack://nexorium/../../nexus/react/ui/snackbar/Snackbar.css?");
+
+/***/ }),
+
+/***/ "../../nexus/react/ui/theme/Theme.css":
+/*!********************************************!*\
+  !*** ../../nexus/react/ui/theme/Theme.css ***!
+  \********************************************/
+/***/ (() => {
+
+eval("// extracted by extract-css-chunks-webpack-plugin\n    if(false) { var cssReload; }\n  \n\n//# sourceURL=webpack://nexorium/../../nexus/react/ui/theme/Theme.css?");
 
 /***/ })
 
@@ -6656,6 +901,18 @@ window.addEventListener('DOMContentLoaded', function () {
 /******/ 		};
 /******/ 	})();
 /******/ 	
+/******/ 	/* webpack/runtime/compat get default export */
+/******/ 	(() => {
+/******/ 		// getDefaultExport function for compatibility with non-harmony modules
+/******/ 		__webpack_require__.n = (module) => {
+/******/ 			var getter = module && module.__esModule ?
+/******/ 				() => (module['default']) :
+/******/ 				() => (module);
+/******/ 			__webpack_require__.d(getter, { a: getter });
+/******/ 			return getter;
+/******/ 		};
+/******/ 	})();
+/******/ 	
 /******/ 	/* webpack/runtime/define property getters */
 /******/ 	(() => {
 /******/ 		// define getter functions for harmony exports
@@ -6685,6 +942,17 @@ window.addEventListener('DOMContentLoaded', function () {
 /******/ 		__webpack_require__.o = (obj, prop) => (Object.prototype.hasOwnProperty.call(obj, prop))
 /******/ 	})();
 /******/ 	
+/******/ 	/* webpack/runtime/make namespace object */
+/******/ 	(() => {
+/******/ 		// define __esModule on exports
+/******/ 		__webpack_require__.r = (exports) => {
+/******/ 			if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
+/******/ 				Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
+/******/ 			}
+/******/ 			Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 		};
+/******/ 	})();
+/******/ 	
 /******/ 	/* webpack/runtime/jsonp chunk loading */
 /******/ 	(() => {
 /******/ 		// no baseURI
@@ -6693,7 +961,7 @@ window.addEventListener('DOMContentLoaded', function () {
 /******/ 		// undefined = chunk not loaded, null = chunk preloaded/prefetched
 /******/ 		// [resolve, reject, Promise] = chunk loading, 0 = chunk loaded
 /******/ 		var installedChunks = {
-/******/ 			296: 0
+/******/ 			"bundle": 0
 /******/ 		};
 /******/ 		
 /******/ 		// no chunk on demand loading
@@ -6741,8 +1009,8 @@ window.addEventListener('DOMContentLoaded', function () {
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module depends on other loaded chunks and execution need to be delayed
-/******/ 	__webpack_require__.O(undefined, [216], () => (__webpack_require__(3979)))
-/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, [216], () => (__webpack_require__(7939)))
+/******/ 	__webpack_require__.O(undefined, ["vendors"], () => (__webpack_require__("../../nexus/react/node_modules/whatwg-fetch/fetch.js")))
+/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["vendors"], () => (__webpack_require__("./Main.jsx")))
 /******/ 	__webpack_exports__ = __webpack_require__.O(__webpack_exports__);
 /******/ 	
 /******/ })()
