@@ -8,8 +8,8 @@ from nexus.db import NxRegistry
 
 # ======================================================================================================
 
-nexorium_registry = NxRegistry()
-nexorium_registry.add(Fields, db=db_main)
+nexorium_registry = NxRegistry(db_main)
+nexorium_registry.add(Fields)
 
 
 # Objects

@@ -14,7 +14,7 @@ import { AdminMenuItem } from 'nexus/contexts/admin/Admin';
 import {
 	LoginMenuItem,
 	LogoutMenuItem,
-} from 'nexus/contexts/login/Login';
+} from 'nexus/contexts/auth/Auth';
 import { AccountMenuItem } from 'nexus/contexts/account/Account';
 import { Icon } from 'nexus/ui/icon/Icon';
 

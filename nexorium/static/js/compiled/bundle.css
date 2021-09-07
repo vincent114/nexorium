@@ -562,6 +562,173 @@
 
 
 
+/* Section */
+/* ================================================================================================== */
+
+.nx-section {
+	background-color: white;
+	box-shadow: 0 0 10px #d3d3d3!important;
+	border-radius: 3px!important;
+}
+
+/* Header */
+/* -------------------------------------------------------------------------------- */
+
+.nx-section-header {
+	background-color: #fafafa;
+	min-height: 39px;
+	display: flex;
+	align-items: center;
+	border-radius: 3px 3px 0px 0px;
+}
+
+.nx-section-icon {
+	padding: 8px 8px 8px 10px;
+}
+
+.nx-section-header-title {
+	font-size: 15px !important;
+	font-family: sans-serif !important;
+	font-weight: 700 !important;
+	color: #757575 !important;
+	flex: 1;
+	padding: 0px 10px;
+}
+
+/* Content */
+/* -------------------------------------------------------------------------------- */
+
+.nx-section-content {
+	padding: 10px;
+}
+
+/* Footer */
+/* -------------------------------------------------------------------------------- */
+
+.nx-section-buttonset {
+	padding: 10px;
+}
+
+
+/* Row */
+/* ================================================================================================== */
+
+.nx-row.margin-bottom:not(:last-child) {
+	margin-bottom: 10px;
+}
+
+
+/* Field */
+/* ================================================================================================== */
+
+.nx-field.error {
+	background: linear-gradient(0deg, rgba(255,0,0,.06), transparent);
+	border-radius: 3px;
+}
+
+/* Label */
+/* -------------------------------------------------------------------------------- */
+
+.nx-field-label {
+	font-size: 14px;
+	font-weight: 700;
+	color: grey;
+	font-family: Roboto, Helvetica, Arial, sans-serif;
+	letter-spacing: .00938em;
+	margin-bottom: 3px;
+	min-height: 18px;
+}
+
+.nx-field.disabled .nx-field-label {
+	opacity: 0.7;
+}
+
+.nx-field.error .nx-field-label {
+	color: red;
+}
+
+/* Input */
+/* -------------------------------------------------------------------------------- */
+
+.nx-input-wrapper {
+	position: relative;
+}
+
+.nx-input-wrapper.with-start-adornment .nx-icon {
+	position: absolute;
+	left: 6px;
+	top: 7px;
+}
+.nx-input-wrapper.with-end-adornment .nx-icon {
+	position: absolute;
+	right: 6px;
+	top: 7px;
+}
+
+.nx-field-input,
+.nx-field-select,
+.nx-field-textarea {
+	padding: 6px 12px;
+	font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol;
+	box-sizing: border-box;
+	line-height: 23px;
+	border-radius: 4px;
+	font-size: 12px;
+	border: 1px solid rgba(0, 0, 0, 0.23);
+	outline: none;
+	margin: 0px;
+	width: 100%;
+	min-height: 38px;
+}
+
+.nx-field.disabled .nx-field-input,
+.nx-field.disabled .nx-field-select,
+.nx-field.disabled .nx-field-textarea {
+	border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.nx-field-input:hover,
+.nx-field-select:hover,
+.nx-field-textarea:hover {
+	border: 1px solid rgba(0, 0, 0, 0.87);
+}
+
+.nx-field.error .nx-field-input,
+.nx-field.error .nx-field-select,
+.nx-field.error .nx-field-textarea {
+	border: 1px solid red;
+}
+
+.nx-input-wrapper.with-start-adornment .nx-field-input,
+.nx-input-wrapper.with-start-adornment .nx-field-select,
+.nx-input-wrapper.with-start-adornment .nx-field-textarea {
+	padding-left: 36px;
+}
+
+.nx-input-wrapper.with-end-adornment .nx-field-input,
+.nx-input-wrapper.with-end-adornment .nx-field-select,
+.nx-input-wrapper.with-end-adornment .nx-field-textarea {
+	padding-right: 36px;
+}
+
+/* Select */
+/* -------------------------------------------------------------------------------- */
+
+.nx-field-select {
+	-webkit-appearance: none;
+	background-color: white;
+}
+
+/* Error */
+/* -------------------------------------------------------------------------------- */
+
+.nx-field-error {
+	color: red;
+	padding: 8px 10px;
+	font-size: 13px;
+}
+
+
 
 
 
@@ -925,173 +1092,6 @@
 
 
 
-
-
-/* Section */
-/* ================================================================================================== */
-
-.nx-section {
-	background-color: white;
-	box-shadow: 0 0 10px #d3d3d3!important;
-	border-radius: 3px!important;
-}
-
-/* Header */
-/* -------------------------------------------------------------------------------- */
-
-.nx-section-header {
-	background-color: #fafafa;
-	min-height: 39px;
-	display: flex;
-	align-items: center;
-	border-radius: 3px 3px 0px 0px;
-}
-
-.nx-section-icon {
-	padding: 8px 8px 8px 10px;
-}
-
-.nx-section-header-title {
-	font-size: 15px !important;
-	font-family: sans-serif !important;
-	font-weight: 700 !important;
-	color: #757575 !important;
-	flex: 1;
-	padding: 0px 10px;
-}
-
-/* Content */
-/* -------------------------------------------------------------------------------- */
-
-.nx-section-content {
-	padding: 10px;
-}
-
-/* Footer */
-/* -------------------------------------------------------------------------------- */
-
-.nx-section-buttonset {
-	padding: 10px;
-}
-
-
-/* Row */
-/* ================================================================================================== */
-
-.nx-row.margin-bottom:not(:last-child) {
-	margin-bottom: 10px;
-}
-
-
-/* Field */
-/* ================================================================================================== */
-
-.nx-field.error {
-	background: linear-gradient(0deg, rgba(255,0,0,.06), transparent);
-	border-radius: 3px;
-}
-
-/* Label */
-/* -------------------------------------------------------------------------------- */
-
-.nx-field-label {
-	font-size: 14px;
-	font-weight: 700;
-	color: grey;
-	font-family: Roboto, Helvetica, Arial, sans-serif;
-	letter-spacing: .00938em;
-	margin-bottom: 3px;
-	min-height: 18px;
-}
-
-.nx-field.disabled .nx-field-label {
-	opacity: 0.7;
-}
-
-.nx-field.error .nx-field-label {
-	color: red;
-}
-
-/* Input */
-/* -------------------------------------------------------------------------------- */
-
-.nx-input-wrapper {
-	position: relative;
-}
-
-.nx-input-wrapper.with-start-adornment .nx-icon {
-	position: absolute;
-	left: 6px;
-	top: 7px;
-}
-.nx-input-wrapper.with-end-adornment .nx-icon {
-	position: absolute;
-	right: 6px;
-	top: 7px;
-}
-
-.nx-field-input,
-.nx-field-select,
-.nx-field-textarea {
-	padding: 6px 12px;
-	font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol;
-	box-sizing: border-box;
-	line-height: 23px;
-	border-radius: 4px;
-	font-size: 12px;
-	border: 1px solid rgba(0, 0, 0, 0.23);
-	outline: none;
-	margin: 0px;
-	width: 100%;
-	min-height: 38px;
-}
-
-.nx-field.disabled .nx-field-input,
-.nx-field.disabled .nx-field-select,
-.nx-field.disabled .nx-field-textarea {
-	border: 1px solid rgba(0, 0, 0, 0.1);
-}
-
-.nx-field-input:hover,
-.nx-field-select:hover,
-.nx-field-textarea:hover {
-	border: 1px solid rgba(0, 0, 0, 0.87);
-}
-
-.nx-field.error .nx-field-input,
-.nx-field.error .nx-field-select,
-.nx-field.error .nx-field-textarea {
-	border: 1px solid red;
-}
-
-.nx-input-wrapper.with-start-adornment .nx-field-input,
-.nx-input-wrapper.with-start-adornment .nx-field-select,
-.nx-input-wrapper.with-start-adornment .nx-field-textarea {
-	padding-left: 36px;
-}
-
-.nx-input-wrapper.with-end-adornment .nx-field-input,
-.nx-input-wrapper.with-end-adornment .nx-field-select,
-.nx-input-wrapper.with-end-adornment .nx-field-textarea {
-	padding-right: 36px;
-}
-
-/* Select */
-/* -------------------------------------------------------------------------------- */
-
-.nx-field-select {
-	-webkit-appearance: none;
-	background-color: white;
-}
-
-/* Error */
-/* -------------------------------------------------------------------------------- */
-
-.nx-field-error {
-	color: red;
-	padding: 8px 10px;
-	font-size: 13px;
-}
 
 
 /* Heading */
