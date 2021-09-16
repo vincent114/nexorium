@@ -440,7 +440,6 @@ export const RenderSectionFields = observer((props) => {
 	// Render
 	// ==================================================================================================
 
-
 	// Section -> Content
 	// ---
 
