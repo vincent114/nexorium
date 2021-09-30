@@ -99,6 +99,29 @@ export const ProjectsMenuItem = observer((props) => {
 	)
 })
 
+// ***** RenderProjects *****
+// **************************
+
+const TAG_RenderProjects = () => {}
+export const RenderProjects = observer((props) => {
+
+	const store = React.useContext(window.storeContext);
+	const app = store.app;
+
+	// From ... store
+
+
+	// Renderers
+	// ==================================================================================================
+
+	return (
+		<div>
+
+		</div>
+	)
+})
+
+
 // ***** ProjectsPage *****
 // ************************
 
@@ -108,8 +131,28 @@ export const ProjectsPage = observer((props) => {
 	const store = React.useContext(window.storeContext);
 	const app = store.app;
 
+	// From ... store
+
+	const initialized = app.initialized;
+
+	// ...
+
+	const showHelper = !initialized ? true : false;
+
 	// Renderers
 	// ==================================================================================================
+
+	const renderPage = () => {
+
+		// Render :: Page -> que quand l'app est intitialisée (pour useEffect)
+		// ---
+
+		let pageContent = null;
+		if (initialized) {
+			pageContent = <RenderProjects />
+		}
+		return pageContent;
+	}
 
 	const renderHelper = () => {
 
@@ -119,13 +162,14 @@ export const ProjectsPage = observer((props) => {
 		return (
 			<Helper
 				iconName="work_outline"
-				show={true}
+				show={showHelper}
 			/>
 		)
 	}
 
 	return (
 		<div className="nx-page">
+			{renderPage()}
 			{renderHelper()}
 		</div>
 	)
