@@ -3,12 +3,55 @@ import { types, getRoot } from "mobx-state-tree";
 import { observer } from "mobx-react-lite";
 import clsx from 'clsx';
 
+import { ProjectCard } from 'nexorium/components/cards/ProjectCard';
+
 import { Helper } from 'nexus/ui/helper/Helper';
-import { HeaderTitle } from 'nexus/layout/header/Header';
-import { MenuItem } from 'nexus/layout/menu/Menu';
 import { Icon } from 'nexus/ui/icon/Icon';
 
+import { HeaderTitle } from 'nexus/layout/header/Header';
+import { MenuItem } from 'nexus/layout/menu/Menu';
+import { Row } from 'nexus/layout/row/Row';
+
+import { Heading } from 'nexus/forms/heading/Heading';
+
 import './Projects.css';
+
+
+// Datas
+// -------------------------------------------------------------------------------------------------------------
+
+const PROJECTS_METAS = {
+
+	// Support
+	// -
+
+	'nexus': {
+		'completion': 50,
+	},
+	'cerberus': {
+		'completion': 25,
+	},
+
+	// Vitrine
+	// -
+
+	'nexorium': {
+		'completion': 15,
+	},
+	'nexora': {
+		'completion': 15,
+	},
+
+	// Collections
+	// -
+
+	'gramophone_server': {
+		'completion': 10,
+	},
+	'vgm': {
+		'completion': 10,
+	},
+}
 
 
 // Models
@@ -107,6 +150,7 @@ export const RenderProjects = observer((props) => {
 
 	const store = React.useContext(window.storeContext);
 	const app = store.app;
+	const services = app.services;
 
 	// From ... store
 
@@ -114,9 +158,61 @@ export const RenderProjects = observer((props) => {
 	// Renderers
 	// ==================================================================================================
 
+	const renderProjectsCards = (groupTitle, appKeys) => {
+
+		// Render :: Project Card
+		// ---
+
+		let projectCards = [];
+		for (const appKey of appKeys) {
+
+			let serviceInfo = services.getServiceInfo(appKey);
+			if (!serviceInfo) {
+				continue;
+			}
+
+			// Project Metas
+			let projectMetas = null;
+			if (PROJECTS_METAS.hasOwnProperty(appKey)) {
+				projectMetas = PROJECTS_METAS[appKey];
+			}
+
+			projectCards.push(
+				<ProjectCard
+					key={serviceInfo.app_id}
+					serviceInfo={serviceInfo}
+					projectMetas={projectMetas}
+				/>
+			)
+		}
+		return (
+			<div>
+				<Heading style={{
+					marginBottom: '10px',
+				}}>
+					{groupTitle}
+				</Heading>
+				<div className="nm-projects-cards">
+					{projectCards}
+				</div>
+			</div>
+		);
+	}
+
 	return (
 		<div>
-
+			{renderProjectsCards("Support", [
+				'nexus',
+				'cerberus',
+			])}
+			{renderProjectsCards("Vitrine", [
+				'nexorium',
+				'nexora',
+			])}
+			{renderProjectsCards("Collections", [
+				'gramophone',
+				'vgm',
+			])}
 		</div>
 	)
 })

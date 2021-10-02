@@ -1,7 +1,7 @@
 /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
-/***/ 4781:
+/***/ 7121:
 /***/ ((__unused_webpack_module, __unused_webpack___webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -52,6 +52,9 @@ var ServiceInfoStore = mobx_state_tree_module/* types.model */.V5.model({
   kind: mobx_state_tree_module/* types.maybeNull */.V5.maybeNull(mobx_state_tree_module/* types.string */.V5.string),
   port: mobx_state_tree_module/* types.maybeNull */.V5.maybeNull(mobx_state_tree_module/* types.integer */.V5.integer),
   database: mobx_state_tree_module/* types.maybeNull */.V5.maybeNull(mobx_state_tree_module/* types.string */.V5.string),
+  version: mobx_state_tree_module/* types.maybeNull */.V5.maybeNull(mobx_state_tree_module/* types.string */.V5.string),
+  changeset: mobx_state_tree_module/* types.maybeNull */.V5.maybeNull(mobx_state_tree_module/* types.string */.V5.string),
+  changeset_instance: mobx_state_tree_module/* types.maybeNull */.V5.maybeNull(mobx_state_tree_module/* types.string */.V5.string),
   internal: mobx_state_tree_module/* types.maybeNull */.V5.maybeNull(mobx_state_tree_module/* types.string */.V5.string),
   external: mobx_state_tree_module/* types.maybeNull */.V5.maybeNull(mobx_state_tree_module/* types.string */.V5.string),
   view_role: mobx_state_tree_module/* types.maybeNull */.V5.maybeNull(mobx_state_tree_module/* types.string */.V5.string),
@@ -81,6 +84,9 @@ var ServiceInfoStore = mobx_state_tree_module/* types.model */.V5.model({
       self.kind = raw.kind;
       self.port = raw.port;
       self.database = raw.database;
+      self.version = raw.version;
+      self.changeset = raw.changeset;
+      self.changeset_instance = raw.changeset_instance;
       self.internal = raw.internal;
       self.external = raw.external;
       self.view_role = raw.view_role;
@@ -147,67 +153,313 @@ var ServicesStore = mobx_state_tree_module/* types.model */.V5.model({
     }
   };
 });
-// EXTERNAL MODULE: ../../nexus/react/ui/theme/Theme.css
-var Theme = __webpack_require__(6824);
-;// CONCATENATED MODULE: ../../nexus/react/ui/theme/Theme.jsx
-
-
-
-
- // Models
-// -------------------------------------------------------------------------------------------------------------
-// ***** ColorStore *****
-// **********************
-
-var TAG_ColorStore = function TAG_ColorStore() {};
-
-var ColorStore = mobx_state_tree_module/* types.model */.V5.model({
-  main: '#FFFFFF',
-  contrastText: '#000'
-}).actions(function (self) {
-  return {
-    setField: function setField(field, value) {
-      self[field] = value;
-    } // -
-
-  };
-}); // ***** PaletteStore *****
-// ************************
-
-var TAG_PaletteStore = function TAG_PaletteStore() {};
-
-var PaletteStore = mobx_state_tree_module/* types.model */.V5.model({
-  "default": mobx_state_tree_module/* types.optional */.V5.optional(ColorStore, {}),
-  primary: mobx_state_tree_module/* types.optional */.V5.optional(ColorStore, {}),
-  secondary: mobx_state_tree_module/* types.optional */.V5.optional(ColorStore, {})
-}).actions(function (self) {
-  return {
-    setField: function setField(field, value) {
-      self[field] = value;
-    } // -
-
-  };
-}); // ***** ThemeStore *****
-// **********************
-
-var TAG_ThemeStore = function TAG_ThemeStore() {};
-
-var ThemeStore = mobx_state_tree_module/* types.model */.V5.model({
-  variant: 'light',
-  // light, dark
-  palette: mobx_state_tree_module/* types.optional */.V5.optional(PaletteStore, {})
-}).actions(function (self) {
-  return {
-    setField: function setField(field, value) {
-      self[field] = value;
-    },
-    // -
-    update: function update(raw) {}
-  };
-});
 ;// CONCATENATED MODULE: ../../nexus/react/utils/Colors.jsx
-// Functions
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+// Objects
 // -------------------------------------------------------------------------------------------------------------
+var Color = /*#__PURE__*/function () {
+  function Color(r, g, b) {
+    _classCallCheck(this, Color);
+
+    this.set(r, g, b);
+  }
+
+  _createClass(Color, [{
+    key: "toString",
+    value: function toString() {
+      return "rgb(".concat(Math.round(this.r), ", ").concat(Math.round(this.g), ", ").concat(Math.round(this.b), ")");
+    }
+  }, {
+    key: "set",
+    value: function set(r, g, b) {
+      this.r = this.clamp(r);
+      this.g = this.clamp(g);
+      this.b = this.clamp(b);
+    }
+  }, {
+    key: "hueRotate",
+    value: function hueRotate() {
+      var angle = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
+      angle = angle / 180 * Math.PI;
+      var sin = Math.sin(angle);
+      var cos = Math.cos(angle);
+      this.multiply([0.213 + cos * 0.787 - sin * 0.213, 0.715 - cos * 0.715 - sin * 0.715, 0.072 - cos * 0.072 + sin * 0.928, 0.213 - cos * 0.213 + sin * 0.143, 0.715 + cos * 0.285 + sin * 0.140, 0.072 - cos * 0.072 - sin * 0.283, 0.213 - cos * 0.213 - sin * 0.787, 0.715 - cos * 0.715 + sin * 0.715, 0.072 + cos * 0.928 + sin * 0.072]);
+    }
+  }, {
+    key: "grayscale",
+    value: function grayscale() {
+      var value = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 1;
+      this.multiply([0.2126 + 0.7874 * (1 - value), 0.7152 - 0.7152 * (1 - value), 0.0722 - 0.0722 * (1 - value), 0.2126 - 0.2126 * (1 - value), 0.7152 + 0.2848 * (1 - value), 0.0722 - 0.0722 * (1 - value), 0.2126 - 0.2126 * (1 - value), 0.7152 - 0.7152 * (1 - value), 0.0722 + 0.9278 * (1 - value)]);
+    }
+  }, {
+    key: "sepia",
+    value: function sepia() {
+      var value = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 1;
+      this.multiply([0.393 + 0.607 * (1 - value), 0.769 - 0.769 * (1 - value), 0.189 - 0.189 * (1 - value), 0.349 - 0.349 * (1 - value), 0.686 + 0.314 * (1 - value), 0.168 - 0.168 * (1 - value), 0.272 - 0.272 * (1 - value), 0.534 - 0.534 * (1 - value), 0.131 + 0.869 * (1 - value)]);
+    }
+  }, {
+    key: "saturate",
+    value: function saturate() {
+      var value = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 1;
+      this.multiply([0.213 + 0.787 * value, 0.715 - 0.715 * value, 0.072 - 0.072 * value, 0.213 - 0.213 * value, 0.715 + 0.285 * value, 0.072 - 0.072 * value, 0.213 - 0.213 * value, 0.715 - 0.715 * value, 0.072 + 0.928 * value]);
+    }
+  }, {
+    key: "multiply",
+    value: function multiply(matrix) {
+      var newR = this.clamp(this.r * matrix[0] + this.g * matrix[1] + this.b * matrix[2]);
+      var newG = this.clamp(this.r * matrix[3] + this.g * matrix[4] + this.b * matrix[5]);
+      var newB = this.clamp(this.r * matrix[6] + this.g * matrix[7] + this.b * matrix[8]);
+      this.r = newR;
+      this.g = newG;
+      this.b = newB;
+    }
+  }, {
+    key: "brightness",
+    value: function brightness() {
+      var value = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 1;
+      this.linear(value);
+    }
+  }, {
+    key: "contrast",
+    value: function contrast() {
+      var value = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 1;
+      this.linear(value, -(0.5 * value) + 0.5);
+    }
+  }, {
+    key: "linear",
+    value: function linear() {
+      var slope = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 1;
+      var intercept = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
+      this.r = this.clamp(this.r * slope + intercept * 255);
+      this.g = this.clamp(this.g * slope + intercept * 255);
+      this.b = this.clamp(this.b * slope + intercept * 255);
+    }
+  }, {
+    key: "invert",
+    value: function invert() {
+      var value = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 1;
+      this.r = this.clamp((value + this.r / 255 * (1 - 2 * value)) * 255);
+      this.g = this.clamp((value + this.g / 255 * (1 - 2 * value)) * 255);
+      this.b = this.clamp((value + this.b / 255 * (1 - 2 * value)) * 255);
+    }
+  }, {
+    key: "hsl",
+    value: function hsl() {
+      // Code taken from https://stackoverflow.com/a/9493060/2688027, licensed under CC BY-SA.
+      var r = this.r / 255;
+      var g = this.g / 255;
+      var b = this.b / 255;
+      var max = Math.max(r, g, b);
+      var min = Math.min(r, g, b);
+      var h,
+          s,
+          l = (max + min) / 2;
+
+      if (max === min) {
+        h = s = 0;
+      } else {
+        var d = max - min;
+        s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
+
+        switch (max) {
+          case r:
+            h = (g - b) / d + (g < b ? 6 : 0);
+            break;
+
+          case g:
+            h = (b - r) / d + 2;
+            break;
+
+          case b:
+            h = (r - g) / d + 4;
+            break;
+        }
+
+        h /= 6;
+      }
+
+      return {
+        h: h * 100,
+        s: s * 100,
+        l: l * 100
+      };
+    }
+  }, {
+    key: "clamp",
+    value: function clamp(value) {
+      if (value > 255) {
+        value = 255;
+      } else if (value < 0) {
+        value = 0;
+      }
+
+      return value;
+    }
+  }]);
+
+  return Color;
+}();
+
+var Solver = /*#__PURE__*/function () {
+  function Solver(target, baseColor) {
+    _classCallCheck(this, Solver);
+
+    this.target = target;
+    this.targetHSL = target.hsl();
+    this.reusedColor = new Color(0, 0, 0);
+  }
+
+  _createClass(Solver, [{
+    key: "solve",
+    value: function solve() {
+      var result = this.solveNarrow(this.solveWide());
+      return {
+        values: result.values,
+        loss: result.loss,
+        filter: this.css(result.values)
+      };
+    }
+  }, {
+    key: "solveWide",
+    value: function solveWide() {
+      var A = 5;
+      var c = 15;
+      var a = [60, 180, 18000, 600, 1.2, 1.2];
+      var best = {
+        loss: Infinity
+      };
+
+      for (var i = 0; best.loss > 25 && i < 3; i++) {
+        var initial = [50, 20, 3750, 50, 100, 100];
+        var result = this.spsa(A, a, c, initial, 1000);
+
+        if (result.loss < best.loss) {
+          best = result;
+        }
+      }
+
+      return best;
+    }
+  }, {
+    key: "solveNarrow",
+    value: function solveNarrow(wide) {
+      var A = wide.loss;
+      var c = 2;
+      var A1 = A + 1;
+      var a = [0.25 * A1, 0.25 * A1, A1, 0.25 * A1, 0.2 * A1, 0.2 * A1];
+      return this.spsa(A, a, c, wide.values, 500);
+    }
+  }, {
+    key: "spsa",
+    value: function spsa(A, a, c, values, iters) {
+      var alpha = 1;
+      var gamma = 0.16666666666666666;
+      var best = null;
+      var bestLoss = Infinity;
+      var deltas = new Array(6);
+      var highArgs = new Array(6);
+      var lowArgs = new Array(6);
+
+      for (var k = 0; k < iters; k++) {
+        var ck = c / Math.pow(k + 1, gamma);
+
+        for (var i = 0; i < 6; i++) {
+          deltas[i] = Math.random() > 0.5 ? 1 : -1;
+          highArgs[i] = values[i] + ck * deltas[i];
+          lowArgs[i] = values[i] - ck * deltas[i];
+        }
+
+        var lossDiff = this.loss(highArgs) - this.loss(lowArgs);
+
+        for (var _i = 0; _i < 6; _i++) {
+          var g = lossDiff / (2 * ck) * deltas[_i];
+          var ak = a[_i] / Math.pow(A + k + 1, alpha);
+          values[_i] = fix(values[_i] - ak * g, _i);
+        }
+
+        var loss = this.loss(values);
+
+        if (loss < bestLoss) {
+          best = values.slice(0);
+          bestLoss = loss;
+        }
+      }
+
+      return {
+        values: best,
+        loss: bestLoss
+      };
+
+      function fix(value, idx) {
+        var max = 100;
+
+        if (idx === 2
+        /* saturate */
+        ) {
+            max = 7500;
+          } else if (idx === 4
+        /* brightness */
+        || idx === 5
+        /* contrast */
+        ) {
+            max = 200;
+          }
+
+        if (idx === 3
+        /* hue-rotate */
+        ) {
+            if (value > max) {
+              value %= max;
+            } else if (value < 0) {
+              value = max + value % max;
+            }
+          } else if (value < 0) {
+          value = 0;
+        } else if (value > max) {
+          value = max;
+        }
+
+        return value;
+      }
+    }
+  }, {
+    key: "loss",
+    value: function loss(filters) {
+      // Argument is array of percentages.
+      var color = this.reusedColor;
+      color.set(0, 0, 0);
+      color.invert(filters[0] / 100);
+      color.sepia(filters[1] / 100);
+      color.saturate(filters[2] / 100);
+      color.hueRotate(filters[3] * 3.6);
+      color.brightness(filters[4] / 100);
+      color.contrast(filters[5] / 100);
+      var colorHSL = color.hsl();
+      return Math.abs(color.r - this.target.r) + Math.abs(color.g - this.target.g) + Math.abs(color.b - this.target.b) + Math.abs(colorHSL.h - this.targetHSL.h) + Math.abs(colorHSL.s - this.targetHSL.s) + Math.abs(colorHSL.l - this.targetHSL.l);
+    }
+  }, {
+    key: "css",
+    value: function css(filters) {
+      function fmt(idx) {
+        var multiplier = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 1;
+        return Math.round(filters[idx] * multiplier);
+      } // return `filter: invert(${fmt(0)}%) sepia(${fmt(1)}%) saturate(${fmt(2)}%) hue-rotate(${fmt(3, 3.6)}deg) brightness(${fmt(4)}%) contrast(${fmt(5)}%);`;
+
+
+      return "invert(".concat(fmt(0), "%) sepia(").concat(fmt(1), "%) saturate(").concat(fmt(2), "%) hue-rotate(").concat(fmt(3, 3.6), "deg) brightness(").concat(fmt(4), "%) contrast(").concat(fmt(5), "%)");
+    }
+  }]);
+
+  return Solver;
+}(); // Functions
+// -------------------------------------------------------------------------------------------------------------
+
+
 var hexToRgbA = function hexToRgbA(hex, opacity) {
   opacity = opacity != undefined ? opacity : 1;
   var c;
@@ -224,6 +476,27 @@ var hexToRgbA = function hexToRgbA(hex, opacity) {
   }
 
   throw new Error('Bad Hex');
+};
+var hexToRgb = function hexToRgb(hex) {
+  // Expand shorthand form (e.g. "03F") to full form (e.g. "0033FF")
+  var shorthandRegex = /^#?([a-f\d])([a-f\d])([a-f\d])$/i;
+  hex = hex.replace(shorthandRegex, function (m, r, g, b) {
+    return r + r + g + g + b + b;
+  });
+  var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+  return result ? [parseInt(result[1], 16), parseInt(result[2], 16), parseInt(result[3], 16)] : null;
+};
+var hexToCssFilter = function hexToCssFilter(hex) {
+  var rgb = hexToRgb(hex);
+
+  if (rgb.length !== 3) {
+    return '';
+  }
+
+  var color = new Color(rgb[0], rgb[1], rgb[2]);
+  var solver = new Solver(color);
+  var result = solver.solve();
+  return result.filter;
 };
 // EXTERNAL MODULE: ../../nexus/react/ui/icon/Icon.css
 var Icon = __webpack_require__(3244);
@@ -295,7 +568,9 @@ var ICON_KEYS_TO_FILES = {
     'alternate_email': 'alternate_email_black_24dp.svg',
     'person_add': 'person_add_black_24dp.svg',
     'person_search': 'person_search_black_24dp.svg',
-    'verified_user': 'verified_user_black_24dp.svg'
+    'verified_user': 'verified_user_black_24dp.svg',
+    'memory': 'memory_black_24dp.svg',
+    'extension': 'extension_white_24dp.svg'
   }
 }; // const ICON_SIZES = {
 // 	'small': {
@@ -577,6 +852,10 @@ var Button_Button = (0,es/* observer */.Pi)(function (props) {
   var color = props.color ? props.color : 'default'; // default, primary, secondary
 
   var disabled = props.disabled == true ? true : false;
+  var startAdornment = props.startAdornment ? props.startAdornment : null;
+  var startAdornmentStyle = props.startAdornmentStyle ? copyObj(props.startAdornmentStyle) : {};
+  var endAdornment = props.endAdornment ? props.endAdornment : null;
+  var endAdornmentStyle = props.endAdornmentStyle ? copyObj(props.endAdornmentStyle) : {};
   var onClick = props.onClick;
   var className = props.className ? props.className : '';
   var style = props.style ? copyObj(props.style) : {}; // ...
@@ -600,6 +879,14 @@ var Button_Button = (0,es/* observer */.Pi)(function (props) {
     if (variant == 'outlined') {
       style['borderColor'] = theme.palette.primary.main;
 
+      if (startAdornment) {
+        startAdornmentStyle['filter'] = hexToCssFilter(theme.palette.primary.main);
+      }
+
+      if (endAdornment) {
+        endAdornmentStyle['filter'] = hexToCssFilter(theme.palette.primary.main);
+      }
+
       if (disabled) {
         style['borderColor'] = "rgba(0, 0, 0, 0.12)";
       }
@@ -621,6 +908,14 @@ var Button_Button = (0,es/* observer */.Pi)(function (props) {
 
     if (variant == 'outlined') {
       style['borderColor'] = theme.palette.secondary.main;
+
+      if (startAdornment) {
+        startAdornmentStyle['filter'] = hexToCssFilter(theme.palette.secondary.main);
+      }
+
+      if (endAdornment) {
+        endAdornmentStyle['filter'] = hexToCssFilter(theme.palette.primary.main);
+      }
 
       if (disabled) {
         style['borderColor'] = "rgba(0, 0, 0, 0.12)";
@@ -672,7 +967,15 @@ var Button_Button = (0,es/* observer */.Pi)(function (props) {
     onClick: function onClick(e) {
       return handleClick(e);
     }
-  }, children);
+  }, startAdornment && /*#__PURE__*/react.createElement("div", {
+    className: "nx-button-start-adornment",
+    style: startAdornmentStyle
+  }, startAdornment), /*#__PURE__*/react.createElement("div", {
+    "data-flex": "1"
+  }, children), endAdornment && /*#__PURE__*/react.createElement("div", {
+    className: "nx-button-end-adornment",
+    style: endAdornmentStyle
+  }, endAdornment));
 });
 // EXTERNAL MODULE: ../../nexus/react/ui/popover/Popover.css
 var Popover = __webpack_require__(9443);
@@ -868,8 +1171,9 @@ var Avatar_Avatar = function Avatar(props) {
   var children = props.children;
   var color = props.color ? props.color : 'primary'; // primary, secondary, transparent
 
-  var size = props.size ? props.size : 'normal'; // normal, small, large
+  var size = props.size ? props.size : 'normal'; // normal, small, large, big
 
+  var src = props.src ? props.src : '';
   var style = props.style ? props.style : {}; // ...
 
   if (style.hasOwnProperty('backgroundColor')) {
@@ -882,14 +1186,24 @@ var Avatar_Avatar = function Avatar(props) {
     if (['primary', 'secondary'].indexOf(color) > -1) {
       style['backgroundColor'] = theme.palette[color].main;
     }
+  }
+
+  var img = null;
+
+  if (src) {
+    style['backgroundColor'] = theme.palette[color].main;
+    img = /*#__PURE__*/react.createElement("img", {
+      className: "nx-avatar-img",
+      src: src
+    });
   } // Render
   // ==================================================================================================
 
 
   return /*#__PURE__*/react.createElement("div", {
-    className: (0,clsx_m/* default */.Z)("nx-avatar", color),
+    className: (0,clsx_m/* default */.Z)("nx-avatar", color, size),
     style: style
-  }, children);
+  }, children, img);
 };
 // EXTERNAL MODULE: ../../nexus/react/ui/list/List.css
 var List = __webpack_require__(7883);
@@ -912,8 +1226,8 @@ var ListIcon = function ListIcon(props) {
   return /*#__PURE__*/react.createElement("div", {
     className: "nx-list-icon"
   }, /*#__PURE__*/react.createElement(Avatar_Avatar, {
-    color: "transparent",
-    size: "small"
+    color: "transparent" // size="small"
+
   }, props.children));
 }; // ***** ListText *****
 // ********************
@@ -1683,8 +1997,8 @@ var MenuItem = (0,es/* observer */.Pi)(function (props) {
       return handleClick();
     }
   }, icon && /*#__PURE__*/react.createElement(Avatar_Avatar, {
-    color: "transparent",
-    size: "small"
+    color: "transparent" // size="small"
+
   }, icon), /*#__PURE__*/react.createElement("div", {
     className: "nx-menu-item-label",
     style: styleLabel
@@ -1924,6 +2238,64 @@ var Portal_Portal = (0,es/* observer */.Pi)(function (props) {
     })
   }, portalContent));
 });
+// EXTERNAL MODULE: ../../nexus/react/ui/theme/Theme.css
+var Theme = __webpack_require__(6824);
+;// CONCATENATED MODULE: ../../nexus/react/ui/theme/Theme.jsx
+
+
+
+
+ // Models
+// -------------------------------------------------------------------------------------------------------------
+// ***** ColorStore *****
+// **********************
+
+var TAG_ColorStore = function TAG_ColorStore() {};
+
+var ColorStore = mobx_state_tree_module/* types.model */.V5.model({
+  main: '#FFFFFF',
+  contrastText: '#000'
+}).actions(function (self) {
+  return {
+    setField: function setField(field, value) {
+      self[field] = value;
+    } // -
+
+  };
+}); // ***** PaletteStore *****
+// ************************
+
+var TAG_PaletteStore = function TAG_PaletteStore() {};
+
+var PaletteStore = mobx_state_tree_module/* types.model */.V5.model({
+  "default": mobx_state_tree_module/* types.optional */.V5.optional(ColorStore, {}),
+  primary: mobx_state_tree_module/* types.optional */.V5.optional(ColorStore, {}),
+  secondary: mobx_state_tree_module/* types.optional */.V5.optional(ColorStore, {})
+}).actions(function (self) {
+  return {
+    setField: function setField(field, value) {
+      self[field] = value;
+    } // -
+
+  };
+}); // ***** ThemeStore *****
+// **********************
+
+var TAG_ThemeStore = function TAG_ThemeStore() {};
+
+var ThemeStore = mobx_state_tree_module/* types.model */.V5.model({
+  variant: 'light',
+  // light, dark
+  palette: mobx_state_tree_module/* types.optional */.V5.optional(PaletteStore, {})
+}).actions(function (self) {
+  return {
+    setField: function setField(field, value) {
+      self[field] = value;
+    },
+    // -
+    update: function update(raw) {}
+  };
+});
 // EXTERNAL MODULE: ../../nexus/react/node_modules/react-dom/server.browser.js
 var server_browser = __webpack_require__(3228);
 ;// CONCATENATED MODULE: ../../nexus/react/ui/Styles.jsx
@@ -2111,131 +2483,6 @@ var Snackbar_Snackbar = (0,es/* observer */.Pi)(function (props) {
 
   return snackbarContent;
 });
-;// CONCATENATED MODULE: ../../nexus/react/utils/Responsive.jsx
-var MobileDetect = __webpack_require__(5288); // Functions
-// ========================================================================================================================
-
-
-function detectMobile() {
-  // Mobile or desktop ?
-  // ---
-  var width = window.innerWidth;
-  var breakPoint650 = width <= 650 ? true : false;
-  var breakPoint414 = width <= 414 ? true : false;
-  var breakPoint375 = width <= 375 ? true : false;
-  var breakPoint320 = width <= 320 ? true : false;
-  var isMobile = false;
-  var isDesktop = true;
-  var md = new MobileDetect(window.navigator.userAgent);
-
-  if (md.mobile() != null && md.mobile() != '') {
-    isMobile = true;
-    isDesktop = false;
-  }
-
-  return {
-    isMobile: isMobile,
-    isDesktop: isDesktop,
-    breakPoint650: breakPoint650,
-    breakPoint414: breakPoint414,
-    breakPoint375: breakPoint375,
-    breakPoint320: breakPoint320
-  };
-}
-var isNodeVisible = function isNodeVisible(nodeId) {
-  // Is DOM node visible on screen?
-  // ---
-  var node = $("#".concat(nodeId));
-
-  if (node) {
-    try {
-      var nodeTop = node.offset().top;
-      var nodeBottom = node.offset().top + node.outerHeight();
-      var screenTop = $(window).scrollTop();
-      var screenBottom = $(window).scrollTop() + window.innerHeight;
-
-      if (screenBottom > nodeTop && screenTop < nodeBottom) {
-        return true;
-      }
-    } catch (err) {}
-  }
-
-  return false;
-};
-;// CONCATENATED MODULE: ../../nexus/react/utils/URL.jsx
-// Functions
-// =============================================================================================================
-function getUrlParams() {
-  // Getting URL parameters
-  // ---
-  var vars = {},
-      hash;
-  var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
-
-  for (var i = 0; i < hashes.length; i++) {
-    hash = hashes[i].split('=');
-    var value = '';
-
-    for (var hash_part_idx in hash) {
-      if (hash_part_idx == 0) {
-        continue;
-      }
-
-      var hash_part = hash[hash_part_idx];
-      hash_part = hash_part == "" ? "=" : hash_part;
-      value = value + hash_part;
-    }
-
-    vars[hash[0]] = value;
-  }
-
-  ;
-  return vars;
-}
-function matchUrl(routes, url) {
-  // Routes <-> URL matching
-  // ---
-  // -> https://www.npmjs.com/package/route-node
-  var matched = {
-    context: '404',
-    params: {}
-  };
-  var matchResult = routes.matchPath(url);
-
-  if (matchResult) {
-    // Context
-    var context = matchResult.name.split(':')[0];
-    context = context.split('.')[0];
-    context = context.split('-')[0];
-    context = context.split('#')[0];
-    context = context.split('$')[0];
-    matched['context'] = context; // Parameters
-
-    if (matchResult.params) {
-      matched['params'] = matchResult.params;
-    }
-  } else {
-    // Some URL don't match properly with route-node
-    var urlParts = url.split('/'); // Hack :: login
-
-    if (url.search('connexion') > -1) {
-      matched['context'] = 'login';
-      matched['params'] = {
-        urlKey: urlParts[2]
-      };
-    } // Hack :: forbidden
-
-
-    if (url.search('forbidden') > -1) {
-      matched['context'] = 'forbidden';
-      matched['params'] = {
-        urlKey: urlParts[2]
-      };
-    }
-  }
-
-  return matched;
-}
 // EXTERNAL MODULE: ../../nexus/react/ui/helper/Helper.css
 var Helper = __webpack_require__(2742);
 ;// CONCATENATED MODULE: ../../nexus/react/ui/helper/Helper.jsx
@@ -2390,83 +2637,131 @@ var Helper_Helper = (0,es/* observer */.Pi)(function (props) {
 
   return helper;
 });
-// EXTERNAL MODULE: ../../nexus/react/contexts/about/About.css
-var About = __webpack_require__(2189);
-;// CONCATENATED MODULE: ../../nexus/react/contexts/about/About.jsx
+;// CONCATENATED MODULE: ../../nexus/react/utils/Responsive.jsx
+var MobileDetect = __webpack_require__(5288); // Functions
+// ========================================================================================================================
 
 
+function detectMobile() {
+  // Mobile or desktop ?
+  // ---
+  var width = window.innerWidth;
+  var breakPoint650 = width <= 650 ? true : false;
+  var breakPoint414 = width <= 414 ? true : false;
+  var breakPoint375 = width <= 375 ? true : false;
+  var breakPoint320 = width <= 320 ? true : false;
+  var isMobile = false;
+  var isDesktop = true;
+  var md = new MobileDetect(window.navigator.userAgent);
 
+  if (md.mobile() != null && md.mobile() != '') {
+    isMobile = true;
+    isDesktop = false;
+  }
 
-
-
-
-
- // Functions Components ReactJS
-// -------------------------------------------------------------------------------------------------------------
-// ***** AboutHeaderLeft *****
-// ***************************
-
-var TAG_AboutHeaderLeft = function TAG_AboutHeaderLeft() {};
-
-var AboutHeaderLeft = (0,es/* observer */.Pi)(function (props) {
-  var store = react.useContext(window.storeContext);
-  var app = store.app; // ...
-  // Render
-  // ==================================================================================================
-
-  return /*#__PURE__*/react.createElement(HeaderTitle, {
-    title: "A propos",
-    titleStyle: {
-      marginLeft: '10px'
-    }
-  });
-}); // ***** AboutMenuItem *****
-// *************************
-
-var TAG_AboutMenuItem = function TAG_AboutMenuItem() {};
-
-var AboutMenuItem = (0,es/* observer */.Pi)(function (props) {
-  var store = react.useContext(window.storeContext);
-  var app = store.app; // Evènements
-  // ==================================================================================================
-
-  var handleMenuItemClick = function handleMenuItemClick() {
-    app.navigate(app.aboutUrl, app.aboutContext);
-  }; // Render
-  // ==================================================================================================
-
-
-  return /*#__PURE__*/react.createElement(MenuItem, {
-    icon: /*#__PURE__*/react.createElement(Icon_Icon, {
-      name: "code"
-    }),
-    label: "A propos",
-    activeContexts: [app.aboutContext],
-    callbackClick: handleMenuItemClick
-  });
-}); // ***** AboutPage *****
-// *********************
-
-var TAG_AboutPage = function TAG_AboutPage() {};
-
-var AboutPage = (0,es/* observer */.Pi)(function (props) {
-  var store = react.useContext(window.storeContext);
-  var app = store.app; // Renderers
-  // ==================================================================================================
-
-  var renderHelper = function renderHelper() {
-    // Render :: Helper
-    // ---
-    return /*#__PURE__*/react.createElement(Helper_Helper, {
-      iconName: "code",
-      show: true
-    });
+  return {
+    isMobile: isMobile,
+    isDesktop: isDesktop,
+    breakPoint650: breakPoint650,
+    breakPoint414: breakPoint414,
+    breakPoint375: breakPoint375,
+    breakPoint320: breakPoint320
   };
+}
+var isNodeVisible = function isNodeVisible(nodeId) {
+  // Is DOM node visible on screen?
+  // ---
+  var node = $("#".concat(nodeId));
 
-  return /*#__PURE__*/react.createElement("div", {
-    className: "nx-page"
-  }, renderHelper());
-});
+  if (node) {
+    try {
+      var nodeTop = node.offset().top;
+      var nodeBottom = node.offset().top + node.outerHeight();
+      var screenTop = $(window).scrollTop();
+      var screenBottom = $(window).scrollTop() + window.innerHeight;
+
+      if (screenBottom > nodeTop && screenTop < nodeBottom) {
+        return true;
+      }
+    } catch (err) {}
+  }
+
+  return false;
+};
+;// CONCATENATED MODULE: ../../nexus/react/utils/URL.jsx
+// Functions
+// =============================================================================================================
+function getUrlParams() {
+  // Getting URL parameters
+  // ---
+  var vars = {},
+      hash;
+  var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+
+  for (var i = 0; i < hashes.length; i++) {
+    hash = hashes[i].split('=');
+    var value = '';
+
+    for (var hash_part_idx in hash) {
+      if (hash_part_idx == 0) {
+        continue;
+      }
+
+      var hash_part = hash[hash_part_idx];
+      hash_part = hash_part == "" ? "=" : hash_part;
+      value = value + hash_part;
+    }
+
+    vars[hash[0]] = value;
+  }
+
+  ;
+  return vars;
+}
+function matchUrl(routes, url) {
+  // Routes <-> URL matching
+  // ---
+  // -> https://www.npmjs.com/package/route-node
+  var matched = {
+    context: '404',
+    params: {}
+  };
+  var matchResult = routes.matchPath(url);
+
+  if (matchResult) {
+    // Context
+    var context = matchResult.name.split(':')[0];
+    context = context.split('.')[0];
+    context = context.split('-')[0];
+    context = context.split('#')[0];
+    context = context.split('$')[0];
+    matched['context'] = context; // Parameters
+
+    if (matchResult.params) {
+      matched['params'] = matchResult.params;
+    }
+  } else {
+    // Some URL don't match properly with route-node
+    var urlParts = url.split('/'); // Hack :: login
+
+    if (url.search('connexion') > -1) {
+      matched['context'] = 'login';
+      matched['params'] = {
+        urlKey: urlParts[2]
+      };
+    } // Hack :: forbidden
+
+
+    if (url.search('forbidden') > -1) {
+      matched['context'] = 'forbidden';
+      matched['params'] = {
+        urlKey: urlParts[2]
+      };
+    }
+  }
+
+  return matched;
+}
 // EXTERNAL MODULE: ../../nexus/react/layout/section/Section.css
 var Section = __webpack_require__(8461);
 ;// CONCATENATED MODULE: ../../nexus/react/layout/section/Section.jsx
@@ -2511,6 +2806,246 @@ var Section_Section = function Section(props) {
     })
   }, buttons));
 };
+// EXTERNAL MODULE: ../../nexus/react/contexts/about/About.css
+var About = __webpack_require__(2189);
+;// CONCATENATED MODULE: ../../nexus/react/contexts/about/About.jsx
+
+
+
+
+
+
+
+
+
+
+
+
+ // ***** AboutStore *****
+// **********************
+
+var TAG_AboutStore = function TAG_AboutStore() {};
+
+var AboutStore = mobx_state_tree_module/* types.model */.V5.model({
+  service: mobx_state_tree_module/* types.optional */.V5.optional(ServiceInfoStore, {}),
+  loaded: false
+}).actions(function (self) {
+  return {
+    setField: function setField(field, value) {
+      self[field] = value;
+    },
+    // -
+    update: function update(raw) {
+      self.service.update(raw);
+      self.loaded = true;
+    },
+    load: function load() {
+      // Appel AJAX de la fonction de chargement des données de du service
+      // ---
+      var store = (0,mobx_state_tree_module/* getRoot */.yj)(self);
+      var app = store.app;
+      var snackbar = app.snackbar;
+      var url = '/app/about_load';
+      app.fetchJSON(url, null, false, 'POST').then(function (json) {
+        self.update(json.me);
+      })["catch"](function (ex) {
+        console.error("Fetch failed for ".concat(url), ex);
+        snackbar.update(true, "Une erreur est survenue.", "error");
+      });
+    }
+  };
+}); // Functions Components ReactJS
+// -------------------------------------------------------------------------------------------------------------
+// ***** AboutHeaderLeft *****
+// ***************************
+
+var TAG_AboutHeaderLeft = function TAG_AboutHeaderLeft() {};
+
+var AboutHeaderLeft = (0,es/* observer */.Pi)(function (props) {
+  var store = react.useContext(window.storeContext);
+  var app = store.app; // ...
+  // Render
+  // ==================================================================================================
+
+  return /*#__PURE__*/react.createElement(HeaderTitle, {
+    title: "A propos",
+    titleStyle: {
+      marginLeft: '10px'
+    }
+  });
+}); // ***** AboutMenuItem *****
+// *************************
+
+var TAG_AboutMenuItem = function TAG_AboutMenuItem() {};
+
+var AboutMenuItem = (0,es/* observer */.Pi)(function (props) {
+  var store = react.useContext(window.storeContext);
+  var app = store.app; // Evènements
+  // ==================================================================================================
+
+  var handleMenuItemClick = function handleMenuItemClick() {
+    app.navigate(app.aboutUrl, app.aboutContext);
+  }; // Render
+  // ==================================================================================================
+
+
+  return /*#__PURE__*/react.createElement(MenuItem, {
+    icon: /*#__PURE__*/react.createElement(Icon_Icon, {
+      name: "code"
+    }),
+    label: "A propos",
+    activeContexts: [app.aboutContext],
+    callbackClick: handleMenuItemClick
+  });
+}); // ***** RenderAbout *****
+// ***********************
+
+var TAG_RenderAbout = function TAG_RenderAbout() {};
+
+var RenderAbout = (0,es/* observer */.Pi)(function (props) {
+  var store = react.useContext(window.storeContext);
+  var app = store.app;
+  var about = app.about; // From ... store
+
+  var isLoading = app.isLoading;
+  var breakPoint414 = app.breakPoint414;
+  var loaded = about.loaded;
+  var service = about.service;
+  var version = service.version;
+  var changeset = service.changeset;
+  var changeset_instance = service.changeset_instance; // ...
+
+  react.useEffect(function () {
+    if (!loaded) {
+      about.load();
+    }
+  }, [loaded]); // Evènements
+  // ==================================================================================================
+
+  var handleChangelogClick = function handleChangelogClick() {// TODO
+  };
+
+  var handleBugsClick = function handleBugsClick() {// TODO
+  }; // Render
+  // ==================================================================================================
+  // Section -> Icon
+  // ---
+
+
+  var sectionIcon = /*#__PURE__*/react.createElement(Icon_Icon, {
+    name: "memory"
+  }); // Section -> Title
+  // ---
+
+  var sectionTitle = service.name; // Section -> Content
+  // ---
+
+  var sectionContent = /*#__PURE__*/react.createElement("div", {
+    className: (0,clsx_m/* default */.Z)("h-col-medium", "responsive-vertical", "responsive-spaced-medium")
+  }, /*#__PURE__*/react.createElement(Avatar_Avatar, {
+    src: "/static/favicons/android-icon-192x192.png",
+    size: "big"
+  }), /*#__PURE__*/react.createElement("div", {
+    className: (0,clsx_m/* default */.Z)({
+      "v-col-tiny": !breakPoint414
+    }, {
+      "v-col-small": breakPoint414
+    }, "flex-align-stretch")
+  }, /*#__PURE__*/react.createElement("div", {
+    className: "h-col-small responsive-vertical responsive-spaced-none"
+  }, /*#__PURE__*/react.createElement("div", {
+    className: "nx-t"
+  }, "Version"), /*#__PURE__*/react.createElement("div", {
+    className: "nx-t selectable",
+    "data-flex": "2"
+  }, /*#__PURE__*/react.createElement("b", null, version))), /*#__PURE__*/react.createElement("div", {
+    className: "h-col-small responsive-vertical responsive-spaced-none responsive-align-start"
+  }, /*#__PURE__*/react.createElement("div", {
+    className: "nx-t"
+  }, "R\xE9vision instance"), /*#__PURE__*/react.createElement("div", {
+    className: "nx-about-changeset selectable",
+    "data-flex": "2"
+  }, changeset_instance)), /*#__PURE__*/react.createElement("div", {
+    className: "h-col-small responsive-vertical responsive-spaced-none responsive-align-start"
+  }, /*#__PURE__*/react.createElement("div", {
+    className: "nx-t"
+  }, "R\xE9vision d\xE9p\xF4t"), /*#__PURE__*/react.createElement("div", {
+    className: "nx-about-changeset selectable",
+    "data-flex": "2"
+  }, changeset)))); // Section -> Buttons
+  // ---
+
+  var sectionButtons = [];
+  sectionButtons.push( /*#__PURE__*/react.createElement(Button_Button, {
+    key: "btn-changelog",
+    variant: "outlined",
+    color: "primary",
+    onClick: function onClick() {
+      return handleChangelogClick();
+    },
+    disabled: isLoading,
+    startAdornment: /*#__PURE__*/react.createElement(Icon_Icon, {
+      name: "history"
+    })
+  }, "Changelog"));
+  sectionButtons.push( /*#__PURE__*/react.createElement(Button_Button, {
+    key: "btn-bugs",
+    variant: "outlined",
+    color: "primary",
+    onClick: function onClick() {
+      return handleBugsClick();
+    },
+    disabled: isLoading,
+    startAdornment: /*#__PURE__*/react.createElement(Icon_Icon, {
+      name: "bug_report"
+    })
+  }, "Bugs"));
+  return /*#__PURE__*/react.createElement(Section_Section, {
+    icon: sectionIcon,
+    title: sectionTitle,
+    buttons: sectionButtons
+  }, sectionContent);
+}); // ***** AboutPage *****
+// *********************
+
+var TAG_AboutPage = function TAG_AboutPage() {};
+
+var AboutPage = (0,es/* observer */.Pi)(function (props) {
+  var store = react.useContext(window.storeContext);
+  var app = store.app;
+  var about = app.about; // From ... store
+
+  var initialized = app.initialized;
+  var loaded = about.loaded; // ...
+
+  var showHelper = !initialized || !loaded ? true : false; // Renderers
+  // ==================================================================================================
+
+  var renderPage = function renderPage() {
+    // Render :: Page -> que quand l'app est intitialisée (pour useEffect)
+    // ---
+    var pageContent = null;
+
+    if (initialized) {
+      pageContent = /*#__PURE__*/react.createElement(RenderAbout, null);
+    }
+
+    return pageContent;
+  };
+
+  var renderHelper = function renderHelper() {
+    // Render :: Helper
+    // ---
+    return /*#__PURE__*/react.createElement(Helper_Helper, {
+      iconName: "code",
+      show: showHelper
+    });
+  };
+
+  return /*#__PURE__*/react.createElement("div", {
+    className: "nx-page"
+  }, renderPage(), renderHelper());
+});
 // EXTERNAL MODULE: ../../nexus/react/layout/row/Row.css
 var Row = __webpack_require__(3447);
 ;// CONCATENATED MODULE: ../../nexus/react/layout/row/Row.jsx
@@ -2528,12 +3063,13 @@ var Row_Row = function Row(props) {
   var responsive = props.responsive == false ? false : true;
   var children = props.children;
   var spacing = props.spacing ? props.spacing : 'small';
+  var align = props.align ? props.align : 'start';
   var className = props.className ? props.className : '';
   var style = props.style ? props.style : {};
   var marginBottom = props.marginBottom == false ? false : true; // ==================================================================================================
 
   return /*#__PURE__*/react.createElement("div", {
-    className: (0,clsx_m/* default */.Z)("nx-row", "h-col-".concat(spacing), "flex-align-start", {
+    className: (0,clsx_m/* default */.Z)("nx-row", "h-col-".concat(spacing), "flex-align-".concat(align), {
       "responsive-vertical": responsive
     }, {
       "responsive-align-stretch": responsive
@@ -3922,7 +4458,7 @@ var UserMenuItem = (0,es/* observer */.Pi)(function (props) {
   var account = app.account;
   var menu = app.menu; // From ... store
 
-  var isAdmin = account.id_admin; // ...
+  var isAdmin = account.is_admin; // ...
 
   var userContext = 'user'; // Evènements
   // ==================================================================================================
@@ -4799,7 +5335,8 @@ var AccountMenuItem = (0,es/* observer */.Pi)(function (props) {
   var app = store.app;
   var account = app.account; // From ... store
 
-  var isLogged = account.isLogged; // Evènements
+  var isLogged = account.isLogged;
+  var breakPoint650 = app.breakPoint650; // Evènements
   // ==================================================================================================
 
   var handleMenuItemClick = function handleMenuItemClick() {
@@ -4810,7 +5347,7 @@ var AccountMenuItem = (0,es/* observer */.Pi)(function (props) {
 
   var accountMenuItem = null;
 
-  if (isLogged) {
+  if (isLogged && breakPoint650) {
     accountMenuItem = /*#__PURE__*/react.createElement(MenuItem, {
       icon: /*#__PURE__*/react.createElement(Icon_Icon, {
         name: "account_circle"
@@ -4917,11 +5454,11 @@ var NxApp = __webpack_require__(7052);
 ;// CONCATENATED MODULE: ../../nexus/react/NxApp.jsx
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+function NxApp_classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+function NxApp_defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
 
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+function NxApp_createClass(Constructor, protoProps, staticProps) { if (protoProps) NxApp_defineProperties(Constructor.prototype, protoProps); if (staticProps) NxApp_defineProperties(Constructor, staticProps); return Constructor; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
@@ -4950,6 +5487,7 @@ function NxApp_createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Sy
 function NxApp_unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return NxApp_arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return NxApp_arrayLikeToArray(o, minLen); }
 
 function NxApp_arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
 
 
 
@@ -5017,7 +5555,8 @@ var NxAppStore = mobx_state_tree_module/* types.model */.V5.model({
   // iPhone 6, 7, 8
   breakPoint320: false,
   // iPhone 5, SE
-  // Authentification
+  // About & Authentification
+  about: mobx_state_tree_module/* types.optional */.V5.optional(AboutStore, {}),
   auth: mobx_state_tree_module/* types.optional */.V5.optional(AuthStore, {}),
   account: mobx_state_tree_module/* types.optional */.V5.optional(AccountStore, {}),
   // Forms
@@ -5848,16 +6387,21 @@ var ErrorBoundary = /*#__PURE__*/function (_React$Component) {
   function ErrorBoundary(props) {
     var _this;
 
-    _classCallCheck(this, ErrorBoundary);
+    NxApp_classCallCheck(this, ErrorBoundary);
 
     _this = _super.call(this, props);
+
+    _this.handleRefresh = function () {
+      document.location.reload();
+    };
+
     _this.state = {
       hasError: false
     };
     return _this;
   }
 
-  _createClass(ErrorBoundary, [{
+  NxApp_createClass(ErrorBoundary, [{
     key: "componentDidCatch",
     value: function componentDidCatch(error, errorInfo) {
       console.error('componentDidCatch');
@@ -5868,6 +6412,8 @@ var ErrorBoundary = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
+      var _this2 = this;
+
       if (this.state.hasError) {
         return /*#__PURE__*/react.createElement("div", {
           className: "nx-page"
@@ -5880,7 +6426,18 @@ var ErrorBoundary = /*#__PURE__*/function (_React$Component) {
           subtitle: "Une erreur est survenue.",
           severity: "error",
           show: true
-        }));
+        }, /*#__PURE__*/react.createElement(Button_Button, {
+          key: "btn-nx-app-refresh",
+          variant: "outlined",
+          color: "primary",
+          fullWidth: true,
+          onClick: function onClick() {
+            return _this2.handleRefresh();
+          },
+          style: {
+            marginTop: '20px'
+          }
+        }, "Rafraichir")));
       }
 
       return this.props.children;
@@ -6318,9 +6875,171 @@ var BlogPage = (0,es/* observer */.Pi)(function (props) {
     className: "nx-page"
   }, renderHelper());
 });
+// EXTERNAL MODULE: ../../nexus/react/ui/paper/Paper.css
+var Paper = __webpack_require__(9393);
+;// CONCATENATED MODULE: ../../nexus/react/ui/paper/Paper.jsx
+
+
+
+
+ // Functions Components ReactJS
+// -------------------------------------------------------------------------------------------------------------
+// ***** Paper *****
+// *****************
+
+var TAG_Paper = function TAG_Paper() {};
+
+var Paper_Paper = function Paper(props) {
+  // From ... props
+  var children = props.children;
+  var _onClick = props.onClick;
+  var className = props.className ? props.className : '';
+  var style = props.style ? props.style : {}; // Render
+  // ==================================================================================================
+
+  return /*#__PURE__*/react.createElement("div", {
+    className: (0,clsx_m/* default */.Z)("nx-paper", className),
+    style: style,
+    onClick: function onClick() {
+      if (_onClick) {
+        _onClick();
+      }
+    }
+  }, children);
+};
+// EXTERNAL MODULE: ../../nexus/react/ui/typography/Typography.css
+var Typography = __webpack_require__(1815);
+;// CONCATENATED MODULE: ../../nexus/react/ui/typography/Typography.jsx
+
+
+
+ // Functions Components ReactJS
+// -------------------------------------------------------------------------------------------------------------
+// ***** Typography *****
+// **********************
+
+var TAG_Typography = function TAG_Typography() {};
+
+var Typography_Typography = function Typography(props) {
+  // From ... props
+  var children = props.children;
+  var variant = props.variant ? props.variant : '';
+  var severity = props.severity ? props.severity : '';
+  var className = props.className ? props.className : '';
+  var style = props.style ? props.style : {};
+  var color = props.color ? props.color : ''; // ...
+  // Quelle couleur ?
+
+  if (color && !style.hasOwnProperty('color')) {
+    style['color'] = color;
+  }
+
+  if (severity && !style.hasOwnProperty('color') && SEVERITY_COLORS.hasOwnProperty(severity)) {
+    style['color'] = SEVERITY_COLORS[severity];
+  } // Render
+  // ==================================================================================================
+
+
+  return /*#__PURE__*/react.createElement("div", {
+    className: (0,clsx_m/* default */.Z)("c-typography", variant, className),
+    style: style
+  }, children);
+};
+// EXTERNAL MODULE: ./components/cards/ProjectCard.css
+var ProjectCard = __webpack_require__(7291);
+;// CONCATENATED MODULE: ./components/cards/ProjectCard.jsx
+
+
+
+
+
+
+
+
+ // Functions Components ReactJS
+// ----------------------------------------------------------------------------------------------------------------------------
+// ***** ProjectCard *****
+// ***********************
+
+var TAG_ProjectCard = function TAG_ProjectCard() {};
+
+var ProjectCard_ProjectCard = function ProjectCard(props) {
+  // From ... props
+  var serviceInfo = props.serviceInfo;
+  var projectMetas = props.projectMetas; // ...
+
+  var appId = serviceInfo.app_id;
+  var name = serviceInfo.name;
+  var description = serviceInfo.description; // Evènements
+  // ==================================================================================================
+
+  var handleClick = function handleClick() {
+    // Sur click de la carte
+    // ---
+    console.log(appId);
+  }; // Render
+  // ==================================================================================================
+
+
+  return /*#__PURE__*/react.createElement(Paper_Paper, {
+    className: (0,clsx_m/* default */.Z)("nm-projet-card"),
+    onClick: function onClick() {
+      return handleClick();
+    }
+  }, /*#__PURE__*/react.createElement(Row_Row, {
+    align: "center"
+  }, /*#__PURE__*/react.createElement("div", {
+    className: "nm-project-thumbnail"
+  }, /*#__PURE__*/react.createElement(Icon_Icon, {
+    name: "extension"
+  })), /*#__PURE__*/react.createElement("div", null, /*#__PURE__*/react.createElement(Typography_Typography, {
+    variant: "title"
+  }, name), /*#__PURE__*/react.createElement(Typography_Typography, {
+    variant: "description"
+  }, description))));
+};
+// EXTERNAL MODULE: ../../nexus/react/forms/heading/Heading.css
+var Heading = __webpack_require__(4297);
+;// CONCATENATED MODULE: ../../nexus/react/forms/heading/Heading.jsx
+
+
+
+
+ // Functions Components ReactJS
+// -------------------------------------------------------------------------------------------------------------
+// ***** Heading *****
+// *******************
+
+var TAG_Heading = function TAG_Heading() {};
+
+var Heading_Heading = (0,es/* observer */.Pi)(function (props) {
+  var store = react.useContext(window.storeContext);
+  var app = store.app;
+  var theme = app.theme; // From ... props
+
+  var centered = props.centered == true ? true : false;
+  var variant = props.variant ? props.variant : 'default'; // default, contained
+
+  var children = props.children;
+  var className = props.className ? props.className : '';
+  var style = props.style ? props.style : {}; // Render
+  // ==================================================================================================
+
+  return /*#__PURE__*/react.createElement("div", {
+    className: (0,clsx_m/* default */.Z)("nx-heading", {
+      "centered": centered
+    }, className),
+    style: style
+  }, children);
+});
 // EXTERNAL MODULE: ./contexts/projects/Projects.css
 var Projects = __webpack_require__(8525);
 ;// CONCATENATED MODULE: ./contexts/projects/Projects.jsx
+function Projects_createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = Projects_unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
+
+function Projects_unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return Projects_arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return Projects_arrayLikeToArray(o, minLen); }
+
+function Projects_arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
 
 
 
@@ -6329,7 +7048,39 @@ var Projects = __webpack_require__(8525);
 
 
 
- // Models
+
+
+
+
+ // Datas
+// -------------------------------------------------------------------------------------------------------------
+
+var PROJECTS_METAS = {
+  // Support
+  // -
+  'nexus': {
+    'completion': 50
+  },
+  'cerberus': {
+    'completion': 25
+  },
+  // Vitrine
+  // -
+  'nexorium': {
+    'completion': 15
+  },
+  'nexora': {
+    'completion': 15
+  },
+  // Collections
+  // -
+  'gramophone_server': {
+    'completion': 10
+  },
+  'vgm': {
+    'completion': 10
+  }
+}; // Models
 // -------------------------------------------------------------------------------------------------------------
 // ***** ProjectsStore *****
 // *************************
@@ -6394,6 +7145,64 @@ var ProjectsMenuItem = (0,es/* observer */.Pi)(function (props) {
     activeContexts: [projectsContext],
     callbackClick: handleMenuItemClick
   });
+}); // ***** RenderProjects *****
+// **************************
+
+var TAG_RenderProjects = function TAG_RenderProjects() {};
+
+var RenderProjects = (0,es/* observer */.Pi)(function (props) {
+  var store = react.useContext(window.storeContext);
+  var app = store.app;
+  var services = app.services; // From ... store
+  // Renderers
+  // ==================================================================================================
+
+  var renderProjectsCards = function renderProjectsCards(groupTitle, appKeys) {
+    // Render :: Project Card
+    // ---
+    var projectCards = [];
+
+    var _iterator = Projects_createForOfIteratorHelper(appKeys),
+        _step;
+
+    try {
+      for (_iterator.s(); !(_step = _iterator.n()).done;) {
+        var appKey = _step.value;
+        var serviceInfo = services.getServiceInfo(appKey);
+
+        if (!serviceInfo) {
+          continue;
+        } // Project Metas
+
+
+        var projectMetas = null;
+
+        if (PROJECTS_METAS.hasOwnProperty(appKey)) {
+          projectMetas = PROJECTS_METAS[appKey];
+        }
+
+        projectCards.push( /*#__PURE__*/react.createElement(ProjectCard_ProjectCard, {
+          key: serviceInfo.app_id,
+          serviceInfo: serviceInfo,
+          projectMetas: projectMetas
+        }));
+      }
+    } catch (err) {
+      _iterator.e(err);
+    } finally {
+      _iterator.f();
+    }
+
+    return /*#__PURE__*/react.createElement("div", null, /*#__PURE__*/react.createElement(Heading_Heading, {
+      style: {
+        marginBottom: '10px'
+      }
+    }, groupTitle), /*#__PURE__*/react.createElement("div", {
+      className: "nm-projects-cards"
+    }, projectCards));
+  };
+
+  return /*#__PURE__*/react.createElement("div", null, renderProjectsCards("Support", ['nexus', 'cerberus']), renderProjectsCards("Vitrine", ['nexorium', 'nexora']), renderProjectsCards("Collections", ['gramophone', 'vgm']));
 }); // ***** ProjectsPage *****
 // ************************
 
@@ -6401,21 +7210,37 @@ var TAG_ProjectsPage = function TAG_ProjectsPage() {};
 
 var ProjectsPage = (0,es/* observer */.Pi)(function (props) {
   var store = react.useContext(window.storeContext);
-  var app = store.app; // Renderers
+  var app = store.app; // From ... store
+
+  var initialized = app.initialized; // ...
+
+  var showHelper = !initialized ? true : false; // Renderers
   // ==================================================================================================
+
+  var renderPage = function renderPage() {
+    // Render :: Page -> que quand l'app est intitialisée (pour useEffect)
+    // ---
+    var pageContent = null;
+
+    if (initialized) {
+      pageContent = /*#__PURE__*/react.createElement(RenderProjects, null);
+    }
+
+    return pageContent;
+  };
 
   var renderHelper = function renderHelper() {
     // Render :: Helper
     // ---
     return /*#__PURE__*/react.createElement(Helper_Helper, {
       iconName: "work_outline",
-      show: true
+      show: showHelper
     });
   };
 
   return /*#__PURE__*/react.createElement("div", {
     className: "nx-page"
-  }, renderHelper());
+  }, renderPage(), renderHelper());
 });
 // EXTERNAL MODULE: ./contexts/cv/Cv.css
 var Cv = __webpack_require__(8685);
@@ -6515,40 +7340,6 @@ var CvPage = (0,es/* observer */.Pi)(function (props) {
   return /*#__PURE__*/react.createElement("div", {
     className: "nx-page"
   }, renderHelper());
-});
-// EXTERNAL MODULE: ../../nexus/react/forms/heading/Heading.css
-var Heading = __webpack_require__(4297);
-;// CONCATENATED MODULE: ../../nexus/react/forms/heading/Heading.jsx
-
-
-
-
- // Functions Components ReactJS
-// -------------------------------------------------------------------------------------------------------------
-// ***** Heading *****
-// *******************
-
-var TAG_Heading = function TAG_Heading() {};
-
-var Heading_Heading = (0,es/* observer */.Pi)(function (props) {
-  var store = react.useContext(window.storeContext);
-  var app = store.app;
-  var theme = app.theme; // From ... props
-
-  var centered = props.centered == true ? true : false;
-  var variant = props.variant ? props.variant : 'default'; // default, contained
-
-  var children = props.children;
-  var className = props.className ? props.className : '';
-  var style = props.style ? props.style : {}; // Render
-  // ==================================================================================================
-
-  return /*#__PURE__*/react.createElement("div", {
-    className: (0,clsx_m/* default */.Z)("nx-heading", {
-      "centered": centered
-    }, className),
-    style: style
-  }, children);
 });
 // EXTERNAL MODULE: ./contexts/playground/Playground.css
 var Playground = __webpack_require__(5245);
@@ -7637,6 +8428,13 @@ window.addEventListener('DOMContentLoaded', function () {
 
 /***/ }),
 
+/***/ 7291:
+/***/ (() => {
+
+// extracted by extract-css-chunks-webpack-plugin
+
+/***/ }),
+
 /***/ 4251:
 /***/ (() => {
 
@@ -7854,6 +8652,13 @@ window.addEventListener('DOMContentLoaded', function () {
 
 /***/ }),
 
+/***/ 9393:
+/***/ (() => {
+
+// extracted by extract-css-chunks-webpack-plugin
+
+/***/ }),
+
 /***/ 9443:
 /***/ (() => {
 
@@ -7869,6 +8674,13 @@ window.addEventListener('DOMContentLoaded', function () {
 /***/ }),
 
 /***/ 6824:
+/***/ (() => {
+
+// extracted by extract-css-chunks-webpack-plugin
+
+/***/ }),
+
+/***/ 1815:
 /***/ (() => {
 
 // extracted by extract-css-chunks-webpack-plugin
@@ -8029,7 +8841,7 @@ window.addEventListener('DOMContentLoaded', function () {
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module depends on other loaded chunks and execution need to be delayed
 /******/ 	__webpack_require__.O(undefined, [216], () => (__webpack_require__(3979)))
-/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, [216], () => (__webpack_require__(4781)))
+/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, [216], () => (__webpack_require__(7121)))
 /******/ 	__webpack_exports__ = __webpack_require__.O(__webpack_exports__);
 /******/ 	
 /******/ })()
