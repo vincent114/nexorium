@@ -1,4 +1,8 @@
 
+from nexus.utils import console_print
+from nexus.pyramid.resources.app_datas import AppDatas
+
+
 # Objects
 # ======================================================================================================
 
@@ -6,7 +10,17 @@
 # AppSupport
 # ----
 
-class AppSupport:
+class AppDatasNexorium(AppDatas):
+
+    # Actions
+    # -
+
+    @staticmethod
+    def init_database():
+
+        console_print('*** Database INIT ***')
+
+        # TODO
 
     # Serializations
     # -

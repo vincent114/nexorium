@@ -1293,13 +1293,17 @@ var TAG_Divider = function TAG_Divider() {};
 
 var Divider_Divider = function Divider(props) {
   // From ... props
+  var title = props.title ? props.title : '';
+  var className = props.className ? props.className : '';
   var style = props.style ? props.style : {}; // Render
   // ==================================================================================================
 
   return /*#__PURE__*/react.createElement("div", {
     className: "nx-divider",
     style: style
-  });
+  }, title && /*#__PURE__*/react.createElement("div", {
+    className: "nx-divider-title"
+  }, title));
 };
 // EXTERNAL MODULE: ../../nexus/react/layout/header/Header.css
 var Header = __webpack_require__(4450);
@@ -2134,7 +2138,24 @@ var PortalStore = mobx_state_tree_module/* types.model */.V5.model({
   };
 }); // Functions Components ReactJS
 // -------------------------------------------------------------------------------------------------------------
-// ***** PortalLinks *****
+// ***** PortalDivider *****
+// *************************
+
+var TAG_PortalDivider = function TAG_PortalDivider() {};
+
+var PortalDivider = (0,es/* observer */.Pi)(function (props) {
+  // From ... props
+  var children = props.children ? props.children : null; // Render
+  // ==================================================================================================
+
+  return /*#__PURE__*/react.createElement(Divider_Divider, {
+    title: children,
+    style: {
+      marginTop: '10px',
+      marginBottom: '10px'
+    }
+  });
+}); // ***** PortalLinks *****
 // ***********************
 
 var TAG_PortalLink = function TAG_PortalLink() {};
@@ -2212,14 +2233,24 @@ var Portal_Portal = (0,es/* observer */.Pi)(function (props) {
     className: "nx-portal-shortcuts-wrapper"
   }, /*#__PURE__*/react.createElement(PortalLink, {
     appKey: "nexorium"
-  }), /*#__PURE__*/react.createElement(PortalLink, {
+  })), /*#__PURE__*/react.createElement(PortalDivider, null, "Vitrines"), /*#__PURE__*/react.createElement("div", {
+    className: "nx-portal-shortcuts-wrapper"
+  }, /*#__PURE__*/react.createElement(PortalLink, {
     appKey: "nexora"
   }), /*#__PURE__*/react.createElement(PortalLink, {
     appKey: "gramophone"
-  }), /*#__PURE__*/react.createElement(PortalLink, {
+  })), /*#__PURE__*/react.createElement(PortalDivider, null, "Webapps"), /*#__PURE__*/react.createElement("div", {
+    className: "nx-portal-shortcuts-wrapper"
+  }, /*#__PURE__*/react.createElement(PortalLink, {
     appKey: "vgm"
-  }), /*#__PURE__*/react.createElement(PortalLink, {
+  })), /*#__PURE__*/react.createElement(PortalDivider, null, "Support"), /*#__PURE__*/react.createElement("div", {
+    className: "nx-portal-shortcuts-wrapper"
+  }, /*#__PURE__*/react.createElement(PortalLink, {
     appKey: "cerberus"
+  }), /*#__PURE__*/react.createElement(PortalLink, {
+    appKey: "ladybug"
+  }), /*#__PURE__*/react.createElement(PortalLink, {
+    appKey: "herald"
   }))), !breakPoint650 && /*#__PURE__*/react.createElement(IconButton, {
     onClick: function onClick() {
       return handlePinClick();
@@ -3763,7 +3794,8 @@ var Field_Field = (0,es/* observer */.Pi)(function (props) {
       placeholder: placeholder,
       title: title,
       style: inputStyle,
-      disabled: disabled
+      disabled: disabled,
+      autocomplete: "off"
     });
   };
 
@@ -4810,7 +4842,7 @@ var LoginMenuItem = (0,es/* observer */.Pi)(function (props) {
       icon: /*#__PURE__*/react.createElement(Icon_Icon, {
         name: "account_circle"
       }),
-      label: "Se connecter",
+      label: "Me connecter",
       activeContexts: ['auth'],
       callbackClick: handleMenuItemClick
     });
@@ -4894,12 +4926,12 @@ var RenderStepLogin = (0,es/* observer */.Pi)(function (props) {
     }
   }, /*#__PURE__*/react.createElement(HelperParaphTitle, {
     color: "primary"
-  }, "D\xE9j\xE0 inscrit ?"), "Saisissez votre identifiant / pseudo dans le champ ci-dessous :"), /*#__PURE__*/react.createElement("div", {
+  }, "Qui \xEAtes-vous ?"), "Saisissez votre pseudo dans le champ ci-dessous :"), /*#__PURE__*/react.createElement("div", {
     className: "h-col flex-align-start"
   }, /*#__PURE__*/react.createElement(Field_Field, {
     id: "txt-login",
     component: "input",
-    placeholder: "Identifiant / pseudo",
+    placeholder: "Pseudo",
     savePath: ['app', 'auth', 'login'],
     callbackKeyPress: handleLoginKeyPress,
     disabled: isLoading
@@ -5548,7 +5580,7 @@ var NxAppStore = mobx_state_tree_module/* types.model */.V5.model({
   isMobile: false,
   isDesktop: true,
   breakPoint650: false,
-  // Small Window or Dashboard Oméga
+  // Small Window
   breakPoint414: false,
   // iPhone 6, 7, 8 Plus
   breakPoint375: false,
@@ -8171,7 +8203,7 @@ var HomePage = (0,es/* observer */.Pi)(function (props) {
         src: "/static/favicons/android-icon-192x192.png"
       }),
       title: "Bienvenue sur le Nexorium !",
-      subtitle: "Votre portail d'acc\xE8s sur l'\xE9cosyst\xE8me NxApp servant \xE9galement de site portfolio.",
+      subtitle: "Le portail d'acc\xE8s sur l'\xE9cosyst\xE8me NxApp, servant \xE9galement de site portfolio.",
       show: true,
       style: {
         maxWidth: '400px'

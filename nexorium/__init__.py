@@ -5,7 +5,7 @@ smap.register('nexorium')
 from pyramid.config import Configurator
 
 from nexorium.resources import Root
-from nexorium.resources.app_support import AppSupport
+from nexorium.resources.app_datas import AppDatasNexorium
 from nexorium import views
 
 
@@ -23,7 +23,7 @@ def main(global_config, **settings):
     config.include('nexus.pyramid')
 
     # Init callback
-    config.registry.settings['init_app_callback'] = AppSupport.to_raw
+    config.registry.settings['init_app_callback'] = AppDatasNexorium.to_raw
 
     # Routes
     # ------------------------------------------------------
