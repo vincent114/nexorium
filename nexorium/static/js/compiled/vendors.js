@@ -126,9 +126,9 @@ function toInteger(dirtyNumber) {
  */
 
 function addDays(dirtyDate, dirtyAmount) {
-  (0,_lib_requiredArgs_index_js__WEBPACK_IMPORTED_MODULE_0__/* .default */ .Z)(2, arguments);
-  var date = (0,_toDate_index_js__WEBPACK_IMPORTED_MODULE_1__/* .default */ .Z)(dirtyDate);
-  var amount = (0,_lib_toInteger_index_js__WEBPACK_IMPORTED_MODULE_2__/* .default */ .Z)(dirtyAmount);
+  (0,_lib_requiredArgs_index_js__WEBPACK_IMPORTED_MODULE_0__/* ["default"] */ .Z)(2, arguments);
+  var date = (0,_toDate_index_js__WEBPACK_IMPORTED_MODULE_1__/* ["default"] */ .Z)(dirtyDate);
+  var amount = (0,_lib_toInteger_index_js__WEBPACK_IMPORTED_MODULE_2__/* ["default"] */ .Z)(dirtyAmount);
 
   if (isNaN(amount)) {
     return new Date(NaN);
@@ -145,7 +145,7 @@ function addDays(dirtyDate, dirtyAmount) {
 
 /***/ }),
 
-/***/ 5599:
+/***/ 8173:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -155,11 +155,55 @@ __webpack_require__.d(__webpack_exports__, {
   "Z": () => (/* binding */ format)
 });
 
-// EXTERNAL MODULE: ../../nexus/react/node_modules/date-fns/esm/toDate/index.js
-var toDate = __webpack_require__(3921);
 // EXTERNAL MODULE: ../../nexus/react/node_modules/date-fns/esm/_lib/requiredArgs/index.js
 var requiredArgs = __webpack_require__(5282);
+;// CONCATENATED MODULE: ../../nexus/react/node_modules/date-fns/esm/isDate/index.js
+
+/**
+ * @name isDate
+ * @category Common Helpers
+ * @summary Is the given value a date?
+ *
+ * @description
+ * Returns true if the given value is an instance of Date. The function works for dates transferred across iframes.
+ *
+ * ### v2.0.0 breaking changes:
+ *
+ * - [Changes that are common for the whole library](https://github.com/date-fns/date-fns/blob/master/docs/upgradeGuide.md#Common-Changes).
+ *
+ * @param {*} value - the value to check
+ * @returns {boolean} true if the given value is a date
+ * @throws {TypeError} 1 arguments required
+ *
+ * @example
+ * // For a valid date:
+ * const result = isDate(new Date())
+ * //=> true
+ *
+ * @example
+ * // For an invalid date:
+ * const result = isDate(new Date(NaN))
+ * //=> true
+ *
+ * @example
+ * // For some value:
+ * const result = isDate('2014-02-31')
+ * //=> false
+ *
+ * @example
+ * // For an object:
+ * const result = isDate({})
+ * //=> false
+ */
+
+function isDate(value) {
+  (0,requiredArgs/* default */.Z)(1, arguments);
+  return value instanceof Date || typeof value === 'object' && Object.prototype.toString.call(value) === '[object Date]';
+}
+// EXTERNAL MODULE: ../../nexus/react/node_modules/date-fns/esm/toDate/index.js
+var toDate = __webpack_require__(3921);
 ;// CONCATENATED MODULE: ../../nexus/react/node_modules/date-fns/esm/isValid/index.js
+
 
 
 /**
@@ -206,24 +250,29 @@ var requiredArgs = __webpack_require__(5282);
  *
  * @example
  * // For the valid date:
- * var result = isValid(new Date(2014, 1, 31))
+ * const result = isValid(new Date(2014, 1, 31))
  * //=> true
  *
  * @example
  * // For the value, convertable into a date:
- * var result = isValid(1393804800000)
+ * const result = isValid(1393804800000)
  * //=> true
  *
  * @example
  * // For the invalid date:
- * var result = isValid(new Date(''))
+ * const result = isValid(new Date(''))
  * //=> false
  */
 
 function isValid(dirtyDate) {
   (0,requiredArgs/* default */.Z)(1, arguments);
+
+  if (!isDate(dirtyDate) && typeof dirtyDate !== 'number') {
+    return false;
+  }
+
   var date = (0,toDate/* default */.Z)(dirtyDate);
-  return !isNaN(date);
+  return !isNaN(Number(date));
 }
 ;// CONCATENATED MODULE: ../../nexus/react/node_modules/date-fns/esm/locale/en-US/_lib/formatDistance/index.js
 var formatDistanceLocale = {
@@ -289,20 +338,21 @@ var formatDistanceLocale = {
     other: 'almost {{count}} years'
   }
 };
-function formatDistance(token, count, options) {
-  options = options || {};
-  var result;
 
-  if (typeof formatDistanceLocale[token] === 'string') {
-    result = formatDistanceLocale[token];
+var formatDistance = function (token, count, options) {
+  var result;
+  var tokenValue = formatDistanceLocale[token];
+
+  if (typeof tokenValue === 'string') {
+    result = tokenValue;
   } else if (count === 1) {
-    result = formatDistanceLocale[token].one;
+    result = tokenValue.one;
   } else {
-    result = formatDistanceLocale[token].other.replace('{{count}}', count);
+    result = tokenValue.other.replace('{{count}}', count.toString());
   }
 
-  if (options.addSuffix) {
-    if (options.comparison > 0) {
+  if (options !== null && options !== void 0 && options.addSuffix) {
+    if (options.comparison && options.comparison > 0) {
       return 'in ' + result;
     } else {
       return result + ' ago';
@@ -310,7 +360,9 @@ function formatDistance(token, count, options) {
   }
 
   return result;
-}
+};
+
+/* harmony default export */ const _lib_formatDistance = (formatDistance);
 ;// CONCATENATED MODULE: ../../nexus/react/node_modules/date-fns/esm/locale/_lib/buildFormatLongFn/index.js
 function buildFormatLongFn(args) {
   return function () {
@@ -365,9 +417,12 @@ var formatRelativeLocale = {
   nextWeek: "eeee 'at' p",
   other: 'P'
 };
-function formatRelative(token, _date, _baseDate, _options) {
+
+var formatRelative = function (token, _date, _baseDate, _options) {
   return formatRelativeLocale[token];
-}
+};
+
+/* harmony default export */ const _lib_formatRelative = (formatRelative);
 ;// CONCATENATED MODULE: ../../nexus/react/node_modules/date-fns/esm/locale/_lib/buildLocalizeFn/index.js
 function buildLocalizeFn(args) {
   return function (dirtyIndex, dirtyOptions) {
@@ -387,7 +442,7 @@ function buildLocalizeFn(args) {
       valuesArray = args.values[_width] || args.values[_defaultWidth];
     }
 
-    var index = args.argumentCallback ? args.argumentCallback(dirtyIndex) : dirtyIndex; // @ts-ignore: For some reason TypeScript just don't want to match it, no matter how hard we try. I challange you to try to remove it!
+    var index = args.argumentCallback ? args.argumentCallback(dirtyIndex) : dirtyIndex; // @ts-ignore: For some reason TypeScript just don't want to match it, no matter how hard we try. I challenge you to try to remove it!
 
     return valuesArray[index];
   };
@@ -484,16 +539,13 @@ var formattingDayPeriodValues = {
   }
 };
 
-function ordinalNumber(dirtyNumber, _dirtyOptions) {
+var ordinalNumber = function (dirtyNumber, _options) {
   var number = Number(dirtyNumber); // If ordinal numbers depend on context, for example,
   // if they are different for different grammatical genders,
-  // use `options.unit`:
+  // use `options.unit`.
   //
-  //   var options = dirtyOptions || {}
-  //   var unit = String(options.unit)
-  //
-  // where `unit` can be 'year', 'quarter', 'month', 'week', 'date', 'dayOfYear',
-  // 'day', 'hour', 'minute', 'second'
+  // `unit` can be 'year', 'quarter', 'month', 'week', 'date', 'dayOfYear',
+  // 'day', 'hour', 'minute', 'second'.
 
   var rem100 = number % 100;
 
@@ -511,7 +563,7 @@ function ordinalNumber(dirtyNumber, _dirtyOptions) {
   }
 
   return number + 'th';
-}
+};
 
 var localize = {
   ordinalNumber: ordinalNumber,
@@ -523,7 +575,7 @@ var localize = {
     values: quarterValues,
     defaultWidth: 'wide',
     argumentCallback: function (quarter) {
-      return Number(quarter) - 1;
+      return quarter - 1;
     }
   }),
   month: buildLocalizeFn({
@@ -542,24 +594,6 @@ var localize = {
   })
 };
 /* harmony default export */ const _lib_localize = (localize);
-;// CONCATENATED MODULE: ../../nexus/react/node_modules/date-fns/esm/locale/_lib/buildMatchPatternFn/index.js
-function buildMatchPatternFn(args) {
-  return function (string) {
-    var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
-    var matchResult = string.match(args.matchPattern);
-    if (!matchResult) return null;
-    var matchedString = matchResult[0];
-    var parseResult = string.match(args.parsePattern);
-    if (!parseResult) return null;
-    var value = args.valueCallback ? args.valueCallback(parseResult[0]) : parseResult[0];
-    value = options.valueCallback ? options.valueCallback(value) : value;
-    var rest = string.slice(matchedString.length);
-    return {
-      value: value,
-      rest: rest
-    };
-  };
-}
 ;// CONCATENATED MODULE: ../../nexus/react/node_modules/date-fns/esm/locale/_lib/buildMatchFn/index.js
 function buildMatchFn(args) {
   return function (string) {
@@ -608,6 +642,24 @@ function findIndex(array, predicate) {
   }
 
   return undefined;
+}
+;// CONCATENATED MODULE: ../../nexus/react/node_modules/date-fns/esm/locale/_lib/buildMatchPatternFn/index.js
+function buildMatchPatternFn(args) {
+  return function (string) {
+    var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+    var matchResult = string.match(args.matchPattern);
+    if (!matchResult) return null;
+    var matchedString = matchResult[0];
+    var parseResult = string.match(args.parsePattern);
+    if (!parseResult) return null;
+    var value = args.valueCallback ? args.valueCallback(parseResult[0]) : parseResult[0];
+    value = options.valueCallback ? options.valueCallback(value) : value;
+    var rest = string.slice(matchedString.length);
+    return {
+      value: value,
+      rest: rest
+    };
+  };
 }
 ;// CONCATENATED MODULE: ../../nexus/react/node_modules/date-fns/esm/locale/en-US/_lib/match/index.js
 
@@ -714,6 +766,7 @@ var match = {
 
 
 
+
 /**
  * @type {Locale}
  * @category Locales
@@ -723,12 +776,11 @@ var match = {
  * @author Sasha Koss [@kossnocorp]{@link https://github.com/kossnocorp}
  * @author Lesha Koss [@leshakoss]{@link https://github.com/leshakoss}
  */
-
 var locale = {
   code: 'en-US',
-  formatDistance: formatDistance,
+  formatDistance: _lib_formatDistance,
   formatLong: _lib_formatLong,
-  formatRelative: formatRelative,
+  formatRelative: _lib_formatRelative,
   localize: _lib_localize,
   match: _lib_match,
   options: {
@@ -806,102 +858,6 @@ function subMilliseconds(dirtyDate, dirtyAmount) {
   var amount = (0,toInteger/* default */.Z)(dirtyAmount);
   return addMilliseconds(dirtyDate, -amount);
 }
-;// CONCATENATED MODULE: ../../nexus/react/node_modules/date-fns/esm/_lib/addLeadingZeros/index.js
-function addLeadingZeros(number, targetLength) {
-  var sign = number < 0 ? '-' : '';
-  var output = Math.abs(number).toString();
-
-  while (output.length < targetLength) {
-    output = '0' + output;
-  }
-
-  return sign + output;
-}
-;// CONCATENATED MODULE: ../../nexus/react/node_modules/date-fns/esm/_lib/format/lightFormatters/index.js
-
-/*
- * |     | Unit                           |     | Unit                           |
- * |-----|--------------------------------|-----|--------------------------------|
- * |  a  | AM, PM                         |  A* |                                |
- * |  d  | Day of month                   |  D  |                                |
- * |  h  | Hour [1-12]                    |  H  | Hour [0-23]                    |
- * |  m  | Minute                         |  M  | Month                          |
- * |  s  | Second                         |  S  | Fraction of second             |
- * |  y  | Year (abs)                     |  Y  |                                |
- *
- * Letters marked by * are not implemented but reserved by Unicode standard.
- */
-
-var formatters = {
-  // Year
-  y: function (date, token) {
-    // From http://www.unicode.org/reports/tr35/tr35-31/tr35-dates.html#Date_Format_tokens
-    // | Year     |     y | yy |   yyy |  yyyy | yyyyy |
-    // |----------|-------|----|-------|-------|-------|
-    // | AD 1     |     1 | 01 |   001 |  0001 | 00001 |
-    // | AD 12    |    12 | 12 |   012 |  0012 | 00012 |
-    // | AD 123   |   123 | 23 |   123 |  0123 | 00123 |
-    // | AD 1234  |  1234 | 34 |  1234 |  1234 | 01234 |
-    // | AD 12345 | 12345 | 45 | 12345 | 12345 | 12345 |
-    var signedYear = date.getUTCFullYear(); // Returns 1 for 1 BC (which is year 0 in JavaScript)
-
-    var year = signedYear > 0 ? signedYear : 1 - signedYear;
-    return addLeadingZeros(token === 'yy' ? year % 100 : year, token.length);
-  },
-  // Month
-  M: function (date, token) {
-    var month = date.getUTCMonth();
-    return token === 'M' ? String(month + 1) : addLeadingZeros(month + 1, 2);
-  },
-  // Day of the month
-  d: function (date, token) {
-    return addLeadingZeros(date.getUTCDate(), token.length);
-  },
-  // AM or PM
-  a: function (date, token) {
-    var dayPeriodEnumValue = date.getUTCHours() / 12 >= 1 ? 'pm' : 'am';
-
-    switch (token) {
-      case 'a':
-      case 'aa':
-        return dayPeriodEnumValue.toUpperCase();
-
-      case 'aaa':
-        return dayPeriodEnumValue;
-
-      case 'aaaaa':
-        return dayPeriodEnumValue[0];
-
-      case 'aaaa':
-      default:
-        return dayPeriodEnumValue === 'am' ? 'a.m.' : 'p.m.';
-    }
-  },
-  // Hour [1-12]
-  h: function (date, token) {
-    return addLeadingZeros(date.getUTCHours() % 12 || 12, token.length);
-  },
-  // Hour [0-23]
-  H: function (date, token) {
-    return addLeadingZeros(date.getUTCHours(), token.length);
-  },
-  // Minute
-  m: function (date, token) {
-    return addLeadingZeros(date.getUTCMinutes(), token.length);
-  },
-  // Second
-  s: function (date, token) {
-    return addLeadingZeros(date.getUTCSeconds(), token.length);
-  },
-  // Fraction of second
-  S: function (date, token) {
-    var numberOfDigits = token.length;
-    var milliseconds = date.getUTCMilliseconds();
-    var fractionalSeconds = Math.floor(milliseconds * Math.pow(10, numberOfDigits - 3));
-    return addLeadingZeros(fractionalSeconds, token.length);
-  }
-};
-/* harmony default export */ const lightFormatters = (formatters);
 ;// CONCATENATED MODULE: ../../nexus/react/node_modules/date-fns/esm/_lib/getUTCDayOfYear/index.js
 
 
@@ -1026,7 +982,7 @@ function startOfUTCWeek(dirtyDate, dirtyOptions) {
 
 function getUTCWeekYear(dirtyDate, dirtyOptions) {
   (0,requiredArgs/* default */.Z)(1, arguments);
-  var date = (0,toDate/* default */.Z)(dirtyDate, dirtyOptions);
+  var date = (0,toDate/* default */.Z)(dirtyDate);
   var year = date.getUTCFullYear();
   var options = dirtyOptions || {};
   var locale = options.locale;
@@ -1093,6 +1049,102 @@ function getUTCWeek(dirtyDate, options) {
 
   return Math.round(diff / getUTCWeek_MILLISECONDS_IN_WEEK) + 1;
 }
+;// CONCATENATED MODULE: ../../nexus/react/node_modules/date-fns/esm/_lib/addLeadingZeros/index.js
+function addLeadingZeros(number, targetLength) {
+  var sign = number < 0 ? '-' : '';
+  var output = Math.abs(number).toString();
+
+  while (output.length < targetLength) {
+    output = '0' + output;
+  }
+
+  return sign + output;
+}
+;// CONCATENATED MODULE: ../../nexus/react/node_modules/date-fns/esm/_lib/format/lightFormatters/index.js
+
+/*
+ * |     | Unit                           |     | Unit                           |
+ * |-----|--------------------------------|-----|--------------------------------|
+ * |  a  | AM, PM                         |  A* |                                |
+ * |  d  | Day of month                   |  D  |                                |
+ * |  h  | Hour [1-12]                    |  H  | Hour [0-23]                    |
+ * |  m  | Minute                         |  M  | Month                          |
+ * |  s  | Second                         |  S  | Fraction of second             |
+ * |  y  | Year (abs)                     |  Y  |                                |
+ *
+ * Letters marked by * are not implemented but reserved by Unicode standard.
+ */
+
+var formatters = {
+  // Year
+  y: function (date, token) {
+    // From http://www.unicode.org/reports/tr35/tr35-31/tr35-dates.html#Date_Format_tokens
+    // | Year     |     y | yy |   yyy |  yyyy | yyyyy |
+    // |----------|-------|----|-------|-------|-------|
+    // | AD 1     |     1 | 01 |   001 |  0001 | 00001 |
+    // | AD 12    |    12 | 12 |   012 |  0012 | 00012 |
+    // | AD 123   |   123 | 23 |   123 |  0123 | 00123 |
+    // | AD 1234  |  1234 | 34 |  1234 |  1234 | 01234 |
+    // | AD 12345 | 12345 | 45 | 12345 | 12345 | 12345 |
+    var signedYear = date.getUTCFullYear(); // Returns 1 for 1 BC (which is year 0 in JavaScript)
+
+    var year = signedYear > 0 ? signedYear : 1 - signedYear;
+    return addLeadingZeros(token === 'yy' ? year % 100 : year, token.length);
+  },
+  // Month
+  M: function (date, token) {
+    var month = date.getUTCMonth();
+    return token === 'M' ? String(month + 1) : addLeadingZeros(month + 1, 2);
+  },
+  // Day of the month
+  d: function (date, token) {
+    return addLeadingZeros(date.getUTCDate(), token.length);
+  },
+  // AM or PM
+  a: function (date, token) {
+    var dayPeriodEnumValue = date.getUTCHours() / 12 >= 1 ? 'pm' : 'am';
+
+    switch (token) {
+      case 'a':
+      case 'aa':
+        return dayPeriodEnumValue.toUpperCase();
+
+      case 'aaa':
+        return dayPeriodEnumValue;
+
+      case 'aaaaa':
+        return dayPeriodEnumValue[0];
+
+      case 'aaaa':
+      default:
+        return dayPeriodEnumValue === 'am' ? 'a.m.' : 'p.m.';
+    }
+  },
+  // Hour [1-12]
+  h: function (date, token) {
+    return addLeadingZeros(date.getUTCHours() % 12 || 12, token.length);
+  },
+  // Hour [0-23]
+  H: function (date, token) {
+    return addLeadingZeros(date.getUTCHours(), token.length);
+  },
+  // Minute
+  m: function (date, token) {
+    return addLeadingZeros(date.getUTCMinutes(), token.length);
+  },
+  // Second
+  s: function (date, token) {
+    return addLeadingZeros(date.getUTCSeconds(), token.length);
+  },
+  // Fraction of second
+  S: function (date, token) {
+    var numberOfDigits = token.length;
+    var milliseconds = date.getUTCMilliseconds();
+    var fractionalSeconds = Math.floor(milliseconds * Math.pow(10, numberOfDigits - 3));
+    return addLeadingZeros(fractionalSeconds, token.length);
+  }
+};
+/* harmony default export */ const lightFormatters = (formatters);
 ;// CONCATENATED MODULE: ../../nexus/react/node_modules/date-fns/esm/_lib/format/formatters/index.js
 
 
@@ -2012,7 +2064,7 @@ function timeLongFormatter(pattern, formatLong) {
 }
 
 function dateTimeLongFormatter(pattern, formatLong) {
-  var matchResult = pattern.match(/(P+)(p+)?/);
+  var matchResult = pattern.match(/(P+)(p+)?/) || [];
   var datePattern = matchResult[1];
   var timePattern = matchResult[2];
 
@@ -2211,28 +2263,28 @@ var unescapedLatinCharacterRegExp = /[a-zA-Z]/;
  * | Day of week (formatting)        | E..EEE  | Mon, Tue, Wed, ..., Sun           |       |
  * |                                 | EEEE    | Monday, Tuesday, ..., Sunday      | 2     |
  * |                                 | EEEEE   | M, T, W, T, F, S, S               |       |
- * |                                 | EEEEEE  | Mo, Tu, We, Th, Fr, Su, Sa        |       |
+ * |                                 | EEEEEE  | Mo, Tu, We, Th, Fr, Sa, Su        |       |
  * | ISO day of week (formatting)    | i       | 1, 2, 3, ..., 7                   | 7     |
  * |                                 | io      | 1st, 2nd, ..., 7th                | 7     |
  * |                                 | ii      | 01, 02, ..., 07                   | 7     |
  * |                                 | iii     | Mon, Tue, Wed, ..., Sun           | 7     |
  * |                                 | iiii    | Monday, Tuesday, ..., Sunday      | 2,7   |
  * |                                 | iiiii   | M, T, W, T, F, S, S               | 7     |
- * |                                 | iiiiii  | Mo, Tu, We, Th, Fr, Su, Sa        | 7     |
+ * |                                 | iiiiii  | Mo, Tu, We, Th, Fr, Sa, Su        | 7     |
  * | Local day of week (formatting)  | e       | 2, 3, 4, ..., 1                   |       |
  * |                                 | eo      | 2nd, 3rd, ..., 1st                | 7     |
  * |                                 | ee      | 02, 03, ..., 01                   |       |
  * |                                 | eee     | Mon, Tue, Wed, ..., Sun           |       |
  * |                                 | eeee    | Monday, Tuesday, ..., Sunday      | 2     |
  * |                                 | eeeee   | M, T, W, T, F, S, S               |       |
- * |                                 | eeeeee  | Mo, Tu, We, Th, Fr, Su, Sa        |       |
+ * |                                 | eeeeee  | Mo, Tu, We, Th, Fr, Sa, Su        |       |
  * | Local day of week (stand-alone) | c       | 2, 3, 4, ..., 1                   |       |
  * |                                 | co      | 2nd, 3rd, ..., 1st                | 7     |
  * |                                 | cc      | 02, 03, ..., 01                   |       |
  * |                                 | ccc     | Mon, Tue, Wed, ..., Sun           |       |
  * |                                 | cccc    | Monday, Tuesday, ..., Sunday      | 2     |
  * |                                 | ccccc   | M, T, W, T, F, S, S               |       |
- * |                                 | cccccc  | Mo, Tu, We, Th, Fr, Su, Sa        |       |
+ * |                                 | cccccc  | Mo, Tu, We, Th, Fr, Sa, Su        |       |
  * | AM, PM                          | a..aa   | AM, PM                            |       |
  * |                                 | aaa     | am, pm                            |       |
  * |                                 | aaaa    | a.m., p.m.                        | 2     |
@@ -2370,7 +2422,7 @@ var unescapedLatinCharacterRegExp = /[a-zA-Z]/;
  * 8. `YY` and `YYYY` tokens represent week-numbering years but they are often confused with years.
  *    You should enable `options.useAdditionalWeekYearTokens` to use them. See: https://git.io/fxCyr
  *
- * 9. `D` and `DD` tokens represent days of the year but they are ofthen confused with days of the month.
+ * 9. `D` and `DD` tokens represent days of the year but they are often confused with days of the month.
  *    You should enable `options.useAdditionalDayOfYearTokens` to use them. See: https://git.io/fxCyr
  *
  * ### v2.0.0 breaking changes:
@@ -2568,9 +2620,9 @@ function cleanEscapedString(input) {
  */
 
 function subDays(dirtyDate, dirtyAmount) {
-  (0,_lib_requiredArgs_index_js__WEBPACK_IMPORTED_MODULE_0__/* .default */ .Z)(2, arguments);
-  var amount = (0,_lib_toInteger_index_js__WEBPACK_IMPORTED_MODULE_1__/* .default */ .Z)(dirtyAmount);
-  return (0,_addDays_index_js__WEBPACK_IMPORTED_MODULE_2__/* .default */ .Z)(dirtyDate, -amount);
+  (0,_lib_requiredArgs_index_js__WEBPACK_IMPORTED_MODULE_0__/* ["default"] */ .Z)(2, arguments);
+  var amount = (0,_lib_toInteger_index_js__WEBPACK_IMPORTED_MODULE_1__/* ["default"] */ .Z)(dirtyAmount);
+  return (0,_addDays_index_js__WEBPACK_IMPORTED_MODULE_2__/* ["default"] */ .Z)(dirtyDate, -amount);
 }
 
 /***/ }),
@@ -2616,7 +2668,7 @@ function subDays(dirtyDate, dirtyAmount) {
  */
 
 function toDate(argument) {
-  (0,_lib_requiredArgs_index_js__WEBPACK_IMPORTED_MODULE_0__/* .default */ .Z)(1, arguments);
+  (0,_lib_requiredArgs_index_js__WEBPACK_IMPORTED_MODULE_0__/* ["default"] */ .Z)(1, arguments);
   var argStr = Object.prototype.toString.call(argument); // Clone the date
 
   if (argument instanceof Date || typeof argument === 'object' && argStr === '[object Date]') {
@@ -3650,7 +3702,7 @@ define(function () {
 
 /***/ }),
 
-/***/ 8027:
+/***/ 589:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -3698,40 +3750,6 @@ var isObserverBatched = function () {
     return true;
 };
 //# sourceMappingURL=observerBatching.js.map
-;// CONCATENATED MODULE: ../../nexus/react/node_modules/mobx-react-lite/es/utils/utils.js
-var __read = (undefined && undefined.__read) || function (o, n) {
-    var m = typeof Symbol === "function" && o[Symbol.iterator];
-    if (!m) return o;
-    var i = m.call(o), r, ar = [], e;
-    try {
-        while ((n === void 0 || n-- > 0) && !(r = i.next()).done) ar.push(r.value);
-    }
-    catch (error) { e = { error: error }; }
-    finally {
-        try {
-            if (r && !r.done && (m = i["return"])) m.call(i);
-        }
-        finally { if (e) throw e.error; }
-    }
-    return ar;
-};
-
-var EMPTY_ARRAY = [];
-function useForceUpdate() {
-    var _a = __read((0,react.useState)(0), 2), setTick = _a[1];
-    var update = (0,react.useCallback)(function () {
-        setTick(function (tick) { return tick + 1; });
-    }, EMPTY_ARRAY);
-    return update;
-}
-var deprecatedMessages = (/* unused pure expression or super */ null && ([]));
-function useDeprecated(msg) {
-    if (!deprecatedMessages.includes(msg)) {
-        deprecatedMessages.push(msg);
-        console.warn(msg);
-    }
-}
-//# sourceMappingURL=utils.js.map
 ;// CONCATENATED MODULE: ../../nexus/react/node_modules/mobx-react-lite/es/utils/printDebugValue.js
 
 function printDebugValue(v) {
@@ -3941,7 +3959,7 @@ function isUsingStaticRendering() {
 }
 //# sourceMappingURL=staticRendering.js.map
 ;// CONCATENATED MODULE: ../../nexus/react/node_modules/mobx-react-lite/es/useObserver.js
-var useObserver_read = (undefined && undefined.__read) || function (o, n) {
+var __read = (undefined && undefined.__read) || function (o, n) {
     var m = typeof Symbol === "function" && o[Symbol.iterator];
     if (!m) return o;
     var i = m.call(o), r, ar = [], e;
@@ -3962,9 +3980,8 @@ var useObserver_read = (undefined && undefined.__read) || function (o, n) {
 
 
 
-
 function observerComponentNameFor(baseComponentName) {
-    return "observer" + baseComponentName;
+    return "observer".concat(baseComponentName);
 }
 /**
  * We use class to make it easier to detect in heap snapshots by name
@@ -3974,13 +3991,18 @@ var ObjectToBeRetainedByReact = /** @class */ (function () {
     }
     return ObjectToBeRetainedByReact;
 }());
+function objectToBeRetainedByReactFactory() {
+    return new ObjectToBeRetainedByReact();
+}
 function useObserver(fn, baseComponentName) {
     if (baseComponentName === void 0) { baseComponentName = "observed"; }
     if (isUsingStaticRendering()) {
         return fn();
     }
-    var _a = useObserver_read(react.useState(new ObjectToBeRetainedByReact()), 1), objectRetainedByReact = _a[0];
-    var forceUpdate = useForceUpdate();
+    var _a = __read(react.useState(objectToBeRetainedByReactFactory), 1), objectRetainedByReact = _a[0];
+    // Force update, see #2982
+    var _b = __read(react.useState(), 2), setState = _b[1];
+    var forceUpdate = function () { return setState([]); };
     // StrictMode/ConcurrentMode/Suspense may mean that our component is
     // rendered and abandoned multiple times, so we need to track leaked
     // Reactions.
@@ -4089,7 +4111,15 @@ function observer(baseComponent, options) {
     var wrappedComponent = function (props, ref) {
         return useObserver(function () { return baseComponent(props, ref); }, baseComponentName);
     };
-    wrappedComponent.displayName = baseComponentName;
+    // Don't set `displayName` for anonymous components,
+    // so the `displayName` can be customized by user, see #3192.
+    if (baseComponentName !== "") {
+        wrappedComponent.displayName = baseComponentName;
+    }
+    // Support legacy context: `contextTypes` must be applied before `memo`
+    if (baseComponent.contextTypes) {
+        wrappedComponent.contextTypes = baseComponent.contextTypes;
+    }
     // memo; we are not interested in deep updates
     // in props; we assume that if deep objects are changed,
     // this is in observables, which would have been tracked anyway
@@ -4105,7 +4135,7 @@ function observer(baseComponent, options) {
         memoComponent = (0,react.memo)(wrappedComponent);
     }
     copyStaticProperties(baseComponent, memoComponent);
-    memoComponent.displayName = baseComponentName;
+    if (false) {}
     return memoComponent;
 }
 // based on https://github.com/mridgway/hoist-non-react-statics/blob/master/src/index.js
@@ -4113,7 +4143,10 @@ var hoistBlackList = {
     $$typeof: true,
     render: true,
     compare: true,
-    type: true
+    type: true,
+    // Don't redefine `displayName`,
+    // it's defined as getter-setter pair on `memo` (see #3192).
+    displayName: true
 };
 function copyStaticProperties(base, target) {
     Object.keys(base).forEach(function (key) {
@@ -4312,11 +4345,13 @@ PERFORMANCE OF THIS SOFTWARE.
 var extendStatics = function(d, b) {
     extendStatics = Object.setPrototypeOf ||
         ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+        function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };
     return extendStatics(d, b);
 };
 
 function __extends(d, b) {
+    if (typeof b !== "function" && b !== null)
+        throw new TypeError("Class extends value " + String(b) + " is not a constructor or null");
     extendStatics(d, b);
     function __() { this.constructor = d; }
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
@@ -4402,6 +4437,7 @@ function __read(o, n) {
     return ar;
 }
 
+/** @deprecated */
 function __spread() {
     for (var ar = [], i = 0; i < arguments.length; i++)
         ar = ar.concat(__read(arguments[i]));
@@ -4821,7 +4857,7 @@ function resolveIdentifier(type, target, identifier) {
     assertIsStateTreeNode(target, 2);
     assertIsValidIdentifier(identifier, 3);
     var node = getStateTreeNode(target).root.identifierCache.resolve(type, normalizeIdentifier(identifier));
-    return node ? node.value : undefined;
+    return node === null || node === void 0 ? void 0 : node.value;
 }
 /**
  * Returns the identifier of the target node.
@@ -5370,6 +5406,14 @@ var BaseNode = /** @class */ (function () {
         },
         enumerable: false,
         configurable: true
+    });
+    Object.defineProperty(BaseNode.prototype, "getReconciliationType", {
+        enumerable: false,
+        configurable: true,
+        writable: true,
+        value: function () {
+            return this.type;
+        }
     });
     Object.defineProperty(BaseNode.prototype, "baseSetParent", {
         enumerable: false,
@@ -6709,6 +6753,16 @@ var ComplexType = /** @class */ (function (_super) {
             return node.storedValue;
         }
     });
+    Object.defineProperty(ComplexType.prototype, "isMatchingSnapshotId", {
+        enumerable: false,
+        configurable: true,
+        writable: true,
+        value: function (current, snapshot) {
+            return (!current.identifierAttribute ||
+                current.identifier ===
+                    normalizeIdentifier(snapshot[current.identifierAttribute]));
+        }
+    });
     Object.defineProperty(ComplexType.prototype, "tryToReconcileNode", {
         enumerable: false,
         configurable: true,
@@ -6727,9 +6781,7 @@ var ComplexType = /** @class */ (function (_super) {
             if (current.type === this &&
                 isMutable(newValue) &&
                 !isStateTreeNode(newValue) &&
-                (!current.identifierAttribute ||
-                    current.identifier ===
-                        normalizeIdentifier(newValue[current.identifierAttribute]))) {
+                this.isMatchingSnapshotId(current, newValue)) {
                 // the newValue has no node, so can be treated like a snapshot
                 // we can reconcile
                 current.applySnapshot(newValue);
@@ -8155,14 +8207,12 @@ function isMutable(value) {
  */
 function isPrimitive(value, includeDate) {
     if (includeDate === void 0) { includeDate = true; }
-    if (value === null || value === undefined)
-        return true;
-    if (typeof value === "string" ||
+    return (value === null ||
+        value === undefined ||
+        typeof value === "string" ||
         typeof value === "number" ||
         typeof value === "boolean" ||
-        (includeDate && value instanceof Date))
-        return true;
-    return false;
+        (includeDate && value instanceof Date));
 }
 /**
  * @internal
@@ -8204,8 +8254,17 @@ function isSerializable(value) {
  * @internal
  * @hidden
  */
+function defineProperty(object, key, descriptor) {
+    (0,mobx__WEBPACK_IMPORTED_MODULE_0__/* .isObservableObject */ .Pb)(object)
+        ? (0,mobx__WEBPACK_IMPORTED_MODULE_0__/* .defineProperty */ ._x)(object, key, descriptor)
+        : Object.defineProperty(object, key, descriptor);
+}
+/**
+ * @internal
+ * @hidden
+ */
 function addHiddenFinalProp(object, propName, value) {
-    Object.defineProperty(object, propName, {
+    defineProperty(object, propName, {
         enumerable: false,
         writable: false,
         configurable: true,
@@ -8217,7 +8276,7 @@ function addHiddenFinalProp(object, propName, value) {
  * @hidden
  */
 function addHiddenWritableProp(object, propName, value) {
-    Object.defineProperty(object, propName, {
+    defineProperty(object, propName, {
         enumerable: false,
         writable: true,
         configurable: true,
@@ -8810,6 +8869,8 @@ function splitJsonPath(path) {
     return parts;
 }
 
+/** @hidden */
+var $preProcessorFailed = Symbol("$preProcessorFailed");
 var SnapshotProcessor = /** @class */ (function (_super) {
     __extends(SnapshotProcessor, _super);
     function SnapshotProcessor(_subtype, _processors, name) {
@@ -8854,6 +8915,19 @@ var SnapshotProcessor = /** @class */ (function (_super) {
             return sn;
         }
     });
+    Object.defineProperty(SnapshotProcessor.prototype, "preProcessSnapshotSafe", {
+        enumerable: false,
+        configurable: true,
+        writable: true,
+        value: function (sn) {
+            try {
+                return this.preProcessSnapshot(sn);
+            }
+            catch (e) {
+                return $preProcessorFailed;
+            }
+        }
+    });
     Object.defineProperty(SnapshotProcessor.prototype, "postProcessSnapshot", {
         enumerable: false,
         configurable: true,
@@ -8876,6 +8950,9 @@ var SnapshotProcessor = /** @class */ (function (_super) {
             var oldGetSnapshot = node.getSnapshot;
             node.getSnapshot = function () {
                 return _this.postProcessSnapshot(oldGetSnapshot.call(node));
+            };
+            node.getReconciliationType = function () {
+                return _this;
             };
         }
     });
@@ -8919,7 +8996,10 @@ var SnapshotProcessor = /** @class */ (function (_super) {
         configurable: true,
         writable: true,
         value: function (value, context) {
-            var processedSn = this.preProcessSnapshot(value);
+            var processedSn = this.preProcessSnapshotSafe(value);
+            if (processedSn === $preProcessorFailed) {
+                return typeCheckFailure(context, value, "Failed to preprocess value");
+            }
             return this._subtype.validate(processedSn, context);
         }
     });
@@ -8940,7 +9020,10 @@ var SnapshotProcessor = /** @class */ (function (_super) {
                 ? this._subtype
                 : isStateTreeNode(thing)
                     ? getSnapshot(thing, false)
-                    : this.preProcessSnapshot(thing);
+                    : this.preProcessSnapshotSafe(thing);
+            if (value === $preProcessorFailed) {
+                return false;
+            }
             return this._subtype.validate(value, [{ path: "", type: this._subtype }]).length === 0;
         }
     });
@@ -8950,6 +9033,18 @@ var SnapshotProcessor = /** @class */ (function (_super) {
         writable: true,
         value: function (type) {
             return this._subtype.isAssignableFrom(type);
+        }
+    });
+    Object.defineProperty(SnapshotProcessor.prototype, "isMatchingSnapshotId", {
+        enumerable: false,
+        configurable: true,
+        writable: true,
+        value: function (current, snapshot) {
+            if (!(this._subtype instanceof ComplexType)) {
+                return false;
+            }
+            var processedSn = this.preProcessSnapshot(snapshot);
+            return this._subtype.isMatchingSnapshotId(current, processedSn);
         }
     });
     return SnapshotProcessor;
@@ -9213,18 +9308,17 @@ var MapType = /** @class */ (function (_super) {
             }
             var modelTypes = [];
             if (tryCollectModelTypes(this._subType, modelTypes)) {
-                var identifierAttribute_1 = undefined;
-                modelTypes.forEach(function (type) {
-                    if (type.identifierAttribute) {
-                        if (identifierAttribute_1 && identifierAttribute_1 !== type.identifierAttribute) {
-                            throw fail$1("The objects in a map should all have the same identifier attribute, expected '" + identifierAttribute_1 + "', but child of type '" + type.name + "' declared attribute '" + type.identifierAttribute + "' as identifier");
-                        }
-                        identifierAttribute_1 = type.identifierAttribute;
+                var identifierAttribute = modelTypes.reduce(function (current, type) {
+                    if (!type.identifierAttribute)
+                        return current;
+                    if (current && current !== type.identifierAttribute) {
+                        throw fail$1("The objects in a map should all have the same identifier attribute, expected '" + current + "', but child of type '" + type.name + "' declared attribute '" + type.identifierAttribute + "' as identifier");
                     }
-                });
-                if (identifierAttribute_1) {
+                    return type.identifierAttribute;
+                }, undefined);
+                if (identifierAttribute) {
                     this.identifierMode = MapIdentifierMode.YES;
-                    this.mapIdentifierAttribute = identifierAttribute_1;
+                    this.mapIdentifierAttribute = identifierAttribute;
                 }
                 else {
                     this.identifierMode = MapIdentifierMode.NO;
@@ -9490,7 +9584,7 @@ MapType.prototype.applySnapshot = (0,mobx__WEBPACK_IMPORTED_MODULE_0__/* .action
  * `types.map` - Creates a key based collection type who's children are all of a uniform declared type.
  * If the type stored in a map has an identifier, it is mandatory to store the child under that identifier in the map.
  *
- * This type will always produce [observable maps](https://mobx.js.org/refguide/map.html)
+ * This type will always produce [observable maps](https://mobx.js.org/api.html#observablemap)
  *
  * Example:
  * ```ts
@@ -9807,7 +9901,7 @@ ArrayType.prototype.applySnapshot = (0,mobx__WEBPACK_IMPORTED_MODULE_0__/* .acti
 /**
  * `types.array` - Creates an index based collection type who's children are all of a uniform declared type.
  *
- * This type will always produce [observable arrays](https://mobx.js.org/refguide/array.html)
+ * This type will always produce [observable arrays](https://mobx.js.org/api.html#observablearray)
  *
  * Example:
  * ```ts
@@ -9943,13 +10037,17 @@ function areSame(oldNode, newValue) {
     if (oldNode.snapshot === newValue) {
         return true;
     }
+    // Non object nodes don't get reconciled
+    if (!(oldNode instanceof ObjectNode)) {
+        return false;
+    }
+    var oldNodeType = oldNode.getReconciliationType();
     // new value is a snapshot with the correct identifier
-    return (oldNode instanceof ObjectNode &&
-        oldNode.identifier !== null &&
+    return (oldNode.identifier !== null &&
         oldNode.identifierAttribute &&
         isPlainObject(newValue) &&
-        oldNode.identifier === normalizeIdentifier(newValue[oldNode.identifierAttribute]) &&
-        oldNode.type.is(newValue));
+        oldNodeType.is(newValue) &&
+        oldNodeType.isMatchingSnapshotId(oldNode, newValue));
 }
 /**
  * Returns if a given value represents an array type.
@@ -10274,19 +10372,8 @@ var ModelType = /** @class */ (function (_super) {
                 // is this a computed property?
                 var descriptor = Object.getOwnPropertyDescriptor(views, key);
                 if ("get" in descriptor) {
-                    if ((0,mobx__WEBPACK_IMPORTED_MODULE_0__/* .isComputedProp */ .eJ)(self, key)) {
-                        var computedValue = (0,mobx__WEBPACK_IMPORTED_MODULE_0__/* ._getAdministration */ .kS)(self, key);
-                        // TODO: mobx currently does not allow redefining computes yet, pending #1121
-                        // FIXME: this binds to the internals of mobx!
-                        computedValue.derivation = descriptor.get;
-                        computedValue.scope = self;
-                        if (descriptor.set)
-                            computedValue.setter = (0,mobx__WEBPACK_IMPORTED_MODULE_0__/* .action */ .aD)(computedValue.name + "-setter", descriptor.set);
-                    }
-                    else {
-                        Object.defineProperty(self, key, descriptor);
-                        (0,mobx__WEBPACK_IMPORTED_MODULE_0__/* .makeObservable */ .rC)(self, (_a = {}, _a[key] = mobx__WEBPACK_IMPORTED_MODULE_0__/* .computed */ .Fl, _a));
-                    }
+                    (0,mobx__WEBPACK_IMPORTED_MODULE_0__/* .defineProperty */ ._x)(self, key, descriptor);
+                    (0,mobx__WEBPACK_IMPORTED_MODULE_0__/* .makeObservable */ .rC)(self, (_a = {}, _a[key] = mobx__WEBPACK_IMPORTED_MODULE_0__/* .computed */ .Fl, _a));
                 }
                 else if (typeof descriptor.value === "function") {
                     (!devMode() ? addHiddenFinalProp : addHiddenWritableProp)(self, key, descriptor.value);
@@ -11114,7 +11201,7 @@ var Union = /** @class */ (function (_super) {
         configurable: true,
         writable: true,
         value: function (current, newValue, parent, subpath) {
-            var type = this.determineType(newValue, current.type);
+            var type = this.determineType(newValue, current.getReconciliationType());
             if (!type)
                 throw fail$1("No matching type for union " + this.describe()); // can happen in prod builds
             return type.reconcile(current, newValue, parent, subpath);
@@ -12547,12 +12634,13 @@ var types = {
 /* harmony export */   "Fl": () => (/* binding */ computed),
 /* harmony export */   "jQ": () => (/* binding */ configure),
 /* harmony export */   "cp": () => (/* binding */ createAtom),
+/* harmony export */   "_x": () => (/* binding */ apiDefineProperty),
 /* harmony export */   "qh": () => (/* binding */ entries),
 /* harmony export */   "qp": () => (/* binding */ getAtom),
 /* harmony export */   "Gf": () => (/* binding */ getDependencyTree),
 /* harmony export */   "Su": () => (/* binding */ intercept),
-/* harmony export */   "eJ": () => (/* binding */ isComputedProp),
 /* harmony export */   "Ei": () => (/* binding */ isObservableArray),
+/* harmony export */   "Pb": () => (/* binding */ isObservableObject),
 /* harmony export */   "rC": () => (/* binding */ makeObservable),
 /* harmony export */   "LO": () => (/* binding */ observable),
 /* harmony export */   "N7": () => (/* binding */ observe),
@@ -12560,7 +12648,7 @@ var types = {
 /* harmony export */   "t8": () => (/* binding */ set),
 /* harmony export */   "VO": () => (/* binding */ values)
 /* harmony export */ });
-/* unused harmony exports $mobx, FlowCancellationError, ObservableSet, _allowStateChanges, _allowStateReadsEnd, _allowStateReadsStart, _autoAction, _endAction, _isComputingDerivation, _resetGlobalState, _startAction, autorun, comparer, defineProperty, extendObservable, flow, flowResult, get, getDebugName, getObserverTree, has, isAction, isBoxedObservable, isComputed, isFlow, isFlowCancellationError, isObservable, isObservableMap, isObservableObject, isObservableProp, isObservableSet, keys, makeAutoObservable, onBecomeObserved, onBecomeUnobserved, onReactionError, override, ownKeys, remove, runInAction, spy, toJS, trace, transaction, untracked, when */
+/* unused harmony exports $mobx, FlowCancellationError, ObservableSet, _allowStateChanges, _allowStateReadsEnd, _allowStateReadsStart, _autoAction, _endAction, _isComputingDerivation, _resetGlobalState, _startAction, autorun, comparer, extendObservable, flow, flowResult, get, getDebugName, getObserverTree, has, isAction, isBoxedObservable, isComputed, isComputedProp, isFlow, isFlowCancellationError, isObservable, isObservableMap, isObservableProp, isObservableSet, keys, makeAutoObservable, onBecomeObserved, onBecomeUnobserved, onReactionError, override, ownKeys, remove, runInAction, spy, toJS, trace, transaction, untracked, when */
 var niceErrors = {
   0: "Invalid value for configuration 'enforceActions', expected 'never', 'always' or 'observed'",
   1: function _(annotationType, key) {
@@ -12723,12 +12811,11 @@ function isObject(value) {
   return value !== null && typeof value === "object";
 }
 function isPlainObject(value) {
-  var _proto$constructor;
-
   if (!isObject(value)) return false;
   var proto = Object.getPrototypeOf(value);
   if (proto == null) return true;
-  return ((_proto$constructor = proto.constructor) == null ? void 0 : _proto$constructor.toString()) === plainObjectString;
+  var protoConstructor = Object.hasOwnProperty.call(proto, "constructor") && proto.constructor;
+  return typeof protoConstructor === "function" && protoConstructor.toString() === plainObjectString;
 } // https://stackoverflow.com/a/37865170
 
 function isGenerator(obj) {
@@ -12823,6 +12910,9 @@ function _defineProperties(target, props) {
 function _createClass(Constructor, protoProps, staticProps) {
   if (protoProps) _defineProperties(Constructor.prototype, protoProps);
   if (staticProps) _defineProperties(Constructor, staticProps);
+  Object.defineProperty(Constructor, "prototype", {
+    writable: false
+  });
   return Constructor;
 }
 
@@ -12847,7 +12937,17 @@ function _extends() {
 function _inheritsLoose(subClass, superClass) {
   subClass.prototype = Object.create(superClass.prototype);
   subClass.prototype.constructor = subClass;
-  subClass.__proto__ = superClass;
+
+  _setPrototypeOf(subClass, superClass);
+}
+
+function _setPrototypeOf(o, p) {
+  _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) {
+    o.__proto__ = p;
+    return o;
+  };
+
+  return _setPrototypeOf(o, p);
 }
 
 function _assertThisInitialized(self) {
@@ -12876,28 +12976,24 @@ function _arrayLikeToArray(arr, len) {
 }
 
 function _createForOfIteratorHelperLoose(o, allowArrayLike) {
-  var it;
+  var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"];
+  if (it) return (it = it.call(o)).next.bind(it);
 
-  if (typeof Symbol === "undefined" || o[Symbol.iterator] == null) {
-    if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") {
-      if (it) o = it;
-      var i = 0;
-      return function () {
-        if (i >= o.length) return {
-          done: true
-        };
-        return {
-          done: false,
-          value: o[i++]
-        };
+  if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") {
+    if (it) o = it;
+    var i = 0;
+    return function () {
+      if (i >= o.length) return {
+        done: true
       };
-    }
-
-    throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
+      return {
+        done: false,
+        value: o[i++]
+      };
+    };
   }
 
-  it = o[Symbol.iterator]();
-  return it.next.bind(it);
+  throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
 }
 
 var storedAnnotationsSymbol = /*#__PURE__*/Symbol("mobx-stored-annotations");
@@ -13059,7 +13155,8 @@ function shallowComparer(a, b) {
 }
 
 function defaultComparer(a, b) {
-  return Object.is(a, b);
+  if (Object.is) return Object.is(a, b);
+  return a === b ? a !== 0 || 1 / a === 1 / b : a !== a && b !== b;
 }
 
 var comparer = {
@@ -13166,7 +13263,7 @@ function make_$1(adm, key, descriptor, source) {
   var _this$options_;
 
   // bound
-  if ((_this$options_ = this.options_) == null ? void 0 : _this$options_.bound) {
+  if ((_this$options_ = this.options_) != null && _this$options_.bound) {
     return this.extend_(adm, key, descriptor, false) === null ? 0
     /* Cancel */
     : 1
@@ -13213,7 +13310,7 @@ function assertActionDescriptor(adm, _ref, key, _ref2) {
 
 function createActionDescriptor(adm, annotation, key, descriptor, // provides ability to disable safeDescriptors for prototypes
 safeDescriptors) {
-  var _annotation$options_, _annotation$options_$, _annotation$options_2, _annotation$options_$2, _annotation$options_3;
+  var _annotation$options_, _annotation$options_$, _annotation$options_2, _annotation$options_$2, _annotation$options_3, _annotation$options_4, _adm$proxy_2;
 
   if (safeDescriptors === void 0) {
     safeDescriptors = globalState.safeDescriptors;
@@ -13222,14 +13319,15 @@ safeDescriptors) {
   assertActionDescriptor(adm, annotation, key, descriptor);
   var value = descriptor.value;
 
-  if ((_annotation$options_ = annotation.options_) == null ? void 0 : _annotation$options_.bound) {
+  if ((_annotation$options_ = annotation.options_) != null && _annotation$options_.bound) {
     var _adm$proxy_;
 
     value = value.bind((_adm$proxy_ = adm.proxy_) != null ? _adm$proxy_ : adm.target_);
   }
 
   return {
-    value: createAction((_annotation$options_$ = (_annotation$options_2 = annotation.options_) == null ? void 0 : _annotation$options_2.name) != null ? _annotation$options_$ : key.toString(), value, (_annotation$options_$2 = (_annotation$options_3 = annotation.options_) == null ? void 0 : _annotation$options_3.autoAction) != null ? _annotation$options_$2 : false),
+    value: createAction((_annotation$options_$ = (_annotation$options_2 = annotation.options_) == null ? void 0 : _annotation$options_2.name) != null ? _annotation$options_$ : key.toString(), value, (_annotation$options_$2 = (_annotation$options_3 = annotation.options_) == null ? void 0 : _annotation$options_3.autoAction) != null ? _annotation$options_$2 : false, // https://github.com/mobxjs/mobx/discussions/3140
+    (_annotation$options_4 = annotation.options_) != null && _annotation$options_4.bound ? (_adm$proxy_2 = adm.proxy_) != null ? _adm$proxy_2 : adm.target_ : undefined),
     // Non-configurable for classes
     // prevents accidental field redefinition in subclass
     configurable: safeDescriptors ? adm.isPlainObject_ : true,
@@ -13264,7 +13362,7 @@ function make_$2(adm, key, descriptor, source) {
   // bound - must annotate protos to support super.flow()
 
 
-  if (((_this$options_ = this.options_) == null ? void 0 : _this$options_.bound) && !isFlow(adm.target_[key])) {
+  if ((_this$options_ = this.options_) != null && _this$options_.bound && !isFlow(adm.target_[key])) {
     if (this.extend_(adm, key, descriptor, false) === null) return 0
     /* Cancel */
     ;
@@ -13401,7 +13499,7 @@ function createAutoAnnotation(options) {
 }
 
 function make_$5(adm, key, descriptor, source) {
-  var _this$options_2, _this$options_3;
+  var _this$options_3, _this$options_4;
 
   // getter -> computed
   if (descriptor.get) {
@@ -13436,22 +13534,25 @@ function make_$5(adm, key, descriptor, source) {
 
 
   if (source !== adm.target_ && typeof descriptor.value === "function") {
-    var _this$options_;
+    var _this$options_2;
 
     if (isGenerator(descriptor.value)) {
-      return flow.make_(adm, key, descriptor, source);
+      var _this$options_;
+
+      var flowAnnotation = (_this$options_ = this.options_) != null && _this$options_.autoBind ? flow.bound : flow;
+      return flowAnnotation.make_(adm, key, descriptor, source);
     }
 
-    var actionAnnotation = ((_this$options_ = this.options_) == null ? void 0 : _this$options_.autoBind) ? autoAction.bound : autoAction;
+    var actionAnnotation = (_this$options_2 = this.options_) != null && _this$options_2.autoBind ? autoAction.bound : autoAction;
     return actionAnnotation.make_(adm, key, descriptor, source);
   } // other -> observable
   // Copy props from proto as well, see test:
   // "decorate should work with Object.create"
 
 
-  var observableAnnotation = ((_this$options_2 = this.options_) == null ? void 0 : _this$options_2.deep) === false ? observable.ref : observable; // if function respect autoBind option
+  var observableAnnotation = ((_this$options_3 = this.options_) == null ? void 0 : _this$options_3.deep) === false ? observable.ref : observable; // if function respect autoBind option
 
-  if (typeof descriptor.value === "function" && ((_this$options_3 = this.options_) == null ? void 0 : _this$options_3.autoBind)) {
+  if (typeof descriptor.value === "function" && (_this$options_4 = this.options_) != null && _this$options_4.autoBind) {
     var _adm$proxy_;
 
     descriptor.value = descriptor.value.bind((_adm$proxy_ = adm.proxy_) != null ? _adm$proxy_ : adm.target_);
@@ -13461,7 +13562,7 @@ function make_$5(adm, key, descriptor, source) {
 }
 
 function extend_$5(adm, key, descriptor, proxyTrap) {
-  var _this$options_4, _this$options_5;
+  var _this$options_5, _this$options_6;
 
   // getter -> computed
   if (descriptor.get) {
@@ -13479,16 +13580,20 @@ function extend_$5(adm, key, descriptor, proxyTrap) {
   // if function respect autoBind option
 
 
-  if (typeof descriptor.value === "function" && ((_this$options_4 = this.options_) == null ? void 0 : _this$options_4.autoBind)) {
+  if (typeof descriptor.value === "function" && (_this$options_5 = this.options_) != null && _this$options_5.autoBind) {
     var _adm$proxy_2;
 
     descriptor.value = descriptor.value.bind((_adm$proxy_2 = adm.proxy_) != null ? _adm$proxy_2 : adm.target_);
   }
 
-  var observableAnnotation = ((_this$options_5 = this.options_) == null ? void 0 : _this$options_5.deep) === false ? observable.ref : observable;
+  var observableAnnotation = ((_this$options_6 = this.options_) == null ? void 0 : _this$options_6.deep) === false ? observable.ref : observable;
   return observableAnnotation.extend_(adm, key, descriptor, proxyTrap);
 }
 
+var OBSERVABLE = "observable";
+var OBSERVABLE_REF = "observable.ref";
+var OBSERVABLE_SHALLOW = "observable.shallow";
+var OBSERVABLE_STRUCT = "observable.struct"; // Predefined bags of create observable options, to avoid allocating temporarily option objects
 // in the majority of cases
 
 var defaultCreateObservableOptions = {
@@ -13501,14 +13606,14 @@ Object.freeze(defaultCreateObservableOptions);
 function asCreateObservableOptions(thing) {
   return thing || defaultCreateObservableOptions;
 }
-var observableAnnotation = /*#__PURE__*/createObservableAnnotation("observable");
-var observableRefAnnotation = /*#__PURE__*/createObservableAnnotation("observable.ref", {
+var observableAnnotation = /*#__PURE__*/createObservableAnnotation(OBSERVABLE);
+var observableRefAnnotation = /*#__PURE__*/createObservableAnnotation(OBSERVABLE_REF, {
   enhancer: referenceEnhancer
 });
-var observableShallowAnnotation = /*#__PURE__*/createObservableAnnotation("observable.shallow", {
+var observableShallowAnnotation = /*#__PURE__*/createObservableAnnotation(OBSERVABLE_SHALLOW, {
   enhancer: shallowEnhancer
 });
-var observableStructAnnotation = /*#__PURE__*/createObservableAnnotation("observable.struct", {
+var observableStructAnnotation = /*#__PURE__*/createObservableAnnotation(OBSERVABLE_STRUCT, {
   enhancer: refStructEnhancer
 });
 var observableDecoratorAnnotation = /*#__PURE__*/createDecoratorAnnotation(observableAnnotation);
@@ -13734,7 +13839,7 @@ function allowStateChangesEnd(prev) {
 var _Symbol$toPrimitive;
 var CREATE = "create";
 _Symbol$toPrimitive = Symbol.toPrimitive;
-var ObservableValue = /*#__PURE__*/function (_Atom) {
+var ObservableValue = /*#__PURE__*/function (_Atom, _Symbol$toPrimitive2) {
   _inheritsLoose(ObservableValue, _Atom);
 
   function ObservableValue(value, enhancer, name_, notifySpy, equals) {
@@ -13863,12 +13968,12 @@ var ObservableValue = /*#__PURE__*/function (_Atom) {
     return toPrimitive(this.get());
   };
 
-  _proto[_Symbol$toPrimitive] = function () {
+  _proto[_Symbol$toPrimitive2] = function () {
     return this.valueOf();
   };
 
   return ObservableValue;
-}(Atom);
+}(Atom, _Symbol$toPrimitive);
 var isObservableValue = /*#__PURE__*/createInstanceofPredicate("ObservableValue", ObservableValue);
 
 var _Symbol$toPrimitive$1;
@@ -13893,7 +13998,7 @@ var _Symbol$toPrimitive$1;
  */
 
 _Symbol$toPrimitive$1 = Symbol.toPrimitive;
-var ComputedValue = /*#__PURE__*/function () {
+var ComputedValue = /*#__PURE__*/function (_Symbol$toPrimitive2) {
   // nodes we are looking at. Our value depends on these nodes
   // during tracking it's an array with new observed observers
   // to check for cycles
@@ -13947,7 +14052,7 @@ var ComputedValue = /*#__PURE__*/function () {
 
     this.equals_ = options.equals || (options.compareStructural || options.struct ? comparer.structural : comparer["default"]);
     this.scope_ = options.context;
-    this.requiresReaction_ = !!options.requiresReaction;
+    this.requiresReaction_ = options.requiresReaction;
     this.keepAlive_ = !!options.keepAlive;
   }
 
@@ -14026,13 +14131,12 @@ var ComputedValue = /*#__PURE__*/function () {
     /* see #1208 */
     this.dependenciesState_ === IDerivationState_.NOT_TRACKING_;
     var newValue = this.computeValue_(true);
-
-    if (false) {}
-
     var changed = wasSuspended || isCaughtException(oldValue) || isCaughtException(newValue) || !this.equals_(oldValue, newValue);
 
     if (changed) {
       this.value_ = newValue;
+
+      if (false) {}
     }
 
     return changed;
@@ -14067,6 +14171,8 @@ var ComputedValue = /*#__PURE__*/function () {
     if (!this.keepAlive_) {
       clearObserving(this);
       this.value_ = undefined; // don't hold on to computed value!
+
+      if (false) {}
     }
   };
 
@@ -14100,16 +14206,12 @@ var ComputedValue = /*#__PURE__*/function () {
   _proto.warnAboutUntrackedRead_ = function warnAboutUntrackedRead_() {
     if (true) return;
 
-    if (this.requiresReaction_ === true) {
-      die("[mobx] Computed value " + this.name_ + " is read outside a reactive context");
-    }
-
     if (this.isTracing_ !== TraceMode.NONE) {
-      console.log("[mobx.trace] '" + this.name_ + "' is being read outside a reactive context. Doing a full recompute");
+      console.log("[mobx.trace] Computed value '" + this.name_ + "' is being read outside a reactive context. Doing a full recompute.");
     }
 
-    if (globalState.computedRequiresReaction) {
-      console.warn("[mobx] Computed value " + this.name_ + " is being read outside a reactive context. Doing a full recompute");
+    if (typeof this.requiresReaction_ === "boolean" ? this.requiresReaction_ : globalState.computedRequiresReaction) {
+      console.warn("[mobx] Computed value '" + this.name_ + "' is being read outside a reactive context. Doing a full recompute.");
     }
   };
 
@@ -14121,12 +14223,12 @@ var ComputedValue = /*#__PURE__*/function () {
     return toPrimitive(this.get());
   };
 
-  _proto[_Symbol$toPrimitive$1] = function () {
+  _proto[_Symbol$toPrimitive2] = function () {
     return this.valueOf();
   };
 
   return ComputedValue;
-}();
+}(_Symbol$toPrimitive$1);
 var isComputedValue = /*#__PURE__*/createInstanceofPredicate("ComputedValue", ComputedValue);
 
 var IDerivationState_;
@@ -14288,7 +14390,7 @@ function warnAboutDerivationWithoutDependencies(derivation) {
   if (derivation.observing_.length !== 0) return;
 
   if (globalState.reactionRequiresObservable || derivation.requiresObservable_) {
-    console.warn("[mobx] Derivation " + derivation.name_ + " is created/updated without reading any observable value");
+    console.warn("[mobx] Derivation '" + derivation.name_ + "' is created/updated without reading any observable value.");
   }
 }
 /**
@@ -14454,6 +14556,8 @@ var globalState = /*#__PURE__*/function () {
   if (global.__mobxGlobals && global.__mobxGlobals.version !== new MobXGlobals().version) canMergeGlobalState = false;
 
   if (!canMergeGlobalState) {
+    // Because this is a IIFE we need to let isolateCalled a chance to change
+    // so we run it after the event loop completed at least 1 iteration
     setTimeout(function () {
       if (!isolateCalled) {
         die(35);
@@ -14663,8 +14767,8 @@ function propagateChangeConfirmed(observable) {
       if (false) {}
     } else if (d.dependenciesState_ === IDerivationState_.UP_TO_DATE_ // this happens during computing of `d`, just keep lowestObserverState up to date.
     ) {
-        observable.lowestObserverState_ = IDerivationState_.UP_TO_DATE_;
-      }
+      observable.lowestObserverState_ = IDerivationState_.UP_TO_DATE_;
+    }
   }); // invariantLOS(observable, "confirmed end");
 } // Used by computed when its dependency changed, but we don't wan't to immediately recompute.
 
@@ -14697,8 +14801,7 @@ function printDepTree(tree, lines, depth) {
     return;
   }
 
-  lines.push("" + new Array(depth).join("\t") + tree.name); // MWE: not the fastest, but the easiest way :)
-
+  lines.push("" + "\t".repeat(depth - 1) + tree.name);
   if (tree.dependencies) tree.dependencies.forEach(function (child) {
     return printDepTree(child, lines, depth + 1);
   });
@@ -15099,8 +15202,7 @@ function reaction(expression, effect, opts) {
   var firstTime = true;
   var isScheduled = false;
   var value;
-  var oldValue = undefined; // only an issue with fireImmediately
-
+  var oldValue;
   var equals = opts.compareStructural ? comparer.structural : opts.equals || comparer["default"];
   var r = new Reaction(name, function () {
     if (firstTime || runSync) {
@@ -15397,14 +15499,14 @@ function interceptProperty(thing, property, handler) {
 }
 
 function _isComputed(value, property) {
-  if (property !== undefined) {
-    if (isObservableObject(value) === false) return false;
-    if (!value[$mobx].values_.has(property)) return false;
-    var atom = getAtom(value, property);
-    return isComputedValue(atom);
+  if (property === undefined) {
+    return isComputedValue(value);
   }
 
-  return isComputedValue(value);
+  if (isObservableObject(value) === false) return false;
+  if (!value[$mobx].values_.has(property)) return false;
+  var atom = getAtom(value, property);
+  return isComputedValue(atom);
 }
 function isComputed(value) {
   if (false) {}
@@ -15729,10 +15831,10 @@ function _when(predicate, effect, opts) {
   var timeoutHandle;
 
   if (typeof opts.timeout === "number") {
+    var error = new Error("WHEN_TIMEOUT");
     timeoutHandle = setTimeout(function () {
       if (!disposer[$mobx].isDisposed_) {
         disposer();
-        var error = new Error("WHEN_TIMEOUT");
         if (opts.onError) opts.onError(error);else throw error;
       }
     }, opts.timeout);
@@ -15764,7 +15866,7 @@ function whenPromise(predicate, opts) {
 
     cancel = function cancel() {
       disposer();
-      reject("WHEN_CANCELLED");
+      reject(new Error("WHEN_CANCELLED"));
     };
   });
   res.cancel = cancel;
@@ -15889,7 +15991,9 @@ function makeObservable(target, annotations, options) {
   try {
     var _annotations;
 
-    // Default to decorators
+    if (false) {} // Default to decorators
+
+
     (_annotations = annotations) != null ? _annotations : annotations = collectStoredAnnotations(target); // Annotate
 
     ownKeys(annotations).forEach(function (key) {
@@ -16047,7 +16151,7 @@ var ObservableArrayAdministration = /*#__PURE__*/function () {
   };
 
   _proto.setArrayLength_ = function setArrayLength_(newLength) {
-    if (typeof newLength !== "number" || newLength < 0) die("Out of range: " + newLength);
+    if (typeof newLength !== "number" || isNaN(newLength) || newLength < 0) die("Out of range: " + newLength);
     var currentLength = this.values_.length;
     if (newLength === currentLength) return;else if (newLength > currentLength) {
       var newItems = new Array(newLength - currentLength);
@@ -16109,9 +16213,12 @@ var ObservableArrayAdministration = /*#__PURE__*/function () {
 
       return (_this$values_ = this.values_).splice.apply(_this$values_, [index, deleteCount].concat(newItems));
     } else {
-      var res = this.values_.slice(index, index + deleteCount);
-      var oldItems = this.values_.slice(index + deleteCount);
-      this.values_.length = index + newItems.length - deleteCount;
+      // The items removed by the splice
+      var res = this.values_.slice(index, index + deleteCount); // The items that that should remain at the end of the array
+
+      var oldItems = this.values_.slice(index + deleteCount); // New length is the previous length + addition count - deletion count
+
+      this.values_.length += newItems.length - deleteCount;
 
       for (var i = 0; i < newItems.length; i++) {
         this.values_[index + i] = newItems[i];
@@ -16428,7 +16535,7 @@ var DELETE = "delete"; // just extend Map? See also https://gist.github.com/nest
 
 _Symbol$iterator = Symbol.iterator;
 _Symbol$toStringTag = Symbol.toStringTag;
-var ObservableMap = /*#__PURE__*/function () {
+var ObservableMap = /*#__PURE__*/function (_Symbol$iterator2, _Symbol$toStringTag2) {
   // hasMap, not hashMap >-).
   function ObservableMap(initialData, enhancer_, name_) {
     if (enhancer_ === void 0) {
@@ -16534,11 +16641,14 @@ var ObservableMap = /*#__PURE__*/function () {
         name: key
       } : null;
 
-      if (false) {}
+      if (false) {} // TODO fix type
+
       transaction(function () {
+        var _this2$hasMap_$get;
+
         _this2.keysAtom_.reportChanged();
 
-        _this2.updateHasMapEntry_(key, false);
+        (_this2$hasMap_$get = _this2.hasMap_.get(key)) == null ? void 0 : _this2$hasMap_$get.setNewValue_(false);
 
         var observable = _this2.data_.get(key);
 
@@ -16552,14 +16662,6 @@ var ObservableMap = /*#__PURE__*/function () {
     }
 
     return false;
-  };
-
-  _proto.updateHasMapEntry_ = function updateHasMapEntry_(key, value) {
-    var entry = this.hasMap_.get(key);
-
-    if (entry) {
-      entry.setNewValue_(value);
-    }
   };
 
   _proto.updateValue_ = function updateValue_(key, newValue) {
@@ -16578,7 +16680,8 @@ var ObservableMap = /*#__PURE__*/function () {
         name: key,
         newValue: newValue
       } : null;
-      if (false) {}
+      if (false) {} // TODO fix type
+
       observable.setNewValue_(newValue);
       if (notify) notifyListeners(this, change);
       if (false) {}
@@ -16590,13 +16693,15 @@ var ObservableMap = /*#__PURE__*/function () {
 
     checkIfStateModificationsAreAllowed(this.keysAtom_);
     transaction(function () {
+      var _this3$hasMap_$get;
+
       var observable = new ObservableValue(newValue, _this3.enhancer_,  false ? 0 : "ObservableMap.key", false);
 
       _this3.data_.set(key, observable);
 
       newValue = observable.value_; // value might have been changed
 
-      _this3.updateHasMapEntry_(key, true);
+      (_this3$hasMap_$get = _this3.hasMap_.get(key)) == null ? void 0 : _this3$hasMap_$get.setNewValue_(true);
 
       _this3.keysAtom_.reportChanged();
     });
@@ -16610,7 +16715,8 @@ var ObservableMap = /*#__PURE__*/function () {
       name: key,
       newValue: newValue
     } : null;
-    if (false) {}
+    if (false) {} // TODO fix type
+
     if (notify) notifyListeners(this, change);
     if (false) {}
   };
@@ -16667,7 +16773,7 @@ var ObservableMap = /*#__PURE__*/function () {
     });
   };
 
-  _proto[_Symbol$iterator] = function () {
+  _proto[_Symbol$iterator2] = function () {
     return this.entries();
   };
 
@@ -16847,14 +16953,14 @@ var ObservableMap = /*#__PURE__*/function () {
       return this.data_.size;
     }
   }, {
-    key: _Symbol$toStringTag,
+    key: _Symbol$toStringTag2,
     get: function get() {
       return "Map";
     }
   }]);
 
   return ObservableMap;
-}(); // eslint-disable-next-line
+}(_Symbol$iterator, _Symbol$toStringTag); // eslint-disable-next-line
 
 var isObservableMap = /*#__PURE__*/createInstanceofPredicate("ObservableMap", ObservableMap);
 
@@ -16880,7 +16986,7 @@ var _Symbol$iterator$1, _Symbol$toStringTag$1;
 var ObservableSetMarker = {};
 _Symbol$iterator$1 = Symbol.iterator;
 _Symbol$toStringTag$1 = Symbol.toStringTag;
-var ObservableSet = /*#__PURE__*/function () {
+var ObservableSet = /*#__PURE__*/function (_Symbol$iterator2, _Symbol$toStringTag2) {
   function ObservableSet(initialData, enhancer, name_) {
     if (enhancer === void 0) {
       enhancer = deepEnhancer;
@@ -16978,9 +17084,9 @@ var ObservableSet = /*#__PURE__*/function () {
         newValue: value
       } : null;
 
-      if (notifySpy && "production" !== "production") spyReportStart(_change);
+      if (notifySpy && "production" !== "production") {}
       if (notify) notifyListeners(this, _change);
-      if (notifySpy && "production" !== "production") spyReportEnd();
+      if (notifySpy && "production" !== "production") {}
     }
 
     return this;
@@ -17010,14 +17116,14 @@ var ObservableSet = /*#__PURE__*/function () {
         oldValue: value
       } : null;
 
-      if (notifySpy && "production" !== "production") spyReportStart(_change2);
+      if (notifySpy && "production" !== "production") {}
       transaction(function () {
         _this3.atom_.reportChanged();
 
         _this3.data_["delete"](value);
       });
       if (notify) notifyListeners(this, _change2);
-      if (notifySpy && "production" !== "production") spyReportEnd();
+      if (notifySpy && "production" !== "production") {}
       return true;
     }
 
@@ -17113,7 +17219,7 @@ var ObservableSet = /*#__PURE__*/function () {
     return "[object ObservableSet]";
   };
 
-  _proto[_Symbol$iterator$1] = function () {
+  _proto[_Symbol$iterator2] = function () {
     return this.values();
   };
 
@@ -17124,14 +17230,14 @@ var ObservableSet = /*#__PURE__*/function () {
       return this.data_.size;
     }
   }, {
-    key: _Symbol$toStringTag$1,
+    key: _Symbol$toStringTag2,
     get: function get() {
       return "Set";
     }
   }]);
 
   return ObservableSet;
-}(); // eslint-disable-next-line
+}(_Symbol$iterator$1, _Symbol$toStringTag$1); // eslint-disable-next-line
 
 var isObservableSet = /*#__PURE__*/createInstanceofPredicate("ObservableSet", ObservableSet);
 
@@ -17312,7 +17418,7 @@ var ObservableObjectAdministration = /*#__PURE__*/function () {
       // When called from super() some props may not exist yet.
       // However we don't have to worry about missing prop,
       // because the decorator must have been applied to something.
-      if ((_this$target_$storedA = this.target_[storedAnnotationsSymbol]) == null ? void 0 : _this$target_$storedA[key]) {
+      if ((_this$target_$storedA = this.target_[storedAnnotationsSymbol]) != null && _this$target_$storedA[key]) {
         return; // will be annotated by subclass constructor
       } else {
         die(1, annotation.annotationType_, this.name_ + "." + key.toString());
@@ -17801,7 +17907,7 @@ inherit(StubArray, Array.prototype); // Weex proto freeze protection was here,
 // but it is unclear why the hack is need as MobX never changed the prototype
 // anyway, so removed it in V6
 
-var LegacyObservableArray = /*#__PURE__*/function (_StubArray) {
+var LegacyObservableArray = /*#__PURE__*/function (_StubArray, _Symbol$toStringTag, _Symbol$iterator) {
   _inheritsLoose(LegacyObservableArray, _StubArray);
 
   function LegacyObservableArray(initialValues, enhancer, name, owned) {
@@ -17846,7 +17952,7 @@ var LegacyObservableArray = /*#__PURE__*/function (_StubArray) {
     }));
   };
 
-  _proto[Symbol.iterator] = function () {
+  _proto[_Symbol$iterator] = function () {
     var self = this;
     var nextIndex = 0;
     return makeIterable({
@@ -17872,14 +17978,14 @@ var LegacyObservableArray = /*#__PURE__*/function (_StubArray) {
       this[$mobx].setArrayLength_(newLength);
     }
   }, {
-    key: Symbol.toStringTag,
+    key: _Symbol$toStringTag,
     get: function get() {
       return "Array";
     }
   }]);
 
   return LegacyObservableArray;
-}(StubArray);
+}(StubArray, Symbol.toStringTag, Symbol.iterator);
 
 Object.entries(arrayExtensions).forEach(function (_ref) {
   var prop = _ref[0],
@@ -18002,7 +18108,7 @@ function eq(a, b, depth, aStack, bStack) {
   if (a !== a) return b !== b; // Exhaust primitive checks
 
   var type = typeof a;
-  if (!isFunction(type) && type !== "object" && typeof b != "object") return false; // Compare `[[Class]]` names.
+  if (type !== "function" && type !== "object" && typeof b != "object") return false; // Compare `[[Class]]` names.
 
   var className = toString.call(a);
   if (className !== toString.call(b)) return false;
@@ -18153,7 +18259,7 @@ function isAnnotation(thing) {
  * - utils/   Utility stuff.
  *
  */
-["Symbol", "Map", "Set", "Symbol"].forEach(function (m) {
+["Symbol", "Map", "Set"].forEach(function (m) {
   var g = getGlobal();
 
   if (typeof g[m] === "undefined") {
