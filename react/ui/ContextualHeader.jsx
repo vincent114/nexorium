@@ -10,13 +10,20 @@ import { AdminHeaderLeft } from 'nexus/contexts/admin/Admin';
 import { AccountHeaderLeft } from 'nexus/contexts/account/Account';
 
 import { SearchHeaderMiddle } from 'nexorium/contexts/search/Search';
-import { BlogHeaderLeft } from 'nexorium/contexts/blog/Blog';
+import {
+	BlogHeaderLeft,
+	BlogHeaderRight
+} from 'nexorium/contexts/blog/Blog';
 import { ProjectsHeaderLeft } from 'nexorium/contexts/projects/Projects';
 import { CvHeaderLeft } from 'nexorium/contexts/cv/Cv';
 import {
 	PlaygroundHeaderLeft,
 	PlaygroundHeaderRight
 } from 'nexorium/contexts/playground/Playground';
+import {
+	DocsHeaderLeft,
+	DocsHeaderRight
+} from 'nexorium/contexts/docs/Docs';
 
 
 // Functions Components ReactJS
@@ -67,6 +74,7 @@ export const ContextualHeader = observer((props) => {
 		if (context != 'blog') { return; }
 
 		headerLeft = <BlogHeaderLeft />
+		headerRight = <BlogHeaderRight />
 	}
 
 	// -------------------------------------------------
@@ -93,6 +101,14 @@ export const ContextualHeader = observer((props) => {
 
 		headerLeft = <PlaygroundHeaderLeft />
 		headerRight = <PlaygroundHeaderRight />
+	}
+
+	const renderHeaderDocs = () => {
+
+		if (context != 'docs') { return; }
+
+		headerLeft = <DocsHeaderLeft />
+		headerRight = <DocsHeaderRight />
 	}
 
 	// -------------------------------------------------
@@ -131,6 +147,7 @@ export const ContextualHeader = observer((props) => {
 	renderHeaderCv();
 
 	renderHeaderPlayground();
+	renderHeaderDocs();
 
 	renderHeaderAbout();
 	renderHeaderAdmin();

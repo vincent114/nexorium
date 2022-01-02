@@ -56,6 +56,12 @@ def main(global_config, **settings):
 
     # ---
 
+    # Documentation
+    # -
+
+    config.add_route('docs', '/docs')
+    config.add_route('docs_actions', '/docs_actions/{action}')
+
     # Playground
     # -
 

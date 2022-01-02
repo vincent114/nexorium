@@ -13,6 +13,7 @@ import { BlogStore, BlogPage } from 'nexorium/contexts/blog/Blog';
 import { ProjectsStore, ProjectsPage } from 'nexorium/contexts/projects/Projects';
 import { CvStore, CvPage } from 'nexorium/contexts/cv/Cv';
 import { PlaygroundStore, PlaygroundPage } from 'nexorium/contexts/playground/Playground';
+import { DocsStore, DocsPage } from 'nexorium/contexts/docs/Docs';
 import { AdminPage } from 'nexorium/contexts/admin/Admin';
 
 import './Main.css';
@@ -53,6 +54,11 @@ const RootStore = types
 		// -
 
 		'playground': types.optional(PlaygroundStore, {}),
+
+		// Documentation
+		// -
+
+		'docs': types.optional(DocsStore, {}),
 
 	})
 	.views(self => ({
@@ -122,6 +128,14 @@ const RootStore = types
 					{"op": "replace", "path": "/playground/loaded", "value": false},
 				]);
 			}
+
+			// Docs
+			if (navContext == 'docs') {
+				app.navigate('/docs', 'docs', [
+					{"op": "replace", "path": "/docs/loaded", "value": false},
+				]);
+			}
+
 		},
 
 	}))
@@ -136,10 +150,15 @@ const RootStore = types
 let contexts = {
 	'home': HomePage,
 	'search': SearchPage,
+
 	'blog': BlogPage,
+
 	'projects': ProjectsPage,
 	'cv': CvPage,
+
 	'playground': PlaygroundPage,
+	'docs': DocsPage,
+
 	'admin': AdminPage,
 }
 
@@ -154,10 +173,15 @@ let popups = {}
 let routes = {
 	'home': '/',
 	'search': '/search',
+
 	'blog': '/blog',
+
 	'projects': '/projects',
 	'cv': '/cv',
+
 	'playground': '/playground',
+	'docs': '/docs',
+
 	'admin': '/admin',
 }
 

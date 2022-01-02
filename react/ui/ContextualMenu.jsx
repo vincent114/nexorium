@@ -9,6 +9,7 @@ import {
 	Menu
 } from 'nexus/layout/menu/Menu';
 import { HomeMenuItem } from 'nexus/contexts/home/Home';
+import { NewslettersMenuItem } from 'nexus/contexts/newsletters/Newsletters';
 import { AboutMenuItem } from 'nexus/contexts/about/About';
 import { AdminMenuItem } from 'nexus/contexts/admin/Admin';
 import {
@@ -23,49 +24,52 @@ import { BlogMenuItem } from 'nexorium/contexts/blog/Blog';
 import { ProjectsMenuItem } from 'nexorium/contexts/projects/Projects';
 import { CvMenuItem } from 'nexorium/contexts/cv/Cv';
 import { PlaygroundMenuItem } from 'nexorium/contexts/playground/Playground';
+import { DocsMenuItem } from 'nexorium/contexts/docs/Docs';
 
 
 // Functions Components ReactJS
 // -------------------------------------------------------------------------------------------------------------
 
-// ***** ContextualMenu *****
-// **************************
+// ***** NexoriumMenuItems *****
+// *****************************
 
-const TAG_ContextualMenu = () => {}
-export const ContextualMenu = observer((props) => {
+const TAG_NexoriumMenuItems = () => {}
+export const NexoriumMenuItems = observer((props) => {
 
 	const store = React.useContext(window.storeContext);
 	const app = store.app;
 
 	// From ... store
 
-	const context = app.context;
 	const breakPoint650 = app.breakPoint650;
 
 	// Render
 	// ==================================================================================================
 
-	// -------------------------------------------------
-
-	// -------------------------------------------------
-
 	return (
-		<Menu>
+		<React.Fragment>
+
 			<HomeMenuItem />
 			<SearchMenuItem />
 
 			<MenuDivider />
 
 			<BlogMenuItem />
+			<NewslettersMenuItem />
 
-			<MenuDivider />
+			<MenuDivider>
+				Vincent Boni
+			</MenuDivider>
 
 			<ProjectsMenuItem />
 			<CvMenuItem />
 
-			<MenuDivider />
+			<MenuDivider>
+				NxApp
+			</MenuDivider>
 
 			<PlaygroundMenuItem />
+			<DocsMenuItem />
 
 			<MenuDivider />
 
@@ -78,6 +82,49 @@ export const ContextualMenu = observer((props) => {
 			<AccountMenuItem />
 			<LogoutMenuItem />
 
+		</React.Fragment>
+	)
+})
+
+// ***** ContextualMenu *****
+// **************************
+
+const TAG_ContextualMenu = () => {}
+export const ContextualMenu = observer((props) => {
+
+	const store = React.useContext(window.storeContext);
+	const app = store.app;
+	const account = app.account;
+
+	// From ... store
+
+	const context = app.context;
+	const name = account.name;
+
+	// Render
+	// ==================================================================================================
+
+	// Items
+	// -
+
+	const contextualMenuItems = {}
+
+	let menuItems = null;
+	if (contextualMenuItems.hasOwnProperty(context)) {
+		const ContextualMenuItems = contextualMenuItems[context];
+		menuItems = <ContextualDrawerItems />
+	} else {
+		menuItems = <NexoriumMenuItems />
+	}
+
+	// -------------------------------------------------
+
+	return (
+		<Menu
+			title={name}
+			{...props}
+		>
+			{menuItems}
 		</Menu>
 	)
 })

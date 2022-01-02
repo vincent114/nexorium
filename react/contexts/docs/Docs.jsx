@@ -8,17 +8,17 @@ import { HeaderTitle } from 'nexus/layout/header/Header';
 import { MenuItem } from 'nexus/layout/menu/Menu';
 import { Icon } from 'nexus/ui/icon/Icon';
 
-import './Blog.css';
+import './Docs.css';
 
 
 // Models
 // -------------------------------------------------------------------------------------------------------------
 
-// ***** BlogStore *****
+// ***** DocsStore *****
 // *********************
 
-const TAG_BlogStore = () => {}
-export const BlogStore = types
+const TAG_DocsStore = () => {}
+export const DocsStore = types
 	.model({
 		loaded: false,
 	})
@@ -40,11 +40,11 @@ export const BlogStore = types
 // Functions Components ReactJS
 // -------------------------------------------------------------------------------------------------------------
 
-// ***** BlogHeaderLeft *****
+// ***** DocsHeaderLeft *****
 // **************************
 
-const TAG_BlogHeaderLeft = () => {}
-export const BlogHeaderLeft = observer((props) => {
+const TAG_DocsHeaderLeft = () => {}
+export const DocsHeaderLeft = observer((props) => {
 
 	const store = React.useContext(window.storeContext);
 	const app = store.app;
@@ -56,7 +56,7 @@ export const BlogHeaderLeft = observer((props) => {
 
 	return (
 		<HeaderTitle
-			title="Blog"
+			title="Documentation"
 			titleStyle={{
 				marginLeft: '10px',
 			}}
@@ -64,14 +64,14 @@ export const BlogHeaderLeft = observer((props) => {
 	)
 })
 
-// ***** BlogHeaderRight *****
+// ***** DocsHeaderRight *****
 // ***************************
 
-const TAG_BlogHeaderRight = () => {}
-export const BlogHeaderRight = observer((props) => {
+const TAG_DocsHeaderRight = () => {}
+export const DocsHeaderRight = observer((props) => {
 
-	const store = React.useContext(window.storeContext);
-	const app = store.app;
+	// const store = React.useContext(window.storeContext);
+	// const app = store.app;
 
 	// ...
 
@@ -81,11 +81,11 @@ export const BlogHeaderRight = observer((props) => {
 	return null;
 })
 
-// ***** BlogMenuItem *****
+// ***** DocsMenuItem *****
 // ************************
 
-const TAG_BlogMenuItem = () => {}
-export const BlogMenuItem = observer((props) => {
+const TAG_DocsMenuItem = () => {}
+export const DocsMenuItem = observer((props) => {
 
 	const store = React.useContext(window.storeContext);
 	const app = store.app;
@@ -93,13 +93,13 @@ export const BlogMenuItem = observer((props) => {
 
 	// ...
 
-	const blogContext = 'blog';
+	const docsContext = 'docs';
 
 	// Evènements
 	// ==================================================================================================
 
 	const handleMenuItemClick = () => {
-		store.navigateTo(blogContext);
+		store.navigateTo(docsContext);
 		app.menu.close();
 	}
 
@@ -108,19 +108,19 @@ export const BlogMenuItem = observer((props) => {
 
 	return (
 		<MenuItem
-			icon={<Icon name="forum" width="120px" />}
-			label="Blog"
-			activeContexts={[blogContext]}
+			icon={<Icon name="menu_book" width="120px" />}
+			label="Documentation"
+			activeContexts={[docsContext]}
 			callbackClick={handleMenuItemClick}
 		/>
 	)
 })
 
-// ***** BlogPage *****
+// ***** DocsPage *****
 // ********************
 
-const TAG_BlogPage = () => {}
-export const BlogPage = observer((props) => {
+const TAG_DocsPage = () => {}
+export const DocsPage = observer((props) => {
 
 	const store = React.useContext(window.storeContext);
 	const app = store.app;
@@ -135,7 +135,7 @@ export const BlogPage = observer((props) => {
 
 		return (
 			<Helper
-				iconName="forum"
+				iconName="menu_book"
 				show={true}
 			/>
 		)
