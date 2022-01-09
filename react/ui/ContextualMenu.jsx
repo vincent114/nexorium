@@ -8,10 +8,13 @@ import {
 	MenuItem,
 	Menu
 } from 'nexus/layout/menu/Menu';
+import { PortalMenuItem } from 'nexus/contexts/portal/Portal';
 import { HomeMenuItem } from 'nexus/contexts/home/Home';
+import { SearchMenuItem } from 'nexus/contexts/search/Search';
 import { NewslettersMenuItem } from 'nexus/contexts/newsletters/Newsletters';
 import { AboutMenuItem } from 'nexus/contexts/about/About';
 import { AdminMenuItem } from 'nexus/contexts/admin/Admin';
+import { PlaygroundMenuItem } from 'nexus/contexts/playground/Playground';
 import {
 	LoginMenuItem,
 	LogoutMenuItem,
@@ -19,11 +22,9 @@ import {
 import { AccountMenuItem } from 'nexus/contexts/account/Account';
 import { Icon } from 'nexus/ui/icon/Icon';
 
-import { SearchMenuItem } from 'nexorium/contexts/search/Search';
 import { BlogMenuItem } from 'nexorium/contexts/blog/Blog';
 import { ProjectsMenuItem } from 'nexorium/contexts/projects/Projects';
 import { CvMenuItem } from 'nexorium/contexts/cv/Cv';
-import { PlaygroundMenuItem } from 'nexorium/contexts/playground/Playground';
 import { DocsMenuItem } from 'nexorium/contexts/docs/Docs';
 
 
@@ -49,6 +50,7 @@ export const NexoriumMenuItems = observer((props) => {
 	return (
 		<React.Fragment>
 
+			<PortalMenuItem />
 			<HomeMenuItem />
 			<SearchMenuItem />
 
@@ -57,16 +59,12 @@ export const NexoriumMenuItems = observer((props) => {
 			<BlogMenuItem />
 			<NewslettersMenuItem />
 
-			<MenuDivider>
-				Vincent Boni
-			</MenuDivider>
+			<MenuDivider />
 
 			<ProjectsMenuItem />
 			<CvMenuItem />
 
-			<MenuDivider>
-				NxApp
-			</MenuDivider>
+			<MenuDivider />
 
 			<PlaygroundMenuItem />
 			<DocsMenuItem />

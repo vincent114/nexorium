@@ -1,6 +1,6 @@
 
 from nexorium.libs import acl
-from nexorium.resources.playground import Fields
+# from nexorium.resources.playground import Fields
 
 from nexus.db import db_main
 from nexus.db import NxRegistry
@@ -9,7 +9,7 @@ from nexus.db import NxRegistry
 # ======================================================================================================
 
 nexorium_registry = NxRegistry(db_main)
-nexorium_registry.add(Fields)
+# nexorium_registry.add(Fields)
 
 
 # Objects

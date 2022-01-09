@@ -28,16 +28,9 @@ def main(global_config, **settings):
     # Routes
     # ------------------------------------------------------
 
-    config.add_route('home', '/')
-    config.add_route('search', '/search')
-    config.add_route('search_actions', '/search_actions/{action}')
-
-    # ---
-
     # Blog
     # -
 
-    config.add_route('blog', '/blog')
     config.add_route('blog_actions', '/blog_actions/{action}')
 
     # ---
@@ -61,30 +54,6 @@ def main(global_config, **settings):
 
     config.add_route('docs', '/docs')
     config.add_route('docs_actions', '/docs_actions/{action}')
-
-    # Playground
-    # -
-
-    config.add_route('playground', '/playground')
-    config.add_route('playground_actions', '/playground_actions/{action}')
-
-    # ---
-
-    # A propos
-    # -
-
-    config.add_route('about', '/about')
-
-    # Administration
-    # -
-
-    config.add_route('admin', '/admin')
-
-    # ---
-
-    # Mon compte
-
-    config.add_route('account', '/account')
 
     # ---
 

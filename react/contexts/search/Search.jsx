@@ -4,8 +4,6 @@ import { observer } from "mobx-react-lite";
 import clsx from 'clsx';
 
 import { Helper } from 'nexus/ui/helper/Helper';
-import { HeaderTitle } from 'nexus/layout/header/Header';
-import { MenuItem } from 'nexus/layout/menu/Menu';
 import { Icon } from 'nexus/ui/icon/Icon';
 
 import './Search.css';
@@ -39,62 +37,6 @@ export const SearchStore = types
 
 // Functions Components ReactJS
 // -------------------------------------------------------------------------------------------------------------
-
-// ***** SearchHeaderMiddle *****
-// ******************************
-
-const TAG_SearchHeaderMiddle = () => {}
-export const SearchHeaderMiddle = observer((props) => {
-
-	const store = React.useContext(window.storeContext);
-	const app = store.app;
-
-	// ...
-
-	// Render
-	// ==================================================================================================
-
-	return (
-		<HeaderTitle
-			title="Rechercher"
-		/>
-	)
-})
-
-// ***** SearchMenuItem *****
-// **************************
-
-const TAG_SearchMenuItem = () => {}
-export const SearchMenuItem = observer((props) => {
-
-	const store = React.useContext(window.storeContext);
-	const app = store.app;
-	const menu = app.menu;
-
-	// ...
-
-	const searchContext = 'search';
-
-	// Evènements
-	// ==================================================================================================
-
-	const handleMenuItemClick = () => {
-		store.navigateTo(searchContext);
-		app.menu.close();
-	}
-
-	// Render
-	// ==================================================================================================
-
-	return (
-		<MenuItem
-			icon={<Icon name="search" width="120px" />}
-			label="Rechercher"
-			activeContexts={[searchContext]}
-			callbackClick={handleMenuItemClick}
-		/>
-	)
-})
 
 // ***** HomePage *****
 // ********************

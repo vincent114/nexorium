@@ -64,6 +64,23 @@ export const CvHeaderLeft = observer((props) => {
 	)
 })
 
+// ***** CvHeaderRight *****
+// *************************
+
+const TAG_CvHeaderRight = () => {}
+export const CvHeaderRight = observer((props) => {
+
+	// const store = React.useContext(window.storeContext);
+	// const app = store.app;
+
+	// ...
+
+	// Render
+	// ==================================================================================================
+
+	return null;
+})
+
 // ***** CvMenuItem *****
 // **********************
 

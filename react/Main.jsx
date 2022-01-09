@@ -4,6 +4,7 @@ import { types } from "mobx-state-tree";
 import { observer } from "mobx-react-lite";
 
 import { NxAppStore, NxApp, makeInitSnapshot } from 'nexus/NxApp';
+import { NewslettersStore, NewslettersPage } from 'nexus/contexts/newsletters/Newsletters';
 
 import { ContextualHeader } from 'nexorium/ui/ContextualHeader';
 import { ContextualMenu } from 'nexorium/ui/ContextualMenu';
@@ -12,9 +13,7 @@ import { SearchStore, SearchPage } from 'nexorium/contexts/search/Search';
 import { BlogStore, BlogPage } from 'nexorium/contexts/blog/Blog';
 import { ProjectsStore, ProjectsPage } from 'nexorium/contexts/projects/Projects';
 import { CvStore, CvPage } from 'nexorium/contexts/cv/Cv';
-import { PlaygroundStore, PlaygroundPage } from 'nexorium/contexts/playground/Playground';
 import { DocsStore, DocsPage } from 'nexorium/contexts/docs/Docs';
-import { AdminPage } from 'nexorium/contexts/admin/Admin';
 
 import './Main.css';
 
@@ -35,10 +34,19 @@ const RootStore = types
 
 		'search': types.optional(SearchStore, {}),
 
+		// ---
+
 		// Blog
 		// -
 
 		'blog': types.optional(BlogStore, {}),
+
+		// Newsletters
+		// -
+
+		'newsletters': types.optional(NewslettersStore, {}),
+
+		// ---
 
 		// Mes projets
 		// -
@@ -50,10 +58,7 @@ const RootStore = types
 
 		'cv': types.optional(CvStore, {}),
 
-		// Playground
-		// -
-
-		'playground': types.optional(PlaygroundStore, {}),
+		// ---
 
 		// Documentation
 		// -
@@ -90,22 +95,6 @@ const RootStore = types
 
 			// -
 
-			// Search
-			if (navContext == 'search') {
-				app.navigate('/search', 'search');
-			}
-
-			// -
-
-			// Blog
-			if (navContext == 'blog') {
-				app.navigate('/blog', 'blog', [
-					{"op": "replace", "path": "/blog/loaded", "value": false},
-				]);
-			}
-
-			// -
-
 			// Mes projects
 			if (navContext == 'projects') {
 				app.navigate('/projects', 'projects', [
@@ -121,13 +110,6 @@ const RootStore = types
 			}
 
 			// -
-
-			// Playground
-			if (navContext == 'playground') {
-				app.navigate('/playground', 'playground', [
-					{"op": "replace", "path": "/playground/loaded", "value": false},
-				]);
-			}
 
 			// Docs
 			if (navContext == 'docs') {
@@ -151,15 +133,10 @@ let contexts = {
 	'home': HomePage,
 	'search': SearchPage,
 
-	'blog': BlogPage,
-
 	'projects': ProjectsPage,
 	'cv': CvPage,
 
-	'playground': PlaygroundPage,
 	'docs': DocsPage,
-
-	'admin': AdminPage,
 }
 
 // Popups
@@ -171,18 +148,10 @@ let popups = {}
 // -
 
 let routes = {
-	'home': '/',
-	'search': '/search',
-
-	'blog': '/blog',
-
 	'projects': '/projects',
 	'cv': '/cv',
 
-	'playground': '/playground',
 	'docs': '/docs',
-
-	'admin': '/admin',
 }
 
 // Store

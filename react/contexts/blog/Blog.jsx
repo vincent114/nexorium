@@ -93,13 +93,13 @@ export const BlogMenuItem = observer((props) => {
 
 	// ...
 
-	const blogContext = 'blog';
+	const blogContext = app.blogContext;
 
 	// Evènements
 	// ==================================================================================================
 
 	const handleMenuItemClick = () => {
-		store.navigateTo(blogContext);
+		app.navigateTo(blogContext);
 		app.menu.close();
 	}
 

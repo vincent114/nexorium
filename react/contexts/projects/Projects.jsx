@@ -107,6 +107,23 @@ export const ProjectsHeaderLeft = observer((props) => {
 	)
 })
 
+// ***** ProjectsHeaderRight *****
+// *******************************
+
+const TAG_ProjectsHeaderRight = () => {}
+export const ProjectsHeaderRight = observer((props) => {
+
+	// const store = React.useContext(window.storeContext);
+	// const app = store.app;
+
+	// ...
+
+	// Render
+	// ==================================================================================================
+
+	return null;
+})
+
 // ***** ProjectsMenuItem *****
 // ****************************
 
@@ -216,7 +233,6 @@ export const RenderProjects = observer((props) => {
 		</div>
 	)
 })
-
 
 // ***** ProjectsPage *****
 // ************************

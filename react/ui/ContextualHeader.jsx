@@ -5,21 +5,16 @@ import clsx from 'clsx';
 
 import { Header } from 'nexus/layout/header/Header';
 import { HomeHeaderMiddle } from 'nexus/contexts/home/Home';
-import { AboutHeaderLeft } from 'nexus/contexts/about/About';
-import { AdminHeaderLeft } from 'nexus/contexts/admin/Admin';
-import { AccountHeaderLeft } from 'nexus/contexts/account/Account';
+import { SearchHeaderMiddle } from 'nexus/contexts/search/Search';
 
-import { SearchHeaderMiddle } from 'nexorium/contexts/search/Search';
 import {
-	BlogHeaderLeft,
-	BlogHeaderRight
-} from 'nexorium/contexts/blog/Blog';
-import { ProjectsHeaderLeft } from 'nexorium/contexts/projects/Projects';
-import { CvHeaderLeft } from 'nexorium/contexts/cv/Cv';
+	ProjectsHeaderLeft,
+	ProjectsHeaderRight
+} from 'nexorium/contexts/projects/Projects';
 import {
-	PlaygroundHeaderLeft,
-	PlaygroundHeaderRight
-} from 'nexorium/contexts/playground/Playground';
+	CvHeaderLeft,
+	CvHeaderRight
+} from 'nexorium/contexts/cv/Cv';
 import {
 	DocsHeaderLeft,
 	DocsHeaderRight
@@ -69,16 +64,6 @@ export const ContextualHeader = observer((props) => {
 
 	// -------------------------------------------------
 
-	const renderHeaderBlog = () => {
-
-		if (context != 'blog') { return; }
-
-		headerLeft = <BlogHeaderLeft />
-		headerRight = <BlogHeaderRight />
-	}
-
-	// -------------------------------------------------
-
 	const renderHeaderProjects = () => {
 
 		if (context != 'projects') { return; }
@@ -95,14 +80,6 @@ export const ContextualHeader = observer((props) => {
 
 	// -------------------------------------------------
 
-	const renderHeaderPlayground = () => {
-
-		if (context != 'playground') { return; }
-
-		headerLeft = <PlaygroundHeaderLeft />
-		headerRight = <PlaygroundHeaderRight />
-	}
-
 	const renderHeaderDocs = () => {
 
 		if (context != 'docs') { return; }
@@ -113,46 +90,13 @@ export const ContextualHeader = observer((props) => {
 
 	// -------------------------------------------------
 
-	const renderHeaderAbout = () => {
-
-		if (context != app.aboutContext) { return; }
-
-		headerLeft = <AboutHeaderLeft />
-	}
-
-	const renderHeaderAdmin = () => {
-
-		if (context != app.adminContext) { return; }
-
-		headerLeft = <AdminHeaderLeft />
-	}
-
-	// -------------------------------------------------
-
-	const renderHeaderAccount = () => {
-
-		if (context != app.accountContext) { return; }
-
-		headerLeft = <AccountHeaderLeft />
-	}
-
-	// -------------------------------------------------
-
 	renderHeaderHome();
 	renderHeaderSearch();
-
-	renderHeaderBlog();
 
 	renderHeaderProjects();
 	renderHeaderCv();
 
-	renderHeaderPlayground();
 	renderHeaderDocs();
-
-	renderHeaderAbout();
-	renderHeaderAdmin();
-
-	renderHeaderAccount();
 
 	return (
 		<Header
