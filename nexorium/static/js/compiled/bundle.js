@@ -1,7 +1,7 @@
 /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
-/***/ 8427:
+/***/ 478:
 /***/ ((__unused_webpack_module, __unused_webpack___webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -3325,10 +3325,15 @@ var Field_Field = (0,es/* observer */.Pi)(function (props) {
   var callbackClick = props.callbackClick;
   var callbackFocus = props.callbackFocus;
   var callbackBlur = props.callbackBlur;
-  var callbackKeyPress = props.callbackKeyPress;
+  var onKeyPress = props.onKeyPress;
+  var onKeyUp = props.onKeyUp;
+  var onKeyDown = props.onKeyDown;
+  var onClick = props.onClick;
   var startAdornment = props.startAdornment ? props.startAdornment : null;
   var endAdornment = props.endAdornment ? props.endAdornment : null;
   var variant = props.variant ? props.variant : 'contained'; // contained, outlined
+
+  var color = props.color ? props.color : 'primary'; // primary, white, black
 
   var disabled = props.disabled ? props.disabled : isLoading;
   var className = props.className ? props.className : '';
@@ -3338,7 +3343,12 @@ var Field_Field = (0,es/* observer */.Pi)(function (props) {
   if (focused) {
     inputStyle['borderColor'] = theme.palette.primary.main;
     inputStyle['borderWidth'] = '2px';
-    inputStyle['padding'] = '5px 11px'; // inputStyle['outline'] = `2px solid ${theme.palette.primary.main}`;
+
+    if (color == 'white') {
+      inputStyle['borderColor'] = 'white';
+    } // inputStyle['padding'] = '5px 11px';
+    // inputStyle['outline'] = `2px solid ${theme.palette.primary.main}`;
+
   } // Functions
   // ==================================================================================================
 
@@ -3407,6 +3417,12 @@ var Field_Field = (0,es/* observer */.Pi)(function (props) {
   }; // Events
   // ==================================================================================================
 
+
+  var handleClick = function handleClick(evt) {
+    if (onClick) {
+      onClick(evt);
+    }
+  };
 
   var handleInputFocus = function handleInputFocus(evt) {
     // Sur focus du champ texte
@@ -3616,6 +3632,11 @@ var Field_Field = (0,es/* observer */.Pi)(function (props) {
       id: id,
       value: value,
       type: type,
+      placeholder: placeholder,
+      title: title,
+      style: inputStyle,
+      disabled: disabled,
+      autoComplete: "off",
       onChange: function onChange(e) {
         return handleInputChange(e);
       },
@@ -3625,12 +3646,9 @@ var Field_Field = (0,es/* observer */.Pi)(function (props) {
       onBlur: function onBlur(e) {
         return handleInputBlur(e);
       },
-      onKeyPress: callbackKeyPress,
-      placeholder: placeholder,
-      title: title,
-      style: inputStyle,
-      disabled: disabled,
-      autocomplete: "off"
+      onKeyPress: onKeyPress,
+      onKeyUp: onKeyUp,
+      onKeyDown: onKeyDown
     });
   };
 
@@ -3642,6 +3660,10 @@ var Field_Field = (0,es/* observer */.Pi)(function (props) {
       id: id,
       value: value,
       type: type,
+      placeholder: placeholder,
+      title: title,
+      style: inputStyle,
+      disabled: disabled,
       onChange: function onChange(e) {
         return handleInputChange(e);
       },
@@ -3651,11 +3673,9 @@ var Field_Field = (0,es/* observer */.Pi)(function (props) {
       onBlur: function onBlur(e) {
         return handleInputBlur(e);
       },
-      onKeyPress: callbackKeyPress,
-      placeholder: placeholder,
-      title: title,
-      style: inputStyle,
-      disabled: disabled
+      onKeyPress: onKeyPress,
+      onKeyUp: onKeyUp,
+      onKeyDown: onKeyDown
     });
   };
 
@@ -3768,13 +3788,16 @@ var Field_Field = (0,es/* observer */.Pi)(function (props) {
   }
 
   return /*#__PURE__*/react.createElement("div", {
-    className: (0,clsx_m/* default */.Z)('nx-field', component, type, variant, {
+    className: (0,clsx_m/* default */.Z)('nx-field', component, type, variant, color, {
       'disabled': disabled
     }, {
       'focused': focused
     }, {
       'error': error
     }, className),
+    onClick: function onClick(e) {
+      return handleClick(e);
+    },
     style: style
   }, (label || ghostLabel) && /*#__PURE__*/react.createElement("div", {
     className: "nx-field-label"
@@ -6167,6 +6190,233 @@ var Snackbar_Snackbar = (0,es/* observer */.Pi)(function (props) {
 
   return snackbarContent;
 });
+// EXTERNAL MODULE: ../../nexus/react/ui/popup/Popup.css
+var Popup = __webpack_require__(2055);
+;// CONCATENATED MODULE: ../../nexus/react/ui/popup/Popup.jsx
+function Popup_createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = Popup_unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
+
+function Popup_unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return Popup_arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return Popup_arrayLikeToArray(o, minLen); }
+
+function Popup_arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+
+
+
+
+ // Models
+// -------------------------------------------------------------------------------------------------------------
+// ***** PopupDef *****
+// ********************
+
+var TAG_PopupDef = function TAG_PopupDef() {};
+
+var PopupDef = mobx_state_tree_module/* types.model */.V5.model({
+  key: '',
+  open: false,
+  msg: '',
+  msgSeverity: 'info'
+}).actions(function (self) {
+  return {
+    setField: function setField(field, value) {
+      self[field] = value;
+    },
+    // -
+    setMessage: function setMessage(msg, severity) {
+      self.msg = msg;
+      self.msgSeverity = severity;
+    },
+    clearMessage: function clearMessage() {
+      self.msg = '';
+      self.msgSeverity = 'info';
+    }
+  };
+}); // ***** PopupStore *****
+// **********************
+
+var TAG_PopupStore = function TAG_PopupStore() {};
+
+var PopupStore = mobx_state_tree_module/* types.model */.V5.model({
+  registered: mobx_state_tree_module/* types.optional */.V5.optional(mobx_state_tree_module/* types.array */.V5.array(PopupDef), [])
+}).views(function (self) {
+  return {
+    // Getters
+    // -
+    getPopupByKey: function getPopupByKey(key) {
+      var _iterator = Popup_createForOfIteratorHelper(self.registered),
+          _step;
+
+      try {
+        for (_iterator.s(); !(_step = _iterator.n()).done;) {
+          var popup = _step.value;
+
+          if (popup.key == key) {
+            return popup;
+          }
+        }
+      } catch (err) {
+        _iterator.e(err);
+      } finally {
+        _iterator.f();
+      }
+
+      return null;
+    },
+    // Bools
+    // -
+    isOpen: function isOpen(key) {
+      // La popup passée en paramètre est-elle ouverte ?
+      // ---
+      var _iterator2 = Popup_createForOfIteratorHelper(self.registered),
+          _step2;
+
+      try {
+        for (_iterator2.s(); !(_step2 = _iterator2.n()).done;) {
+          var popup = _step2.value;
+
+          if (popup.key == key && popup.open == true) {
+            return true;
+          }
+        }
+      } catch (err) {
+        _iterator2.e(err);
+      } finally {
+        _iterator2.f();
+      }
+
+      return false;
+    },
+
+    get isOneOpen() {
+      // Au moins une popup est-elle ouverte ?
+      // ---
+      var _iterator3 = Popup_createForOfIteratorHelper(self.registered),
+          _step3;
+
+      try {
+        for (_iterator3.s(); !(_step3 = _iterator3.n()).done;) {
+          var popup = _step3.value;
+
+          if (popup.open == true) {
+            return true;
+          }
+        }
+      } catch (err) {
+        _iterator3.e(err);
+      } finally {
+        _iterator3.f();
+      }
+
+      return false;
+    }
+
+  };
+}).actions(function (self) {
+  return {
+    setField: function setField(field, value) {
+      self[field] = value;
+    },
+    // -
+    register: function register(key) {
+      // Déclare une nouvelle popup
+      // ---
+      var found = false;
+
+      var _iterator4 = Popup_createForOfIteratorHelper(self.registered),
+          _step4;
+
+      try {
+        for (_iterator4.s(); !(_step4 = _iterator4.n()).done;) {
+          var popup = _step4.value;
+
+          if (popup.key == key) {
+            found = true;
+            break;
+          }
+        } // Nouvelle popup
+
+      } catch (err) {
+        _iterator4.e(err);
+      } finally {
+        _iterator4.f();
+      }
+
+      if (!found) {
+        var newPopup = PopupDef.create({
+          'key': key
+        });
+        self.registered.push(newPopup);
+      }
+    },
+    update: function update(open, key) {
+      // Ouvre ou ferme la popup passée en paramètres
+      // ---
+      var _iterator5 = Popup_createForOfIteratorHelper(self.registered),
+          _step5;
+
+      try {
+        for (_iterator5.s(); !(_step5 = _iterator5.n()).done;) {
+          var popup = _step5.value;
+
+          if (key) {
+            if (key == popup.key) {
+              popup.open = open;
+            }
+          } else {
+            popup.open = false;
+          }
+        }
+      } catch (err) {
+        _iterator5.e(err);
+      } finally {
+        _iterator5.f();
+      }
+    },
+    open: function open(key) {
+      // Ouvre la popup passée en paramètres
+      // ---
+      self.update(true, key);
+    },
+    close: function close(key) {
+      // Ferme la popup passée en paramètres
+      // ---
+      self.update(false, key);
+    },
+    //
+    setMessage: function setMessage(key, msg, severity) {
+      // Message interne à la popup
+      // ---
+      var popup = self.getPopupByKey(key);
+
+      if (popup) {
+        popup.setMessage(msg, severity);
+      }
+    },
+    clearMessage: function clearMessage(key) {
+      // Efface le message interne à la popup
+      // ---
+      var popup = self.getPopupByKey(key);
+
+      if (popup) {
+        popup.clearMessage();
+      }
+    }
+  };
+}); // Functions Components ReactJS
+// -------------------------------------------------------------------------------------------------------------
+// ***** Popup *****
+// *****************
+
+var TAG_Popup = function TAG_Popup() {};
+
+var Popup_Popup = (0,es/* observer */.Pi)(function (props) {
+  var store = react.useContext(window.storeContext);
+  var app = store.app; // Render
+  // ==================================================================================================
+
+  return /*#__PURE__*/react.createElement("div", {
+    className: "nx-popup"
+  }, "Popup");
+});
 ;// CONCATENATED MODULE: ../../nexus/react/utils/Responsive.jsx
 var MobileDetect = __webpack_require__(5288); // Functions
 // ========================================================================================================================
@@ -7621,6 +7871,7 @@ function NxApp_arrayLikeToArray(arr, len) { if (len == null || len > arr.length)
 
 
 
+
  // Models
 // -------------------------------------------------------------------------------------------------------------
 // ***** NxAppStore *****
@@ -7694,7 +7945,7 @@ var NxAppStore = mobx_state_tree_module/* types.model */.V5.model({
   menu: mobx_state_tree_module/* types.optional */.V5.optional(MenuStore, {}),
   portal: mobx_state_tree_module/* types.optional */.V5.optional(PortalStore, {}),
   snackbar: mobx_state_tree_module/* types.optional */.V5.optional(SnackbarStore, {}),
-  // popup: types.optional(PopupStore, {}),
+  popup: mobx_state_tree_module/* types.optional */.V5.optional(PopupStore, {}),
   // Common
   // -
   notifications: mobx_state_tree_module/* types.optional */.V5.optional(NotificationsStore, {}),
@@ -8973,6 +9224,7 @@ var Search = __webpack_require__(4048);
 
 
 
+
  // Functions Components ReactJS
 // -------------------------------------------------------------------------------------------------------------
 // ***** SearchHeaderMiddle *****
@@ -8982,12 +9234,115 @@ var TAG_SearchHeaderMiddle = function TAG_SearchHeaderMiddle() {};
 
 var SearchHeaderMiddle = (0,es/* observer */.Pi)(function (props) {
   var store = react.useContext(window.storeContext);
-  var app = store.app; // ...
-  // Render
+  var app = store.app;
+  var popup = app.popup; // From ... store
+
+  var context = app.context; // From ... props
+
+  var id = props.id ? props.id : "txt-main-search";
+  var placeholder = props.placeholder ? props.placeholder : 'Rechercher';
+  var savePath = props.savePath ? props.savePath : ['search', 'query'];
+  var onSearch = props.onSearch;
+  var onClear = props.onClear;
+  var onFocus = props.onFocus;
+  var onBlur = props.onBlur;
+  var disabled = props.disabled == true ? true : false;
+  var disableAutoFocus = props.disableAutoFocus == false ? false : context != 'search';
+  var navigateOnFocus = props.navigateOnFocus == false ? false : true;
+  var variant = props.variant ? props.variant : 'outlined';
+  var color = props.color ? props.color : 'white'; // white, black
+
+  var className = props.className ? props.className : 'nx-main-search-field';
+  var style = props.style ? props.style : {}; // ...
+
+  var timeoutId = "timeout-".concat(id);
+  var query = app.getValue(savePath, ''); // -
+
+  var callbackKey = react.useCallback(function (event) {
+    if (event.keyCode === 27) {
+      if (onClear) {
+        onClear();
+      }
+    } else {
+      document.getElementById(id).focus();
+    }
+  }, []);
+  react.useEffect(function () {
+    if (!disableAutoFocus) {
+      window[timeoutId] = null;
+
+      if (!popup.isOneOpen) {
+        document.removeEventListener("keydown", callbackKey, false);
+        document.addEventListener("keydown", callbackKey, false);
+      }
+
+      return function () {
+        document.removeEventListener("keydown", callbackKey, false);
+      };
+    }
+  }, [popup.isOneOpen, context]); // Events
   // ==================================================================================================
 
-  return /*#__PURE__*/react.createElement(HeaderTitle, {
-    title: "Rechercher"
+  var handleFocus = function handleFocus(evt) {
+    if (navigateOnFocus && context != 'search' && !disabled) {
+      app.navigateTo('search');
+    }
+
+    if (onFocus) {
+      onFocus();
+    }
+  };
+
+  var handleBlur = function handleBlur() {
+    if (onBlur) {
+      onBlur();
+    }
+  };
+
+  var handleKeyDown = function handleKeyDown(evt) {
+    if (evt.keyCode === 27) {
+      onClear();
+    }
+  };
+
+  var handleChange = function handleChange(savePath, value, evt) {
+    clearTimeout(window[timeoutId]);
+
+    if (value) {
+      window[timeoutId] = setTimeout(function () {
+        onSearch(savePath, value);
+      }, 1000);
+    } else {
+      callbackClear();
+    }
+  };
+
+  var handleClear = function handleClear() {
+    app.saveValue(savePath, '', callbackClear);
+    setTimeout(function () {
+      document.getElementById(id).focus();
+    }, 100);
+  }; // Render
+  // ==================================================================================================
+
+
+  return /*#__PURE__*/react.createElement(Field_Field, {
+    id: id,
+    placeholder: placeholder,
+    component: "input",
+    savePath: savePath,
+    callbackChange: handleChange,
+    callbackBlur: handleBlur,
+    onKeyDown: handleKeyDown,
+    onClick: handleFocus,
+    endAdornment: /*#__PURE__*/react.createElement(Icon_Icon, {
+      name: "search",
+      color: "white"
+    }),
+    color: "white",
+    variant: variant,
+    className: (0,clsx_m/* default */.Z)(className, color),
+    style: style
   });
 }); // ***** SearchMenuItem *****
 // **************************
@@ -9567,6 +9922,7 @@ var ContextualHeader = (0,es/* observer */.Pi)(function (props) {
   var store = react.useContext(window.storeContext);
   var app = store.app; // From ... store
 
+  var breakPoint650 = app.breakPoint650;
   var context = app.context;
   var homeContext = app.homeContext;
   var authContext = app.authContext; // Render
@@ -9585,7 +9941,7 @@ var ContextualHeader = (0,es/* observer */.Pi)(function (props) {
   };
 
   var renderHeaderSearch = function renderHeaderSearch() {
-    if (context != 'search') {
+    if (breakPoint650 && context != 'search') {
       return;
     }
 
@@ -9827,7 +10183,10 @@ var search_Search = __webpack_require__(4906);
 
 var TAG_SearchStore = function TAG_SearchStore() {};
 
-var SearchStore = mobx_state_tree_module/* types.model */.V5.model({}).actions(function (self) {
+var SearchStore = mobx_state_tree_module/* types.model */.V5.model({
+  query: '',
+  results: mobx_state_tree_module/* types.frozen */.V5.frozen(null)
+}).actions(function (self) {
   return {
     setField: function setField(field, value) {
       self[field] = value;
@@ -9844,7 +10203,12 @@ var TAG_SearchPage = function TAG_SearchPage() {};
 
 var SearchPage = (0,es/* observer */.Pi)(function (props) {
   var store = react.useContext(window.storeContext);
-  var app = store.app; // Renderers
+  var app = store.app;
+  react.useEffect(function () {
+    setTimeout(function () {
+      document.getElementById('txt-main-search').focus();
+    }, 100);
+  }, []); // Renderers
   // ==================================================================================================
 
   var renderHelper = function renderHelper() {
@@ -10358,6 +10722,13 @@ window.addEventListener('DOMContentLoaded', function () {
 
 /***/ }),
 
+/***/ 2055:
+/***/ (() => {
+
+// extracted by extract-css-chunks-webpack-plugin
+
+/***/ }),
+
 /***/ 7677:
 /***/ (() => {
 
@@ -10536,7 +10907,7 @@ window.addEventListener('DOMContentLoaded', function () {
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module depends on other loaded chunks and execution need to be delayed
 /******/ 	__webpack_require__.O(undefined, [216], () => (__webpack_require__(3979)))
-/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, [216], () => (__webpack_require__(8427)))
+/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, [216], () => (__webpack_require__(478)))
 /******/ 	__webpack_exports__ = __webpack_require__.O(__webpack_exports__);
 /******/ 	
 /******/ })()

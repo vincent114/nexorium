@@ -18,7 +18,9 @@ import './Search.css';
 const TAG_SearchStore = () => {}
 export const SearchStore = types
 	.model({
+		query: '',
 
+		results: types.frozen(null),
 	})
 	.actions(self => ({
 
@@ -46,6 +48,12 @@ export const SearchPage = observer((props) => {
 
 	const store = React.useContext(window.storeContext);
 	const app = store.app;
+
+	React.useEffect(() => {
+		setTimeout(() => {
+			document.getElementById('txt-main-search').focus();
+		}, 100);
+	}, []);
 
 	// Renderers
 	// ==================================================================================================

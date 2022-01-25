@@ -35,6 +35,7 @@ export const ContextualHeader = observer((props) => {
 
 	// From ... store
 
+	const breakPoint650 = app.breakPoint650;
 	const context = app.context;
 	const homeContext = app.homeContext;
 	const authContext = app.authContext;
@@ -57,7 +58,7 @@ export const ContextualHeader = observer((props) => {
 
 	const renderHeaderSearch = () => {
 
-		if (context != 'search') { return; }
+		if (breakPoint650 && context != 'search') { return; }
 
 		headerMiddle = <SearchHeaderMiddle />
 	}
