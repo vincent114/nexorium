@@ -95,7 +95,7 @@ export const BlogMenuItem = observer((props) => {
 
 	const blogContext = app.blogContext;
 
-	// Evènements
+	// Events
 	// ==================================================================================================
 
 	const handleMenuItemClick = () => {

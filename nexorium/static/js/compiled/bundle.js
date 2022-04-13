@@ -1,7 +1,7 @@
 /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
-/***/ 478:
+/***/ 4568:
 /***/ ((__unused_webpack_module, __unused_webpack___webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -331,7 +331,7 @@ var Drawer_Drawer = function Drawer(props) {
   var children = props.children;
   var position = props.position ? props.position : 'left';
   var callbackClose = props.callbackClose; // ...
-  // Evènements
+  // Events
   // ==================================================================================================
 
   var handleDrawerWrapperClick = function handleDrawerWrapperClick(e) {
@@ -519,7 +519,23 @@ var ICON_KEYS_TO_FILES = {
     'call_to_action': 'call_to_action_black_24dp.svg',
     'announcement': 'announcement_black_24dp.svg',
     'access_alarms': 'access_alarms_black_24dp.svg',
-    'fullscreen': 'fullscreen_black_24dp.svg'
+    'fullscreen': 'fullscreen_black_24dp.svg',
+    'dynamic_feed': 'dynamic_feed_black_24dp.svg',
+    'volume_mute': 'volume_mute_black_24dp.svg',
+    'volume_off': 'volume_off_black_24dp.svg',
+    'volume_up': 'volume_up_black_24dp.svg',
+    'skip_previous': 'skip_previous_black_24dp.svg',
+    'skip_next': 'skip_next_black_24dp.svg',
+    'pause_circle_filled': 'pause_circle_filled_black_24dp.svg',
+    'play_circle_filled': 'play_circle_filled_black_24dp.svg',
+    'queue_music': 'queue_music_black_24dp.svg',
+    'youtube_searched_for': 'youtube_searched_for_black_24dp.svg',
+    'storage': 'storage_black_24dp.svg',
+    'source': 'source_black_24dp.svg',
+    'list': 'list_black_24dp.svg',
+    'input': 'input_black_24dp.svg',
+    'edit_attributes': 'edit_attributes_black_24dp.svg',
+    'toggle_off': 'toggle_off_black_24dp.svg'
   }
 }; // const ICON_SIZES = {
 // 	'small': {
@@ -1669,1097 +1685,6 @@ var Helper_Helper = (0,es/* observer */.Pi)(function (props) {
 
   return helper;
 });
-// EXTERNAL MODULE: ../../nexus/react/layout/menu/Menu.css
-var Menu = __webpack_require__(4397);
-;// CONCATENATED MODULE: ../../nexus/react/layout/menu/Menu.jsx
-
-
-
-
-
-
-
-
-
-
-
- // Models
-// -------------------------------------------------------------------------------------------------------------
-// ***** MenuStore *****
-// *********************
-
-var TAG_MenuStore = function TAG_MenuStore() {};
-
-var MenuStore = mobx_state_tree_module/* types.model */.V5.model({
-  expanded: false,
-  open: false,
-  pinned: false
-}).actions(function (self) {
-  return {
-    setField: function setField(field, value) {
-      self[field] = value;
-    },
-    // -
-    toogle: function toogle() {
-      // Bascule le menu latéral
-      // ---
-      var app = (0,mobx_state_tree_module/* getParent */.G_)(self);
-      var breakPoint650 = app.breakPoint650;
-      var newState = false; // Agrandissement ou réduction en mode bureau
-
-      if (!breakPoint650 && self.pinned) {
-        newState = !self.expanded;
-        setToStorage('menuExpanded', newState);
-      } // Ouverture / fermeture en mode mobile
-
-
-      if (breakPoint650 || !self.pinned) {
-        newState = !self.open;
-      }
-
-      self.update(newState);
-    },
-    tooglePinned: function tooglePinned() {
-      self.pinned = !self.pinned;
-      setToStorage('menuPinned', self.pinned);
-    },
-    update: function update(openOrExpanded) {
-      // Masque ou affiche le menu latéral
-      // ---
-      var app = (0,mobx_state_tree_module/* getParent */.G_)(self);
-      var breakPoint650 = app.breakPoint650;
-
-      if (!breakPoint650 && self.pinned) {
-        self.expanded = openOrExpanded;
-      }
-
-      if (breakPoint650 || !self.pinned) {
-        self.open = openOrExpanded;
-      }
-    },
-    close: function close() {
-      // Ferme le menu
-      // ---
-      var app = (0,mobx_state_tree_module/* getParent */.G_)(self);
-      var breakPoint650 = app.breakPoint650;
-
-      if (breakPoint650 || !self.pinned) {
-        self.open = false;
-      }
-    }
-  };
-}); // Functions Components ReactJS
-// -------------------------------------------------------------------------------------------------------------
-// ***** MenuDivider *****
-// ***********************
-
-var TAG_MenuDivider = function TAG_MenuDivider() {};
-
-var MenuDivider = (0,es/* observer */.Pi)(function (props) {
-  // From ... props
-  var children = props.children ? props.children : null; // Render
-  // ==================================================================================================
-
-  return /*#__PURE__*/react.createElement(Divider_Divider, {
-    title: children,
-    style: {
-      marginTop: '10px',
-      marginBottom: '10px'
-    }
-  });
-}); // ***** MenuItem *****
-// ********************
-
-var TAG_MenuItem = function TAG_MenuItem() {};
-
-var MenuItem = (0,es/* observer */.Pi)(function (props) {
-  var store = react.useContext(window.storeContext);
-  var app = store.app;
-  var theme = app.theme; // From ... store
-
-  var context = app.context;
-  var isLoading = app.isLoading; // From ... props
-
-  var icon = props.icon;
-  var label = props.label;
-  var activeContexts = props.activeContexts ? props.activeContexts : [];
-  var disabled = props.disabled == true ? props.disabled : isLoading;
-  var style = props.style ? props.style : {};
-  var styleLabel = {};
-  var callbackClick = props.callbackClick; // ...
-
-  var active = activeContexts.indexOf(context) > -1 ? true : false;
-
-  if (!style.hasOwnProperty('color')) {
-    if (active) {
-      // style['color'] = theme.palette.primary.main;
-      style['backgroundColor'] = hexToRgbA(theme.palette.primary.main, 0.1); // styleLabel['color'] = theme.palette.primary.main;
-
-      styleLabel['fontWeight'] = 'bold';
-    }
-  } // Evènements
-  // ==================================================================================================
-
-
-  var handleClick = function handleClick() {
-    if (callbackClick) {
-      callbackClick();
-    }
-  }; // Render
-  // ==================================================================================================
-
-
-  return /*#__PURE__*/react.createElement("div", {
-    className: (0,clsx_m/* default */.Z)("nx-menu-item", {
-      'active': active
-    }, {
-      'disabled': disabled
-    }),
-    style: style,
-    onClick: function onClick() {
-      return handleClick();
-    }
-  }, icon && /*#__PURE__*/react.createElement(Avatar_Avatar, {
-    color: "transparent" // size="small"
-
-  }, icon), /*#__PURE__*/react.createElement("div", {
-    className: "nx-menu-item-label",
-    style: styleLabel
-  }, label));
-}); // ***** Menu *****
-// ****************
-
-var TAG_Menu = function TAG_Menu() {};
-
-var Menu_Menu = (0,es/* observer */.Pi)(function (props) {
-  var store = react.useContext(window.storeContext);
-  var app = store.app;
-  var menu = app.menu;
-  var theme = app.theme;
-  var account = app.account; // From ... store
-
-  var breakPoint650 = app.breakPoint650;
-  var open = menu.open;
-  var expanded = menu.expanded;
-  var pinned = menu.pinned;
-  var name = account.name; // From ... props
-
-  var children = props.children; // Evènements
-  // ==================================================================================================
-
-  var handleClose = function handleClose() {
-    menu.close();
-  };
-
-  var handlePinClick = function handlePinClick() {
-    menu.tooglePinned();
-  }; // Render
-  // ==================================================================================================
-
-
-  var menuContent = /*#__PURE__*/react.createElement("div", {
-    className: "nx-menu-content"
-  }, breakPoint650 && /*#__PURE__*/react.createElement("div", {
-    className: "nx-menu-header",
-    style: {
-      backgroundColor: hexToRgbA(theme.palette.primary.main, 0.8),
-      color: theme.palette.primary.contrastText
-    }
-  }, /*#__PURE__*/react.createElement("label", null, name)), /*#__PURE__*/react.createElement("div", {
-    className: "nx-menu-items-wrapper"
-  }, children), !breakPoint650 && /*#__PURE__*/react.createElement(IconButton, {
-    onClick: function onClick() {
-      return handlePinClick();
-    }
-  }, /*#__PURE__*/react.createElement(Icon_Icon, {
-    name: "push_pin"
-  })));
-  return /*#__PURE__*/react.createElement(react.Fragment, null, (breakPoint650 || !pinned) && open && /*#__PURE__*/react.createElement(Drawer_Drawer, {
-    position: breakPoint650 ? 'right' : 'left',
-    callbackClose: handleClose
-  }, menuContent), !breakPoint650 && pinned && /*#__PURE__*/react.createElement("div", {
-    className: (0,clsx_m/* default */.Z)("nx-menu", {
-      "expanded": expanded
-    }, {
-      "retracted": !expanded
-    })
-  }, menuContent));
-});
-// EXTERNAL MODULE: ../../nexus/react/contexts/portal/Portal.css
-var portal_Portal = __webpack_require__(1999);
-;// CONCATENATED MODULE: ../../nexus/react/contexts/portal/Portal.jsx
-
-
-
-
-
-
-
-
-
-
- // Models
-// -------------------------------------------------------------------------------------------------------------
-// ***** PortalStore *****
-// ***********************
-
-var TAG_PortalStore = function TAG_PortalStore() {};
-
-var PortalStore = mobx_state_tree_module/* types.model */.V5.model({
-  expanded: false,
-  open: false,
-  pinned: false
-}).actions(function (self) {
-  return {
-    setField: function setField(field, value) {
-      self[field] = value;
-    },
-    // -
-    toogle: function toogle() {
-      // Bascule le portail d'apps
-      // ---
-      var app = (0,mobx_state_tree_module/* getParent */.G_)(self);
-      var breakPoint650 = app.breakPoint650;
-      var newState = false; // Agrandissement ou réduction en mode bureau
-
-      if (!breakPoint650 && self.pinned) {
-        newState = !self.expanded;
-        setToStorage('portalExpanded', newState);
-      } // Ouverture / fermeture en mode mobile
-
-
-      if (breakPoint650 || !self.pinned) {
-        newState = !self.open;
-      }
-
-      self.update(newState);
-    },
-    tooglePinned: function tooglePinned() {
-      self.pinned = !self.pinned;
-      setToStorage('portalPinned', self.pinned);
-    },
-    update: function update(openOrExpanded) {
-      // Masque ou affiche le portail d'apps
-      // ---
-      var app = (0,mobx_state_tree_module/* getParent */.G_)(self);
-      var breakPoint650 = app.breakPoint650;
-
-      if (!breakPoint650 && self.pinned) {
-        self.expanded = openOrExpanded;
-      }
-
-      if (breakPoint650 || !self.pinned) {
-        self.open = openOrExpanded;
-      }
-    },
-    close: function close() {
-      // Ferme le menu
-      // ---
-      var app = (0,mobx_state_tree_module/* getParent */.G_)(self);
-      var breakPoint650 = app.breakPoint650;
-
-      if (breakPoint650 || !self.pinned) {
-        self.open = false;
-      }
-    }
-  };
-}); // Functions Components ReactJS
-// -------------------------------------------------------------------------------------------------------------
-// ***** PortalHeaderLeft *****
-// ****************************
-
-var TAG_PortalHeaderLeft = function TAG_PortalHeaderLeft() {};
-
-var PortalHeaderLeft = (0,es/* observer */.Pi)(function (props) {
-  var store = react.useContext(window.storeContext);
-  var app = store.app; // ...
-  // Render
-  // ==================================================================================================
-
-  return /*#__PURE__*/react.createElement(HeaderTitle, {
-    title: "Applications",
-    titleStyle: {
-      marginLeft: '10px'
-    }
-  });
-}); // ***** PortalHeaderRight *****
-// *****************************
-
-var TAG_PortalHeaderRight = function TAG_PortalHeaderRight() {};
-
-var PortalHeaderRight = (0,es/* observer */.Pi)(function (props) {
-  var store = react.useContext(window.storeContext);
-  var app = store.app; // ...
-  // Render
-  // ==================================================================================================
-
-  return null;
-}); // ***** PortalMenuItem *****
-// **************************
-
-var TAG_PortalMenuItem = function TAG_PortalMenuItem() {};
-
-var PortalMenuItem = (0,es/* observer */.Pi)(function (props) {
-  var store = react.useContext(window.storeContext);
-  var app = store.app; // From ... store
-
-  var isLoading = app.isLoading;
-  var breakPoint650 = app.breakPoint650;
-  var portalContext = app.portalContext; // Events
-  // ==================================================================================================
-
-  var handleMenuItemClick = function handleMenuItemClick() {
-    app.navigateTo(portalContext);
-    app.menu.close();
-  }; // Render
-  // ==================================================================================================
-
-
-  var portalMenuItem = null;
-
-  if (breakPoint650) {
-    portalMenuItem = /*#__PURE__*/react.createElement(MenuItem, {
-      icon: /*#__PURE__*/react.createElement(Icon_Icon, {
-        name: "explore"
-      }),
-      label: "Applications",
-      activeContexts: [portalContext],
-      callbackClick: handleMenuItemClick
-    });
-  }
-
-  return portalMenuItem;
-}); // ***** PortalPage *****
-// **********************
-
-var TAG_PortalPage = function TAG_PortalPage() {};
-
-var PortalPage = (0,es/* observer */.Pi)(function (props) {
-  var store = react.useContext(window.storeContext);
-  var app = store.app; // From ... propos
-
-  var initialized = app.initialized; // ...
-
-  var showHelper = !initialized ? true : false; // Renderers
-  // ==================================================================================================
-
-  var renderPage = function renderPage() {
-    // Render :: Page
-    // ---
-    var pageContent = null;
-
-    if (initialized) {
-      pageContent = /*#__PURE__*/react.createElement(PortalGrid, null);
-    }
-
-    return pageContent;
-  };
-
-  var renderHelper = function renderHelper() {
-    // Render :: Helper
-    // ---
-    return /*#__PURE__*/react.createElement(Helper_Helper, {
-      iconName: "explore",
-      show: showHelper
-    });
-  };
-
-  return /*#__PURE__*/react.createElement("div", {
-    className: "nx-page"
-  }, renderPage(), renderHelper());
-});
-// EXTERNAL MODULE: ../../nexus/react/contexts/newsletters/Newsletters.css
-var Newsletters = __webpack_require__(5270);
-;// CONCATENATED MODULE: ../../nexus/react/contexts/newsletters/Newsletters.jsx
-
-
-
-
-
-
-
-
- // Models
-// -------------------------------------------------------------------------------------------------------------
-// ***** NewslettersStore *****
-// ****************************
-
-var TAG_NewslettersStore = function TAG_NewslettersStore() {};
-
-var NewslettersStore = mobx_state_tree_module/* types.model */.V5.model({
-  loaded: false
-}).actions(function (self) {
-  return {
-    setField: function setField(field, value) {
-      self[field] = value;
-    },
-    // -
-    update: function update(raw) {}
-  };
-}); // Functions Components ReactJS
-// -------------------------------------------------------------------------------------------------------------
-// ***** NewslettersHeaderLeft *****
-// *********************************
-
-var TAG_NewslettersHeaderLeft = function TAG_NewslettersHeaderLeft() {};
-
-var NewslettersHeaderLeft = (0,es/* observer */.Pi)(function (props) {
-  var store = react.useContext(window.storeContext);
-  var app = store.app; // ...
-  // Render
-  // ==================================================================================================
-
-  return /*#__PURE__*/react.createElement(HeaderTitle, {
-    title: "Newsletters",
-    titleStyle: {
-      marginLeft: '10px'
-    }
-  });
-}); // ***** NewslettersHeaderRight *****
-// **********************************
-
-var TAG_NewslettersHeaderRight = function TAG_NewslettersHeaderRight() {};
-
-var NewslettersHeaderRight = (0,es/* observer */.Pi)(function (props) {
-  var store = react.useContext(window.storeContext);
-  var app = store.app; // ...
-  // Render
-  // ==================================================================================================
-
-  return null;
-}); // ***** NewslettersMenuItem *****
-// *******************************
-
-var TAG_NewslettersMenuItem = function TAG_NewslettersMenuItem() {};
-
-var NewslettersMenuItem = (0,es/* observer */.Pi)(function (props) {
-  var store = react.useContext(window.storeContext);
-  var app = store.app; // Evènements
-  // ==================================================================================================
-
-  var handleMenuItemClick = function handleMenuItemClick() {
-    app.navigate('/newsletters', 'newsletters');
-    app.menu.close();
-  }; // Render
-  // ==================================================================================================
-
-
-  return /*#__PURE__*/react.createElement(MenuItem, {
-    icon: /*#__PURE__*/react.createElement(Icon_Icon, {
-      name: "newspaper"
-    }),
-    label: "Newsletters",
-    activeContexts: ['newsletters'],
-    callbackClick: handleMenuItemClick
-  });
-}); // ***** NewslettersPage *****
-// ***************************
-
-var TAG_NewslettersPage = function TAG_NewslettersPage() {};
-
-var NewslettersPage = (0,es/* observer */.Pi)(function (props) {
-  var store = react.useContext(window.storeContext);
-  var app = store.app; // Renderers
-  // ==================================================================================================
-
-  var renderHelper = function renderHelper() {
-    // Render :: Helper
-    // ---
-    return /*#__PURE__*/react.createElement(Helper_Helper, {
-      iconName: "newspaper",
-      show: true
-    });
-  };
-
-  return /*#__PURE__*/react.createElement("div", {
-    className: "nx-page"
-  }, renderHelper());
-});
-// EXTERNAL MODULE: ../../nexus/react/layout/section/Section.css
-var Section = __webpack_require__(8461);
-;// CONCATENATED MODULE: ../../nexus/react/layout/section/Section.jsx
-
-
-
-
- // Functions Components ReactJS
-// -------------------------------------------------------------------------------------------------------------
-// ***** Section *****
-// *******************
-
-var TAG_Section = function TAG_Section() {};
-
-var Section_Section = function Section(props) {
-  // From ... props
-  var icon = props.icon ? props.icon : null;
-  var title = props.title ? props.title : '';
-  var right = props.right;
-  var children = props.children;
-  var buttons = props.buttons;
-  var buttonsPosition = props.buttonsPosition ? props.buttonsPosition : 'right'; // left, right, center, stretch
-
-  var buttonsResponsive = props.buttonsResponsive == true ? true : false; // Render
-  // ==================================================================================================
-
-  return /*#__PURE__*/react.createElement("div", {
-    className: "nx-section"
-  }, (icon || title || right) && /*#__PURE__*/react.createElement("div", {
-    className: "nx-section-header"
-  }, icon && /*#__PURE__*/react.createElement("div", {
-    className: "nx-section-icon"
-  }, icon), title && /*#__PURE__*/react.createElement("div", {
-    className: "nx-section-header-title"
-  }, title)), children && /*#__PURE__*/react.createElement("div", {
-    className: "nx-section-content"
-  }, children), buttons && /*#__PURE__*/react.createElement("div", {
-    className: (0,clsx_m/* default */.Z)("nx-section-buttonset", "h-col-small", {
-      "responsive-vertical": buttonsResponsive
-    }, {
-      "responsive-align-stretch": buttonsResponsive
-    })
-  }, buttons));
-};
-// EXTERNAL MODULE: ../../nexus/react/contexts/about/About.css
-var About = __webpack_require__(2189);
-;// CONCATENATED MODULE: ../../nexus/react/contexts/about/About.jsx
-
-
-
-
-
-
-
-
-
-
-
-
- // Models
-// ======================================================================================================
-// ***** AboutStore *****
-// **********************
-
-var TAG_AboutStore = function TAG_AboutStore() {};
-
-var AboutStore = mobx_state_tree_module/* types.model */.V5.model({
-  service: mobx_state_tree_module/* types.optional */.V5.optional(ServiceInfoStore, {}),
-  loaded: false
-}).actions(function (self) {
-  return {
-    setField: function setField(field, value) {
-      self[field] = value;
-    },
-    // -
-    update: function update(raw) {
-      self.service.update(raw);
-      self.loaded = true;
-    },
-    load: function load() {
-      // Appel AJAX de la fonction de chargement des données de du service
-      // ---
-      var store = (0,mobx_state_tree_module/* getRoot */.yj)(self);
-      var app = store.app;
-      var snackbar = app.snackbar;
-      var url = '/app/about_load';
-      app.fetchJSON(url, null, false, 'POST').then(function (json) {
-        self.update(json.me);
-      })["catch"](function (ex) {
-        console.error("Fetch failed for ".concat(url), ex);
-        snackbar.update(true, "Une erreur est survenue.", "error");
-      });
-    }
-  };
-}); // Functions Components ReactJS
-// -------------------------------------------------------------------------------------------------------------
-// ***** AboutHeaderLeft *****
-// ***************************
-
-var TAG_AboutHeaderLeft = function TAG_AboutHeaderLeft() {};
-
-var AboutHeaderLeft = (0,es/* observer */.Pi)(function (props) {
-  var store = react.useContext(window.storeContext);
-  var app = store.app; // ...
-  // Render
-  // ==================================================================================================
-
-  return /*#__PURE__*/react.createElement(HeaderTitle, {
-    title: "A propos",
-    titleStyle: {
-      marginLeft: '10px'
-    }
-  });
-}); // ***** AboutHeaderRight *****
-// ****************************
-
-var TAG_AboutHeaderRight = function TAG_AboutHeaderRight() {};
-
-var AboutHeaderRight = (0,es/* observer */.Pi)(function (props) {
-  // const store = React.useContext(window.storeContext);
-  // const app = store.app;
-  // ...
-  // Render
-  // ==================================================================================================
-  return null;
-}); // ***** AboutMenuItem *****
-// *************************
-
-var TAG_AboutMenuItem = function TAG_AboutMenuItem() {};
-
-var AboutMenuItem = (0,es/* observer */.Pi)(function (props) {
-  var store = react.useContext(window.storeContext);
-  var app = store.app; // From ... store
-
-  var aboutContext = app.aboutContext; // Evènements
-  // ==================================================================================================
-
-  var handleMenuItemClick = function handleMenuItemClick() {
-    app.navigateTo(aboutContext);
-    app.menu.close();
-  }; // Render
-  // ==================================================================================================
-
-
-  return /*#__PURE__*/react.createElement(MenuItem, {
-    icon: /*#__PURE__*/react.createElement(Icon_Icon, {
-      name: "code"
-    }),
-    label: "A propos",
-    activeContexts: [aboutContext],
-    callbackClick: handleMenuItemClick
-  });
-}); // ***** RenderAbout *****
-// ***********************
-
-var TAG_RenderAbout = function TAG_RenderAbout() {};
-
-var RenderAbout = (0,es/* observer */.Pi)(function (props) {
-  var store = react.useContext(window.storeContext);
-  var app = store.app;
-  var about = app.about; // From ... store
-
-  var isLoading = app.isLoading;
-  var breakPoint414 = app.breakPoint414;
-  var loaded = about.loaded;
-  var service = about.service;
-  var version = service.version;
-  var changeset = service.changeset;
-  var changeset_instance = service.changeset_instance; // ...
-
-  react.useEffect(function () {
-    if (!loaded) {
-      about.load();
-    }
-  }, [loaded]); // Evènements
-  // ==================================================================================================
-
-  var handleChangelogsClick = function handleChangelogsClick() {
-    app.navigateTo(app.changelogsContext);
-  };
-
-  var handleBugsClick = function handleBugsClick() {
-    app.navigateTo(app.bugsContext);
-  }; // Render
-  // ==================================================================================================
-  // Section -> Icon
-  // ---
-
-
-  var sectionIcon = /*#__PURE__*/react.createElement(Icon_Icon, {
-    name: "memory"
-  }); // Section -> Title
-  // ---
-
-  var sectionTitle = service.name; // Section -> Content
-  // ---
-
-  var sectionContent = /*#__PURE__*/react.createElement("div", {
-    className: (0,clsx_m/* default */.Z)("h-col-medium", "responsive-vertical", "responsive-spaced-medium")
-  }, /*#__PURE__*/react.createElement(Avatar_Avatar, {
-    src: "/static/favicons/android-icon-192x192.png",
-    size: "big"
-  }), /*#__PURE__*/react.createElement("div", {
-    className: (0,clsx_m/* default */.Z)({
-      "v-col-tiny": !breakPoint414
-    }, {
-      "v-col-small": breakPoint414
-    }, "flex-align-stretch")
-  }, /*#__PURE__*/react.createElement("div", {
-    className: "h-col-small responsive-vertical responsive-spaced-none"
-  }, /*#__PURE__*/react.createElement("div", {
-    className: "nx-t"
-  }, "Version"), /*#__PURE__*/react.createElement("div", {
-    className: "nx-t selectable",
-    "data-flex": "2"
-  }, /*#__PURE__*/react.createElement("b", null, version))), /*#__PURE__*/react.createElement("div", {
-    className: "h-col-small responsive-vertical responsive-spaced-none responsive-align-start"
-  }, /*#__PURE__*/react.createElement("div", {
-    className: "nx-t"
-  }, "R\xE9vision instance"), /*#__PURE__*/react.createElement("div", {
-    className: "nx-about-changeset selectable",
-    "data-flex": "2"
-  }, changeset_instance)), /*#__PURE__*/react.createElement("div", {
-    className: "h-col-small responsive-vertical responsive-spaced-none responsive-align-start"
-  }, /*#__PURE__*/react.createElement("div", {
-    className: "nx-t"
-  }, "R\xE9vision d\xE9p\xF4t"), /*#__PURE__*/react.createElement("div", {
-    className: "nx-about-changeset selectable",
-    "data-flex": "2"
-  }, changeset)))); // Section -> Buttons
-  // ---
-
-  var sectionButtons = [];
-  sectionButtons.push( /*#__PURE__*/react.createElement(Button_Button, {
-    key: "btn-changelog",
-    variant: "outlined",
-    color: "primary",
-    onClick: function onClick() {
-      return handleChangelogsClick();
-    },
-    disabled: isLoading,
-    startAdornment: /*#__PURE__*/react.createElement(Icon_Icon, {
-      name: "history"
-    })
-  }, "Changelog"));
-  sectionButtons.push( /*#__PURE__*/react.createElement(Button_Button, {
-    key: "btn-bugs",
-    variant: "outlined",
-    color: "primary",
-    onClick: function onClick() {
-      return handleBugsClick();
-    },
-    disabled: isLoading,
-    startAdornment: /*#__PURE__*/react.createElement(Icon_Icon, {
-      name: "bug_report"
-    })
-  }, "Bugs")); // -------------------------------------------------
-
-  var contentAbout = null;
-
-  if (loaded) {
-    contentAbout = /*#__PURE__*/react.createElement(Section_Section, {
-      icon: sectionIcon,
-      title: sectionTitle,
-      buttons: sectionButtons
-    }, sectionContent);
-  }
-
-  return contentAbout;
-}); // ***** AboutPage *****
-// *********************
-
-var TAG_AboutPage = function TAG_AboutPage() {};
-
-var AboutPage = (0,es/* observer */.Pi)(function (props) {
-  var store = react.useContext(window.storeContext);
-  var app = store.app;
-  var about = app.about; // From ... store
-
-  var initialized = app.initialized;
-  var loaded = about.loaded; // ...
-
-  var showHelper = !initialized || !loaded ? true : false; // Renderers
-  // ==================================================================================================
-
-  var renderPage = function renderPage() {
-    // Render :: Page -> que quand l'app est intitialisée (pour useEffect)
-    // ---
-    var pageContent = null;
-
-    if (initialized) {
-      pageContent = /*#__PURE__*/react.createElement(RenderAbout, null);
-    }
-
-    return pageContent;
-  };
-
-  var renderHelper = function renderHelper() {
-    // Render :: Helper
-    // ---
-    return /*#__PURE__*/react.createElement(Helper_Helper, {
-      iconName: "code",
-      show: showHelper
-    });
-  };
-
-  return /*#__PURE__*/react.createElement("div", {
-    className: "nx-page"
-  }, renderPage(), renderHelper());
-});
-// EXTERNAL MODULE: ../../nexus/react/ui/typography/Typography.css
-var Typography = __webpack_require__(1815);
-;// CONCATENATED MODULE: ../../nexus/react/ui/typography/Typography.jsx
-
-
-
- // Functions Components ReactJS
-// -------------------------------------------------------------------------------------------------------------
-// ***** Typography *****
-// **********************
-
-var TAG_Typography = function TAG_Typography() {};
-
-var Typography_Typography = function Typography(props) {
-  // From ... props
-  var children = props.children;
-  var variant = props.variant ? props.variant : '';
-  var severity = props.severity ? props.severity : '';
-  var className = props.className ? props.className : '';
-  var style = props.style ? props.style : {};
-  var color = props.color ? props.color : ''; // ...
-  // Quelle couleur ?
-
-  if (color && !style.hasOwnProperty('color')) {
-    style['color'] = color;
-  }
-
-  if (severity && !style.hasOwnProperty('color') && SEVERITY_COLORS.hasOwnProperty(severity)) {
-    style['color'] = SEVERITY_COLORS[severity];
-  } // Render
-  // ==================================================================================================
-
-
-  return /*#__PURE__*/react.createElement("div", {
-    className: (0,clsx_m/* default */.Z)("nx-typography", variant, className),
-    style: style
-  }, children);
-};
-// EXTERNAL MODULE: ../../nexus/react/ui/link/Link.css
-var Link = __webpack_require__(7370);
-;// CONCATENATED MODULE: ../../nexus/react/ui/link/Link.jsx
-
-
-
- // Functions Components ReactJS
-// -------------------------------------------------------------------------------------------------------------
-// ***** Link *****
-// ****************
-
-var TAG_Link = function TAG_Link() {};
-
-var Link_Link = function Link(props) {
-  // From ... props
-  var href = props.href ? props.href : '';
-  var children = props.children;
-  var target = props.target ? props.target : ''; // _blank
-
-  var className = props.className ? props.className : '';
-  var style = props.style ? props.style : {}; // ...
-
-  if (!style.hasOwnProperty('color')) {
-    style['color'] = SEVERITY_COLORS.info;
-  } // Render
-  // ==================================================================================================
-
-
-  return /*#__PURE__*/react.createElement("a", {
-    href: href,
-    target: target,
-    className: (0,clsx_m/* default */.Z)("nx-link", className),
-    style: style
-  }, children);
-};
-// EXTERNAL MODULE: ../../nexus/react/contexts/admin/Admin.css
-var Admin = __webpack_require__(4644);
-;// CONCATENATED MODULE: ../../nexus/react/contexts/admin/Admin.jsx
-
-
-
-
-
-
-
-
-
-
-
- // Functions Components ReactJS
-// -------------------------------------------------------------------------------------------------------------
-// ***** RenderAdminAuth *****
-// ***************************
-
-var TAG_RenderAdminAuth = function TAG_RenderAdminAuth() {};
-
-var RenderAdminAuth = (0,es/* observer */.Pi)(function (props) {
-  var store = react.useContext(window.storeContext);
-  var app = store.app;
-  var account = app.account;
-  var services = app.services; // From ... store
-
-  var accountId = account._id; // ...
-
-  var cerberusUrl = services.getServiceInfo('cerberus');
-  var accountLabel = accountId ? accountId : 'Aucun';
-  var accountLink = accountId ? "".concat(cerberusUrl, "/user/").concat(accountId) : '/login'; // Render
-  // ==================================================================================================
-  // Section -> Icon
-  // ---
-
-  var sectionIcon = /*#__PURE__*/react.createElement(Icon_Icon, {
-    name: "verified_user"
-  }); // Section -> Title
-  // ---
-
-  var sectionTitle = "Authentification"; // Section -> Content
-  // ---
-
-  var sectionContent = /*#__PURE__*/react.createElement("div", null, /*#__PURE__*/react.createElement("div", {
-    className: "h-col-small"
-  }, /*#__PURE__*/react.createElement(Typography_Typography, null, "User ID"), /*#__PURE__*/react.createElement(Link_Link, {
-    href: accountLink,
-    className: "flex-2"
-  }, accountLabel))); // -------------------------------------------------
-
-  return /*#__PURE__*/react.createElement(Section_Section, {
-    icon: sectionIcon,
-    title: sectionTitle
-  }, sectionContent);
-}); // ***** RenderAdminLinks *****
-// ****************************
-
-var TAG_RenderAdminLinks = function TAG_RenderAdminLinks() {};
-
-var RenderAdminLinks = (0,es/* observer */.Pi)(function (props) {
-  var store = react.useContext(window.storeContext);
-  var app = store.app; // ...
-  // Render
-  // ==================================================================================================
-  // Section -> Icon
-  // ---
-
-  var sectionIcon = /*#__PURE__*/react.createElement(Icon_Icon, {
-    name: "link"
-  }); // Section -> Title
-  // ---
-
-  var sectionTitle = "Liens"; // Section -> Content
-  // ---
-
-  var sectionContent = /*#__PURE__*/react.createElement("div", null, /*#__PURE__*/react.createElement("div", {
-    className: "h-col-small"
-  }, /*#__PURE__*/react.createElement(Typography_Typography, null, "Playground"), /*#__PURE__*/react.createElement(Link_Link, {
-    href: "/playground",
-    className: "flex-2"
-  }, "/playground"))); // -------------------------------------------------
-
-  return /*#__PURE__*/react.createElement(Section_Section, {
-    icon: sectionIcon,
-    title: sectionTitle
-  }, sectionContent);
-}); // ***** RenderAdmin *****
-// ***********************
-
-var TAG_RenderAdmin = function TAG_RenderAdmin() {};
-
-var RenderAdmin = (0,es/* observer */.Pi)(function (props) {
-  var store = react.useContext(window.storeContext);
-  var app = store.app; // ...
-  // Render
-  // ==================================================================================================
-
-  return /*#__PURE__*/react.createElement(react.Fragment, null, /*#__PURE__*/react.createElement(RenderAdminAuth, null), /*#__PURE__*/react.createElement(RenderAdminLinks, null));
-}); // ***** AdminHeaderLeft *****
-// ***************************
-
-var TAG_AdminHeaderLeft = function TAG_AdminHeaderLeft() {};
-
-var AdminHeaderLeft = (0,es/* observer */.Pi)(function (props) {
-  var store = react.useContext(window.storeContext);
-  var app = store.app; // ...
-  // Render
-  // ==================================================================================================
-
-  return /*#__PURE__*/react.createElement(HeaderTitle, {
-    title: "Administration",
-    titleStyle: {
-      marginLeft: '10px'
-    }
-  });
-}); // ***** AdminHeaderRight *****
-// ****************************
-
-var TAG_AdminHeaderRight = function TAG_AdminHeaderRight() {};
-
-var AdminHeaderRight = (0,es/* observer */.Pi)(function (props) {
-  // const store = React.useContext(window.storeContext);
-  // const app = store.app;
-  // ...
-  // Render
-  // ==================================================================================================
-  return null;
-}); // ***** AdminMenuItem *****
-// *************************
-
-var TAG_AdminMenuItem = function TAG_AdminMenuItem() {};
-
-var AdminMenuItem = (0,es/* observer */.Pi)(function (props) {
-  var store = react.useContext(window.storeContext);
-  var app = store.app;
-  var account = app.account; // From ... store
-
-  var isAdmin = account.is_admin;
-  var adminContext = app.adminContext; // Evènements
-  // ==================================================================================================
-
-  var handleMenuItemClick = function handleMenuItemClick() {
-    app.navigateTo(adminContext);
-    app.menu.close();
-  }; // Render
-  // ==================================================================================================
-
-
-  var adminMenuItemContent = null;
-
-  if (isAdmin || true) {
-    adminMenuItemContent = /*#__PURE__*/react.createElement(MenuItem, {
-      icon: /*#__PURE__*/react.createElement(Icon_Icon, {
-        name: "setting"
-      }),
-      label: "Administration",
-      activeContexts: [adminContext],
-      callbackClick: handleMenuItemClick
-    });
-  }
-
-  return adminMenuItemContent;
-}); // ***** AdminPage *****
-// *********************
-
-var TAG_AdminPage = function TAG_AdminPage() {};
-
-var AdminPage = (0,es/* observer */.Pi)(function (props) {
-  var store = react.useContext(window.storeContext);
-  var app = store.app; // From ... store
-
-  var initialized = app.initialized; // ...
-
-  var showHelper = !initialized ? true : false; // Renderers
-  // ==================================================================================================
-
-  var renderPage = function renderPage() {
-    // Render :: Page
-    // ---
-    var pageContent = null;
-
-    if (initialized) {
-      pageContent = /*#__PURE__*/react.createElement(RenderAdmin, null);
-    }
-
-    return pageContent;
-  };
-
-  var renderHelper = function renderHelper() {
-    // Render :: Helper
-    // ---
-    return /*#__PURE__*/react.createElement(Helper_Helper, {
-      iconName: "setting",
-      show: showHelper
-    });
-  };
-
-  return /*#__PURE__*/react.createElement("div", {
-    className: "nx-page"
-  }, renderPage(), renderHelper());
-});
 // EXTERNAL MODULE: ../../nexus/react/ui/badge/Badge.css
 var Badge = __webpack_require__(8424);
 ;// CONCATENATED MODULE: ../../nexus/react/ui/badge/Badge.jsx
@@ -2910,8 +1835,86 @@ var NavCard_NavCard = (0,es/* observer */.Pi)(function (props) {
     style: labelStyle
   }, label)));
 });
+// EXTERNAL MODULE: ../../nexus/react/forms/heading/Heading.css
+var Heading = __webpack_require__(4297);
+;// CONCATENATED MODULE: ../../nexus/react/forms/heading/Heading.jsx
+
+
+
+
+ // Functions Components ReactJS
+// -------------------------------------------------------------------------------------------------------------
+// ***** Heading *****
+// *******************
+
+var TAG_Heading = function TAG_Heading() {};
+
+var Heading_Heading = (0,es/* observer */.Pi)(function (props) {
+  var store = react.useContext(window.storeContext);
+  var app = store.app;
+  var theme = app.theme; // From ... props
+
+  var centered = props.centered == true ? true : false;
+  var variant = props.variant ? props.variant : 'default'; // default, contained
+
+  var children = props.children;
+  var className = props.className ? props.className : '';
+  var style = props.style ? props.style : {}; // Render
+  // ==================================================================================================
+
+  return /*#__PURE__*/react.createElement("div", {
+    className: (0,clsx_m/* default */.Z)("nx-heading", {
+      "centered": centered
+    }, className),
+    style: style
+  }, children);
+});
+// EXTERNAL MODULE: ../../nexus/react/layout/section/Section.css
+var Section = __webpack_require__(8461);
+;// CONCATENATED MODULE: ../../nexus/react/layout/section/Section.jsx
+
+
+
+
+ // Functions Components ReactJS
+// -------------------------------------------------------------------------------------------------------------
+// ***** Section *****
+// *******************
+
+var TAG_Section = function TAG_Section() {};
+
+var Section_Section = function Section(props) {
+  // From ... props
+  var icon = props.icon ? props.icon : null;
+  var title = props.title ? props.title : '';
+  var right = props.right;
+  var children = props.children;
+  var buttons = props.buttons;
+  var buttonsPosition = props.buttonsPosition ? props.buttonsPosition : 'right'; // left, right, center, stretch
+
+  var buttonsResponsive = props.buttonsResponsive == true ? true : false; // Render
+  // ==================================================================================================
+
+  return /*#__PURE__*/react.createElement("div", {
+    className: "nx-section"
+  }, (icon || title || right) && /*#__PURE__*/react.createElement("div", {
+    className: "nx-section-header"
+  }, icon && /*#__PURE__*/react.createElement("div", {
+    className: "nx-section-icon"
+  }, icon), title && /*#__PURE__*/react.createElement("div", {
+    className: "nx-section-header-title"
+  }, title)), children && /*#__PURE__*/react.createElement("div", {
+    className: "nx-section-content"
+  }, children), buttons && /*#__PURE__*/react.createElement("div", {
+    className: (0,clsx_m/* default */.Z)("nx-section-buttonset", "h-col-small", {
+      "responsive-vertical": buttonsResponsive
+    }, {
+      "responsive-align-stretch": buttonsResponsive
+    })
+  }, buttons));
+};
 // EXTERNAL MODULE: ../../nexus/react/layout/row/Row.css
-var Row = __webpack_require__(3447);
+var row_Row = __webpack_require__(3447);
 ;// CONCATENATED MODULE: ../../nexus/react/layout/row/Row.jsx
 
 
@@ -2943,6 +1946,121 @@ var Row_Row = function Row(props) {
     style: style
   }, children);
 };
+// EXTERNAL MODULE: ../../nexus/react/contexts/playground/input/PlaygroundButton.css
+var PlaygroundButton = __webpack_require__(6431);
+;// CONCATENATED MODULE: ../../nexus/react/contexts/playground/input/PlaygroundButton.jsx
+
+
+
+
+
+
+
+
+
+ // Functions Components ReactJS
+// ======================================================================================================
+// ***** RenderSectionButton *****
+// *******************************
+
+var TAG_RenderSectionButton = function TAG_RenderSectionButton() {};
+
+var RenderSectionButton = (0,es/* observer */.Pi)(function (props) {
+  var store = react.useContext(window.storeContext);
+  var app = store.app;
+  var playground = app.playground; // From ... store
+
+  var isLoading = app.isLoading;
+  var pageDef = playground.pageDef; // ...
+  // Render
+  // ==================================================================================================
+  // Section -> Title
+  // -------------------------------------------------
+
+  var sectionTitle = pageDef.label; // Section -> Icon
+  // -------------------------------------------------
+
+  var sectionIcon = /*#__PURE__*/react.createElement(Icon_Icon, {
+    name: pageDef.icon
+  }); // Section -> Content
+  // -------------------------------------------------
+
+  var sectionContent = /*#__PURE__*/react.createElement("div", null, /*#__PURE__*/react.createElement(Heading_Heading, {
+    style: {
+      marginBottom: '15px'
+    }
+  }, "Contained"), /*#__PURE__*/react.createElement(Row_Row, null, /*#__PURE__*/react.createElement(Button_Button, {
+    key: "btn-contained-default",
+    variant: "contained",
+    disabled: false
+  }, "Default"), /*#__PURE__*/react.createElement(Button_Button, {
+    key: "btn-contained-primary",
+    variant: "contained",
+    color: "primary",
+    disabled: false
+  }, "Primary"), /*#__PURE__*/react.createElement(Button_Button, {
+    key: "btn-contained-secondary",
+    variant: "contained",
+    color: "secondary",
+    disabled: false
+  }, "Secondary"), /*#__PURE__*/react.createElement(Button_Button, {
+    key: "btn-contained-primary",
+    variant: "contained",
+    color: "primary",
+    disabled: true
+  }, "Disabled")), /*#__PURE__*/react.createElement(Heading_Heading, {
+    style: {
+      marginBottom: '15px'
+    }
+  }, "Outlined"), /*#__PURE__*/react.createElement(Row_Row, null, /*#__PURE__*/react.createElement(Button_Button, {
+    key: "btn-outlined-default",
+    variant: "outlined",
+    disabled: false
+  }, "Default"), /*#__PURE__*/react.createElement(Button_Button, {
+    key: "btn-outlined-primary",
+    variant: "outlined",
+    color: "primary",
+    disabled: false
+  }, "Primary"), /*#__PURE__*/react.createElement(Button_Button, {
+    key: "btn-outlined-secondary",
+    variant: "outlined",
+    color: "secondary",
+    disabled: false
+  }, "Secondary"), /*#__PURE__*/react.createElement(Button_Button, {
+    key: "btn-outlined-primary",
+    variant: "outlined",
+    color: "primary",
+    disabled: true
+  }, "Disabled")), /*#__PURE__*/react.createElement(Heading_Heading, {
+    style: {
+      marginBottom: '15px'
+    }
+  }, "Naked"), /*#__PURE__*/react.createElement(Row_Row, null, /*#__PURE__*/react.createElement(Button_Button, {
+    key: "btn-contained-default" // variant="contained"
+    ,
+    disabled: false
+  }, "Default"), /*#__PURE__*/react.createElement(Button_Button, {
+    key: "btn-contained-primary" // variant="contained"
+    ,
+    color: "primary",
+    disabled: false
+  }, "Primary"), /*#__PURE__*/react.createElement(Button_Button, {
+    key: "btn-contained-secondary" // variant="contained"
+    ,
+    color: "secondary",
+    disabled: false
+  }, "Secondary"), /*#__PURE__*/react.createElement(Button_Button, {
+    key: "btn-contained-primary" // variant="contained"
+    ,
+    color: "primary",
+    disabled: true
+  }, "Disabled"))); // -------------------------------------------------
+
+  return /*#__PURE__*/react.createElement(Section_Section, {
+    icon: sectionIcon,
+    title: sectionTitle
+  }, sectionContent);
+});
 // EXTERNAL MODULE: ../../nexus/react/node_modules/date-fns/esm/format/index.js + 29 modules
 var format = __webpack_require__(8173);
 // EXTERNAL MODULE: ../../nexus/react/node_modules/date-fns/esm/addDays/index.js
@@ -3814,120 +2932,9 @@ var Field_Field = (0,es/* observer */.Pi)(function (props) {
     }
   }));
 });
-// EXTERNAL MODULE: ../../nexus/react/forms/heading/Heading.css
-var Heading = __webpack_require__(4297);
-;// CONCATENATED MODULE: ../../nexus/react/forms/heading/Heading.jsx
-
-
-
-
- // Functions Components ReactJS
-// -------------------------------------------------------------------------------------------------------------
-// ***** Heading *****
-// *******************
-
-var TAG_Heading = function TAG_Heading() {};
-
-var Heading_Heading = (0,es/* observer */.Pi)(function (props) {
-  var store = react.useContext(window.storeContext);
-  var app = store.app;
-  var theme = app.theme; // From ... props
-
-  var centered = props.centered == true ? true : false;
-  var variant = props.variant ? props.variant : 'default'; // default, contained
-
-  var children = props.children;
-  var className = props.className ? props.className : '';
-  var style = props.style ? props.style : {}; // Render
-  // ==================================================================================================
-
-  return /*#__PURE__*/react.createElement("div", {
-    className: (0,clsx_m/* default */.Z)("nx-heading", {
-      "centered": centered
-    }, className),
-    style: style
-  }, children);
-});
-// EXTERNAL MODULE: ../../nexus/react/forms/indicator/Indicator.css
-var Indicator = __webpack_require__(4439);
-;// CONCATENATED MODULE: ../../nexus/react/forms/indicator/Indicator.jsx
-
-
-
-
-
-
- // Functions Components ReactJS
-// -------------------------------------------------------------------------------------------------------------
-// ***** Indicator *****
-// *********************
-
-var TAG_Indicator = function TAG_Indicator() {};
-
-var Indicator_Indicator = (0,es/* observer */.Pi)(function (props) {
-  var store = react.useContext(window.storeContext);
-  var app = store.app;
-  var theme = app.theme; // From ... props
-
-  var variant = props.variant ? props.variant : 'default'; // default, contrasted, outlined
-
-  var severity = props.severity ? props.severity : 'default';
-  var children = props.children;
-  var className = props.className ? props.className : '';
-  var color = props.color ? props.color : ''; // primary, secondary, #custom
-
-  var style = props.style ? props.style : {}; // ...
-
-  var severityDef = SEVERITIES.getDef(severity); // Quelle couleur ?
-
-  if (color == 'primary') {
-    color = theme.palette.primary.main;
-  }
-
-  if (color == 'secondary') {
-    color = theme.palette.secondary.main;
-  }
-
-  if (!color) {
-    color = severityDef.color;
-  }
-
-  style['color'] = color;
-  style['backgroundColor'] = hexToRgbA(color, 0.1);
-  style['border'] = '1px solid transparent';
-
-  if (variant == 'contrasted') {
-    style['color'] = 'white';
-    style['backgroundColor'] = color;
-  }
-
-  if (variant == 'outlined') {
-    style['backgroundColor'] = 'transparent';
-    style['borderColor'] = color;
-  } // Render
-  // ==================================================================================================
-
-
-  return /*#__PURE__*/react.createElement("div", {
-    className: (0,clsx_m/* default */.Z)("nx-indicator", className),
-    style: style
-  }, children);
-});
-// EXTERNAL MODULE: ../../nexus/react/contexts/playground/Playground.css
-var Playground = __webpack_require__(1785);
-;// CONCATENATED MODULE: ../../nexus/react/contexts/playground/Playground.jsx
-function Playground_createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = Playground_unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
-
-function Playground_unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return Playground_arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return Playground_arrayLikeToArray(o, minLen); }
-
-function Playground_arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-
-
-
-
-
-
-
+// EXTERNAL MODULE: ../../nexus/react/contexts/playground/input/PlaygroundField.css
+var PlaygroundField = __webpack_require__(7521);
+;// CONCATENATED MODULE: ../../nexus/react/contexts/playground/input/PlaygroundField.jsx
 
 
 
@@ -3939,50 +2946,7 @@ function Playground_arrayLikeToArray(arr, len) { if (len == null || len > arr.le
 
 
  // Datas
-// -------------------------------------------------------------------------------------------------------------
-
-var PLAYGROUND_PAGES = [{
-  value: '',
-  label: "Hello world!",
-  icon: 'api'
-}, // -
-{
-  title: "Saisie",
-  value: 'fields',
-  label: "Fields",
-  icon: 'text_fields'
-}, {
-  value: 'html',
-  label: "HTML Editor",
-  icon: 'code'
-}, // -
-{
-  title: "Alerts",
-  value: 'snackbars',
-  label: "Snackbars",
-  icon: 'call_to_action'
-}, {
-  value: 'infos',
-  label: "Infos",
-  icon: 'announcement'
-}, {
-  value: 'session',
-  label: "Session",
-  icon: 'access_alarms'
-}, // -
-{
-  title: "Divers",
-  value: 'popups',
-  label: "Popups",
-  icon: 'fullscreen'
-}];
-var PLAYGROUND_PAGES_BY_KEY = {};
-
-for (var Playground_i = 0, _PLAYGROUND_PAGES = PLAYGROUND_PAGES; Playground_i < _PLAYGROUND_PAGES.length; Playground_i++) {
-  var playgroundPage = _PLAYGROUND_PAGES[Playground_i];
-  PLAYGROUND_PAGES_BY_KEY[playgroundPage.value] = playgroundPage;
-} // -
-
+// ======================================================================================================
 
 var CHOICES_TEST = [{
   'value': 'choix_1',
@@ -3993,230 +2957,21 @@ var CHOICES_TEST = [{
 }, {
   'value': 'choix_3',
   'label': 'Choix 3'
-}]; // Models
-// -------------------------------------------------------------------------------------------------------------
-// ***** PlaygroundStore *****
-// ***************************
-
-var TAG_PlaygroundStore = function TAG_PlaygroundStore() {};
-
-var PlaygroundStore = mobx_state_tree_module/* types.model */.V5.model({
-  doc_id: '',
-  doc_rev: '',
-  doc_state: 0,
-  value_text: mobx_state_tree_module/* types.maybeNull */.V5.maybeNull(mobx_state_tree_module/* types.string */.V5.string),
-  value_number: mobx_state_tree_module/* types.maybeNull */.V5.maybeNull(mobx_state_tree_module/* types.integer */.V5.integer),
-  value_date: mobx_state_tree_module/* types.maybeNull */.V5.maybeNull(mobx_state_tree_module/* types.string */.V5.string),
-  value_time: mobx_state_tree_module/* types.maybeNull */.V5.maybeNull(mobx_state_tree_module/* types.string */.V5.string),
-  value_select: mobx_state_tree_module/* types.maybeNull */.V5.maybeNull(mobx_state_tree_module/* types.string */.V5.string),
-  value_textarea: mobx_state_tree_module/* types.maybeNull */.V5.maybeNull(mobx_state_tree_module/* types.string */.V5.string),
-  value_autocomplete_1: mobx_state_tree_module/* types.optional */.V5.optional(AutocompleteStore, {}),
-  value_autocomplete_2: mobx_state_tree_module/* types.optional */.V5.optional(AutocompleteStore, {}),
-  value_switcher: mobx_state_tree_module/* types.maybeNull */.V5.maybeNull(mobx_state_tree_module/* types.string */.V5.string),
-  value_radio: mobx_state_tree_module/* types.maybeNull */.V5.maybeNull(mobx_state_tree_module/* types.string */.V5.string),
-  value_checkbox: mobx_state_tree_module/* types.maybeNull */.V5.maybeNull(mobx_state_tree_module/* types.boolean */.V5.boolean),
-  // -
-  value_html: mobx_state_tree_module/* types.maybeNull */.V5.maybeNull(mobx_state_tree_module/* types.string */.V5.string),
-  // -
-  currentPageKey: '',
-  // -
-  loaded: false
-}).views(function (self) {
-  return {
-    get showHelperButtons() {
-      var store = (0,mobx_state_tree_module/* getRoot */.yj)(self);
-      var app = store.app;
-      var menu = app.menu;
-      var breakPoint414 = app.breakPoint414;
-      var drawerPinned = menu.pinned;
-
-      if (breakPoint414 || !drawerPinned) {
-        return true;
-      }
-
-      return false;
-    }
-
-  };
-}).actions(function (self) {
-  return {
-    setField: function setField(field, value) {
-      self[field] = value;
-    },
-    // -
-    update: function update(raw) {
-      console.log(raw);
-      self.doc_id = raw.doc_id;
-      self.doc_rev = raw.doc_rev;
-      self.doc_state = raw.doc_state;
-      self.value_text = raw.value_text;
-      self.value_number = raw.value_number;
-      self.value_date = raw.value_date;
-      self.value_time = raw.value_time;
-      self.value_select = raw.value_select;
-      self.value_textarea = raw.value_textarea;
-      self.value_autocomplete_1 = AutocompleteStore.create({});
-      self.value_autocomplete_1.update(raw.value_autocomplete_1);
-      self.value_autocomplete_2 = AutocompleteStore.create({});
-      self.value_autocomplete_2.update(raw.value_autocomplete_2);
-      self.value_switcher = raw.value_switcher;
-      self.value_radio = raw.value_radio;
-      self.value_checkbox = raw.value_checkbox;
-      self.value_html = raw.value_html;
-      self.loaded = true;
-    },
-    load: function load() {
-      // Appel AJAX de la fonction de chargement des données de playground
-      // ---
-      var store = (0,mobx_state_tree_module/* getRoot */.yj)(self);
-      var app = store.app;
-      var snackbar = app.snackbar;
-      var ajaxNexorium = store.ajaxNexorium;
-      var url = "".concat(ajaxNexorium, "/playground_actions/load");
-      app.fetchJSON(url, null, false, 'POST').then(function (json) {
-        self.update(json.playground_raw);
-      })["catch"](function (ex) {
-        console.error("Fetch failed for ".concat(url), ex);
-        snackbar.update(true, "Une erreur est survenue.", "error");
-      });
-    },
-    validate: function validate(callback) {
-      // Validation des données du playground
-      // ---
-      var store = (0,mobx_state_tree_module/* getRoot */.yj)(self);
-      var app = store.app;
-      var errors = [];
-
-      if (callback) {
-        callback(errors);
-      }
-
-      return errors;
-    },
-    save: function save() {
-      // Appel AJAX de la fonction d'enregistrement du playground
-      // ---
-      var store = (0,mobx_state_tree_module/* getRoot */.yj)(self);
-      var app = store.app;
-      var snackbar = app.snackbar;
-      var ajaxNexorium = store.ajaxNexorium;
-      var params = new FormData();
-      params.append('playground_raw', JSON.stringify(self.toJSON()));
-      var url = "".concat(ajaxNexorium, "/playground_actions/save");
-      app.fetchJSON(url, {
-        'body': params
-      }, false, 'POST').then(function (json) {
-        self.update(json.playground_raw);
-        snackbar.update(true, "Enregistrement effectué.", "success");
-      })["catch"](function (ex) {
-        console.error("Fetch failed for ".concat(url), ex);
-        snackbar.update(true, "Une erreur est survenue.", "error");
-      });
-    },
-    // -
-    openPage: function openPage(pageKey) {
-      // Ouvre la page passée en paramètres
-      // ---
-      var store = (0,mobx_state_tree_module/* getRoot */.yj)(self);
-      var app = store.app;
-      var playgroundContext = app.playgroundContext;
-      app.navigateTo(playgroundContext, null, null, {
-        pageKey: pageKey
-      });
-    }
-  };
-}); // Functions Components ReactJS
-// -------------------------------------------------------------------------------------------------------------
-// ***** PlaygroundHeaderLeft *****
-// ********************************
-
-var TAG_PlaygroundHeaderLeft = function TAG_PlaygroundHeaderLeft() {};
-
-var PlaygroundHeaderLeft = (0,es/* observer */.Pi)(function (props) {
-  var store = react.useContext(window.storeContext);
-  var app = store.app; // ...
-  // Render
-  // ==================================================================================================
-
-  return /*#__PURE__*/react.createElement(HeaderTitle, {
-    title: "Playground",
-    titleStyle: {
-      marginLeft: '10px'
-    }
-  });
-}); // ***** PlaygroundHeaderRight *****
-// *********************************
-
-var TAG_PlaygroundHeaderRight = function TAG_PlaygroundHeaderRight() {};
-
-var PlaygroundHeaderRight = (0,es/* observer */.Pi)(function (props) {
-  var store = react.useContext(window.storeContext);
-  var app = store.app;
-  var playground = app.playground; // From ... store
-
-  var isLoading = app.isLoading; // ...
-  // Evènements
-  // ==================================================================================================
-
-  var handleSaveClick = function handleSaveClick() {
-    playground.validate(function (errors) {
-      if (errors.length == 0) {
-        playground.save();
-      }
-    });
-  }; // Render
-  // ==================================================================================================
-
-
-  return /*#__PURE__*/react.createElement(react.Fragment, null, /*#__PURE__*/react.createElement(IconButton, {
-    onClick: function onClick() {
-      return handleSaveClick();
-    },
-    disabled: isLoading,
-    title: "Enregistrer"
-  }, /*#__PURE__*/react.createElement(Icon_Icon, {
-    name: "save",
-    color: "white"
-  })), /*#__PURE__*/react.createElement(HeaderDivider, null));
-}); // ***** PlaygroundMenuItem *****
+}]; // Functions Components ReactJS
+// ======================================================================================================
+// ***** RenderSectionField *****
 // ******************************
 
-var TAG_PlaygroundMenuItem = function TAG_PlaygroundMenuItem() {};
+var TAG_RenderSectionField = function TAG_RenderSectionField() {};
 
-var PlaygroundMenuItem = (0,es/* observer */.Pi)(function (props) {
-  var store = react.useContext(window.storeContext);
-  var app = store.app; // ...
-
-  var playgroundContext = app.playgroundContext; // Evènements
-  // ==================================================================================================
-
-  var handleMenuItemClick = function handleMenuItemClick() {
-    app.navigateTo(playgroundContext);
-    app.menu.close();
-  }; // Render
-  // ==================================================================================================
-
-
-  return /*#__PURE__*/react.createElement(MenuItem, {
-    icon: /*#__PURE__*/react.createElement(Icon_Icon, {
-      name: "science",
-      width: "120px"
-    }),
-    label: "Playground",
-    activeContexts: [playgroundContext],
-    callbackClick: handleMenuItemClick
-  });
-}); // ***** RenderSectionFields *****
-// *******************************
-
-var TAG_RenderSectionFields = function TAG_RenderSectionFields() {};
-
-var RenderSectionFields = (0,es/* observer */.Pi)(function (props) {
+var RenderSectionField = (0,es/* observer */.Pi)(function (props) {
   var store = react.useContext(window.storeContext);
   var app = store.app;
   var playground = app.playground; // From ... store
 
-  var isLoading = app.isLoading; // Evènements
+  var isLoading = app.isLoading;
+  var pageDef = playground.pageDef; // ...
+  // Events
   // ==================================================================================================
 
   var handleTextFieldChange = function handleTextFieldChange(savePath, value) {
@@ -4290,9 +3045,17 @@ var RenderSectionFields = (0,es/* observer */.Pi)(function (props) {
     return errors;
   }; // Render
   // ==================================================================================================
-  // Section -> Content
-  // ---
+  // Section -> Title
+  // -------------------------------------------------
 
+
+  var sectionTitle = pageDef.label; // Section -> Icon
+  // -------------------------------------------------
+
+  var sectionIcon = /*#__PURE__*/react.createElement(Icon_Icon, {
+    name: pageDef.icon
+  }); // Section -> Content
+  // -------------------------------------------------
 
   var sectionContent = /*#__PURE__*/react.createElement(react.Fragment, null, /*#__PURE__*/react.createElement(Row_Row, null, /*#__PURE__*/react.createElement(Field_Field, {
     id: "txt-field-text",
@@ -4344,7 +3107,7 @@ var RenderSectionFields = (0,es/* observer */.Pi)(function (props) {
     callbackChange: handleTextareaFieldChange,
     disabled: isLoading
   }))); // Section -> Buttons
-  // ---
+  // -------------------------------------------------
 
   var sectionButtons = [/*#__PURE__*/react.createElement(Button_Button, {
     key: "btn-fields-load",
@@ -4378,101 +3141,300 @@ var RenderSectionFields = (0,es/* observer */.Pi)(function (props) {
       return handleSimulateErrors(false);
     },
     disabled: isLoading
-  }, "Clear")];
+  }, "Clear")]; // -------------------------------------------------
+
   return /*#__PURE__*/react.createElement(Section_Section, {
-    icon: /*#__PURE__*/react.createElement(Icon_Icon, {
-      name: "text_fields"
-    }),
-    title: "Fields",
+    icon: sectionIcon,
+    title: sectionTitle,
     buttons: sectionButtons,
     buttonsResponsive: true
   }, sectionContent);
-}); // ***** RenderSectionSnackbars *****
+});
+// EXTERNAL MODULE: ../../nexus/react/contexts/playground/input/PlaygroundSwitch.css
+var PlaygroundSwitch = __webpack_require__(2761);
+;// CONCATENATED MODULE: ../../nexus/react/contexts/playground/input/PlaygroundSwitch.jsx
+
+
+
+
+
+
+
+
+ // Functions Components ReactJS
+// ======================================================================================================
+// ***** RenderSectionSwitch *****
+// *******************************
+
+var TAG_RenderSectionSwitch = function TAG_RenderSectionSwitch() {};
+
+var RenderSectionSwitch = (0,es/* observer */.Pi)(function (props) {
+  var store = react.useContext(window.storeContext);
+  var app = store.app;
+  var playground = app.playground; // From ... store
+
+  var isLoading = app.isLoading;
+  var pageDef = playground.pageDef; // ...
+  // Render
+  // ==================================================================================================
+  // Section -> Title
+  // -------------------------------------------------
+
+  var sectionTitle = pageDef.label; // Section -> Icon
+  // -------------------------------------------------
+
+  var sectionIcon = /*#__PURE__*/react.createElement(Icon_Icon, {
+    name: pageDef.icon
+  }); // Section -> Content
+  // -------------------------------------------------
+
+  var sectionContent = /*#__PURE__*/react.createElement(react.Fragment, null, /*#__PURE__*/react.createElement("div", null, "Bient\xF4t !")); // -------------------------------------------------
+
+  return /*#__PURE__*/react.createElement(Section_Section, {
+    icon: sectionIcon,
+    title: sectionTitle
+  }, sectionContent);
+});
+// EXTERNAL MODULE: ../../nexus/react/contexts/playground/input/PlaygroundHTML.css
+var PlaygroundHTML = __webpack_require__(951);
+;// CONCATENATED MODULE: ../../nexus/react/contexts/playground/input/PlaygroundHTML.jsx
+
+
+
+
+
+
+
+
+ // Functions Components ReactJS
+// ======================================================================================================
+// ***** RenderSectionHTML *****
+// *****************************
+
+var TAG_RenderSectionHTML = function TAG_RenderSectionHTML() {};
+
+var RenderSectionHTML = (0,es/* observer */.Pi)(function (props) {
+  var store = react.useContext(window.storeContext);
+  var app = store.app;
+  var playground = app.playground; // From ... store
+
+  var isLoading = app.isLoading;
+  var pageDef = playground.pageDef; // ...
+  // Render
+  // ==================================================================================================
+  // Section -> Title
+  // -------------------------------------------------
+
+  var sectionTitle = pageDef.label; // Section -> Icon
+  // -------------------------------------------------
+
+  var sectionIcon = /*#__PURE__*/react.createElement(Icon_Icon, {
+    name: pageDef.icon
+  }); // Section -> Content
+  // -------------------------------------------------
+
+  var sectionContent = /*#__PURE__*/react.createElement(react.Fragment, null, /*#__PURE__*/react.createElement("div", null, "Bient\xF4t !")); // -------------------------------------------------
+
+  return /*#__PURE__*/react.createElement(Section_Section, {
+    icon: sectionIcon,
+    title: sectionTitle
+  }, sectionContent);
+});
+// EXTERNAL MODULE: ../../nexus/react/contexts/playground/display/PlaygroundAvatar.css
+var PlaygroundAvatar = __webpack_require__(89);
+;// CONCATENATED MODULE: ../../nexus/react/contexts/playground/display/PlaygroundAvatar.jsx
+
+
+
+
+
+
+
+
+ // Functions Components ReactJS
+// ======================================================================================================
+// ***** RenderSectionAvatar *****
+// *******************************
+
+var TAG_RenderSectionAvatar = function TAG_RenderSectionAvatar() {};
+
+var RenderSectionAvatar = (0,es/* observer */.Pi)(function (props) {
+  var store = react.useContext(window.storeContext);
+  var app = store.app;
+  var playground = app.playground; // From ... store
+
+  var isLoading = app.isLoading;
+  var pageDef = playground.pageDef; // ...
+  // Render
+  // ==================================================================================================
+  // Section -> Title
+  // -------------------------------------------------
+
+  var sectionTitle = pageDef.label; // Section -> Icon
+  // -------------------------------------------------
+
+  var sectionIcon = /*#__PURE__*/react.createElement(Icon_Icon, {
+    name: pageDef.icon
+  }); // Section -> Content
+  // -------------------------------------------------
+
+  var sectionContent = /*#__PURE__*/react.createElement(react.Fragment, null, /*#__PURE__*/react.createElement("div", null, "Bient\xF4t !")); // -------------------------------------------------
+
+  return /*#__PURE__*/react.createElement(Section_Section, {
+    icon: sectionIcon,
+    title: sectionTitle
+  }, sectionContent);
+});
+// EXTERNAL MODULE: ../../nexus/react/contexts/playground/display/PlaygroundChip.css
+var PlaygroundChip = __webpack_require__(9455);
+;// CONCATENATED MODULE: ../../nexus/react/contexts/playground/display/PlaygroundChip.jsx
+
+
+
+
+
+
+
+
+ // Functions Components ReactJS
+// ======================================================================================================
+// ***** RenderSectionChip *****
+// *****************************
+
+var TAG_RenderSectionChip = function TAG_RenderSectionChip() {};
+
+var RenderSectionChip = (0,es/* observer */.Pi)(function (props) {
+  var store = react.useContext(window.storeContext);
+  var app = store.app;
+  var playground = app.playground; // From ... store
+
+  var isLoading = app.isLoading;
+  var pageDef = playground.pageDef; // ...
+  // Render
+  // ==================================================================================================
+  // Section -> Title
+  // -------------------------------------------------
+
+  var sectionTitle = pageDef.label; // Section -> Icon
+  // -------------------------------------------------
+
+  var sectionIcon = /*#__PURE__*/react.createElement(Icon_Icon, {
+    name: pageDef.icon
+  }); // Section -> Content
+  // -------------------------------------------------
+
+  var sectionContent = /*#__PURE__*/react.createElement(react.Fragment, null, /*#__PURE__*/react.createElement("div", null, "Bient\xF4t !")); // -------------------------------------------------
+
+  return /*#__PURE__*/react.createElement(Section_Section, {
+    icon: sectionIcon,
+    title: sectionTitle
+  }, sectionContent);
+});
+// EXTERNAL MODULE: ../../nexus/react/forms/indicator/Indicator.css
+var Indicator = __webpack_require__(4439);
+;// CONCATENATED MODULE: ../../nexus/react/forms/indicator/Indicator.jsx
+
+
+
+
+
+
+ // Functions Components ReactJS
+// -------------------------------------------------------------------------------------------------------------
+// ***** Indicator *****
+// *********************
+
+var TAG_Indicator = function TAG_Indicator() {};
+
+var Indicator_Indicator = (0,es/* observer */.Pi)(function (props) {
+  var store = react.useContext(window.storeContext);
+  var app = store.app;
+  var theme = app.theme; // From ... props
+
+  var variant = props.variant ? props.variant : 'default'; // default, contrasted, outlined
+
+  var severity = props.severity ? props.severity : 'default';
+  var children = props.children;
+  var className = props.className ? props.className : '';
+  var color = props.color ? props.color : ''; // primary, secondary, #custom
+
+  var style = props.style ? props.style : {}; // ...
+
+  var severityDef = SEVERITIES.getDef(severity); // Quelle couleur ?
+
+  if (color == 'primary') {
+    color = theme.palette.primary.main;
+  }
+
+  if (color == 'secondary') {
+    color = theme.palette.secondary.main;
+  }
+
+  if (!color) {
+    color = severityDef.color;
+  }
+
+  style['color'] = color;
+  style['backgroundColor'] = hexToRgbA(color, 0.1);
+  style['border'] = '1px solid transparent';
+
+  if (variant == 'contrasted') {
+    style['color'] = 'white';
+    style['backgroundColor'] = color;
+  }
+
+  if (variant == 'outlined') {
+    style['backgroundColor'] = 'transparent';
+    style['borderColor'] = color;
+  } // Render
+  // ==================================================================================================
+
+
+  return /*#__PURE__*/react.createElement("div", {
+    className: (0,clsx_m/* default */.Z)("nx-indicator", className),
+    style: style
+  }, children);
+});
+// EXTERNAL MODULE: ../../nexus/react/contexts/playground/display/PlaygroundIndicator.css
+var PlaygroundIndicator = __webpack_require__(1211);
+;// CONCATENATED MODULE: ../../nexus/react/contexts/playground/display/PlaygroundIndicator.jsx
+
+
+
+
+
+
+
+
+
+
+ // Functions Components ReactJS
+// ======================================================================================================
+// ***** RenderSectionIndicator *****
 // **********************************
 
-var TAG_RenderSectionSnackbars = function TAG_RenderSectionSnackbars() {};
+var TAG_RenderSectionIndicator = function TAG_RenderSectionIndicator() {};
 
-var RenderSectionSnackbars = (0,es/* observer */.Pi)(function (props) {
+var RenderSectionIndicator = (0,es/* observer */.Pi)(function (props) {
   var store = react.useContext(window.storeContext);
   var app = store.app;
   var snackbar = app.snackbar;
   var playground = app.playground; // From ... store
 
-  var isLoading = app.isLoading; // Evènements
+  var isLoading = app.isLoading;
+  var pageDef = playground.pageDef; // ...
+  // Render
   // ==================================================================================================
+  // Section -> Title
+  // -------------------------------------------------
 
-  var handleSnackbar = function handleSnackbar(severity) {
-    snackbar.update(true, /*#__PURE__*/react.createElement("div", null, "Test de snackbar ", /*#__PURE__*/react.createElement("b", null, severity)), severity);
-  }; // Render
-  // ==================================================================================================
-  // Section -> Buttons
-  // ---
+  var sectionTitle = pageDef.label; // Section -> Icon
+  // -------------------------------------------------
 
-
-  var sectionButtons = [/*#__PURE__*/react.createElement(Button_Button, {
-    key: "btn-snackbars-default",
-    variant: "outlined",
-    color: "primary",
-    onClick: function onClick() {
-      return handleSnackbar('default');
-    },
-    disabled: isLoading
-  }, "Default"), /*#__PURE__*/react.createElement(Button_Button, {
-    key: "btn-snackbars-success",
-    variant: "outlined",
-    color: "primary",
-    onClick: function onClick() {
-      return handleSnackbar('success');
-    },
-    disabled: isLoading
-  }, "Success"), /*#__PURE__*/react.createElement(Button_Button, {
-    key: "btn-snackbars-info",
-    variant: "outlined",
-    color: "primary",
-    onClick: function onClick() {
-      return handleSnackbar('info');
-    },
-    disabled: isLoading
-  }, "Info"), /*#__PURE__*/react.createElement(Button_Button, {
-    key: "btn-snackbars-warning",
-    variant: "outlined",
-    color: "primary",
-    onClick: function onClick() {
-      return handleSnackbar('warning');
-    },
-    disabled: isLoading
-  }, "Warning"), /*#__PURE__*/react.createElement(Button_Button, {
-    key: "btn-snackbars-error",
-    variant: "outlined",
-    color: "primary",
-    onClick: function onClick() {
-      return handleSnackbar('error');
-    },
-    disabled: isLoading
-  }, "Error")];
-  return /*#__PURE__*/react.createElement(Section_Section, {
-    icon: /*#__PURE__*/react.createElement(Icon_Icon, {
-      name: "feedback_black"
-    }),
-    title: "Snackbars",
-    buttons: sectionButtons,
-    buttonsResponsive: true
-  });
-}); // ***** RenderSectionIndicators *****
-// ***********************************
-
-var TAG_RenderSectionIndicators = function TAG_RenderSectionIndicators() {};
-
-var RenderSectionIndicators = (0,es/* observer */.Pi)(function (props) {
-  var store = react.useContext(window.storeContext);
-  var app = store.app;
-  var snackbar = app.snackbar;
-  var playground = app.playground; // From ... store
-
-  var isLoading = app.isLoading; // Render
-  // ==================================================================================================
-  // Section -> Content
-  // ---
+  var sectionIcon = /*#__PURE__*/react.createElement(Icon_Icon, {
+    name: pageDef.icon
+  }); // Section -> Content
+  // -------------------------------------------------
 
   var sectionContent = /*#__PURE__*/react.createElement(react.Fragment, null, /*#__PURE__*/react.createElement(Heading_Heading, {
     style: {
@@ -4558,14 +3520,614 @@ var RenderSectionIndicators = (0,es/* observer */.Pi)(function (props) {
   }, "error"), /*#__PURE__*/react.createElement(Indicator_Indicator, {
     severity: "hot",
     variant: "outlined"
-  }, "hot")));
+  }, "hot"))); // -------------------------------------------------
+
   return /*#__PURE__*/react.createElement(Section_Section, {
-    icon: /*#__PURE__*/react.createElement(Icon_Icon, {
-      name: "palette"
-    }),
-    title: "Indicateurs"
+    icon: sectionIcon,
+    title: sectionTitle
   }, sectionContent);
-}); // ***** RenderPlayground *****
+});
+// EXTERNAL MODULE: ../../nexus/react/contexts/playground/display/PlaygroundPopup.css
+var PlaygroundPopup = __webpack_require__(3935);
+;// CONCATENATED MODULE: ../../nexus/react/contexts/playground/display/PlaygroundPopup.jsx
+
+
+
+
+
+
+
+
+ // Functions Components ReactJS
+// ======================================================================================================
+// ***** RenderSectionPopup *****
+// ******************************
+
+var TAG_RenderSectionPopup = function TAG_RenderSectionPopup() {};
+
+var RenderSectionPopup = (0,es/* observer */.Pi)(function (props) {
+  var store = react.useContext(window.storeContext);
+  var app = store.app;
+  var playground = app.playground; // From ... store
+
+  var isLoading = app.isLoading;
+  var pageDef = playground.pageDef; // ...
+  // Render
+  // ==================================================================================================
+  // Section -> Title
+  // -------------------------------------------------
+
+  var sectionTitle = pageDef.label; // Section -> Icon
+  // -------------------------------------------------
+
+  var sectionIcon = /*#__PURE__*/react.createElement(Icon_Icon, {
+    name: pageDef.icon
+  }); // Section -> Content
+  // -------------------------------------------------
+
+  var sectionContent = /*#__PURE__*/react.createElement(react.Fragment, null, /*#__PURE__*/react.createElement("div", null, "Bient\xF4t !")); // -------------------------------------------------
+
+  return /*#__PURE__*/react.createElement(Section_Section, {
+    icon: sectionIcon,
+    title: sectionTitle
+  }, sectionContent);
+});
+// EXTERNAL MODULE: ../../nexus/react/contexts/playground/display/PlaygroundList.css
+var PlaygroundList = __webpack_require__(3997);
+;// CONCATENATED MODULE: ../../nexus/react/contexts/playground/display/PlaygroundList.jsx
+
+
+
+
+
+
+
+
+ // Functions Components ReactJS
+// ======================================================================================================
+// ***** RenderSectionItem *****
+// *****************************
+
+var TAG_RenderSectionItem = function TAG_RenderSectionItem() {};
+
+var RenderSectionItem = (0,es/* observer */.Pi)(function (props) {
+  var store = react.useContext(window.storeContext);
+  var app = store.app;
+  var playground = app.playground; // From ... store
+
+  var isLoading = app.isLoading;
+  var pageDef = playground.pageDef; // ...
+  // Render
+  // ==================================================================================================
+  // Section -> Title
+  // -------------------------------------------------
+
+  var sectionTitle = pageDef.label; // Section -> Icon
+  // -------------------------------------------------
+
+  var sectionIcon = /*#__PURE__*/react.createElement(Icon_Icon, {
+    name: pageDef.icon
+  }); // Section -> Content
+  // -------------------------------------------------
+
+  var sectionContent = /*#__PURE__*/react.createElement(react.Fragment, null, /*#__PURE__*/react.createElement("div", null, "Bient\xF4t !")); // -------------------------------------------------
+
+  return /*#__PURE__*/react.createElement(Section_Section, {
+    icon: sectionIcon,
+    title: sectionTitle
+  }, sectionContent);
+});
+// EXTERNAL MODULE: ../../nexus/react/contexts/playground/display/PlaygroundTypography.css
+var PlaygroundTypography = __webpack_require__(3818);
+;// CONCATENATED MODULE: ../../nexus/react/contexts/playground/display/PlaygroundTypography.jsx
+
+
+
+
+
+
+
+
+ // Functions Components ReactJS
+// ======================================================================================================
+// ***** RenderSectionHeading *****
+// ********************************
+
+var TAG_RenderSectionHeading = function TAG_RenderSectionHeading() {};
+
+var RenderSectionHeading = (0,es/* observer */.Pi)(function (props) {
+  var store = react.useContext(window.storeContext);
+  var app = store.app;
+  var playground = app.playground; // From ... store
+
+  var isLoading = app.isLoading;
+  var pageDef = playground.pageDef; // ...
+  // Render
+  // ==================================================================================================
+  // Section -> Title
+  // -------------------------------------------------
+
+  var sectionTitle = "Heading"; // Section -> Icon
+  // -------------------------------------------------
+
+  var sectionIcon = /*#__PURE__*/react.createElement(Icon_Icon, {
+    name: pageDef.icon
+  }); // Section -> Content
+  // -------------------------------------------------
+
+  var sectionContent = /*#__PURE__*/react.createElement(react.Fragment, null, /*#__PURE__*/react.createElement("div", null, "Bient\xF4t !")); // -------------------------------------------------
+
+  return /*#__PURE__*/react.createElement(Section_Section, {
+    icon: sectionIcon,
+    title: sectionTitle
+  }, sectionContent);
+});
+// EXTERNAL MODULE: ../../nexus/react/contexts/playground/feedback/PlaygroundSnackbar.css
+var PlaygroundSnackbar = __webpack_require__(6222);
+;// CONCATENATED MODULE: ../../nexus/react/contexts/playground/feedback/PlaygroundSnackbar.jsx
+
+
+
+
+
+
+
+
+ // Functions Components ReactJS
+// ======================================================================================================
+// ***** RenderSectionSnackbar *****
+// *********************************
+
+var TAG_RenderSectionSnackbar = function TAG_RenderSectionSnackbar() {};
+
+var RenderSectionSnackbar = (0,es/* observer */.Pi)(function (props) {
+  var store = react.useContext(window.storeContext);
+  var app = store.app;
+  var snackbar = app.snackbar;
+  var playground = app.playground; // From ... store
+
+  var isLoading = app.isLoading;
+  var pageDef = playground.pageDef; // ...
+  // Events
+  // ==================================================================================================
+
+  var handleSnackbar = function handleSnackbar(severity) {
+    snackbar.update(true, /*#__PURE__*/react.createElement("div", null, "Test de snackbar ", /*#__PURE__*/react.createElement("b", null, severity)), severity);
+  }; // Render
+  // ==================================================================================================
+  // Section -> Title
+  // -------------------------------------------------
+
+
+  var sectionTitle = pageDef.label; // Section -> Icon
+  // -------------------------------------------------
+
+  var sectionIcon = /*#__PURE__*/react.createElement(Icon_Icon, {
+    name: pageDef.icon
+  }); // Section -> Buttons
+  // -------------------------------------------------
+
+  var sectionButtons = [/*#__PURE__*/react.createElement(Button_Button, {
+    key: "btn-snackbars-default",
+    variant: "outlined",
+    color: "primary",
+    onClick: function onClick() {
+      return handleSnackbar('default');
+    },
+    disabled: isLoading
+  }, "Default"), /*#__PURE__*/react.createElement(Button_Button, {
+    key: "btn-snackbars-success",
+    variant: "outlined",
+    color: "primary",
+    onClick: function onClick() {
+      return handleSnackbar('success');
+    },
+    disabled: isLoading
+  }, "Success"), /*#__PURE__*/react.createElement(Button_Button, {
+    key: "btn-snackbars-info",
+    variant: "outlined",
+    color: "primary",
+    onClick: function onClick() {
+      return handleSnackbar('info');
+    },
+    disabled: isLoading
+  }, "Info"), /*#__PURE__*/react.createElement(Button_Button, {
+    key: "btn-snackbars-warning",
+    variant: "outlined",
+    color: "primary",
+    onClick: function onClick() {
+      return handleSnackbar('warning');
+    },
+    disabled: isLoading
+  }, "Warning"), /*#__PURE__*/react.createElement(Button_Button, {
+    key: "btn-snackbars-error",
+    variant: "outlined",
+    color: "primary",
+    onClick: function onClick() {
+      return handleSnackbar('error');
+    },
+    disabled: isLoading
+  }, "Error")]; // -------------------------------------------------
+
+  return /*#__PURE__*/react.createElement(Section_Section, {
+    icon: sectionIcon,
+    title: sectionTitle,
+    buttons: sectionButtons,
+    buttonsResponsive: true
+  });
+});
+// EXTERNAL MODULE: ../../nexus/react/contexts/playground/feedback/PlaygroundAlert.css
+var PlaygroundAlert = __webpack_require__(26);
+;// CONCATENATED MODULE: ../../nexus/react/contexts/playground/feedback/PlaygroundAlert.jsx
+
+
+
+
+
+
+
+
+ // Functions Components ReactJS
+// ======================================================================================================
+// ***** RenderSectionAlert *****
+// ******************************
+
+var TAG_RenderSectionAlert = function TAG_RenderSectionAlert() {};
+
+var RenderSectionAlert = (0,es/* observer */.Pi)(function (props) {
+  var store = react.useContext(window.storeContext);
+  var app = store.app;
+  var playground = app.playground; // From ... store
+
+  var isLoading = app.isLoading;
+  var pageDef = playground.pageDef; // ...
+  // Render
+  // ==================================================================================================
+  // Section -> Title
+  // -------------------------------------------------
+
+  var sectionTitle = pageDef.label; // Section -> Icon
+  // -------------------------------------------------
+
+  var sectionIcon = /*#__PURE__*/react.createElement(Icon_Icon, {
+    name: pageDef.icon
+  }); // Section -> Content
+  // -------------------------------------------------
+
+  var sectionContent = /*#__PURE__*/react.createElement(react.Fragment, null, /*#__PURE__*/react.createElement("div", null, "Bient\xF4t !")); // -------------------------------------------------
+
+  return /*#__PURE__*/react.createElement(Section_Section, {
+    icon: sectionIcon,
+    title: sectionTitle
+  }, sectionContent);
+});
+// EXTERNAL MODULE: ../../nexus/react/contexts/playground/feedback/PlaygroundSession.css
+var PlaygroundSession = __webpack_require__(9913);
+;// CONCATENATED MODULE: ../../nexus/react/contexts/playground/feedback/PlaygroundSession.jsx
+
+
+
+
+
+
+
+
+ // Functions Components ReactJS
+// ======================================================================================================
+// ***** RenderSectionSession *****
+// ********************************
+
+var TAG_RenderSectionSession = function TAG_RenderSectionSession() {};
+
+var RenderSectionSession = (0,es/* observer */.Pi)(function (props) {
+  var store = react.useContext(window.storeContext);
+  var app = store.app;
+  var playground = app.playground; // From ... store
+
+  var isLoading = app.isLoading;
+  var pageDef = playground.pageDef; // ...
+  // Render
+  // ==================================================================================================
+  // Section -> Title
+  // -------------------------------------------------
+
+  var sectionTitle = pageDef.label; // Section -> Icon
+  // -------------------------------------------------
+
+  var sectionIcon = /*#__PURE__*/react.createElement(Icon_Icon, {
+    name: pageDef.icon
+  }); // Section -> Content
+  // -------------------------------------------------
+
+  var sectionContent = /*#__PURE__*/react.createElement(react.Fragment, null, /*#__PURE__*/react.createElement("div", null, "Bient\xF4t !")); // -------------------------------------------------
+
+  return /*#__PURE__*/react.createElement(Section_Section, {
+    icon: sectionIcon,
+    title: sectionTitle
+  }, sectionContent);
+});
+// EXTERNAL MODULE: ../../nexus/react/contexts/playground/Playground.css
+var Playground = __webpack_require__(1785);
+;// CONCATENATED MODULE: ../../nexus/react/contexts/playground/Playground.jsx
+function Playground_createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = Playground_unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
+
+function Playground_unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return Playground_arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return Playground_arrayLikeToArray(o, minLen); }
+
+function Playground_arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ // Datas
+// -------------------------------------------------------------------------------------------------------------
+
+var PLAYGROUND_PAGES = [{
+  value: '',
+  label: "Hello world!",
+  icon: 'api'
+}, // -
+{
+  title: "Input",
+  value: 'button',
+  label: "Button",
+  icon: 'smart_button'
+}, {
+  value: 'field',
+  label: "Field",
+  icon: 'input'
+}, {
+  value: 'switch',
+  label: "Switch",
+  icon: 'toggle_off'
+}, {
+  value: 'html',
+  label: "HTML Editor",
+  icon: 'code'
+}, // -
+{
+  title: "Data display",
+  value: 'avatar',
+  label: "Avatar",
+  icon: 'account_circle'
+}, {
+  value: 'chip',
+  label: "Chip",
+  icon: 'edit_attributes'
+}, {
+  value: 'indicator',
+  label: "Indicator",
+  icon: 'dynamic_feed'
+}, {
+  value: 'popup',
+  label: "Popup",
+  icon: 'fullscreen'
+}, {
+  value: 'list',
+  label: "List",
+  icon: 'list'
+}, {
+  value: 'typography',
+  label: "Typography",
+  icon: 'text_fields'
+}, // -
+{
+  title: "Feedback",
+  value: 'snackbar',
+  label: "Snackbar",
+  icon: 'call_to_action'
+}, {
+  value: 'alert',
+  label: "Alert",
+  icon: 'announcement'
+}, {
+  value: 'session',
+  label: "Session",
+  icon: 'access_alarms'
+}];
+var PLAYGROUND_PAGES_BY_KEY = {};
+
+for (var Playground_i = 0, _PLAYGROUND_PAGES = PLAYGROUND_PAGES; Playground_i < _PLAYGROUND_PAGES.length; Playground_i++) {
+  var playgroundPage = _PLAYGROUND_PAGES[Playground_i];
+  PLAYGROUND_PAGES_BY_KEY[playgroundPage.value] = playgroundPage;
+} // Models
+// -------------------------------------------------------------------------------------------------------------
+// ***** PlaygroundStore *****
+// ***************************
+
+
+var TAG_PlaygroundStore = function TAG_PlaygroundStore() {};
+
+var PlaygroundStore = mobx_state_tree_module/* types.model */.V5.model({
+  doc_id: '',
+  doc_rev: '',
+  doc_state: 0,
+  value_text: mobx_state_tree_module/* types.maybeNull */.V5.maybeNull(mobx_state_tree_module/* types.string */.V5.string),
+  value_number: mobx_state_tree_module/* types.maybeNull */.V5.maybeNull(mobx_state_tree_module/* types.integer */.V5.integer),
+  value_date: mobx_state_tree_module/* types.maybeNull */.V5.maybeNull(mobx_state_tree_module/* types.string */.V5.string),
+  value_time: mobx_state_tree_module/* types.maybeNull */.V5.maybeNull(mobx_state_tree_module/* types.string */.V5.string),
+  value_select: mobx_state_tree_module/* types.maybeNull */.V5.maybeNull(mobx_state_tree_module/* types.string */.V5.string),
+  value_textarea: mobx_state_tree_module/* types.maybeNull */.V5.maybeNull(mobx_state_tree_module/* types.string */.V5.string),
+  value_autocomplete_1: mobx_state_tree_module/* types.optional */.V5.optional(AutocompleteStore, {}),
+  value_autocomplete_2: mobx_state_tree_module/* types.optional */.V5.optional(AutocompleteStore, {}),
+  value_switcher: mobx_state_tree_module/* types.maybeNull */.V5.maybeNull(mobx_state_tree_module/* types.string */.V5.string),
+  value_radio: mobx_state_tree_module/* types.maybeNull */.V5.maybeNull(mobx_state_tree_module/* types.string */.V5.string),
+  value_checkbox: mobx_state_tree_module/* types.maybeNull */.V5.maybeNull(mobx_state_tree_module/* types.boolean */.V5.boolean),
+  // -
+  value_html: mobx_state_tree_module/* types.maybeNull */.V5.maybeNull(mobx_state_tree_module/* types.string */.V5.string),
+  // -
+  currentPageKey: '',
+  // -
+  loaded: false
+}).views(function (self) {
+  return {
+    get pageDef() {
+      if (PLAYGROUND_PAGES_BY_KEY.hasOwnProperty(self.currentPageKey)) {
+        return PLAYGROUND_PAGES_BY_KEY[self.currentPageKey];
+      }
+
+      return null;
+    },
+
+    // Bools
+    // -
+    get isEditable() {
+      var store = (0,mobx_state_tree_module/* getRoot */.yj)(self);
+      var app = store.app;
+      var editMode = app.editMode;
+
+      if (editMode) {
+        return true;
+      }
+
+      return false;
+    },
+
+    isCurrentPage: function isCurrentPage(pageKey) {
+      // La page passée en paramètres est-elle la page courante ?
+      // ---
+      if (self.currentPageKey == pageKey) {
+        return true;
+      }
+
+      return false;
+    },
+
+    // -
+    get showHelperButtons() {
+      var store = (0,mobx_state_tree_module/* getRoot */.yj)(self);
+      var app = store.app;
+      var menu = app.menu;
+      var breakPoint414 = app.breakPoint414;
+      var drawerPinned = menu.pinned;
+
+      if (breakPoint414 || !drawerPinned) {
+        return true;
+      }
+
+      return false;
+    },
+
+    get showSaveButton() {
+      if (self.isEditable) {
+        return true;
+      }
+
+      return false;
+    }
+
+  };
+}).actions(function (self) {
+  return {
+    setField: function setField(field, value) {
+      self[field] = value;
+    },
+    // -
+    update: function update(raw) {
+      console.log(raw);
+      self.doc_id = raw.doc_id;
+      self.doc_rev = raw.doc_rev;
+      self.doc_state = raw.doc_state;
+      self.value_text = raw.value_text;
+      self.value_number = raw.value_number;
+      self.value_date = raw.value_date;
+      self.value_time = raw.value_time;
+      self.value_select = raw.value_select;
+      self.value_textarea = raw.value_textarea;
+      self.value_autocomplete_1 = AutocompleteStore.create({});
+      self.value_autocomplete_1.update(raw.value_autocomplete_1);
+      self.value_autocomplete_2 = AutocompleteStore.create({});
+      self.value_autocomplete_2.update(raw.value_autocomplete_2);
+      self.value_switcher = raw.value_switcher;
+      self.value_radio = raw.value_radio;
+      self.value_checkbox = raw.value_checkbox;
+      self.value_html = raw.value_html;
+      self.loaded = true;
+    },
+    load: function load() {
+      // Appel AJAX de la fonction de chargement des données de playground
+      // ---
+      var store = (0,mobx_state_tree_module/* getRoot */.yj)(self);
+      var app = store.app;
+      var snackbar = app.snackbar;
+      var url = "/playground_actions/load";
+      app.fetchJSON(url, null, false, 'POST').then(function (json) {
+        self.update(json.playground_raw);
+      })["catch"](function (ex) {
+        console.error("Fetch failed for ".concat(url), ex);
+        snackbar.update(true, "Une erreur est survenue.", "error");
+      });
+    },
+    validate: function validate(callback) {
+      // Validation des données du playground
+      // ---
+      var store = (0,mobx_state_tree_module/* getRoot */.yj)(self);
+      var app = store.app;
+      var errors = [];
+
+      if (callback) {
+        callback(errors);
+      }
+
+      return errors;
+    },
+    save: function save() {
+      // Appel AJAX de la fonction d'enregistrement du playground
+      // ---
+      var store = (0,mobx_state_tree_module/* getRoot */.yj)(self);
+      var app = store.app;
+      var snackbar = app.snackbar;
+      var ajaxNexorium = store.ajaxNexorium;
+      var params = new FormData();
+      params.append('playground_raw', JSON.stringify(self.toJSON()));
+      var url = "".concat(ajaxNexorium, "/playground_actions/save");
+      app.fetchJSON(url, {
+        'body': params
+      }, false, 'POST').then(function (json) {
+        self.update(json.playground_raw);
+        snackbar.update(true, "Enregistrement effectué.", "success");
+      })["catch"](function (ex) {
+        console.error("Fetch failed for ".concat(url), ex);
+        snackbar.update(true, "Une erreur est survenue.", "error");
+      });
+    },
+    // -
+    openPage: function openPage(pageKey) {
+      // Ouvre la page passée en paramètres
+      // ---
+      var store = (0,mobx_state_tree_module/* getRoot */.yj)(self);
+      var app = store.app;
+      var playgroundContext = app.playgroundContext;
+      app.navigateTo(playgroundContext, null, null, {
+        pageKey: pageKey
+      });
+    }
+  };
+}); // Functions Components ReactJS
+// -------------------------------------------------------------------------------------------------------------
+// ***** RenderPlayground *****
 // ****************************
 
 var TAG_RenderPlayground = function TAG_RenderPlayground() {};
@@ -4575,22 +4137,142 @@ var RenderPlayground = (0,es/* observer */.Pi)(function (props) {
   var app = store.app;
   var playground = app.playground; // From ... store
 
-  var loaded = playground.loaded; // ...
+  var loaded = playground.loaded;
+  var currentPageKey = playground.currentPageKey; // ...
 
   react.useEffect(function () {
     if (!loaded) {
       playground.load();
     }
-  }, [loaded]); // Render
+  }, [loaded]); // ...
+  // Render
   // ==================================================================================================
 
   var contentPlayground = null;
 
   if (loaded) {
-    contentPlayground = /*#__PURE__*/react.createElement(react.Fragment, null, /*#__PURE__*/react.createElement(RenderSectionFields, null), /*#__PURE__*/react.createElement("br", null), /*#__PURE__*/react.createElement(RenderSectionSnackbars, null), /*#__PURE__*/react.createElement("br", null), /*#__PURE__*/react.createElement(RenderSectionIndicators, null));
+    contentPlayground = /*#__PURE__*/react.createElement(react.Fragment, null, currentPageKey == 'button' && /*#__PURE__*/react.createElement(RenderSectionButton, null), currentPageKey == 'field' && /*#__PURE__*/react.createElement(RenderSectionField, null), currentPageKey == 'switch' && /*#__PURE__*/react.createElement(RenderSectionSwitch, null), currentPageKey == 'html' && /*#__PURE__*/react.createElement(RenderSectionHTML, null), currentPageKey == 'avatar' && /*#__PURE__*/react.createElement(RenderSectionAvatar, null), currentPageKey == 'chip' && /*#__PURE__*/react.createElement(RenderSectionChip, null), currentPageKey == 'indicator' && /*#__PURE__*/react.createElement(RenderSectionIndicator, null), currentPageKey == 'popup' && /*#__PURE__*/react.createElement(RenderSectionPopup, null), currentPageKey == 'list' && /*#__PURE__*/react.createElement(RenderSectionItem, null), currentPageKey == 'typography' && /*#__PURE__*/react.createElement(RenderSectionHeading, null), currentPageKey == 'snackbar' && /*#__PURE__*/react.createElement(RenderSectionSnackbar, null), currentPageKey == 'alert' && /*#__PURE__*/react.createElement(RenderSectionAlert, null), currentPageKey == 'session' && /*#__PURE__*/react.createElement(RenderSectionSession, null));
   }
 
   return contentPlayground;
+}); // ***** PlaygroundHeaderLeft *****
+// ********************************
+
+var TAG_PlaygroundHeaderLeft = function TAG_PlaygroundHeaderLeft() {};
+
+var PlaygroundHeaderLeft = (0,es/* observer */.Pi)(function (props) {
+  var store = react.useContext(window.storeContext);
+  var app = store.app; // ...
+  // Render
+  // ==================================================================================================
+
+  return /*#__PURE__*/react.createElement(HeaderTitle, {
+    title: "Playground",
+    titleStyle: {
+      marginLeft: '10px'
+    }
+  });
+}); // ***** PlaygroundHeaderRight *****
+// *********************************
+
+var TAG_PlaygroundHeaderRight = function TAG_PlaygroundHeaderRight() {};
+
+var PlaygroundHeaderRight = (0,es/* observer */.Pi)(function (props) {
+  var store = react.useContext(window.storeContext);
+  var app = store.app;
+  var playground = app.playground; // From ... store
+
+  var isLoading = app.isLoading; // ...
+  // Events
+  // ==================================================================================================
+
+  var handleSaveClick = function handleSaveClick() {
+    playground.validate(function (errors) {
+      if (errors.length == 0) {
+        playground.save();
+      }
+    });
+  }; // Render
+  // ==================================================================================================
+
+
+  return /*#__PURE__*/react.createElement(react.Fragment, null, /*#__PURE__*/react.createElement(IconButton, {
+    onClick: function onClick() {
+      return handleSaveClick();
+    },
+    disabled: isLoading,
+    title: "Enregistrer"
+  }, /*#__PURE__*/react.createElement(Icon_Icon, {
+    name: "save",
+    color: "white"
+  })), /*#__PURE__*/react.createElement(HeaderDivider, null));
+}); // ***** PlaygroundMenuItem *****
+// ******************************
+
+var TAG_PlaygroundMenuItem = function TAG_PlaygroundMenuItem() {};
+
+var PlaygroundMenuItem = (0,es/* observer */.Pi)(function (props) {
+  var store = react.useContext(window.storeContext);
+  var app = store.app; // ...
+
+  var playgroundContext = app.playgroundContext; // Events
+  // ==================================================================================================
+
+  var handleMenuItemClick = function handleMenuItemClick() {
+    app.navigateTo(playgroundContext);
+    app.menu.close();
+  }; // Render
+  // ==================================================================================================
+
+
+  return /*#__PURE__*/react.createElement(MenuItem, {
+    icon: /*#__PURE__*/react.createElement(Icon_Icon, {
+      name: "science",
+      width: "120px"
+    }),
+    label: "Playground",
+    activeContexts: [playgroundContext],
+    callbackClick: handleMenuItemClick
+  });
+}); // ***** RenderDrawerPlaygroundItems *****
+// ***************************************
+
+var TAG_RenderDrawerPlaygroundItems = function TAG_RenderDrawerPlaygroundItems() {};
+
+var RenderDrawerPlaygroundItems = (0,es/* observer */.Pi)(function (props) {
+  var store = react.useContext(window.storeContext);
+  var app = store.app;
+  var playground = app.playground; // Renderers
+  // ==================================================================================================
+
+  var renderItemPlaygroundPage = function renderItemPlaygroundPage(page) {
+    // Item -> Playground Page
+    // ---
+    return /*#__PURE__*/react.createElement(react.Fragment, null, page.title && /*#__PURE__*/react.createElement(react.Fragment, null, /*#__PURE__*/react.createElement(MenuDivider, null), /*#__PURE__*/react.createElement(MenuTitle, {
+      title: page.title
+    })), /*#__PURE__*/react.createElement(MenuItem, {
+      key: "menu-item-".concat(page.value),
+      icon: /*#__PURE__*/react.createElement(Icon_Icon, {
+        name: page.icon,
+        width: "120px"
+      }),
+      label: page.label,
+      activeContexts: ['playground'],
+      currentCallback: function currentCallback() {
+        return playground.isCurrentPage(page.value);
+      },
+      callbackClick: function callbackClick() {
+        return playground.openPage(page.value);
+      }
+    }));
+  }; // -----------------------------------------------------
+
+
+  return /*#__PURE__*/react.createElement(react.Fragment, null, /*#__PURE__*/react.createElement(MenuSwitch, {
+    switchKey: "editMode"
+  }), /*#__PURE__*/react.createElement(MenuDivider, null), PLAYGROUND_PAGES.map(function (page, pageIdx) {
+    return renderItemPlaygroundPage(page);
+  }));
 }); // ***** PlaygroundPage *****
 // **************************
 
@@ -4648,13 +4330,13 @@ var PlaygroundPage = (0,es/* observer */.Pi)(function (props) {
           } // Bouton de lien vers une page du playground
 
 
-          helperButtons.push( /*#__PURE__*/react.createElement(Row_Row, null, /*#__PURE__*/react.createElement(NavCard_NavCard, {
+          helperButtons.push( /*#__PURE__*/react.createElement(Row, null, /*#__PURE__*/react.createElement(NavCard_NavCard, {
             key: "btn-helper-".concat(page.value),
             icon: page.icon,
             label: page.label,
             disabled: isLoading,
             faded: isLoading,
-            horizontal: true,
+            variant: "list",
             onClick: function onClick() {
               return playground.openPage(page.value);
             }
@@ -4684,6 +4366,1138 @@ var PlaygroundPage = (0,es/* observer */.Pi)(function (props) {
       show: showHelper,
       inFlux: breakPoint650
     }, helperContent);
+  };
+
+  return /*#__PURE__*/react.createElement("div", {
+    className: "nx-page"
+  }, renderPage(), renderHelper());
+});
+// EXTERNAL MODULE: ../../nexus/react/ui/switch/Switch.css
+var Switch = __webpack_require__(1796);
+;// CONCATENATED MODULE: ../../nexus/react/ui/switch/Switch.jsx
+
+
+
+
+ // Functions Components ReactJS
+// ======================================================================================================
+// ***** Switch *****
+// ******************
+
+var TAG_Switch = function TAG_Switch() {};
+
+var Switch_Switch = function Switch(props) {
+  var store = React.useContext(window.storeContext);
+  var app = store.app;
+  var theme = app.theme; // Render
+  // ==================================================================================================
+
+  return /*#__PURE__*/React.createElement("div", {
+    className: "nx-switch"
+  });
+};
+// EXTERNAL MODULE: ../../nexus/react/layout/menu/Menu.css
+var Menu = __webpack_require__(4397);
+;// CONCATENATED MODULE: ../../nexus/react/layout/menu/Menu.jsx
+
+
+
+
+
+
+
+
+
+
+
+
+
+ // Datas
+// -------------------------------------------------------------------------------------------------------------
+
+var DEFAULT_DRAWER_CONTEXTUAL_ITEMS = {
+  'playground': RenderDrawerPlaygroundItems
+}; // Models
+// -------------------------------------------------------------------------------------------------------------
+// ***** MenuStore *****
+// *********************
+
+var TAG_MenuStore = function TAG_MenuStore() {};
+
+var MenuStore = mobx_state_tree_module/* types.model */.V5.model({
+  expanded: false,
+  open: false,
+  pinned: false
+}).actions(function (self) {
+  return {
+    setField: function setField(field, value) {
+      self[field] = value;
+    },
+    // -
+    toogle: function toogle() {
+      // Bascule le menu latéral
+      // ---
+      var app = (0,mobx_state_tree_module/* getParent */.G_)(self);
+      var breakPoint650 = app.breakPoint650;
+      var newState = false; // Agrandissement ou réduction en mode bureau
+
+      if (!breakPoint650 && self.pinned) {
+        newState = !self.expanded;
+        setToStorage('menuExpanded', newState);
+      } // Ouverture / fermeture en mode mobile
+
+
+      if (breakPoint650 || !self.pinned) {
+        newState = !self.open;
+      }
+
+      self.update(newState);
+    },
+    tooglePinned: function tooglePinned() {
+      self.pinned = !self.pinned;
+      setToStorage('menuPinned', self.pinned);
+    },
+    update: function update(openOrExpanded) {
+      // Masque ou affiche le menu latéral
+      // ---
+      var app = (0,mobx_state_tree_module/* getParent */.G_)(self);
+      var breakPoint650 = app.breakPoint650;
+
+      if (!breakPoint650 && self.pinned) {
+        self.expanded = openOrExpanded;
+      }
+
+      if (breakPoint650 || !self.pinned) {
+        self.open = openOrExpanded;
+      }
+    },
+    close: function close() {
+      // Ferme le menu
+      // ---
+      var app = (0,mobx_state_tree_module/* getParent */.G_)(self);
+      var breakPoint650 = app.breakPoint650;
+
+      if (breakPoint650 || !self.pinned) {
+        self.open = false;
+      }
+    }
+  };
+}); // Functions Components ReactJS
+// -------------------------------------------------------------------------------------------------------------
+// ***** MenuDivider *****
+// ***********************
+
+var TAG_MenuDivider = function TAG_MenuDivider() {};
+
+var MenuDivider = (0,es/* observer */.Pi)(function (props) {
+  // From ... props
+  var children = props.children ? props.children : null; // Render
+  // ==================================================================================================
+
+  return /*#__PURE__*/react.createElement(Divider_Divider, {
+    title: children,
+    style: {
+      marginTop: '10px',
+      marginBottom: '10px'
+    }
+  });
+}); // ***** MenuTitle *****
+// *********************
+
+var TAG_MenuTitle = function TAG_MenuTitle() {};
+
+var MenuTitle = function MenuTitle(props) {
+  // From ... props
+  var title = props.title ? props.title : '';
+  var className = props.className ? props.className : '';
+  var style = props.style ? props.style : {}; // ...
+  // Render
+  // ==================================================================================================
+
+  return /*#__PURE__*/react.createElement("div", {
+    className: (0,clsx_m/* default */.Z)("nx-menu-title", className),
+    style: style
+  }, title);
+}; // ***** MenuItem *****
+// ********************
+
+var TAG_MenuItem = function TAG_MenuItem() {};
+
+var MenuItem = (0,es/* observer */.Pi)(function (props) {
+  var store = react.useContext(window.storeContext);
+  var app = store.app;
+  var theme = app.theme; // From ... store
+
+  var context = app.context;
+  var isLoading = app.isLoading; // From ... props
+
+  var icon = props.icon;
+  var label = props.label;
+  var activeContexts = props.activeContexts ? props.activeContexts : [];
+  var disabled = props.disabled == true ? props.disabled : isLoading;
+  var style = props.style ? props.style : {};
+  var styleLabel = {};
+  var currentCallback = props.currentCallback;
+  var callbackClick = props.callbackClick; // ...
+
+  var active = false;
+
+  if (currentCallback) {
+    active = currentCallback();
+  } else {
+    if (activeContexts.indexOf(context) > -1) {
+      active = true;
+    }
+  }
+
+  if (!style.hasOwnProperty('color')) {
+    if (active) {
+      // style['color'] = theme.palette.primary.main;
+      style['backgroundColor'] = hexToRgbA(theme.palette.primary.main, 0.1); // styleLabel['color'] = theme.palette.primary.main;
+
+      styleLabel['fontWeight'] = 'bold';
+    }
+  } // Events
+  // ==================================================================================================
+
+
+  var handleClick = function handleClick() {
+    if (callbackClick) {
+      callbackClick();
+    }
+  }; // Render
+  // ==================================================================================================
+
+
+  return /*#__PURE__*/react.createElement("div", {
+    className: (0,clsx_m/* default */.Z)("nx-menu-item", {
+      'active': active
+    }, {
+      'disabled': disabled
+    }),
+    style: style,
+    onClick: function onClick() {
+      return handleClick();
+    }
+  }, icon && /*#__PURE__*/react.createElement(Avatar_Avatar, {
+    color: "transparent" // size="small"
+
+  }, icon), /*#__PURE__*/react.createElement("div", {
+    className: "nx-menu-item-label",
+    style: styleLabel
+  }, label));
+}); // ***** MenuSwitch *****
+// **********************
+
+var TAG_MenuSwitch = function TAG_MenuSwitch() {};
+
+var MenuSwitch = function MenuSwitch(props) {
+  // From ... props
+  var switchKey = props.switchKey ? props.switchKey : ''; // ...
+  // Render
+  // ==================================================================================================
+
+  return /*#__PURE__*/react.createElement("div", {
+    className: "nx-menu-switch"
+  });
+}; // ***** Menu *****
+// ****************
+
+var TAG_Menu = function TAG_Menu() {};
+
+var Menu_Menu = (0,es/* observer */.Pi)(function (props) {
+  var store = react.useContext(window.storeContext);
+  var app = store.app;
+  var menu = app.menu;
+  var theme = app.theme;
+  var account = app.account; // From ... store
+
+  var context = app.context;
+  var breakPoint650 = app.breakPoint650;
+  var appKind = app.kind;
+  var open = menu.open;
+  var expanded = menu.expanded;
+  var pinned = menu.pinned;
+  var name = account.name; // From ... props
+
+  var content = props.children; // ...
+
+  if (DEFAULT_DRAWER_CONTEXTUAL_ITEMS.hasOwnProperty(context)) {
+    var DefaultDrawerContextualItemsComponent = DEFAULT_DRAWER_CONTEXTUAL_ITEMS[context];
+    content = /*#__PURE__*/react.createElement(DefaultDrawerContextualItemsComponent, null);
+  } // Events
+  // ==================================================================================================
+
+
+  var handleClose = function handleClose() {
+    menu.close();
+  };
+
+  var handlePinClick = function handlePinClick() {
+    menu.tooglePinned();
+  }; // Render
+  // ==================================================================================================
+
+
+  var menuContent = /*#__PURE__*/react.createElement("div", {
+    className: "nx-menu-content"
+  }, (breakPoint650 || appKind == 'electron' && !pinned) && /*#__PURE__*/react.createElement("div", {
+    className: "nx-menu-header",
+    style: {
+      backgroundColor: hexToRgbA(theme.palette.primary.main, 0.8),
+      color: theme.palette.primary.contrastText
+    }
+  }, /*#__PURE__*/react.createElement("label", null, name)), /*#__PURE__*/react.createElement("div", {
+    className: "nx-menu-items-wrapper"
+  }, content), !breakPoint650 && /*#__PURE__*/react.createElement(IconButton, {
+    onClick: function onClick() {
+      return handlePinClick();
+    }
+  }, /*#__PURE__*/react.createElement(Icon_Icon, {
+    name: "push_pin"
+  })));
+  return /*#__PURE__*/react.createElement(react.Fragment, null, (breakPoint650 || !pinned) && open && /*#__PURE__*/react.createElement(Drawer_Drawer, {
+    position: breakPoint650 ? 'right' : 'left',
+    callbackClose: handleClose
+  }, menuContent), !breakPoint650 && pinned && /*#__PURE__*/react.createElement("div", {
+    className: (0,clsx_m/* default */.Z)("nx-menu", {
+      "expanded": expanded
+    }, {
+      "retracted": !expanded
+    })
+  }, menuContent));
+});
+// EXTERNAL MODULE: ../../nexus/react/contexts/portal/Portal.css
+var portal_Portal = __webpack_require__(1999);
+;// CONCATENATED MODULE: ../../nexus/react/contexts/portal/Portal.jsx
+
+
+
+
+
+
+
+
+
+
+ // Models
+// -------------------------------------------------------------------------------------------------------------
+// ***** PortalStore *****
+// ***********************
+
+var TAG_PortalStore = function TAG_PortalStore() {};
+
+var PortalStore = mobx_state_tree_module/* types.model */.V5.model({
+  expanded: false,
+  open: false,
+  pinned: false
+}).actions(function (self) {
+  return {
+    setField: function setField(field, value) {
+      self[field] = value;
+    },
+    // -
+    toogle: function toogle() {
+      // Bascule le portail d'apps
+      // ---
+      var app = (0,mobx_state_tree_module/* getParent */.G_)(self);
+      var breakPoint650 = app.breakPoint650;
+      var newState = false; // Agrandissement ou réduction en mode bureau
+
+      if (!breakPoint650 && self.pinned) {
+        newState = !self.expanded;
+        setToStorage('portalExpanded', newState);
+      } // Ouverture / fermeture en mode mobile
+
+
+      if (breakPoint650 || !self.pinned) {
+        newState = !self.open;
+      }
+
+      self.update(newState);
+    },
+    tooglePinned: function tooglePinned() {
+      self.pinned = !self.pinned;
+      setToStorage('portalPinned', self.pinned);
+    },
+    update: function update(openOrExpanded) {
+      // Masque ou affiche le portail d'apps
+      // ---
+      var app = (0,mobx_state_tree_module/* getParent */.G_)(self);
+      var breakPoint650 = app.breakPoint650;
+
+      if (!breakPoint650 && self.pinned) {
+        self.expanded = openOrExpanded;
+      }
+
+      if (breakPoint650 || !self.pinned) {
+        self.open = openOrExpanded;
+      }
+    },
+    close: function close() {
+      // Ferme le menu
+      // ---
+      var app = (0,mobx_state_tree_module/* getParent */.G_)(self);
+      var breakPoint650 = app.breakPoint650;
+
+      if (breakPoint650 || !self.pinned) {
+        self.open = false;
+      }
+    }
+  };
+}); // Functions Components ReactJS
+// -------------------------------------------------------------------------------------------------------------
+// ***** PortalHeaderLeft *****
+// ****************************
+
+var TAG_PortalHeaderLeft = function TAG_PortalHeaderLeft() {};
+
+var PortalHeaderLeft = (0,es/* observer */.Pi)(function (props) {
+  var store = react.useContext(window.storeContext);
+  var app = store.app; // ...
+  // Render
+  // ==================================================================================================
+
+  return /*#__PURE__*/react.createElement(HeaderTitle, {
+    title: "Applications",
+    titleStyle: {
+      marginLeft: '10px'
+    }
+  });
+}); // ***** PortalHeaderRight *****
+// *****************************
+
+var TAG_PortalHeaderRight = function TAG_PortalHeaderRight() {};
+
+var PortalHeaderRight = (0,es/* observer */.Pi)(function (props) {
+  var store = react.useContext(window.storeContext);
+  var app = store.app; // ...
+  // Render
+  // ==================================================================================================
+
+  return null;
+}); // ***** PortalMenuItem *****
+// **************************
+
+var TAG_PortalMenuItem = function TAG_PortalMenuItem() {};
+
+var PortalMenuItem = (0,es/* observer */.Pi)(function (props) {
+  var store = react.useContext(window.storeContext);
+  var app = store.app; // From ... store
+
+  var isLoading = app.isLoading;
+  var breakPoint650 = app.breakPoint650;
+  var portalContext = app.portalContext; // Events
+  // ==================================================================================================
+
+  var handleMenuItemClick = function handleMenuItemClick() {
+    app.navigateTo(portalContext);
+    app.menu.close();
+  }; // Render
+  // ==================================================================================================
+
+
+  var portalMenuItem = null;
+
+  if (breakPoint650) {
+    portalMenuItem = /*#__PURE__*/react.createElement(MenuItem, {
+      icon: /*#__PURE__*/react.createElement(Icon_Icon, {
+        name: "explore"
+      }),
+      label: "Applications",
+      activeContexts: [portalContext],
+      callbackClick: handleMenuItemClick
+    });
+  }
+
+  return portalMenuItem;
+}); // ***** PortalPage *****
+// **********************
+
+var TAG_PortalPage = function TAG_PortalPage() {};
+
+var PortalPage = (0,es/* observer */.Pi)(function (props) {
+  var store = react.useContext(window.storeContext);
+  var app = store.app; // From ... propos
+
+  var initialized = app.initialized; // ...
+
+  var showHelper = !initialized ? true : false; // Renderers
+  // ==================================================================================================
+
+  var renderPage = function renderPage() {
+    // Render :: Page
+    // ---
+    var pageContent = null;
+
+    if (initialized) {
+      pageContent = /*#__PURE__*/react.createElement(PortalGrid, null);
+    }
+
+    return pageContent;
+  };
+
+  var renderHelper = function renderHelper() {
+    // Render :: Helper
+    // ---
+    return /*#__PURE__*/react.createElement(Helper_Helper, {
+      iconName: "explore",
+      show: showHelper
+    });
+  };
+
+  return /*#__PURE__*/react.createElement("div", {
+    className: "nx-page"
+  }, renderPage(), renderHelper());
+});
+// EXTERNAL MODULE: ../../nexus/react/contexts/newsletters/Newsletters.css
+var Newsletters = __webpack_require__(5270);
+;// CONCATENATED MODULE: ../../nexus/react/contexts/newsletters/Newsletters.jsx
+
+
+
+
+
+
+
+
+ // Models
+// -------------------------------------------------------------------------------------------------------------
+// ***** NewslettersStore *****
+// ****************************
+
+var TAG_NewslettersStore = function TAG_NewslettersStore() {};
+
+var NewslettersStore = mobx_state_tree_module/* types.model */.V5.model({
+  loaded: false
+}).actions(function (self) {
+  return {
+    setField: function setField(field, value) {
+      self[field] = value;
+    },
+    // -
+    update: function update(raw) {}
+  };
+}); // Functions Components ReactJS
+// -------------------------------------------------------------------------------------------------------------
+// ***** NewslettersHeaderLeft *****
+// *********************************
+
+var TAG_NewslettersHeaderLeft = function TAG_NewslettersHeaderLeft() {};
+
+var NewslettersHeaderLeft = (0,es/* observer */.Pi)(function (props) {
+  var store = react.useContext(window.storeContext);
+  var app = store.app; // ...
+  // Render
+  // ==================================================================================================
+
+  return /*#__PURE__*/react.createElement(HeaderTitle, {
+    title: "Newsletters",
+    titleStyle: {
+      marginLeft: '10px'
+    }
+  });
+}); // ***** NewslettersHeaderRight *****
+// **********************************
+
+var TAG_NewslettersHeaderRight = function TAG_NewslettersHeaderRight() {};
+
+var NewslettersHeaderRight = (0,es/* observer */.Pi)(function (props) {
+  var store = react.useContext(window.storeContext);
+  var app = store.app; // ...
+  // Render
+  // ==================================================================================================
+
+  return null;
+}); // ***** NewslettersMenuItem *****
+// *******************************
+
+var TAG_NewslettersMenuItem = function TAG_NewslettersMenuItem() {};
+
+var NewslettersMenuItem = (0,es/* observer */.Pi)(function (props) {
+  var store = react.useContext(window.storeContext);
+  var app = store.app; // Events
+  // ==================================================================================================
+
+  var handleMenuItemClick = function handleMenuItemClick() {
+    app.navigate('/newsletters', 'newsletters');
+    app.menu.close();
+  }; // Render
+  // ==================================================================================================
+
+
+  return /*#__PURE__*/react.createElement(MenuItem, {
+    icon: /*#__PURE__*/react.createElement(Icon_Icon, {
+      name: "newspaper"
+    }),
+    label: "Newsletters",
+    activeContexts: ['newsletters'],
+    callbackClick: handleMenuItemClick
+  });
+}); // ***** NewslettersPage *****
+// ***************************
+
+var TAG_NewslettersPage = function TAG_NewslettersPage() {};
+
+var NewslettersPage = (0,es/* observer */.Pi)(function (props) {
+  var store = react.useContext(window.storeContext);
+  var app = store.app; // Renderers
+  // ==================================================================================================
+
+  var renderHelper = function renderHelper() {
+    // Render :: Helper
+    // ---
+    return /*#__PURE__*/react.createElement(Helper_Helper, {
+      iconName: "newspaper",
+      show: true
+    });
+  };
+
+  return /*#__PURE__*/react.createElement("div", {
+    className: "nx-page"
+  }, renderHelper());
+});
+// EXTERNAL MODULE: ../../nexus/react/contexts/about/About.css
+var About = __webpack_require__(2189);
+;// CONCATENATED MODULE: ../../nexus/react/contexts/about/About.jsx
+
+
+
+
+
+
+
+
+
+
+
+
+ // Models
+// ======================================================================================================
+// ***** AboutStore *****
+// **********************
+
+var TAG_AboutStore = function TAG_AboutStore() {};
+
+var AboutStore = mobx_state_tree_module/* types.model */.V5.model({
+  service: mobx_state_tree_module/* types.optional */.V5.optional(ServiceInfoStore, {}),
+  loaded: false
+}).actions(function (self) {
+  return {
+    setField: function setField(field, value) {
+      self[field] = value;
+    },
+    // -
+    update: function update(raw) {
+      self.service.update(raw);
+      self.loaded = true;
+    },
+    load: function load() {
+      // Appel AJAX de la fonction de chargement des données de du service
+      // ---
+      var store = (0,mobx_state_tree_module/* getRoot */.yj)(self);
+      var app = store.app;
+      var snackbar = app.snackbar;
+      var url = '/app/about_load';
+      app.fetchJSON(url, null, false, 'POST').then(function (json) {
+        self.update(json.me);
+      })["catch"](function (ex) {
+        console.error("Fetch failed for ".concat(url), ex);
+        snackbar.update(true, "Une erreur est survenue.", "error");
+      });
+    }
+  };
+}); // Functions Components ReactJS
+// -------------------------------------------------------------------------------------------------------------
+// ***** AboutHeaderLeft *****
+// ***************************
+
+var TAG_AboutHeaderLeft = function TAG_AboutHeaderLeft() {};
+
+var AboutHeaderLeft = (0,es/* observer */.Pi)(function (props) {
+  var store = react.useContext(window.storeContext);
+  var app = store.app; // ...
+  // Render
+  // ==================================================================================================
+
+  return /*#__PURE__*/react.createElement(HeaderTitle, {
+    title: "A propos",
+    titleStyle: {
+      marginLeft: '10px'
+    }
+  });
+}); // ***** AboutHeaderRight *****
+// ****************************
+
+var TAG_AboutHeaderRight = function TAG_AboutHeaderRight() {};
+
+var AboutHeaderRight = (0,es/* observer */.Pi)(function (props) {
+  // const store = React.useContext(window.storeContext);
+  // const app = store.app;
+  // ...
+  // Render
+  // ==================================================================================================
+  return null;
+}); // ***** AboutMenuItem *****
+// *************************
+
+var TAG_AboutMenuItem = function TAG_AboutMenuItem() {};
+
+var AboutMenuItem = (0,es/* observer */.Pi)(function (props) {
+  var store = react.useContext(window.storeContext);
+  var app = store.app; // From ... store
+
+  var aboutContext = app.aboutContext; // Events
+  // ==================================================================================================
+
+  var handleMenuItemClick = function handleMenuItemClick() {
+    app.navigateTo(aboutContext);
+    app.menu.close();
+  }; // Render
+  // ==================================================================================================
+
+
+  return /*#__PURE__*/react.createElement(MenuItem, {
+    icon: /*#__PURE__*/react.createElement(Icon_Icon, {
+      name: "code"
+    }),
+    label: "A propos",
+    activeContexts: [aboutContext],
+    callbackClick: handleMenuItemClick
+  });
+}); // ***** RenderAbout *****
+// ***********************
+
+var TAG_RenderAbout = function TAG_RenderAbout() {};
+
+var RenderAbout = (0,es/* observer */.Pi)(function (props) {
+  var store = react.useContext(window.storeContext);
+  var app = store.app;
+  var about = app.about; // From ... store
+
+  var isLoading = app.isLoading;
+  var breakPoint414 = app.breakPoint414;
+  var loaded = about.loaded;
+  var service = about.service;
+  var version = service.version;
+  var changeset = service.changeset;
+  var changeset_instance = service.changeset_instance; // ...
+
+  react.useEffect(function () {
+    if (!loaded) {
+      about.load();
+    }
+  }, [loaded]); // Events
+  // ==================================================================================================
+
+  var handleChangelogsClick = function handleChangelogsClick() {
+    app.navigateTo(app.changelogsContext);
+  };
+
+  var handleBugsClick = function handleBugsClick() {
+    app.navigateTo(app.bugsContext);
+  }; // Render
+  // ==================================================================================================
+  // Section -> Icon
+  // ---
+
+
+  var sectionIcon = /*#__PURE__*/react.createElement(Icon_Icon, {
+    name: "memory"
+  }); // Section -> Title
+  // ---
+
+  var sectionTitle = service.name; // Section -> Content
+  // ---
+
+  var sectionContent = /*#__PURE__*/react.createElement("div", {
+    className: (0,clsx_m/* default */.Z)("h-col-medium", "responsive-vertical", "responsive-spaced-medium")
+  }, /*#__PURE__*/react.createElement(Avatar_Avatar, {
+    src: "/static/favicons/android-icon-192x192.png",
+    size: "big"
+  }), /*#__PURE__*/react.createElement("div", {
+    className: (0,clsx_m/* default */.Z)({
+      "v-col-tiny": !breakPoint414
+    }, {
+      "v-col-small": breakPoint414
+    }, "flex-align-stretch")
+  }, /*#__PURE__*/react.createElement("div", {
+    className: "h-col-small responsive-vertical responsive-spaced-none"
+  }, /*#__PURE__*/react.createElement("div", {
+    className: "nx-t"
+  }, "Version"), /*#__PURE__*/react.createElement("div", {
+    className: "nx-t selectable",
+    "data-flex": "2"
+  }, /*#__PURE__*/react.createElement("b", null, version))), /*#__PURE__*/react.createElement("div", {
+    className: "h-col-small responsive-vertical responsive-spaced-none responsive-align-start"
+  }, /*#__PURE__*/react.createElement("div", {
+    className: "nx-t"
+  }, "R\xE9vision instance"), /*#__PURE__*/react.createElement("div", {
+    className: "nx-about-changeset selectable",
+    "data-flex": "2"
+  }, changeset_instance)), /*#__PURE__*/react.createElement("div", {
+    className: "h-col-small responsive-vertical responsive-spaced-none responsive-align-start"
+  }, /*#__PURE__*/react.createElement("div", {
+    className: "nx-t"
+  }, "R\xE9vision d\xE9p\xF4t"), /*#__PURE__*/react.createElement("div", {
+    className: "nx-about-changeset selectable",
+    "data-flex": "2"
+  }, changeset)))); // Section -> Buttons
+  // ---
+
+  var sectionButtons = [];
+  sectionButtons.push( /*#__PURE__*/react.createElement(Button_Button, {
+    key: "btn-changelog",
+    variant: "outlined",
+    color: "primary",
+    onClick: function onClick() {
+      return handleChangelogsClick();
+    },
+    disabled: isLoading,
+    startAdornment: /*#__PURE__*/react.createElement(Icon_Icon, {
+      name: "history"
+    })
+  }, "Changelog"));
+  sectionButtons.push( /*#__PURE__*/react.createElement(Button_Button, {
+    key: "btn-bugs",
+    variant: "outlined",
+    color: "primary",
+    onClick: function onClick() {
+      return handleBugsClick();
+    },
+    disabled: isLoading,
+    startAdornment: /*#__PURE__*/react.createElement(Icon_Icon, {
+      name: "bug_report"
+    })
+  }, "Bugs")); // -------------------------------------------------
+
+  var contentAbout = null;
+
+  if (loaded) {
+    contentAbout = /*#__PURE__*/react.createElement(Section_Section, {
+      icon: sectionIcon,
+      title: sectionTitle,
+      buttons: sectionButtons
+    }, sectionContent);
+  }
+
+  return contentAbout;
+}); // ***** AboutPage *****
+// *********************
+
+var TAG_AboutPage = function TAG_AboutPage() {};
+
+var AboutPage = (0,es/* observer */.Pi)(function (props) {
+  var store = react.useContext(window.storeContext);
+  var app = store.app;
+  var about = app.about; // From ... store
+
+  var initialized = app.initialized;
+  var loaded = about.loaded; // ...
+
+  var showHelper = !initialized || !loaded ? true : false; // Renderers
+  // ==================================================================================================
+
+  var renderPage = function renderPage() {
+    // Render :: Page -> que quand l'app est intitialisée (pour useEffect)
+    // ---
+    var pageContent = null;
+
+    if (initialized) {
+      pageContent = /*#__PURE__*/react.createElement(RenderAbout, null);
+    }
+
+    return pageContent;
+  };
+
+  var renderHelper = function renderHelper() {
+    // Render :: Helper
+    // ---
+    return /*#__PURE__*/react.createElement(Helper_Helper, {
+      iconName: "code",
+      show: showHelper
+    });
+  };
+
+  return /*#__PURE__*/react.createElement("div", {
+    className: "nx-page"
+  }, renderPage(), renderHelper());
+});
+// EXTERNAL MODULE: ../../nexus/react/ui/typography/Typography.css
+var Typography = __webpack_require__(1815);
+;// CONCATENATED MODULE: ../../nexus/react/ui/typography/Typography.jsx
+
+
+
+ // Functions Components ReactJS
+// -------------------------------------------------------------------------------------------------------------
+// ***** Typography *****
+// **********************
+
+var TAG_Typography = function TAG_Typography() {};
+
+var Typography_Typography = function Typography(props) {
+  // From ... props
+  var children = props.children;
+  var variant = props.variant ? props.variant : '';
+  var severity = props.severity ? props.severity : '';
+  var className = props.className ? props.className : '';
+  var style = props.style ? props.style : {};
+  var color = props.color ? props.color : ''; // ...
+  // Quelle couleur ?
+
+  if (color && !style.hasOwnProperty('color')) {
+    style['color'] = color;
+  }
+
+  if (severity && !style.hasOwnProperty('color') && SEVERITY_COLORS.hasOwnProperty(severity)) {
+    style['color'] = SEVERITY_COLORS[severity];
+  } // Render
+  // ==================================================================================================
+
+
+  return /*#__PURE__*/react.createElement("div", {
+    className: (0,clsx_m/* default */.Z)("nx-typography", variant, className),
+    style: style
+  }, children);
+};
+// EXTERNAL MODULE: ../../nexus/react/ui/link/Link.css
+var Link = __webpack_require__(7370);
+;// CONCATENATED MODULE: ../../nexus/react/ui/link/Link.jsx
+
+
+
+ // Functions Components ReactJS
+// -------------------------------------------------------------------------------------------------------------
+// ***** Link *****
+// ****************
+
+var TAG_Link = function TAG_Link() {};
+
+var Link_Link = function Link(props) {
+  // From ... props
+  var href = props.href ? props.href : '';
+  var children = props.children;
+  var target = props.target ? props.target : ''; // _blank
+
+  var className = props.className ? props.className : '';
+  var style = props.style ? props.style : {}; // ...
+
+  if (!style.hasOwnProperty('color')) {
+    style['color'] = SEVERITY_COLORS.info;
+  } // Render
+  // ==================================================================================================
+
+
+  return /*#__PURE__*/react.createElement("a", {
+    href: href,
+    target: target,
+    className: (0,clsx_m/* default */.Z)("nx-link", className),
+    style: style
+  }, children);
+};
+// EXTERNAL MODULE: ../../nexus/react/contexts/admin/Admin.css
+var Admin = __webpack_require__(4644);
+;// CONCATENATED MODULE: ../../nexus/react/contexts/admin/Admin.jsx
+
+
+
+
+
+
+
+
+
+
+
+ // Functions Components ReactJS
+// -------------------------------------------------------------------------------------------------------------
+// ***** RenderAdminAuth *****
+// ***************************
+
+var TAG_RenderAdminAuth = function TAG_RenderAdminAuth() {};
+
+var RenderAdminAuth = (0,es/* observer */.Pi)(function (props) {
+  var store = react.useContext(window.storeContext);
+  var app = store.app;
+  var account = app.account;
+  var services = app.services; // From ... store
+
+  var accountId = account._id; // ...
+
+  var cerberusUrl = services.getServiceInfo('cerberus');
+  var accountLabel = accountId ? accountId : 'Aucun';
+  var accountLink = accountId ? "".concat(cerberusUrl, "/user/").concat(accountId) : '/login'; // Render
+  // ==================================================================================================
+  // Section -> Icon
+  // -------------------------------------------------
+
+  var sectionIcon = /*#__PURE__*/react.createElement(Icon_Icon, {
+    name: "verified_user"
+  }); // Section -> Title
+  // -------------------------------------------------
+
+  var sectionTitle = "Authentification"; // Section -> Content
+  // -------------------------------------------------
+
+  var sectionContent = /*#__PURE__*/react.createElement("div", null, /*#__PURE__*/react.createElement("div", {
+    className: "h-col-small"
+  }, /*#__PURE__*/react.createElement(Typography_Typography, null, "User ID"), /*#__PURE__*/react.createElement(Link_Link, {
+    href: accountLink,
+    className: "flex-2"
+  }, accountLabel))); // -------------------------------------------------
+
+  return /*#__PURE__*/react.createElement(Section_Section, {
+    icon: sectionIcon,
+    title: sectionTitle
+  }, sectionContent);
+}); // ***** RenderAdminLinks *****
+// ****************************
+
+var TAG_RenderAdminLinks = function TAG_RenderAdminLinks() {};
+
+var RenderAdminLinks = (0,es/* observer */.Pi)(function (props) {
+  var store = react.useContext(window.storeContext);
+  var app = store.app; // ...
+  // Render
+  // ==================================================================================================
+  // Section -> Icon
+  // -------------------------------------------------
+
+  var sectionIcon = /*#__PURE__*/react.createElement(Icon_Icon, {
+    name: "link"
+  }); // Section -> Title
+  // -------------------------------------------------
+
+  var sectionTitle = "Liens"; // Section -> Content
+  // -------------------------------------------------
+
+  var sectionContent = /*#__PURE__*/react.createElement("div", null, /*#__PURE__*/react.createElement("div", {
+    className: "h-col-small"
+  }, /*#__PURE__*/react.createElement(Typography_Typography, null, "Playground"), /*#__PURE__*/react.createElement(Link_Link, {
+    href: "/playground",
+    className: "flex-2"
+  }, "/playground"))); // -------------------------------------------------
+
+  return /*#__PURE__*/react.createElement(Section_Section, {
+    icon: sectionIcon,
+    title: sectionTitle
+  }, sectionContent);
+}); // ***** RenderAdmin *****
+// ***********************
+
+var TAG_RenderAdmin = function TAG_RenderAdmin() {};
+
+var RenderAdmin = (0,es/* observer */.Pi)(function (props) {
+  var store = react.useContext(window.storeContext);
+  var app = store.app; // ...
+  // Render
+  // ==================================================================================================
+
+  return /*#__PURE__*/react.createElement(react.Fragment, null, /*#__PURE__*/react.createElement(RenderAdminAuth, null), /*#__PURE__*/react.createElement(RenderAdminLinks, null));
+}); // ***** AdminHeaderLeft *****
+// ***************************
+
+var TAG_AdminHeaderLeft = function TAG_AdminHeaderLeft() {};
+
+var AdminHeaderLeft = (0,es/* observer */.Pi)(function (props) {
+  var store = react.useContext(window.storeContext);
+  var app = store.app; // From ... store
+
+  var appKind = app.kind; // ...
+
+  var adminTitle = appKind == 'electron' ? "Configuration" : "Administration"; // Render
+  // ==================================================================================================
+
+  return /*#__PURE__*/react.createElement(HeaderTitle, {
+    title: adminTitle,
+    titleStyle: {
+      marginLeft: '10px'
+    }
+  });
+}); // ***** AdminHeaderRight *****
+// ****************************
+
+var TAG_AdminHeaderRight = function TAG_AdminHeaderRight() {};
+
+var AdminHeaderRight = (0,es/* observer */.Pi)(function (props) {
+  // const store = React.useContext(window.storeContext);
+  // const app = store.app;
+  // ...
+  // Render
+  // ==================================================================================================
+  return null;
+}); // ***** AdminMenuItem *****
+// *************************
+
+var TAG_AdminMenuItem = function TAG_AdminMenuItem() {};
+
+var AdminMenuItem = (0,es/* observer */.Pi)(function (props) {
+  var store = react.useContext(window.storeContext);
+  var app = store.app;
+  var account = app.account; // From ... store
+
+  var appKind = app.kind;
+  var isAdmin = account.is_admin;
+  var adminContext = app.adminContext; // ...
+
+  var adminTitle = appKind == 'electron' ? "Configuration" : "Administration"; // Events
+  // ==================================================================================================
+
+  var handleMenuItemClick = function handleMenuItemClick() {
+    app.navigateTo(adminContext);
+    app.menu.close();
+  }; // Render
+  // ==================================================================================================
+
+
+  var adminMenuItemContent = null;
+
+  if (isAdmin || appKind == 'electron') {
+    adminMenuItemContent = /*#__PURE__*/react.createElement(MenuItem, {
+      icon: /*#__PURE__*/react.createElement(Icon_Icon, {
+        name: "setting"
+      }),
+      label: adminTitle,
+      activeContexts: [adminContext],
+      callbackClick: handleMenuItemClick
+    });
+  }
+
+  return adminMenuItemContent;
+}); // ***** AdminPage *****
+// *********************
+
+var TAG_AdminPage = function TAG_AdminPage() {};
+
+var AdminPage = (0,es/* observer */.Pi)(function (props) {
+  var store = react.useContext(window.storeContext);
+  var app = store.app; // From ... store
+
+  var initialized = app.initialized; // ...
+
+  var showHelper = !initialized ? true : false; // Renderers
+  // ==================================================================================================
+
+  var renderPage = function renderPage() {
+    // Render :: Page
+    // ---
+    var pageContent = null;
+
+    if (initialized) {
+      pageContent = /*#__PURE__*/react.createElement(RenderAdmin, null);
+    }
+
+    return pageContent;
+  };
+
+  var renderHelper = function renderHelper() {
+    // Render :: Helper
+    // ---
+    return /*#__PURE__*/react.createElement(Helper_Helper, {
+      iconName: "setting",
+      show: showHelper
+    });
   };
 
   return /*#__PURE__*/react.createElement("div", {
@@ -4728,6 +5542,14 @@ var AccountStore = mobx_state_tree_module/* types.model */.V5.model({
 }).views(function (self) {
   return {
     get name() {
+      var store = (0,mobx_state_tree_module/* getRoot */.yj)(self);
+      var app = store.app;
+      var appKind = app.kind;
+
+      if (appKind == 'electron') {
+        return '';
+      }
+
       var name = '';
 
       if (self.doc_id) {
@@ -4847,7 +5669,7 @@ var AccountMenuItem = (0,es/* observer */.Pi)(function (props) {
 
   var isLogged = account.isLogged;
   var breakPoint650 = app.breakPoint650;
-  var accountContext = app.accountContext; // Evènements
+  var accountContext = app.accountContext; // Events
   // ==================================================================================================
 
   var handleMenuItemClick = function handleMenuItemClick() {
@@ -4963,7 +5785,7 @@ var NotificationsMenuItem = (0,es/* observer */.Pi)(function (props) {
   var app = store.app;
   var menu = app.menu; // ...
 
-  var notificationsContext = app.notificationsContext; // Evènements
+  var notificationsContext = app.notificationsContext; // Events
   // ==================================================================================================
 
   var handleMenuItemClick = function handleMenuItemClick() {
@@ -5074,7 +5896,7 @@ var BlogMenuItem = (0,es/* observer */.Pi)(function (props) {
   var app = store.app;
   var menu = app.menu; // ...
 
-  var blogContext = app.blogContext; // Evènements
+  var blogContext = app.blogContext; // Events
   // ==================================================================================================
 
   var handleMenuItemClick = function handleMenuItemClick() {
@@ -5185,7 +6007,7 @@ var ChangelogsMenuItem = (0,es/* observer */.Pi)(function (props) {
   var app = store.app;
   var menu = app.menu; // ...
 
-  var changelogsContext = app.changelogsContext; // Evènements
+  var changelogsContext = app.changelogsContext; // Events
   // ==================================================================================================
 
   var handleMenuItemClick = function handleMenuItemClick() {
@@ -5296,7 +6118,7 @@ var BugsMenuItem = (0,es/* observer */.Pi)(function (props) {
   var app = store.app;
   var menu = app.menu; // ...
 
-  var bugsContext = app.bugsContext; // Evènements
+  var bugsContext = app.bugsContext; // Events
   // ==================================================================================================
 
   var handleMenuItemClick = function handleMenuItemClick() {
@@ -5555,7 +6377,7 @@ var TAG_ListItem = function TAG_ListItem() {};
 var ListItem = function ListItem(props) {
   // From ... props
   var disabled = props.disabled == true ? true : false;
-  var onClick = props.onClick; // Evènements
+  var onClick = props.onClick; // Events
   // ==================================================================================================
 
   var handleClick = function handleClick(evt) {
@@ -5727,7 +6549,7 @@ var HeaderUserMenu = (0,es/* observer */.Pi)(function (props) {
   var accountUrl = app.accountUrl;
   var accountContext = app.accountContext; // ...
 
-  var accountName = account.name; // Evènements
+  var accountName = account.name; // Events
   // ==================================================================================================
 
   var handleAccount = function handleAccount(event) {
@@ -5907,20 +6729,15 @@ var Header_Header = (0,es/* observer */.Pi)(function (props) {
   // ==================================================================================================
 
 
-  var menuBtn = null;
-
-  if (!breakPoint650 && appKind == 'web') {
-    menuBtn = /*#__PURE__*/react.createElement(IconButton, {
-      onClick: function onClick() {
-        return handleMenuClick();
-      },
-      disabled: isLoading
-    }, /*#__PURE__*/react.createElement(Icon_Icon, {
-      name: "menu",
-      color: "white"
-    }));
-  }
-
+  var menuBtn = /*#__PURE__*/react.createElement(IconButton, {
+    onClick: function onClick() {
+      return handleMenuClick();
+    },
+    disabled: isLoading
+  }, /*#__PURE__*/react.createElement(Icon_Icon, {
+    name: "menu",
+    color: "white"
+  }));
   var backBtn = null;
 
   if (!isLoading) {
@@ -5949,7 +6766,7 @@ var Header_Header = (0,es/* observer */.Pi)(function (props) {
 
   var homeBtn = null;
 
-  if (!breakPoint650 && appKind == 'web') {
+  if (!breakPoint650) {
     homeBtn = /*#__PURE__*/react.createElement(IconButton, {
       onClick: function onClick() {
         return handleHomeClick();
@@ -5965,7 +6782,7 @@ var Header_Header = (0,es/* observer */.Pi)(function (props) {
 
   var headerLeft = /*#__PURE__*/react.createElement("div", {
     className: "nx-header-left"
-  }, menuBtn, backBtn, spinner, homeBtn, left && left); // Header -> Middle
+  }, !breakPoint650 && menuBtn, backBtn, spinner, homeBtn, left && left); // Header -> Middle
   // -------------------------------------------------
 
   var headerMiddle = /*#__PURE__*/react.createElement("div", {
@@ -5973,33 +6790,43 @@ var Header_Header = (0,es/* observer */.Pi)(function (props) {
   }, children); // Header -> Right
   // -------------------------------------------------
 
+  var btnBugs = null;
+
+  if (!breakPoint650 && appKind == 'web') {
+    btnBugs = /*#__PURE__*/react.createElement(IconButton, {
+      onClick: function onClick() {
+        return handleBugReportClick();
+      },
+      disabled: isLoading || true
+    }, /*#__PURE__*/react.createElement(Icon_Icon, {
+      name: "bug_report",
+      color: "white"
+    }));
+  }
+
+  var headerMenu = null;
+
+  if (!breakPoint650 && appKind == 'web') {
+    headerMenu = /*#__PURE__*/react.createElement(HeaderUserMenu, null);
+  }
+
+  var portalBtn = null;
+
+  if (!breakPoint650 && appKind == 'web') {
+    portalBtn = /*#__PURE__*/react.createElement(IconButton, {
+      onClick: function onClick() {
+        return handlePortalClick();
+      },
+      disabled: isLoading
+    }, /*#__PURE__*/react.createElement(Icon_Icon, {
+      name: "apps",
+      color: "white"
+    }));
+  }
+
   var headerRight = /*#__PURE__*/react.createElement("div", {
     className: "nx-header-right"
-  }, right && right, !breakPoint650 && /*#__PURE__*/react.createElement(IconButton, {
-    onClick: function onClick() {
-      return handleBugReportClick();
-    },
-    disabled: isLoading || true
-  }, /*#__PURE__*/react.createElement(Icon_Icon, {
-    name: "bug_report",
-    color: "white"
-  })), /*#__PURE__*/react.createElement(HeaderUserMenu, null), !breakPoint650 && /*#__PURE__*/react.createElement(IconButton, {
-    onClick: function onClick() {
-      return handlePortalClick();
-    },
-    disabled: isLoading
-  }, /*#__PURE__*/react.createElement(Icon_Icon, {
-    name: "apps",
-    color: "white"
-  })), breakPoint650 && /*#__PURE__*/react.createElement(IconButton, {
-    onClick: function onClick() {
-      return handleMenuClick();
-    },
-    disabled: isLoading
-  }, /*#__PURE__*/react.createElement(Icon_Icon, {
-    name: "menu",
-    color: "white"
-  }))); // -------------------------------------------------
+  }, right && right, btnBugs, headerMenu, portalBtn, breakPoint650 && menuBtn); // -------------------------------------------------
 
   return /*#__PURE__*/react.createElement("div", {
     className: (0,clsx_m/* default */.Z)("nx-header", {
@@ -6014,6 +6841,8 @@ var Header_Header = (0,es/* observer */.Pi)(function (props) {
       color: theme.palette.primary.contrastText
     }
   }, /*#__PURE__*/react.createElement("div", {
+    className: "nx-header-grooves"
+  }), /*#__PURE__*/react.createElement("div", {
     className: "nx-header-toolbar"
   }, headerLeft, headerMiddle, headerRight));
 });
@@ -6149,7 +6978,7 @@ var Snackbar_Snackbar = (0,es/* observer */.Pi)(function (props) {
     }
   }, [open]); // ...
 
-  var style = {}; // Evènements
+  var style = {}; // Events
   // ==================================================================================================
 
   var handleCloseClick = function handleCloseClick() {
@@ -6608,7 +7437,7 @@ var RightItem_RightItem = (0,es/* observer */.Pi)(function (props) {
   var roles = serviceInfo.roles;
   var externalUrl = serviceInfo.external;
   var iconUrl = "".concat(externalUrl, "/static/favicons/android-icon-48x48.png");
-  var name = serviceInfo.name; // Evènements
+  var name = serviceInfo.name; // Events
   // ==================================================================================================
 
   var handleRight = function handleRight(savePath, value) {
@@ -6939,7 +7768,7 @@ var UserHeaderRight = (0,es/* observer */.Pi)(function (props) {
   var docId = user.doc_id;
   var docRev = user.doc_rev;
   var docState = user.doc_state; // ...
-  // Evènements
+  // Events
   // ==================================================================================================
 
   var handleSaveClick = function handleSaveClick() {
@@ -7013,7 +7842,7 @@ var UserMenuItem = (0,es/* observer */.Pi)(function (props) {
 
   var isAdmin = account.is_admin; // ...
 
-  var userContext = 'user'; // Evènements
+  var userContext = 'user'; // Events
   // ==================================================================================================
 
   var handleMenuItemClick = function handleMenuItemClick() {
@@ -7365,7 +8194,7 @@ var LogoutMenuItem = (0,es/* observer */.Pi)(function (props) {
   var account = app.account; // From ... store
 
   var isLogged = account.isLogged;
-  var breakPoint650 = app.breakPoint650; // Evènements
+  var breakPoint650 = app.breakPoint650; // Events
   // ==================================================================================================
 
   var handleMenuItemClick = function handleMenuItemClick() {
@@ -7398,7 +8227,7 @@ var RenderStepLogin = (0,es/* observer */.Pi)(function (props) {
   var auth = app.auth;
   var account = app.account; // From ... store
 
-  var isLoading = app.isLoading; // Evènements
+  var isLoading = app.isLoading; // Events
   // ==================================================================================================
 
   var _moveIt = function _moveIt() {
@@ -7479,7 +8308,7 @@ var RenderStepPassword = (0,es/* observer */.Pi)(function (props) {
   var canGoBack = app.canGoBack();
   var homeContext = app.homeContext;
   var homeUrl = app.homeUrl;
-  var login = auth.login; // Evènements
+  var login = auth.login; // Events
   // ==================================================================================================
 
   var _moveIt = function _moveIt() {
@@ -7611,7 +8440,7 @@ var RenderStepLogged = (0,es/* observer */.Pi)(function (props) {
         app.gotoInternal(cameFrom);
       }
     }, 1000);
-  }); // Evènements
+  }); // Events
   // ==================================================================================================
 
   var handleRedirectClick = function handleRedirectClick() {
@@ -7960,6 +8789,10 @@ var NxAppStore = mobx_state_tree_module/* types.model */.V5.model({
       return self.services.me;
     },
 
+    get appKey() {
+      return self.me.app_key;
+    },
+
     get appId() {
       return self.me.app_id;
     },
@@ -8129,8 +8962,11 @@ var NxAppStore = mobx_state_tree_module/* types.model */.V5.model({
     update: function update(raw, callback) {
       self.history = []; // User logged
 
-      self.account.update(raw.user);
-      self.auth.setField('step', self.account.isLogged ? 'logged' : 'login'); // Edit mode ?
+      if (raw) {
+        self.account.update(raw.user);
+        self.auth.setField('step', self.account.isLogged ? 'logged' : 'login');
+      } // Edit mode ?
+
 
       var editMode = getFromStorage('editMode', false, 'bool');
 
@@ -8152,7 +8988,10 @@ var NxAppStore = mobx_state_tree_module/* types.model */.V5.model({
       self.initialized = true;
       self.editMode = editMode;
       self.debugMode = debugMode;
-      self.services.update(raw.smap);
+
+      if (raw) {
+        self.services.update(raw.smap);
+      }
 
       if (callback) {
         callback(raw);
@@ -8186,7 +9025,7 @@ var NxAppStore = mobx_state_tree_module/* types.model */.V5.model({
             console.error("Fetch failed for ".concat(url), ex); // self.snackbar.update(true, "Une erreur est survenue.", "error");
           });
         } else {
-          callback();
+          self.update(null, callback);
         }
       } // Responsiveness -> watching the window's size
 
@@ -8299,6 +9138,7 @@ var NxAppStore = mobx_state_tree_module/* types.model */.V5.model({
       // ---
       var store = (0,mobx_state_tree_module/* getRoot */.yj)(self);
       var isMobile = self.isMobile;
+      var appKind = self.kind;
       newContext = newContext ? newContext : 'home';
       ignoreHistory = newContext == 'home' ? true : ignoreHistory;
       clearHistory = newContext == 'home' ? true : clearHistory;
@@ -8329,7 +9169,10 @@ var NxAppStore = mobx_state_tree_module/* types.model */.V5.model({
       } // MAJ de l'URL du navigateur
 
 
-      self.setBrowserURL(destination); // Changement de contexte (all the magic of one paged apps appens here!)
+      if (appKind == 'web') {
+        self.setBrowserURL(destination);
+      } // Changement de contexte (all the magic of one paged apps appens here!)
+
 
       if (ignoreContext == false && newContext != currentContext) {
         setToStorage('previousContext', self.context);
@@ -8489,7 +9332,10 @@ var NxAppStore = mobx_state_tree_module/* types.model */.V5.model({
         var playgroundJsonPatches = [];
 
         if (contextExtras.hasOwnProperty('pageKey')) {
-          playgroundUrl = "".concat(playgroundUrl, "/").concat(contextExtras.pageKey);
+          if (contextExtras.pageKey) {
+            playgroundUrl = "".concat(playgroundUrl, "/").concat(contextExtras.pageKey);
+          }
+
           playgroundJsonPatches.push({
             "op": "replace",
             "path": "/app/playground/currentPageKey",
@@ -8843,7 +9689,11 @@ var makeInitSnapshot = function makeInitSnapshot(routes, snapshot, callback) {
   routeNodes.add(new route_node_esm/* RouteNode */.k('auth:step', '/login/:step'));
   routeNodes.add(new route_node_esm/* RouteNode */.k('forbidden', '/forbidden'));
   routeNodes.add(new route_node_esm/* RouteNode */.k('portal', '/portal'));
-  routeNodes.add(new route_node_esm/* RouteNode */.k('home', '/'));
+
+  if (!routes.hasOwnProperty('home')) {
+    routeNodes.add(new route_node_esm/* RouteNode */.k('home', '/'));
+  }
+
   routeNodes.add(new route_node_esm/* RouteNode */.k('search', '/search'));
   routeNodes.add(new route_node_esm/* RouteNode */.k('notifications', '/notifications'));
   routeNodes.add(new route_node_esm/* RouteNode */.k('blog', '/blog'));
@@ -8857,6 +9707,7 @@ var makeInitSnapshot = function makeInitSnapshot(routes, snapshot, callback) {
   }
 
   routeNodes.add(new route_node_esm/* RouteNode */.k('playground', '/playground'));
+  routeNodes.add(new route_node_esm/* RouteNode */.k('playground:playgroundKey', '/playground/:playgroundKey'));
   routeNodes.add(new route_node_esm/* RouteNode */.k('account', '/account'));
   routeNodes.add(new route_node_esm/* RouteNode */.k('infos', '/infos'));
 
@@ -8904,7 +9755,7 @@ var makeInitSnapshot = function makeInitSnapshot(routes, snapshot, callback) {
     snapshot['app']['theme'] = {};
   }
 
-  snapshot['app']['theme']['variant'] = getFromStorage('nxTheme', snapshot['app']['theme'].hasOwnProperty('variant') ? snapshot.app.theme.variant : 'light'); // Drawer
+  snapshot['app']['theme']['variant'] = getFromStorage('nxTheme', snapshot['app']['theme'].hasOwnProperty('variant') ? snapshot.app.theme.variant : 'light'); // Menu
   // -
 
   if (!snapshot['app'].hasOwnProperty('menu')) {
@@ -8915,7 +9766,7 @@ var makeInitSnapshot = function makeInitSnapshot(routes, snapshot, callback) {
   }
 
   snapshot['app']['menu']['expanded'] = getFromStorage('menuExpanded', snapshot.app.menu.expanded, 'bool');
-  snapshot['app']['menu']['pinned'] = getFromStorage('menuPinned', snapshot.app.menu.pinned, 'bool'); // Apps
+  snapshot['app']['menu']['pinned'] = getFromStorage('menuPinned', snapshot.app.menu.pinned, 'bool'); // Portal
   // -
 
   if (!snapshot['app'].hasOwnProperty('portal')) {
@@ -8927,8 +9778,14 @@ var makeInitSnapshot = function makeInitSnapshot(routes, snapshot, callback) {
   }
 
   snapshot['app']['portal']['expanded'] = getFromStorage('portalExpanded', snapshot.app.portal.expanded, 'bool');
-  snapshot['app']['portal']['pinned'] = getFromStorage('portalPinned', snapshot.app.portal.pinned, 'bool'); // URL params
+  snapshot['app']['portal']['pinned'] = getFromStorage('portalPinned', snapshot.app.portal.pinned, 'bool'); // Playground
   // -
+
+  if (!snapshot['app'].hasOwnProperty('playground')) {
+    snapshot['app']['playground'] = {};
+  } // URL params
+  // -
+
 
   if (matchResult && matchResult.hasOwnProperty('params')) {
     for (var _i3 = 0, _Object$entries3 = Object.entries(matchResult.params); _i3 < _Object$entries3.length; _i3++) {
@@ -8937,6 +9794,10 @@ var makeInitSnapshot = function makeInitSnapshot(routes, snapshot, callback) {
           urlParamValue = _Object$entries3$_i[1];
 
       snapshot[urlParamKey] = urlParamValue;
+
+      if (urlParamKey == 'playgroundKey') {
+        snapshot['app']['playground']['currentPageKey'] = urlParamValue;
+      }
     }
   }
 
@@ -8993,7 +9854,7 @@ var ErrorBoundary = /*#__PURE__*/function (_React$Component) {
         }, /*#__PURE__*/react.createElement(Helper_Helper, {
           icon: /*#__PURE__*/react.createElement("img", {
             className: "nx-helper-icon",
-            src: "/nexus_static/img/emojis/jelly_eyes_closed.png"
+            src: "".concat(window.store.app.staticUrl, "/img/emojis/jelly_eyes_closed.png")
           }),
           title: "!",
           subtitle: "Une erreur est survenue.",
@@ -9059,6 +9920,7 @@ var NxApp_NxApp = (0,es/* observer */.Pi)(function (props) {
   var contexts = props.contexts ? props.contexts : {};
   var popups = props.popups ? props.popups : {}; // From ... store
 
+  var appKey = app.appKey;
   var context = app.context;
   var isLoading = app.isLoading;
   var isFullScreen = app.isFullScreen;
@@ -9069,7 +9931,8 @@ var NxApp_NxApp = (0,es/* observer */.Pi)(function (props) {
   var breakPoint375 = app.breakPoint375;
   var breakPoint320 = app.breakPoint320;
   var menuPinned = menu.pinned;
-  var theme = app.theme; // ...
+  var theme = app.theme;
+  var appKind = app.kind; // ...
 
   contexts['auth'] = AuthPage;
   contexts['forbidden'] = ForbiddenPage;
@@ -9126,7 +9989,7 @@ var NxApp_NxApp = (0,es/* observer */.Pi)(function (props) {
 
   return /*#__PURE__*/react.createElement(ErrorBoundary, null, /*#__PURE__*/react.createElement("div", {
     id: "nx-base",
-    className: (0,clsx_m/* default */.Z)(context, mobileClass, desktopClass, {
+    className: (0,clsx_m/* default */.Z)(appKey, context, mobileClass, desktopClass, appKind, {
       'break-650': breakPoint650
     }, {
       'break-414': breakPoint414
@@ -9187,7 +10050,7 @@ var HomeMenuItem = (0,es/* observer */.Pi)(function (props) {
   var menu = app.menu; // From ... store
 
   var breakPoint650 = app.breakPoint650;
-  var homeContext = app.homeContext; // Evènements
+  var homeContext = app.homeContext; // Events
   // ==================================================================================================
 
   var handleMenuItemClick = function handleMenuItemClick() {
@@ -9353,7 +10216,7 @@ var SearchMenuItem = (0,es/* observer */.Pi)(function (props) {
   var store = react.useContext(window.storeContext);
   var app = store.app; // From ... store
 
-  var searchContext = app.searchContext; // Evènements
+  var searchContext = app.searchContext; // Events
   // ==================================================================================================
 
   var handleMenuItemClick = function handleMenuItemClick() {
@@ -9429,7 +10292,7 @@ var ProjectCard_ProjectCard = function ProjectCard(props) {
 
   var appId = serviceInfo.app_id;
   var name = serviceInfo.name;
-  var description = serviceInfo.description; // Evènements
+  var description = serviceInfo.description; // Events
   // ==================================================================================================
 
   var handleClick = function handleClick() {
@@ -9563,7 +10426,7 @@ var ProjectsMenuItem = (0,es/* observer */.Pi)(function (props) {
   var app = store.app;
   var menu = app.menu; // ...
 
-  var projectsContext = 'projects'; // Evènements
+  var projectsContext = 'projects'; // Events
   // ==================================================================================================
 
   var handleMenuItemClick = function handleMenuItemClick() {
@@ -9748,7 +10611,7 @@ var CvMenuItem = (0,es/* observer */.Pi)(function (props) {
   var app = store.app;
   var menu = app.menu; // ...
 
-  var cvContext = 'cv'; // Evènements
+  var cvContext = 'cv'; // Events
   // ==================================================================================================
 
   var handleMenuItemClick = function handleMenuItemClick() {
@@ -9859,7 +10722,7 @@ var DocsMenuItem = (0,es/* observer */.Pi)(function (props) {
   var app = store.app;
   var menu = app.menu; // ...
 
-  var docsContext = 'docs'; // Evènements
+  var docsContext = 'docs'; // Events
   // ==================================================================================================
 
   var handleMenuItemClick = function handleMenuItemClick() {
@@ -9983,7 +10846,10 @@ var ContextualHeader = (0,es/* observer */.Pi)(function (props) {
   renderHeaderDocs();
   return /*#__PURE__*/react.createElement(Header_Header, {
     left: headerLeft,
-    right: headerRight
+    right: headerRight,
+    style: {
+      backgroundColor: '#43a047'
+    }
   }, headerMiddle);
 });
 ;// CONCATENATED MODULE: ./ui/ContextualMenu.jsx
@@ -10124,7 +10990,7 @@ var RenderHomeGrid = (0,es/* observer */.Pi)(function (props) {
     }
   }, /*#__PURE__*/react.createElement(Heading_Heading, null, "Mais quels sont ces projets ?"), /*#__PURE__*/react.createElement(Row_Row, {
     responsive: false
-  }, navCardProjects), /*#__PURE__*/react.createElement("br", null), /*#__PURE__*/react.createElement(Heading_Heading, null, "Vous souhaitez en apprendre plus sur moi ?"), /*#__PURE__*/react.createElement(Row_Row, {
+  }, navCardProjects), /*#__PURE__*/react.createElement("br", null), /*#__PURE__*/react.createElement(Heading_Heading, null, "En apprendre plus sur moi"), /*#__PURE__*/react.createElement(Row_Row, {
     responsive: false
   }, navCardCv), /*#__PURE__*/react.createElement("br", null), /*#__PURE__*/react.createElement(Heading_Heading, null, "De quoi est fait ce site ?"), /*#__PURE__*/react.createElement(Row_Row, {
     responsive: false
@@ -10568,6 +11434,97 @@ window.addEventListener('DOMContentLoaded', function () {
 
 /***/ }),
 
+/***/ 89:
+/***/ (() => {
+
+// extracted by extract-css-chunks-webpack-plugin
+
+/***/ }),
+
+/***/ 9455:
+/***/ (() => {
+
+// extracted by extract-css-chunks-webpack-plugin
+
+/***/ }),
+
+/***/ 1211:
+/***/ (() => {
+
+// extracted by extract-css-chunks-webpack-plugin
+
+/***/ }),
+
+/***/ 3997:
+/***/ (() => {
+
+// extracted by extract-css-chunks-webpack-plugin
+
+/***/ }),
+
+/***/ 3935:
+/***/ (() => {
+
+// extracted by extract-css-chunks-webpack-plugin
+
+/***/ }),
+
+/***/ 3818:
+/***/ (() => {
+
+// extracted by extract-css-chunks-webpack-plugin
+
+/***/ }),
+
+/***/ 26:
+/***/ (() => {
+
+// extracted by extract-css-chunks-webpack-plugin
+
+/***/ }),
+
+/***/ 9913:
+/***/ (() => {
+
+// extracted by extract-css-chunks-webpack-plugin
+
+/***/ }),
+
+/***/ 6222:
+/***/ (() => {
+
+// extracted by extract-css-chunks-webpack-plugin
+
+/***/ }),
+
+/***/ 6431:
+/***/ (() => {
+
+// extracted by extract-css-chunks-webpack-plugin
+
+/***/ }),
+
+/***/ 7521:
+/***/ (() => {
+
+// extracted by extract-css-chunks-webpack-plugin
+
+/***/ }),
+
+/***/ 951:
+/***/ (() => {
+
+// extracted by extract-css-chunks-webpack-plugin
+
+/***/ }),
+
+/***/ 2761:
+/***/ (() => {
+
+// extracted by extract-css-chunks-webpack-plugin
+
+/***/ }),
+
 /***/ 1999:
 /***/ (() => {
 
@@ -10730,6 +11687,13 @@ window.addEventListener('DOMContentLoaded', function () {
 /***/ }),
 
 /***/ 7677:
+/***/ (() => {
+
+// extracted by extract-css-chunks-webpack-plugin
+
+/***/ }),
+
+/***/ 1796:
 /***/ (() => {
 
 // extracted by extract-css-chunks-webpack-plugin
@@ -10907,7 +11871,7 @@ window.addEventListener('DOMContentLoaded', function () {
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module depends on other loaded chunks and execution need to be delayed
 /******/ 	__webpack_require__.O(undefined, [216], () => (__webpack_require__(3979)))
-/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, [216], () => (__webpack_require__(478)))
+/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, [216], () => (__webpack_require__(4568)))
 /******/ 	__webpack_exports__ = __webpack_require__.O(__webpack_exports__);
 /******/ 	
 /******/ })()

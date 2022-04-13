@@ -138,7 +138,7 @@ export const ProjectsMenuItem = observer((props) => {
 
 	const projectsContext = 'projects';
 
-	// Evènements
+	// Events
 	// ==================================================================================================
 
 	const handleMenuItemClick = () => {

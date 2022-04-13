@@ -103,6 +103,9 @@ export const ContextualHeader = observer((props) => {
 		<Header
 			left={headerLeft}
 			right={headerRight}
+			style={{
+				backgroundColor: '#43a047',
+			}}
 		>
 			{headerMiddle}
 		</Header>

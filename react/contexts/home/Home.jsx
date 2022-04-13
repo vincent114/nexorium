@@ -95,7 +95,7 @@ export const RenderHomeGrid = observer((props) => {
 			<br/>
 
 			<Heading>
-				Vous souhaitez en apprendre plus sur moi ?
+				En apprendre plus sur moi
 			</Heading>
 			<Row responsive={false}>
 				{navCardCv}

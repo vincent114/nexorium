@@ -95,7 +95,7 @@ export const CvMenuItem = observer((props) => {
 
 	const cvContext = 'cv';
 
-	// Evènements
+	// Events
 	// ==================================================================================================
 
 	const handleMenuItemClick = () => {

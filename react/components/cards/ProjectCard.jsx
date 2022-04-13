@@ -32,7 +32,7 @@ export const ProjectCard = (props) => {
 	const name = serviceInfo.name;
 	const description = serviceInfo.description;
 
-	// Evènements
+	// Events
 	// ==================================================================================================
 
 	const handleClick = () => {

@@ -95,7 +95,7 @@ export const DocsMenuItem = observer((props) => {
 
 	const docsContext = 'docs';
 
-	// Evènements
+	// Events
 	// ==================================================================================================
 
 	const handleMenuItemClick = () => {
