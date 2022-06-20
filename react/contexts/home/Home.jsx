@@ -122,6 +122,11 @@ export const HomePage = observer((props) => {
 
 	const store = React.useContext(window.storeContext);
 	const app = store.app;
+	const theme = app.theme;
+
+	// From ... store
+
+	const themeMode = theme.mode;
 
 	// Renderers
 	// ==================================================================================================
@@ -138,7 +143,13 @@ export const HomePage = observer((props) => {
 				title="Bienvenue !"
 				subtitle={(
 					<div>
-						Je m'appelle <b>Vincent Boni</b> et ceci est le portail d'accès vers tous mes projets 🙂<br/>
+						<span
+							style={{
+								color: (themeMode == 'light') ? 'black' : 'white',
+							}}
+						>
+							Je m'appelle <b>Vincent Boni</b> et ceci est le portail d'accès vers tous mes projets 🙂
+						</span><br/>
 						<i style={{
 							marginTop: '5px',
 							display: 'block',

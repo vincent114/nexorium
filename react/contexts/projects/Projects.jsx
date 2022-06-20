@@ -6,7 +6,6 @@ import clsx from 'clsx';
 import { ProjectCard } from 'nexorium/components/cards/ProjectCard';
 
 import { Helper } from 'nexus/ui/helper/Helper';
-import { Icon } from 'nexus/ui/icon/Icon';
 
 import { HeaderTitle } from 'nexus/layout/header/Header';
 import { MenuItem } from 'nexus/layout/menu/Menu';
@@ -151,7 +150,7 @@ export const ProjectsMenuItem = observer((props) => {
 
 	return (
 		<MenuItem
-			icon={<Icon name="work_outline" width="120px" />}
+			iconName="work_outline"
 			label="Mes projets"
 			activeContexts={[projectsContext]}
 			callbackClick={handleMenuItemClick}

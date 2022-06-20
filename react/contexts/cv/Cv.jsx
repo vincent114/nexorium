@@ -6,7 +6,6 @@ import clsx from 'clsx';
 import { Helper } from 'nexus/ui/helper/Helper';
 import { HeaderTitle } from 'nexus/layout/header/Header';
 import { MenuItem } from 'nexus/layout/menu/Menu';
-import { Icon } from 'nexus/ui/icon/Icon';
 
 import './Cv.css';
 
@@ -108,7 +107,7 @@ export const CvMenuItem = observer((props) => {
 
 	return (
 		<MenuItem
-			icon={<Icon name="school" width="120px" />}
+			iconName="school"
 			label="Mon CV"
 			activeContexts={[cvContext]}
 			callbackClick={handleMenuItemClick}
