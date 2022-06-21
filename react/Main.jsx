@@ -82,7 +82,7 @@ const RootStore = types
 			// Nexorium-specific init datas
 			// ---
 
-			console.log(datas);
+			self.app.setField('initialized', true);
 		},
 
 		navigateTo: (navContext, contextId, contextUrl, contextExtras, callback) => {
@@ -148,6 +148,8 @@ let popups = {}
 // -
 
 let routes = {
+	'home': '/main.html',
+
 	'projects': '/projects',
 	'cv': '/cv',
 
@@ -159,6 +161,7 @@ let routes = {
 
 let initSnapshot = makeInitSnapshot(routes, {
 	'app': {
+		'staticMode': true,
 		'theme': {
 			'palette_light': {
 				'primary': {
