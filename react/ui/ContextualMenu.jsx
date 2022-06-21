@@ -13,6 +13,7 @@ import { HomeMenuItem } from 'nexus/contexts/home/Home';
 import { SearchMenuItem } from 'nexus/contexts/search/Search';
 import { NewslettersMenuItem } from 'nexus/contexts/newsletters/Newsletters';
 import { AboutMenuItem } from 'nexus/contexts/about/About';
+import { PreferencesMenuItem } from 'nexus/contexts/preferences/Preferences';
 import { AdminMenuItem } from 'nexus/contexts/admin/Admin';
 import { PlaygroundMenuItem } from 'nexus/contexts/playground/Playground';
 import {
@@ -72,6 +73,7 @@ export const NexoriumMenuItems = observer((props) => {
 			<MenuDivider />
 
 			<AboutMenuItem />
+			<PreferencesMenuItem />
 			<AdminMenuItem />
 
 			{breakPoint650 && <MenuDivider />}
