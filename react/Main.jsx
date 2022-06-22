@@ -6,6 +6,9 @@ import { observer } from "mobx-react-lite";
 import { NxAppStore, NxApp, makeInitSnapshot } from 'nexus/NxApp';
 import { NewslettersStore, NewslettersPage } from 'nexus/contexts/newsletters/Newsletters';
 
+import { STATIC_SMAP } from 'nexus/models/services';
+import { copyObj } from 'nexus/utils/Datas';
+
 import { ContextualHeader } from 'nexorium/ui/ContextualHeader';
 import { ContextualMenu } from 'nexorium/ui/ContextualMenu';
 import { HomePage } from 'nexorium/contexts/home/Home';
@@ -148,7 +151,8 @@ let popups = {}
 // -
 
 let routes = {
-	'home': '/main.html',
+	'home': '/',
+	'home:static': '/main.html',
 
 	'projects': '/projects',
 	'cv': '/cv',
@@ -189,12 +193,18 @@ export const RootStoreContext = React.createContext(rootStore);
 window.store = rootStore;
 window.storeContext = RootStoreContext;
 
+let staticRaw = {
+	'smap': copyObj(STATIC_SMAP),
+}
+staticRaw['smap']['me'] = copyObj(STATIC_SMAP['nexorium']);
+
 rootStore.app.init(
 	(datas) => {
 		rootStore.update(datas);
 	},
 	popups,
-	{}
+	{},
+	staticRaw,
 );
 
 

@@ -41,7 +41,7 @@ const PROJECTS_METAS = {
 		'completion': 15,
 	},
 
-	// Collections
+	// Applications
 	// -
 
 	'gramophone_server': {
@@ -225,7 +225,7 @@ export const RenderProjects = observer((props) => {
 				'nexorium',
 				'nexora',
 			])}
-			{renderProjectsCards("Collections", [
+			{renderProjectsCards("Applications", [
 				'gramophone',
 				'vgm',
 			])}

@@ -25,6 +25,10 @@ export const RenderHomeGrid = observer((props) => {
 	const store = React.useContext(window.storeContext);
 	const app = store.app;
 
+	// From ... store
+
+	const staticMode = app.staticMode;
+
 	// Renderers
 	// ==================================================================================================
 
@@ -86,20 +90,24 @@ export const RenderHomeGrid = observer((props) => {
 		>
 
 			<Heading>
-				Mais quels sont ces projets ?
-			</Heading>
-			<Row responsive={false}>
-				{navCardProjects}
-			</Row>
-
-			<br/>
-
-			<Heading>
 				En apprendre plus sur moi
 			</Heading>
 			<Row responsive={false}>
 				{navCardCv}
 			</Row>
+
+			{!staticMode && (
+				<React.Fragment>
+					<br/>
+
+					<Heading>
+						Mais quels sont ces projets ?
+					</Heading>
+					<Row responsive={false}>
+						{navCardProjects}
+					</Row>
+				</React.Fragment>
+			)}
 
 			<br/>
 
@@ -148,7 +156,7 @@ export const HomePage = observer((props) => {
 								color: (themeMode == 'light') ? 'black' : 'white',
 							}}
 						>
-							Je m'appelle <b>Vincent Boni</b> et ceci est le portail d'accès vers tous mes projets 🙂
+							Je m'appelle <b>Vincent Boni</b> et ceci est mon portail d'accès / site vitrine 🙂
 						</span><br/>
 						<i style={{
 							marginTop: '5px',
