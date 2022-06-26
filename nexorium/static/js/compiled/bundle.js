@@ -1,7 +1,7 @@
 /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
-/***/ 9743:
+/***/ 8089:
 /***/ ((__unused_webpack_module, __unused_webpack___webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -18,6 +18,10 @@ var mobx_state_tree_module = __webpack_require__(7947);
 var es = __webpack_require__(589);
 // EXTERNAL MODULE: ../../nexus/react/node_modules/regenerator-runtime/runtime.js
 var runtime = __webpack_require__(9354);
+// EXTERNAL MODULE: ../../nexus/react/node_modules/core-js/modules/es.array.includes.js
+var es_array_includes = __webpack_require__(368);
+// EXTERNAL MODULE: ../../nexus/react/node_modules/core-js/modules/es.array.index-of.js
+var es_array_index_of = __webpack_require__(6265);
 // EXTERNAL MODULE: ../../nexus/react/node_modules/core-js/modules/web.timers.js
 var web_timers = __webpack_require__(6213);
 // EXTERNAL MODULE: ../../nexus/react/node_modules/core-js/modules/es.array.splice.js
@@ -28,8 +32,6 @@ var es_array_concat = __webpack_require__(207);
 var es_regexp_exec = __webpack_require__(8717);
 // EXTERNAL MODULE: ../../nexus/react/node_modules/core-js/modules/es.string.split.js
 var es_string_split = __webpack_require__(5876);
-// EXTERNAL MODULE: ../../nexus/react/node_modules/core-js/modules/es.array.index-of.js
-var es_array_index_of = __webpack_require__(6265);
 // EXTERNAL MODULE: ../../nexus/react/node_modules/core-js/modules/es.object.entries.js
 var es_object_entries = __webpack_require__(5830);
 // EXTERNAL MODULE: ../../nexus/react/node_modules/core-js/modules/es.object.to-string.js
@@ -70,6 +72,8 @@ var es_object_define_property = __webpack_require__(3204);
 var route_node_esm = __webpack_require__(6285);
 // EXTERNAL MODULE: ../../nexus/react/node_modules/clsx/dist/clsx.m.js
 var clsx_m = __webpack_require__(4641);
+// EXTERNAL MODULE: ../../nexus/react/node_modules/core-js/modules/es.string.replace.js
+var es_string_replace = __webpack_require__(6813);
 // EXTERNAL MODULE: ../../nexus/react/node_modules/core-js/modules/es.array.map.js
 var es_array_map = __webpack_require__(9162);
 ;// CONCATENATED MODULE: ../../nexus/react/models/Services.jsx
@@ -103,6 +107,8 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
+
+
  // Datas
 // ======================================================================================================
 // VBO : Recopie temporaire de nexus/services.py (pour le mode static)
@@ -117,7 +123,7 @@ var STATIC_SMAP = {
     kind: "webserver",
     port: 7301,
     database: null,
-    version: '0.0.1',
+    version: '0.0.2',
     changeset: '...',
     changeset_instance: '...',
     internal: '/index.html',
@@ -193,7 +199,7 @@ var STATIC_SMAP = {
     kind: "library",
     port: null,
     database: null,
-    version: '0.0.1',
+    version: '0.0.2',
     changeset: '...',
     changeset_instance: '...',
     internal: null,
@@ -240,6 +246,64 @@ var ServiceInfoStore = mobx_state_tree_module/* types.model */.V5.model({
       return self.getIconUrl(192);
     },
 
+    // -
+    get folderName() {
+      var store = (0,mobx_state_tree_module/* getRoot */.yj)(self);
+      var app = store.app;
+      var isProd = app.isProd;
+
+      if (['gramophone', 'vgm'].includes(self.app_key) && !isProd) {
+        return "".concat(self.app_key, "_server");
+      }
+
+      return self.app_key;
+    },
+
+    // -
+    get internalPrefix() {
+      var store = (0,mobx_state_tree_module/* getRoot */.yj)(self);
+      var app = store.app;
+      var appKey = app.appKey;
+      var isProd = app.isProd;
+      var prefix = "";
+
+      if (appKey != self.app_key) {
+        prefix = "../".concat(self.folderName);
+        prefix = "".concat(prefix, "/");
+      }
+
+      return prefix;
+    },
+
+    get externalPrefix() {
+      var store = (0,mobx_state_tree_module/* getRoot */.yj)(self);
+      var app = store.app;
+      var folderName = app.folderName;
+      var isProd = app.isProd;
+      var prefix = "/";
+
+      if (isProd) {} else {
+        prefix = window.location.pathname;
+        prefix = prefix.replace('index.html', '');
+        prefix = prefix.replace(folderName, self.folderName);
+      }
+
+      return prefix;
+    },
+
+    // -
+    get githubLink() {
+      return "https://github.com/vincent114/".concat(self.folderName);
+    },
+
+    get githubLinkClient() {
+      if (["gramophone_server", "vgm_server"].includes(self.folderName)) {
+        return "https://github.com/vincent114/".concat(self.app_key, "_client");
+      }
+
+      return "";
+    },
+
     // Getters
     // -
     getIconUrl: function getIconUrl() {
@@ -251,10 +315,21 @@ var ServiceInfoStore = mobx_state_tree_module/* types.model */.V5.model({
       var dimention = "".concat(size, "x").concat(size);
 
       if (staticMode) {
-        return "".concat(self.app_key, "/static/favicons/android-icon-").concat(dimention, ".png");
+        return "".concat(self.internalPrefix).concat(self.app_key, "/static/favicons/android-icon-").concat(dimention, ".png");
       }
 
       return "".concat(external, "/static/favicons/android-icon-").concat(dimention, ".png");
+    },
+    getExternalUrl: function getExternalUrl() {
+      var store = (0,mobx_state_tree_module/* getRoot */.yj)(self);
+      var app = store.app;
+      var staticMode = app.staticMode;
+
+      if (staticMode && self.kind == 'webserver') {
+        return "".concat(self.externalPrefix, "index.html");
+      }
+
+      return self.external;
     }
   };
 }).actions(function (self) {
@@ -351,8 +426,6 @@ var es_date_to_iso_string = __webpack_require__(2308);
 var es_regexp_to_string = __webpack_require__(6965);
 // EXTERNAL MODULE: ../../nexus/react/node_modules/core-js/modules/es.string.trim.js
 var es_string_trim = __webpack_require__(3269);
-// EXTERNAL MODULE: ../../nexus/react/node_modules/core-js/modules/es.string.replace.js
-var es_string_replace = __webpack_require__(6813);
 ;// CONCATENATED MODULE: ../../nexus/react/utils/Helpers.jsx
 
 
@@ -1830,6 +1903,30 @@ var Inventory2Icon = function Inventory2Icon(props) {
     x: "9",
     y: "12"
   }))));
+};
+;// CONCATENATED MODULE: ../../nexus/react/components/svg_icons/Launch.jsx
+ // Functions Components ReactJS
+// ======================================================================================================
+
+var LaunchIcon = function LaunchIcon(props) {
+  // From ... props
+  var color = props.color ? props.color : '#000000';
+  var height = props.height ? props.height : 24;
+  var width = props.width ? props.width : 24; // Render
+  // ==================================================================================================
+
+  return /*#__PURE__*/react.createElement("svg", {
+    xmlns: "http://www.w3.org/2000/svg",
+    height: height,
+    viewBox: "0 0 24 24",
+    width: width,
+    fill: color
+  }, /*#__PURE__*/react.createElement("path", {
+    d: "M0 0h24v24H0z",
+    fill: "none"
+  }), /*#__PURE__*/react.createElement("path", {
+    d: "M19 19H5V5h7V3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"
+  }));
 };
 ;// CONCATENATED MODULE: ../../nexus/react/components/svg_icons/LightMode.jsx
  // Functions Components ReactJS
@@ -3358,6 +3455,7 @@ var Icon = __webpack_require__(3244);
 
 
 
+
  // Datas
 // -------------------------------------------------------------------------------------------------------------
 
@@ -3416,6 +3514,7 @@ var ICON_KEYS_TO_COMPONENT = {
   'info': InfoIcon,
   'input': InputIcon,
   'inventory_2': Inventory2Icon,
+  'launch': LaunchIcon,
   'light_mode': LightModeIcon,
   'link': LinkIcon,
   'list': ListIcon,
@@ -3490,7 +3589,7 @@ var Icon_Icon = (0,es/* observer */.Pi)(function (props) {
   var theme = app.theme; // From ... store
 
   var themeMode = theme.mode;
-  var staticUrl = app.staticUrl; // From ... props
+  var commonStaticUrl = app.commonStaticUrl; // From ... props
 
   var kind = props.kind ? props.kind : 'material'; // material, fontawesome, ...
 
@@ -3513,7 +3612,7 @@ var Icon_Icon = (0,es/* observer */.Pi)(function (props) {
 
   if (!IconSvg && ICON_KEYS_TO_FILES[kind].hasOwnProperty(name)) {
     var iconFilename = ICON_KEYS_TO_FILES[kind][name];
-    iconUrl = "".concat(staticUrl, "/icons/").concat(kind, "/").concat(iconFilename);
+    iconUrl = "".concat(commonStaticUrl, "/icons/").concat(kind, "/").concat(iconFilename);
 
     if (color == 'white') {
       iconUrl = iconUrl.replace('black', 'white');
@@ -3527,8 +3626,11 @@ var Icon_Icon = (0,es/* observer */.Pi)(function (props) {
   } // Quelle couleur ?
 
 
-  style['color'] = 'transparent'; // Render
+  if (color != theme.palette["default"].main) {
+    color = theme.getColorFromKey(color);
+  } // Render
   // ==================================================================================================
+
 
   return /*#__PURE__*/react.createElement("div", {
     className: (0,clsx_m/* default */.Z)("nx-icon", name, className),
@@ -4540,7 +4642,7 @@ var PortalLink = (0,es/* observer */.Pi)(function (props) {
   var portalLinkContent = null;
 
   if (serviceInfo) {
-    var externalUrl = serviceInfo.external;
+    var externalUrl = serviceInfo.getExternalUrl();
     var shortcutIconUrl = serviceInfo.shortcutIconUrl;
     var name = serviceInfo.name;
     portalLinkContent = /*#__PURE__*/react.createElement("a", {
@@ -8332,6 +8434,7 @@ function Playground_arrayLikeToArray(arr, len) { if (len == null || len > arr.le
 
 
 
+
  // Datas
 // -------------------------------------------------------------------------------------------------------------
 
@@ -8862,15 +8965,22 @@ var PlaygroundPage = (0,es/* observer */.Pi)(function (props) {
         color: "primary"
       }, /*#__PURE__*/react.createElement("b", null, "Back :"), " Python \uD83D\uDC0D + Pyramid"), /*#__PURE__*/react.createElement(Indicator_Indicator, {
         color: "primary"
-      }, /*#__PURE__*/react.createElement("b", null, "Front :"), " ReactJS + mobx-state-tree \uD83D\uDE0E")), /*#__PURE__*/react.createElement(Alert_Alert, {
+      }, /*#__PURE__*/react.createElement("b", null, "Front :"), " ReactJS + mobx-state-tree \uD83D\uDE0E")), /*#__PURE__*/react.createElement(Link_Link, {
+        href: "https://github.com/vincent114/nexus",
+        target: "_blank",
+        style: {
+          display: 'block',
+          marginTop: '20px'
+        }
+      }, "Voir le code de Nexus sur Github"), /*#__PURE__*/react.createElement(Alert_Alert, {
         severity: "warning",
         style: {
           textAlign: 'left',
-          marginTop: '40px'
+          marginTop: '20px'
         }
       }, "Une grande partie de tout ce que vous verrez ici est toujours sous l'objet d'un d\xE9veloppement intensif \uD83E\uDD75")),
       show: showHelper,
-      inFlux: breakPoint650
+      inFlux: true
     }, helperContent);
   };
 
@@ -9481,6 +9591,7 @@ var About = __webpack_require__(2189);
 
 
 
+
  // Models
 // ======================================================================================================
 // ***** AboutStore *****
@@ -9587,7 +9698,8 @@ var TAG_RenderAbout = function TAG_RenderAbout() {};
 var RenderAbout = (0,es/* observer */.Pi)(function (props) {
   var store = react.useContext(window.storeContext);
   var app = store.app;
-  var about = app.about; // From ... store
+  var about = app.about;
+  var services = app.services; // From ... store
 
   var isLoading = app.isLoading;
   var breakPoint414 = app.breakPoint414;
@@ -9597,7 +9709,11 @@ var RenderAbout = (0,es/* observer */.Pi)(function (props) {
   var version = service.version;
   var changeset = service.changeset;
   var changeset_instance = service.changeset_instance;
-  var iconUrl = service.iconUrl; // ...
+  var iconUrl = service.iconUrl;
+  var githubLink = service.githubLink;
+  var githubLinkClient = service.githubLinkClient;
+  var nexusServiceInfo = services.getServiceInfo('nexus');
+  var nexusGithubLink = nexusServiceInfo.githubLink; // ...
 
   react.useEffect(function () {
     if (!loaded) {
@@ -9649,10 +9765,34 @@ var RenderAbout = (0,es/* observer */.Pi)(function (props) {
     className: "h-col-small responsive-vertical responsive-spaced-none responsive-align-start"
   }, /*#__PURE__*/react.createElement("div", {
     className: "nx-t nx-t-default"
+  }, "Lien Github"), /*#__PURE__*/react.createElement(Link_Link, {
+    href: githubLink,
+    target: "_blank",
+    className: "flex-2"
+  }, githubLink)), githubLinkClient && /*#__PURE__*/react.createElement("div", {
+    className: "h-col-small responsive-vertical responsive-spaced-none responsive-align-start"
+  }, /*#__PURE__*/react.createElement("div", {
+    className: "nx-t nx-t-default"
+  }, "Lien Github (client)"), /*#__PURE__*/react.createElement(Link_Link, {
+    href: githubLinkClient,
+    target: "_blank",
+    className: "flex-2"
+  }, githubLinkClient)), nexusGithubLink && /*#__PURE__*/react.createElement("div", {
+    className: "h-col-small responsive-vertical responsive-spaced-none responsive-align-start"
+  }, /*#__PURE__*/react.createElement("div", {
+    className: "nx-t nx-t-default"
+  }, "Lien Github (nexus)"), /*#__PURE__*/react.createElement(Link_Link, {
+    href: nexusGithubLink,
+    target: "_blank",
+    className: "flex-2"
+  }, nexusGithubLink)), !staticMode && /*#__PURE__*/react.createElement("br", null), !staticMode && /*#__PURE__*/react.createElement("div", {
+    className: "h-col-small responsive-vertical responsive-spaced-none responsive-align-start"
+  }, /*#__PURE__*/react.createElement("div", {
+    className: "nx-t nx-t-default"
   }, "R\xE9vision instance"), /*#__PURE__*/react.createElement("div", {
     className: "nx-about-changeset selectable",
     "data-flex": "2"
-  }, changeset_instance)), /*#__PURE__*/react.createElement("div", {
+  }, changeset_instance)), !staticMode && /*#__PURE__*/react.createElement("div", {
     className: "h-col-small responsive-vertical responsive-spaced-none responsive-align-start"
   }, /*#__PURE__*/react.createElement("div", {
     className: "nx-t nx-t-default"
@@ -11381,7 +11521,7 @@ var Header_Header = (0,es/* observer */.Pi)(function (props) {
       onClick: function onClick() {
         return handlePortalClick();
       },
-      disabled: isLoading || staticMode
+      disabled: isLoading
     }, /*#__PURE__*/react.createElement(Icon_Icon, {
       name: "apps",
       color: "white"
@@ -11410,8 +11550,6 @@ var Header_Header = (0,es/* observer */.Pi)(function (props) {
     }
   }, headerLeft, headerMiddle, headerRight));
 });
-// EXTERNAL MODULE: ../../nexus/react/node_modules/core-js/modules/es.array.includes.js
-var es_array_includes = __webpack_require__(368);
 // EXTERNAL MODULE: ../../nexus/react/node_modules/core-js/modules/es.string.includes.js
 var es_string_includes = __webpack_require__(2689);
 // EXTERNAL MODULE: ../../nexus/react/ui/theme/Theme.css
@@ -13332,7 +13470,7 @@ var NotFoundPage = function NotFoundPage(props) {
   var store = react.useContext(window.storeContext);
   var app = store.app; // From ... store
 
-  var staticUrl = app.staticUrl; // Render
+  var commonStaticUrl = app.commonStaticUrl; // Render
   // ==================================================================================================
 
   return /*#__PURE__*/react.createElement("div", {
@@ -13340,7 +13478,7 @@ var NotFoundPage = function NotFoundPage(props) {
   }, /*#__PURE__*/react.createElement(Helper_Helper, {
     icon: /*#__PURE__*/react.createElement("img", {
       className: "nx-helper-icon",
-      src: "".concat(staticUrl, "/img/emojis/jelly_crying.png")
+      src: "".concat(commonStaticUrl, "/img/emojis/jelly_crying.png")
     }),
     title: "Erreur 404",
     subtitle: "Il semblerait que la page demand\xE9e n'existe pas.",
@@ -13383,36 +13521,36 @@ function NxApp_iterableToArrayLimit(arr, i) { var _i = arr == null ? null : type
 
 function NxApp_arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 function NxApp_createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = NxApp_unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e2) { throw _e2; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e3) { didErr = true; err = _e3; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
 
 function NxApp_unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return NxApp_arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return NxApp_arrayLikeToArray(o, minLen); }
 
 function NxApp_arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -13548,12 +13686,34 @@ var NxAppStore = mobx_state_tree_module/* types.model */.V5.model({
       return self.me.app_id;
     },
 
-    get staticUrl() {
+    // -
+    get folderName() {
+      var store = (0,mobx_state_tree_module/* getRoot */.yj)(self);
+      var app = store.app;
+      var isProd = app.isProd;
+
+      if (['gramophone', 'vgm'].includes(self.appKey) && !isProd) {
+        return "".concat(self.appKey, "_server");
+      }
+
+      return self.appKey;
+    },
+
+    // -
+    get commonStaticUrl() {
       if (self.kind == 'electron' || self.staticMode) {
         return '../nexus/nexus/static';
       }
 
       return '/nexus_static';
+    },
+
+    get staticUrl() {
+      if (self.kind == 'electron' || self.staticMode) {
+        return "./".concat(self.appKey, "/static");
+      }
+
+      return '/static';
     },
 
     // Bools
@@ -13595,6 +13755,22 @@ var NxAppStore = mobx_state_tree_module/* types.model */.V5.model({
     // 	}
     // 	return false;
     // },
+    // Bools
+    // -
+    get isProd() {
+      var host = window.location.host;
+
+      if (host == "vincentboni.pagesperso-orange.fr") {
+        return true;
+      }
+
+      if (host.indexOf("nexorium.com") > -1) {
+        return true;
+      }
+
+      return false;
+    },
+
     canGoBack: function canGoBack() {
       // Peut-on revenir en arrière dans l'historique ?
       // ---
@@ -14736,7 +14912,7 @@ var ErrorBoundary = /*#__PURE__*/function (_React$Component) {
         }, /*#__PURE__*/react.createElement(Helper_Helper, {
           icon: /*#__PURE__*/react.createElement("img", {
             className: "nx-helper-icon",
-            src: "".concat(window.store.app.staticUrl, "/img/emojis/jelly_eyes_closed.png")
+            src: "".concat(window.store.app.commonStaticUrl, "/img/emojis/jelly_eyes_closed.png")
           }) // title="!"
           ,
           subtitle: "Une erreur est survenue.",
@@ -14928,6 +15104,8 @@ function services_arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
+
+
  // Datas
 // ======================================================================================================
 // VBO : Recopie temporaire de nexus/services.py (pour le mode static)
@@ -14942,7 +15120,7 @@ var services_STATIC_SMAP = {
     kind: "webserver",
     port: 7301,
     database: null,
-    version: '0.0.1',
+    version: '0.0.2',
     changeset: '...',
     changeset_instance: '...',
     internal: '/index.html',
@@ -15018,7 +15196,7 @@ var services_STATIC_SMAP = {
     kind: "library",
     port: null,
     database: null,
-    version: '0.0.1',
+    version: '0.0.2',
     changeset: '...',
     changeset_instance: '...',
     internal: null,
@@ -15065,6 +15243,64 @@ var services_ServiceInfoStore = mobx_state_tree_module/* types.model */.V5.model
       return self.getIconUrl(192);
     },
 
+    // -
+    get folderName() {
+      var store = (0,mobx_state_tree_module/* getRoot */.yj)(self);
+      var app = store.app;
+      var isProd = app.isProd;
+
+      if (['gramophone', 'vgm'].includes(self.app_key) && !isProd) {
+        return "".concat(self.app_key, "_server");
+      }
+
+      return self.app_key;
+    },
+
+    // -
+    get internalPrefix() {
+      var store = (0,mobx_state_tree_module/* getRoot */.yj)(self);
+      var app = store.app;
+      var appKey = app.appKey;
+      var isProd = app.isProd;
+      var prefix = "";
+
+      if (appKey != self.app_key) {
+        prefix = "../".concat(self.folderName);
+        prefix = "".concat(prefix, "/");
+      }
+
+      return prefix;
+    },
+
+    get externalPrefix() {
+      var store = (0,mobx_state_tree_module/* getRoot */.yj)(self);
+      var app = store.app;
+      var folderName = app.folderName;
+      var isProd = app.isProd;
+      var prefix = "/";
+
+      if (isProd) {} else {
+        prefix = window.location.pathname;
+        prefix = prefix.replace('index.html', '');
+        prefix = prefix.replace(folderName, self.folderName);
+      }
+
+      return prefix;
+    },
+
+    // -
+    get githubLink() {
+      return "https://github.com/vincent114/".concat(self.folderName);
+    },
+
+    get githubLinkClient() {
+      if (["gramophone_server", "vgm_server"].includes(self.folderName)) {
+        return "https://github.com/vincent114/".concat(self.app_key, "_client");
+      }
+
+      return "";
+    },
+
     // Getters
     // -
     getIconUrl: function getIconUrl() {
@@ -15076,10 +15312,21 @@ var services_ServiceInfoStore = mobx_state_tree_module/* types.model */.V5.model
       var dimention = "".concat(size, "x").concat(size);
 
       if (staticMode) {
-        return "".concat(self.app_key, "/static/favicons/android-icon-").concat(dimention, ".png");
+        return "".concat(self.internalPrefix).concat(self.app_key, "/static/favicons/android-icon-").concat(dimention, ".png");
       }
 
       return "".concat(external, "/static/favicons/android-icon-").concat(dimention, ".png");
+    },
+    getExternalUrl: function getExternalUrl() {
+      var store = (0,mobx_state_tree_module/* getRoot */.yj)(self);
+      var app = store.app;
+      var staticMode = app.staticMode;
+
+      if (staticMode && self.kind == 'webserver') {
+        return "".concat(self.externalPrefix, "index.html");
+      }
+
+      return self.external;
     }
   };
 }).actions(function (self) {
@@ -15340,6 +15587,7 @@ var TAG_Paper = function TAG_Paper() {};
 
 var Paper_Paper = function Paper(props) {
   // From ... props
+  var hoverable = props.hoverable == true ? true : false;
   var children = props.children;
   var _onClick = props.onClick;
   var className = props.className ? props.className : '';
@@ -15347,7 +15595,9 @@ var Paper_Paper = function Paper(props) {
   // ==================================================================================================
 
   return /*#__PURE__*/react.createElement("div", {
-    className: (0,clsx_m/* default */.Z)("nx-paper", className),
+    className: (0,clsx_m/* default */.Z)("nx-paper", {
+      "hoverable": hoverable
+    }, className),
     style: style,
     onClick: function onClick() {
       if (_onClick) {
@@ -15377,26 +15627,34 @@ var ProjectCard = __webpack_require__(7291);
 
 var TAG_ProjectCard = function TAG_ProjectCard() {};
 
-var ProjectCard_ProjectCard = function ProjectCard(props) {
-  // From ... props
+var ProjectCard_ProjectCard = (0,es/* observer */.Pi)(function (props) {
+  var store = react.useContext(window.storeContext);
+  var app = store.app; // From ... props
+
   var serviceInfo = props.serviceInfo;
   var projectMetas = props.projectMetas; // ...
 
   var appId = serviceInfo.app_id;
   var name = serviceInfo.name;
-  var description = serviceInfo.description; // Events
+  var description = serviceInfo.description;
+  var externalUrl = serviceInfo.getExternalUrl(); // Events
   // ==================================================================================================
 
   var handleClick = function handleClick() {
     // Sur click de la carte
     // ---
-    console.log(appId);
+    if (externalUrl) {
+      app.gotoExternal(externalUrl);
+    }
   }; // Render
   // ==================================================================================================
 
 
   return /*#__PURE__*/react.createElement(Paper_Paper, {
-    className: (0,clsx_m/* default */.Z)("nm-projet-card"),
+    hoverable: externalUrl ? true : false,
+    className: (0,clsx_m/* default */.Z)("nm-projet-card", {
+      "clickable": externalUrl
+    }),
     onClick: function onClick() {
       return handleClick();
     }
@@ -15410,8 +15668,13 @@ var ProjectCard_ProjectCard = function ProjectCard(props) {
     variant: "title"
   }, name), /*#__PURE__*/react.createElement(Typography_Typography, {
     variant: "description"
-  }, description))));
-};
+  }, description)), externalUrl && /*#__PURE__*/react.createElement("div", {
+    className: "nm-project-launch"
+  }, /*#__PURE__*/react.createElement(Icon_Icon, {
+    name: "launch",
+    color: "info"
+  }))));
+});
 // EXTERNAL MODULE: ./contexts/projects/Projects.css
 var Projects = __webpack_require__(8525);
 ;// CONCATENATED MODULE: ./contexts/projects/Projects.jsx
@@ -15603,7 +15866,7 @@ var RenderProjects = (0,es/* observer */.Pi)(function (props) {
     }, projectCards));
   };
 
-  return /*#__PURE__*/react.createElement("div", null, renderProjectsCards("Support", ['nexus', 'cerberus']), renderProjectsCards("Vitrine", ['nexorium', 'nexora']), renderProjectsCards("Applications", ['gramophone', 'vgm']));
+  return /*#__PURE__*/react.createElement("div", null, renderProjectsCards("Support", ['nexus', 'cerberus']), renderProjectsCards("Sites vitrine", ['nexorium', 'nexora']), renderProjectsCards("Applications", ['gramophone', 'vgm']));
 }); // ***** ProjectsPage *****
 // ************************
 
@@ -16060,7 +16323,7 @@ var NexoriumMenuItems = (0,es/* observer */.Pi)(function (props) {
   var breakPoint650 = app.breakPoint650; // Render
   // ==================================================================================================
 
-  return /*#__PURE__*/react.createElement(react.Fragment, null, !staticMode && /*#__PURE__*/react.createElement(PortalMenuItem, null), /*#__PURE__*/react.createElement(HomeMenuItem, null), !staticMode && /*#__PURE__*/react.createElement(SearchMenuItem, null), breakPoint650 && /*#__PURE__*/react.createElement(MenuDivider, null), !staticMode && /*#__PURE__*/react.createElement(BlogMenuItem, null), !staticMode && /*#__PURE__*/react.createElement(NewslettersMenuItem, null), !staticMode && /*#__PURE__*/react.createElement(MenuDivider, null), !staticMode && /*#__PURE__*/react.createElement(ProjectsMenuItem, null), /*#__PURE__*/react.createElement(CvMenuItem, null), /*#__PURE__*/react.createElement(MenuDivider, null), /*#__PURE__*/react.createElement(PlaygroundMenuItem, null), !staticMode && /*#__PURE__*/react.createElement(DocsMenuItem, null), /*#__PURE__*/react.createElement(MenuDivider, null), /*#__PURE__*/react.createElement(AboutMenuItem, null), !staticMode && /*#__PURE__*/react.createElement(PreferencesMenuItem, null), !staticMode && /*#__PURE__*/react.createElement(AdminMenuItem, null), breakPoint650 && /*#__PURE__*/react.createElement(MenuDivider, null), !staticMode && /*#__PURE__*/react.createElement(LoginMenuItem, null), !staticMode && /*#__PURE__*/react.createElement(AccountMenuItem, null), !staticMode && /*#__PURE__*/react.createElement(LogoutMenuItem, null));
+  return /*#__PURE__*/react.createElement(react.Fragment, null, /*#__PURE__*/react.createElement(PortalMenuItem, null), /*#__PURE__*/react.createElement(HomeMenuItem, null), !staticMode && /*#__PURE__*/react.createElement(SearchMenuItem, null), breakPoint650 && /*#__PURE__*/react.createElement(MenuDivider, null), !staticMode && /*#__PURE__*/react.createElement(BlogMenuItem, null), !staticMode && /*#__PURE__*/react.createElement(NewslettersMenuItem, null), !staticMode && /*#__PURE__*/react.createElement(MenuDivider, null), /*#__PURE__*/react.createElement(ProjectsMenuItem, null), /*#__PURE__*/react.createElement(CvMenuItem, null), /*#__PURE__*/react.createElement(MenuDivider, null), /*#__PURE__*/react.createElement(PlaygroundMenuItem, null), !staticMode && /*#__PURE__*/react.createElement(DocsMenuItem, null), /*#__PURE__*/react.createElement(MenuDivider, null), /*#__PURE__*/react.createElement(AboutMenuItem, null), !staticMode && /*#__PURE__*/react.createElement(PreferencesMenuItem, null), !staticMode && /*#__PURE__*/react.createElement(AdminMenuItem, null), !staticMode && breakPoint650 && /*#__PURE__*/react.createElement(MenuDivider, null), !staticMode && /*#__PURE__*/react.createElement(LoginMenuItem, null), !staticMode && /*#__PURE__*/react.createElement(AccountMenuItem, null), !staticMode && /*#__PURE__*/react.createElement(LogoutMenuItem, null));
 }); // ***** ContextualMenu *****
 // **************************
 
@@ -16111,9 +16374,7 @@ var TAG_RenderHomeGrid = function TAG_RenderHomeGrid() {};
 
 var RenderHomeGrid = (0,es/* observer */.Pi)(function (props) {
   var store = react.useContext(window.storeContext);
-  var app = store.app; // From ... store
-
-  var staticMode = app.staticMode; // Renderers
+  var app = store.app; // Renderers
   // ==================================================================================================
   // HomeGrid -> Mes projets
   // ---
@@ -16165,9 +16426,9 @@ var RenderHomeGrid = (0,es/* observer */.Pi)(function (props) {
     }
   }, /*#__PURE__*/react.createElement(Heading_Heading, null, "En apprendre plus sur moi"), /*#__PURE__*/react.createElement(Row_Row, {
     responsive: false
-  }, navCardCv), !staticMode && /*#__PURE__*/react.createElement(react.Fragment, null, /*#__PURE__*/react.createElement("br", null), /*#__PURE__*/react.createElement(Heading_Heading, null, "Mais quels sont ces projets ?"), /*#__PURE__*/react.createElement(Row_Row, {
+  }, navCardCv), /*#__PURE__*/react.createElement("br", null), /*#__PURE__*/react.createElement(Heading_Heading, null, "Quels sont mes projets ?"), /*#__PURE__*/react.createElement(Row_Row, {
     responsive: false
-  }, navCardProjects)), /*#__PURE__*/react.createElement("br", null), /*#__PURE__*/react.createElement(Heading_Heading, null, "De quoi est fait ce site ?"), /*#__PURE__*/react.createElement(Row_Row, {
+  }, navCardProjects), /*#__PURE__*/react.createElement("br", null), /*#__PURE__*/react.createElement(Heading_Heading, null, "De quoi est fait ce site ?"), /*#__PURE__*/react.createElement(Row_Row, {
     responsive: false
   }, navCardPlayground));
 }); // ***** HomePage *****
@@ -16180,17 +16441,17 @@ var HomePage = (0,es/* observer */.Pi)(function (props) {
   var app = store.app;
   var theme = app.theme; // From ... store
 
+  var staticUrl = app.staticUrl;
   var themeMode = theme.mode; // Renderers
   // ==================================================================================================
 
   var renderHelper = function renderHelper() {
     // Render :: Helper
     // ---
-    return /*#__PURE__*/react.createElement(Helper_Helper // icon={<img className="nx-helper-icon" src="/static/favicons/android-icon-192x192.png" />}
-    , {
+    return /*#__PURE__*/react.createElement(Helper_Helper, {
       icon: /*#__PURE__*/react.createElement("img", {
         className: "nx-helper-icon",
-        src: "./nexorium/static/img/myself.png"
+        src: "".concat(staticUrl, "/img/myself.png")
       }),
       title: "Bienvenue !",
       subtitle: /*#__PURE__*/react.createElement("div", null, /*#__PURE__*/react.createElement("span", {
@@ -17113,7 +17374,7 @@ window.addEventListener('DOMContentLoaded', function () {
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module depends on other loaded chunks and execution need to be delayed
 /******/ 	__webpack_require__.O(undefined, [216], () => (__webpack_require__(3979)))
-/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, [216], () => (__webpack_require__(9743)))
+/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, [216], () => (__webpack_require__(8089)))
 /******/ 	__webpack_exports__ = __webpack_require__.O(__webpack_exports__);
 /******/ 	
 /******/ })()

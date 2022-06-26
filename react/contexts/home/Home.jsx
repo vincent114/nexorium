@@ -25,10 +25,6 @@ export const RenderHomeGrid = observer((props) => {
 	const store = React.useContext(window.storeContext);
 	const app = store.app;
 
-	// From ... store
-
-	const staticMode = app.staticMode;
-
 	// Renderers
 	// ==================================================================================================
 
@@ -96,18 +92,14 @@ export const RenderHomeGrid = observer((props) => {
 				{navCardCv}
 			</Row>
 
-			{!staticMode && (
-				<React.Fragment>
-					<br/>
+			<br/>
 
-					<Heading>
-						Mais quels sont ces projets ?
-					</Heading>
-					<Row responsive={false}>
-						{navCardProjects}
-					</Row>
-				</React.Fragment>
-			)}
+			<Heading>
+				Quels sont mes projets ?
+			</Heading>
+			<Row responsive={false}>
+				{navCardProjects}
+			</Row>
 
 			<br/>
 
@@ -134,6 +126,7 @@ export const HomePage = observer((props) => {
 
 	// From ... store
 
+	const staticUrl = app.staticUrl;
 	const themeMode = theme.mode;
 
 	// Renderers
@@ -146,8 +139,7 @@ export const HomePage = observer((props) => {
 
 		return (
 			<Helper
-				// icon={<img className="nx-helper-icon" src="/static/favicons/android-icon-192x192.png" />}
-				icon={<img className="nx-helper-icon" src="./nexorium/static/img/myself.png" />}
+				icon={<img className="nx-helper-icon" src={`${staticUrl}/img/myself.png`} />}
 				title="Bienvenue !"
 				subtitle={(
 					<div>

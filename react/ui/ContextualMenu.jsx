@@ -52,7 +52,7 @@ export const NexoriumMenuItems = observer((props) => {
 	return (
 		<React.Fragment>
 
-			{!staticMode && <PortalMenuItem />}
+			<PortalMenuItem />
 			<HomeMenuItem />
 			{!staticMode && <SearchMenuItem />}
 
@@ -63,7 +63,7 @@ export const NexoriumMenuItems = observer((props) => {
 
 			{!staticMode && <MenuDivider />}
 
-			{!staticMode && <ProjectsMenuItem />}
+			<ProjectsMenuItem />
 			<CvMenuItem />
 
 			<MenuDivider />
@@ -77,7 +77,7 @@ export const NexoriumMenuItems = observer((props) => {
 			{!staticMode && <PreferencesMenuItem />}
 			{!staticMode && <AdminMenuItem />}
 
-			{breakPoint650 && <MenuDivider />}
+			{(!staticMode && breakPoint650) && <MenuDivider />}
 
 			{!staticMode && <LoginMenuItem />}
 			{!staticMode && <AccountMenuItem />}

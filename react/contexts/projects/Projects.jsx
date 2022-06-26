@@ -221,7 +221,7 @@ export const RenderProjects = observer((props) => {
 				'nexus',
 				'cerberus',
 			])}
-			{renderProjectsCards("Vitrine", [
+			{renderProjectsCards("Sites vitrine", [
 				'nexorium',
 				'nexora',
 			])}
