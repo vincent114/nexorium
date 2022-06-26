@@ -265,11 +265,14 @@ var ServiceInfoStore = mobx_state_tree_module/* types.model */.V5.model({
       var app = store.app;
       var appKey = app.appKey;
       var isProd = app.isProd;
-      var prefix = "";
+      var prefix = "./".concat(self.app_key);
 
       if (appKey != self.app_key) {
         prefix = "../".concat(self.folderName);
-        prefix = "".concat(prefix, "/");
+
+        if (!isProd || self.app_key != 'nexorium') {
+          prefix = "".concat(prefix, "/").concat(self.app_key);
+        }
       }
 
       return prefix;
@@ -282,7 +285,13 @@ var ServiceInfoStore = mobx_state_tree_module/* types.model */.V5.model({
       var isProd = app.isProd;
       var prefix = "/";
 
-      if (isProd) {} else {
+      if (isProd) {
+        prefix = "https://vincentboni.pagesperso-orange.fr/";
+
+        if (self.app_key != 'nexorium') {
+          prefix = "".concat(prefix, "/").concat(self.app_key, "/");
+        }
+      } else {
         prefix = window.location.pathname;
         prefix = prefix.replace('index.html', '');
         prefix = prefix.replace(folderName, self.folderName);
@@ -315,7 +324,7 @@ var ServiceInfoStore = mobx_state_tree_module/* types.model */.V5.model({
       var dimention = "".concat(size, "x").concat(size);
 
       if (staticMode) {
-        return "".concat(self.internalPrefix).concat(self.app_key, "/static/favicons/android-icon-").concat(dimention, ".png");
+        return "".concat(self.internalPrefix, "/static/favicons/android-icon-").concat(dimention, ".png");
       }
 
       return "".concat(external, "/static/favicons/android-icon-").concat(dimention, ".png");
@@ -15262,11 +15271,14 @@ var services_ServiceInfoStore = mobx_state_tree_module/* types.model */.V5.model
       var app = store.app;
       var appKey = app.appKey;
       var isProd = app.isProd;
-      var prefix = "";
+      var prefix = "./".concat(self.app_key);
 
       if (appKey != self.app_key) {
         prefix = "../".concat(self.folderName);
-        prefix = "".concat(prefix, "/");
+
+        if (!isProd || self.app_key != 'nexorium') {
+          prefix = "".concat(prefix, "/").concat(self.app_key);
+        }
       }
 
       return prefix;
@@ -15279,7 +15291,13 @@ var services_ServiceInfoStore = mobx_state_tree_module/* types.model */.V5.model
       var isProd = app.isProd;
       var prefix = "/";
 
-      if (isProd) {} else {
+      if (isProd) {
+        prefix = "https://vincentboni.pagesperso-orange.fr/";
+
+        if (self.app_key != 'nexorium') {
+          prefix = "".concat(prefix, "/").concat(self.app_key, "/");
+        }
+      } else {
         prefix = window.location.pathname;
         prefix = prefix.replace('index.html', '');
         prefix = prefix.replace(folderName, self.folderName);
@@ -15312,7 +15330,7 @@ var services_ServiceInfoStore = mobx_state_tree_module/* types.model */.V5.model
       var dimention = "".concat(size, "x").concat(size);
 
       if (staticMode) {
-        return "".concat(self.internalPrefix).concat(self.app_key, "/static/favicons/android-icon-").concat(dimention, ".png");
+        return "".concat(self.internalPrefix, "/static/favicons/android-icon-").concat(dimention, ".png");
       }
 
       return "".concat(external, "/static/favicons/android-icon-").concat(dimention, ".png");
