@@ -1,7 +1,7 @@
 /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
-/***/ 8089:
+/***/ 65:
 /***/ ((__unused_webpack_module, __unused_webpack___webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -306,7 +306,7 @@ var ServiceInfoStore = mobx_state_tree_module/* types.model */.V5.model({
     },
 
     get githubLinkClient() {
-      if (["gramophone_server", "vgm_server"].includes(self.folderName)) {
+      if (["gramophone", "vgm"].includes(self.app_key)) {
         return "https://github.com/vincent114/".concat(self.app_key, "_client");
       }
 
@@ -1661,6 +1661,31 @@ var FolderIcon = function FolderIcon(props) {
   }), /*#__PURE__*/react.createElement("path", {
     d: "M9.17 6l2 2H20v10H4V6h5.17M10 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2h-8l-2-2z"
   }));
+};
+;// CONCATENATED MODULE: ../../nexus/react/components/svg_icons/FolderZip.jsx
+ // Functions Components ReactJS
+// ======================================================================================================
+
+var FolderZipIcon = function FolderZipIcon(props) {
+  // From ... props
+  var color = props.color ? props.color : '#000000';
+  var height = props.height ? props.height : 24;
+  var width = props.width ? props.width : 24; // Render
+  // ==================================================================================================
+
+  return /*#__PURE__*/react.createElement("svg", {
+    xmlns: "http://www.w3.org/2000/svg",
+    height: height,
+    viewBox: "0 0 24 24",
+    width: width,
+    fill: color
+  }, /*#__PURE__*/react.createElement("g", null, /*#__PURE__*/react.createElement("rect", {
+    fill: "none",
+    height: "24",
+    width: "24"
+  })), /*#__PURE__*/react.createElement("g", null, /*#__PURE__*/react.createElement("path", {
+    d: "M20,6h-8l-2-2H4C2.9,4,2.01,4.9,2.01,6L2,18c0,1.1,0.9,2,2,2h16c1.1,0,2-0.9,2-2V8C22,6.9,21.1,6,20,6z M16,16h2v-2h-2v-2 h2v-2h-2V8h4v10h-4V16z M16,16h-2v2H4V6h5.17l2,2H14v2h2v2h-2v2h2V16z"
+  })));
 };
 ;// CONCATENATED MODULE: ../../nexus/react/components/svg_icons/Forum.jsx
  // Functions Components ReactJS
@@ -3465,6 +3490,7 @@ var Icon = __webpack_require__(3244);
 
 
 
+
  // Datas
 // -------------------------------------------------------------------------------------------------------------
 
@@ -3513,6 +3539,7 @@ var ICON_KEYS_TO_COMPONENT = {
   'feedback_black': FeedbackIcon,
   'file_download': FileDownloadIcon,
   'folder': FolderIcon,
+  'folder_zip': FolderZipIcon,
   'forum': ForumIcon,
   'fullscreen': FullscreenIcon,
   'help': HelpIcon,
@@ -6982,6 +7009,7 @@ var Indicator = __webpack_require__(4439);
 
 
 
+
  // Functions Components ReactJS
 // -------------------------------------------------------------------------------------------------------------
 // ***** Indicator *****
@@ -6997,11 +7025,14 @@ var Indicator_Indicator = (0,es/* observer */.Pi)(function (props) {
   var variant = props.variant ? props.variant : 'default'; // default, contrasted, outlined
 
   var severity = props.severity ? props.severity : 'default';
+  var iconName = props.iconName ? props.iconName : '';
+  var href = props.href ? props.href : '';
   var children = props.children;
   var className = props.className ? props.className : '';
   var color = props.color ? props.color : ''; // primary, secondary, #custom
 
-  var style = props.style ? props.style : {}; // ...
+  var style = props.style ? props.style : {};
+  var callbackClick = props.callbackClick; // ...
 
   var severityDef = SEVERITIES.getDef(severity); // Quelle couleur ?
 
@@ -7029,14 +7060,58 @@ var Indicator_Indicator = (0,es/* observer */.Pi)(function (props) {
   if (variant == 'outlined') {
     style['backgroundColor'] = 'transparent';
     style['borderColor'] = color;
-  } // Render
+  } // Quelle icône ?
+
+
+  var icon = null;
+
+  if (iconName) {
+    icon = /*#__PURE__*/react.createElement(Icon_Icon, {
+      color: severity,
+      name: iconName,
+      style: {
+        flex: 'none',
+        marginRight: '5px'
+      }
+    });
+  } // Events
   // ==================================================================================================
 
 
-  return /*#__PURE__*/react.createElement("div", {
-    className: (0,clsx_m/* default */.Z)("nx-indicator", className),
-    style: style
-  }, children);
+  var handleClick = function handleClick() {
+    if (callbackClick) {
+      callbackClick();
+    }
+  }; // Render
+  // ==================================================================================================
+
+
+  var indicator = /*#__PURE__*/react.createElement("div", {
+    className: (0,clsx_m/* default */.Z)("nx-indicator", {
+      "with-icon": icon
+    }, {
+      "clickable": callbackClick
+    }, className),
+    style: style,
+    onClick: function onClick() {
+      return handleClick();
+    }
+  }, icon, /*#__PURE__*/react.createElement("div", null, children));
+
+  if (href) {
+    indicator = /*#__PURE__*/react.createElement("a", {
+      className: (0,clsx_m/* default */.Z)("nx-indicator", {
+        "with-icon": icon
+      }, {
+        "clickable": callbackClick
+      }, className),
+      href: href,
+      target: "_blanc",
+      style: style
+    }, icon, /*#__PURE__*/react.createElement("div", null, children));
+  }
+
+  return indicator;
 });
 // EXTERNAL MODULE: ../../nexus/react/layout/column/Column.css
 var Column = __webpack_require__(5906);
@@ -9812,19 +9887,16 @@ var RenderAbout = (0,es/* observer */.Pi)(function (props) {
   // ---
 
   var sectionButtons = [];
-
-  if (!staticMode) {
-    sectionButtons.push( /*#__PURE__*/react.createElement(Button_Button, {
-      key: "btn-changelog",
-      variant: "outlined",
-      color: "primary",
-      onClick: function onClick() {
-        return handleChangelogsClick();
-      },
-      disabled: isLoading,
-      startAdornment: "history"
-    }, "Changelog"));
-  }
+  sectionButtons.push( /*#__PURE__*/react.createElement(Button_Button, {
+    key: "btn-changelog",
+    variant: "outlined",
+    color: "primary",
+    onClick: function onClick() {
+      return handleChangelogsClick();
+    },
+    disabled: isLoading,
+    startAdornment: "history"
+  }, "Changelog"));
 
   if (!staticMode) {
     sectionButtons.push( /*#__PURE__*/react.createElement(Button_Button, {
@@ -10673,9 +10745,793 @@ var BlogPage = (0,es/* observer */.Pi)(function (props) {
     className: "nx-page"
   }, renderHelper());
 });
+;// CONCATENATED MODULE: ./models/Datas.jsx
+// Datas
+// ======================================================================================================
+var NEXORIUM_CHANGELOGS = [{
+  "status": "prod",
+  "date": "2022-06-26",
+  "app_key": "nexorium",
+  "version": "0.0.2",
+  "changes": [{
+    "title": "Portail vers les autres projets"
+  }]
+}, {
+  "status": "prod",
+  "date": "2022-06-24",
+  "app_key": "nexorium",
+  "version": "0.0.1",
+  "changes": [{
+    "title": "Version statique initiale"
+  }]
+}];
+;// CONCATENATED MODULE: ../../nexora/react/models/Datas.jsx
+// Datas
+// ======================================================================================================
+var NEXORA_CHANGELOGS = [{
+  "status": "prod",
+  "date": "2022-06-26",
+  "app_key": "nexora",
+  "version": "0.0.1",
+  "changes": [{
+    "title": "Version statique initiale"
+  }]
+}];
+;// CONCATENATED MODULE: ../../gramophone_server/react/models/Datas.jsx
+// Datas
+// ======================================================================================================
+// {
+// 	"status": "prod",
+// 	"date": null,
+// 	"app_key": "gramophone",
+// 	"version": "",
+// 	"version_name": "",
+// 	"changes": [
+// 		{"title": ""},
+// 	],
+// },
+var GRAMOPHONE_CHANGELOGS = [{
+  "status": "daft",
+  "date": null,
+  "app_key": "gramophone",
+  "version": "4.0.0",
+  "version_name": "New wave",
+  "changes": [{
+    "title": "Réécriture complète à l'aide de ReactJS et de mobx-state-tree"
+  }, {
+    "title": "Abandon de MaterialUI pour des raisons de performance d'affichage",
+    "content": "Et de facilité de maintenance."
+  }]
+}, {
+  "status": "prod",
+  "date": "2019-09-07",
+  "app_key": "gramophone",
+  "version": "3.0.0",
+  "version_name": "Mambo",
+  "changes": [{
+    "title": "Réécriture complète à l'aide de React.JS et de MaterialUI"
+  }, {
+    "title": "Plusieurs vues dédiées aux articles, albums, morceaux, genres, années et playlists"
+  }, {
+    "title": "Possibilité de créer des playlists personnalisés"
+  }, {
+    "title": "Historique de lecture"
+  }, {
+    "title": "Liste de lecture"
+  }, {
+    "title": "Jeté de dés pour lecture aléatoire de quelques dizaines de morceaux"
+  }, {
+    "title": "Fonction de recherche améliorée"
+  }],
+  "version_assets": [{
+    "plateform_key": "macos",
+    "filename": "gramophone_300_macOS.zip"
+  }, {
+    "plateform_key": "win64",
+    "filename": "gramophone_300_win64.zip"
+  }]
+}, {
+  "status": "prod",
+  "date": "2018-03-20",
+  "app_key": "gramophone",
+  "version": "2.4.0",
+  "version_name": "Lounge",
+  "changes": [{
+    "title": "Menu d'application personnalisé sur macOS"
+  }, {
+    "title": "Menu contextuel sur l'icône du dock sur macOS"
+  }, {
+    "title": "Notification sur changement de musique quand le focus est sur une autre application"
+  }, {
+    "title": "Fix compteur de fichiers dans les dossiers surveillés"
+  }, {
+    "title": "Fix recherche après une première recherche"
+  }, {
+    "title": "Pas d'affichage de numéro de musique à 0"
+  }, {
+    "title": "Artiste cliquable dans le contenu d'un album"
+  }, {
+    "title": "Lecture continue depuis la grille"
+  }, {
+    "title": "Lecture aléatoire"
+  }, {
+    "title": "Option permettant de désactiver le scan automatique au démarrage de l'application"
+  }, {
+    "title": "Option de déclenchement manuel du scan rapide depuis l'écran de préférences"
+  }, {
+    "title": "Lecture du premier morceau de la playlist sur clic du bouton de lecture juste après ouverture"
+  }, {
+    "title": "Navigation vers la musique en cours de lecture sur clic du titre affiché sur le lecteur (dans l'entête de l'application)"
+  }],
+  "version_assets": [{
+    "plateform_key": "macos",
+    "filename": "gramophone_240_macOS.zip"
+  }, {
+    "plateform_key": "win64",
+    "filename": "gramophone_240_win64.zip"
+  }, {
+    "plateform_key": "win32",
+    "filename": "gramophone_240_win32.zip"
+  }]
+}, {
+  "status": "prod",
+  "date": "2018-02-04",
+  "app_key": "gramophone",
+  "version": "2.3.1",
+  "version_name": "Kompa",
+  "changes": [{
+    "title": "Icône de lecture rapide plus petite et à gauche sur la grille"
+  }, {
+    "title": "Fix lecture première musique d'album depuis la grille"
+  }, {
+    "title": "Fix tri des colonnes dans les favoris"
+  }, {
+    "title": "Fix débordement des libellés de chançon et d'artiste sur le player"
+  }]
+}, {
+  "status": "prod",
+  "date": "2017-08-28",
+  "app_key": "gramophone",
+  "version": "2.3.0",
+  "version_name": "Jungle",
+  "changes": [{
+    "title": "Distinction groupement par artiste et alphabétique"
+  }, {
+    "title": "Petit effet de volume sur l'entête pour macOS"
+  }, {
+    "title": "Affichage du nom de la version dans la fenêtre 'A propos'"
+  }, {
+    "title": "Plus de glisser-déplacer pour les vignettes (mais toujours actif pour le zoom de jaquette)"
+  }, {
+    "title": "Il n'est plus possible de glisser-déplacer un dossier lorsqu'un scan est en cours"
+  }]
+}, {
+  "status": "prod",
+  "date": "2017-08-08",
+  "app_key": "gramophone",
+  "version": "2.2.0",
+  "version_name": "Indie pop",
+  "changes": [{
+    "title": "Glisser-déplacer pour ajouter un dossier surveillé contenant des musiques à indexer"
+  }, {
+    "title": "Zoom sur clic de la jaquette d'album"
+  }, {
+    "title": "Haut-parleur musique courante en pause"
+  }, {
+    "title": "Affichage de l'artiste de la musique courante"
+  }, {
+    "title": "Espace en bas de la liste des morceaux d'un album"
+  }, {
+    "title": "Diverses évolutions indexer"
+  }, {
+    "title": "F6 précédent, F7 play / pause, F8 suivant"
+  }, {
+    "title": "Fenêtre 'A propos' pour Windows (macOS en dispose d'une nativement)"
+  }, {
+    "title": "Indicateurs dernier scan complet et dernier scan rapide"
+  }, {
+    "title": "Fix coeur coupé sous Windows"
+  }, {
+    "title": "Fix débordement nom album"
+  }]
+}, {
+  "status": "prod",
+  "date": "2017-07-10",
+  "app_key": "gramophone",
+  "version": "2.1.0",
+  "version_name": "Heavy metal",
+  "changes": [{
+    "title": "Ajout d'un bouton permettant de mettre en évidence un morceau dans l'explorateur de fichier de l'OS"
+  }, {
+    "title": "Possibilité de grouper par artistes"
+  }, {
+    "title": "Possibilité de trier par années, artistes ou albums"
+  }, {
+    "title": "Prise en charge de plus de formats de date"
+  }, {
+    "title": "Fix ouverture de l'explorateur de fichier sous Windows"
+  }]
+}, {
+  "status": "prod",
+  "date": "2017-06-24",
+  "app_key": "gramophone",
+  "version": "2.0.1",
+  "version_name": "Groove metal",
+  "changes": [{
+    "title": "Fix fast play / resume dans les vues par liste"
+  }, {
+    "title": "Fix artiste de l'album au scan des musiques"
+  }, {
+    "title": "Fix plantage scan des musiques vers un dossier accentué"
+  }, {
+    "title": "Fix slider lorsque repositionné manuellement au début d'une chançon"
+  }]
+}, {
+  "status": "prod",
+  "date": "2017-05-25",
+  "app_key": "gramophone",
+  "version": "2.0.0",
+  "version_name": "Future house",
+  "changes": [{
+    "title": "Migration de NWjs vers Electron"
+  }, {
+    "title": "Prise en charge des formats AAC et FLAC"
+  }, {
+    "title": "Indexer intégré dans l'interface de paramétrage"
+  }, {
+    "title": "Options d'affichage : Filtrage par dossier surveillé + Possibilité de ne plus grouper par années"
+  }, {
+    "title": "Finalisation des contrôles de lecture et de pause rapide (lecture, pause, indicateur de lecture)"
+  }, {
+    "title": "Coeurs de favoris déplacés à gauche"
+  }, {
+    "title": "Fix compatibilité macOS 10.12.4 : collection par défaut dans le dossier utilisateur"
+  }]
+}, {
+  "status": "prod",
+  "date": "2017-01-30",
+  "app_key": "gramophone",
+  "version": "1.2.0",
+  "version_name": "Electro",
+  "changes": [{
+    "title": "Boutons de lecture rapide sur les albums et sur les morceaux"
+  }, {
+    "title": "Amélioration des performances d'affichage à l'aide du système de cache HTML et des vignettes JPEG"
+  }, {
+    "title": "Fix vignettes JPEG sous macOS"
+  }],
+  "version_assets": [{
+    "plateform_key": "macos",
+    "filename": "gramophone_120_macOS.zip"
+  }, {
+    "plateform_key": "win64",
+    "filename": "gramophone_120_win64.zip"
+  }]
+}, {
+  "status": "prod",
+  "date": "2016-11-07",
+  "app_key": "gramophone",
+  "version": "1.1.1",
+  "version_name": "Dance",
+  "changes": [{
+    "title": "Compatibilité Windows / macOS sur le comportement lors de la femerture de la fenêtre"
+  }]
+}, {
+  "status": "prod",
+  "date": "2016-10-30",
+  "app_key": "gramophone",
+  "version": "1.1.0",
+  "version_name": "Chillwave",
+  "changes": [{
+    "title": "Contrôles de fenêtres natifs pour macOS"
+  }, {
+    "title": "L'application quitte plus lorsqu'on ferme sa fenêtre sous macOS"
+  }, {
+    "title": "Meilleure séparation des morceaux d'un album + meilleur visuel pour les coeurs de favoris"
+  }, {
+    "title": "Seuls les morceaux d'un album défilent en cas d'overflow (la jaquette et l'entête restent à leur place"
+  }, {
+    "title": "Possibilité d'ouvrir le dossier contenant les musiques d'un album"
+  }, {
+    "title": "Possibilité de cliquer sur un artiste pour écrire son nom dans la recherche"
+  }, {
+    "title": "Meilleur affichage du sélecteur par années avec séparation des décennies"
+  }]
+}, {
+  "status": "prod",
+  "date": "2016-06-26",
+  "app_key": "gramophone",
+  "version": "1.0.1",
+  "version_name": "Beat",
+  "changes": [{
+    "title": "Bordures noires sur la version Windows"
+  }, {
+    "title": "Compatibilité avec les contrôles multimédia sur les claviers (pause, lecture, suivant, précédent, ...)"
+  }]
+}, {
+  "status": "prod",
+  "date": "2016-03-29",
+  "app_key": "gramophone",
+  "version": "1.0.0",
+  "version_name": "Acid jazz",
+  "changes": [{
+    "title": "Implémentation des fonctionalités initiales (scan, collection, favoris, lecture et export)"
+  }]
+}];
+;// CONCATENATED MODULE: ../../vgm_server/react/models/Datas.jsx
+// Datas
+// ======================================================================================================
+// {
+// 	"status": "prod",
+// 	"date": null,
+// 	"app_key": "vgm",
+// 	"version": "",
+// 	"version_name": "",
+// 	"changes": [
+// 		{"title": ""},
+// 	],
+// },
+var VGM_CHANGELOGS = [{
+  "status": "daft",
+  "date": null,
+  "app_key": "vgm",
+  "version": "8.0.0",
+  "version_name": "Dante",
+  "changes": [{
+    "title": "Réécriture complète à l'aide de ReactJS et de mobx-state-tree"
+  }, {
+    "title": "Simplification du projet",
+    "content": "Focus sur la présentation pure et simple d'une ludothèque pour les collectionneurs."
+  }]
+}, {
+  "status": "prod",
+  "date": "2017-07-23",
+  "app_key": "vgm",
+  "version": "7.0.1",
+  "version_name": "Nariko",
+  "changes": [{
+    "title": "Plus de synchronisation à outrance"
+  }, {
+    "title": "Nettoyage du code de migration"
+  }, {
+    "title": "Fix redémarrage application après synchronisation"
+  }, {
+    "title": "Fix suppression de jeu sans dossier dans la collection"
+  }],
+  "version_assets": [{
+    "plateform_key": "macos",
+    "filename": "vgm_701_macOS.zip"
+  }, {
+    "plateform_key": "win64",
+    "filename": "vgm_701_win64.zip"
+  }]
+}, {
+  "status": "prod",
+  "date": "2017-05-25",
+  "app_key": "vgm",
+  "version": "7.0.0",
+  "version_name": "Ryder",
+  "changes": [{
+    "title": "Migration de NWjs vers Electron"
+  }, {
+    "title": "Fix compatibilité macOS 10.12.4 : collection par défaut dans le dossier utilisateur"
+  }]
+}]; // Ancien format à convertir
+// ======================================================================================================
+
+var g_versions = {
+  "1.0.0": {
+    "date": "2013-04-07",
+    "changelogs": ["Implémentation des fonctionnalités initiales"],
+    "downloads": []
+  },
+  "1.1.0": {
+    "date": "2013-04-14",
+    "changelogs": ["Surlignement des raccourcis avec affichage du nom", "Sauvegarde de la position et de l’état de la fenêtre", "Ajout du choix d'affichage en liste ou mosaïque par catégorie"],
+    "downloads": []
+  },
+  "1.2.0": {
+    "date": "2013-04-17",
+    "changelogs": ["Ajout de la date de sortie sur les raccourcis + tri par date de sortie décroissant", "Ajout du slider pour régler la taille des mosaïques par catégorie"],
+    "downloads": []
+  },
+  "1.3.0": {
+    "date": "2013-04-24",
+    "changelogs": ["Ajout propriété « exécutable » pour les raccourcis avec indicateur visuel (blanc ou rouge)", "Ajout propriété « nouveau » pour les raccourcis avec indicateur visuel (bleu)", "Ajout de la fonction de recherche avec mots clés et sauvegarde par catégorie"],
+    "downloads": []
+  },
+  "1.4.0": {
+    "date": "2013-04-30",
+    "changelogs": ["Ajout de la propriété « Genre » pour les raccourcis", "Ajout des tri et des groupements 'aucun', 'groupe', 'date', 'genre' par catégorie", "Ajout de la visualisation « détail »"],
+    "downloads": []
+  },
+  "1.5.0": {
+    "date": "2013-05-03",
+    "changelogs": ["Compatibilité avec l'environnement Unix (macOS, Ubuntu, ...)", "Ajout de la visualisation par icônes"],
+    "downloads": []
+  },
+  "1.6.0": {
+    "date": "2013-05-17",
+    "changelogs": ["Focus sur le zone de recherche sur appuit d'une touche du clavier", "Ajout de la propriété « Méthode d'exécution » pour les raccourcis"],
+    "downloads": []
+  },
+  "1.7.0": {
+    "date": "2013-06-29",
+    "changelogs": ["Ajout des propriétés « Plateforme », « Configuration », « Notes », « Dossier », « Site », « Login » et « Password » pour les raccourcis", "Ajout du filtre « Plateforme »", "Autocomplete sur les propriétés « Genre » et « Plateforme » dans l'interface de gestion"],
+    "downloads": []
+  },
+  "1.8.0": {
+    "date": "2013-06-30",
+    "changelogs": ["Ajout des propriétés « Dossier », « Site » pour les raccourcis", "Ajout d'une popup de détail des propriétés d'un raccourci sur clic en mode d'affichage mosaïque", "Ajout des méthodes de lancement « Batch » et « VBScript » prenant en charge le 'current working directory'"],
+    "downloads": [{
+      "key": "Windows 32",
+      "filename": "vgm_180_win32.zip",
+      "logo": "fa-windows"
+    }]
+  },
+  "2.0.0": {
+    "date": "2013-08-22",
+    "changelogs": ["Ajout des tags « Favoris », « Masqué » et « Disque » pour les raccourcis", "Affichage des tags sur la popup d'information + possibilité de mise à jour sur clic", "Sauvegarde de la position du défilement par catégorie et par type d'affichage", "Ajout de la visualisation « Jaquette »", "Ajout des filtres des tags « Favoris », « Masqué » et « Disque »", "Ajout des mots clé de recherche « fav » et « hid » dans la zone de recherche", "Ajout de l'option de déplacement d'un raccourci", "Ajout du groupement « support »", "Sauvegarde de la catégorie affichée", "Réduction automatique de la fenêtre sur le lancement d'un raccourci paramétrable", "Fermeture automatique de la popup de détail sur le lancement d'un raccourci paramétrable", "Ajout du système de dossier racine", "Ajout du système de vérification de l'intégrité des dossiers", "Ajout de la possibilité de mettre à jour les tags de tous les raccourcis d'un groupe"],
+    "downloads": []
+  },
+  "2.1.0": {
+    "date": "2013-09-04",
+    "changelogs": ["Ajout du chronomètre sur la popup d'information", "Remplacement du texte par des icônes dans la popup d'information", "Suppression de la section « About », déplacée dans le site web"],
+    "downloads": [{
+      "key": "Windows 32",
+      "filename": "vgm_210_win32.zip",
+      "logo": "fa-windows"
+    }]
+  },
+  "3.0.0": {
+    "date": "2013-11-10",
+    "changelogs": ["Ajout du chronomètre sur la popup Réécriture complète pour optimisation", "Thème gris", "Gestion des profils", "Gestion des Emplacement de sauvegarde", "Ajout des tags 'Check' et 'Network'"],
+    "downloads": []
+  },
+  "3.1.0": {
+    "date": "2013-11-24",
+    "changelogs": ["Chrono total fenêtre about", "Thème paramétrable (gris ou noir)", "Système de recopie des dossiers de sauvegardes des raccourcis", "Ajout du tag 'Gamepad'", "Système à trois états pour les filtres des tags"],
+    "downloads": []
+  },
+  "3.1.1": {
+    "date": "2013-12-27",
+    "changelogs": ["Possibilité de supprimer le lien vers la base VGM personnalisée ainsi que les liens vers les dossier racine, les images et les sauvegardes", "Ajout du profil REFERENCE associé systématiquement à tous les raccourcis", "Le message d'avertissement sur le lock de la base de données ne s'affiche plus après fermeture brutale de l'application", "Gestion de la mise à jour automatique de la base de données après mise à jour de l'application (ne sera effectif que pour les prochaines versions)", "Nom des images de raccourcis liés aux noms de ces derniers", "Un click gauche sur les raccourcis ouvre directement l'édition des métadatas"],
+    "downloads": []
+  },
+  "3.2.0": {
+    "date": "2014-01-14",
+    "changelogs": ["Ajout du système d'export et d'import d'un raccourci", "Les images ne sont plus perturbées par la sélection d'autres profils dans la fenêtre des paramètres", "Ajout d'un contrôle vérifiant si le profil n'est pas actif sur suppression dans la fenêtre des paramètres", "Méthode de lancement des raccourcis définie sur 'Aucun' par défaut", "Maintient de la touche CTRL pour ne sélectionner qu'un seul support dans le filtre d'affichage", "Affichage du nombre total de raccourcis"],
+    "downloads": []
+  },
+  "3.2.1": {
+    "date": "2014-01-18",
+    "changelogs": ["Pas de plantage quand le root folder est innaccessible", "Possibilité d'exécuter custom_script.vbs au démarrage de l'application sous windows"],
+    "downloads": [{
+      "key": "Windows 32",
+      "filename": "vgm_321_win32.zip",
+      "logo": "fa-windows"
+    }]
+  },
+  "4.0.0": {
+    "date": "2014-04-29",
+    "changelogs": ["Réécriture complète + refonte de l'interface", "Metadatas personnalisés pour chaque jeu", "Meilleure gestion des profils et des dossiers associés"],
+    "downloads": []
+  },
+  "4.0.1": {
+    "date": "2014-09-08",
+    "changelogs": ["Sections 'ALL' et 'FAVORITES' modifiées en 'LIST' et 'GRID'", "Tags 'ghost' et 'check' déplacés au niveau des raccourcis", "Favori modifié en tant que tag"],
+    "downloads": []
+  },
+  "4.0.2": {
+    "date": "2014-11-11",
+    "changelogs": ["Checkbox CSS local + clic-droit pour sélectionner exclusivement", "Groupes repliables (individuellement ou collectivement)", "Rafraichissement correct de l'affichage après changement d'image d'un raccourci", "Popup de manipulation du chrono (ajout, suppression d'heures)", "Flat design"],
+    "downloads": [{
+      "key": "Windows 32",
+      "filename": "vgm_402_win32.zip",
+      "logo": "fa-windows"
+    }]
+  },
+  "5.0.0": {
+    "date": "2015-01-25",
+    "changelogs": ["Changement de technologie de TideSDK vers Node Webkit", "Architecture client / NAS", "Partie client et serveur reconstruites de zéro", "Multi-utilisateurs", "Systèmes de vues utilisateur personnalisables identiques à des playlist", "Ajout du tag 'Original'", "Suppression du tag 'Disque'", "Le client reconnait automatiquement le type des commandes de lancement des jeux"],
+    "downloads": []
+  },
+  "5.1.0": {
+    "date": "2015-02-22",
+    "changelogs": ["Section administration locale au client", "Ajout du marché de jeux avec système de panier", "Ajout d'un système de visualisation et d'édition de soluce", "Fix affichage animation de synchronisation", "Gestion lors de la déconnexion du serveur", "Recopie des jaquettes en local (meilleurs temps de chargement + disponibles en mode hors ligne)"],
+    "downloads": []
+  },
+  "5.2.0": {
+    "date": "2015-03-12",
+    "changelogs": ["Fenêtre de paramètres (environnement, mode, infos de connexion)", "Possibilité de fonctionner en mode local 'portable' ou en mode connecté 'NAS'", "Ajout du champ 'démarrer dans' pour les raccourcis"],
+    "downloads": []
+  },
+  "5.2.1": {
+    "date": "2015-04-10",
+    "changelogs": ["Ajout des tags 'disc' et 'HS'", "Mise en évidence du tag 'HS' sur les raccourcis"],
+    "downloads": []
+  },
+  "5.2.2": {
+    "date": "2015-05-09",
+    "changelogs": ["Fix suppression de vues en mode local", "Fix sélection et remplacement d'images dans l'interface d'administration", "Fix sauvegarde des chronos en local", "Fix message d'erreur fullscreen quand ouverture de raccourci impossible"],
+    "downloads": [{
+      "key": "Windows 64",
+      "filename": "vgm_522_win64.zip",
+      "logo": "fa-windows"
+    }]
+  },
+  "6.0.0": {
+    "date": "2015-06-29",
+    "changelogs": ["Refactoring complet du projet", "Abandon de la gestion multi-utilisateurs et du partage de jeux", "Gestion par collections stockées sur disque / NAS", "Rafraichissement des vues automatique"],
+    "downloads": []
+  },
+  "6.1.0": {
+    "date": "2015-07-14",
+    "changelogs": ["Ajout popup de gestion de mot clés correspondant à des valeurs", "Possibilité d'utiliser ces mots clés dans les champs raccourci d'un jeu, par exemple {steam_cmd} ou {doc_dir}", "Sélection exclusive d'un support dans le ruban à l'aide d'un clic-droit", "Possibilité d'ajouter de nouveaux jeux par glisser / déplacer d'un exécutable ou d'une image"],
+    "downloads": []
+  },
+  "6.1.1": {
+    "date": "2015-07-23",
+    "changelogs": ["Compatibilité avec les fichiers .bat et .vbs pour la version Windows", "Compatibilité avec les fichiers .app pour la version macOS"],
+    "downloads": []
+  },
+  "6.1.2": {
+    "date": "2015-09-16",
+    "changelogs": ["Sauvegarde de la position de la fenêtre avant agrandissement", "Compatibilité avec les bords arrondis de macOS"],
+    "downloads": []
+  },
+  "6.2.0": {
+    "date": "2016-01-01",
+    "changelogs": ["VGM laisse le temps à la fenêtre de se dessiner avant de s'afficher", "Sauvegarde des chronos toutes les minutes en cas de plantage", "Meilleur affichage des chronos en cours sur les raccourcis", "Légère réorganisation du code pour le rendre plus facilement maintenable", "Fix passage du mode édition de soluce au mode lecture", "Fix images des jeux après déplacement de l'exécutable de VGM", "Fix affichage de l'animation de synchronisation", "Possibilité de minimiser la fenêtre au lancement d'un jeu", "Possibilité de sauvegarder l'affichage des vues par ordinateur", "Possibilité de lier des jeux entre eux, et de définir la nature du lien (remake, restauration, plateforme alternative, ...)"],
+    "downloads": []
+  },
+  "6.2.1": {
+    "date": "2016-03-14",
+    "changelogs": ["Fusions des spécificités Windows et macOS dans le même code, conditionné par os.platform()", "Pastilles de contrôle de la fenêtre pour macOS"],
+    "downloads": []
+  },
+  "6.2.2": {
+    "date": "2016-03-30",
+    "changelogs": ["Autorisation des doublons de jeux tant qu'ils sont sur des plateformes différentes"],
+    "downloads": []
+  },
+  "6.2.3": {
+    "date": "2016-06-06",
+    "changelogs": ["Indicateur visuel des jeux nécessitant un disque optique"],
+    "downloads": []
+  },
+  "6.2.4": {
+    "date": "2016-10-29",
+    "changelogs": ["Contrôles de fenêtres natifs pour macOS (compatibilité split view)", "L'application ne se ferme plus lorsqu'on ferme sa fenêtre sous macOS", "Légers raffinements graphiques pour macOS"],
+    "downloads": []
+  },
+  "6.2.5": {
+    "date": "2016-11-07",
+    "changelogs": ["Compatibilité Windows / macOS sur le comportement lors de la femerture de la fenêtre", "Fix mise à jour de la liste des supports et des genres lors d'un glisser / déplacer sur une collection vide", "Fix arrêt prématuré des compteurs quand on masque la fenêtre sous macOS"],
+    "downloads": [{
+      "key": "macOS",
+      "filename": "vgm_625_macOS.zip",
+      "logo": "fa-apple"
+    }, {
+      "key": "Windows 64",
+      "filename": "vgm_625_win64.zip",
+      "logo": "fa-windows"
+    }]
+  }
+};
+// EXTERNAL MODULE: ../../ladybug/react/components/items/ChangelogDateItem.css
+var ChangelogDateItem = __webpack_require__(4591);
+;// CONCATENATED MODULE: ../../ladybug/react/components/items/ChangelogDateItem.jsx
+
+
+
+
+
+ // Functions Components ReactJS
+// ======================================================================================================
+// ***** ChangelogDateItem *****
+// *****************************
+
+var TAG_ChangelogDateItem = function TAG_ChangelogDateItem() {};
+
+var ChangelogDateItem_ChangelogDateItem = (0,es/* observer */.Pi)(function (props) {
+  // From ... props
+  var date = props.date;
+  var editable = props.editable == true ? true : false;
+  var showShare = props.showShare == true ? true : false;
+  var showFocus = props.showFocus == true ? true : false;
+  var children = props.children;
+  var callbackShare = props.callbackShare;
+  var callbackFocus = props.callbackFocus; // ...
+
+  var dateLabel = "Prochainement";
+
+  if (date) {
+    dateLabel = dateTools.fromDateToHumanized(date);
+  } // Render
+  // ==================================================================================================
+
+
+  return /*#__PURE__*/react.createElement("div", {
+    className: "lb-changelog-date-item"
+  }, /*#__PURE__*/react.createElement("div", {
+    className: "lb-changelog-date-item-header"
+  }, /*#__PURE__*/react.createElement("div", {
+    className: "lb-changelog-date-item-header-name"
+  }, dateLabel)), /*#__PURE__*/react.createElement("div", {
+    className: "lb-changelog-date-item-content"
+  }, children));
+});
+// EXTERNAL MODULE: ../../ladybug/react/components/items/ChangelogReleaseItem.css
+var ChangelogReleaseItem = __webpack_require__(4606);
+;// CONCATENATED MODULE: ../../ladybug/react/components/items/ChangelogReleaseItem.jsx
+
+
+
+
+
+
+
+
+
+ // Functions Components ReactJS
+// ======================================================================================================
+// ***** ChangelogReleaseItem *****
+// ********************************
+
+var TAG_ChangelogReleaseItem = function TAG_ChangelogReleaseItem() {};
+
+var ChangelogReleaseItem_ChangelogReleaseItem = (0,es/* observer */.Pi)(function (props) {
+  var store = react.useContext(window.storeContext);
+  var app = store.app;
+  var services = app.services; // From ... store
+
+  var staticUrl = app.staticUrl;
+  var breakPoint414 = app.breakPoint414; // From ... props
+
+  var release = props.release;
+  var editable = props.editable == true ? true : false;
+  var children = props.children;
+  var callbackAssetClick = props.callbackAssetClick; // ...
+
+  var releaseId = release.doc_id;
+  var releaseAppKey = release.app_key;
+  var releaseVersion = release.version;
+  var releaseVersionName = release.version_name;
+  var releaseVersionAssets = release.version_assets;
+  var serviceInfo = services.getServiceInfo(releaseAppKey);
+  var serviceName = serviceInfo.name;
+
+  if (releaseVersionName) {
+    // serviceName = `${serviceName} - ${releaseVersionName}`;
+    serviceName = releaseVersionName;
+  } // Events
+  // ==================================================================================================
+
+
+  var handleAssetClick = function handleAssetClick(asset) {
+    if (callbackAssetClick) {
+      callbackAssetClick(asset.filename);
+    }
+  }; // Render
+  // ==================================================================================================
+
+
+  return /*#__PURE__*/react.createElement("div", {
+    className: "lb-changelog-release-item",
+    "data-id": releaseId
+  }, /*#__PURE__*/react.createElement("div", {
+    className: "lb-changelog-release-item-header responsive-vertical responsive-align-stretch"
+  }, /*#__PURE__*/react.createElement("div", {
+    className: "lb-changelog-release-item-service-name selectable"
+  }, serviceName), /*#__PURE__*/react.createElement("div", {
+    className: "h-col flex-0 flex-wrap"
+  }, releaseVersionAssets.map(function (asset, assetIdx) {
+    var plateformKey = asset.plateform_key;
+    var plateform = PLATEFORMS_BY_KEYS[plateformKey];
+    var assetLink = "".concat(staticUrl, "/file/").concat(asset.filename);
+    return /*#__PURE__*/react.createElement(Indicator_Indicator, {
+      severity: "info",
+      iconName: "folder_zip",
+      style: {
+        flex: 'none',
+        marginLeft: '2px',
+        marginBottom: breakPoint414 ? '10px' : ''
+      },
+      href: assetLink // callbackClick={() => handleAssetClick(asset)}
+
+    }, plateform.label);
+  }), releaseVersion && /*#__PURE__*/react.createElement(Indicator_Indicator, {
+    severity: "hot",
+    style: {
+      flex: 'none',
+      marginLeft: '2px',
+      marginBottom: breakPoint414 ? '10px' : ''
+    }
+  }, "v", releaseVersion))), /*#__PURE__*/react.createElement("div", {
+    className: "lb-changelog-release-item-content"
+  }, children));
+});
+// EXTERNAL MODULE: ../../ladybug/react/components/items/ChangelogChangeItem.css
+var ChangelogChangeItem = __webpack_require__(5205);
+;// CONCATENATED MODULE: ../../ladybug/react/components/items/ChangelogChangeItem.jsx
+
+
+
+
+
+
+
+
+
+
+
+
+
+function ChangelogChangeItem_slicedToArray(arr, i) { return ChangelogChangeItem_arrayWithHoles(arr) || ChangelogChangeItem_iterableToArrayLimit(arr, i) || ChangelogChangeItem_unsupportedIterableToArray(arr, i) || ChangelogChangeItem_nonIterableRest(); }
+
+function ChangelogChangeItem_nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function ChangelogChangeItem_unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return ChangelogChangeItem_arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return ChangelogChangeItem_arrayLikeToArray(o, minLen); }
+
+function ChangelogChangeItem_arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function ChangelogChangeItem_iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function ChangelogChangeItem_arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+
+
+
+ // Functions Components ReactJS
+// ======================================================================================================
+// ***** ChangelogChangeItem *****
+// *******************************
+
+var TAG_ChangelogChangeItem = function TAG_ChangelogChangeItem() {};
+
+var ChangelogChangeItem_ChangelogChangeItem = (0,es/* observer */.Pi)(function (props) {
+  // From ... props
+  var release = props.release;
+  var change = props.change;
+  var editable = props.editable == true ? true : false; // From ... states
+
+  var _React$useState = react.useState(false),
+      _React$useState2 = ChangelogChangeItem_slicedToArray(_React$useState, 2),
+      expanded = _React$useState2[0],
+      setExpanded = _React$useState2[1]; // ...
+
+
+  var changeTitle = change.title; // Events
+  // ==================================================================================================
+
+  var handleExpandClick = function handleExpandClick() {
+    setExpanded(!expanded);
+  }; // Render
+  // ==================================================================================================
+
+
+  return /*#__PURE__*/react.createElement("div", {
+    className: (0,clsx_m/* default */.Z)("lb-changelog-change-item", {
+      "expanded": expanded
+    })
+  }, /*#__PURE__*/react.createElement("div", {
+    className: "lb-changelog-change-item-header"
+  }, /*#__PURE__*/react.createElement("div", {
+    className: "lb-changelog-change-item-header-title selectable"
+  }, changeTitle)));
+});
 // EXTERNAL MODULE: ../../ladybug/react/contexts/changelogs/Changelogs.css
 var Changelogs = __webpack_require__(9553);
 ;// CONCATENATED MODULE: ../../ladybug/react/contexts/changelogs/Changelogs.jsx
+function Changelogs_slicedToArray(arr, i) { return Changelogs_arrayWithHoles(arr) || Changelogs_iterableToArrayLimit(arr, i) || Changelogs_unsupportedIterableToArray(arr, i) || Changelogs_nonIterableRest(); }
+
+function Changelogs_nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function Changelogs_iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function Changelogs_arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
@@ -10683,26 +11539,494 @@ var Changelogs = __webpack_require__(9553);
 
 
 
- // Models
-// -------------------------------------------------------------------------------------------------------------
-// ***** ChangelogsStore *****
-// ***************************
 
-var TAG_ChangelogsStore = function TAG_ChangelogsStore() {};
 
-var ChangelogsStore = mobx_state_tree_module/* types.model */.V5.model({
-  loaded: false
+
+
+
+
+
+
+
+function Changelogs_createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = Changelogs_unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e2) { throw _e2; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e3) { didErr = true; err = _e3; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
+
+function Changelogs_unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return Changelogs_arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return Changelogs_arrayLikeToArray(o, minLen); }
+
+function Changelogs_arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ // Datas
+// ======================================================================================================
+// Changelogs static datas
+// -
+
+var STATIC_CHANGELOGS = {
+  'nexorium': NEXORIUM_CHANGELOGS,
+  'nexora': NEXORA_CHANGELOGS,
+  'gramophone': GRAMOPHONE_CHANGELOGS,
+  'vgm': VGM_CHANGELOGS
+}; // Plateformes
+// -
+
+var PLATEFORMS = [{
+  "value": "macos",
+  "label": "macOS"
+}, {
+  "value": "win32",
+  "label": "Windows 32"
+}, {
+  "value": "win64",
+  "label": "Windows 64"
+}];
+var PLATEFORMS_BY_KEYS = {};
+
+for (var Changelogs_i = 0, _PLATEFORMS = PLATEFORMS; Changelogs_i < _PLATEFORMS.length; Changelogs_i++) {
+  var plateformItem = _PLATEFORMS[Changelogs_i];
+  PLATEFORMS_BY_KEYS[plateformItem.value] = plateformItem;
+} // Models
+// ======================================================================================================
+// ***** Contributor *****
+// ***********************
+
+
+var TAG_ContributorStore = function TAG_ContributorStore() {};
+
+var ContributorStore = mobx_state_tree_module/* types.model */.V5.model({
+  initials: '',
+  email: '',
+  inactive: false
+}).actions(function (self) {
+  return {
+    setField: function setField(field, value) {
+      self[field] = value;
+    },
+    update: function update(raw) {
+      self.initials = raw.initials;
+      self.email = raw.email;
+      self.inactive = raw.inactive;
+    }
+  };
+}); // ***** ChangeStore *****
+// ***********************
+
+var TAG_ChangeStore = function TAG_ChangeStore() {};
+
+var ChangeStore = mobx_state_tree_module/* types.model */.V5.model({
+  key: mobx_state_tree_module/* types.maybeNull */.V5.maybeNull(mobx_state_tree_module/* types.string */.V5.string),
+  idx: 0,
+  title: mobx_state_tree_module/* types.maybeNull */.V5.maybeNull(mobx_state_tree_module/* types.string */.V5.string),
+  content: mobx_state_tree_module/* types.maybeNull */.V5.maybeNull(mobx_state_tree_module/* types.string */.V5.string),
+  warnings: mobx_state_tree_module/* types.maybeNull */.V5.maybeNull(mobx_state_tree_module/* types.string */.V5.string),
+  contributors: mobx_state_tree_module/* types.optional */.V5.optional(mobx_state_tree_module/* types.array */.V5.array(ContributorStore), [])
 }).actions(function (self) {
   return {
     setField: function setField(field, value) {
       self[field] = value;
     },
     // -
-    update: function update(raw) {}
+    update: function update(raw) {
+      self.key = raw.key ? raw.key : uuid();
+      self.idx = raw.idx ? raw.idx : 0;
+      self.title = raw.title;
+      self.content = raw.content ? raw.content : "";
+      self.warnings = raw.warnings ? raw.warnings : "";
+      self.contributors = [];
+
+      if (raw.contributors) {
+        var _iterator = Changelogs_createForOfIteratorHelper(raw.contributors),
+            _step;
+
+        try {
+          for (_iterator.s(); !(_step = _iterator.n()).done;) {
+            var contributorRaw = _step.value;
+            var contributor = ContributorStore.create({});
+            contributor.update(contributorRaw);
+            self.contributors.push(contributor);
+          }
+        } catch (err) {
+          _iterator.e(err);
+        } finally {
+          _iterator.f();
+        }
+      }
+    }
+  };
+}); // ***** ReleaseAssetStore *****
+// *****************************
+
+var TAG_ReleaseAssetStore = function TAG_ReleaseAssetStore() {};
+
+var ReleaseAssetStore = mobx_state_tree_module/* types.model */.V5.model({
+  plateform_key: mobx_state_tree_module/* types.maybeNull */.V5.maybeNull(mobx_state_tree_module/* types.string */.V5.string),
+  // macos, win32, win64
+  filename: mobx_state_tree_module/* types.maybeNull */.V5.maybeNull(mobx_state_tree_module/* types.string */.V5.string)
+}).actions(function (self) {
+  return {
+    setField: function setField(field, value) {
+      self[field] = value;
+    },
+    // -
+    update: function update(raw) {
+      self.plateform_key = raw.plateform_key;
+      self.filename = raw.filename;
+    }
+  };
+}); // ***** ReleaseStore *****
+// ************************
+
+var TAG_ReleaseStore = function TAG_ReleaseStore() {};
+
+var ReleaseStore = mobx_state_tree_module/* types.model */.V5.model({
+  doc_id: '',
+  doc_rev: '',
+  doc_state: 0,
+  status: mobx_state_tree_module/* types.maybeNull */.V5.maybeNull(mobx_state_tree_module/* types.string */.V5.string),
+  // draft, ship, test, prod
+  date: mobx_state_tree_module/* types.maybeNull */.V5.maybeNull(mobx_state_tree_module/* types.string */.V5.string),
+  app_key: mobx_state_tree_module/* types.maybeNull */.V5.maybeNull(mobx_state_tree_module/* types.string */.V5.string),
+  changeset: mobx_state_tree_module/* types.maybeNull */.V5.maybeNull(mobx_state_tree_module/* types.string */.V5.string),
+  version: mobx_state_tree_module/* types.maybeNull */.V5.maybeNull(mobx_state_tree_module/* types.string */.V5.string),
+  version_name: mobx_state_tree_module/* types.maybeNull */.V5.maybeNull(mobx_state_tree_module/* types.string */.V5.string),
+  version_assets: mobx_state_tree_module/* types.optional */.V5.optional(mobx_state_tree_module/* types.array */.V5.array(ReleaseAssetStore), []),
+  changes: mobx_state_tree_module/* types.optional */.V5.optional(mobx_state_tree_module/* types.array */.V5.array(ChangeStore), []),
+  next_send_newsletter: false
+}).actions(function (self) {
+  return {
+    setField: function setField(field, value) {
+      self[field] = value;
+    },
+    // -
+    update: function update(raw) {
+      self.doc_id = raw.doc_id ? raw.doc_id : uuid();
+      self.doc_rev = raw.doc_rev ? raw.doc_rev : '';
+      self.doc_state = raw.doc_state ? raw.doc_state : 0;
+      self.status = raw.status;
+      self.date = raw.date;
+      self.app_key = raw.app_key;
+      self.changeset = raw.changeset ? raw.changeset : '';
+      self.version = raw.version ? raw.version : '';
+      self.version_name = raw.version_name ? raw.version_name : '';
+      self.version_assets = [];
+
+      if (raw.version_assets) {
+        var _iterator2 = Changelogs_createForOfIteratorHelper(raw.version_assets),
+            _step2;
+
+        try {
+          for (_iterator2.s(); !(_step2 = _iterator2.n()).done;) {
+            var versionAssetRaw = _step2.value;
+            var releaseAsset = ReleaseAssetStore.create({});
+            releaseAsset.update(versionAssetRaw);
+            self.version_assets.push(releaseAsset);
+          }
+        } catch (err) {
+          _iterator2.e(err);
+        } finally {
+          _iterator2.f();
+        }
+      }
+
+      self.changes = [];
+
+      var _iterator3 = Changelogs_createForOfIteratorHelper(raw.changes),
+          _step3;
+
+      try {
+        for (_iterator3.s(); !(_step3 = _iterator3.n()).done;) {
+          var changeRaw = _step3.value;
+          var change = ChangeStore.create({});
+          change.update(changeRaw);
+          self.changes.push(change);
+        }
+      } catch (err) {
+        _iterator3.e(err);
+      } finally {
+        _iterator3.f();
+      }
+
+      self.next_send_newsletter = raw.next_send_newsletter ? raw.next_send_newsletter : false;
+    }
+  };
+}); // ***** ChangelogsStore *****
+// ***************************
+
+var TAG_ChangelogsStore = function TAG_ChangelogsStore() {};
+
+var ChangelogsStore = mobx_state_tree_module/* types.model */.V5.model({
+  loaded: false,
+  filterStates: mobx_state_tree_module/* types.optional */.V5.optional(mobx_state_tree_module/* types.array */.V5.array(mobx_state_tree_module/* types.string */.V5.string), ['draft', 'ship', 'test', 'prod']),
+  filterDates: mobx_state_tree_module/* types.optional */.V5.optional(mobx_state_tree_module/* types.array */.V5.array(mobx_state_tree_module/* types.string */.V5.string), []),
+  filterMonth: '',
+  releases: mobx_state_tree_module/* types.optional */.V5.optional(mobx_state_tree_module/* types.array */.V5.array(ReleaseStore), []),
+  nextUUID: ''
+}).views(function (self) {
+  return {
+    get nbReleases() {
+      return self.releases.length;
+    },
+
+    // Getters
+    // -
+    getLastRelease: function getLastRelease() {
+      var withAssets = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : false;
+      var lastRelease = null;
+
+      var _iterator4 = Changelogs_createForOfIteratorHelper(self.releases),
+          _step4;
+
+      try {
+        for (_iterator4.s(); !(_step4 = _iterator4.n()).done;) {
+          var release = _step4.value;
+
+          // Qu'avec des assets ?
+          if (withAssets && release.version_assets.length == 0) {
+            continue;
+          }
+
+          if (!lastRelease) {
+            lastRelease = release;
+          }
+
+          if (lastRelease.date < release.date) {
+            lastRelease = release;
+          }
+        }
+      } catch (err) {
+        _iterator4.e(err);
+      } finally {
+        _iterator4.f();
+      }
+
+      return lastRelease;
+    },
+
+    // Bools
+    // -
+    get isEditable() {
+      // TODO
+      return false;
+    },
+
+    isFocused: function isFocused() {
+      // Est-on concentré sur une date en particulier ?
+      // ---
+      var filterDates = self.filterDates;
+      return filterDates.length == 1 ? true : false;
+    }
+  };
+}).actions(function (self) {
+  return {
+    setField: function setField(field, value) {
+      self[field] = value;
+    },
+    // -
+    update: function update(raw) {
+      self.loaded = true;
+      self.releases = [];
+
+      var _iterator5 = Changelogs_createForOfIteratorHelper(raw.releases),
+          _step5;
+
+      try {
+        for (_iterator5.s(); !(_step5 = _iterator5.n()).done;) {
+          var releaseRaw = _step5.value;
+          var release = ReleaseStore.create({});
+          release.update(releaseRaw);
+          self.releases.push(release);
+        }
+      } catch (err) {
+        _iterator5.e(err);
+      } finally {
+        _iterator5.f();
+      }
+
+      self.nextUUID = uuid();
+    },
+    load: function load() {
+      // Chargement de la liste des versions
+      // ---
+      var store = (0,mobx_state_tree_module/* getRoot */.yj)(self);
+      var app = store.app;
+      var appKey = app.appKey;
+      var staticMode = app.staticMode; // Chargement des changelogs statiques
+
+      if (staticMode && STATIC_CHANGELOGS.hasOwnProperty(appKey)) {
+        self.update({
+          'releases': STATIC_CHANGELOGS[appKey]
+        });
+      }
+    },
+    // -
+    share: function share(date) {
+      // Partage d'une date de changelog
+      // ---
+      var year = date.substring(0, 4);
+      var shareUrl = "/changelog/".concat(year, "?mode=standalone&dates=").concat(date);
+      window.open(shareUrl, '_blank');
+    },
+    focus: function focus(date) {
+      // Concentration sur une date de changelog
+      // ---
+      var store = (0,mobx_state_tree_module/* getRoot */.yj)(self);
+      var app = store.app;
+      var year = date.substring(0, 4);
+      var changelogKey = store.app.changelogKey;
+      app.navigateTo('changelogs', null, null, {
+        filterDates: [date]
+      });
+    },
+    unfocus: function unfocus() {
+      // Arrêt concentration sur une date de changelog
+      // ---
+      var store = (0,mobx_state_tree_module/* getRoot */.yj)(self);
+      var app = store.app;
+      app.navigateTo('changelogs', null, null, {
+        filterDates: []
+      });
+    }
   };
 }); // Functions Components ReactJS
-// -------------------------------------------------------------------------------------------------------------
-// ***** ChangelogsHeaderLeft *****
+// ======================================================================================================
+// ***** RenderChangelogs *****
+// ****************************
+
+var TAG_RenderChangelogs = function TAG_RenderChangelogs() {};
+
+var RenderChangelogs = (0,es/* observer */.Pi)(function (props) {
+  var store = react.useContext(window.storeContext);
+  var app = store.app;
+  var changelogs = app.changelogs; // From ... store
+
+  var staticUrl = app.staticUrl;
+  var loaded = changelogs.loaded;
+  var releases = changelogs.releases;
+  var isEditable = changelogs.isEditable;
+  var isFocused = changelogs.isFocused; // ...
+
+  react.useEffect(function () {
+    if (!loaded) {
+      changelogs.load();
+    }
+  }, [loaded]); // Renderers
+  // ==================================================================================================
+
+  var handleShareChangelog = function handleShareChangelog(date) {
+    changelog.share(date);
+  };
+
+  var handleFocusChangelog = function handleFocusChangelog(date) {
+    changelog.focus(date);
+  }; // -
+
+
+  var handleAssetClick = function handleAssetClick(filename) {
+    var assetLink = "".concat(staticUrl, "/file/").concat(filename);
+    console.log(assetLink);
+    app.gotoExternal(assetLink);
+  }; // Renderers
+  // ==================================================================================================
+
+
+  var changelogContent = null;
+
+  if (loaded) {
+    var dates = [];
+    var datesItems = [];
+    var releasesByDates = {};
+
+    var _iterator6 = Changelogs_createForOfIteratorHelper(releases),
+        _step6;
+
+    try {
+      for (_iterator6.s(); !(_step6 = _iterator6.n()).done;) {
+        var release = _step6.value;
+        var releaseId = release.doc_id;
+        var releaseDate = release.date;
+
+        if (dates.indexOf(releaseDate) == -1) {
+          dates.push(releaseDate);
+          releasesByDates[releaseDate] = [];
+        } // Changes
+
+
+        var changesList = [];
+
+        var _iterator7 = Changelogs_createForOfIteratorHelper(release.changes.entries()),
+            _step7;
+
+        try {
+          for (_iterator7.s(); !(_step7 = _iterator7.n()).done;) {
+            var _step7$value = Changelogs_slicedToArray(_step7.value, 2),
+                changeIdx = _step7$value[0],
+                change = _step7$value[1];
+
+            changesList.push( /*#__PURE__*/react.createElement(ChangelogChangeItem_ChangelogChangeItem, {
+              key: "".concat(release.doc_id, "_change_").concat(changeIdx),
+              release: release,
+              change: change,
+              editable: isEditable // showContributors={isEditable}
+              // callbackEdit={handleEditChange}
+              // callbackDelete={handleDeleteChange}
+
+            }));
+          } // Releases
+
+        } catch (err) {
+          _iterator7.e(err);
+        } finally {
+          _iterator7.f();
+        }
+
+        releasesByDates[releaseDate].push( /*#__PURE__*/react.createElement(ChangelogReleaseItem_ChangelogReleaseItem, {
+          key: release.doc_id,
+          release: release,
+          editable: isEditable // callbackEdit={handleEditRelease}
+          // callbackDelete={handleDeleteRelease}
+          // callbackRepository={handleRepository}
+          // callbackAdd={handleAddChange}
+          ,
+          callbackAssetClick: handleAssetClick
+        }, changesList));
+      } // Dates
+
+    } catch (err) {
+      _iterator6.e(err);
+    } finally {
+      _iterator6.f();
+    }
+
+    for (var _i2 = 0, _dates = dates; _i2 < _dates.length; _i2++) {
+      var date = _dates[_i2];
+      datesItems.push( /*#__PURE__*/react.createElement(ChangelogDateItem_ChangelogDateItem, {
+        key: date,
+        date: date,
+        editable: isEditable // showShare={!isFocused}
+        ,
+        showFocus: !isFocused // callbackShare={handleShareChangelog}
+        ,
+        callbackFocus: handleFocusChangelog
+      }, releasesByDates[date]));
+    }
+
+    changelogContent = /*#__PURE__*/react.createElement(react.Fragment, null, datesItems);
+  }
+
+  return changelogContent;
+}); // ***** ChangelogsHeaderLeft *****
 // ********************************
 
 var TAG_ChangelogsHeaderLeft = function TAG_ChangelogsHeaderLeft() {};
@@ -10764,21 +12088,40 @@ var TAG_ChangelogsPage = function TAG_ChangelogsPage() {};
 
 var ChangelogsPage = (0,es/* observer */.Pi)(function (props) {
   var store = react.useContext(window.storeContext);
-  var app = store.app; // Renderers
+  var app = store.app;
+  var changelogs = app.changelogs; // From ... store
+
+  var initialized = app.initialized;
+  var loaded = changelogs.loaded;
+  var nbReleases = changelogs.nbReleases; // ...
+
+  var showHelper = !initialized || !loaded || nbReleases == 0 ? true : false; // Renderers
   // ==================================================================================================
+
+  var renderPage = function renderPage() {
+    // Render :: Page -> que quand l'app est intitialisée (pour useEffect)
+    // ---
+    var pageContent = null;
+
+    if (initialized) {
+      pageContent = /*#__PURE__*/react.createElement(RenderChangelogs, null);
+    }
+
+    return pageContent;
+  };
 
   var renderHelper = function renderHelper() {
     // Render :: Helper
     // ---
     return /*#__PURE__*/react.createElement(Helper_Helper, {
       iconName: "history",
-      show: true
+      show: showHelper
     });
   };
 
   return /*#__PURE__*/react.createElement("div", {
     className: "nx-page"
-  }, renderHelper());
+  }, renderPage(), renderHelper());
 });
 // EXTERNAL MODULE: ../../ladybug/react/contexts/bugs/Bugs.css
 var Bugs = __webpack_require__(2432);
@@ -13725,6 +15068,11 @@ var NxAppStore = mobx_state_tree_module/* types.model */.V5.model({
       return '/static';
     },
 
+    // -
+    generateUUID: function generateUUID() {
+      return uuid();
+    },
+
     // Bools
     // -
     get isFullScreen() {
@@ -15312,7 +16660,7 @@ var services_ServiceInfoStore = mobx_state_tree_module/* types.model */.V5.model
     },
 
     get githubLinkClient() {
-      if (["gramophone_server", "vgm_server"].includes(self.folderName)) {
+      if (["gramophone", "vgm"].includes(self.app_key)) {
         return "https://github.com/vincent114/".concat(self.app_key, "_client");
       }
 
@@ -16572,7 +17920,7 @@ var Main = __webpack_require__(1729);
 
 
  // Models
-// -------------------------------------------------------------------------------------------------------------
+// ======================================================================================================
 // ***** RootStore *****
 // *********************
 
@@ -16653,7 +18001,7 @@ var RootStore = mobx_state_tree_module/* types.model */.V5.model({
     }
   };
 }); // Init
-// -------------------------------------------------------------------------------------------------------------
+// ======================================================================================================
 // Contexts
 // -
 
@@ -16712,7 +18060,7 @@ staticRaw['smap']['me'] = copyObj(services_STATIC_SMAP.nexorium);
 rootStore.app.init(function (datas) {
   rootStore.update(datas);
 }, popups, {}, staticRaw); // Functions Components ReactJS
-// -------------------------------------------------------------------------------------------------------------
+// ======================================================================================================
 // ***** Root *****
 // ****************
 
@@ -16730,7 +18078,7 @@ var Root = (0,es/* observer */.Pi)(function () {
     popups: popups
   }));
 }); // DOM Ready
-// --------------------------------------------------------------------------------------------------------------------------------------------
+// ======================================================================================================
 
 window.addEventListener('DOMContentLoaded', function () {
   react_dom.render( /*#__PURE__*/react.createElement(Root, null), document.getElementById("nx-root"));
@@ -16753,6 +18101,27 @@ window.addEventListener('DOMContentLoaded', function () {
 /***/ }),
 
 /***/ 3199:
+/***/ (() => {
+
+// extracted by extract-css-chunks-webpack-plugin
+
+/***/ }),
+
+/***/ 5205:
+/***/ (() => {
+
+// extracted by extract-css-chunks-webpack-plugin
+
+/***/ }),
+
+/***/ 4591:
+/***/ (() => {
+
+// extracted by extract-css-chunks-webpack-plugin
+
+/***/ }),
+
+/***/ 4606:
 /***/ (() => {
 
 // extracted by extract-css-chunks-webpack-plugin
@@ -17392,7 +18761,7 @@ window.addEventListener('DOMContentLoaded', function () {
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module depends on other loaded chunks and execution need to be delayed
 /******/ 	__webpack_require__.O(undefined, [216], () => (__webpack_require__(3979)))
-/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, [216], () => (__webpack_require__(8089)))
+/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, [216], () => (__webpack_require__(65)))
 /******/ 	__webpack_exports__ = __webpack_require__.O(__webpack_exports__);
 /******/ 	
 /******/ })()
