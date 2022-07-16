@@ -19,7 +19,10 @@ import './ProjectCard.css';
 // ***********************
 
 const TAG_ProjectCard = () => {}
-export const ProjectCard = (props) => {
+export const ProjectCard = observer((props) => {
+
+	const store = React.useContext(window.storeContext);
+	const app = store.app;
 
 	// From ... props
 
@@ -32,6 +35,8 @@ export const ProjectCard = (props) => {
 	const name = serviceInfo.name;
 	const description = serviceInfo.description;
 
+	const externalUrl = serviceInfo.getExternalUrl();
+
 	// Events
 	// ==================================================================================================
 
@@ -40,7 +45,9 @@ export const ProjectCard = (props) => {
 		// Sur click de la carte
 		// ---
 
-		console.log(appId);
+		if (externalUrl) {
+			app.gotoExternal(externalUrl);
+		}
 	}
 
 	// Render
@@ -48,8 +55,10 @@ export const ProjectCard = (props) => {
 
 	return (
 		<Paper
+			hoverable={(externalUrl) ? true : false}
 			className={clsx(
-				"nm-projet-card"
+				"nm-projet-card",
+				{"clickable": externalUrl},
 			)}
 			onClick={() => handleClick()}
 		>
@@ -65,7 +74,15 @@ export const ProjectCard = (props) => {
 						{description}
 					</Typography>
 				</div>
+				{externalUrl && (
+					<div className="nm-project-launch">
+						<Icon
+							name="launch"
+							color="info"
+						/>
+					</div>
+				)}
 			</Row>
 		</Paper>
 	)
-}
+})

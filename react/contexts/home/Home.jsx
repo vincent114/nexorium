@@ -86,19 +86,19 @@ export const RenderHomeGrid = observer((props) => {
 		>
 
 			<Heading>
-				Mais quels sont ces projets ?
+				En apprendre plus sur moi
 			</Heading>
 			<Row responsive={false}>
-				{navCardProjects}
+				{navCardCv}
 			</Row>
 
 			<br/>
 
 			<Heading>
-				En apprendre plus sur moi
+				Quels sont mes projets ?
 			</Heading>
 			<Row responsive={false}>
-				{navCardCv}
+				{navCardProjects}
 			</Row>
 
 			<br/>
@@ -126,6 +126,7 @@ export const HomePage = observer((props) => {
 
 	// From ... store
 
+	const staticUrl = app.staticUrl;
 	const themeMode = theme.mode;
 
 	// Renderers
@@ -138,8 +139,7 @@ export const HomePage = observer((props) => {
 
 		return (
 			<Helper
-				// icon={<img className="nx-helper-icon" src="/static/favicons/android-icon-192x192.png" />}
-				icon={<img className="nx-helper-icon" src="/static/img/myself.png" />}
+				icon={<img className="nx-helper-icon" src={`${staticUrl}/img/myself.png`} />}
 				title="Bienvenue !"
 				subtitle={(
 					<div>
@@ -148,7 +148,7 @@ export const HomePage = observer((props) => {
 								color: (themeMode == 'light') ? 'black' : 'white',
 							}}
 						>
-							Je m'appelle <b>Vincent Boni</b> et ceci est le portail d'accès vers tous mes projets 🙂
+							Je m'appelle <b>Vincent Boni</b> et ceci est mon portail d'accès / site vitrine 🙂
 						</span><br/>
 						<i style={{
 							marginTop: '5px',

@@ -6,6 +6,9 @@ import { observer } from "mobx-react-lite";
 import { NxAppStore, NxApp, makeInitSnapshot } from 'nexus/NxApp';
 import { NewslettersStore, NewslettersPage } from 'nexus/contexts/newsletters/Newsletters';
 
+import { STATIC_SMAP } from 'nexus/models/services';
+import { copyObj } from 'nexus/utils/Datas';
+
 import { ContextualHeader } from 'nexorium/ui/ContextualHeader';
 import { ContextualMenu } from 'nexorium/ui/ContextualMenu';
 import { HomePage } from 'nexorium/contexts/home/Home';
@@ -19,7 +22,7 @@ import './Main.css';
 
 
 // Models
-// -------------------------------------------------------------------------------------------------------------
+// ======================================================================================================
 
 // ***** RootStore *****
 // *********************
@@ -82,7 +85,7 @@ const RootStore = types
 			// Nexorium-specific init datas
 			// ---
 
-			console.log(datas);
+			self.app.setField('initialized', true);
 		},
 
 		navigateTo: (navContext, contextId, contextUrl, contextExtras, callback) => {
@@ -124,7 +127,7 @@ const RootStore = types
 
 
 // Init
-// -------------------------------------------------------------------------------------------------------------
+// ======================================================================================================
 
 // Contexts
 // -
@@ -148,6 +151,9 @@ let popups = {}
 // -
 
 let routes = {
+	'home': '/',
+	'home:static': '/main.html',
+
 	'projects': '/projects',
 	'cv': '/cv',
 
@@ -159,6 +165,7 @@ let routes = {
 
 let initSnapshot = makeInitSnapshot(routes, {
 	'app': {
+		'staticMode': window.staticMode,
 		'theme': {
 			'palette_light': {
 				'primary': {
@@ -186,17 +193,23 @@ export const RootStoreContext = React.createContext(rootStore);
 window.store = rootStore;
 window.storeContext = RootStoreContext;
 
+let staticRaw = {
+	'smap': copyObj(STATIC_SMAP),
+}
+staticRaw['smap']['me'] = copyObj(STATIC_SMAP['nexorium']);
+
 rootStore.app.init(
 	(datas) => {
 		rootStore.update(datas);
 	},
 	popups,
-	{}
+	{},
+	staticRaw,
 );
 
 
 // Functions Components ReactJS
-// -------------------------------------------------------------------------------------------------------------
+// ======================================================================================================
 
 // ***** Root *****
 // ****************
@@ -221,7 +234,7 @@ const Root = observer(() => {
 
 
 // DOM Ready
-// --------------------------------------------------------------------------------------------------------------------------------------------
+// ======================================================================================================
 
 window.addEventListener('DOMContentLoaded', () => {
 	ReactDOM.render(

@@ -6,9 +6,23 @@
 	margin-bottom: 10px;
 }
 
+.nm-projet-card.clickable {
+	cursor: pointer;
+}
+.nm-projet-card.clickable:active {
+	transform: scale(0.98);
+}
+
 /* Thumbnail */
 /* -------------------------------------------------------------------------------- */
 
 .nm-project-thumbnail {
+	flex: none;
+}
+
+/* Launch */
+/* -------------------------------------------------------------------------------- */
+
+.nm-project-launch {
 	flex: none;
 }
