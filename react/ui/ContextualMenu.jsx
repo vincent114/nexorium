@@ -81,7 +81,7 @@ export const NexoriumMenuItems = observer((props) => {
 			)}
 
 			<AboutMenuItem />
-			{!staticMode && <PreferencesMenuItem />}
+			<PreferencesMenuItem />
 			{!staticMode && <AdminMenuItem />}
 
 			{(!staticMode && breakPoint650) && <MenuDivider />}

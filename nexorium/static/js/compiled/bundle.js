@@ -1,7 +1,7 @@
 /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
-/***/ 3575:
+/***/ 8446:
 /***/ ((__unused_webpack_module, __unused_webpack___webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -22,6 +22,8 @@ var runtime = __webpack_require__(9354);
 var es_array_includes = __webpack_require__(368);
 // EXTERNAL MODULE: ../../nexus/react/node_modules/core-js/modules/es.array.index-of.js
 var es_array_index_of = __webpack_require__(6265);
+// EXTERNAL MODULE: ../../nexus/react/node_modules/core-js/modules/es.object.keys.js
+var es_object_keys = __webpack_require__(6627);
 // EXTERNAL MODULE: ../../nexus/react/node_modules/core-js/modules/web.timers.js
 var web_timers = __webpack_require__(6213);
 // EXTERNAL MODULE: ../../nexus/react/node_modules/core-js/modules/es.array.splice.js
@@ -3971,7 +3973,10 @@ function _defineProperties(target, props) { for (var i = 0; i < props.length; i+
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
 
 // Objects
-// -------------------------------------------------------------------------------------------------------------
+// ======================================================================================================
+// ---
+// Color
+// ---
 var Color = /*#__PURE__*/(/* unused pure expression or super */ null && (function () {
   function Color(r, g, b) {
     _classCallCheck(this, Color);
@@ -4113,7 +4118,10 @@ var Color = /*#__PURE__*/(/* unused pure expression or super */ null && (functio
   }]);
 
   return Color;
-}()));
+}())); // ---
+// Solver
+// ---
+
 
 var Solver = /*#__PURE__*/(/* unused pure expression or super */ null && (function () {
   function Solver(target, baseColor) {
@@ -4267,7 +4275,7 @@ var Solver = /*#__PURE__*/(/* unused pure expression or super */ null && (functi
 
   return Solver;
 }())); // Functions
-// -------------------------------------------------------------------------------------------------------------
+// ======================================================================================================
 
 
 var hexToRgbA = function hexToRgbA(hex, opacity) {
@@ -5632,9 +5640,10 @@ var Row_Row = function Row(props) {
   // From ... props
   var children = props.children;
   var responsive = props.responsive == false ? false : true;
-  var spacing = props.spacing != null ? props.spacing : 'small'; //  '', tiny, small, medium, large, xlarge
+  var spacing = props.spacing != null ? props.spacing : 'small'; //  '', small, medium, large, xlarge
 
-  var align = props.align ? props.align : 'start';
+  var align = props.align ? props.align : 'start'; // center, start, end, stretch
+
   var className = props.className ? props.className : '';
   var style = props.style ? props.style : {};
   var marginBottom = props.marginBottom ? props.marginBottom : ''; // small, normal, large, big
@@ -5837,7 +5846,7 @@ var subDays = __webpack_require__(5081);
 
 
  // Objects
-// --------------------------------------------------------------------------------------------------------------------------------------------
+// ======================================================================================================
 // ***** dateTools *****
 // *********************
 
@@ -7229,10 +7238,12 @@ var Typography_Typography = (0,es/* observer */.Pi)(function (props) {
   var theme = app.theme; // From ... props
 
   var children = props.children;
-  var size = props.size ? props.size : 'default';
-  var variant = props.variant ? props.variant : ''; // title, description
+  var size = props.size ? props.size : 'default'; // small, default, big
 
-  var severity = props.severity ? props.severity : '';
+  var align = props.align ? props.align : 'left'; // left, center, right
+
+  var variant = props.variant ? props.variant : ''; // title, subtitle, description
+
   var className = props.className ? props.className : '';
   var style = props.style ? copyObj(props.style) : {};
   var color = props.color ? props.color : 'default'; // ...
@@ -7240,11 +7251,17 @@ var Typography_Typography = (0,es/* observer */.Pi)(function (props) {
 
   style['color'] = theme.getTextColorFromKey(color);
 
+  if (variant == 'subtitle') {
+    style['color'] = theme.palette.secondary.main;
+  }
+
   if (variant == 'description') {
     style['color'] = 'gray';
-  } // Render
-  // ==================================================================================================
+  } // Quel alignement ?
 
+
+  style['textAlign'] = align; // Render
+  // ==================================================================================================
 
   return /*#__PURE__*/react.createElement("div", {
     className: (0,clsx_m/* default */.Z)("nx-typography", size, variant, className),
@@ -7417,10 +7434,10 @@ var Switch_Switch = (0,es/* observer */.Pi)(function (props) {
     iconName: switchIconName,
     iconColor: switchIconColor,
     iconSize: "large",
-    iconVariant: "filled",
-    style: {
-      marginLeft: '-8px'
-    }
+    iconVariant: "filled" // style={{
+    // 	marginLeft: '-8px',
+    // }}
+
   }), label && /*#__PURE__*/react.createElement("div", {
     className: "nx-field-label-aside"
   }, label));
@@ -8155,14 +8172,21 @@ var TAG_RenderSectionPopup = function TAG_RenderSectionPopup() {};
 var RenderSectionPopup = (0,es/* observer */.Pi)(function (props) {
   var store = react.useContext(window.storeContext);
   var app = store.app;
+  var popup = app.popup;
   var playground = app.playground; // From ... store
 
   var isLoading = app.isLoading;
   var pageDef = playground.pageDef; // ...
-  // Render
+  // Events
+  // ==================================================================================================
+
+  var handleOpenPopup = function handleOpenPopup(popupKey) {
+    popup.open(popupKey);
+  }; // Render
   // ==================================================================================================
   // Section -> Title
   // -------------------------------------------------
+
 
   var sectionTitle = pageDef.label; // Section -> Icon
   // -------------------------------------------------
@@ -8172,11 +8196,41 @@ var RenderSectionPopup = (0,es/* observer */.Pi)(function (props) {
   }); // Section -> Content
   // -------------------------------------------------
 
-  var sectionContent = /*#__PURE__*/react.createElement(react.Fragment, null, /*#__PURE__*/react.createElement(Typography_Typography, null, "Bient\xF4t !")); // -------------------------------------------------
+  var sectionContent = /*#__PURE__*/react.createElement(react.Fragment, null, /*#__PURE__*/react.createElement(Alert_Alert, {
+    severity: "info"
+  }, "Les popups sont \xE0 privil\xE9gier pour afficher des champs ou informations sans changer de page.", /*#__PURE__*/react.createElement("br", null), /*#__PURE__*/react.createElement("div", {
+    style: {
+      marginTop: '10px'
+    }
+  }, "La variante ", /*#__PURE__*/react.createElement("b", null, "\"dialog\""), " est destin\xE9e \xE0 afficher beaucoup de contenu avec ou sans boutons d'action."), /*#__PURE__*/react.createElement("div", {
+    style: {
+      marginTop: '10px'
+    }
+  }, "A l'inverse, la variante ", /*#__PURE__*/react.createElement("b", null, "\"modal\""), " est destin\xE9e \xE0 n'afficher que peu de contenu (souvent un texte sous forme de question) auquel l'utilisateur ne peut r\xE9pondre que par \"Oui\" / \"Non\" ou \"Ok\" / \"Annuler\"."))); // Section -> Buttons
+  // -------------------------------------------------
+
+  var sectionButtons = [/*#__PURE__*/react.createElement(Button_Button, {
+    key: "btn-open-popup-dialog",
+    variant: "contained",
+    color: "primary",
+    onClick: function onClick() {
+      return handleOpenPopup('popupPlaygroundDialog');
+    },
+    disabled: isLoading
+  }, "Dialog"), /*#__PURE__*/react.createElement(Button_Button, {
+    key: "btn-open-popup-modal",
+    variant: "contained",
+    color: "secondary",
+    onClick: function onClick() {
+      return handleOpenPopup('popupPlaygroundModal');
+    },
+    disabled: isLoading
+  }, "Modal")]; // -------------------------------------------------
 
   return /*#__PURE__*/react.createElement(Section_Section, {
     icon: sectionIcon,
-    title: sectionTitle
+    title: sectionTitle,
+    buttons: sectionButtons
   }, sectionContent);
 });
 // EXTERNAL MODULE: ../../nexus/react/ui/list/List.css
@@ -8538,9 +8592,79 @@ var PlaygroundTypography = __webpack_require__(3818);
 
 
 
+
+
+
+
  // Functions Components ReactJS
 // ======================================================================================================
-// ***** RenderSectionHeading *****
+// ***** RenderSectionTypography *****
+// ***********************************
+
+var TAG_RenderSectionTypography = function TAG_RenderSectionTypography() {};
+
+var RenderSectionTypography = (0,es/* observer */.Pi)(function (props) {
+  var store = react.useContext(window.storeContext);
+  var app = store.app;
+  var playground = app.playground; // From ... store
+
+  var isLoading = app.isLoading;
+  var pageDef = playground.pageDef; // ...
+  // Render
+  // ==================================================================================================
+  // Section -> Title
+  // -------------------------------------------------
+
+  var sectionTitle = pageDef.label; // Section -> Icon
+  // -------------------------------------------------
+
+  var sectionIcon = /*#__PURE__*/react.createElement(Icon_Icon, {
+    name: pageDef.icon
+  }); // Section -> Content
+  // -------------------------------------------------
+
+  var sectionContent = /*#__PURE__*/react.createElement(react.Fragment, null, /*#__PURE__*/react.createElement(Alert_Alert, {
+    severity: "info"
+  }, "Styles et positionnement de texte standardis\xE9s par le composant ", /*#__PURE__*/react.createElement("b", null, "Typography"), ".", /*#__PURE__*/react.createElement("br", null), "Privil\xE9gier l'utilisation pour \xEAtre compatible avec le mode sombre."), /*#__PURE__*/react.createElement("br", null), /*#__PURE__*/react.createElement(Heading_Heading, {
+    variant: "contained"
+  }, "Size"), /*#__PURE__*/react.createElement(Row_Row, {
+    align: "center",
+    style: {
+      padding: "10px 0px"
+    }
+  }, ['small', 'default', 'big'].map(function (size, sizeIdx) {
+    return /*#__PURE__*/react.createElement(Typography_Typography, {
+      size: size
+    }, size);
+  })), /*#__PURE__*/react.createElement("br", null), /*#__PURE__*/react.createElement(Heading_Heading, {
+    variant: "contained"
+  }, "Align"), /*#__PURE__*/react.createElement(Row_Row, {
+    align: "center",
+    style: {
+      padding: "10px 0px"
+    }
+  }, ['left', 'center', 'right'].map(function (align, alignIdx) {
+    return /*#__PURE__*/react.createElement(Typography_Typography, {
+      align: align
+    }, align);
+  })), /*#__PURE__*/react.createElement("br", null), /*#__PURE__*/react.createElement(Heading_Heading, {
+    variant: "contained"
+  }, "Variant"), /*#__PURE__*/react.createElement(Row_Row, {
+    align: "center",
+    style: {
+      padding: "10px 0px"
+    }
+  }, ['title', 'subtitle', 'description'].map(function (variant, variantIdx) {
+    return /*#__PURE__*/react.createElement(Typography_Typography, {
+      variant: variant
+    }, variant);
+  }))); // -------------------------------------------------
+
+  return /*#__PURE__*/react.createElement(Section_Section, {
+    icon: sectionIcon,
+    title: sectionTitle
+  }, sectionContent);
+}); // ***** RenderSectionHeading *****
 // ********************************
 
 var TAG_RenderSectionHeading = function TAG_RenderSectionHeading() {};
@@ -8618,6 +8742,9 @@ var PlaygroundRow = __webpack_require__(2667);
 
 
 
+
+
+
  // Functions Components ReactJS
 // ======================================================================================================
 // ***** RenderSectionRow *****
@@ -8645,7 +8772,43 @@ var RenderSectionRow = (0,es/* observer */.Pi)(function (props) {
   }); // Section -> Content
   // -------------------------------------------------
 
-  var sectionContent = /*#__PURE__*/react.createElement(react.Fragment, null, /*#__PURE__*/react.createElement(Typography_Typography, null, "Bient\xF4t !")); // -------------------------------------------------
+  var sectionContent = /*#__PURE__*/react.createElement("div", null, /*#__PURE__*/react.createElement(Alert_Alert, {
+    severity: "info"
+  }, "Organisation de fomulaire horizontale et \xE9lastique (flex de 1 \xE0 12)."), /*#__PURE__*/react.createElement("br", null), /*#__PURE__*/react.createElement(Heading_Heading, null, "Espacement"), ['none', 'tiny', 'small', 'medium', 'large', 'xlarge'].map(function (spacing, spacingIdx) {
+    return /*#__PURE__*/react.createElement("div", null, /*#__PURE__*/react.createElement(Typography_Typography, {
+      color: "secondary",
+      variant: "subtitle",
+      className: "nx-playground-subtitle"
+    }, spacing), /*#__PURE__*/react.createElement(Row_Row, {
+      spacing: spacing
+    }, /*#__PURE__*/react.createElement("div", {
+      className: "dummy-block"
+    }, /*#__PURE__*/react.createElement("label", null, "Flex 1")), /*#__PURE__*/react.createElement("div", {
+      className: "dummy-block"
+    }, /*#__PURE__*/react.createElement("label", null, "Flex 1")), /*#__PURE__*/react.createElement("div", {
+      className: "dummy-block"
+    }, /*#__PURE__*/react.createElement("label", null, "Flex 1"))));
+  }), /*#__PURE__*/react.createElement("br", null), /*#__PURE__*/react.createElement(Heading_Heading, null, "Alignement"), /*#__PURE__*/react.createElement(Row_Row, {
+    spacing: "large"
+  }, ['center', 'start', 'end', 'stretch'].map(function (align, alignIdx) {
+    return /*#__PURE__*/react.createElement("div", null, /*#__PURE__*/react.createElement(Typography_Typography, {
+      color: "secondary",
+      variant: "subtitle",
+      align: "center",
+      className: "nx-playground-subtitle"
+    }, align), /*#__PURE__*/react.createElement(Row_Row, {
+      align: align,
+      style: {
+        minHeight: '80px'
+      }
+    }, /*#__PURE__*/react.createElement("div", {
+      className: "dummy-block"
+    }, /*#__PURE__*/react.createElement("label", null, "1")), /*#__PURE__*/react.createElement("div", {
+      className: "dummy-block"
+    }, /*#__PURE__*/react.createElement("label", null, "1")), /*#__PURE__*/react.createElement("div", {
+      className: "dummy-block"
+    }, /*#__PURE__*/react.createElement("label", null, "1"))));
+  }))); // -------------------------------------------------
 
   return /*#__PURE__*/react.createElement(Section_Section, {
     icon: sectionIcon,
@@ -8655,6 +8818,10 @@ var RenderSectionRow = (0,es/* observer */.Pi)(function (props) {
 // EXTERNAL MODULE: ../../nexus/react/contexts/playground/layout/PlaygroundColumn.css
 var PlaygroundColumn = __webpack_require__(2411);
 ;// CONCATENATED MODULE: ../../nexus/react/contexts/playground/layout/PlaygroundColumn.jsx
+
+
+
+
 
 
 
@@ -8691,7 +8858,47 @@ var RenderSectionColumn = (0,es/* observer */.Pi)(function (props) {
   }); // Section -> Content
   // -------------------------------------------------
 
-  var sectionContent = /*#__PURE__*/react.createElement(react.Fragment, null, /*#__PURE__*/react.createElement(Typography_Typography, null, "Bient\xF4t !")); // -------------------------------------------------
+  var sectionContent = /*#__PURE__*/react.createElement("div", null, /*#__PURE__*/react.createElement(Alert_Alert, {
+    severity: "info"
+  }, "Organisation de fomulaire verticale et \xE9lastique (flex de 1 \xE0 12)."), /*#__PURE__*/react.createElement("br", null), /*#__PURE__*/react.createElement(Heading_Heading, null, "Espacement"), /*#__PURE__*/react.createElement(Row_Row, null, ['none', 'tiny', 'small', 'medium', 'large', 'xlarge'].map(function (spacing, spacingIdx) {
+    return /*#__PURE__*/react.createElement("div", null, /*#__PURE__*/react.createElement(Typography_Typography, {
+      color: "secondary",
+      variant: "subtitle",
+      align: "center",
+      className: "nx-playground-subtitle"
+    }, spacing), /*#__PURE__*/react.createElement(Column_Column, {
+      spacing: spacing,
+      style: {
+        minHeight: '180px'
+      }
+    }, /*#__PURE__*/react.createElement("div", {
+      className: "dummy-block"
+    }, /*#__PURE__*/react.createElement("label", null, "Flex 1")), /*#__PURE__*/react.createElement("div", {
+      className: "dummy-block"
+    }, /*#__PURE__*/react.createElement("label", null, "Flex 1")), /*#__PURE__*/react.createElement("div", {
+      className: "dummy-block"
+    }, /*#__PURE__*/react.createElement("label", null, "Flex 1"))));
+  })), /*#__PURE__*/react.createElement("br", null), /*#__PURE__*/react.createElement(Heading_Heading, null, "Alignement"), /*#__PURE__*/react.createElement(Row_Row, {
+    spacing: "large"
+  }, ['center', 'start', 'end', 'stretch'].map(function (align, alignIdx) {
+    return /*#__PURE__*/react.createElement("div", null, /*#__PURE__*/react.createElement(Typography_Typography, {
+      color: "secondary",
+      variant: "subtitle",
+      align: "center",
+      className: "nx-playground-subtitle"
+    }, align), /*#__PURE__*/react.createElement(Column_Column, {
+      align: align,
+      style: {
+        minHeight: '80px'
+      }
+    }, /*#__PURE__*/react.createElement("div", {
+      className: "dummy-block"
+    }, /*#__PURE__*/react.createElement("label", null, "1")), /*#__PURE__*/react.createElement("div", {
+      className: "dummy-block"
+    }, /*#__PURE__*/react.createElement("label", null, "1")), /*#__PURE__*/react.createElement("div", {
+      className: "dummy-block"
+    }, /*#__PURE__*/react.createElement("label", null, "1"))));
+  }))); // -------------------------------------------------
 
   return /*#__PURE__*/react.createElement(Section_Section, {
     icon: sectionIcon,
@@ -8701,6 +8908,7 @@ var RenderSectionColumn = (0,es/* observer */.Pi)(function (props) {
 // EXTERNAL MODULE: ../../nexus/react/contexts/playground/feedback/PlaygroundSnackbar.css
 var PlaygroundSnackbar = __webpack_require__(6222);
 ;// CONCATENATED MODULE: ../../nexus/react/contexts/playground/feedback/PlaygroundSnackbar.jsx
+
 
 
 
@@ -8740,7 +8948,16 @@ var RenderSectionSnackbar = (0,es/* observer */.Pi)(function (props) {
 
   var sectionIcon = /*#__PURE__*/react.createElement(Icon_Icon, {
     name: pageDef.icon
-  }); // Section -> Buttons
+  }); // Section -> Content
+  // -------------------------------------------------
+
+  var sectionContent = /*#__PURE__*/react.createElement(Alert_Alert, {
+    severity: "info"
+  }, "Les snackbars permettent de mettre en valeur le r\xE9sultat d'une action d\xE9clench\xE9e par l'utilisateur.", /*#__PURE__*/react.createElement("br", null), /*#__PURE__*/react.createElement("div", {
+    style: {
+      marginTop: '5px'
+    }
+  }, /*#__PURE__*/react.createElement("b", null, "Cliquez sur un bouton ci-dessous"), " pour afficher la snackbar correspondante.")); // Section -> Buttons
   // -------------------------------------------------
 
   var sectionButtons = [/*#__PURE__*/react.createElement(Button_Button, {
@@ -8798,7 +9015,7 @@ var RenderSectionSnackbar = (0,es/* observer */.Pi)(function (props) {
     title: sectionTitle,
     buttons: sectionButtons,
     buttonsResponsive: true
-  });
+  }, sectionContent);
 });
 // EXTERNAL MODULE: ../../nexus/react/contexts/playground/feedback/PlaygroundAlert.css
 var PlaygroundAlert = __webpack_require__(26);
@@ -8909,6 +9126,491 @@ var RenderSectionSession = (0,es/* observer */.Pi)(function (props) {
     title: sectionTitle
   }, sectionContent);
 });
+// EXTERNAL MODULE: ../../nexus/react/ui/popup/Popup.css
+var Popup = __webpack_require__(2055);
+;// CONCATENATED MODULE: ../../nexus/react/ui/popup/Popup.jsx
+
+
+
+
+
+
+
+
+
+
+
+
+
+function Popup_createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = Popup_unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
+
+function Popup_unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return Popup_arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return Popup_arrayLikeToArray(o, minLen); }
+
+function Popup_arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+
+
+
+
+
+
+ // Models
+// ======================================================================================================
+// ***** PopupDef *****
+// ********************
+
+var TAG_PopupDef = function TAG_PopupDef() {};
+
+var PopupDef = mobx_state_tree_module/* types.model */.V5.model({
+  key: '',
+  open: false,
+  msg: '',
+  msgSeverity: 'info'
+}).actions(function (self) {
+  return {
+    setField: function setField(field, value) {
+      self[field] = value;
+    },
+    // -
+    setMessage: function setMessage(msg, severity) {
+      self.msg = msg;
+      self.msgSeverity = severity;
+    },
+    clearMessage: function clearMessage() {
+      self.msg = '';
+      self.msgSeverity = 'info';
+    }
+  };
+}); // ***** PopupStore *****
+// **********************
+
+var TAG_PopupStore = function TAG_PopupStore() {};
+
+var PopupStore = mobx_state_tree_module/* types.model */.V5.model({
+  registered: mobx_state_tree_module/* types.optional */.V5.optional(mobx_state_tree_module/* types.array */.V5.array(PopupDef), [])
+}).views(function (self) {
+  return {
+    // Getters
+    // -
+    getPopupByKey: function getPopupByKey(key) {
+      var _iterator = Popup_createForOfIteratorHelper(self.registered),
+          _step;
+
+      try {
+        for (_iterator.s(); !(_step = _iterator.n()).done;) {
+          var popup = _step.value;
+
+          if (popup.key == key) {
+            return popup;
+          }
+        }
+      } catch (err) {
+        _iterator.e(err);
+      } finally {
+        _iterator.f();
+      }
+
+      return null;
+    },
+    // Bools
+    // -
+    isOpen: function isOpen(key) {
+      // La popup passée en paramètre est-elle ouverte ?
+      // ---
+      var _iterator2 = Popup_createForOfIteratorHelper(self.registered),
+          _step2;
+
+      try {
+        for (_iterator2.s(); !(_step2 = _iterator2.n()).done;) {
+          var popup = _step2.value;
+
+          if (popup.key == key && popup.open == true) {
+            return true;
+          }
+        }
+      } catch (err) {
+        _iterator2.e(err);
+      } finally {
+        _iterator2.f();
+      }
+
+      return false;
+    },
+
+    get isOneOpen() {
+      // Au moins une popup est-elle ouverte ?
+      // ---
+      var _iterator3 = Popup_createForOfIteratorHelper(self.registered),
+          _step3;
+
+      try {
+        for (_iterator3.s(); !(_step3 = _iterator3.n()).done;) {
+          var popup = _step3.value;
+
+          if (popup.open == true) {
+            return true;
+          }
+        }
+      } catch (err) {
+        _iterator3.e(err);
+      } finally {
+        _iterator3.f();
+      }
+
+      return false;
+    }
+
+  };
+}).actions(function (self) {
+  return {
+    setField: function setField(field, value) {
+      self[field] = value;
+    },
+    // -
+    register: function register(key) {
+      // Déclare une nouvelle popup
+      // ---
+      var found = false;
+
+      var _iterator4 = Popup_createForOfIteratorHelper(self.registered),
+          _step4;
+
+      try {
+        for (_iterator4.s(); !(_step4 = _iterator4.n()).done;) {
+          var popup = _step4.value;
+
+          if (popup.key == key) {
+            found = true;
+            break;
+          }
+        } // Nouvelle popup
+
+      } catch (err) {
+        _iterator4.e(err);
+      } finally {
+        _iterator4.f();
+      }
+
+      if (!found) {
+        var newPopup = PopupDef.create({
+          'key': key
+        });
+        self.registered.push(newPopup);
+      }
+    },
+    update: function update(open, key) {
+      // Ouvre ou ferme la popup passée en paramètres
+      // ---
+      var _iterator5 = Popup_createForOfIteratorHelper(self.registered),
+          _step5;
+
+      try {
+        for (_iterator5.s(); !(_step5 = _iterator5.n()).done;) {
+          var popup = _step5.value;
+
+          if (key) {
+            if (key == popup.key) {
+              popup.open = open;
+            }
+          } else {
+            popup.open = false;
+          }
+        }
+      } catch (err) {
+        _iterator5.e(err);
+      } finally {
+        _iterator5.f();
+      }
+    },
+    open: function open(key) {
+      // Ouvre la popup passée en paramètres
+      // ---
+      self.update(true, key);
+    },
+    close: function close(key) {
+      // Ferme la popup passée en paramètres
+      // ---
+      self.update(false, key);
+    },
+    //
+    setMessage: function setMessage(key, msg, severity) {
+      // Message interne à la popup
+      // ---
+      var popup = self.getPopupByKey(key);
+
+      if (popup) {
+        popup.setMessage(msg, severity);
+      }
+    },
+    clearMessage: function clearMessage(key) {
+      // Efface le message interne à la popup
+      // ---
+      var popup = self.getPopupByKey(key);
+
+      if (popup) {
+        popup.clearMessage();
+      }
+    }
+  };
+}); // Functions Components ReactJS
+// ======================================================================================================
+// ***** Popup *****
+// *****************
+
+var TAG_Popup = function TAG_Popup() {};
+
+var Popup_Popup = (0,es/* observer */.Pi)(function (props) {
+  var store = react.useContext(window.storeContext);
+  var app = store.app;
+  var popup = app.popup;
+  var theme = app.theme; // From ... props
+
+  var id = props.id ? props.id : '';
+  var open = props.open;
+  var variant = props.variant ? props.variant : "dialog"; // dialog, modal
+
+  var title = props.title ? props.title : null;
+  var left = props.left ? props.left : null;
+  var right = props.right ? props.right : null;
+  var disableCloseButton = props.disableCloseButton == true ? true : false;
+  var buttons = props.buttons ? props.buttons : [];
+  var fullscreen = props.fullscreen;
+  var callbackOpen = props.callbackOpen;
+  var callbackClose = props.callbackClose;
+  var children = props.children;
+  var fullHeight = props.fullHeight == true ? true : false;
+  var maxWidthKey = props.maxWidth != undefined ? props.maxWidth : 'sm'; // xs, sm, md, lg, xl, false, string
+
+  var className = props.className ? props.className : '';
+  var style = props.style ? props.style : {}; // From ... store
+
+  var isMobile = app.isMobile;
+  var isDesktop = app.isDesktop;
+  var isLoading = app.isLoading; // ...
+
+  var isOpen = open != undefined ? open : popup.isOpen(id);
+  var isFullscreen = fullscreen != undefined ? fullscreen : isMobile; // Events
+  // ==================================================================================================
+
+  var handleCloseClick = function handleCloseClick() {
+    popup.close(id);
+
+    if (callbackClose) {
+      callbackClose();
+    }
+  }; // Render
+  // ==================================================================================================
+
+
+  var popupContent = null;
+
+  if (isOpen) {
+    if (!style.hasOwnProperty("maxWidth")) {
+      var maxWidth = theme.getWidthFromKey(maxWidthKey);
+
+      if (maxWidth) {
+        style['width'] = "100%";
+        style['maxWidth'] = maxWidth;
+      }
+    } // Popup :: Header
+    // ---------------------------------------------------
+
+
+    var headerStyle = {
+      "backgroundColor": theme.getColorFromKey("primary")
+    };
+
+    if (variant == "modal") {
+      headerStyle["backgroundColor"] = theme.getColorFromKey("secondary");
+    } // Titre
+    // -
+
+
+    var popupTitle = null;
+
+    if (title && typeof title == "string") {
+      popupTitle = /*#__PURE__*/react.createElement("div", {
+        className: "nx-popup-title"
+      }, title);
+    } else {
+      popupTitle = title;
+    } // Bouton de fermeture
+    // -
+
+
+    var popupCloseButton = null;
+
+    if (!disableCloseButton && variant == "dialog") {
+      popupCloseButton = /*#__PURE__*/react.createElement(IconButton, {
+        color: "#FFFFFF",
+        iconName: isMobile ? "expand_more" : "close",
+        onClick: function onClick() {
+          return handleCloseClick();
+        }
+      });
+    } // Popup :: Content
+    // ---------------------------------------------------
+
+
+    var popupDef = popup.getPopupByKey(id);
+    var popupMsg = popupDef ? popupDef.msg : '';
+    var popupMsgSeverity = popupDef ? popupDef.msgSeverity : 'info'; // ---------------------------------------------------
+
+    popupContent = /*#__PURE__*/react.createElement("div", {
+      className: "nx-popup-wrapper"
+    }, /*#__PURE__*/react.createElement("div", {
+      id: id,
+      className: (0,clsx_m/* default */.Z)("nx-popup", variant, {
+        "fullscreen": isFullscreen
+      }, className),
+      style: style
+    }, (left || right || popupTitle || popupCloseButton) && /*#__PURE__*/react.createElement("div", {
+      className: "nx-popup-header",
+      style: headerStyle
+    }, left, popupTitle, right, popupCloseButton), children && /*#__PURE__*/react.createElement("div", {
+      className: "nx-popup-content"
+    }, children), popupMsg && /*#__PURE__*/react.createElement(Alert_Alert, null), buttons.length > 0 && /*#__PURE__*/react.createElement("div", {
+      className: "nx-popup-footer"
+    }, variant == 'dialog' && /*#__PURE__*/react.createElement("div", {
+      className: "flex-1 responsive-hidden"
+    }), buttons)));
+  }
+
+  return popupContent;
+});
+// EXTERNAL MODULE: ../../nexus/react/popups/playground_dialog/PopupPlaygroundDialog.css
+var PopupPlaygroundDialog = __webpack_require__(5501);
+;// CONCATENATED MODULE: ../../nexus/react/popups/playground_dialog/PopupPlaygroundDialog.jsx
+
+
+
+
+
+
+
+
+ // Models
+// ======================================================================================================
+// ***** PopupPlaygroundStore *****
+// ********************************
+
+var TAG_PopupPlaygroundStore = function TAG_PopupPlaygroundStore() {};
+
+var PopupPlaygroundStore = mobx_state_tree_module/* types.model */.V5.model({
+  loaded: false
+}).views(function (self) {
+  return {
+    // Bools
+    // -
+    get isLoaded() {
+      if (self.loaded) {
+        return true;
+      }
+
+      return false;
+    }
+
+  };
+}).actions(function (self) {
+  return {
+    setField: function setField(field, value) {
+      self[field] = value;
+    },
+    // -
+    update: function update(raw) {
+      self.loaded = true;
+    },
+    load: function load(callback) {
+      // Appel AJAX de chargement
+      // ---
+      // ...
+      self.update(null);
+
+      if (callback) {
+        callback();
+      }
+    }
+  };
+}); // Functions Components ReactJS
+// ======================================================================================================
+// ***** PopupPlaygroundDialog *****
+// *********************************
+
+var TAG_PopupPlaygroundDialog = function TAG_PopupPlaygroundDialog() {};
+
+var popupPlaygroundDialogKey = 'popupPlaygroundDialog';
+var PopupPlaygroundDialog_PopupPlaygroundDialog = (0,es/* observer */.Pi)(function (props) {
+  var store = react.useContext(window.storeContext);
+  var app = store.app;
+  var popup = app.popup;
+  var playground = app.playground;
+  var popupPlayground = playground.popupPlayground; // From ... store
+
+  var isLoading = app.isLoading;
+  var loaded = popupPlayground.isLoaded;
+  var isOpen = popup.isOpen(popupPlaygroundDialogKey); // Events
+  // ==================================================================================================
+
+  var handleOpen = function handleOpen() {
+    popupPlayground.load(function () {
+      popup.setMessage(popupPlaygroundDialogKey, 'Message interne popup.', 'success');
+    });
+  };
+
+  var handleClose = function handleClose() {
+    popup.clearMessage(popupPlaygroundDialogKey);
+  }; // Render
+  // ==================================================================================================
+  // Popup --> Title
+  // -----------------------------------------------
+
+
+  var popupTitle = "Dialog"; // Popup --> Content
+  // -----------------------------------------------
+
+  var popupContent = /*#__PURE__*/react.createElement(Helper_Helper, {
+    iconName: "hourglass_empty",
+    show: true,
+    inFlux: true,
+    style: {
+      minHeight: '350px'
+    }
+  });
+
+  if (loaded && isOpen) {
+    popupContent = /*#__PURE__*/react.createElement("div", null, "Contenu popup test 1.");
+  } // Popup --> Buttons
+  // -----------------------------------------------
+
+
+  var popupButtons = [];
+  popupButtons.push( /*#__PURE__*/react.createElement(Button_Button, {
+    id: "btn-close-popup-playground-dialog",
+    key: "btn-close-popup-playground-dialog",
+    disabled: isLoading,
+    onClick: function onClick() {
+      return popup.close(popupPlaygroundDialogKey);
+    }
+  }, "Fermer"));
+  popupButtons.push( /*#__PURE__*/react.createElement(Button_Button, {
+    id: "btn-load-popup-playground-dialog",
+    key: "btn-load-popup-playground-dialog",
+    color: "primary",
+    disabled: isLoading,
+    onClick: function onClick() {
+      return app.addTask('load_popup');
+    }
+  }, "Load")); // -----------------------------------------------
+
+  return /*#__PURE__*/react.createElement(Popup_Popup, {
+    id: popupPlaygroundDialogKey,
+    title: popupTitle,
+    variant: "dialog",
+    buttons: popupButtons,
+    callbackOpen: handleOpen,
+    callbackClose: handleClose
+  }, popupContent);
+});
 // EXTERNAL MODULE: ../../nexus/react/contexts/playground/Playground.css
 var Playground = __webpack_require__(1785);
 ;// CONCATENATED MODULE: ../../nexus/react/contexts/playground/Playground.jsx
@@ -8917,6 +9619,7 @@ function Playground_createForOfIteratorHelper(o, allowArrayLike) { var it = type
 function Playground_unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return Playground_arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return Playground_arrayLikeToArray(o, minLen); }
 
 function Playground_arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
 
 
 
@@ -9001,7 +9704,8 @@ var PLAYGROUND_PAGES = [{
 }, {
   value: 'chip',
   label: "Chip",
-  icon: 'edit_attributes'
+  icon: 'edit_attributes',
+  hidden: true
 }, {
   value: 'icon',
   label: "Icon",
@@ -9045,7 +9749,8 @@ var PLAYGROUND_PAGES = [{
 }, {
   value: 'session',
   label: "Session",
-  icon: 'access_alarms'
+  icon: 'access_alarms',
+  hidden: true
 }];
 var PLAYGROUND_PAGES_BY_KEY = {};
 
@@ -9081,6 +9786,8 @@ var PlaygroundStore = mobx_state_tree_module/* types.model */.V5.model({
   search_icons: mobx_state_tree_module/* types.maybeNull */.V5.maybeNull(mobx_state_tree_module/* types.string */.V5.string),
   // -
   list: mobx_state_tree_module/* types.optional */.V5.optional(PlaygroundListStore, {}),
+  // -
+  popupPlayground: mobx_state_tree_module/* types.optional */.V5.optional(PopupPlaygroundStore, {}),
   // -
   value_switch_1: false,
   value_switch_2: false,
@@ -9269,7 +9976,7 @@ var RenderPlayground = (0,es/* observer */.Pi)(function (props) {
   var contentPlayground = null;
 
   if (loaded) {
-    contentPlayground = /*#__PURE__*/react.createElement(react.Fragment, null, currentPageKey == 'button' && /*#__PURE__*/react.createElement(RenderSectionButton, null), currentPageKey == 'field' && /*#__PURE__*/react.createElement(RenderSectionField, null), currentPageKey == 'switch' && /*#__PURE__*/react.createElement(RenderSectionSwitch, null), currentPageKey == 'html' && /*#__PURE__*/react.createElement(RenderSectionHTML, null), currentPageKey == 'avatar' && /*#__PURE__*/react.createElement(RenderSectionAvatar, null), currentPageKey == 'chip' && /*#__PURE__*/react.createElement(RenderSectionChip, null), currentPageKey == 'icon' && /*#__PURE__*/react.createElement(RenderSectionIcon, null), currentPageKey == 'indicator' && /*#__PURE__*/react.createElement(RenderSectionIndicator, null), currentPageKey == 'popup' && /*#__PURE__*/react.createElement(RenderSectionPopup, null), currentPageKey == 'list' && /*#__PURE__*/react.createElement(RenderSectionList, null), currentPageKey == 'typography' && /*#__PURE__*/react.createElement(RenderSectionHeading, null), currentPageKey == 'row' && /*#__PURE__*/react.createElement(RenderSectionRow, null), currentPageKey == 'column' && /*#__PURE__*/react.createElement(RenderSectionColumn, null), currentPageKey == 'snackbar' && /*#__PURE__*/react.createElement(RenderSectionSnackbar, null), currentPageKey == 'alert' && /*#__PURE__*/react.createElement(RenderSectionAlert, null), currentPageKey == 'session' && /*#__PURE__*/react.createElement(RenderSectionSession, null));
+    contentPlayground = /*#__PURE__*/react.createElement(react.Fragment, null, currentPageKey == 'button' && /*#__PURE__*/react.createElement(RenderSectionButton, null), currentPageKey == 'field' && /*#__PURE__*/react.createElement(RenderSectionField, null), currentPageKey == 'switch' && /*#__PURE__*/react.createElement(RenderSectionSwitch, null), currentPageKey == 'html' && /*#__PURE__*/react.createElement(RenderSectionHTML, null), currentPageKey == 'avatar' && /*#__PURE__*/react.createElement(RenderSectionAvatar, null), currentPageKey == 'chip' && /*#__PURE__*/react.createElement(RenderSectionChip, null), currentPageKey == 'icon' && /*#__PURE__*/react.createElement(RenderSectionIcon, null), currentPageKey == 'indicator' && /*#__PURE__*/react.createElement(RenderSectionIndicator, null), currentPageKey == 'popup' && /*#__PURE__*/react.createElement(RenderSectionPopup, null), currentPageKey == 'list' && /*#__PURE__*/react.createElement(RenderSectionList, null), currentPageKey == 'typography' && /*#__PURE__*/react.createElement(RenderSectionTypography, null), currentPageKey == 'typography' && /*#__PURE__*/react.createElement(RenderSectionHeading, null), currentPageKey == 'row' && /*#__PURE__*/react.createElement(RenderSectionRow, null), currentPageKey == 'column' && /*#__PURE__*/react.createElement(RenderSectionColumn, null), currentPageKey == 'snackbar' && /*#__PURE__*/react.createElement(RenderSectionSnackbar, null), currentPageKey == 'alert' && /*#__PURE__*/react.createElement(RenderSectionAlert, null), currentPageKey == 'session' && /*#__PURE__*/react.createElement(RenderSectionSession, null));
   }
 
   return contentPlayground;
@@ -9389,6 +10096,10 @@ var RenderDrawerPlaygroundItems = (0,es/* observer */.Pi)(function (props) {
   return /*#__PURE__*/react.createElement(react.Fragment, null, breakPoint650 && /*#__PURE__*/react.createElement(HomeMenuItem, null), breakPoint650 && /*#__PURE__*/react.createElement(MenuDivider, null), !staticMode && /*#__PURE__*/react.createElement(MenuSwitches, {
     allowedEditContexts: ['playground']
   }), PLAYGROUND_PAGES.map(function (page, pageIdx) {
+    if (page.hidden) {
+      return;
+    }
+
     return renderItemPlaygroundPage(page);
   }));
 }); // ***** PlaygroundPage *****
@@ -10433,9 +11144,203 @@ var AboutPage = (0,es/* observer */.Pi)(function (props) {
     className: "nx-page"
   }, renderPage(), renderHelper());
 });
+// EXTERNAL MODULE: ../../nexus/react/node_modules/core-js/modules/es.string.includes.js
+var es_string_includes = __webpack_require__(2689);
+// EXTERNAL MODULE: ../../nexus/react/ui/theme/Theme.css
+var Theme = __webpack_require__(6824);
+;// CONCATENATED MODULE: ../../nexus/react/ui/theme/Theme.jsx
+
+
+
+
+
+
+
+
+
+ // Datas
+// ======================================================================================================
+
+var THEME_MODES = [{
+  "value": "light",
+  "label": "Clair"
+}, {
+  "value": "dark",
+  "label": "Sombre"
+}];
+var WIDTH_KEYS = {
+  "xs": 0,
+  "sm": 600,
+  "md": 900,
+  "lg": 1200,
+  "xl": 1536
+}; // Models
+// ======================================================================================================
+// ***** ColorStore *****
+// **********************
+
+var TAG_ColorStore = function TAG_ColorStore() {};
+
+var ColorStore = mobx_state_tree_module/* types.model */.V5.model({
+  main: '#FFFFFF',
+  contrastText: '#000'
+}).views(function (self) {
+  return {
+    get lightBackground() {
+      return hexToRgbA(self.main, 0.1);
+    }
+
+  };
+}).actions(function (self) {
+  return {
+    setField: function setField(field, value) {
+      self[field] = value;
+    } // -
+
+  };
+}); // ***** PaletteStore *****
+// ************************
+
+var TAG_PaletteStore = function TAG_PaletteStore() {};
+
+var PaletteStore = mobx_state_tree_module/* types.model */.V5.model({
+  "default": mobx_state_tree_module/* types.optional */.V5.optional(ColorStore, {}),
+  primary: mobx_state_tree_module/* types.optional */.V5.optional(ColorStore, {}),
+  secondary: mobx_state_tree_module/* types.optional */.V5.optional(ColorStore, {})
+}).views(function (self) {
+  return {
+    get paletteKeys() {
+      return ["default", "primary", "secondary"];
+    }
+
+  };
+}).actions(function (self) {
+  return {
+    setField: function setField(field, value) {
+      self[field] = value;
+    } // -
+
+  };
+}); // ***** ThemeStore *****
+// **********************
+
+var TAG_ThemeStore = function TAG_ThemeStore() {};
+
+var ThemeStore = mobx_state_tree_module/* types.model */.V5.model({
+  mode: 'light',
+  // light, dark
+  modeOS: 'light',
+  // light, dark
+  modeAuto: true,
+  variant: 'default',
+  // default, noel, halloween, etc...
+  palette_light: mobx_state_tree_module/* types.optional */.V5.optional(PaletteStore, {}),
+  palette_dark: mobx_state_tree_module/* types.optional */.V5.optional(PaletteStore, {})
+}).views(function (self) {
+  return {
+    get palette() {
+      if (self.mode == 'dark') {
+        return self.palette_dark;
+      }
+
+      return self.palette_light;
+    },
+
+    // Getters
+    // -
+    getColorFromKey: function getColorFromKey(colorKey) {
+      var severityColorField = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'color';
+      // Détermine une couleur à partir d'un mot clé (severityKey / primary / secondary, etc...)
+      // ---
+      var palette = self.palette; // Couleur de thème ? (default, primary, secondary)
+
+      if (colorKey != 'default' && palette.paletteKeys.includes(colorKey)) {
+        return palette[colorKey].main;
+      } // Couleur de typographie (noir ou blanc en fonction du mode d'ui)
+
+
+      if (colorKey == 'typography') {
+        return self.mode == 'dark' ? '#FFFFFF' : '#000000';
+      } // La couleur est une sévrité ?
+
+
+      if (SEVERITY_KEYS.includes(colorKey)) {
+        var severity = SEVERITIES.get(colorKey);
+        return severity[severityColorField];
+      }
+
+      return colorKey;
+    },
+    getContrastedColorFromKey: function getContrastedColorFromKey(colorKey) {
+      // Détermine une couleur contrastée à partir d'un mot clé (severityKey / primary / secondary, etc...)
+      // ---
+      return self.getColorFromKey(colorKey, 'contrasted');
+    },
+    getTextColorFromKey: function getTextColorFromKey(colorKey) {
+      // Détermine une couleur de texte à partir d'un mot clé (severityKey / primary / secondary, etc...)
+      // ---
+      var textColor = self.getColorFromKey(colorKey, 'text_color');
+
+      if (textColor == '#000000' && self.mode == 'dark') {
+        textColor = '#FFFFFF';
+      }
+
+      return textColor;
+    },
+    // -
+    getWidthFromKey: function getWidthFromKey(widthKey) {
+      // Détermine une largeur à partir d'une clé (xs, sm, md, lg, xl, false, string)
+      // ---
+      var width = "";
+
+      if (widthKey) {
+        if (WIDTH_KEYS.hasOwnProperty(widthKey)) {
+          width = "".concat(WIDTH_KEYS[widthKey], "px");
+        } else {
+          if (typeof widthKey == "string") {
+            width = widthKey;
+          }
+        }
+      } // if (widthKey == false) {
+      // 	width = "100%";
+      // }
+
+
+      return width;
+    }
+  };
+}).actions(function (self) {
+  return {
+    setField: function setField(field, value) {
+      self[field] = value;
+    },
+    // -
+    update: function update(raw) {},
+    // -
+    toggleMode: function toggleMode(callback) {
+      // Bascule entre le mode sombre et le mode clair
+      // ---
+      var mode = self.mode;
+      var newValue = mode == 'light' ? 'dark' : 'light';
+      setToStorage('nxThemeMode', newValue);
+      setToStorage('nxThemeModeAuto', false, 'bool');
+      self.mode = newValue;
+      self.modeAuto = false;
+
+      if (callback) {
+        callback(newValue);
+      }
+    }
+  };
+});
 // EXTERNAL MODULE: ../../nexus/react/contexts/preferences/Preferences.css
 var Preferences = __webpack_require__(2359);
 ;// CONCATENATED MODULE: ../../nexus/react/contexts/preferences/Preferences.jsx
+
+
+
+
+
 
 
 
@@ -10508,15 +11413,32 @@ var TAG_RenderSectionTheme = function TAG_RenderSectionTheme() {};
 
 var RenderSectionTheme = (0,es/* observer */.Pi)(function (props) {
   var store = react.useContext(window.storeContext);
-  var app = store.app; // From ... store
+  var app = store.app;
+  var theme = app.theme; // From ... store
 
-  var isLoading = app.isLoading; // ...
+  var isLoading = app.isLoading;
+  var themeAuto = theme.modeAuto; // ...
   // Events
   // ==================================================================================================
-  // Render
+
+  var handleModeAutoChange = function handleModeAutoChange(savePath, value) {
+    setToStorage('nxThemeModeAuto', value, 'bool');
+
+    if (value == false) {
+      theme.setField('mode', getFromStorage('nxThemeMode', 'light'));
+    } else {
+      theme.setField('mode', theme.modeOS);
+    }
+  };
+
+  var handleModeChange = function handleModeChange(savePath, value) {
+    setToStorage('nxThemeMode', value);
+    theme.setField('mode', value);
+  }; // Render
   // ==================================================================================================
   // Section -> Icon
   // ---
+
 
   var sectionIcon = /*#__PURE__*/react.createElement(Icon_Icon, {
     name: "palette"
@@ -10526,7 +11448,20 @@ var RenderSectionTheme = (0,es/* observer */.Pi)(function (props) {
   var sectionTitle = "Mode d'apparence"; // Section -> Content
   // ---
 
-  var sectionContent = /*#__PURE__*/react.createElement("div", null, "Bient\xF4t !"); // -------------------------------------------------
+  var sectionContent = /*#__PURE__*/react.createElement("div", null, /*#__PURE__*/react.createElement(Row_Row, {
+    marginBottom: "normal"
+  }, /*#__PURE__*/react.createElement(Switch_Switch, {
+    label: "Utiliser les pr\xE9f\xE9rences syst\xE8me",
+    savePath: ['app', 'theme', 'modeAuto'],
+    callbackChange: handleModeAutoChange
+  })), /*#__PURE__*/react.createElement(Row_Row, null, /*#__PURE__*/react.createElement(Field_Field, {
+    id: "btn-group-mode",
+    component: "button_group",
+    datas: THEME_MODES,
+    savePath: ['app', 'theme', 'mode'],
+    disabled: isLoading || themeAuto,
+    callbackChange: handleModeChange
+  }))); // -------------------------------------------------
 
   return /*#__PURE__*/react.createElement(Section_Section, {
     icon: sectionIcon,
@@ -12651,10 +13586,10 @@ var ChangelogsStore = mobx_state_tree_module/* types.model */.V5.model({
       // ---
       var store = (0,mobx_state_tree_module/* getRoot */.yj)(self);
       var app = store.app;
-      var appKey = app.appKey;
-      var staticMode = app.staticMode; // Chargement des changelogs statiques
+      var appKey = app.appKey; // const staticMode = app.staticMode;
+      // Chargement des changelogs statiques
 
-      if (staticMode && STATIC_CHANGELOGS.hasOwnProperty(appKey)) {
+      if (STATIC_CHANGELOGS.hasOwnProperty(appKey)) {
         self.update({
           'releases': STATIC_CHANGELOGS[appKey]
         });
@@ -13692,158 +14627,6 @@ var Header_Header = (0,es/* observer */.Pi)(function (props) {
     }
   }, headerLeft, headerMiddle, headerRight));
 });
-// EXTERNAL MODULE: ../../nexus/react/node_modules/core-js/modules/es.string.includes.js
-var es_string_includes = __webpack_require__(2689);
-// EXTERNAL MODULE: ../../nexus/react/ui/theme/Theme.css
-var Theme = __webpack_require__(6824);
-;// CONCATENATED MODULE: ../../nexus/react/ui/theme/Theme.jsx
-
-
-
-
-
-
-
-
-
- // Models
-// -------------------------------------------------------------------------------------------------------------
-// ***** ColorStore *****
-// **********************
-
-var TAG_ColorStore = function TAG_ColorStore() {};
-
-var ColorStore = mobx_state_tree_module/* types.model */.V5.model({
-  main: '#FFFFFF',
-  contrastText: '#000'
-}).views(function (self) {
-  return {
-    get lightBackground() {
-      return hexToRgbA(self.main, 0.1);
-    }
-
-  };
-}).actions(function (self) {
-  return {
-    setField: function setField(field, value) {
-      self[field] = value;
-    } // -
-
-  };
-}); // ***** PaletteStore *****
-// ************************
-
-var TAG_PaletteStore = function TAG_PaletteStore() {};
-
-var PaletteStore = mobx_state_tree_module/* types.model */.V5.model({
-  "default": mobx_state_tree_module/* types.optional */.V5.optional(ColorStore, {}),
-  primary: mobx_state_tree_module/* types.optional */.V5.optional(ColorStore, {}),
-  secondary: mobx_state_tree_module/* types.optional */.V5.optional(ColorStore, {})
-}).views(function (self) {
-  return {
-    get paletteKeys() {
-      return ["default", "primary", "secondary"];
-    }
-
-  };
-}).actions(function (self) {
-  return {
-    setField: function setField(field, value) {
-      self[field] = value;
-    } // -
-
-  };
-}); // ***** ThemeStore *****
-// **********************
-
-var TAG_ThemeStore = function TAG_ThemeStore() {};
-
-var ThemeStore = mobx_state_tree_module/* types.model */.V5.model({
-  mode: 'light',
-  // light, dark
-  modeOS: 'light',
-  // light, dark
-  modeAuto: true,
-  variant: 'default',
-  // default, noel, halloween, etc...
-  palette_light: mobx_state_tree_module/* types.optional */.V5.optional(PaletteStore, {}),
-  palette_dark: mobx_state_tree_module/* types.optional */.V5.optional(PaletteStore, {})
-}).views(function (self) {
-  return {
-    get palette() {
-      if (self.mode == 'dark') {
-        return self.palette_dark;
-      }
-
-      return self.palette_light;
-    },
-
-    // Getters
-    // -
-    getColorFromKey: function getColorFromKey(colorKey) {
-      var severityColorField = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'color';
-      // Détermine une couleur à partir d'un mot clé (severityKey / primary / secondary, etc...)
-      // ---
-      var palette = self.palette; // Couleur de thème ? (default, primary, secondary)
-
-      if (colorKey != 'default' && palette.paletteKeys.includes(colorKey)) {
-        return palette[colorKey].main;
-      } // Couleur de typographie (noir ou blanc en fonction du mode d'ui)
-
-
-      if (colorKey == 'typography') {
-        return self.mode == 'dark' ? '#FFFFFF' : '#000000';
-      } // La couleur est une sévrité ?
-
-
-      if (SEVERITY_KEYS.includes(colorKey)) {
-        var severity = SEVERITIES.get(colorKey);
-        return severity[severityColorField];
-      }
-
-      return colorKey;
-    },
-    getContrastedColorFromKey: function getContrastedColorFromKey(colorKey) {
-      // Détermine une couleur contrastée à partir d'un mot clé (severityKey / primary / secondary, etc...)
-      // ---
-      return self.getColorFromKey(colorKey, 'contrasted');
-    },
-    getTextColorFromKey: function getTextColorFromKey(colorKey) {
-      // Détermine une couleur de texte à partir d'un mot clé (severityKey / primary / secondary, etc...)
-      // ---
-      var textColor = self.getColorFromKey(colorKey, 'text_color');
-
-      if (textColor == '#000000' && self.mode == 'dark') {
-        textColor = '#FFFFFF';
-      }
-
-      return textColor;
-    }
-  };
-}).actions(function (self) {
-  return {
-    setField: function setField(field, value) {
-      self[field] = value;
-    },
-    // -
-    update: function update(raw) {},
-    // -
-    toggleMode: function toggleMode(callback) {
-      // Bascule entre le mode sombre et le mode clair
-      // ---
-      var mode = self.mode;
-      var newValue = mode == 'light' ? 'dark' : 'light';
-      setToStorage('nxThemeMode', newValue);
-      setToStorage('nxThemeModeAuto', false, 'bool');
-      self.mode = newValue;
-      self.modeAuto = false;
-
-      if (callback) {
-        callback(newValue);
-      }
-    }
-  };
-});
 // EXTERNAL MODULE: ../../nexus/react/node_modules/react-dom/server.browser.js
 var server_browser = __webpack_require__(3228);
 // EXTERNAL MODULE: ../../nexus/react/ui/snackbar/Snackbar.css
@@ -13958,246 +14741,6 @@ var Snackbar_Snackbar = (0,es/* observer */.Pi)(function (props) {
   }
 
   return snackbarContent;
-});
-// EXTERNAL MODULE: ../../nexus/react/ui/popup/Popup.css
-var Popup = __webpack_require__(2055);
-;// CONCATENATED MODULE: ../../nexus/react/ui/popup/Popup.jsx
-
-
-
-
-
-
-
-
-
-
-
-
-
-function Popup_createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = Popup_unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
-
-function Popup_unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return Popup_arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return Popup_arrayLikeToArray(o, minLen); }
-
-function Popup_arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-
-
-
-
-
- // Models
-// -------------------------------------------------------------------------------------------------------------
-// ***** PopupDef *****
-// ********************
-
-var TAG_PopupDef = function TAG_PopupDef() {};
-
-var PopupDef = mobx_state_tree_module/* types.model */.V5.model({
-  key: '',
-  open: false,
-  msg: '',
-  msgSeverity: 'info'
-}).actions(function (self) {
-  return {
-    setField: function setField(field, value) {
-      self[field] = value;
-    },
-    // -
-    setMessage: function setMessage(msg, severity) {
-      self.msg = msg;
-      self.msgSeverity = severity;
-    },
-    clearMessage: function clearMessage() {
-      self.msg = '';
-      self.msgSeverity = 'info';
-    }
-  };
-}); // ***** PopupStore *****
-// **********************
-
-var TAG_PopupStore = function TAG_PopupStore() {};
-
-var PopupStore = mobx_state_tree_module/* types.model */.V5.model({
-  registered: mobx_state_tree_module/* types.optional */.V5.optional(mobx_state_tree_module/* types.array */.V5.array(PopupDef), [])
-}).views(function (self) {
-  return {
-    // Getters
-    // -
-    getPopupByKey: function getPopupByKey(key) {
-      var _iterator = Popup_createForOfIteratorHelper(self.registered),
-          _step;
-
-      try {
-        for (_iterator.s(); !(_step = _iterator.n()).done;) {
-          var popup = _step.value;
-
-          if (popup.key == key) {
-            return popup;
-          }
-        }
-      } catch (err) {
-        _iterator.e(err);
-      } finally {
-        _iterator.f();
-      }
-
-      return null;
-    },
-    // Bools
-    // -
-    isOpen: function isOpen(key) {
-      // La popup passée en paramètre est-elle ouverte ?
-      // ---
-      var _iterator2 = Popup_createForOfIteratorHelper(self.registered),
-          _step2;
-
-      try {
-        for (_iterator2.s(); !(_step2 = _iterator2.n()).done;) {
-          var popup = _step2.value;
-
-          if (popup.key == key && popup.open == true) {
-            return true;
-          }
-        }
-      } catch (err) {
-        _iterator2.e(err);
-      } finally {
-        _iterator2.f();
-      }
-
-      return false;
-    },
-
-    get isOneOpen() {
-      // Au moins une popup est-elle ouverte ?
-      // ---
-      var _iterator3 = Popup_createForOfIteratorHelper(self.registered),
-          _step3;
-
-      try {
-        for (_iterator3.s(); !(_step3 = _iterator3.n()).done;) {
-          var popup = _step3.value;
-
-          if (popup.open == true) {
-            return true;
-          }
-        }
-      } catch (err) {
-        _iterator3.e(err);
-      } finally {
-        _iterator3.f();
-      }
-
-      return false;
-    }
-
-  };
-}).actions(function (self) {
-  return {
-    setField: function setField(field, value) {
-      self[field] = value;
-    },
-    // -
-    register: function register(key) {
-      // Déclare une nouvelle popup
-      // ---
-      var found = false;
-
-      var _iterator4 = Popup_createForOfIteratorHelper(self.registered),
-          _step4;
-
-      try {
-        for (_iterator4.s(); !(_step4 = _iterator4.n()).done;) {
-          var popup = _step4.value;
-
-          if (popup.key == key) {
-            found = true;
-            break;
-          }
-        } // Nouvelle popup
-
-      } catch (err) {
-        _iterator4.e(err);
-      } finally {
-        _iterator4.f();
-      }
-
-      if (!found) {
-        var newPopup = PopupDef.create({
-          'key': key
-        });
-        self.registered.push(newPopup);
-      }
-    },
-    update: function update(open, key) {
-      // Ouvre ou ferme la popup passée en paramètres
-      // ---
-      var _iterator5 = Popup_createForOfIteratorHelper(self.registered),
-          _step5;
-
-      try {
-        for (_iterator5.s(); !(_step5 = _iterator5.n()).done;) {
-          var popup = _step5.value;
-
-          if (key) {
-            if (key == popup.key) {
-              popup.open = open;
-            }
-          } else {
-            popup.open = false;
-          }
-        }
-      } catch (err) {
-        _iterator5.e(err);
-      } finally {
-        _iterator5.f();
-      }
-    },
-    open: function open(key) {
-      // Ouvre la popup passée en paramètres
-      // ---
-      self.update(true, key);
-    },
-    close: function close(key) {
-      // Ferme la popup passée en paramètres
-      // ---
-      self.update(false, key);
-    },
-    //
-    setMessage: function setMessage(key, msg, severity) {
-      // Message interne à la popup
-      // ---
-      var popup = self.getPopupByKey(key);
-
-      if (popup) {
-        popup.setMessage(msg, severity);
-      }
-    },
-    clearMessage: function clearMessage(key) {
-      // Efface le message interne à la popup
-      // ---
-      var popup = self.getPopupByKey(key);
-
-      if (popup) {
-        popup.clearMessage();
-      }
-    }
-  };
-}); // Functions Components ReactJS
-// -------------------------------------------------------------------------------------------------------------
-// ***** Popup *****
-// *****************
-
-var TAG_Popup = function TAG_Popup() {};
-
-var Popup_Popup = (0,es/* observer */.Pi)(function (props) {
-  var store = react.useContext(window.storeContext);
-  var app = store.app; // Render
-  // ==================================================================================================
-
-  return /*#__PURE__*/react.createElement("div", {
-    className: "nx-popup"
-  }, "Popup");
 });
 ;// CONCATENATED MODULE: ../../nexus/react/utils/Responsive.jsx
 var MobileDetect = __webpack_require__(5288); // Functions
@@ -15633,6 +16176,84 @@ var NotFoundPage = function NotFoundPage(props) {
     show: true
   }));
 };
+// EXTERNAL MODULE: ../../nexus/react/popups/playground_modal/PopupPlaygroundModal.css
+var PopupPlaygroundModal = __webpack_require__(1045);
+;// CONCATENATED MODULE: ../../nexus/react/popups/playground_modal/PopupPlaygroundModal.jsx
+
+
+
+
+
+
+
+
+ // Functions Components ReactJS
+// ======================================================================================================
+// ***** PopupPlaygroundModal *****
+// ********************************
+
+var TAG_PopupPlaygroundModal = function TAG_PopupPlaygroundModal() {};
+
+var popupPlaygroundModalKey = 'popupPlaygroundModal';
+var PopupPlaygroundModal_PopupPlaygroundModal = (0,es/* observer */.Pi)(function (props) {
+  var store = react.useContext(window.storeContext);
+  var app = store.app;
+  var popup = app.popup;
+  var playground = app.playground; // From ... store
+
+  var isLoading = app.isLoading;
+  var isOpen = popup.isOpen(popupPlaygroundModalKey); // Events
+  // ==================================================================================================
+
+  var handleOpen = function handleOpen() {};
+
+  var handleClose = function handleClose() {}; // Render
+  // ==================================================================================================
+  // Popup --> Title
+  // -----------------------------------------------
+
+
+  var popupTitle = "Modal"; // Popup --> Content
+  // -----------------------------------------------
+
+  var popupContent = null;
+
+  if (isOpen) {
+    popupContent = /*#__PURE__*/react.createElement("div", null, /*#__PURE__*/react.createElement(Typography_Typography, {
+      align: "center"
+    }, "Question a propos des popups modales ?"));
+  } // Popup --> Buttons
+  // -----------------------------------------------
+
+
+  var popupButtons = [];
+  popupButtons.push( /*#__PURE__*/react.createElement(Button_Button, {
+    id: "btn-close-popup-playground-modal",
+    key: "btn-close-popup-playground-modal",
+    disabled: isLoading,
+    onClick: function onClick() {
+      return popup.close(popupPlaygroundModalKey);
+    }
+  }, "Annuler"));
+  popupButtons.push( /*#__PURE__*/react.createElement(Button_Button, {
+    id: "btn-load-popup-playground-modal",
+    key: "btn-load-popup-playground-modal",
+    color: "primary",
+    disabled: isLoading,
+    onClick: function onClick() {
+      return popup.close(popupPlaygroundModalKey);
+    }
+  }, "Ok")); // -----------------------------------------------
+
+  return /*#__PURE__*/react.createElement(Popup_Popup, {
+    id: popupPlaygroundModalKey,
+    title: popupTitle,
+    variant: "modal",
+    buttons: popupButtons,
+    callbackOpen: handleOpen,
+    callbackClose: handleClose
+  }, popupContent);
+});
 // EXTERNAL MODULE: ../../nexus/react/NxApp.css
 var NxApp = __webpack_require__(7052);
 ;// CONCATENATED MODULE: ../../nexus/react/NxApp.jsx
@@ -15673,6 +16294,9 @@ function NxApp_createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Sy
 function NxApp_unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return NxApp_arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return NxApp_arrayLikeToArray(o, minLen); }
 
 function NxApp_arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+
+
 
 
 
@@ -16028,15 +16652,19 @@ var NxAppStore = mobx_state_tree_module/* types.model */.V5.model({
       self.breakPoint375 = mobileInfos.breakPoint375;
       self.breakPoint320 = mobileInfos.breakPoint320;
     },
-    updatePopups: function updatePopups(popups) {// Popups registering
+    updatePopups: function updatePopups(popups) {
+      // Popups registering
       // ---
-      // const popup = self.popup;
-      // popup.register(popupTaskKey);
-      // if (popups) {
-      // 	for (let popupKey of Object.keys(popups)) {
-      // 		popup.register(popupKey);
-      // 	}
-      // }
+      var popup = self.popup;
+      popup.register(popupPlaygroundDialogKey);
+      popup.register(popupPlaygroundModalKey);
+
+      if (popups) {
+        for (var _i = 0, _Object$keys = Object.keys(popups); _i < _Object$keys.length; _i++) {
+          var popupKey = _Object$keys[_i];
+          popup.register(popupKey);
+        }
+      }
     },
     update: function update(raw, callback) {
       self.history = []; // User logged
@@ -16616,8 +17244,8 @@ var NxAppStore = mobx_state_tree_module/* types.model */.V5.model({
       init['method'] = method; // Params
 
       if (params) {
-        for (var _i = 0, _Object$entries = Object.entries(params); _i < _Object$entries.length; _i++) {
-          var _Object$entries$_i = NxApp_slicedToArray(_Object$entries[_i], 2),
+        for (var _i2 = 0, _Object$entries = Object.entries(params); _i2 < _Object$entries.length; _i2++) {
+          var _Object$entries$_i = NxApp_slicedToArray(_Object$entries[_i2], 2),
               paramKey = _Object$entries$_i[0],
               paramValue = _Object$entries$_i[1];
 
@@ -16841,8 +17469,8 @@ var makeInitSnapshot = function makeInitSnapshot(routes, snapshot, callback) {
   routeNodes.add(new route_node_esm/* RouteNode */.k('account', '/account'));
   routeNodes.add(new route_node_esm/* RouteNode */.k('infos', '/infos'));
 
-  for (var _i2 = 0, _Object$entries2 = Object.entries(routes); _i2 < _Object$entries2.length; _i2++) {
-    var _Object$entries2$_i = NxApp_slicedToArray(_Object$entries2[_i2], 2),
+  for (var _i3 = 0, _Object$entries2 = Object.entries(routes); _i3 < _Object$entries2.length; _i3++) {
+    var _Object$entries2$_i = NxApp_slicedToArray(_Object$entries2[_i3], 2),
         routeContextKey = _Object$entries2$_i[0],
         routeMatchURL = _Object$entries2$_i[1];
 
@@ -16998,8 +17626,8 @@ var makeInitSnapshot = function makeInitSnapshot(routes, snapshot, callback) {
 
 
   if (matchResult && matchResult.hasOwnProperty('params')) {
-    for (var _i3 = 0, _Object$entries3 = Object.entries(matchResult.params); _i3 < _Object$entries3.length; _i3++) {
-      var _Object$entries3$_i = NxApp_slicedToArray(_Object$entries3[_i3], 2),
+    for (var _i4 = 0, _Object$entries3 = Object.entries(matchResult.params); _i4 < _Object$entries3.length; _i4++) {
+      var _Object$entries3$_i = NxApp_slicedToArray(_Object$entries3[_i4], 2),
           urlParamKey = _Object$entries3$_i[0],
           urlParamValue = _Object$entries3$_i[1];
 
@@ -17192,10 +17820,14 @@ var NxApp_NxApp = (0,es/* observer */.Pi)(function (props) {
   } // Popups
 
 
-  var popupsRendered = [];
+  var popupsRendered = [/*#__PURE__*/react.createElement(PopupPlaygroundDialog_PopupPlaygroundDialog, {
+    key: popupPlaygroundDialogKey
+  }), /*#__PURE__*/react.createElement(PopupPlaygroundModal_PopupPlaygroundModal, {
+    key: popupPlaygroundModalKey
+  })];
 
-  for (var _i4 = 0, _Object$entries4 = Object.entries(popups); _i4 < _Object$entries4.length; _i4++) {
-    var _Object$entries4$_i = NxApp_slicedToArray(_Object$entries4[_i4], 2),
+  for (var _i5 = 0, _Object$entries4 = Object.entries(popups); _i5 < _Object$entries4.length; _i5++) {
+    var _Object$entries4$_i = NxApp_slicedToArray(_Object$entries4[_i5], 2),
         popupKey = _Object$entries4$_i[0],
         PopupComponent = _Object$entries4$_i[1];
 
@@ -18486,7 +19118,7 @@ var NexoriumMenuItems = (0,es/* observer */.Pi)(function (props) {
 
   return /*#__PURE__*/react.createElement(react.Fragment, null, /*#__PURE__*/react.createElement(PortalMenuItem, null), /*#__PURE__*/react.createElement(HomeMenuItem, null), !staticMode && /*#__PURE__*/react.createElement(SearchMenuItem, null), breakPoint650 && /*#__PURE__*/react.createElement(MenuDivider, null), !staticMode && /*#__PURE__*/react.createElement(BlogMenuItem, null), !staticMode && /*#__PURE__*/react.createElement(NewslettersMenuItem, null), !staticMode && /*#__PURE__*/react.createElement(MenuDivider, null), /*#__PURE__*/react.createElement(ProjectsMenuItem, null), /*#__PURE__*/react.createElement(CvMenuItem, null), /*#__PURE__*/react.createElement(MenuDivider, null), /*#__PURE__*/react.createElement(PlaygroundMenuItem, null), !staticMode && /*#__PURE__*/react.createElement(DocsMenuItem, null), /*#__PURE__*/react.createElement(MenuDivider, null), !staticMode && /*#__PURE__*/react.createElement(MenuSwitches, {
     allowedEditContexts: ['playground']
-  }), /*#__PURE__*/react.createElement(AboutMenuItem, null), !staticMode && /*#__PURE__*/react.createElement(PreferencesMenuItem, null), !staticMode && /*#__PURE__*/react.createElement(AdminMenuItem, null), !staticMode && breakPoint650 && /*#__PURE__*/react.createElement(MenuDivider, null), !staticMode && /*#__PURE__*/react.createElement(LoginMenuItem, null), !staticMode && /*#__PURE__*/react.createElement(AccountMenuItem, null), !staticMode && /*#__PURE__*/react.createElement(LogoutMenuItem, null));
+  }), /*#__PURE__*/react.createElement(AboutMenuItem, null), /*#__PURE__*/react.createElement(PreferencesMenuItem, null), !staticMode && /*#__PURE__*/react.createElement(AdminMenuItem, null), !staticMode && breakPoint650 && /*#__PURE__*/react.createElement(MenuDivider, null), !staticMode && /*#__PURE__*/react.createElement(LoginMenuItem, null), !staticMode && /*#__PURE__*/react.createElement(AccountMenuItem, null), !staticMode && /*#__PURE__*/react.createElement(LogoutMenuItem, null));
 }); // ***** ContextualMenu *****
 // **************************
 
@@ -19282,6 +19914,20 @@ window.addEventListener('DOMContentLoaded', function () {
 
 /***/ }),
 
+/***/ 5501:
+/***/ (() => {
+
+// extracted by extract-css-chunks-webpack-plugin
+
+/***/ }),
+
+/***/ 1045:
+/***/ (() => {
+
+// extracted by extract-css-chunks-webpack-plugin
+
+/***/ }),
+
 /***/ 2306:
 /***/ (() => {
 
@@ -19558,7 +20204,7 @@ window.addEventListener('DOMContentLoaded', function () {
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module depends on other loaded chunks and execution need to be delayed
 /******/ 	__webpack_require__.O(undefined, [216], () => (__webpack_require__(3979)))
-/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, [216], () => (__webpack_require__(3575)))
+/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, [216], () => (__webpack_require__(8446)))
 /******/ 	__webpack_exports__ = __webpack_require__.O(__webpack_exports__);
 /******/ 	
 /******/ })()
