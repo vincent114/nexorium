@@ -1,7 +1,7 @@
 /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
-/***/ 4216:
+/***/ 3575:
 /***/ ((__unused_webpack_module, __unused_webpack___webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -2638,7 +2638,9 @@ var PushPinIcon = function PushPinIcon(props) {
   // From ... props
   var color = props.color ? props.color : '#000000';
   var height = props.height ? props.height : 24;
-  var width = props.width ? props.width : 24; // Render
+  var width = props.width ? props.width : 24;
+  var variant = props.variant ? props.variant : 'outlined'; // outlined, filled
+  // Render
   // ==================================================================================================
 
   return /*#__PURE__*/react.createElement("svg", {
@@ -2647,14 +2649,20 @@ var PushPinIcon = function PushPinIcon(props) {
     viewBox: "0 0 24 24",
     width: width,
     fill: color
-  }, /*#__PURE__*/react.createElement("g", null, /*#__PURE__*/react.createElement("rect", {
+  }, variant == "outlined" && /*#__PURE__*/react.createElement(react.Fragment, null, /*#__PURE__*/react.createElement("g", null, /*#__PURE__*/react.createElement("rect", {
+    fill: "none",
+    height: "24",
+    width: "24"
+  })), /*#__PURE__*/react.createElement("g", null, /*#__PURE__*/react.createElement("path", {
+    d: "M14,4v5c0,1.12,0.37,2.16,1,3H9c0.65-0.86,1-1.9,1-3V4H14 M17,2H7C6.45,2,6,2.45,6,3c0,0.55,0.45,1,1,1c0,0,0,0,0,0l1,0v5 c0,1.66-1.34,3-3,3v2h5.97v7l1,1l1-1v-7H19v-2c0,0,0,0,0,0c-1.66,0-3-1.34-3-3V4l1,0c0,0,0,0,0,0c0.55,0,1-0.45,1-1 C18,2.45,17.55,2,17,2L17,2z"
+  }))), variant == "filled" && /*#__PURE__*/react.createElement(react.Fragment, null, /*#__PURE__*/react.createElement("g", null, /*#__PURE__*/react.createElement("rect", {
     fill: "none",
     height: "24",
     width: "24"
   })), /*#__PURE__*/react.createElement("g", null, /*#__PURE__*/react.createElement("path", {
     d: "M16,9V4l1,0c0.55,0,1-0.45,1-1v0c0-0.55-0.45-1-1-1H7C6.45,2,6,2.45,6,3v0 c0,0.55,0.45,1,1,1l1,0v5c0,1.66-1.34,3-3,3h0v2h5.97v7l1,1l1-1v-7H19v-2h0C17.34,12,16,10.66,16,9z",
     fillRule: "evenodd"
-  })));
+  }))));
 };
 ;// CONCATENATED MODULE: ../../nexus/react/components/svg_icons/QueueMusic.jsx
  // Functions Components ReactJS
@@ -3195,7 +3203,9 @@ var ToggleOffIcon = function ToggleOffIcon(props) {
   // From ... props
   var color = props.color ? props.color : '#000000';
   var height = props.height ? props.height : 24;
-  var width = props.width ? props.width : 24; // Render
+  var width = props.width ? props.width : 24;
+  var variant = props.variant ? props.variant : 'outlined'; // outlined, filled
+  // Render
   // ==================================================================================================
 
   return /*#__PURE__*/react.createElement("svg", {
@@ -3204,12 +3214,48 @@ var ToggleOffIcon = function ToggleOffIcon(props) {
     viewBox: "0 0 24 24",
     width: width,
     fill: color
-  }, /*#__PURE__*/react.createElement("path", {
+  }, variant == "outlined" && /*#__PURE__*/react.createElement(react.Fragment, null, /*#__PURE__*/react.createElement("path", {
     d: "M0 0h24v24H0V0z",
     fill: "none"
   }), /*#__PURE__*/react.createElement("path", {
     d: "M17 6H7c-3.31 0-6 2.69-6 6s2.69 6 6 6h10c3.31 0 6-2.69 6-6s-2.69-6-6-6zm0 10H7c-2.21 0-4-1.79-4-4s1.79-4 4-4h10c2.21 0 4 1.79 4 4s-1.79 4-4 4zM7 9c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"
-  }));
+  })), variant == "filled" && /*#__PURE__*/react.createElement(react.Fragment, null, /*#__PURE__*/react.createElement("path", {
+    d: "M0 0h24v24H0z",
+    fill: "none"
+  }), /*#__PURE__*/react.createElement("path", {
+    d: "M17 7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h10c2.76 0 5-2.24 5-5s-2.24-5-5-5zM7 15c-1.66 0-3-1.34-3-3s1.34-3 3-3 3 1.34 3 3-1.34 3-3 3z"
+  })));
+};
+;// CONCATENATED MODULE: ../../nexus/react/components/svg_icons/ToggleOn.jsx
+ // Functions Components ReactJS
+// ======================================================================================================
+
+var ToggleOnIcon = function ToggleOnIcon(props) {
+  // From ... props
+  var color = props.color ? props.color : '#000000';
+  var height = props.height ? props.height : 24;
+  var width = props.width ? props.width : 24;
+  var variant = props.variant ? props.variant : 'outlined'; // outlined, filled
+  // Render
+  // ==================================================================================================
+
+  return /*#__PURE__*/react.createElement("svg", {
+    xmlns: "http://www.w3.org/2000/svg",
+    height: height,
+    viewBox: "0 0 24 24",
+    width: width,
+    fill: color
+  }, variant == "outlined" && /*#__PURE__*/react.createElement(react.Fragment, null, /*#__PURE__*/react.createElement("path", {
+    d: "M0 0h24v24H0z",
+    fill: "none"
+  }), /*#__PURE__*/react.createElement("path", {
+    d: "M17 6H7c-3.31 0-6 2.69-6 6s2.69 6 6 6h10c3.31 0 6-2.69 6-6s-2.69-6-6-6zm0 10H7c-2.21 0-4-1.79-4-4s1.79-4 4-4h10c2.21 0 4 1.79 4 4s-1.79 4-4 4zm0-7c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"
+  })), variant == "filled" && /*#__PURE__*/react.createElement(react.Fragment, null, /*#__PURE__*/react.createElement("path", {
+    d: "M0 0h24v24H0z",
+    fill: "none"
+  }), /*#__PURE__*/react.createElement("path", {
+    d: "M17 7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h10c2.76 0 5-2.24 5-5s-2.24-5-5-5zm0 8c-1.66 0-3-1.34-3-3s1.34-3 3-3 3 1.34 3 3-1.34 3-3 3z"
+  })));
 };
 ;// CONCATENATED MODULE: ../../nexus/react/components/svg_icons/Tune.jsx
  // Functions Components ReactJS
@@ -3595,6 +3641,7 @@ var Icon = __webpack_require__(3244);
 
 
 
+
  // Datas
 // -------------------------------------------------------------------------------------------------------------
 
@@ -3703,6 +3750,7 @@ var ICON_KEYS_TO_COMPONENT = {
   'text_fields': TextFieldsIcon,
   'text_snippet': TextSnippetIcon,
   'toggle_off': ToggleOffIcon,
+  'toggle_on': ToggleOnIcon,
   'tune': TuneIcon,
   'verified_user': VerifiedUserIcon,
   'view_column': ViewColumnIcon,
@@ -3782,7 +3830,8 @@ var Icon_Icon = (0,es/* observer */.Pi)(function (props) {
   }, IconSvg && /*#__PURE__*/react.createElement(IconSvg, {
     color: color,
     width: ICON_SIZES[size],
-    height: ICON_SIZES[size]
+    height: ICON_SIZES[size],
+    variant: variant
   }), iconUrl && /*#__PURE__*/react.createElement("img", {
     src: iconUrl
   }));
@@ -3814,6 +3863,9 @@ var Avatar_Avatar = (0,es/* observer */.Pi)(function (props) {
 
   var src = props.src ? props.src : '';
   var iconName = props.iconName;
+  var iconVariant = props.iconVariant ? props.iconVariant : 'outlined'; // filled, outlined
+
+  var iconSize = props.iconSize ? props.iconSize : 'normal';
   var iconColor = props.iconColor ? props.iconColor : 'default';
   var className = props.className ? props.className : '';
   var style = props.style ? props.style : {}; // ...
@@ -3853,7 +3905,9 @@ var Avatar_Avatar = (0,es/* observer */.Pi)(function (props) {
   if (iconName) {
     icon = /*#__PURE__*/react.createElement(Icon_Icon, {
       name: iconName,
-      color: iconColor
+      color: iconColor,
+      size: iconSize,
+      variant: iconVariant
     });
   } // Render
   // ==================================================================================================
@@ -4542,8 +4596,10 @@ var IconButton = (0,es/* observer */.Pi)(function (props) {
 
   var disabled = props.disabled == true ? true : false;
   var iconName = props.iconName;
+  var iconVariant = props.iconVariant ? props.iconVariant : "outlined"; // filled, outlined
+
   var children = props.children;
-  var color = props.color ? props.color : 'default'; // primary, secondary, severityKey, custom
+  var color = props.color ? props.color : 'default'; // primary, secondary, severityKey, custom, typography
 
   var className = props.className ? props.className : '';
   var style = props.style ? copyObj(props.style) : {};
@@ -4555,6 +4611,7 @@ var IconButton = (0,es/* observer */.Pi)(function (props) {
   if (!children && iconName) {
     content = /*#__PURE__*/react.createElement(Icon_Icon, {
       name: iconName,
+      variant: iconVariant,
       color: iconColor
     });
   }
@@ -6722,7 +6779,7 @@ var Field_Field = (0,es/* observer */.Pi)(function (props) {
 
           var radioStyle = {};
           var radioIconName = "radio_button_unchecked";
-          var radioIconColor = "default";
+          var radioIconColor = "typography";
 
           if (data.hidden == true) {
             radioStyle['display'] = 'none';
@@ -6774,7 +6831,7 @@ var Field_Field = (0,es/* observer */.Pi)(function (props) {
     // ---
     var checkboxStyle = {};
     var checkboxIconName = "check_box_outline_blank";
-    var checkboxIconColor = "default";
+    var checkboxIconColor = "typography";
 
     if (value == true) {
       checkboxIconName = "check_box";
@@ -7125,6 +7182,31 @@ var RenderSectionField = (0,es/* observer */.Pi)(function (props) {
     buttonsResponsive: true
   }, sectionContent);
 });
+// EXTERNAL MODULE: ../../nexus/react/layout/column/Column.css
+var Column = __webpack_require__(5906);
+;// CONCATENATED MODULE: ../../nexus/react/layout/column/Column.jsx
+
+
+ // Functions Components ReactJS
+// ----------------------------------------------------------------------------------------------------------------------------
+// ***** Column *****
+// ***************
+
+var TAG_Column = function TAG_Column() {};
+
+var Column_Column = function Column(props) {
+  // From ... props
+  var children = props.children;
+  var spacing = props.spacing ? props.spacing : 'small';
+  var align = props.align ? props.align : 'center';
+  var className = props.className ? props.className : '';
+  var style = props.style ? props.style : {}; // ==================================================================================================
+
+  return /*#__PURE__*/react.createElement("div", {
+    className: (0,clsx_m/* default */.Z)("nx-row", "v-col-".concat(spacing), "flex-align-".concat(align), className),
+    style: style
+  }, children);
+};
 // EXTERNAL MODULE: ../../nexus/react/ui/typography/Typography.css
 var Typography = __webpack_require__(1815);
 ;// CONCATENATED MODULE: ../../nexus/react/ui/typography/Typography.jsx
@@ -7169,9 +7251,185 @@ var Typography_Typography = (0,es/* observer */.Pi)(function (props) {
     style: style
   }, children);
 });
+// EXTERNAL MODULE: ../../nexus/react/ui/alert/Alert.css
+var Alert = __webpack_require__(2306);
+;// CONCATENATED MODULE: ../../nexus/react/ui/alert/Alert.jsx
+
+
+
+
+
+
+
+ // Functions Components ReactJS
+// ======================================================================================================
+// ***** Alert *****
+// *****************
+
+var TAG_Alert = function TAG_Alert() {};
+
+var Alert_Alert = (0,es/* observer */.Pi)(function (props) {
+  var store = react.useContext(window.storeContext);
+  var app = store.app;
+  var theme = app.theme; // From ... store
+
+  var themeMode = theme.mode; // From ... props
+
+  var severity = props.severity ? props.severity : 'default'; // can also be "help"
+
+  var icon = props.icon ? props.icon : null;
+  var children = props.children;
+  var className = props.className ? props.className : '';
+  var style = props.style ? props.style : {}; // ...
+
+  var severityDef = SEVERITIES.get(severity); // Quel icône ?
+
+  if (!icon) {
+    icon = /*#__PURE__*/react.createElement(Icon_Icon, {
+      name: severityDef.icon_name,
+      color: severityDef.color
+    });
+  } // Quelle couleur de fond ?
+
+
+  if (!style.hasOwnProperty('backgroundColor')) {
+    style['backgroundColor'] = severityDef.backgroundColor;
+  } // Quelle couleur de texte ?
+
+
+  if (!style.hasOwnProperty('color')) {
+    style['color'] = themeMode == 'light' ? severityDef.text_color : severityDef.color;
+  } // Render
+  // ==================================================================================================
+
+
+  return /*#__PURE__*/react.createElement("div", {
+    className: (0,clsx_m/* default */.Z)("nx-alert", severity, className, themeMode),
+    style: style
+  }, /*#__PURE__*/react.createElement(Avatar_Avatar, {
+    color: "transparent"
+  }, icon), /*#__PURE__*/react.createElement("div", {
+    className: "nx-alert-content",
+    "data-flex": "1"
+  }, children));
+});
+// EXTERNAL MODULE: ../../nexus/react/ui/switch/Switch.css
+var Switch = __webpack_require__(1796);
+;// CONCATENATED MODULE: ../../nexus/react/ui/switch/Switch.jsx
+
+
+
+
+
+
+ // Functions Components ReactJS
+// ======================================================================================================
+// ***** Switch *****
+// ******************
+
+var TAG_Switch = function TAG_Switch() {};
+
+var Switch_Switch = (0,es/* observer */.Pi)(function (props) {
+  var store = react.useContext(window.storeContext);
+  var app = store.app;
+  var theme = app.theme; // From ... store
+
+  var isLoading = app.isLoading; // From ... props
+
+  var id = props.id ? props.id : id;
+  var name = props.name ? props.name : '';
+  var disabled = props.disabled ? props.disabled : isLoading;
+  var label = props.label;
+  var savePath = props.savePath;
+  var callbackChange = props.callbackChange;
+  var className = props.className ? props.className : "";
+  var style = props.style ? props.style : {}; // Events
+  // ==================================================================================================
+
+  var handleSaveValue = function handleSaveValue(value) {
+    // Mise à jour d'une valeur sur un target
+    // ---
+    // Sauvegarde de la valeur
+    if (savePath) {
+      app.saveValue(savePath, value, callbackChange);
+      app.clearError(savePath);
+    } else {
+      callbackChange([], value);
+    }
+  }; // Functions
+  // ==================================================================================================
+
+
+  var getError = function getError() {
+    var error = props.error;
+
+    if (error == undefined && savePath && savePath.length > 0) {
+      error = app.getError(savePath);
+    }
+
+    return error;
+  };
+
+  var getValue = function getValue() {
+    var value = props.value;
+
+    if (value == undefined && savePath && savePath.length > 0) {
+      value = app.getValue(savePath, null);
+    }
+
+    if (value == null) {
+      value = '';
+    }
+
+    return value;
+  }; // ...
+
+
+  var error = getError();
+  var value = getValue(); // Render
+  // ==================================================================================================
+
+  var switchIconName = "toggle_off";
+  var switchIconColor = "typography";
+
+  if (value == true) {
+    switchIconName = "toggle_on";
+    switchIconColor = "primary";
+  }
+
+  if (error) {
+    switchIconColor = "error";
+  }
+
+  return /*#__PURE__*/react.createElement("div", {
+    className: (0,clsx_m/* default */.Z)("nx-switch", {
+      'disabled': disabled
+    }, {
+      'error': error
+    }, className),
+    onClick: function onClick(e) {
+      return handleSaveValue(!value);
+    },
+    style: style
+  }, /*#__PURE__*/react.createElement(Avatar_Avatar, {
+    color: "transparent",
+    size: "small",
+    iconName: switchIconName,
+    iconColor: switchIconColor,
+    iconSize: "large",
+    iconVariant: "filled",
+    style: {
+      marginLeft: '-8px'
+    }
+  }), label && /*#__PURE__*/react.createElement("div", {
+    className: "nx-field-label-aside"
+  }, label));
+});
 // EXTERNAL MODULE: ../../nexus/react/contexts/playground/input/PlaygroundSwitch.css
 var PlaygroundSwitch = __webpack_require__(2761);
 ;// CONCATENATED MODULE: ../../nexus/react/contexts/playground/input/PlaygroundSwitch.jsx
+
+
 
 
 
@@ -7208,7 +7466,23 @@ var RenderSectionSwitch = (0,es/* observer */.Pi)(function (props) {
   }); // Section -> Content
   // -------------------------------------------------
 
-  var sectionContent = /*#__PURE__*/react.createElement(react.Fragment, null, /*#__PURE__*/react.createElement(Typography_Typography, null, "Bient\xF4t !")); // -------------------------------------------------
+  var sectionContent = /*#__PURE__*/react.createElement("div", null, /*#__PURE__*/react.createElement(Alert_Alert, {
+    severity: "info"
+  }, "Le composant Switch se comporte comme un Field de type \"checkbox\". Il se repose sur une valeur bool\xE9enne et il convient de l'utiliser pour des param\xE8tres."), /*#__PURE__*/react.createElement("br", null), /*#__PURE__*/react.createElement(Column_Column, {
+    align: "start",
+    style: {
+      padding: '10px'
+    }
+  }, /*#__PURE__*/react.createElement(Switch_Switch, {
+    label: "Switch 1",
+    savePath: ['app', 'playground', 'value_switch_1']
+  }), /*#__PURE__*/react.createElement(Switch_Switch, {
+    label: "Switch 2",
+    savePath: ['app', 'playground', 'value_switch_2']
+  }), /*#__PURE__*/react.createElement(Switch_Switch, {
+    label: "Switch 3",
+    savePath: ['app', 'playground', 'value_switch_3']
+  }))); // -------------------------------------------------
 
   return /*#__PURE__*/react.createElement(Section_Section, {
     icon: sectionIcon,
@@ -7374,31 +7648,6 @@ var Indicator_Indicator = (0,es/* observer */.Pi)(function (props) {
 
   return indicator;
 });
-// EXTERNAL MODULE: ../../nexus/react/layout/column/Column.css
-var Column = __webpack_require__(5906);
-;// CONCATENATED MODULE: ../../nexus/react/layout/column/Column.jsx
-
-
- // Functions Components ReactJS
-// ----------------------------------------------------------------------------------------------------------------------------
-// ***** Column *****
-// ***************
-
-var TAG_Column = function TAG_Column() {};
-
-var Column_Column = function Column(props) {
-  // From ... props
-  var children = props.children;
-  var spacing = props.spacing ? props.spacing : 'small';
-  var align = props.align ? props.align : 'center';
-  var className = props.className ? props.className : '';
-  var style = props.style ? props.style : {}; // ==================================================================================================
-
-  return /*#__PURE__*/react.createElement("div", {
-    className: (0,clsx_m/* default */.Z)("nx-row", "v-col-".concat(spacing), "flex-align-".concat(align), className),
-    style: style
-  }, children);
-};
 // EXTERNAL MODULE: ../../nexus/react/contexts/playground/display/PlaygroundAvatar.css
 var PlaygroundAvatar = __webpack_require__(89);
 ;// CONCATENATED MODULE: ../../nexus/react/contexts/playground/display/PlaygroundAvatar.jsx
@@ -7570,68 +7819,6 @@ var Grid_Grid = function Grid(props) {
     style: style
   }, children);
 };
-// EXTERNAL MODULE: ../../nexus/react/ui/alert/Alert.css
-var Alert = __webpack_require__(2306);
-;// CONCATENATED MODULE: ../../nexus/react/ui/alert/Alert.jsx
-
-
-
-
-
-
-
- // Functions Components ReactJS
-// ======================================================================================================
-// ***** Alert *****
-// *****************
-
-var TAG_Alert = function TAG_Alert() {};
-
-var Alert_Alert = (0,es/* observer */.Pi)(function (props) {
-  var store = react.useContext(window.storeContext);
-  var app = store.app;
-  var theme = app.theme; // From ... store
-
-  var themeMode = theme.mode; // From ... props
-
-  var severity = props.severity ? props.severity : 'default'; // can also be "help"
-
-  var icon = props.icon ? props.icon : null;
-  var children = props.children;
-  var className = props.className ? props.className : '';
-  var style = props.style ? props.style : {}; // ...
-
-  var severityDef = SEVERITIES.get(severity); // Quel icône ?
-
-  if (!icon) {
-    icon = /*#__PURE__*/react.createElement(Icon_Icon, {
-      name: severityDef.icon_name,
-      color: severityDef.color
-    });
-  } // Quelle couleur de fond ?
-
-
-  if (!style.hasOwnProperty('backgroundColor')) {
-    style['backgroundColor'] = severityDef.backgroundColor;
-  } // Quelle couleur de texte ?
-
-
-  if (!style.hasOwnProperty('color')) {
-    style['color'] = themeMode == 'light' ? severityDef.text_color : severityDef.color;
-  } // Render
-  // ==================================================================================================
-
-
-  return /*#__PURE__*/react.createElement("div", {
-    className: (0,clsx_m/* default */.Z)("nx-alert", severity, className, themeMode),
-    style: style
-  }, /*#__PURE__*/react.createElement(Avatar_Avatar, {
-    color: "transparent"
-  }, icon), /*#__PURE__*/react.createElement("div", {
-    className: "nx-alert-content",
-    "data-flex": "1"
-  }, children));
-});
 // EXTERNAL MODULE: ../../nexus/react/ui/link/Link.css
 var Link = __webpack_require__(7370);
 ;// CONCATENATED MODULE: ../../nexus/react/ui/link/Link.jsx
@@ -8895,6 +9082,10 @@ var PlaygroundStore = mobx_state_tree_module/* types.model */.V5.model({
   // -
   list: mobx_state_tree_module/* types.optional */.V5.optional(PlaygroundListStore, {}),
   // -
+  value_switch_1: false,
+  value_switch_2: false,
+  value_switch_3: false,
+  // -
   currentPageKey: '',
   loaded: false
 }).views(function (self) {
@@ -9195,9 +9386,9 @@ var RenderDrawerPlaygroundItems = (0,es/* observer */.Pi)(function (props) {
   }; // -----------------------------------------------------
 
 
-  return /*#__PURE__*/react.createElement(react.Fragment, null, breakPoint650 && /*#__PURE__*/react.createElement(HomeMenuItem, null), !staticMode && /*#__PURE__*/react.createElement(MenuSwitch, {
-    switchKey: "editMode"
-  }), (!staticMode || breakPoint650) && /*#__PURE__*/react.createElement(MenuDivider, null), PLAYGROUND_PAGES.map(function (page, pageIdx) {
+  return /*#__PURE__*/react.createElement(react.Fragment, null, breakPoint650 && /*#__PURE__*/react.createElement(HomeMenuItem, null), breakPoint650 && /*#__PURE__*/react.createElement(MenuDivider, null), !staticMode && /*#__PURE__*/react.createElement(MenuSwitches, {
+    allowedEditContexts: ['playground']
+  }), PLAYGROUND_PAGES.map(function (page, pageIdx) {
     return renderItemPlaygroundPage(page);
   }));
 }); // ***** PlaygroundPage *****
@@ -9333,30 +9524,6 @@ var PlaygroundPage = (0,es/* observer */.Pi)(function (props) {
     className: "nx-page"
   }, renderPage(), renderHelper());
 });
-// EXTERNAL MODULE: ../../nexus/react/ui/switch/Switch.css
-var Switch = __webpack_require__(1796);
-;// CONCATENATED MODULE: ../../nexus/react/ui/switch/Switch.jsx
-
-
-
-
- // Functions Components ReactJS
-// ======================================================================================================
-// ***** Switch *****
-// ******************
-
-var TAG_Switch = function TAG_Switch() {};
-
-var Switch_Switch = function Switch(props) {
-  var store = React.useContext(window.storeContext);
-  var app = store.app;
-  var theme = app.theme; // Render
-  // ==================================================================================================
-
-  return /*#__PURE__*/React.createElement("div", {
-    className: "nx-switch"
-  });
-};
 // EXTERNAL MODULE: ../../nexus/react/layout/menu/Menu.css
 var Menu = __webpack_require__(4397);
 ;// CONCATENATED MODULE: ../../nexus/react/layout/menu/Menu.jsx
@@ -9553,21 +9720,60 @@ var MenuItem = (0,es/* observer */.Pi)(function (props) {
     className: "nx-menu-item-label",
     style: styleLabel
   }, label));
-}); // ***** MenuSwitch *****
-// **********************
+}); // ***** MenuSwitches *****
+// ************************
 
-var TAG_MenuSwitch = function TAG_MenuSwitch() {};
+var TAG_MenuSwitches = function TAG_MenuSwitches() {};
 
-var MenuSwitch = function MenuSwitch(props) {
-  // From ... props
-  var switchKey = props.switchKey ? props.switchKey : ''; // ...
+var MenuSwitches = (0,es/* observer */.Pi)(function (props) {
+  var store = react.useContext(window.storeContext);
+  var app = store.app;
+  var account = app.account; // From ... props
+
+  var switchKey = props.switchKey ? props.switchKey : '';
+  var allowedEditContexts = props.allowedEditContexts ? props.allowedEditContexts : ['playground'];
+  var allowedDebugContexts = props.allowedDebugContexts ? props.allowedDebugContexts : ['admin']; // From ... store
+
+  var isLoading = app.isLoading;
+  var context = app.context; // ...
   // Render
   // ==================================================================================================
+  // Edit
+  // -------------------------------------------------
 
-  return /*#__PURE__*/react.createElement("div", {
-    className: "nx-menu-switch"
-  });
-}; // ***** Menu *****
+  var editSwitch = null;
+
+  if (account.is_editor || allowedEditContexts.indexOf(context) > -1) {
+    editSwitch = /*#__PURE__*/react.createElement(Switch_Switch, {
+      label: "Edition",
+      savePath: ['app', 'editMode'],
+      disabled: isLoading
+    });
+  } // Debug
+  // -------------------------------------------------
+
+
+  var debugSwitch = null;
+
+  if (account.is_admin || allowedDebugContexts.indexOf(context) > -1) {
+    debugSwitch = /*#__PURE__*/react.createElement(Switch_Switch, {
+      label: "Debug",
+      savePath: ['app', 'debugMode'],
+      disabled: isLoading
+    });
+  } // -------------------------------------------------
+
+
+  var menuSwitchContent = null;
+
+  if (editSwitch || debugSwitch) {
+    menuSwitchContent = /*#__PURE__*/react.createElement("div", {
+      className: "nx-menu-switch"
+    }, editSwitch, debugSwitch, /*#__PURE__*/react.createElement(MenuDivider, null));
+  }
+
+  return menuSwitchContent;
+}); // ***** Menu *****
 // ****************
 
 var TAG_Menu = function TAG_Menu() {};
@@ -9618,6 +9824,8 @@ var Menu_Menu = (0,es/* observer */.Pi)(function (props) {
     className: "nx-menu-items-wrapper"
   }, content), !breakPoint650 && /*#__PURE__*/react.createElement(IconButton, {
     iconName: "push_pin",
+    iconVariant: pinned ? "filled" : "outlined",
+    color: "typography",
     onClick: function onClick() {
       return handlePinClick();
     }
@@ -13580,6 +13788,11 @@ var ThemeStore = mobx_state_tree_module/* types.model */.V5.model({
 
       if (colorKey != 'default' && palette.paletteKeys.includes(colorKey)) {
         return palette[colorKey].main;
+      } // Couleur de typographie (noir ou blanc en fonction du mode d'ui)
+
+
+      if (colorKey == 'typography') {
+        return self.mode == 'dark' ? '#FFFFFF' : '#000000';
       } // La couleur est une sévrité ?
 
 
@@ -18271,7 +18484,9 @@ var NexoriumMenuItems = (0,es/* observer */.Pi)(function (props) {
   var breakPoint650 = app.breakPoint650; // Render
   // ==================================================================================================
 
-  return /*#__PURE__*/react.createElement(react.Fragment, null, /*#__PURE__*/react.createElement(PortalMenuItem, null), /*#__PURE__*/react.createElement(HomeMenuItem, null), !staticMode && /*#__PURE__*/react.createElement(SearchMenuItem, null), breakPoint650 && /*#__PURE__*/react.createElement(MenuDivider, null), !staticMode && /*#__PURE__*/react.createElement(BlogMenuItem, null), !staticMode && /*#__PURE__*/react.createElement(NewslettersMenuItem, null), !staticMode && /*#__PURE__*/react.createElement(MenuDivider, null), /*#__PURE__*/react.createElement(ProjectsMenuItem, null), /*#__PURE__*/react.createElement(CvMenuItem, null), /*#__PURE__*/react.createElement(MenuDivider, null), /*#__PURE__*/react.createElement(PlaygroundMenuItem, null), !staticMode && /*#__PURE__*/react.createElement(DocsMenuItem, null), /*#__PURE__*/react.createElement(MenuDivider, null), /*#__PURE__*/react.createElement(AboutMenuItem, null), !staticMode && /*#__PURE__*/react.createElement(PreferencesMenuItem, null), !staticMode && /*#__PURE__*/react.createElement(AdminMenuItem, null), !staticMode && breakPoint650 && /*#__PURE__*/react.createElement(MenuDivider, null), !staticMode && /*#__PURE__*/react.createElement(LoginMenuItem, null), !staticMode && /*#__PURE__*/react.createElement(AccountMenuItem, null), !staticMode && /*#__PURE__*/react.createElement(LogoutMenuItem, null));
+  return /*#__PURE__*/react.createElement(react.Fragment, null, /*#__PURE__*/react.createElement(PortalMenuItem, null), /*#__PURE__*/react.createElement(HomeMenuItem, null), !staticMode && /*#__PURE__*/react.createElement(SearchMenuItem, null), breakPoint650 && /*#__PURE__*/react.createElement(MenuDivider, null), !staticMode && /*#__PURE__*/react.createElement(BlogMenuItem, null), !staticMode && /*#__PURE__*/react.createElement(NewslettersMenuItem, null), !staticMode && /*#__PURE__*/react.createElement(MenuDivider, null), /*#__PURE__*/react.createElement(ProjectsMenuItem, null), /*#__PURE__*/react.createElement(CvMenuItem, null), /*#__PURE__*/react.createElement(MenuDivider, null), /*#__PURE__*/react.createElement(PlaygroundMenuItem, null), !staticMode && /*#__PURE__*/react.createElement(DocsMenuItem, null), /*#__PURE__*/react.createElement(MenuDivider, null), !staticMode && /*#__PURE__*/react.createElement(MenuSwitches, {
+    allowedEditContexts: ['playground']
+  }), /*#__PURE__*/react.createElement(AboutMenuItem, null), !staticMode && /*#__PURE__*/react.createElement(PreferencesMenuItem, null), !staticMode && /*#__PURE__*/react.createElement(AdminMenuItem, null), !staticMode && breakPoint650 && /*#__PURE__*/react.createElement(MenuDivider, null), !staticMode && /*#__PURE__*/react.createElement(LoginMenuItem, null), !staticMode && /*#__PURE__*/react.createElement(AccountMenuItem, null), !staticMode && /*#__PURE__*/react.createElement(LogoutMenuItem, null));
 }); // ***** ContextualMenu *****
 // **************************
 
@@ -19343,7 +19558,7 @@ window.addEventListener('DOMContentLoaded', function () {
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module depends on other loaded chunks and execution need to be delayed
 /******/ 	__webpack_require__.O(undefined, [216], () => (__webpack_require__(3979)))
-/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, [216], () => (__webpack_require__(4216)))
+/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, [216], () => (__webpack_require__(3575)))
 /******/ 	__webpack_exports__ = __webpack_require__.O(__webpack_exports__);
 /******/ 	
 /******/ })()

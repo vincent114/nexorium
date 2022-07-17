@@ -6,6 +6,7 @@ import clsx from 'clsx';
 import {
 	MenuDivider,
 	MenuItem,
+	MenuSwitches,
 	Menu
 } from 'nexus/layout/menu/Menu';
 import { PortalMenuItem } from 'nexus/contexts/portal/Portal';
@@ -72,6 +73,12 @@ export const NexoriumMenuItems = observer((props) => {
 			{!staticMode && <DocsMenuItem />}
 
 			<MenuDivider />
+
+			{!staticMode && (
+				<MenuSwitches
+					allowedEditContexts={['playground']}
+				/>
+			)}
 
 			<AboutMenuItem />
 			{!staticMode && <PreferencesMenuItem />}
