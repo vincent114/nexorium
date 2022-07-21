@@ -1,7 +1,7 @@
 /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
-/***/ 8446:
+/***/ 1819:
 /***/ ((__unused_webpack_module, __unused_webpack___webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -211,7 +211,7 @@ var STATIC_SMAP = {
     admin_role: null
   }
 }; // Models
-// -------------------------------------------------------------------------------------------------------------
+// ======================================================================================================
 // ***** ServiceInfoStore *****
 // ****************************
 
@@ -321,12 +321,17 @@ var ServiceInfoStore = mobx_state_tree_module/* types.model */.V5.model({
       var size = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '192';
       var store = (0,mobx_state_tree_module/* getRoot */.yj)(self);
       var app = store.app;
+      var appKind = app.kind;
       var staticMode = app.staticMode;
       var external = self.external;
       var dimention = "".concat(size, "x").concat(size);
 
       if (staticMode) {
         return "".concat(self.internalPrefix, "/static/favicons/android-icon-").concat(dimention, ".png");
+      }
+
+      if (appKind == 'electron') {
+        return "".concat(app.staticUrl, "/favicons/android-icon-").concat(dimention, ".png");
       }
 
       return "".concat(external, "/static/favicons/android-icon-").concat(dimention, ".png");
@@ -427,14 +432,288 @@ var ServicesStore = mobx_state_tree_module/* types.model */.V5.model({
     }
   };
 });
-// EXTERNAL MODULE: ../../nexus/react/node_modules/core-js/modules/es.parse-int.js
-var es_parse_int = __webpack_require__(2317);
+// EXTERNAL MODULE: ../../nexus/react/node_modules/core-js/modules/es.array-buffer.slice.js
+var es_array_buffer_slice = __webpack_require__(2739);
+// EXTERNAL MODULE: ../../nexus/react/node_modules/core-js/modules/es.typed-array.uint8-array.js
+var es_typed_array_uint8_array = __webpack_require__(2994);
+// EXTERNAL MODULE: ../../nexus/react/node_modules/core-js/modules/es.typed-array.copy-within.js
+var es_typed_array_copy_within = __webpack_require__(3977);
+// EXTERNAL MODULE: ../../nexus/react/node_modules/core-js/modules/es.typed-array.every.js
+var es_typed_array_every = __webpack_require__(6373);
+// EXTERNAL MODULE: ../../nexus/react/node_modules/core-js/modules/es.typed-array.fill.js
+var es_typed_array_fill = __webpack_require__(6242);
+// EXTERNAL MODULE: ../../nexus/react/node_modules/core-js/modules/es.typed-array.filter.js
+var es_typed_array_filter = __webpack_require__(4964);
+// EXTERNAL MODULE: ../../nexus/react/node_modules/core-js/modules/es.typed-array.find.js
+var es_typed_array_find = __webpack_require__(6492);
+// EXTERNAL MODULE: ../../nexus/react/node_modules/core-js/modules/es.typed-array.find-index.js
+var es_typed_array_find_index = __webpack_require__(3687);
+// EXTERNAL MODULE: ../../nexus/react/node_modules/core-js/modules/es.typed-array.for-each.js
+var es_typed_array_for_each = __webpack_require__(1026);
+// EXTERNAL MODULE: ../../nexus/react/node_modules/core-js/modules/es.typed-array.includes.js
+var es_typed_array_includes = __webpack_require__(3230);
+// EXTERNAL MODULE: ../../nexus/react/node_modules/core-js/modules/es.typed-array.index-of.js
+var es_typed_array_index_of = __webpack_require__(3883);
+// EXTERNAL MODULE: ../../nexus/react/node_modules/core-js/modules/es.typed-array.iterator.js
+var es_typed_array_iterator = __webpack_require__(8046);
+// EXTERNAL MODULE: ../../nexus/react/node_modules/core-js/modules/es.typed-array.join.js
+var es_typed_array_join = __webpack_require__(5180);
+// EXTERNAL MODULE: ../../nexus/react/node_modules/core-js/modules/es.typed-array.last-index-of.js
+var es_typed_array_last_index_of = __webpack_require__(6056);
+// EXTERNAL MODULE: ../../nexus/react/node_modules/core-js/modules/es.typed-array.map.js
+var es_typed_array_map = __webpack_require__(183);
+// EXTERNAL MODULE: ../../nexus/react/node_modules/core-js/modules/es.typed-array.reduce.js
+var es_typed_array_reduce = __webpack_require__(5970);
+// EXTERNAL MODULE: ../../nexus/react/node_modules/core-js/modules/es.typed-array.reduce-right.js
+var es_typed_array_reduce_right = __webpack_require__(4847);
+// EXTERNAL MODULE: ../../nexus/react/node_modules/core-js/modules/es.typed-array.reverse.js
+var es_typed_array_reverse = __webpack_require__(9944);
+// EXTERNAL MODULE: ../../nexus/react/node_modules/core-js/modules/es.typed-array.set.js
+var es_typed_array_set = __webpack_require__(247);
+// EXTERNAL MODULE: ../../nexus/react/node_modules/core-js/modules/es.typed-array.slice.js
+var es_typed_array_slice = __webpack_require__(7528);
+// EXTERNAL MODULE: ../../nexus/react/node_modules/core-js/modules/es.typed-array.some.js
+var es_typed_array_some = __webpack_require__(3996);
+// EXTERNAL MODULE: ../../nexus/react/node_modules/core-js/modules/es.typed-array.sort.js
+var es_typed_array_sort = __webpack_require__(9494);
+// EXTERNAL MODULE: ../../nexus/react/node_modules/core-js/modules/es.typed-array.subarray.js
+var es_typed_array_subarray = __webpack_require__(4134);
+// EXTERNAL MODULE: ../../nexus/react/node_modules/core-js/modules/es.typed-array.to-locale-string.js
+var es_typed_array_to_locale_string = __webpack_require__(9041);
+// EXTERNAL MODULE: ../../nexus/react/node_modules/core-js/modules/es.typed-array.to-string.js
+var es_typed_array_to_string = __webpack_require__(618);
 // EXTERNAL MODULE: ../../nexus/react/node_modules/core-js/modules/es.date.to-string.js
 var es_date_to_string = __webpack_require__(4961);
-// EXTERNAL MODULE: ../../nexus/react/node_modules/core-js/modules/es.date.to-iso-string.js
-var es_date_to_iso_string = __webpack_require__(2308);
 // EXTERNAL MODULE: ../../nexus/react/node_modules/core-js/modules/es.regexp.to-string.js
 var es_regexp_to_string = __webpack_require__(6965);
+// EXTERNAL MODULE: ../../nexus/react/node_modules/core-js/modules/es.array.sort.js
+var es_array_sort = __webpack_require__(1691);
+;// CONCATENATED MODULE: ../../nexus/react/utils/Datas.jsx
+function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = Datas_unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
+
+function Datas_unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return Datas_arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return Datas_arrayLikeToArray(o, minLen); }
+
+function Datas_arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// Functions
+// ======================================================================================================
+function uuid() {
+  // Collision free V4 UUIDS
+  // ---
+  var tmp,
+      buf = new Uint8Array(16);
+
+  try {
+    window.crypto.getRandomValues(buf);
+  } catch (e) {
+    // IE Stuff (testé avec IE11)
+    var crypto = window.msCrypto;
+    crypto.getRandomValues(buf);
+  }
+
+  buf[6] = buf[6] & 0x0f | 0x40;
+  buf[8] = buf[8] & 0x3f | 0x80;
+  var ret = '';
+
+  for (var idx = 0; idx < 16; idx++) {
+    tmp = buf[idx].toString(16);
+
+    if (tmp.length == 1) {
+      ret += '0' + tmp;
+    } else {
+      ret += tmp;
+    }
+  }
+
+  return ret;
+}
+function copyObj(srcObj) {
+  // Recopie d'objet passé en paramètres
+  // ---
+  var copy = JSON.parse(JSON.stringify(srcObj));
+  return copy;
+}
+function encodeBase64(str) {
+  var buff = new Buffer(str);
+  var base64data = buff.toString('base64');
+  return base64data;
+}
+function decodeBase64(str) {
+  var buff = new Buffer(str, 'base64');
+  var decodedData = buff.toString('ascii');
+  return decodedData;
+}
+function extendArray(array_dest, array_src, get_a_new_one) {
+  // Ajoute les éléments d'une liste dans une autre liste
+  // ---
+  if (get_a_new_one == true) {
+    var new_array = copyObj(array_dest);
+  } else {
+    var new_array = array_dest;
+  }
+
+  for (var idx_item in array_src) {
+    new_array.push(array_src[idx_item]);
+  }
+
+  return new_array;
+}
+function sortObjects(objects, sortField, sortDirection) {
+  sortDirection = sortDirection ? sortDirection : 'asc'; // Tri croissant
+
+  if (sortDirection == 'asc') {
+    objects.sort(function (a, b) {
+      if (a[sortField] > b[sortField]) return 1;
+      if (a[sortField] < b[sortField]) return -1;
+      return 0;
+    });
+  } // Tri décroissant
+
+
+  if (sortDirection == 'desc') {
+    objects.sort(function (a, b) {
+      if (a[sortField] < b[sortField]) return 1;
+      if (a[sortField] > b[sortField]) return -1;
+      return 0;
+    });
+  }
+
+  return objects;
+}
+var applyValue = function applyValue(node, path, value) {
+  // Enregistrement d'une valeur à partir d'un objet et d'un chemin
+  // ---
+  var saveTarget = node;
+
+  for (var idx_path in path) {
+    var target = path[idx_path];
+
+    if (idx_path == path.length - 1) {
+      saveTarget[target] = value;
+    } else {
+      if (!saveTarget.hasOwnProperty(target)) {
+        saveTarget[target] = {};
+      }
+
+      saveTarget = saveTarget[target];
+    }
+  }
+};
+var convertToJSONPath = function convertToJSONPath(path) {
+  // Convertion d'un chemin sous forme de liste en JSON Path pour mobx-state-tree
+  // ---
+  // https://mobx-state-tree.js.org/API/#applypatch
+  // http://jsonpatch.com
+  var jsonPath = '';
+
+  var _iterator = _createForOfIteratorHelper(path),
+      _step;
+
+  try {
+    for (_iterator.s(); !(_step = _iterator.n()).done;) {
+      var pathItem = _step.value;
+      jsonPath = "".concat(jsonPath, "/").concat(pathItem);
+    }
+  } catch (err) {
+    _iterator.e(err);
+  } finally {
+    _iterator.f();
+  }
+
+  return jsonPath;
+};
+
+function _genRandomNumber(min, max) {
+  return Math.floor(Math.random() * (max - min + 1) + min);
+}
+
+function Datas_getRandomNumber(max) {
+  var forbiddenNumbers = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : [];
+
+  // Renvoie un nombre aléatoire
+  // ---
+  var randomNumber = _genRandomNumber(1, max);
+
+  while (forbiddenNumbers.indexOf(randomNumber) > -1) {
+    randomNumber = _genRandomNumber(1, max);
+  }
+
+  return randomNumber;
+}
+;// CONCATENATED MODULE: ../../nexus/react/models/Helpers.jsx
+
+
+
+
+ // Models
+// ======================================================================================================
+// ***** ServicesStore *****
+// *************************
+
+var TAG_HelpersStore = function TAG_HelpersStore() {};
+
+var HelpersStore = mobx_state_tree_module/* types.model */.V5.model({}).views(function (self) {
+  return {
+    // Getters
+    // -
+    getRandomNumber: function getRandomNumber(max) {
+      var forbiddenNumbers = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : [];
+      return Datas_getRandomNumber(max, forbiddenNumbers);
+    }
+  };
+}).actions(function (self) {
+  return {
+    generateUUID: function generateUUID() {
+      return uuid();
+    }
+  };
+});
+// EXTERNAL MODULE: ../../nexus/react/node_modules/core-js/modules/es.parse-int.js
+var es_parse_int = __webpack_require__(2317);
+// EXTERNAL MODULE: ../../nexus/react/node_modules/core-js/modules/es.date.to-iso-string.js
+var es_date_to_iso_string = __webpack_require__(2308);
 // EXTERNAL MODULE: ../../nexus/react/node_modules/core-js/modules/es.string.trim.js
 var es_string_trim = __webpack_require__(3269);
 ;// CONCATENATED MODULE: ../../nexus/react/utils/Helpers.jsx
@@ -510,7 +789,7 @@ function initTrimFunction() {
   }
 }
 ;// CONCATENATED MODULE: ../../nexus/react/utils/Storage.jsx
-function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = Storage_unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
+function Storage_createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = Storage_unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
 
 function Storage_unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return Storage_arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return Storage_arrayLikeToArray(o, minLen); }
 
@@ -541,7 +820,7 @@ function getFromCookies(field) {
   var cookie = document.cookie;
   var cookies = cookie.split(' ');
 
-  var _iterator = _createForOfIteratorHelper(cookies),
+  var _iterator = Storage_createForOfIteratorHelper(cookies),
       _step;
 
   try {
@@ -1163,6 +1442,50 @@ var CardGiftCardIcon = function CardGiftCardIcon(props) {
     d: "M20 6h-2.18c.11-.31.18-.65.18-1 0-1.66-1.34-3-3-3-1.05 0-1.96.54-2.5 1.35l-.5.67-.5-.68C10.96 2.54 10.05 2 9 2 7.34 2 6 3.34 6 5c0 .35.07.69.18 1H4c-1.11 0-1.99.89-1.99 2L2 19c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V8c0-1.11-.89-2-2-2zm-5-2c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zM9 4c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zm11 15H4v-2h16v2zm0-5H4V8h5.08L7 10.83 8.62 12 12 7.4l3.38 4.6L17 10.83 14.92 8H20v6z"
   }));
 };
+;// CONCATENATED MODULE: ../../nexus/react/components/svg_icons/Casino.jsx
+ // Functions Components ReactJS
+// ======================================================================================================
+
+var CasinoIcon = function CasinoIcon(props) {
+  // From ... props
+  var color = props.color ? props.color : '#000000';
+  var height = props.height ? props.height : 24;
+  var width = props.width ? props.width : 24; // Render
+  // ==================================================================================================
+
+  return /*#__PURE__*/react.createElement("svg", {
+    xmlns: "http://www.w3.org/2000/svg",
+    height: height,
+    viewBox: "0 0 24 24",
+    width: width,
+    fill: color
+  }, /*#__PURE__*/react.createElement("path", {
+    d: "M0 0h24v24H0z",
+    fill: "none"
+  }), /*#__PURE__*/react.createElement("path", {
+    d: "M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V5h14v14z"
+  }), /*#__PURE__*/react.createElement("circle", {
+    cx: "7.5",
+    cy: "16.5",
+    r: "1.5"
+  }), /*#__PURE__*/react.createElement("circle", {
+    cx: "7.5",
+    cy: "7.5",
+    r: "1.5"
+  }), /*#__PURE__*/react.createElement("circle", {
+    cx: "12",
+    cy: "12",
+    r: "1.5"
+  }), /*#__PURE__*/react.createElement("circle", {
+    cx: "16.5",
+    cy: "16.5",
+    r: "1.5"
+  }), /*#__PURE__*/react.createElement("circle", {
+    cx: "16.5",
+    cy: "7.5",
+    r: "1.5"
+  }));
+};
 ;// CONCATENATED MODULE: ../../nexus/react/components/svg_icons/CheckBox.jsx
  // Functions Components ReactJS
 // ======================================================================================================
@@ -1356,6 +1679,30 @@ var DarkModeIcon = function DarkModeIcon(props) {
   }), /*#__PURE__*/react.createElement("path", {
     d: "M9.37,5.51C9.19,6.15,9.1,6.82,9.1,7.5c0,4.08,3.32,7.4,7.4,7.4c0.68,0,1.35-0.09,1.99-0.27C17.45,17.19,14.93,19,12,19 c-3.86,0-7-3.14-7-7C5,9.07,6.81,6.55,9.37,5.51z M12,3c-4.97,0-9,4.03-9,9s4.03,9,9,9s9-4.03,9-9c0-0.46-0.04-0.92-0.1-1.36 c-0.98,1.37-2.58,2.26-4.4,2.26c-2.98,0-5.4-2.42-5.4-5.4c0-1.81,0.89-3.42,2.26-4.4C12.92,3.04,12.46,3,12,3L12,3z"
   }));
+};
+;// CONCATENATED MODULE: ../../nexus/react/components/svg_icons/Dangerous.jsx
+ // Functions Components ReactJS
+// ======================================================================================================
+
+var DangerousIcon = function DangerousIcon(props) {
+  // From ... props
+  var color = props.color ? props.color : '#000000';
+  var height = props.height ? props.height : 24;
+  var width = props.width ? props.width : 24; // Render
+  // ==================================================================================================
+
+  return /*#__PURE__*/react.createElement("svg", {
+    xmlns: "http://www.w3.org/2000/svg",
+    height: height,
+    viewBox: "0 0 24 24",
+    width: width,
+    fill: color
+  }, /*#__PURE__*/react.createElement("g", null, /*#__PURE__*/react.createElement("path", {
+    d: "M0,0h24v24H0V0z",
+    fill: "none"
+  })), /*#__PURE__*/react.createElement("g", null, /*#__PURE__*/react.createElement("path", {
+    d: "M15.73,3H8.27L3,8.27v7.46L8.27,21h7.46L21,15.73V8.27L15.73,3z M19,14.9L14.9,19H9.1L5,14.9V9.1L9.1,5h5.8L19,9.1V14.9z M14.83,7.76L12,10.59L9.17,7.76L7.76,9.17L10.59,12l-2.83,2.83l1.41,1.41L12,13.41l2.83,2.83l1.41-1.41L13.41,12l2.83-2.83 L14.83,7.76z"
+  })));
 };
 ;// CONCATENATED MODULE: ../../nexus/react/components/svg_icons/DateRange.jsx
  // Functions Components ReactJS
@@ -1639,6 +1986,54 @@ var FaceIcon = function FaceIcon(props) {
     d: "M10.25 13c0 .69-.56 1.25-1.25 1.25S7.75 13.69 7.75 13s.56-1.25 1.25-1.25 1.25.56 1.25 1.25zM15 11.75c-.69 0-1.25.56-1.25 1.25s.56 1.25 1.25 1.25 1.25-.56 1.25-1.25-.56-1.25-1.25-1.25zm7 .25c0 5.52-4.48 10-10 10S2 17.52 2 12 6.48 2 12 2s10 4.48 10 10zM10.66 4.12C12.06 6.44 14.6 8 17.5 8c.46 0 .91-.05 1.34-.12C17.44 5.56 14.9 4 12 4c-.46 0-.91.05-1.34.12zM4.42 9.47c1.71-.97 3.03-2.55 3.66-4.44C6.37 6 5.05 7.58 4.42 9.47zM20 12c0-.78-.12-1.53-.33-2.24-.7.15-1.42.24-2.17.24-3.13 0-5.92-1.44-7.76-3.69C8.69 8.87 6.6 10.88 4 11.86c.01.04 0 .09 0 .14 0 4.41 3.59 8 8 8s8-3.59 8-8z"
   }));
 };
+;// CONCATENATED MODULE: ../../nexus/react/components/svg_icons/Favorite.jsx
+ // Functions Components ReactJS
+// ======================================================================================================
+
+var FavoriteIcon = function FavoriteIcon(props) {
+  // From ... props
+  var color = props.color ? props.color : '#000000';
+  var height = props.height ? props.height : 24;
+  var width = props.width ? props.width : 24; // Render
+  // ==================================================================================================
+
+  return /*#__PURE__*/react.createElement("svg", {
+    xmlns: "http://www.w3.org/2000/svg",
+    height: height,
+    viewBox: "0 0 24 24",
+    width: width,
+    fill: color
+  }, /*#__PURE__*/react.createElement("path", {
+    d: "M0 0h24v24H0V0z",
+    fill: "none"
+  }), /*#__PURE__*/react.createElement("path", {
+    d: "M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"
+  }));
+};
+;// CONCATENATED MODULE: ../../nexus/react/components/svg_icons/FavoriteBorder.jsx
+ // Functions Components ReactJS
+// ======================================================================================================
+
+var FavoriteBorderIcon = function FavoriteBorderIcon(props) {
+  // From ... props
+  var color = props.color ? props.color : '#000000';
+  var height = props.height ? props.height : 24;
+  var width = props.width ? props.width : 24; // Render
+  // ==================================================================================================
+
+  return /*#__PURE__*/react.createElement("svg", {
+    xmlns: "http://www.w3.org/2000/svg",
+    height: height,
+    viewBox: "0 0 24 24",
+    width: width,
+    fill: color
+  }, /*#__PURE__*/react.createElement("path", {
+    d: "M0 0h24v24H0V0z",
+    fill: "none"
+  }), /*#__PURE__*/react.createElement("path", {
+    d: "M16.5 3c-1.74 0-3.41.81-4.5 2.09C10.91 3.81 9.24 3 7.5 3 4.42 3 2 5.42 2 8.5c0 3.78 3.4 6.86 8.55 11.54L12 21.35l1.45-1.32C18.6 15.36 22 12.28 22 8.5 22 5.42 19.58 3 16.5 3zm-4.4 15.55l-.1.1-.1-.1C7.14 14.24 4 11.39 4 8.5 4 6.5 5.5 5 7.5 5c1.54 0 3.04.99 3.57 2.36h1.87C13.46 5.99 14.96 5 16.5 5c2 0 3.5 1.5 3.5 3.5 0 2.89-3.14 5.74-7.9 10.05z"
+  }));
+};
 ;// CONCATENATED MODULE: ../../nexus/react/components/svg_icons/Feedback.jsx
  // Functions Components ReactJS
 // ======================================================================================================
@@ -1784,6 +2179,31 @@ var FullscreenIcon = function FullscreenIcon(props) {
   }), /*#__PURE__*/react.createElement("path", {
     d: "M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"
   }));
+};
+;// CONCATENATED MODULE: ../../nexus/react/components/svg_icons/Headphones.jsx
+ // Functions Components ReactJS
+// ======================================================================================================
+
+var HeadphonesIcon = function HeadphonesIcon(props) {
+  // From ... props
+  var color = props.color ? props.color : '#000000';
+  var height = props.height ? props.height : 24;
+  var width = props.width ? props.width : 24; // Render
+  // ==================================================================================================
+
+  return /*#__PURE__*/react.createElement("svg", {
+    xmlns: "http://www.w3.org/2000/svg",
+    height: height,
+    viewBox: "0 0 24 24",
+    width: width,
+    fill: color
+  }, /*#__PURE__*/react.createElement("g", null, /*#__PURE__*/react.createElement("rect", {
+    fill: "none",
+    height: "24",
+    width: "24"
+  })), /*#__PURE__*/react.createElement("g", null, /*#__PURE__*/react.createElement("path", {
+    d: "M12,3c-4.97,0-9,4.03-9,9v7c0,1.1,0.9,2,2,2h4v-8H5v-1c0-3.87,3.13-7,7-7s7,3.13,7,7v1h-4v8h4c1.1,0,2-0.9,2-2v-7 C21,7.03,16.97,3,12,3z M7,15v4H5v-4H7z M19,19h-2v-4h2V19z"
+  })));
 };
 ;// CONCATENATED MODULE: ../../nexus/react/components/svg_icons/Help.jsx
  // Functions Components ReactJS
@@ -2244,6 +2664,103 @@ var MenuBookIcon = function MenuBookIcon(props) {
     d: "M17.5,14.33c-1.7,0-3.24,0.29-4.5,0.83v1.66c1.13-0.64,2.7-0.99,4.5-0.99c0.88,0,1.73,0.09,2.5,0.26v-1.52 C19.21,14.41,18.36,14.33,17.5,14.33z"
   })))));
 };
+;// CONCATENATED MODULE: ../../nexus/react/components/svg_icons/ModelTraining.jsx
+ // Functions Components ReactJS
+// ======================================================================================================
+
+var ModelTrainingIcon = function ModelTrainingIcon(props) {
+  // From ... props
+  var color = props.color ? props.color : '#000000';
+  var height = props.height ? props.height : 24;
+  var width = props.width ? props.width : 24; // Render
+  // ==================================================================================================
+
+  return /*#__PURE__*/react.createElement("svg", {
+    xmlns: "http://www.w3.org/2000/svg",
+    height: height,
+    viewBox: "0 0 24 24",
+    width: width,
+    fill: color
+  }, /*#__PURE__*/react.createElement("g", null, /*#__PURE__*/react.createElement("rect", {
+    fill: "none",
+    height: "24",
+    width: "24"
+  }), /*#__PURE__*/react.createElement("path", {
+    d: "M15.5,13.5c0,2-2.5,3.5-2.5,5h-2c0-1.5-2.5-3-2.5-5c0-1.93,1.57-3.5,3.5-3.5h0C13.93,10,15.5,11.57,15.5,13.5z M13,19.5h-2 V21h2V19.5z M19,13c0,1.68-0.59,3.21-1.58,4.42l1.42,1.42C20.18,17.27,21,15.23,21,13c0-2.74-1.23-5.19-3.16-6.84l-1.42,1.42 C17.99,8.86,19,10.82,19,13z M16,5l-4-4v3c0,0,0,0,0,0c-4.97,0-9,4.03-9,9c0,2.23,0.82,4.27,2.16,5.84l1.42-1.42 C5.59,16.21,5,14.68,5,13c0-3.86,3.14-7,7-7c0,0,0,0,0,0v3L16,5z"
+  })));
+};
+;// CONCATENATED MODULE: ../../nexus/react/components/svg_icons/MoreHoriz.jsx
+ // Functions Components ReactJS
+// ======================================================================================================
+
+var MoreHorizIcon = function MoreHorizIcon(props) {
+  // From ... props
+  var color = props.color ? props.color : '#000000';
+  var height = props.height ? props.height : 24;
+  var width = props.width ? props.width : 24; // Render
+  // ==================================================================================================
+
+  return /*#__PURE__*/react.createElement("svg", {
+    xmlns: "http://www.w3.org/2000/svg",
+    height: height,
+    viewBox: "0 0 24 24",
+    width: width,
+    fill: color
+  }, /*#__PURE__*/react.createElement("path", {
+    d: "M0 0h24v24H0V0z",
+    fill: "none"
+  }), /*#__PURE__*/react.createElement("path", {
+    d: "M6 10c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm12 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm-6 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"
+  }));
+};
+;// CONCATENATED MODULE: ../../nexus/react/components/svg_icons/MoreVert.jsx
+ // Functions Components ReactJS
+// ======================================================================================================
+
+var MoreVertIcon = function MoreVertIcon(props) {
+  // From ... props
+  var color = props.color ? props.color : '#000000';
+  var height = props.height ? props.height : 24;
+  var width = props.width ? props.width : 24; // Render
+  // ==================================================================================================
+
+  return /*#__PURE__*/react.createElement("svg", {
+    xmlns: "http://www.w3.org/2000/svg",
+    height: height,
+    viewBox: "0 0 24 24",
+    width: width,
+    fill: color
+  }, /*#__PURE__*/react.createElement("path", {
+    d: "M0 0h24v24H0V0z",
+    fill: "none"
+  }), /*#__PURE__*/react.createElement("path", {
+    d: "M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"
+  }));
+};
+;// CONCATENATED MODULE: ../../nexus/react/components/svg_icons/MusicNote.jsx
+ // Functions Components ReactJS
+// ======================================================================================================
+
+var MusicNoteIcon = function MusicNoteIcon(props) {
+  // From ... props
+  var color = props.color ? props.color : '#000000';
+  var height = props.height ? props.height : 24;
+  var width = props.width ? props.width : 24; // Render
+  // ==================================================================================================
+
+  return /*#__PURE__*/react.createElement("svg", {
+    xmlns: "http://www.w3.org/2000/svg",
+    height: height,
+    viewBox: "0 0 24 24",
+    width: width,
+    fill: color
+  }, /*#__PURE__*/react.createElement("path", {
+    d: "M0 0h24v24H0V0z",
+    fill: "none"
+  }), /*#__PURE__*/react.createElement("path", {
+    d: "M12 3l.01 10.55c-.59-.34-1.27-.55-2-.55C7.79 13 6 14.79 6 17s1.79 4 4.01 4S14 19.21 14 17V7h4V3h-6zm-1.99 16c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2z"
+  }));
+};
 ;// CONCATENATED MODULE: ../../nexus/react/components/svg_icons/NewReleases.jsx
  // Functions Components ReactJS
 // ======================================================================================================
@@ -2544,6 +3061,30 @@ var PictureAsPdfIcon = function PictureAsPdfIcon(props) {
     d: "M20 2H8c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H8V4h12v12zM4 6H2v14c0 1.1.9 2 2 2h14v-2H4V6zm12 6V9c0-.55-.45-1-1-1h-2v5h2c.55 0 1-.45 1-1zm-2-3h1v3h-1V9zm4 2h1v-1h-1V9h1V8h-2v5h1zm-8 0h1c.55 0 1-.45 1-1V9c0-.55-.45-1-1-1H9v5h1v-2zm0-2h1v1h-1V9z"
   }));
 };
+;// CONCATENATED MODULE: ../../nexus/react/components/svg_icons/PlayArrow.jsx
+ // Functions Components ReactJS
+// ======================================================================================================
+
+var PlayArrowIcon = function PlayArrowIcon(props) {
+  // From ... props
+  var color = props.color ? props.color : '#000000';
+  var height = props.height ? props.height : 24;
+  var width = props.width ? props.width : 24; // Render
+  // ==================================================================================================
+
+  return /*#__PURE__*/react.createElement("svg", {
+    xmlns: "http://www.w3.org/2000/svg",
+    height: height,
+    viewBox: "0 0 24 24",
+    width: width,
+    fill: color
+  }, /*#__PURE__*/react.createElement("path", {
+    d: "M0 0h24v24H0V0z",
+    fill: "none"
+  }), /*#__PURE__*/react.createElement("path", {
+    d: "M10 8.64L15.27 12 10 15.36V8.64M8 5v14l11-7L8 5z"
+  }));
+};
 ;// CONCATENATED MODULE: ../../nexus/react/components/svg_icons/PlayCircleFilled.jsx
  // Functions Components ReactJS
 // ======================================================================================================
@@ -2567,6 +3108,31 @@ var PlayCircleFilledIcon = function PlayCircleFilledIcon(props) {
   }), /*#__PURE__*/react.createElement("path", {
     d: "M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"
   }));
+};
+;// CONCATENATED MODULE: ../../nexus/react/components/svg_icons/PlaylistAdd.jsx
+ // Functions Components ReactJS
+// ======================================================================================================
+
+var PlaylistAddIcon = function PlaylistAddIcon(props) {
+  // From ... props
+  var color = props.color ? props.color : '#000000';
+  var height = props.height ? props.height : 24;
+  var width = props.width ? props.width : 24; // Render
+  // ==================================================================================================
+
+  return /*#__PURE__*/react.createElement("svg", {
+    xmlns: "http://www.w3.org/2000/svg",
+    height: height,
+    viewBox: "0 0 24 24",
+    width: width,
+    fill: color
+  }, /*#__PURE__*/react.createElement("g", null, /*#__PURE__*/react.createElement("rect", {
+    fill: "none",
+    height: "24",
+    width: "24"
+  })), /*#__PURE__*/react.createElement("g", null, /*#__PURE__*/react.createElement("path", {
+    d: "M14,10H3v2h11V10z M14,6H3v2h11V6z M18,14v-4h-2v4h-4v2h4v4h2v-4h4v-2H18z M3,16h7v-2H3V16z"
+  })));
 };
 ;// CONCATENATED MODULE: ../../nexus/react/components/svg_icons/PlaylistPlay.jsx
  // Functions Components ReactJS
@@ -2967,6 +3533,30 @@ var SettingIcon = function SettingIcon(props) {
     d: "M19.43 12.98c.04-.32.07-.64.07-.98 0-.34-.03-.66-.07-.98l2.11-1.65c.19-.15.24-.42.12-.64l-2-3.46c-.09-.16-.26-.25-.44-.25-.06 0-.12.01-.17.03l-2.49 1c-.52-.4-1.08-.73-1.69-.98l-.38-2.65C14.46 2.18 14.25 2 14 2h-4c-.25 0-.46.18-.49.42l-.38 2.65c-.61.25-1.17.59-1.69.98l-2.49-1c-.06-.02-.12-.03-.18-.03-.17 0-.34.09-.43.25l-2 3.46c-.13.22-.07.49.12.64l2.11 1.65c-.04.32-.07.65-.07.98 0 .33.03.66.07.98l-2.11 1.65c-.19.15-.24.42-.12.64l2 3.46c.09.16.26.25.44.25.06 0 .12-.01.17-.03l2.49-1c.52.4 1.08.73 1.69.98l.38 2.65c.03.24.24.42.49.42h4c.25 0 .46-.18.49-.42l.38-2.65c.61-.25 1.17-.59 1.69-.98l2.49 1c.06.02.12.03.18.03.17 0 .34-.09.43-.25l2-3.46c.12-.22.07-.49-.12-.64l-2.11-1.65zm-1.98-1.71c.04.31.05.52.05.73 0 .21-.02.43-.05.73l-.14 1.13.89.7 1.08.84-.7 1.21-1.27-.51-1.04-.42-.9.68c-.43.32-.84.56-1.25.73l-1.06.43-.16 1.13-.2 1.35h-1.4l-.19-1.35-.16-1.13-1.06-.43c-.43-.18-.83-.41-1.23-.71l-.91-.7-1.06.43-1.27.51-.7-1.21 1.08-.84.89-.7-.14-1.13c-.03-.31-.05-.54-.05-.74s.02-.43.05-.73l.14-1.13-.89-.7-1.08-.84.7-1.21 1.27.51 1.04.42.9-.68c.43-.32.84-.56 1.25-.73l1.06-.43.16-1.13.2-1.35h1.39l.19 1.35.16 1.13 1.06.43c.43.18.83.41 1.23.71l.91.7 1.06-.43 1.27-.51.7 1.21-1.07.85-.89.7.14 1.13zM12 8c-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4-1.79-4-4-4zm0 6c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2z"
   }));
 };
+;// CONCATENATED MODULE: ../../nexus/react/components/svg_icons/Shuffle.jsx
+ // Functions Components ReactJS
+// ======================================================================================================
+
+var ShuffleIcon = function ShuffleIcon(props) {
+  // From ... props
+  var color = props.color ? props.color : '#000000';
+  var height = props.height ? props.height : 24;
+  var width = props.width ? props.width : 24; // Render
+  // ==================================================================================================
+
+  return /*#__PURE__*/react.createElement("svg", {
+    xmlns: "http://www.w3.org/2000/svg",
+    height: height,
+    viewBox: "0 0 24 24",
+    width: width,
+    fill: color
+  }, /*#__PURE__*/react.createElement("path", {
+    d: "M0 0h24v24H0V0z",
+    fill: "none"
+  }), /*#__PURE__*/react.createElement("path", {
+    d: "M10.59 9.17L5.41 4 4 5.41l5.17 5.17 1.42-1.41zM14.5 4l2.04 2.04L4 18.59 5.41 20 17.96 7.46 20 9.5V4h-5.5zm.33 9.41l-1.41 1.41 3.13 3.13L14.5 20H20v-5.5l-2.04 2.04-3.13-3.13z"
+  }));
+};
 ;// CONCATENATED MODULE: ../../nexus/react/components/svg_icons/SkipNext.jsx
  // Functions Components ReactJS
 // ======================================================================================================
@@ -3100,6 +3690,57 @@ var SportsEsportsIcon = function SportsEsportsIcon(props) {
     r: "1"
   }))));
 };
+;// CONCATENATED MODULE: ../../nexus/react/components/svg_icons/Star.jsx
+ // Functions Components ReactJS
+// ======================================================================================================
+
+var StarIcon = function StarIcon(props) {
+  // From ... props
+  var color = props.color ? props.color : '#000000';
+  var height = props.height ? props.height : 24;
+  var width = props.width ? props.width : 24; // Render
+  // ==================================================================================================
+
+  return /*#__PURE__*/react.createElement("svg", {
+    xmlns: "http://www.w3.org/2000/svg",
+    height: height,
+    viewBox: "0 0 24 24",
+    width: width,
+    fill: color
+  }, /*#__PURE__*/react.createElement("g", null, /*#__PURE__*/react.createElement("path", {
+    d: "M0,0h24v24H0V0z",
+    fill: "none"
+  }), /*#__PURE__*/react.createElement("path", {
+    d: "M0,0h24v24H0V0z",
+    fill: "none"
+  })), /*#__PURE__*/react.createElement("g", null, /*#__PURE__*/react.createElement("path", {
+    d: "M12,17.27L18.18,21l-1.64-7.03L22,9.24l-7.19-0.61L12,2L9.19,8.63L2,9.24l5.46,4.73L5.82,21L12,17.27z"
+  })));
+};
+;// CONCATENATED MODULE: ../../nexus/react/components/svg_icons/StarOutline.jsx
+ // Functions Components ReactJS
+// ======================================================================================================
+
+var StarOutlineIcon = function StarOutlineIcon(props) {
+  // From ... props
+  var color = props.color ? props.color : '#000000';
+  var height = props.height ? props.height : 24;
+  var width = props.width ? props.width : 24; // Render
+  // ==================================================================================================
+
+  return /*#__PURE__*/react.createElement("svg", {
+    xmlns: "http://www.w3.org/2000/svg",
+    height: height,
+    viewBox: "0 0 24 24",
+    width: width,
+    fill: color
+  }, /*#__PURE__*/react.createElement("path", {
+    d: "M0 0h24v24H0V0z",
+    fill: "none"
+  }), /*#__PURE__*/react.createElement("path", {
+    d: "M22 9.24l-7.19-.62L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21 12 17.27 18.18 21l-1.63-7.03L22 9.24zM12 15.4l-3.76 2.27 1-4.28-3.32-2.88 4.38-.38L12 6.1l1.71 4.04 4.38.38-3.32 2.88 1 4.28L12 15.4z"
+  }));
+};
 ;// CONCATENATED MODULE: ../../nexus/react/components/svg_icons/Storage.jsx
  // Functions Components ReactJS
 // ======================================================================================================
@@ -3196,6 +3837,32 @@ var TextSnippetIcon = function TextSnippetIcon(props) {
   }), /*#__PURE__*/react.createElement("path", {
     d: "M14.17,5L19,9.83V19H5V5L14.17,5L14.17,5 M14.17,3H5C3.9,3,3,3.9,3,5v14c0,1.1,0.9,2,2,2h14c1.1,0,2-0.9,2-2V9.83 c0-0.53-0.21-1.04-0.59-1.41l-4.83-4.83C15.21,3.21,14.7,3,14.17,3L14.17,3z M7,15h10v2H7V15z M7,11h10v2H7V11z M7,7h7v2H7V7z"
   })));
+};
+;// CONCATENATED MODULE: ../../nexus/react/components/svg_icons/TipsAndUpdates.jsx
+ // Functions Components ReactJS
+// ======================================================================================================
+
+var TipsAndUpdatesIcon = function TipsAndUpdatesIcon(props) {
+  // From ... props
+  var color = props.color ? props.color : '#000000';
+  var height = props.height ? props.height : 24;
+  var width = props.width ? props.width : 24; // Render
+  // ==================================================================================================
+
+  return /*#__PURE__*/react.createElement("svg", {
+    xmlns: "http://www.w3.org/2000/svg",
+    height: height,
+    viewBox: "0 0 24 24",
+    width: width,
+    fill: color
+  }, /*#__PURE__*/react.createElement("rect", {
+    fill: "none",
+    height: "24",
+    width: "24",
+    y: "0"
+  }), /*#__PURE__*/react.createElement("path", {
+    d: "M7,20h4c0,1.1-0.9,2-2,2S7,21.1,7,20z M5,19h8v-2H5V19z M16.5,9.5c0,3.82-2.66,5.86-3.77,6.5H5.27 C4.16,15.36,1.5,13.32,1.5,9.5C1.5,5.36,4.86,2,9,2S16.5,5.36,16.5,9.5z M14.5,9.5C14.5,6.47,12.03,4,9,4S3.5,6.47,3.5,9.5 c0,2.47,1.49,3.89,2.35,4.5h6.3C13.01,13.39,14.5,11.97,14.5,9.5z M21.37,7.37L20,8l1.37,0.63L22,10l0.63-1.37L24,8l-1.37-0.63L22,6 L21.37,7.37z M19,6l0.94-2.06L22,3l-2.06-0.94L19,0l-0.94,2.06L16,3l2.06,0.94L19,6z"
+  }));
 };
 ;// CONCATENATED MODULE: ../../nexus/react/components/svg_icons/ToggleOff.jsx
  // Functions Components ReactJS
@@ -3644,6 +4311,21 @@ var Icon = __webpack_require__(3244);
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
  // Datas
 // -------------------------------------------------------------------------------------------------------------
 
@@ -3672,6 +4354,7 @@ var ICON_KEYS_TO_COMPONENT = {
   'bug_report': BugReportIcon,
   'call_to_action': CallToActionIcon,
   'card_giftcard': CardGiftCardIcon,
+  'casino': CasinoIcon,
   'check_box': CheckBoxIcon,
   'check_box_outline_blank': CheckBoxOutlineBlankIcon,
   'check_circle': CheckCircleIcon,
@@ -3680,6 +4363,7 @@ var ICON_KEYS_TO_COMPONENT = {
   'close_fullscreen': CloseFullscreenIcon,
   'code': CodeIcon,
   'dark_mode': DarkModeIcon,
+  'dangerous': DangerousIcon,
   'date_range': DateRangeIcon,
   'delete': DeleteIcon,
   'description': DescriptionIcon,
@@ -3691,12 +4375,15 @@ var ICON_KEYS_TO_COMPONENT = {
   'explore': ExploreIcon,
   'extension': ExtensionIcon,
   'face': FaceIcon,
+  'favorite': FavoriteIcon,
+  'favorite_border': FavoriteBorderIcon,
   'feedback_black': FeedbackIcon,
   'file_download': FileDownloadIcon,
   'folder': FolderIcon,
   'folder_zip': FolderZipIcon,
   'forum': ForumIcon,
   'fullscreen': FullscreenIcon,
+  'headphones': HeadphonesIcon,
   'help': HelpIcon,
   'history': HistoryIcon,
   'history_edu': HistoryEduIcon,
@@ -3715,6 +4402,10 @@ var ICON_KEYS_TO_COMPONENT = {
   'memory': MemoryIcon,
   'menu': MenuIcon,
   'menu_book': MenuBookIcon,
+  'model_training': ModelTrainingIcon,
+  'more_horiz': MoreHorizIcon,
+  'more_vert': MoreVertIcon,
+  'music_note': MusicNoteIcon,
   'new_releases': NewReleasesIcon,
   'newspaper': NewspaperIcon,
   'no_accounts': NoAccountsIcon,
@@ -3726,7 +4417,9 @@ var ICON_KEYS_TO_COMPONENT = {
   'person_add': PersonAddIcon,
   'person_search': PersonSearchIcon,
   'picture_as_pdf': PictureAsPdfIcon,
+  'play_arrow': PlayArrowIcon,
   'play_circle_filled': PlayCircleFilledIcon,
+  'playlist_add': PlaylistAddIcon,
   'playlist_play': PlaylistPlayIcon,
   'power_setting': PowerSettingIcon,
   'push_pin': PushPinIcon,
@@ -3742,15 +4435,19 @@ var ICON_KEYS_TO_COMPONENT = {
   'science': ScienceIcon,
   'search': SearchIcon,
   'setting': SettingIcon,
+  'shuffle': ShuffleIcon,
   'skip_next': SkipNextIcon,
   'skip_previous': SkipPreviousIcon,
   'smart_button': SmartButtonIcon,
   'source': SourceIcon,
   'sports_esports': SportsEsportsIcon,
+  'star': StarIcon,
+  'star_outline': StarOutlineIcon,
   'storage': StorageIcon,
   'terrain': TerrainIcon,
   'text_fields': TextFieldsIcon,
   'text_snippet': TextSnippetIcon,
+  'tips_and_updates': TipsAndUpdatesIcon,
   'toggle_off': ToggleOffIcon,
   'toggle_on': ToggleOnIcon,
   'tune': TuneIcon,
@@ -3769,6 +4466,7 @@ var ICON_SIZES = {
   'small': 18,
   'normal': 24,
   'large': 36,
+  'thumbnail': 64,
   'helper': 220
 }; // Functions Components ReactJS
 // -------------------------------------------------------------------------------------------------------------
@@ -3869,11 +4567,13 @@ var Avatar_Avatar = (0,es/* observer */.Pi)(function (props) {
 
   var iconSize = props.iconSize ? props.iconSize : 'normal';
   var iconColor = props.iconColor ? props.iconColor : 'default';
+  var textColor = props.textColor ? props.textColor : 'white';
   var className = props.className ? props.className : '';
   var style = props.style ? props.style : {}; // ...
 
   var hexColor = theme.getColorFromKey(color);
   var hexIconColor = theme.getColorFromKey(iconColor);
+  var hexTextColor = theme.getTextColorFromKey(textColor);
 
   if (!style.hasOwnProperty('backgroundColor')) {
     style['backgroundColor'] = hexColor;
@@ -3883,7 +4583,7 @@ var Avatar_Avatar = (0,es/* observer */.Pi)(function (props) {
     iconColor = 'white';
 
     if (!style.hasOwnProperty('color')) {
-      style['color'] = 'white';
+      style['color'] = hexTextColor;
     }
   } else {
     iconColor = hexIconColor;
@@ -3926,7 +4626,7 @@ var Divider = __webpack_require__(6236);
 
 
  // Functions Components ReactJS
-// -------------------------------------------------------------------------------------------------------------
+// ======================================================================================================
 // ***** Divider *****
 // *******************
 
@@ -3935,18 +4635,50 @@ var TAG_Divider = function TAG_Divider() {};
 var Divider_Divider = function Divider(props) {
   // From ... props
   var title = props.title ? props.title : '';
+  var spacing = props.spacing ? props.spacing : 'none'; // none, small, medium, big
+
   var className = props.className ? props.className : '';
   var style = props.style ? props.style : {}; // Render
   // ==================================================================================================
 
   return /*#__PURE__*/react.createElement("div", {
-    className: (0,clsx_m/* default */.Z)("nx-divider", {
+    className: (0,clsx_m/* default */.Z)("nx-divider", spacing, {
       "with-title": title
     }),
     style: style
   }, title && /*#__PURE__*/react.createElement("div", {
     className: "nx-divider-title"
   }, title));
+}; // ***** GroupDivider *****
+// ************************
+
+var TAG_GroupDivider = function TAG_GroupDivider() {};
+
+var GroupDivider = function GroupDivider(props) {
+  // From ... props
+  var spacing = props.spacing ? props.spacing : 'none'; // none, small, medium, big
+
+  var thickness = props.thickness ? props.thickness : 2;
+  var left = props.left;
+  var center = props.center;
+  var right = props.right;
+  var className = props.className ? props.className : '';
+  var style = props.style ? props.style : {}; // ...
+
+  var lineStyle = {
+    minHeight: "".concat(thickness, "px"),
+    borderRadius: "".concat(thickness, "px")
+  }; // Render
+  // ==================================================================================================
+
+  var line = /*#__PURE__*/React.createElement("div", {
+    className: "nx-group-divider-line",
+    style: lineStyle
+  });
+  return /*#__PURE__*/React.createElement("div", {
+    className: clsx("nx-group-divider", spacing),
+    style: style
+  }, left, line, center, center && line, right);
 };
 // EXTERNAL MODULE: ../../nexus/react/node_modules/core-js/modules/es.array.join.js
 var es_array_join = __webpack_require__(2400);
@@ -4316,236 +5048,6 @@ var hexToCssFilter = function hexToCssFilter(hex) {
   var result = solver.solve();
   return result.filter;
 };
-// EXTERNAL MODULE: ../../nexus/react/node_modules/core-js/modules/es.array-buffer.slice.js
-var es_array_buffer_slice = __webpack_require__(2739);
-// EXTERNAL MODULE: ../../nexus/react/node_modules/core-js/modules/es.typed-array.uint8-array.js
-var es_typed_array_uint8_array = __webpack_require__(2994);
-// EXTERNAL MODULE: ../../nexus/react/node_modules/core-js/modules/es.typed-array.copy-within.js
-var es_typed_array_copy_within = __webpack_require__(3977);
-// EXTERNAL MODULE: ../../nexus/react/node_modules/core-js/modules/es.typed-array.every.js
-var es_typed_array_every = __webpack_require__(6373);
-// EXTERNAL MODULE: ../../nexus/react/node_modules/core-js/modules/es.typed-array.fill.js
-var es_typed_array_fill = __webpack_require__(6242);
-// EXTERNAL MODULE: ../../nexus/react/node_modules/core-js/modules/es.typed-array.filter.js
-var es_typed_array_filter = __webpack_require__(4964);
-// EXTERNAL MODULE: ../../nexus/react/node_modules/core-js/modules/es.typed-array.find.js
-var es_typed_array_find = __webpack_require__(6492);
-// EXTERNAL MODULE: ../../nexus/react/node_modules/core-js/modules/es.typed-array.find-index.js
-var es_typed_array_find_index = __webpack_require__(3687);
-// EXTERNAL MODULE: ../../nexus/react/node_modules/core-js/modules/es.typed-array.for-each.js
-var es_typed_array_for_each = __webpack_require__(1026);
-// EXTERNAL MODULE: ../../nexus/react/node_modules/core-js/modules/es.typed-array.includes.js
-var es_typed_array_includes = __webpack_require__(3230);
-// EXTERNAL MODULE: ../../nexus/react/node_modules/core-js/modules/es.typed-array.index-of.js
-var es_typed_array_index_of = __webpack_require__(3883);
-// EXTERNAL MODULE: ../../nexus/react/node_modules/core-js/modules/es.typed-array.iterator.js
-var es_typed_array_iterator = __webpack_require__(8046);
-// EXTERNAL MODULE: ../../nexus/react/node_modules/core-js/modules/es.typed-array.join.js
-var es_typed_array_join = __webpack_require__(5180);
-// EXTERNAL MODULE: ../../nexus/react/node_modules/core-js/modules/es.typed-array.last-index-of.js
-var es_typed_array_last_index_of = __webpack_require__(6056);
-// EXTERNAL MODULE: ../../nexus/react/node_modules/core-js/modules/es.typed-array.map.js
-var es_typed_array_map = __webpack_require__(183);
-// EXTERNAL MODULE: ../../nexus/react/node_modules/core-js/modules/es.typed-array.reduce.js
-var es_typed_array_reduce = __webpack_require__(5970);
-// EXTERNAL MODULE: ../../nexus/react/node_modules/core-js/modules/es.typed-array.reduce-right.js
-var es_typed_array_reduce_right = __webpack_require__(4847);
-// EXTERNAL MODULE: ../../nexus/react/node_modules/core-js/modules/es.typed-array.reverse.js
-var es_typed_array_reverse = __webpack_require__(9944);
-// EXTERNAL MODULE: ../../nexus/react/node_modules/core-js/modules/es.typed-array.set.js
-var es_typed_array_set = __webpack_require__(247);
-// EXTERNAL MODULE: ../../nexus/react/node_modules/core-js/modules/es.typed-array.slice.js
-var es_typed_array_slice = __webpack_require__(7528);
-// EXTERNAL MODULE: ../../nexus/react/node_modules/core-js/modules/es.typed-array.some.js
-var es_typed_array_some = __webpack_require__(3996);
-// EXTERNAL MODULE: ../../nexus/react/node_modules/core-js/modules/es.typed-array.sort.js
-var es_typed_array_sort = __webpack_require__(9494);
-// EXTERNAL MODULE: ../../nexus/react/node_modules/core-js/modules/es.typed-array.subarray.js
-var es_typed_array_subarray = __webpack_require__(4134);
-// EXTERNAL MODULE: ../../nexus/react/node_modules/core-js/modules/es.typed-array.to-locale-string.js
-var es_typed_array_to_locale_string = __webpack_require__(9041);
-// EXTERNAL MODULE: ../../nexus/react/node_modules/core-js/modules/es.typed-array.to-string.js
-var es_typed_array_to_string = __webpack_require__(618);
-// EXTERNAL MODULE: ../../nexus/react/node_modules/core-js/modules/es.array.sort.js
-var es_array_sort = __webpack_require__(1691);
-;// CONCATENATED MODULE: ../../nexus/react/utils/Datas.jsx
-function Datas_createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = Datas_unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
-
-function Datas_unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return Datas_arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return Datas_arrayLikeToArray(o, minLen); }
-
-function Datas_arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// Datas
-// -------------------------------------------------------------------------------------------------------------
-var ileDeFrance = (/* unused pure expression or super */ null && (['75', '77', '78', '91', '92', '93', '94', '95'])); // Functions
-// -------------------------------------------------------------------------------------------------------------
-
-function uuid() {
-  // Collision free V4 UUIDS
-  // ---
-  var tmp,
-      buf = new Uint8Array(16);
-
-  try {
-    window.crypto.getRandomValues(buf);
-  } catch (e) {
-    // IE Stuff (testé avec IE11)
-    var crypto = window.msCrypto;
-    crypto.getRandomValues(buf);
-  }
-
-  buf[6] = buf[6] & 0x0f | 0x40;
-  buf[8] = buf[8] & 0x3f | 0x80;
-  var ret = '';
-
-  for (var idx = 0; idx < 16; idx++) {
-    tmp = buf[idx].toString(16);
-
-    if (tmp.length == 1) {
-      ret += '0' + tmp;
-    } else {
-      ret += tmp;
-    }
-  }
-
-  return ret;
-}
-function copyObj(srcObj) {
-  // Recopie d'objet passé en paramètres
-  // ---
-  var copy = JSON.parse(JSON.stringify(srcObj));
-  return copy;
-}
-function encodeBase64(str) {
-  var buff = new Buffer(str);
-  var base64data = buff.toString('base64');
-  return base64data;
-}
-function decodeBase64(str) {
-  var buff = new Buffer(str, 'base64');
-  var decodedData = buff.toString('ascii');
-  return decodedData;
-}
-function extendArray(array_dest, array_src, get_a_new_one) {
-  // Ajoute les éléments d'une liste dans une autre liste
-  // ---
-  if (get_a_new_one == true) {
-    var new_array = copyObj(array_dest);
-  } else {
-    var new_array = array_dest;
-  }
-
-  for (var idx_item in array_src) {
-    new_array.push(array_src[idx_item]);
-  }
-
-  return new_array;
-}
-function sortObjects(objects, sortField, sortDirection) {
-  sortDirection = sortDirection ? sortDirection : 'asc'; // Tri croissant
-
-  if (sortDirection == 'asc') {
-    objects.sort(function (a, b) {
-      if (a[sortField] > b[sortField]) return 1;
-      if (a[sortField] < b[sortField]) return -1;
-      return 0;
-    });
-  } // Tri décroissant
-
-
-  if (sortDirection == 'desc') {
-    objects.sort(function (a, b) {
-      if (a[sortField] < b[sortField]) return 1;
-      if (a[sortField] > b[sortField]) return -1;
-      return 0;
-    });
-  }
-
-  return objects;
-}
-var applyValue = function applyValue(node, path, value) {
-  // Enregistrement d'une valeur à partir d'un objet et d'un chemin
-  // ---
-  var saveTarget = node;
-
-  for (var idx_path in path) {
-    var target = path[idx_path];
-
-    if (idx_path == path.length - 1) {
-      saveTarget[target] = value;
-    } else {
-      if (!saveTarget.hasOwnProperty(target)) {
-        saveTarget[target] = {};
-      }
-
-      saveTarget = saveTarget[target];
-    }
-  }
-};
-var convertToJSONPath = function convertToJSONPath(path) {
-  // Convertion d'un chemin sous forme de liste en JSON Path pour mobx-state-tree
-  // ---
-  // https://mobx-state-tree.js.org/API/#applypatch
-  // http://jsonpatch.com
-  var jsonPath = '';
-
-  var _iterator = Datas_createForOfIteratorHelper(path),
-      _step;
-
-  try {
-    for (_iterator.s(); !(_step = _iterator.n()).done;) {
-      var pathItem = _step.value;
-      jsonPath = "".concat(jsonPath, "/").concat(pathItem);
-    }
-  } catch (err) {
-    _iterator.e(err);
-  } finally {
-    _iterator.f();
-  }
-
-  return jsonPath;
-};
 // EXTERNAL MODULE: ../../nexus/react/ui/button/Button.css
 var Button = __webpack_require__(2181);
 ;// CONCATENATED MODULE: ../../nexus/react/ui/button/Button.jsx
@@ -4614,7 +5116,17 @@ var IconButton = (0,es/* observer */.Pi)(function (props) {
   var onClick = props.onClick; // ...
 
   var iconColor = theme.getColorFromKey(color);
-  var content = children;
+  var textColor = theme.getTextColorFromKey(color);
+  var content = null;
+
+  if (children) {
+    content = /*#__PURE__*/react.createElement("div", {
+      className: "nx-icon-button-content",
+      style: {
+        color: textColor
+      }
+    }, children);
+  }
 
   if (!children && iconName) {
     content = /*#__PURE__*/react.createElement(Icon_Icon, {
@@ -4815,7 +5327,7 @@ var Portal = __webpack_require__(3114);
 
 
  // Functions Components ReactJS
-// -------------------------------------------------------------------------------------------------------------
+// ======================================================================================================
 // ***** PortalDivider *****
 // *************************
 
@@ -5013,6 +5525,7 @@ var Severity = /*#__PURE__*/function () {
 
     this.key = severityKey;
     this.color = "";
+    this.color_dark = "";
     this.text_color = "";
     this.contrasted = "";
     this.icon_name = "";
@@ -5025,6 +5538,7 @@ var Severity = /*#__PURE__*/function () {
     key: "updateFromDef",
     value: function updateFromDef(def) {
       this.color = def.color;
+      this.color_dark = def.color_dark;
       this.text_color = def.text_color;
       this.contrasted = def.contrasted;
       this.icon_name = def.icon_name;
@@ -5052,6 +5566,7 @@ var Severity = /*#__PURE__*/function () {
 var SEVERITIES = {
   'default': {
     color: '#bdbdbd',
+    color_dark: '#878787',
     text_color: '#000000',
     contrasted: '#424242',
     icon_name: 'info'
@@ -5234,11 +5749,9 @@ var Helper_Helper = (0,es/* observer */.Pi)(function (props) {
   var styleContent = props.styleContent ? props.styleContent : {}; // Render
   // ==================================================================================================
 
-  var titleColor = themeMode == 'light' ? 'black' : 'white';
-
-  if (severity && severity != 'default' && SEVERITY_COLORS_CONTRASTED.hasOwnProperty(severity)) {
-    titleColor = SEVERITY_COLORS_CONTRASTED[severity];
-  }
+  var titleColor = themeMode == 'light' ? 'black' : 'white'; // if (severity && severity != 'default' && SEVERITY_COLORS_CONTRASTED.hasOwnProperty(severity)) {
+  // 	titleColor = SEVERITY_COLORS_CONTRASTED[severity];
+  // }
 
   var subtitleColor = 'gray';
   var subtitleIcon = null;
@@ -5408,7 +5921,8 @@ var NavCard_NavCard = (0,es/* observer */.Pi)(function (props) {
 
   var handleMouseLeave = function handleMouseLeave(evt) {
     setHover(false);
-  };
+  }; // -
+
 
   var handleClick = function handleClick() {
     if (onClick) {
@@ -5499,7 +6013,9 @@ var TAG_HomeMenuItem = function TAG_HomeMenuItem() {};
 var HomeMenuItem = (0,es/* observer */.Pi)(function (props) {
   var store = react.useContext(window.storeContext);
   var app = store.app;
-  var menu = app.menu; // From ... store
+  var menu = app.menu; // From ... props
+
+  var disabled = props.disabled; // From ... store
 
   var breakPoint650 = app.breakPoint650;
   var homeContext = app.homeContext; // Events
@@ -5518,6 +6034,7 @@ var HomeMenuItem = (0,es/* observer */.Pi)(function (props) {
     homeMenuItemContent = /*#__PURE__*/react.createElement(MenuItem, {
       iconName: "home",
       label: "Accueil",
+      disabled: disabled,
       activeContexts: [homeContext],
       callbackClick: handleMenuItemClick
     });
@@ -5563,7 +6080,7 @@ var Heading_Heading = (0,es/* observer */.Pi)(function (props) {
   }
 
   if (!style.hasOwnProperty('backgroundColor') && variant == 'contained') {
-    style['backgroundColor'] = SEVERITY_COLORS["default"];
+    style['backgroundColor'] = theme.getColorFromKey('default');
   } // Render
   // ==================================================================================================
 
@@ -5831,7 +6348,7 @@ var es_string_search = __webpack_require__(1256);
 // EXTERNAL MODULE: ../../nexus/react/node_modules/date-fns/esm/format/index.js + 29 modules
 var format = __webpack_require__(8173);
 // EXTERNAL MODULE: ../../nexus/react/node_modules/date-fns/esm/addDays/index.js
-var addDays = __webpack_require__(8484);
+var addDays = __webpack_require__(4763);
 // EXTERNAL MODULE: ../../nexus/react/node_modules/date-fns/esm/subDays/index.js
 var subDays = __webpack_require__(5081);
 ;// CONCATENATED MODULE: ../../nexus/react/utils/DateTools.jsx
@@ -5845,7 +6362,11 @@ var subDays = __webpack_require__(5081);
 
 
 
- // Objects
+
+
+var moment = __webpack_require__(5440);
+
+moment.locale('fr'); // Objects
 // ======================================================================================================
 // ***** dateTools *****
 // *********************
@@ -6060,6 +6581,11 @@ var dateTools = {
 
     return value_hourified;
   },
+  // -
+  calendarTime: function calendarTime(value) {
+    // Today at 9:42 AM
+    return moment(value).calendar();
+  },
   // Getters
   // -
   getNextDay: function getNextDay(date) {
@@ -6084,11 +6610,17 @@ var dateTools = {
 
     return weekKey;
   },
+  getNowIso: function getNowIso() {
+    // Now -> AAAA-MM-JJTHH:MM:SS.xxxxx
+    // ---
+    var now = new Date();
+    return now.toISOString();
+  },
   getTodayIso: function getTodayIso() {
     // Now -> AAAA-MM-JJ
     // ---
-    var now = new Date();
-    return now.toISOString().substring(0, 10);
+    var self = this;
+    return self.getNowIso().substring(0, 10);
   }
 };
 // EXTERNAL MODULE: ../../nexus/react/forms/field/Field.css
@@ -6859,9 +7391,9 @@ var Field_Field = (0,es/* observer */.Pi)(function (props) {
       iconName: checkboxIconName,
       iconColor: checkboxIconColor,
       style: {
-        marginLeft: '-8px'
+        marginLeft: label ? "-8px" : "0px"
       }
-    }), /*#__PURE__*/react.createElement("div", {
+    }), label && /*#__PURE__*/react.createElement("div", {
       className: "nx-field-label-aside"
     }, label));
   }; // -------------------------------------------------
@@ -7142,7 +7674,6 @@ var RenderSectionField = (0,es/* observer */.Pi)(function (props) {
     component: "checkbox",
     label: "Test checkbox",
     ghostLabel: false,
-    datas: CHOICES_TEST,
     savePath: ['app', 'playground', 'value_checkbox'],
     disabled: isLoading // callbackChange={handleFieldChange}
     ,
@@ -7235,7 +7766,9 @@ var TAG_Typography = function TAG_Typography() {};
 var Typography_Typography = (0,es/* observer */.Pi)(function (props) {
   var store = react.useContext(window.storeContext);
   var app = store.app;
-  var theme = app.theme; // From ... props
+  var theme = app.theme; // From ... store
+
+  var uiMode = theme.mode; // From ... props
 
   var children = props.children;
   var size = props.size ? props.size : 'default'; // small, default, big
@@ -7244,6 +7777,7 @@ var Typography_Typography = (0,es/* observer */.Pi)(function (props) {
 
   var variant = props.variant ? props.variant : ''; // title, subtitle, description
 
+  var ellipsis = props.ellipsis == false ? false : true;
   var className = props.className ? props.className : '';
   var style = props.style ? copyObj(props.style) : {};
   var color = props.color ? props.color : 'default'; // ...
@@ -7256,7 +7790,7 @@ var Typography_Typography = (0,es/* observer */.Pi)(function (props) {
   }
 
   if (variant == 'description') {
-    style['color'] = 'gray';
+    style['color'] = uiMode == 'light' ? 'gray' : 'lightgray';
   } // Quel alignement ?
 
 
@@ -7264,12 +7798,14 @@ var Typography_Typography = (0,es/* observer */.Pi)(function (props) {
   // ==================================================================================================
 
   return /*#__PURE__*/react.createElement("div", {
-    className: (0,clsx_m/* default */.Z)("nx-typography", size, variant, className),
+    className: (0,clsx_m/* default */.Z)("nx-typography", size, variant, {
+      "ellipsis": ellipsis
+    }, className),
     style: style
   }, children);
 });
 // EXTERNAL MODULE: ../../nexus/react/ui/alert/Alert.css
-var Alert = __webpack_require__(2306);
+var Alert = __webpack_require__(6075);
 ;// CONCATENATED MODULE: ../../nexus/react/ui/alert/Alert.jsx
 
 
@@ -7576,30 +8112,19 @@ var Indicator_Indicator = (0,es/* observer */.Pi)(function (props) {
 
   var variant = props.variant ? props.variant : 'default'; // default, contrasted, outlined
 
-  var severity = props.severity ? props.severity : 'default';
+  var padding = props.padding ? props.padding : 'small'; // none, small, medium, big
+
   var iconName = props.iconName ? props.iconName : '';
   var href = props.href ? props.href : '';
   var children = props.children;
   var className = props.className ? props.className : '';
-  var color = props.color ? props.color : ''; // primary, secondary, #custom
+  var color = props.color ? props.color : 'default'; // primary, secondary, #custom
 
   var style = props.style ? props.style : {};
   var callbackClick = props.callbackClick; // ...
+  // Quelle couleur ?
 
-  var severityDef = SEVERITIES.getDef(severity); // Quelle couleur ?
-
-  if (color == 'primary') {
-    color = theme.palette.primary.main;
-  }
-
-  if (color == 'secondary') {
-    color = theme.palette.secondary.main;
-  }
-
-  if (!color) {
-    color = severityDef.color;
-  }
-
+  color = theme.getColorFromKey(color);
   style['color'] = color;
   style['backgroundColor'] = hexToRgbA(color, 0.1);
   style['border'] = '1px solid transparent';
@@ -7619,7 +8144,8 @@ var Indicator_Indicator = (0,es/* observer */.Pi)(function (props) {
 
   if (iconName) {
     icon = /*#__PURE__*/react.createElement(Icon_Icon, {
-      color: severity,
+      color: variant == "contrasted" ? "#FFFFFF" : severity,
+      size: "small",
       name: iconName,
       style: {
         flex: 'none',
@@ -7639,7 +8165,7 @@ var Indicator_Indicator = (0,es/* observer */.Pi)(function (props) {
 
 
   var indicator = /*#__PURE__*/react.createElement("div", {
-    className: (0,clsx_m/* default */.Z)("nx-indicator", {
+    className: (0,clsx_m/* default */.Z)("nx-indicator", "padding-".concat(padding), {
       "with-icon": icon
     }, {
       "clickable": callbackClick
@@ -7648,11 +8174,13 @@ var Indicator_Indicator = (0,es/* observer */.Pi)(function (props) {
     onClick: function onClick() {
       return handleClick();
     }
-  }, icon, /*#__PURE__*/react.createElement("div", null, children));
+  }, icon, /*#__PURE__*/react.createElement("div", {
+    className: "nx-indicator-children"
+  }, children));
 
   if (href) {
     indicator = /*#__PURE__*/react.createElement("a", {
-      className: (0,clsx_m/* default */.Z)("nx-indicator", {
+      className: (0,clsx_m/* default */.Z)("nx-indicator", "padding-".concat(padding), {
         "with-icon": icon
       }, {
         "clickable": callbackClick
@@ -7660,7 +8188,9 @@ var Indicator_Indicator = (0,es/* observer */.Pi)(function (props) {
       href: href,
       target: "_blanc",
       style: style
-    }, icon, /*#__PURE__*/react.createElement("div", null, children));
+    }, icon, /*#__PURE__*/react.createElement("div", {
+      className: "nx-indicator-children"
+    }, children));
   }
 
   return indicator;
@@ -7767,7 +8297,7 @@ var RenderSectionAvatar = (0,es/* observer */.Pi)(function (props) {
   }, sectionContent);
 });
 // EXTERNAL MODULE: ../../nexus/react/contexts/playground/display/PlaygroundChip.css
-var PlaygroundChip = __webpack_require__(9455);
+var PlaygroundChip = __webpack_require__(9768);
 ;// CONCATENATED MODULE: ../../nexus/react/contexts/playground/display/PlaygroundChip.jsx
 
 
@@ -7817,6 +8347,7 @@ var Grid = __webpack_require__(3058);
 ;// CONCATENATED MODULE: ../../nexus/react/layout/grid/Grid.jsx
 
 
+
  // Functions Components ReactJS
 // ----------------------------------------------------------------------------------------------------------------------------
 // ***** Grid *****
@@ -7826,10 +8357,17 @@ var TAG_Grid = function TAG_Grid() {};
 
 var Grid_Grid = function Grid(props) {
   // From ... props
+  var justify = props.justify ? props.justify : "space-around"; // space-around, space-between
+
   var children = props.children;
   var className = props.className ? props.className : '';
-  var style = props.style ? props.style : {}; // Render
+  var style = props.style ? copyObj(props.style) : {}; // ...
+
+  if (!style.hasOwnProperty("justifyContent")) {
+    style["justifyContent"] = justify;
+  } // Render
   // ==================================================================================================
+
 
   return /*#__PURE__*/react.createElement("div", {
     className: (0,clsx_m/* default */.Z)("nx-grid", className),
@@ -7872,7 +8410,7 @@ var Link_Link = function Link(props) {
   }, children);
 };
 // EXTERNAL MODULE: ../../nexus/react/contexts/playground/display/PlaygroundIcon.css
-var PlaygroundIcon = __webpack_require__(9286);
+var PlaygroundIcon = __webpack_require__(9679);
 ;// CONCATENATED MODULE: ../../nexus/react/contexts/playground/display/PlaygroundIcon.jsx
 function PlaygroundIcon_slicedToArray(arr, i) { return PlaygroundIcon_arrayWithHoles(arr) || PlaygroundIcon_iterableToArrayLimit(arr, i) || PlaygroundIcon_unsupportedIterableToArray(arr, i) || PlaygroundIcon_nonIterableRest(); }
 
@@ -8068,17 +8606,17 @@ var RenderSectionIndicator = (0,es/* observer */.Pi)(function (props) {
   }, "secondary"), /*#__PURE__*/react.createElement(Indicator_Indicator, {
     color: "#009688"
   }, "custom"), /*#__PURE__*/react.createElement(Indicator_Indicator, {
-    severity: "default"
+    color: "default"
   }, "default"), /*#__PURE__*/react.createElement(Indicator_Indicator, {
-    severity: "success"
+    color: "success"
   }, "success"), /*#__PURE__*/react.createElement(Indicator_Indicator, {
-    severity: "info"
+    color: "info"
   }, "info"), /*#__PURE__*/react.createElement(Indicator_Indicator, {
-    severity: "warning"
+    color: "warning"
   }, "warning"), /*#__PURE__*/react.createElement(Indicator_Indicator, {
-    severity: "error"
+    color: "error"
   }, "error"), /*#__PURE__*/react.createElement(Indicator_Indicator, {
-    severity: "hot"
+    color: "hot"
   }, "hot")), /*#__PURE__*/react.createElement(Heading_Heading, {
     style: {
       marginTop: '10px',
@@ -8094,22 +8632,22 @@ var RenderSectionIndicator = (0,es/* observer */.Pi)(function (props) {
     color: "#009688",
     variant: "contrasted"
   }, "custom"), /*#__PURE__*/react.createElement(Indicator_Indicator, {
-    severity: "default",
+    color: "default",
     variant: "contrasted"
   }, "default"), /*#__PURE__*/react.createElement(Indicator_Indicator, {
-    severity: "success",
+    color: "success",
     variant: "contrasted"
   }, "success"), /*#__PURE__*/react.createElement(Indicator_Indicator, {
-    severity: "info",
+    color: "info",
     variant: "contrasted"
   }, "info"), /*#__PURE__*/react.createElement(Indicator_Indicator, {
-    severity: "warning",
+    color: "warning",
     variant: "contrasted"
   }, "warning"), /*#__PURE__*/react.createElement(Indicator_Indicator, {
-    severity: "error",
+    color: "error",
     variant: "contrasted"
   }, "error"), /*#__PURE__*/react.createElement(Indicator_Indicator, {
-    severity: "hot",
+    color: "hot",
     variant: "contrasted"
   }, "hot")), /*#__PURE__*/react.createElement(Heading_Heading, {
     style: {
@@ -8126,22 +8664,22 @@ var RenderSectionIndicator = (0,es/* observer */.Pi)(function (props) {
     color: "#009688",
     variant: "outlined"
   }, "custom"), /*#__PURE__*/react.createElement(Indicator_Indicator, {
-    severity: "default",
+    color: "default",
     variant: "outlined"
   }, "default"), /*#__PURE__*/react.createElement(Indicator_Indicator, {
-    severity: "success",
+    color: "success",
     variant: "outlined"
   }, "success"), /*#__PURE__*/react.createElement(Indicator_Indicator, {
-    severity: "info",
+    color: "info",
     variant: "outlined"
   }, "info"), /*#__PURE__*/react.createElement(Indicator_Indicator, {
-    severity: "warning",
+    color: "warning",
     variant: "outlined"
   }, "warning"), /*#__PURE__*/react.createElement(Indicator_Indicator, {
-    severity: "error",
+    color: "error",
     variant: "outlined"
   }, "error"), /*#__PURE__*/react.createElement(Indicator_Indicator, {
-    severity: "hot",
+    color: "hot",
     variant: "outlined"
   }, "hot"))); // -------------------------------------------------
 
@@ -8234,7 +8772,7 @@ var RenderSectionPopup = (0,es/* observer */.Pi)(function (props) {
   }, sectionContent);
 });
 // EXTERNAL MODULE: ../../nexus/react/ui/list/List.css
-var List = __webpack_require__(7883);
+var List = __webpack_require__(8817);
 ;// CONCATENATED MODULE: ../../nexus/react/ui/list/List.jsx
 function List_slicedToArray(arr, i) { return List_arrayWithHoles(arr) || List_iterableToArrayLimit(arr, i) || List_unsupportedIterableToArray(arr, i) || List_nonIterableRest(); }
 
@@ -8341,8 +8879,10 @@ var ListItem = (0,es/* observer */.Pi)(function (props) {
   var _React$useState = react.useState(defaultExpanded),
       _React$useState2 = List_slicedToArray(_React$useState, 2),
       expanded = _React$useState2[0],
-      setExpanded = _React$useState2[1]; // ...
+      setExpanded = _React$useState2[1]; // From ... store
 
+
+  var isLoading = app.isLoading; // ...
 
   if (expanded && !style.hasOwnProperty('backgroundColor')) {
     style['backgroundColor'] = theme.palette.primary.lightBackground;
@@ -8390,6 +8930,7 @@ var ListItem = (0,es/* observer */.Pi)(function (props) {
   }, props.children, callbackDelete && /*#__PURE__*/react.createElement(IconButton, {
     iconName: "delete",
     color: "error",
+    disabled: isLoading,
     onClick: function onClick(e) {
       e.preventDefault();
       e.stopPropagation();
@@ -10376,7 +10917,7 @@ var MenuItem = (0,es/* observer */.Pi)(function (props) {
   var iconName = props.iconName;
   var label = props.label;
   var activeContexts = props.activeContexts ? props.activeContexts : [];
-  var disabled = props.disabled == true ? props.disabled : isLoading;
+  var disabled = props.disabled != undefined ? props.disabled : isLoading;
   var style = props.style ? props.style : {};
   var styleLabel = {
     'color': themeMode == 'light' ? 'black' : 'white'
@@ -10566,7 +11107,7 @@ var portal_Portal = __webpack_require__(1999);
 
 
  // Models
-// -------------------------------------------------------------------------------------------------------------
+// ======================================================================================================
 // ***** PortalStore *****
 // ***********************
 
@@ -10631,7 +11172,7 @@ var PortalStore = mobx_state_tree_module/* types.model */.V5.model({
     }
   };
 }); // Functions Components ReactJS
-// -------------------------------------------------------------------------------------------------------------
+// ======================================================================================================
 // ***** PortalHeaderLeft *****
 // ****************************
 
@@ -10883,9 +11424,10 @@ var AboutStore = mobx_state_tree_module/* types.model */.V5.model({
       var app = store.app;
       var snackbar = app.snackbar;
       var services = app.services;
+      var appKind = app.kind;
       var staticMode = app.staticMode;
 
-      if (!staticMode) {
+      if (!staticMode && appKind != 'electron') {
         var url = '/app/about_load';
         app.fetchJSON(url, null, false, 'POST').then(function (json) {
           self.update(json.me);
@@ -10936,7 +11478,9 @@ var TAG_AboutMenuItem = function TAG_AboutMenuItem() {};
 
 var AboutMenuItem = (0,es/* observer */.Pi)(function (props) {
   var store = react.useContext(window.storeContext);
-  var app = store.app; // From ... store
+  var app = store.app; // From ... props
+
+  var disabled = props.disabled; // From ... store
 
   var aboutContext = app.aboutContext; // Events
   // ==================================================================================================
@@ -10951,6 +11495,7 @@ var AboutMenuItem = (0,es/* observer */.Pi)(function (props) {
   return /*#__PURE__*/react.createElement(MenuItem, {
     iconName: "code",
     label: "A propos",
+    disabled: disabled,
     activeContexts: [aboutContext],
     callbackClick: handleMenuItemClick
   });
@@ -10970,6 +11515,7 @@ var RenderAbout = (0,es/* observer */.Pi)(function (props) {
   var loaded = about.loaded;
   var service = about.service;
   var staticMode = app.staticMode;
+  var appKind = app.kind;
   var version = service.version;
   var changeset = service.changeset;
   var changeset_instance = service.changeset_instance;
@@ -11049,14 +11595,14 @@ var RenderAbout = (0,es/* observer */.Pi)(function (props) {
     href: nexusGithubLink,
     target: "_blank",
     className: "flex-2"
-  }, nexusGithubLink)), !staticMode && /*#__PURE__*/react.createElement("br", null), !staticMode && /*#__PURE__*/react.createElement("div", {
+  }, nexusGithubLink)), !staticMode && appKind != 'electron' && /*#__PURE__*/react.createElement("br", null), !staticMode && appKind != 'electron' && /*#__PURE__*/react.createElement("div", {
     className: "h-col-small responsive-vertical responsive-spaced-none responsive-align-start"
   }, /*#__PURE__*/react.createElement("div", {
     className: "nx-t nx-t-default"
   }, "R\xE9vision instance"), /*#__PURE__*/react.createElement("div", {
     className: "nx-about-changeset selectable",
     "data-flex": "2"
-  }, changeset_instance)), !staticMode && /*#__PURE__*/react.createElement("div", {
+  }, changeset_instance)), !staticMode && appKind != 'electron' && /*#__PURE__*/react.createElement("div", {
     className: "h-col-small responsive-vertical responsive-spaced-none responsive-align-start"
   }, /*#__PURE__*/react.createElement("div", {
     className: "nx-t nx-t-default"
@@ -11078,7 +11624,7 @@ var RenderAbout = (0,es/* observer */.Pi)(function (props) {
     startAdornment: "history"
   }, "Changelog"));
 
-  if (!staticMode) {
+  if (!staticMode && appKind != 'electron') {
     sectionButtons.push( /*#__PURE__*/react.createElement(Button_Button, {
       key: "btn-bugs",
       variant: "outlined",
@@ -11256,16 +11802,25 @@ var ThemeStore = mobx_state_tree_module/* types.model */.V5.model({
 
       if (colorKey != 'default' && palette.paletteKeys.includes(colorKey)) {
         return palette[colorKey].main;
-      } // Couleur de typographie (noir ou blanc en fonction du mode d'ui)
+      } // Couleur de typographie
 
 
       if (colorKey == 'typography') {
         return self.mode == 'dark' ? '#FFFFFF' : '#000000';
+      }
+
+      if (colorKey == 'description') {
+        return self.mode == 'dark' ? '#D4D3D3' : '#808080';
       } // La couleur est une sévrité ?
 
 
       if (SEVERITY_KEYS.includes(colorKey)) {
         var severity = SEVERITIES.get(colorKey);
+
+        if (self.mode == "dark" && severityColorField == "color" && severity.color_dark) {
+          return severity["color_dark"];
+        }
+
         return severity[severityColorField];
       }
 
@@ -11277,7 +11832,7 @@ var ThemeStore = mobx_state_tree_module/* types.model */.V5.model({
       return self.getColorFromKey(colorKey, 'contrasted');
     },
     getTextColorFromKey: function getTextColorFromKey(colorKey) {
-      // Détermine une couleur de texte à partir d'un mot clé (severityKey / primary / secondary, etc...)
+      // Détermine une couleur de texte à partir d'un mot clé (severityKey / primary / secondary / description, etc...)
       // ---
       var textColor = self.getColorFromKey(colorKey, 'text_color');
 
@@ -11646,7 +12201,9 @@ var TAG_AdminMenuItem = function TAG_AdminMenuItem() {};
 var AdminMenuItem = (0,es/* observer */.Pi)(function (props) {
   var store = react.useContext(window.storeContext);
   var app = store.app;
-  var account = app.account; // From ... store
+  var account = app.account; // From ... props
+
+  var disabled = props.disabled; // From ... store
 
   var appKind = app.kind;
   var isAdmin = account.is_admin;
@@ -11668,6 +12225,7 @@ var AdminMenuItem = (0,es/* observer */.Pi)(function (props) {
     adminMenuItemContent = /*#__PURE__*/react.createElement(MenuItem, {
       iconName: "setting",
       label: adminTitle,
+      disabled: disabled,
       activeContexts: [adminContext],
       callbackClick: handleMenuItemClick
     });
@@ -13156,7 +13714,7 @@ var ChangelogReleaseItem_ChangelogReleaseItem = (0,es/* observer */.Pi)(function
     var plateform = PLATEFORMS_BY_KEYS[plateformKey];
     var assetLink = "".concat(staticUrl, "/file/").concat(asset.filename);
     return /*#__PURE__*/react.createElement(Indicator_Indicator, {
-      severity: "info",
+      color: "info",
       iconName: "folder_zip",
       style: {
         flex: 'none',
@@ -13167,7 +13725,7 @@ var ChangelogReleaseItem_ChangelogReleaseItem = (0,es/* observer */.Pi)(function
 
     }, plateform.label);
   }), releaseVersion && /*#__PURE__*/react.createElement(Indicator_Indicator, {
-    severity: "hot",
+    color: "hot",
     style: {
       flex: 'none',
       marginLeft: '2px',
@@ -14357,10 +14915,10 @@ var HeaderUserMenu = (0,es/* observer */.Pi)(function (props) {
     headerUserMenuContent = /*#__PURE__*/react.createElement("div", {
       "data-flex": "0"
     }, /*#__PURE__*/react.createElement(IconButton, {
+      disabled: isLoading,
       onClick: function onClick(e) {
         return handleAccount(e);
-      },
-      disabled: isLoading
+      }
     }, /*#__PURE__*/react.createElement(Icon_Icon, {
       name: isLogged ? "account_circle" : "no_accounts",
       color: "white"
@@ -14524,11 +15082,9 @@ var Header_Header = (0,es/* observer */.Pi)(function (props) {
   if (isLoading) {
     spinner = /*#__PURE__*/react.createElement(Avatar_Avatar, {
       color: "transparent",
-      size: "small"
-    }, /*#__PURE__*/react.createElement(Icon_Icon, {
-      name: "hourglass_empty",
-      color: "white"
-    }));
+      iconName: "hourglass_empty",
+      iconColor: "white"
+    });
   }
 
   var homeBtn = null;
@@ -16358,6 +16914,7 @@ function NxApp_arrayLikeToArray(arr, len) { if (len == null || len > arr.length)
 
 
 
+
  // Models
 // -------------------------------------------------------------------------------------------------------------
 // ***** NxAppStore *****
@@ -16376,6 +16933,7 @@ var NxAppStore = mobx_state_tree_module/* types.model */.V5.model({
   editMode: false,
   standaloneMode: false,
   services: mobx_state_tree_module/* types.optional */.V5.optional(ServicesStore, {}),
+  helpers: mobx_state_tree_module/* types.optional */.V5.optional(HelpersStore, {}),
   // URLs
   authUrl: '/login',
   authContext: 'auth',
@@ -16435,6 +16993,7 @@ var NxAppStore = mobx_state_tree_module/* types.model */.V5.model({
   portal: mobx_state_tree_module/* types.optional */.V5.optional(PortalStore, {}),
   snackbar: mobx_state_tree_module/* types.optional */.V5.optional(SnackbarStore, {}),
   popup: mobx_state_tree_module/* types.optional */.V5.optional(PopupStore, {}),
+  scrollIgnoredContexts: mobx_state_tree_module/* types.optional */.V5.optional(mobx_state_tree_module/* types.array */.V5.array(mobx_state_tree_module/* types.string */.V5.string), []),
   // Common
   // -
   notifications: mobx_state_tree_module/* types.optional */.V5.optional(NotificationsStore, {}),
@@ -16480,16 +17039,15 @@ var NxAppStore = mobx_state_tree_module/* types.model */.V5.model({
     },
 
     get staticUrl() {
-      if (self.kind == 'electron' || self.staticMode) {
+      if (self.kind == 'electron') {
+        return "static";
+      }
+
+      if (self.staticMode) {
         return "./".concat(self.appKey, "/static");
       }
 
       return '/static';
-    },
-
-    // -
-    generateUUID: function generateUUID() {
-      return uuid();
     },
 
     // Bools
@@ -16572,8 +17130,13 @@ var NxAppStore = mobx_state_tree_module/* types.model */.V5.model({
     getScrollKey: function getScrollKey() {
       // Uniq key to identify scroll context
       // ---
-      var url = document.location.pathname;
-      return url;
+      var scrollKey = document.location.pathname;
+
+      if (self.kind == 'electron' || self.staticMode) {
+        scrollKey = "scroll.".concat(self.context);
+      }
+
+      return scrollKey;
     },
     getValue: function getValue(path, notFoundValue, source) {
       // Récupère la valeur derrière le chemin passé en paramètres
@@ -16667,6 +17230,7 @@ var NxAppStore = mobx_state_tree_module/* types.model */.V5.model({
       }
     },
     update: function update(raw, callback) {
+      var appKind = self.kind;
       self.history = []; // User logged
 
       if (raw && raw.user) {
@@ -16681,14 +17245,14 @@ var NxAppStore = mobx_state_tree_module/* types.model */.V5.model({
         editMode = self.urlParams.edit == 'true' ? true : false;
       }
 
-      if (!self.account.is_editor) {
+      if (appKind == "web" && !self.account.is_editor) {
         editMode = false;
       } // Debug mode ?
 
 
       var debugMode = getFromStorage('debugMode', false, 'bool');
 
-      if (!self.account.is_admin) {
+      if (appKind == "web" && !self.account.is_admin) {
         debugMode = false;
       }
 
@@ -16711,7 +17275,7 @@ var NxAppStore = mobx_state_tree_module/* types.model */.V5.model({
       extras = extras ? extras : {};
       window.urlParams = {};
       window.verboseRender = false;
-      window.verboseScroll = false;
+      window.verboseScroll = true;
       initWeekFunctions();
       initTrimFunction();
       self.updatePopups(popups);
@@ -16884,6 +17448,11 @@ var NxAppStore = mobx_state_tree_module/* types.model */.V5.model({
 
       if (appKind == 'web' && !self.staticMode) {
         self.setBrowserURL(destination);
+      } // Sauvegarde du dernier contexte
+
+
+      if (appKind == 'electron') {
+        setToStorage('lastContext', newContext);
       } // Changement de contexte (all the magic of one paged apps appens here!)
 
 
@@ -17143,14 +17712,19 @@ var NxAppStore = mobx_state_tree_module/* types.model */.V5.model({
       }, 500);
     },
     removeScrollEvent: function removeScrollEvent() {
-      document.getElementById("main").removeEventListener("scroll", self.handleScroll);
+      document.getElementById("nx-main").removeEventListener("scroll", self.handleScroll);
     },
     attachScrollEvent: function attachScrollEvent() {
-      document.getElementById("main").addEventListener("scroll", self.handleScroll);
+      document.getElementById("nx-main").addEventListener("scroll", self.handleScroll);
     },
     saveScroll: function saveScroll(scroll) {
       // Save scroll value
       // ---
+      // Scroll ignoré pour le contexte courant ?
+      if (self.scrollIgnoredContexts.indexOf(self.context) > -1) {
+        return;
+      }
+
       var context = self.context;
       var scrollKey = self.getScrollKey();
 
@@ -17163,29 +17737,37 @@ var NxAppStore = mobx_state_tree_module/* types.model */.V5.model({
     restoreScroll: function restoreScroll() {
       // Restore scroll value
       // ---
-      var scrollKey = self.getScrollKey();
-      var scroll = getFromStorage(scrollKey, 0, 'int');
+      var main = document.getElementById("nx-main");
+      var scroll = 0;
 
-      if (window.infiniteScrollCallback) {
-        scroll = 0;
+      if (self.scrollIgnoredContexts.indexOf(self.context) == -1) {
+        var scrollKey = self.getScrollKey();
+        scroll = getFromStorage(scrollKey, 0, 'int');
+
+        if (window.infiniteScrollCallback) {
+          scroll = 0;
+        }
+
+        if (window.verboseScroll) {
+          console.log("Restore scroll ".concat(scrollKey, " : ").concat(scroll));
+        }
       }
-
-      if (window.verboseScroll) {
-        console.log("Restore scroll ".concat(scrollKey, " : ").concat(scroll));
-      }
-
-      var main = document.getElementById("main");
 
       if (main) {
         self.removeScrollEvent();
-        main.scrollTop = scroll;
+        main.scrollTop = scroll; // main.scrollTo({
+        // 	left: 0,
+        // 	top: scroll,
+        // 	behavior: "smooth"
+        // });
+
         self.attachScrollEvent();
       }
     },
     scrollToTop: function scrollToTop() {
       // Smooth scroll to the top of the page
       // ---
-      var main = document.getElementById("main");
+      var main = document.getElementById("nx-main");
 
       if (main) {
         main.scrollTo({
@@ -17198,7 +17780,7 @@ var NxAppStore = mobx_state_tree_module/* types.model */.V5.model({
     scrollToBottom: function scrollToBottom() {
       // Smooth scroll to the bottom of the page
       // ---
-      var main = document.getElementById("main");
+      var main = document.getElementById("nx-main");
 
       if (main) {
         main.scrollTo({
@@ -17287,6 +17869,40 @@ var NxAppStore = mobx_state_tree_module/* types.model */.V5.model({
       return self._fetchDatas(input, init, quiet, method, params, false);
     },
     // -
+    applyPatches: function applyPatches(pathsAndValues, callbackPatched) {
+      // Application de patchs à l'arbre MobxStateTree
+      // ---
+      var store = (0,mobx_state_tree_module/* getRoot */.yj)(self);
+      var patchesList = [];
+
+      var _iterator3 = NxApp_createForOfIteratorHelper(pathsAndValues),
+          _step3;
+
+      try {
+        for (_iterator3.s(); !(_step3 = _iterator3.n()).done;) {
+          var _step3$value = NxApp_slicedToArray(_step3.value, 2),
+              _path = _step3$value[0],
+              value = _step3$value[1];
+
+          patchesList.push({
+            "op": "replace",
+            "path": convertToJSONPath(_path),
+            "value": value
+          });
+        }
+      } catch (err) {
+        _iterator3.e(err);
+      } finally {
+        _iterator3.f();
+      }
+
+      console.log(patchesList);
+      (0,mobx_state_tree_module/* applyPatch */.af)(store, patchesList);
+
+      if (callbackPatched) {
+        callbackPatched();
+      }
+    },
     saveValue: function saveValue(path, value, callbackSaved) {
       // Sauvegarde de la nouvelle valeur à travers un arbre MobxStateTree
       // ---
@@ -17303,7 +17919,7 @@ var NxAppStore = mobx_state_tree_module/* types.model */.V5.model({
       }
     },
     saveValues: (0,mobx_state_tree_module/* flow */.ls)( /*#__PURE__*/regeneratorRuntime.mark(function saveValues(pathsAndValues) {
-      var _iterator3, _step3, _step3$value, savePath, value;
+      var _iterator4, _step4, _step4$value, savePath, value;
 
       return regeneratorRuntime.wrap(function saveValues$(_context) {
         while (1) {
@@ -17311,17 +17927,17 @@ var NxAppStore = mobx_state_tree_module/* types.model */.V5.model({
             case 0:
               // Modifie en chaine plusieurs valeurs à l'aide du flow de mobx-state-tree
               // ---
-              _iterator3 = NxApp_createForOfIteratorHelper(pathsAndValues);
+              _iterator4 = NxApp_createForOfIteratorHelper(pathsAndValues);
 
               try {
-                for (_iterator3.s(); !(_step3 = _iterator3.n()).done;) {
-                  _step3$value = NxApp_slicedToArray(_step3.value, 2), savePath = _step3$value[0], value = _step3$value[1];
+                for (_iterator4.s(); !(_step4 = _iterator4.n()).done;) {
+                  _step4$value = NxApp_slicedToArray(_step4.value, 2), savePath = _step4$value[0], value = _step4$value[1];
                   self.saveValue(savePath, value);
                 }
               } catch (err) {
-                _iterator3.e(err);
+                _iterator4.e(err);
               } finally {
-                _iterator3.f();
+                _iterator4.f();
               }
 
             case 2:
@@ -17385,21 +18001,21 @@ var NxAppStore = mobx_state_tree_module/* types.model */.V5.model({
       var errors = self.errors;
       var clearedErrors = [];
 
-      var _iterator4 = NxApp_createForOfIteratorHelper(errors),
-          _step4;
+      var _iterator5 = NxApp_createForOfIteratorHelper(errors),
+          _step5;
 
       try {
-        for (_iterator4.s(); !(_step4 = _iterator4.n()).done;) {
-          var error = _step4.value;
+        for (_iterator5.s(); !(_step5 = _iterator5.n()).done;) {
+          var error = _step5.value;
 
           if (JSON.stringify(error.path) != JSON.stringify(savePath)) {
             clearedErrors.push(error);
           }
         }
       } catch (err) {
-        _iterator4.e(err);
+        _iterator5.e(err);
       } finally {
-        _iterator4.f();
+        _iterator5.f();
       }
 
       self.setField('errors', clearedErrors);
@@ -17746,7 +18362,7 @@ var NxApp_NxApp = (0,es/* observer */.Pi)(function (props) {
     clearTimeout(window.scrollTimeoutRestore);
     setTimeout(function () {
       app.restoreScroll();
-    }, 250); // JS Ready
+    }, 500); // JS Ready
 
     var body = document.body;
     body.classList.add("jsready");
@@ -17757,6 +18373,7 @@ var NxApp_NxApp = (0,es/* observer */.Pi)(function (props) {
   var Footer = props.footer ? props.footer : null;
   var children = props.children ? props.children : null;
   var contexts = props.contexts ? props.contexts : {};
+  var right = props.right ? props.right : null;
   var popups = props.popups ? props.popups : {}; // From ... store
 
   var appKey = app.appKey;
@@ -17855,7 +18472,7 @@ var NxApp_NxApp = (0,es/* observer */.Pi)(function (props) {
     id: "nx-content"
   }, Menu && !isFullScreen && /*#__PURE__*/react.createElement(Menu, null), /*#__PURE__*/react.createElement("div", {
     id: "nx-main"
-  }, content, /*#__PURE__*/react.createElement(Snackbar_Snackbar, null)), !isFullScreen && /*#__PURE__*/react.createElement(Portal_Portal, null), popupsRendered)));
+  }, content, /*#__PURE__*/react.createElement(Snackbar_Snackbar, null)), !isFullScreen && /*#__PURE__*/react.createElement(Portal_Portal, null), right, popupsRendered)));
 });
 ;// CONCATENATED MODULE: ../../nexus/react/models/services.jsx
 function services_slicedToArray(arr, i) { return services_arrayWithHoles(arr) || services_iterableToArrayLimit(arr, i) || services_unsupportedIterableToArray(arr, i) || services_nonIterableRest(); }
@@ -17990,7 +18607,7 @@ var services_STATIC_SMAP = {
     admin_role: null
   }
 }; // Models
-// -------------------------------------------------------------------------------------------------------------
+// ======================================================================================================
 // ***** ServiceInfoStore *****
 // ****************************
 
@@ -18100,12 +18717,17 @@ var services_ServiceInfoStore = mobx_state_tree_module/* types.model */.V5.model
       var size = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '192';
       var store = (0,mobx_state_tree_module/* getRoot */.yj)(self);
       var app = store.app;
+      var appKind = app.kind;
       var staticMode = app.staticMode;
       var external = self.external;
       var dimention = "".concat(size, "x").concat(size);
 
       if (staticMode) {
         return "".concat(self.internalPrefix, "/static/favicons/android-icon-").concat(dimention, ".png");
+      }
+
+      if (appKind == 'electron') {
+        return "".concat(app.staticUrl, "/favicons/android-icon-").concat(dimention, ".png");
       }
 
       return "".concat(external, "/static/favicons/android-icon-").concat(dimention, ".png");
@@ -18345,7 +18967,9 @@ var TAG_SearchMenuItem = function TAG_SearchMenuItem() {};
 
 var SearchMenuItem = (0,es/* observer */.Pi)(function (props) {
   var store = react.useContext(window.storeContext);
-  var app = store.app; // From ... store
+  var app = store.app; // From ... props
+
+  var disabled = props.disabled; // From ... store
 
   var searchContext = app.searchContext; // Events
   // ==================================================================================================
@@ -18360,6 +18984,7 @@ var SearchMenuItem = (0,es/* observer */.Pi)(function (props) {
   return /*#__PURE__*/react.createElement(MenuItem, {
     iconName: "search",
     label: "Rechercher",
+    disabled: disabled,
     activeContexts: [searchContext],
     callbackClick: handleMenuItemClick
   });
@@ -18382,6 +19007,8 @@ var Paper_Paper = function Paper(props) {
   // From ... props
   var hoverable = props.hoverable == true ? true : false;
   var children = props.children;
+  var _onMouseEnter = props.onMouseEnter;
+  var _onMouseLeave = props.onMouseLeave;
   var _onClick = props.onClick;
   var className = props.className ? props.className : '';
   var style = props.style ? props.style : {}; // Render
@@ -18392,6 +19019,16 @@ var Paper_Paper = function Paper(props) {
       "hoverable": hoverable
     }, className),
     style: style,
+    onMouseEnter: function onMouseEnter(e) {
+      if (_onMouseEnter) {
+        _onMouseEnter(e);
+      }
+    },
+    onMouseLeave: function onMouseLeave(e) {
+      if (_onMouseLeave) {
+        _onMouseLeave(e);
+      }
+    },
     onClick: function onClick() {
       if (_onClick) {
         _onClick();
@@ -18879,7 +19516,7 @@ var CvPage = (0,es/* observer */.Pi)(function (props) {
   }, renderHelper());
 });
 // EXTERNAL MODULE: ./contexts/docs/Docs.css
-var Docs = __webpack_require__(5217);
+var Docs = __webpack_require__(996);
 ;// CONCATENATED MODULE: ./contexts/docs/Docs.jsx
 
 
@@ -19272,7 +19909,7 @@ var HomePage = (0,es/* observer */.Pi)(function (props) {
   }, renderHelper());
 });
 // EXTERNAL MODULE: ./contexts/search/Search.css
-var search_Search = __webpack_require__(4906);
+var search_Search = __webpack_require__(5090);
 ;// CONCATENATED MODULE: ./contexts/search/Search.jsx
 
 
@@ -19599,7 +20236,7 @@ window.addEventListener('DOMContentLoaded', function () {
 
 /***/ }),
 
-/***/ 5217:
+/***/ 996:
 /***/ (() => {
 
 // extracted by extract-css-chunks-webpack-plugin
@@ -19620,7 +20257,7 @@ window.addEventListener('DOMContentLoaded', function () {
 
 /***/ }),
 
-/***/ 4906:
+/***/ 5090:
 /***/ (() => {
 
 // extracted by extract-css-chunks-webpack-plugin
@@ -19711,14 +20348,14 @@ window.addEventListener('DOMContentLoaded', function () {
 
 /***/ }),
 
-/***/ 9455:
+/***/ 9768:
 /***/ (() => {
 
 // extracted by extract-css-chunks-webpack-plugin
 
 /***/ }),
 
-/***/ 9286:
+/***/ 9679:
 /***/ (() => {
 
 // extracted by extract-css-chunks-webpack-plugin
@@ -19928,7 +20565,7 @@ window.addEventListener('DOMContentLoaded', function () {
 
 /***/ }),
 
-/***/ 2306:
+/***/ 6075:
 /***/ (() => {
 
 // extracted by extract-css-chunks-webpack-plugin
@@ -19991,7 +20628,7 @@ window.addEventListener('DOMContentLoaded', function () {
 
 /***/ }),
 
-/***/ 7883:
+/***/ 8817:
 /***/ (() => {
 
 // extracted by extract-css-chunks-webpack-plugin
@@ -20045,6 +20682,304 @@ window.addEventListener('DOMContentLoaded', function () {
 
 // extracted by extract-css-chunks-webpack-plugin
 
+/***/ }),
+
+/***/ 132:
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+var map = {
+	"./af": 6398,
+	"./af.js": 6398,
+	"./ar": 3185,
+	"./ar-dz": 4133,
+	"./ar-dz.js": 4133,
+	"./ar-kw": 4712,
+	"./ar-kw.js": 4712,
+	"./ar-ly": 1538,
+	"./ar-ly.js": 1538,
+	"./ar-ma": 5903,
+	"./ar-ma.js": 5903,
+	"./ar-sa": 3608,
+	"./ar-sa.js": 3608,
+	"./ar-tn": 6425,
+	"./ar-tn.js": 6425,
+	"./ar.js": 3185,
+	"./az": 6706,
+	"./az.js": 6706,
+	"./be": 6768,
+	"./be.js": 6768,
+	"./bg": 4519,
+	"./bg.js": 4519,
+	"./bm": 841,
+	"./bm.js": 841,
+	"./bn": 1454,
+	"./bn-bd": 669,
+	"./bn-bd.js": 669,
+	"./bn.js": 1454,
+	"./bo": 6718,
+	"./bo.js": 6718,
+	"./br": 4779,
+	"./br.js": 4779,
+	"./bs": 9455,
+	"./bs.js": 9455,
+	"./ca": 5752,
+	"./ca.js": 5752,
+	"./cs": 6061,
+	"./cs.js": 6061,
+	"./cv": 6105,
+	"./cv.js": 6105,
+	"./cy": 2127,
+	"./cy.js": 2127,
+	"./da": 7134,
+	"./da.js": 7134,
+	"./de": 7649,
+	"./de-at": 8746,
+	"./de-at.js": 8746,
+	"./de-ch": 9754,
+	"./de-ch.js": 9754,
+	"./de.js": 7649,
+	"./dv": 3238,
+	"./dv.js": 3238,
+	"./el": 6684,
+	"./el.js": 6684,
+	"./en-au": 6896,
+	"./en-au.js": 6896,
+	"./en-ca": 9770,
+	"./en-ca.js": 9770,
+	"./en-gb": 4981,
+	"./en-gb.js": 4981,
+	"./en-ie": 1661,
+	"./en-ie.js": 1661,
+	"./en-il": 7006,
+	"./en-il.js": 7006,
+	"./en-in": 7770,
+	"./en-in.js": 7770,
+	"./en-nz": 5846,
+	"./en-nz.js": 5846,
+	"./en-sg": 8696,
+	"./en-sg.js": 8696,
+	"./eo": 7514,
+	"./eo.js": 7514,
+	"./es": 1450,
+	"./es-do": 5872,
+	"./es-do.js": 5872,
+	"./es-mx": 1484,
+	"./es-mx.js": 1484,
+	"./es-us": 9076,
+	"./es-us.js": 9076,
+	"./es.js": 1450,
+	"./et": 9928,
+	"./et.js": 9928,
+	"./eu": 8484,
+	"./eu.js": 8484,
+	"./fa": 5236,
+	"./fa.js": 5236,
+	"./fi": 7957,
+	"./fi.js": 7957,
+	"./fil": 4754,
+	"./fil.js": 4754,
+	"./fo": 8168,
+	"./fo.js": 8168,
+	"./fr": 4065,
+	"./fr-ca": 117,
+	"./fr-ca.js": 117,
+	"./fr-ch": 7235,
+	"./fr-ch.js": 7235,
+	"./fr.js": 4065,
+	"./fy": 9156,
+	"./fy.js": 9156,
+	"./ga": 7031,
+	"./ga.js": 7031,
+	"./gd": 5202,
+	"./gd.js": 5202,
+	"./gl": 234,
+	"./gl.js": 234,
+	"./gom-deva": 1797,
+	"./gom-deva.js": 1797,
+	"./gom-latn": 6493,
+	"./gom-latn.js": 6493,
+	"./gu": 6126,
+	"./gu.js": 6126,
+	"./he": 9286,
+	"./he.js": 9286,
+	"./hi": 2763,
+	"./hi.js": 2763,
+	"./hr": 2748,
+	"./hr.js": 2748,
+	"./hu": 3659,
+	"./hu.js": 3659,
+	"./hy-am": 6093,
+	"./hy-am.js": 6093,
+	"./id": 2529,
+	"./id.js": 2529,
+	"./is": 6463,
+	"./is.js": 6463,
+	"./it": 1700,
+	"./it-ch": 5556,
+	"./it-ch.js": 5556,
+	"./it.js": 1700,
+	"./ja": 9421,
+	"./ja.js": 9421,
+	"./jv": 2598,
+	"./jv.js": 2598,
+	"./ka": 9254,
+	"./ka.js": 9254,
+	"./kk": 8331,
+	"./kk.js": 8331,
+	"./km": 8958,
+	"./km.js": 8958,
+	"./kn": 5598,
+	"./kn.js": 5598,
+	"./ko": 5217,
+	"./ko.js": 5217,
+	"./ku": 7457,
+	"./ku.js": 7457,
+	"./ky": 1029,
+	"./ky.js": 1029,
+	"./lb": 4906,
+	"./lb.js": 4906,
+	"./lo": 4385,
+	"./lo.js": 4385,
+	"./lt": 6291,
+	"./lt.js": 6291,
+	"./lv": 8956,
+	"./lv.js": 8956,
+	"./me": 7883,
+	"./me.js": 7883,
+	"./mi": 4564,
+	"./mi.js": 4564,
+	"./mk": 1472,
+	"./mk.js": 1472,
+	"./ml": 6696,
+	"./ml.js": 6696,
+	"./mn": 6610,
+	"./mn.js": 6610,
+	"./mr": 4229,
+	"./mr.js": 4229,
+	"./ms": 4552,
+	"./ms-my": 9202,
+	"./ms-my.js": 9202,
+	"./ms.js": 4552,
+	"./mt": 8438,
+	"./mt.js": 8438,
+	"./my": 370,
+	"./my.js": 370,
+	"./nb": 4774,
+	"./nb.js": 4774,
+	"./ne": 1151,
+	"./ne.js": 1151,
+	"./nl": 4807,
+	"./nl-be": 3343,
+	"./nl-be.js": 3343,
+	"./nl.js": 4807,
+	"./nn": 802,
+	"./nn.js": 802,
+	"./oc-lnc": 5279,
+	"./oc-lnc.js": 5279,
+	"./pa-in": 4566,
+	"./pa-in.js": 4566,
+	"./pl": 468,
+	"./pl.js": 468,
+	"./pt": 3853,
+	"./pt-br": 4372,
+	"./pt-br.js": 4372,
+	"./pt.js": 3853,
+	"./ro": 1695,
+	"./ro.js": 1695,
+	"./ru": 553,
+	"./ru.js": 553,
+	"./sd": 6640,
+	"./sd.js": 6640,
+	"./se": 7138,
+	"./se.js": 7138,
+	"./si": 2239,
+	"./si.js": 2239,
+	"./sk": 5207,
+	"./sk.js": 5207,
+	"./sl": 6732,
+	"./sl.js": 6732,
+	"./sq": 575,
+	"./sq.js": 575,
+	"./sr": 7488,
+	"./sr-cyrl": 3042,
+	"./sr-cyrl.js": 3042,
+	"./sr.js": 7488,
+	"./ss": 5141,
+	"./ss.js": 5141,
+	"./sv": 574,
+	"./sv.js": 574,
+	"./sw": 8582,
+	"./sw.js": 8582,
+	"./ta": 4762,
+	"./ta.js": 4762,
+	"./te": 4187,
+	"./te.js": 4187,
+	"./tet": 2159,
+	"./tet.js": 2159,
+	"./tg": 7021,
+	"./tg.js": 7021,
+	"./th": 5050,
+	"./th.js": 5050,
+	"./tk": 1307,
+	"./tk.js": 1307,
+	"./tl-ph": 3365,
+	"./tl-ph.js": 3365,
+	"./tlh": 2178,
+	"./tlh.js": 2178,
+	"./tr": 8797,
+	"./tr.js": 8797,
+	"./tzl": 7929,
+	"./tzl.js": 7929,
+	"./tzm": 4654,
+	"./tzm-latn": 1169,
+	"./tzm-latn.js": 1169,
+	"./tzm.js": 4654,
+	"./ug-cn": 4777,
+	"./ug-cn.js": 4777,
+	"./uk": 8166,
+	"./uk.js": 8166,
+	"./ur": 170,
+	"./ur.js": 170,
+	"./uz": 4266,
+	"./uz-latn": 38,
+	"./uz-latn.js": 38,
+	"./uz.js": 4266,
+	"./vi": 739,
+	"./vi.js": 739,
+	"./x-pseudo": 9637,
+	"./x-pseudo.js": 9637,
+	"./yo": 6173,
+	"./yo.js": 6173,
+	"./zh-cn": 111,
+	"./zh-cn.js": 111,
+	"./zh-hk": 2306,
+	"./zh-hk.js": 2306,
+	"./zh-mo": 7859,
+	"./zh-mo.js": 7859,
+	"./zh-tw": 5902,
+	"./zh-tw.js": 5902
+};
+
+
+function webpackContext(req) {
+	var id = webpackContextResolve(req);
+	return __webpack_require__(id);
+}
+function webpackContextResolve(req) {
+	if(!__webpack_require__.o(map, req)) {
+		var e = new Error("Cannot find module '" + req + "'");
+		e.code = 'MODULE_NOT_FOUND';
+		throw e;
+	}
+	return map[req];
+}
+webpackContext.keys = function webpackContextKeys() {
+	return Object.keys(map);
+};
+webpackContext.resolve = webpackContextResolve;
+module.exports = webpackContext;
+webpackContext.id = 132;
+
 /***/ })
 
 /******/ 	});
@@ -20061,13 +20996,16 @@ window.addEventListener('DOMContentLoaded', function () {
 /******/ 		}
 /******/ 		// Create a new module (and put it into the cache)
 /******/ 		var module = __webpack_module_cache__[moduleId] = {
-/******/ 			// no module.id needed
-/******/ 			// no module.loaded needed
+/******/ 			id: moduleId,
+/******/ 			loaded: false,
 /******/ 			exports: {}
 /******/ 		};
 /******/ 	
 /******/ 		// Execute the module function
-/******/ 		__webpack_modules__[moduleId](module, module.exports, __webpack_require__);
+/******/ 		__webpack_modules__[moduleId].call(module.exports, module, module.exports, __webpack_require__);
+/******/ 	
+/******/ 		// Flag the module as loaded
+/******/ 		module.loaded = true;
 /******/ 	
 /******/ 		// Return the exports of the module
 /******/ 		return module.exports;
@@ -20145,6 +21083,15 @@ window.addEventListener('DOMContentLoaded', function () {
 /******/ 		__webpack_require__.o = (obj, prop) => (Object.prototype.hasOwnProperty.call(obj, prop))
 /******/ 	})();
 /******/ 	
+/******/ 	/* webpack/runtime/node module decorator */
+/******/ 	(() => {
+/******/ 		__webpack_require__.nmd = (module) => {
+/******/ 			module.paths = [];
+/******/ 			if (!module.children) module.children = [];
+/******/ 			return module;
+/******/ 		};
+/******/ 	})();
+/******/ 	
 /******/ 	/* webpack/runtime/jsonp chunk loading */
 /******/ 	(() => {
 /******/ 		// no baseURI
@@ -20204,7 +21151,7 @@ window.addEventListener('DOMContentLoaded', function () {
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module depends on other loaded chunks and execution need to be delayed
 /******/ 	__webpack_require__.O(undefined, [216], () => (__webpack_require__(3979)))
-/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, [216], () => (__webpack_require__(8446)))
+/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, [216], () => (__webpack_require__(1819)))
 /******/ 	__webpack_exports__ = __webpack_require__.O(__webpack_exports__);
 /******/ 	
 /******/ })()
